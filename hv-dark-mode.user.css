@@ -1,0 +1,942 @@
+/* ==UserStyle==
+@name         HentaiVerse Dark Mode
+@namespace    hentaiverse.org
+@version      2026.03.05
+@description  HentaiVerse 深色模式 - 适配 HV Utils / HV 物品装备汉化 / Battle Stats 等脚本
+@author       MeiYongAI
+@license      MIT
+==/UserStyle== */
+
+@-moz-document domain("hentaiverse.org") {
+
+    body {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV Utils 顶部菜单栏 */
+    #hvut-top {
+        background-color: #1e1e1e !important;
+        border-color: #3d3d3d !important;
+    }
+    .hvut-top-sub {
+        background-color: #252525 !important;
+        border-color: #3d3d3d !important;
+        opacity: 1 !important;
+    }
+    .hvut-top-menu span {
+        color: #d08050 !important;
+    }
+    .hvut-top-menu-s {
+        background-color: #3d1518 !important;
+        color: #e0e0e0 !important;
+    }
+    .hvut-top-menu a {
+        color: #d0d0d0 !important;
+    }
+    .hvut-top-menu a:hover {
+        background-color: #333 !important;
+        color: #6eb3ff !important;
+    }
+    .hvut-top-quick > a {
+        color: #d0d0d0 !important;
+    }
+    .hvut-top-quick > a:hover {
+        background-color: #333 !important;
+        color: #6eb3ff !important;
+    }
+    .hvut-top-quick > a:hover::after,
+    .hvut-top-quick > a::after {
+        background-color: #252525 !important;
+        color: #d08050 !important;
+        border-color: #3d3d3d !important;
+    }
+    .hvut-top-warn {
+        background-color: #4a3a1a !important;
+    }
+    .hvut-top-message {
+        background-color: #3d1518cc !important;
+        border-color: #5C0D11 !important;
+        color: #ff7b7b !important;
+    }
+    .hvut-top-exp {
+        border-color: #4a4a4a !important;
+        isolation: isolate !important;
+    }
+    .hvut-top-exp::before {
+        background-color: #252525 !important;
+    }
+    .hvut-top-exp > div {
+        background-color: #2a5a8a !important;
+    }
+    .hvut-top-server > span {
+        color: #d08050 !important;
+    }
+    .hvut-top-server > div {
+        background-color: #252525 !important;
+        border-color: #3d3d3d !important;
+    }
+
+    /* HV Utils 通用标签/label */
+    .hvut-label {
+        color: #d0d0d0 !important;
+    }
+
+    /* HV navbar */
+    #navbar {
+        background-color: #1e1e1e !important;
+        border-color: #3d3d3d !important;
+    }
+    #navbar img {
+        filter: brightness(0.85);
+    }
+    .nc > div {
+        background-color: #252525 !important;
+        border: 1px solid #3d3d3d !important;
+    }
+    .nc .fc4 > div,
+    .nc .fc2 > div {
+        color: #d0d0d0 !important;
+    }
+    .nc div[onclick]:hover {
+        background-color: #333 !important;
+    }
+    .nc div[onclick]:hover .fc4 > div,
+    .nc div[onclick]:hover .fc2 > div {
+        color: #6eb3ff !important;
+    }
+
+    /* HV stamina/level readouts */
+    #stamina_readout,
+    #level_readout,
+    #world_readout {
+        background-color: #252525 !important;
+    }
+    #stamina_readout:hover,
+    #level_readout:hover,
+    #world_readout:hover {
+        background-color: #2a2a2a !important;
+    }
+    #stamina_restore > div,
+    #level_details > div,
+    #world_text > div {
+        background-color: #2a2a2a !important;
+        border: 1px solid #3d3d3d !important;
+        color: #d0d0d0 !important;
+    }
+    #level_details p,
+    #world_text p {
+        color: #d0d0d0 !important;
+    }
+
+    /* HV main pane */
+    #mainpane {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    #csp {
+        background-color: #1a1a1a !important;
+    }
+
+    /* HV font color overrides */
+    .fcb > div {
+        color: #e0e0e0 !important;
+    }
+    .fcr > div {
+        color: #ff7b7b !important;
+    }
+    .fca > div {
+        color: #7bff7b !important;
+    }
+
+    /* HV equipment set tabs */
+    #eqsl img[src*="_off"] {
+        filter: brightness(1.8) !important;
+    }
+
+    /* HV character/equipment panels */
+    #eqch_outer {
+        background-color: #1a1a1a !important;
+    }
+    #eqch_left {
+        background-color: #1a1a1a !important;
+    }
+    #eqch_stats {
+        background-color: #1a1a1a !important;
+    }
+
+    /* HV persona */
+    #persona_outer {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    #persona_select {
+        background-color: #1a1a1a !important;
+    }
+    #persona_select select {
+        background-color: #2d2d2d !important;
+        color: #e0e0e0 !important;
+        border: 1px solid #4a4a4a !important;
+    }
+    #persona_select select:hover {
+        background-color: #333 !important;
+        border-color: #6eb3ff !important;
+    }
+    #persona_select select option {
+        background-color: #2d2d2d !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV attributes table */
+    #attr_outer {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    #attr_table {
+        background-color: transparent !important;
+    }
+    #attr_table td {
+        border-color: #3d3d3d !important;
+    }
+    #attr_table td:hover {
+        background-color: #2a2a2a !important;
+    }
+    #attr_table img:hover {
+        background-color: transparent !important;
+    }
+
+    /* HV proficiency tables */
+    #prof_outer {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    #prof_outer table {
+        background-color: transparent !important;
+    }
+    #prof_outer table td {
+        border-color: #3d3d3d !important;
+    }
+
+    /* HV ability page */
+    #ability_outer {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    #ability_top {
+        background-color: #1a1a1a !important;
+    }
+    .ability_slotbar {
+        background-color: #1a1a1a !important;
+    }
+    .ability_slotbar div[style*="/rl.png"],
+    .ability_slotbar div[style*="/gl.png"] {
+        filter: brightness(1.5) !important;
+    }
+    .ability_slotbar div[style*="/rl.png"] > div[style*="/0.png"],
+    .ability_slotbar div[style*="/gl.png"] > div[style*="/0.png"],
+    .ability_slotbar div[style*="/ru.png"] > div[style*="/0.png"],
+    .ability_slotbar div[style*="/gu.png"] > div[style*="/0.png"],
+    .ability_slotbar div[style*="/bu.png"] > div[style*="/0.png"],
+    .ability_slotbar div[style*="/pu.png"] > div[style*="/0.png"] {
+        filter: brightness(0.3) !important;
+    }
+    .ability_slotbox div[style*="/rl.png"],
+    .ability_slotbox div[style*="/gl.png"] {
+        filter: brightness(1.5) !important;
+    }
+    .ability_slotbox div[style*="/0.png"] {
+        filter: brightness(0.3) !important;
+    }
+    #ability_bot {
+        background-color: #1a1a1a !important;
+    }
+    #ability_treelist {
+        background-color: #1a1a1a !important;
+    }
+    #ability_treelist img[src*="/td"] {
+        filter: brightness(1.8) !important;
+    }
+    #ability_treelist img[src*="/ta"] {
+        filter: brightness(1.0) !important;
+    }
+    #ability_treelist .hvut-ab-tree > img[src*="/td"] {
+        filter: brightness(2.5) saturate(1.2) !important;
+    }
+    #ability_treepane {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    #ability_info {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+        border-color: #444 !important;
+    }
+    #ability_info div {
+        color: #e0e0e0 !important;
+        border-color: #555 !important;
+    }
+    #ability_info strong {
+        color: #6eb3ff !important;
+    }
+
+    /* HV stats panel */
+    #stats_inner {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    #stats_header {
+        background-color: #222 !important;
+    }
+    #stats_scrollable {
+        background-color: #1a1a1a !important;
+    }
+    .spc {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+    .spc > .fc2 > div {
+        color: #6eb3ff !important;
+    }
+    .stats_page {
+        background-color: #1a1a1a !important;
+    }
+
+    /* HV scroll buttons */
+    .csps {
+        background-color: #222 !important;
+    }
+    .csps:hover {
+        background-color: #333 !important;
+    }
+    .csps img {
+        filter: invert(0.8);
+    }
+
+    /* HV general tables */
+    table {
+        border-color: #3d3d3d !important;
+    }
+    td, th {
+        border-color: #3d3d3d !important;
+    }
+    th {
+        background-color: #2a2a2a !important;
+        color: #c8c8c8 !important;
+    }
+    tr:hover > td {
+        background-color: #2a2a2a !important;
+    }
+
+    /* HV Market page */
+    #market_outer {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    #market_left,
+    #market_right {
+        background-color: #1e1e1e !important;
+        border-color: #3d3d3d !important;
+    }
+    .market_tab {
+        background-color: #252525 !important;
+        color: #c8c8c8 !important;
+        border-color: #3d3d3d !important;
+    }
+    .market_cur {
+        background-color: #2e3a4e !important;
+        color: #6eb3ff !important;
+    }
+    #filterbar .cfb,
+    #filterbar .cfbs {
+        background-color: #252525 !important;
+        color: #c8c8c8 !important;
+        border-color: #3d3d3d !important;
+    }
+    #filterbar .cfbs {
+        background-color: #2e3a4e !important;
+        color: #6eb3ff !important;
+    }
+    .credit_balance {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+        border-color: #3d3d3d !important;
+    }
+    #market_xfer input[type="submit"] {
+        background-color: #333 !important;
+        color: #e0e0e0 !important;
+        border-color: #555 !important;
+    }
+    #market_xfer input[type="text"] {
+        background-color: #2a2a2a !important;
+        color: #e0e0e0 !important;
+        border-color: #555 !important;
+    }
+    #market_itemlist td {
+        background-color: #1e1e1e !important;
+        color: #e0e0e0 !important;
+    }
+    #market_itemlist tr:hover > td {
+        background-color: #2a2a2a !important;
+    }
+    #market_itemlist input[type="text"] {
+        background-color: #2a2a2a !important;
+        color: #e0e0e0 !important;
+        border-color: #555 !important;
+    }
+    #market_itemfilter {
+        color: #e0e0e0 !important;
+    }
+
+    /* HV links */
+    a:not(.settings-window a):not(#ctrl-widget a):not(#encounter-widget a) {
+        color: #6eb3ff !important;
+    }
+    a:not(.settings-window a):not(#ctrl-widget a):not(#encounter-widget a):hover {
+        color: #8ec8ff !important;
+        background-color: transparent !important;
+    }
+    a:not(.settings-window a):not(#ctrl-widget a):not(#encounter-widget a):visited {
+        color: #9fbfff !important;
+    }
+
+    /* HV form elements (non-JPX) */
+    input:not(.settings-window input),
+    select:not(.settings-window select),
+    textarea:not(.settings-window textarea) {
+        background-color: #2d2d2d !important;
+        color: #e0e0e0 !important;
+        border-color: #4a4a4a !important;
+        transition: none !important;
+    }
+    input:not(.settings-window input):hover,
+    input:not(.settings-window input):focus:hover,
+    select:not(.settings-window select):hover,
+    select:not(.settings-window select):focus:hover,
+    textarea:not(.settings-window textarea):hover,
+    textarea:not(.settings-window textarea):focus:hover {
+        background-color: #333 !important;
+        border-color: #6eb3ff !important;
+        transition: none !important;
+    }
+    input:not(.settings-window input):focus,
+    select:not(.settings-window select):focus,
+    textarea:not(.settings-window textarea):focus {
+        background-color: #2d2d2d !important;
+        border-color: #6eb3ff !important;
+        box-shadow: 0 0 0 2px rgba(110,179,255,0.2) !important;
+        transition: none !important;
+    }
+    select:not(.settings-window select) option {
+        background-color: #2d2d2d !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV buttons */
+    input[type="button"],
+    input[type="submit"] {
+        background-color: #333 !important;
+        color: #e0e0e0 !important;
+        border-color: #4a4a4a !important;
+    }
+    input[type="button"]:hover,
+    input[type="submit"]:hover {
+        background-color: #404040 !important;
+        color: #e0e0e0 !important;
+        border-color: #6eb3ff !important;
+    }
+    input[type="button"]:active,
+    input[type="submit"]:active {
+        background-color: #4a4a4a !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV: general clickable div hover */
+    div[onclick]:hover {
+        background-color: #2a2a2a !important;
+    }
+
+    /* HV: 文字选中颜色 */
+    ::selection {
+        background-color: #264f78 !important;
+        color: #e0e0e0 !important;
+    }
+    ::-moz-selection {
+        background-color: #264f78 !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV: outline/highlight colors */
+    *:focus:not(.settings-window *):not(#ctrl-widget *):not(#encounter-widget *) {
+        outline-color: #6eb3ff !important;
+    }
+
+    /* HV battle page */
+    #battle_top {
+        background-color: #1e1e1e !important;
+    }
+    #battle_main {
+        background-color: #1e1e1e !important;
+    }
+    #battle_left {
+        background-color: #222 !important;
+    }
+    #infopane {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+        border-color: #3d3d3d !important;
+    }
+    #pane_log {
+        background-color: #1e1e1e !important;
+    }
+    #textlog {
+        background-color: #1e1e1e !important;
+    }
+    #textlog td.tl {
+        color: #d0d0d0 !important;
+    }
+    #pane_vitals {
+        background-color: #222 !important;
+    }
+    #pane_vitals div[id^="dvr"] {
+        color: #e0e0e0 !important;
+    }
+
+    /* HV popup box */
+    #popup_box {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+        border-color: #3d3d3d !important;
+    }
+
+    /* HV btcp (battle completion popup) */
+    #btcp {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+        border-color: #3d3d3d !important;
+    }
+    #btcp a {
+        color: #6eb3ff !important;
+    }
+
+    /* JPX records tables (auto dark via data-hv-theme) */
+    #time-records-div,
+    #combat-records-table,
+    #combat-records-use-table,
+    #revenue-records-table {
+        color: #eee !important;
+        background-color: #121212 !important;
+        border-color: #555 !important;
+    }
+    #revenue-records-table .surplus { color: #eee !important; background-color: #226709 !important; }
+    #revenue-records-table .deficit { color: #eee !important; background-color: #7c1010 !important; }
+    #revenue-records-table .noData { color: #eee !important; background-color: #433483 !important; }
+    .records-table td {
+        border-color: #555 !important;
+    }
+    #combat-records-use-table th,
+    #combat-records-use-table td {
+        border-color: #555 !important;
+    }
+
+    /* HV - Battle Stats Ex (bse) */
+    #battle_stats_ex {
+        color: #e0e0e0 !important;
+    }
+    .bse_containerL {
+        color: #e0e0e0 !important;
+    }
+    .bse_containerR {
+        color: #e0e0e0 !important;
+    }
+    #bse_button {
+        background-color: #333 !important;
+        color: #e0e0e0 !important;
+        border-color: #555 !important;
+    }
+
+    /* Hentaiverse Battle Stats (hbs) */
+    #hbs_container {
+        background-color: #1e1e1e !important;
+        color: #e0e0e0 !important;
+    }
+    .hbs-table {
+        color: #e0e0e0 !important;
+    }
+    .hbs-table tr.grouping_row th {
+        border-color: #555 !important;
+    }
+    .last_agg_row td {
+        border-color: #555 !important;
+    }
+    .hbs-tooltip-parent {
+        border-color: #555 !important;
+    }
+    .hbs-tooltip-parent:hover {
+        background: #333 !important;
+    }
+    .hbs-tooltip {
+        background: #333 !important;
+        border-color: #555 !important;
+        color: #e0e0e0 !important;
+    }
+    .hbs_menu {
+        color: #e0e0e0 !important;
+    }
+
+    /* HV - 战斗日志汉化 (translog) */
+    #translog {
+        color: #e0e0e0 !important;
+    }
+    #translog td.tl {
+        color: #e0e0e0 !important;
+    }
+    #translog span[style*="background:#7CFC00"],
+    #translog span[style*="background:#ADFF2F"] {
+        filter: brightness(0.6) saturate(1.5) !important;
+        color: #111 !important;
+    }
+
+    /* HV Utils - 战斗面板 (hvut-bt) */
+    .hvut-bt-div {
+        color: #e0e0e0 !important;
+    }
+    .hvut-bt-div > ul {
+        border-color: #555 !important;
+    }
+    .hvut-bt-div > ul::before {
+        background-color: #2a2518 !important;
+        color: #e0d8c0 !important;
+        border-color: #555 !important;
+    }
+    .hvut-bt-equip li {
+        border-color: #444 !important;
+    }
+    .hvut-bt-equip li:hover {
+        background-color: #2a2a2a !important;
+    }
+    .hvut-bt-active {
+        background-color: #2a2a2a !important;
+    }
+    .hvut-bt-equip li > span:nth-child(3) {
+        border-color: #555 !important;
+    }
+    .hvut-bt-equip li > span:nth-child(3):hover {
+        background-color: #333 !important;
+    }
+    .hvut-bt-enchant span:nth-child(1),
+    .hvut-bt-enchant span:nth-child(2) {
+        color: #6eb3ff !important;
+    }
+    .hvut-bt-day {
+        background-color: #1a2a3a !important;
+    }
+    .hvut-bt-nostock span {
+        color: #666 !important;
+    }
+    .hvut-bt-warn {
+        color: #f87171 !important;
+    }
+    .hvut-bt-cdt1 {
+        color: #f87171 !important;
+    }
+    .hvut-bt-cdt2 {
+        color: #fff !important;
+        background-color: #991b1b !important;
+    }
+    .hvut-bt-repair:hover,
+    .hvut-bt-repairall:hover {
+        background-color: #2a2a2a !important;
+    }
+
+    /* HV pabonus */
+    #pabonus {
+        background-color: #252525 !important;
+    }
+
+    /* HV scrollbar */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #3d3d3d;
+        border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    /* ======== HV Utils 装备品质颜色（深色模式适配） ======== */
+    /* 装备品质行：统一暗色背景 */
+    .hvut-eq-Flimsy,
+    .hvut-eq-Crude,
+    .hvut-eq-Fair,
+    .hvut-eq-Average,
+    .hvut-eq-Fine,
+    .hvut-eq-Superior,
+    .hvut-eq-Exquisite,
+    .hvut-eq-Magnificent,
+    .hvut-eq-Legendary,
+    .hvut-eq-Peerless {
+        background-color: #252525 !important;
+        color: #e0e0e0 !important;
+    }
+
+    /*
+     * 词条 span 可读性修复：
+     * 游戏里带彩色背景的 span 大多不设 color，会继承暗色模式的浅灰文字，
+     * 导致亮色背景上文字看不清。
+     * 方案：所有带 background 的词条 span 强制深色文字（适配亮色背景），
+     * 再对原本就明确写了 color:#FFFFFF 的暗色背景 span 还原白色。
+     */
+    #eqsb span[style*="background"] {
+        color: #111111 !important;
+        font-weight: bold;
+    }
+    #eqsb span[style*="color:#FFFFFF"],
+    #eqsb span[style*="color: #FFFFFF"] {
+        color: #FFFFFF !important;
+    }
+
+    /* HV Utils 装备列表 */
+    .equiplist {
+        background-color: #1e1e1e !important;
+        color: #d0d0d0 !important;
+    }
+    .eqp {
+        background-color: #252525 !important;
+        border-color: #3a3a3a !important;
+    }
+    .eqp:hover {
+        background-color: #333 !important;
+    }
+    .eqp > div:last-child:not([onclick]) {
+        color: #a88 !important;
+    }
+
+    /* HV Utils 装备分类标题 */
+    .hvut-eq-category {
+        background-color: #3a3020 !important;
+        border-color: #4a4a4a !important;
+        color: #e0d0b0 !important;
+    }
+    .hvut-eq-loading .hvut-eq-category {
+        background-color: #333 !important;
+        color: #aaa !important;
+    }
+    .hvut-eq-type {
+        border-color: #4a4a4a !important;
+        color: #d0d0d0 !important;
+    }
+    div + .hvut-eq-border::before {
+        border-top-color: #5a2a2d !important;
+    }
+
+    /* HV Utils 装备自定义名称悬浮 */
+    .hvut-eq-customname::after {
+        background-color: #252525 !important;
+        border-color: #4a4a4a !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* HV Utils 物品列表颜色（深色适配） */
+    .itemlist > tbody > tr > td > div {
+        color: #d0d0d0 !important;
+    }
+    .hvut-it-Consumable { color: #55d455 !important; }
+    .hvut-it-Artifact { color: #6e9eff !important; }
+    .hvut-it-Trophy { color: #a070cc !important; }
+    .hvut-it-Token { color: #5daa5d !important; }
+    .hvut-it-Crystal { color: #d060cc !important; }
+    .hvut-it-MonsterFood { color: #70b0ff !important; }
+    .hvut-it-Material { color: #ff6060 !important; }
+    .hvut-it-Collectable { color: #6e9eff !important; }
+
+    /* HV Utils 复制按钮等通用元素 */
+    .hvut-cphu:hover,
+    .hvut-cphu-sub > *:hover {
+        color: #6eb3ff !important;
+    }
+
+    /* HV 原始装备页面标签（eqtplabel/eqtplist） */
+    .eqtplabel {
+        background-color: #2a2a2a !important;
+        color: #d0d0d0 !important;
+        border-color: #3d3d3d !important;
+    }
+    .eqtplist {
+        background-color: #222 !important;
+        color: #d0d0d0 !important;
+    }
+    .eqb {
+        background-color: #252525 !important;
+    }
+    .eqb > div {
+        color: #d0d0d0 !important;
+    }
+
+    /* HV 物品装备汉化脚本按钮 */
+    #change-translate {
+        background-color: #333 !important;
+        color: #e0e0e0 !important;
+        border: 1px solid #4a4a4a !important;
+    }
+
+    /* HV 物品装备汉化脚本 —— 装备名内联背景色覆盖 */
+    /* 装备名中所有带 style="background:..." 的span在深色模式下统一调暗 */
+    .eqp span[style*="background"],
+    .equiplist span[style*="background"],
+    #eqch_left span[style*="background"],
+    #mainpane span[style*="background"] {
+        filter: brightness(0.55) saturate(1.3) !important;
+        color: #e8e8e8 !important;
+        border-radius: 2px;
+        padding: 0 2px;
+    }
+    /* 白色背景的span特殊处理（布甲标记、圣光等） */
+    .eqp span[style*="background:#FFFFFF"],
+    .eqp span[style*="background:#ffffff"],
+    .equiplist span[style*="background:#FFFFFF"],
+    .equiplist span[style*="background:#ffffff"],
+    #eqch_left span[style*="background:#FFFFFF"],
+    #eqch_left span[style*="background:#ffffff"],
+    #mainpane span[style*="background:#FFFFFF"],
+    #mainpane span[style*="background:#ffffff"] {
+        filter: none !important;
+        background-color: #3a3a3a !important;
+        color: #d0d0d0 !important;
+    }
+    /* 黑色背景的span（重甲标记、暗属性等） */
+    .eqp span[style*="background:#000000"],
+    .equiplist span[style*="background:#000000"],
+    #eqch_left span[style*="background:#000000"],
+    #mainpane span[style*="background:#000000"] {
+        filter: none !important;
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    /* 浅灰色背景（缟玛瑙等） */
+    .eqp span[style*="background:#cccccc"],
+    .equiplist span[style*="background:#cccccc"],
+    #eqch_left span[style*="background:#cccccc"],
+    #mainpane span[style*="background:#cccccc"] {
+        filter: none !important;
+        background-color: #404040 !important;
+        color: #d0d0d0 !important;
+    }
+    /* 品质背景色覆盖（汉化脚本内联方式） */
+    span[style*="background:#acacac"] {
+        filter: none !important;
+        background-color: #444 !important;
+        color: #d0d0d0 !important;
+    }
+    span[style*="background:#c1c1c1"] {
+        filter: none !important;
+        background-color: #4a4a4a !important;
+        color: #d0d0d0 !important;
+    }
+    span[style*="background:#dfdfdf"] {
+        filter: none !important;
+        background-color: #505050 !important;
+        color: #d0d0d0 !important;
+    }
+    span[style*="background:#fbf9f9"] {
+        filter: none !important;
+        background-color: #555 !important;
+        color: #d0d0d0 !important;
+    }
+    span[style*="background:#b9ffb9"] {
+        filter: none !important;
+        background-color: #2a4a2a !important;
+        color: #7bff7b !important;
+    }
+    span[style*="background:#d7e698"] {
+        filter: none !important;
+        background-color: #3a4a25 !important;
+        color: #c0e070 !important;
+    }
+    span[style*="background:#a6daf6"] {
+        filter: none !important;
+        background-color: #24445a !important;
+        color: #7bbfff !important;
+    }
+    span[style*="background:#ffbbff"] {
+        filter: none !important;
+        background-color: #5a2a5a !important;
+        color: #ff99ff !important;
+    }
+    span[style*="background:#ffd760"] {
+        filter: none !important;
+        background-color: #5a4a1a !important;
+        color: #ffd760 !important;
+    }
+    /* 红色文字（充能/野蛮/秘银/节能等） */
+    .eqp span[style*="color:red"],
+    .equiplist span[style*="color:red"],
+    #eqch_left span[style*="color:red"],
+    #mainpane span[style*="color:red"] {
+        color: #ff6060 !important;
+    }
+
+    /* HV Utils 装备统计/法术分析面板 */
+    .hvut-eq-chart {
+        background-color: #252525 !important;
+        color: #d0d0d0 !important;
+        border-color: #3d3d3d !important;
+    }
+    .hvut-eq-prof {
+        background-color: #252525 !important;
+        color: #d0d0d0 !important;
+        border-color: #3d3d3d !important;
+    }
+
+    /* HV Utils 装备仓库选中/勾选 */
+    .hvut-es-check {
+        border-color: #4a4a4a !important;
+    }
+
+    /* HV Utils 装备列表子操作菜单 */
+    .hvut-es-sub {
+        background-color: #2a2a2a !important;
+        border-color: #3d3d3d !important;
+    }
+    .hvut-es-sub > span {
+        color: #b0b0b0 !important;
+        background-color: #333 !important;
+        border-color: #4a4a4a !important;
+    }
+    .hvut-es-sub > span:hover {
+        background-color: #404040 !important;
+        color: #e0e0e0 !important;
+    }
+    .hvut-es-sub > span.hvut-es-bold {
+        color: #6ec9ff !important;
+    }
+    .hvut-es-sub > span.hvut-es-bold:hover {
+        color: #90daff !important;
+    }
+    /* HV Utils 装备等级标签 */
+    .hvut-es-level {
+        color: #a0a0a0 !important;
+    }
+    /* HV Utils 装备属性标签 [SDA] */
+    .hvut-es-pab {
+        color: #909090 !important;
+    }
+    /* HV Utils 装备锁定图标 */
+    .eqp > .il {
+        filter: brightness(0.7) invert(0.8) !important;
+    }
+    /* HV Utils 装备ID/潜能/价值标记 */
+    .hvut-es-eid {
+        color: #888 !important;
+    }
+
+    /* HV checkbox复选框（lc容器） */
+    .lc > span:nth-child(2) {
+        background-color: #2d2d2d !important;
+        border-color: #4a4a4a !important;
+    }
+}
