@@ -21,5 +21,3 @@ Install directly in Tampermonkey/Violentmonkey using the raw file URL from this 
 ```
 https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/jpx-plus.user.js
 ```
-
-如需我把 README 翻译为其它语言或添加截图说明，告诉我即可。
