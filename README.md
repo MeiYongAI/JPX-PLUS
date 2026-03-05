@@ -4,7 +4,7 @@ JPX-PLUS userscript for Hentaiverse. Installation file: `jpx-plus.user.js`.
 
 Install directly in Tampermonkey/Violentmonkey using the raw file URL from this repo.
 
-## HV Dark Mode (Stylus)
+## HV Dark Mode [Stylus](https://github.com/openstyles/stylus)
 
 本仓库同时包含一个为 Hentaiverse 提供的深色主题样式文件：`hv-dark-mode.user.css`。
 
