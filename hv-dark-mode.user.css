@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark Mode
 @namespace    hentaiverse.org
-@version      2026.03.05
+@version      2026.03.06
 @description  HentaiVerse 深色模式 - 适配 HV Utils / HV 物品装备汉化 / Battle Stats 等脚本
 @author       MeiYongAI
 @license      MIT
@@ -1012,7 +1012,39 @@
     }
 
     /* ======== 装备详情 - 极简扁平化适配 ======== */
-    
+
+    /* 顶部装备词条卡片胶囊：单行、不换行、随内容伸缩（不省略） */
+    #showequip { text-align: center !important; }
+    #showequip > div:first-child {
+        display: inline-block !important;
+        margin: 8px auto 12px auto !important;
+        padding: 6px 14px !important;
+        background: rgba(20,20,20,0.96) !important;
+        border: 1px solid rgba(255,255,255,0.06) !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+        color: #e0e0e0 !important;
+        min-height: 0 !important;
+        /* 宽度随内容伸缩；移除强制的最大宽度限制以显示全部文字 */
+        width: auto !important;
+        max-width: none !important;
+        /* 字号保持响应式，但不会引起省略 */
+        font-size: clamp(10px, 1.6vw + 6px, 14px) !important;
+        text-align: center !important;
+        white-space: nowrap !important; /* 强制单行，不换行 */
+        overflow: visible !important; /* 显示全部，不省略 */
+        letter-spacing: 0.5px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 内部元素保持内联，避免撑高容器或产生换行 */
+    #showequip > div:first-child * {
+        white-space: nowrap !important;
+        display: inline !important;
+        vertical-align: middle !important;
+        margin: 0 !important;
+    }
+
     #showequip {
         background-color: #1a1a1a !important;
         color: #e0e0e0 !important;
