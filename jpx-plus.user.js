@@ -631,6 +631,8 @@ let cfg = {
             cursor: move;
             text-align: center;
             letter-spacing: 0.5px;
+            touch-action: none; /* prevent browser scrolling/gestures during touch drag */
+            -webkit-user-select: none;
         }
         #encounter-widget .enc-body { padding: 12px 14px; }
         #encounter-widget .enc-section {
@@ -3380,17 +3382,20 @@ function initEncounterWidget() {
         encounterWidget.style.left = newLeft + 'px';
         encounterWidget.style.top = newTop + 'px';
     });
-    header.addEventListener('pointerup', (e) => {
+    const endDrag = (e) => {
         if (!isDragging) return;
         isDragging = false;
-        header.releasePointerCapture(e.pointerId);
+        try { header.releasePointerCapture(e.pointerId); } catch(err) {}
         try {
             localStorage.setItem(prefix + 'encounterWidgetPos', JSON.stringify({
                 left: encounterWidget.style.left,
                 top: encounterWidget.style.top
             }));
-        } catch(e) {}
-    });
+        } catch(err) {}
+    };
+    header.addEventListener('pointerup', endDrag);
+    header.addEventListener('pointercancel', endDrag);
+    header.addEventListener('lostpointercapture', endDrag);
 
     // Restore position
     try {
