@@ -631,8 +631,6 @@ let cfg = {
             cursor: move;
             text-align: center;
             letter-spacing: 0.5px;
-            touch-action: none; /* prevent browser scrolling/gestures during touch drag */
-            -webkit-user-select: none;
         }
         #encounter-widget .enc-body { padding: 12px 14px; }
         #encounter-widget .enc-section {
@@ -3088,6 +3086,8 @@ function initEncounterWidget() {
     const header = document.createElement('div');
     header.className = 'enc-header';
     header.textContent = 'JPX-PLUS';
+    header.style.touchAction = 'none';
+    header.style.webkitUserSelect = 'none';
     encounterWidget.appendChild(header);
 
     const body = document.createElement('div');
