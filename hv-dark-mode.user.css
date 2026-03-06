@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark Mode
 @namespace    hentaiverse.org
-@version      2026.03.06
+@version      2026.03.05
 @description  HentaiVerse 深色模式 - 适配 HV Utils / HV 物品装备汉化 / Battle Stats 等脚本
 @author       MeiYongAI
 @license      MIT
@@ -1106,6 +1106,12 @@
     }
 
     /* 内部文字与数字的间距，最后一个无右距 */
+
+    /* 隐藏独立用于显示百分号的额外节点（页面中常见为第3个内层 div）
+       这避免出现重复或分离的百分号符号，同时保留数值本身 */
+    #equip_extended .ex > div > div:nth-child(3) {
+        display: none !important;
+    }
     #equip_extended .ex > div > div,
     #equip_extended .ep > div > div {
         display: inline !important;
