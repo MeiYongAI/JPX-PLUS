@@ -2854,8 +2854,8 @@ function initDo() {
             const storedCfg = JSON.parse(localStorage.getItem('jpx_cfgBattle') || localStorage.getItem('jpx_cfgBattle_isekai') || '{}');
             if (storedCfg.autoArena && message) {
                 // Check for both English and Chinese arena challenge messages
-                const isArenaChallenge = message.includes('Arena Challenge') || 
-                                        message.includes('竞技场挑战') || 
+                const isArenaChallenge = message.includes('Arena Challenge') ||
+                                        message.includes('竞技场挑战') ||
                                         message.includes('arena challenge');
                 if (isArenaChallenge) {
                     console.log('[JPX-PLUS] 自动确认竞技场挑战对话框:', message);
@@ -2863,8 +2863,8 @@ function initDo() {
                 }
             }
             if (storedCfg.autoRingOfBlood && message) {
-                const isRoBChallenge = message.includes('Ring of Blood') || 
-                                       message.includes('浴血擂台') || 
+                const isRoBChallenge = message.includes('Ring of Blood') ||
+                                       message.includes('浴血擂台') ||
                                        message.includes('ring of blood');
                 if (isRoBChallenge) {
                     console.log('[JPX-PLUS] 自动确认浴血擂台挑战对话框:', message);
@@ -3038,14 +3038,14 @@ function initDo() {
 function applyDarkMode() {
     const isDarkMode = cfgTheme?.darkMode === true;
     const htmlElement = document.documentElement;
-    
+
     // JPX-PLUS dark mode (scoped to JPX containers via CSS)
     if (isDarkMode) {
         htmlElement.setAttribute('data-theme', 'dark');
     } else {
         htmlElement.removeAttribute('data-theme');
     }
-    
+
     console.log(`[JPX-PLUS] 深色模式已${isDarkMode ? '启用' : '禁用'}`);
 }
 
@@ -3075,7 +3075,7 @@ function initEncounterWidget() {
         storedCfgStats = {};
     }
     mergeCfg(storedCfgStats, defaultCfgStats, cfgStats, 'stats');
-    
+
     applyDarkMode();
 
     // Create encounter widget（样式由全局 #encounter-widget 提供）
@@ -3706,7 +3706,7 @@ function initEncounterWidget() {
                 let cooldownCount = 0;
                 let tokenInsufCount = 0;
                 const selectedList = cfgBattle.ringOfBloodChallenges || [];
-                
+
                 for (let i = 1; i < allRows.length; i++) {
                     const row = allRows[i];
                     const startImg = row.querySelector('img[src$="/arena/startchallenge.png"][onclick]');
@@ -3727,7 +3727,7 @@ function initEncounterWidget() {
                         }
                     }
                 }
-                
+
                 try {
                     localStorage.setItem(prefix + 'robStatusCache' + isekaiSuffix, JSON.stringify({
                         total: totalChallenges,
@@ -3738,13 +3738,13 @@ function initEncounterWidget() {
                         timestamp: Date.now()
                     }));
                 } catch(e) {}
-                
+
                 const statusParts = [];
                 if (selectedAvailable > 0) statusParts.push(`${selectedAvailable}可挑战`);
                 if (cooldownCount > 0) statusParts.push(`${cooldownCount}冷却`);
                 if (tokenInsufCount > 0) statusParts.push(`${tokenInsufCount}令牌不足`);
                 const statusText = statusParts.join(' | ');
-                
+
                 if (selectedAvailable > 0) {
                     robInfoDiv.innerHTML = `<span style="color: #4CAF50; font-weight: bold;">✓ 浴血擂台</span> <span style="color: var(--jpx-text-muted);">·</span> <span style="color: var(--jpx-text-muted);">${statusText}</span>`;
                 } else {
@@ -3753,14 +3753,14 @@ function initEncounterWidget() {
             }
         } else {
             const isAutoRoB = localStorage.getItem(prefix + 'isAutoRingOfBlood' + isekaiSuffix) === 'true';
-            
+
             let cached = null;
             try {
                 cached = JSON.parse(localStorage.getItem(prefix + 'robStatusCache' + isekaiSuffix) || '{}');
             } catch(e) {
                 cached = null;
             }
-            
+
             if (isAutoRoB && typeof battleType !== 'undefined' && battleType === 'Colosseum') {
                 robInfoDiv.innerHTML = `<span style="color: #2196F3; font-weight: bold;">⚔ 浴血擂台战斗中...</span>`;
             } else {
@@ -3786,20 +3786,20 @@ function initEncounterWidget() {
             const allRows = arenaTable.querySelectorAll('tr');
             const totalChallenges = allRows.length - 1; // Exclude header row
             const availableChallenges = arenaTable.querySelectorAll('img[src$="/arena/startchallenge.png"][onclick]').length;
-            
+
             // Calculate completed today (using UTC to match game server time)
             const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD in UTC
             const lastArenaDate = localStorage.getItem(prefix + 'lastArenaDate' + isekaiSuffix);
             const initialAvailable = parseInt(localStorage.getItem(prefix + 'arenaInitialAvailable' + isekaiSuffix)) || totalChallenges;
-            
+
             let completedToday = 0;
             if (lastArenaDate === today) {
                 completedToday = Math.max(0, initialAvailable - availableChallenges);
             }
-            
+
             const limitReached = completedToday >= cfgBattle.arenaDailyLimit;
             const remaining = availableChallenges; // 未完成的数量 = 可用的挑战数（有onclick的）
-            
+
             // Cache arena status for other pages
             try {
                 localStorage.setItem(prefix + 'arenaStatusCache' + isekaiSuffix, JSON.stringify({
@@ -3810,7 +3810,7 @@ function initEncounterWidget() {
                     timestamp: Date.now()
                 }));
             } catch(e) {}
-            
+
             if (limitReached) {
                 arenaInfoDiv.innerHTML = `<span style="color: #ff9800; font-weight: bold;">• 竞技场已达上限</span> <span style="color: var(--jpx-text-muted);">·</span> <span style="color: var(--jpx-text-muted);">${completedToday}/${cfgBattle.arenaDailyLimit}</span>`;
             } else {
@@ -3819,7 +3819,7 @@ function initEncounterWidget() {
         } else {
             // Not on arena page - check if in arena battle or use cached data
             const isAutoArena = localStorage.getItem(prefix + 'isAutoArena' + isekaiSuffix) === 'true';
-            
+
             // Try to load cached status
             let cached = null;
             try {
@@ -3827,7 +3827,7 @@ function initEncounterWidget() {
             } catch(e) {
                 cached = null;
             }
-            
+
             if (isAutoArena && typeof battleType !== 'undefined' && battleType === 'Arena') {
                 // Currently in arena battle - show battle status with progress
                 if (cached && cached.total && cached.timestamp) {
@@ -4078,14 +4078,14 @@ function initEncounterWidget() {
     setInterval(() => {
         const now = new Date();
         const currentUtcDate = now.toISOString().split('T')[0];
-        
+
         // Check if we've crossed into a new UTC day
         if (lastUtcDate && lastUtcDate !== currentUtcDate) {
             // New UTC day detected
             const isAutoMode = cfgBattle.autoEncounter || cfgBattle.autoArena || cfgBattle.autoDawn;
             if (isAutoMode) {
                 console.log('[JPX-PLUS] 检测到UTC新的一天');
-                
+
                 // Priority: Arena first, then encounter/dawn
                 if (cfgBattle.autoArena) {
                     console.log('[JPX-PLUS] 优先跳转到竞技场页面...');
@@ -4124,11 +4124,11 @@ function initAutoArena() {
     function getArenaStatus() {
         const arenaTable = document.querySelector('#arena_list');
         if (!arenaTable) return null;
-        
+
         const allRows = arenaTable.querySelectorAll('tr');
         const totalChallenges = allRows.length - 1; // Exclude header row
         const availableChallenges = arenaTable.querySelectorAll('img[src$="/arena/startchallenge.png"][onclick]').length;
-        
+
         return {
             total: totalChallenges,
             available: availableChallenges,
@@ -4139,7 +4139,7 @@ function initAutoArena() {
     // Check and reset daily arena tracking (using UTC to match game server time)
     const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD in UTC
     const lastArenaDate = localStorage.getItem(prefix + 'lastArenaDate' + isekaiSuffix);
-    
+
     if (lastArenaDate !== today) {
         // New day detected
         const status = getArenaStatus();
@@ -4228,10 +4228,10 @@ function initAutoArena() {
             if (startImg && startImg.onclick) {
                 const challengeName = row.querySelector('.fc4')?.textContent?.trim() || 'Unknown';
                 console.log(`[JPX-PLUS] 开始竞技场挑战 (${completedToday + 1}/${cfgBattle.arenaDailyLimit}): ${challengeName}`);
-                
+
                 // Set flag for auto-return
                 localStorage.setItem(prefix + 'isAutoArena' + isekaiSuffix, 'true');
-                
+
                 // Click the challenge
                 setTimeout(() => {
                     startImg.click();
@@ -4270,7 +4270,7 @@ function initAutoArena() {
     setInterval(() => {
         const now = new Date();
         const currentUtcDate = now.toISOString().split('T')[0];
-        
+
         // Check if we've crossed into a new UTC day
         if (lastUtcDate && lastUtcDate !== currentUtcDate) {
             // New UTC day detected
@@ -4308,7 +4308,7 @@ function initAutoRingOfBlood() {
     function getRoBChallenges() {
         const arenaTable = document.querySelector('#arena_list');
         if (!arenaTable) return [];
-        
+
         const rows = arenaTable.querySelectorAll('tr');
         const challenges = [];
         for (let i = 1; i < rows.length; i++) { // Skip header
@@ -4384,10 +4384,10 @@ function initAutoRingOfBlood() {
         for (const challenge of challenges) {
             if (challenge.available && isChallengeSelected(challenge.name)) {
                 console.log(`[JPX-PLUS] 开始浴血擂台挑战: ${challenge.name}`);
-                
+
                 // Set flag for auto-return
                 localStorage.setItem(prefix + 'isAutoRingOfBlood' + isekaiSuffix, 'true');
-                
+
                 // Click the challenge
                 setTimeout(() => {
                     challenge.startImg.click();
@@ -4399,7 +4399,7 @@ function initAutoRingOfBlood() {
         // No matching available challenges
         const selectedNames = (cfgBattle.ringOfBloodChallenges || []).join(', ') || '全部';
         console.log(`[JPX-PLUS] 没有可用的浴血擂台挑战 (选中: ${selectedNames})，全部完成或冷却中`);
-        
+
         // If auto-encounter is also enabled, go to homepage
         if (cfgBattle.autoEncounter) {
             console.log('[JPX-PLUS] 浴血擂台完成，自动跳转主页开始遭遇战...');
@@ -4893,12 +4893,12 @@ function toggleAutoStart() {
     if (isActiveBattle && !cfgBattle.advanceToNextRound) {
         cfgBattle.advanceToNextRound = true;
     }
-    
+
     localStorage.setItem(prefix + 'autoBattleActive' + isekaiSuffix, String(isActiveBattle));
     localStorage.setItem(prefix + 'cfgBattle' + isekaiSuffix, JSON.stringify(cfgBattle));
     jpxPanelManager.updateContent('battle');
     jpxPanelManager.setBackground(isActiveBattle ? '#0F0' : '#F00');
-    
+
     if (isActiveBattle) {
         goNext();
     }
@@ -4915,7 +4915,7 @@ function adjustDelay(delta, isMin = false) {
 
     let [min, max] = cfgBattle.delayRangeMs;
     let adjust = Math.round(delta);
-    
+
     if (isMin) {
         // 调整最小值
         min = Math.max(0, min + adjust);
@@ -4925,7 +4925,7 @@ function adjustDelay(delta, isMin = false) {
         max = Math.max(0, max + adjust);
         if (max < min) min = max;
     }
-    
+
     cfgBattle.delayRangeMs = [min, max];
     localStorage.setItem(prefix + 'cfgBattle' + isekaiSuffix, JSON.stringify(cfgBattle));
     jpxPanelManager.updateContent('battle');
@@ -7707,23 +7707,23 @@ const fieldRenderers = {
             const mouseY = e.clientY;
             const movingDown = mouseY >= dragState.lastMouseY;
             dragState.lastMouseY = mouseY;
-            
+
             const placeholderRect = dragState.placeholder.getBoundingClientRect();
             const placeholderHeight = placeholderRect.height;
-            
+
             // 计算拖动预览的中心位置（近似）
             const dragCenterY = mouseY;
             const dragTopY = dragCenterY - placeholderHeight / 2;
             const dragBottomY = dragCenterY + placeholderHeight / 2;
-            
+
             let bestInsertPosition = null;
-            
+
             // 遍历所有row，找到应该插入的位置
             for (let i = 0; i < rows.length; i++) {
                 const row = rows[i];
                 const rect = row.getBoundingClientRect();
                 const rowMidY = rect.top + rect.height / 2;
-                
+
                 // 向下拖动：当拖动条目覆盖目标条目超过50%时，插入到目标之后
                 if (movingDown) {
                     // 拖动条目的底部超过目标条目的中点
@@ -7739,7 +7739,7 @@ const fieldRenderers = {
                     }
                 }
             }
-            
+
             // 边界情况：鼠标在第一个row之上
             if (mouseY < rows[0].getBoundingClientRect().top) {
                 bestInsertPosition = { beforeRow: rows[0] };
@@ -7758,7 +7758,7 @@ const fieldRenderers = {
             } else if (bestInsertPosition.afterRow) {
                 targetNode = bestInsertPosition.afterRow.nextSibling;
             }
-            
+
             // 检查占位符是否已在目标位置
             const currentNext = dragState.placeholder.nextSibling;
             const effectiveNext = currentNext === dragState.draggedRow ? currentNext.nextSibling : currentNext;
@@ -7784,10 +7784,10 @@ const fieldRenderers = {
 
             // 计算目标索引（基于占位符的位置）
             if (!dragState.placeholder || !dragState.placeholder.parentNode) return;
-            
+
             const placeholderIndex = Array.from(listDiv.children).indexOf(dragState.placeholder);
             let targetIndex = 0;
-            
+
             // 计算占位符前有多少个实际的row
             for (let i = 0; i < placeholderIndex; i++) {
                 if (listDiv.children[i].classList && listDiv.children[i].classList.contains('array-row')) {
@@ -7858,12 +7858,12 @@ const fieldRenderers = {
             });
             handle.addEventListener('dragend', () => {
                 row.classList.remove('array-row-dragging');
-                
+
                 // 移除占位符
                 if (dragState.placeholder && dragState.placeholder.parentNode) {
                     dragState.placeholder.parentNode.removeChild(dragState.placeholder);
                 }
-                
+
                 dragState.fromIndex = null;
                 dragState.groupId = null;
                 dragState.draggedRow = null;
