@@ -3,7 +3,7 @@
 // @author       MeiYongAI
 // @icon           https://hentaiverse.org/y/favicon.png
 // @namespace    ijpx
-// @version      2026.03.05
+// @version      2026.03.06
 // @description  jpx
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
