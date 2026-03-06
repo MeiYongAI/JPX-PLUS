@@ -3,7 +3,7 @@
 // @author       MeiYongAI
 // @icon           https://hentaiverse.org/y/favicon.png
 // @namespace    ijpx
-// @version      2026.03.06
+// @version      2026.03.05
 // @description  jpx
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -3086,8 +3086,6 @@ function initEncounterWidget() {
     const header = document.createElement('div');
     header.className = 'enc-header';
     header.textContent = 'JPX-PLUS';
-    header.style.touchAction = 'none';
-    header.style.webkitUserSelect = 'none';
     encounterWidget.appendChild(header);
 
     const body = document.createElement('div');
@@ -3382,20 +3380,17 @@ function initEncounterWidget() {
         encounterWidget.style.left = newLeft + 'px';
         encounterWidget.style.top = newTop + 'px';
     });
-    const endDrag = (e) => {
+    header.addEventListener('pointerup', (e) => {
         if (!isDragging) return;
         isDragging = false;
-        try { header.releasePointerCapture(e.pointerId); } catch(err) {}
+        header.releasePointerCapture(e.pointerId);
         try {
             localStorage.setItem(prefix + 'encounterWidgetPos', JSON.stringify({
                 left: encounterWidget.style.left,
                 top: encounterWidget.style.top
             }));
-        } catch(err) {}
-    };
-    header.addEventListener('pointerup', endDrag);
-    header.addEventListener('pointercancel', endDrag);
-    header.addEventListener('lostpointercapture', endDrag);
+        } catch(e) {}
+    });
 
     // Restore position
     try {
