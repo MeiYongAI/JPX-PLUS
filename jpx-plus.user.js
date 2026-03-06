@@ -16,7 +16,7 @@
 
 let cfgBattle = {};
 let defaultCfgBattle = {
-    "battleVersion": 20251216,
+    "battleVersion": 20260306,
     "advanceToNextRound": false,
     "autoStartBattle": false,
     "autoEncounter": false,
@@ -3387,24 +3387,32 @@ function initEncounterWidget() {
         isDragging = false;
         try { header.releasePointerCapture(e.pointerId); } catch(err) {}
         try {
-            localStorage.setItem(prefix + 'encounterWidgetPos', JSON.stringify({
-                left: encounterWidget.style.left,
-                top: encounterWidget.style.top
-            }));
+            // Save numeric positions to avoid inconsistencies (store as numbers)
+            const rect = encounterWidget.getBoundingClientRect();
+            const pos = { left: Math.round(rect.left), top: Math.round(rect.top) };
+            localStorage.setItem(prefix + 'encounterWidgetPos', JSON.stringify(pos));
         } catch(err) {}
     };
     header.addEventListener('pointerup', endDrag);
     header.addEventListener('pointercancel', endDrag);
     header.addEventListener('lostpointercapture', endDrag);
 
-    // Restore position
-    try {
-        const saved = JSON.parse(localStorage.getItem(prefix + 'encounterWidgetPos'));
-        if (saved && saved.left && saved.top) {
-            encounterWidget.style.left = saved.left;
-            encounterWidget.style.top = saved.top;
-        }
-    } catch(e) {}
+    // Restore position (clamped to viewport)
+    const restoreEncounterPos = () => {
+        try {
+            const saved = JSON.parse(localStorage.getItem(prefix + 'encounterWidgetPos'));
+            if (saved && typeof saved.left === 'number' && typeof saved.top === 'number') {
+                const maxLeft = Math.max(0, window.innerWidth - encounterWidget.offsetWidth);
+                const maxTop = Math.max(0, window.innerHeight - encounterWidget.offsetHeight - 0); // leave small margin
+                const left = Math.min(maxLeft, Math.max(0, saved.left));
+                const top = Math.min(maxTop, Math.max(0, saved.top));
+                encounterWidget.style.left = left + 'px';
+                encounterWidget.style.top = top + 'px';
+            }
+        } catch(e) {}
+    };
+    restoreEncounterPos();
+    window.addEventListener('resize', restoreEncounterPos);
 
     // ========== Independent Encounter Detection System ==========
     // Flow: Dawn (first page load after UTC 00:00) → 30min → fetch KEY → KEY valid 30min → auto engage → 30min CD → repeat
@@ -8421,6 +8429,8 @@ function renderSettings() {
     // Title bar (draggable)
     const titleBar = document.createElement('div');
     titleBar.className = 'settings-titlebar';
+    titleBar.style.touchAction = 'none';
+    titleBar.style.webkitUserSelect = 'none';
     const titleText = document.createElement('span');
     titleText.textContent = 'JPX-PLUS 配置菜单';
     titleBar.appendChild(titleText);
@@ -8430,6 +8440,7 @@ function renderSettings() {
     let _isDragging = false, _dragX = 0, _dragY = 0;
     let _wasCentered = true;
     titleBar.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
         _isDragging = true;
         if (_wasCentered) {
             const rect = settingsWindow.getBoundingClientRect();
@@ -8455,10 +8466,33 @@ function renderSettings() {
         settingsWindow.style.left = newLeft + 'px';
         settingsWindow.style.top = newTop + 'px';
     });
-    titleBar.addEventListener('pointerup', (e) => {
+    const endSettingsDrag = (e) => {
+        if (!_isDragging) return;
         _isDragging = false;
-        titleBar.releasePointerCapture(e.pointerId);
-    });
+        try { titleBar.releasePointerCapture && titleBar.releasePointerCapture(e.pointerId); } catch(err) {}
+        try {
+            const rect = settingsWindow.getBoundingClientRect();
+            const pos = { left: Math.round(rect.left), top: Math.round(rect.top) };
+            localStorage.setItem(prefix + 'settingsWindowPos', JSON.stringify(pos));
+        } catch(err) {}
+    };
+    titleBar.addEventListener('pointerup', endSettingsDrag);
+    titleBar.addEventListener('pointercancel', endSettingsDrag);
+    titleBar.addEventListener('lostpointercapture', endSettingsDrag);
+
+    // Restore settings window position if present
+    try {
+        const savedPos = JSON.parse(localStorage.getItem(prefix + 'settingsWindowPos'));
+        if (savedPos && typeof savedPos.left === 'number' && typeof savedPos.top === 'number') {
+            const maxLeft = Math.max(0, window.innerWidth - settingsWindow.offsetWidth);
+            const maxTop = Math.max(0, window.innerHeight - settingsWindow.offsetHeight);
+            settingsWindow.style.left = Math.min(maxLeft, Math.max(0, savedPos.left)) + 'px';
+            settingsWindow.style.top = Math.min(maxTop, Math.max(0, savedPos.top)) + 'px';
+            settingsWindow.style.position = 'fixed';
+            settingsWindow.style.margin = '0';
+            _wasCentered = false;
+        }
+    } catch(e) {}
 
     // Tab bar
     const tabBar = document.createElement('div');
@@ -9054,12 +9088,12 @@ function jpxPanelManager(panelType) {
 		let dragOffsetX = 0, dragOffsetY = 0;
 
 		ns.headerDiv.addEventListener('pointerdown', (e) => {
-			if (e.button !== 0) return;
-			isDragging = true;
-			dragOffsetX = e.clientX - ns.ctrlWidget.getBoundingClientRect().left;
-			dragOffsetY = e.clientY - ns.ctrlWidget.getBoundingClientRect().top;
-			ns.headerDiv.setPointerCapture(e.pointerId);
-			e.preventDefault();
+            if (e.button !== 0) return;
+            isDragging = true;
+            dragOffsetX = e.clientX - ns.ctrlWidget.getBoundingClientRect().left;
+            dragOffsetY = e.clientY - ns.ctrlWidget.getBoundingClientRect().top;
+            ns.headerDiv.setPointerCapture(e.pointerId);
+            e.preventDefault();
 		});
 
 		ns.headerDiv.addEventListener('pointermove', (e) => {
@@ -9074,33 +9108,39 @@ function jpxPanelManager(panelType) {
 			ns.ctrlWidget.style.transform = 'none';
 		});
 
-		ns.headerDiv.addEventListener('pointerup', (e) => {
-			if (!isDragging) return;
-			isDragging = false;
-			ns.headerDiv.releasePointerCapture(e.pointerId);
-			// Save position
-			ns._savePosition();
-		});
+        const endCtrlDrag = (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            try { ns.headerDiv.releasePointerCapture && ns.headerDiv.releasePointerCapture(e.pointerId); } catch(err) {}
+            ns._savePosition();
+        };
+        ns.headerDiv.addEventListener('pointerup', endCtrlDrag);
+        ns.headerDiv.addEventListener('pointercancel', endCtrlDrag);
+        ns.headerDiv.addEventListener('lostpointercapture', endCtrlDrag);
+        ns.headerDiv.style.touchAction = 'none';
+        ns.headerDiv.style.webkitUserSelect = 'none';
 	};
 
 	ns._savePosition = function() {
 		try {
-			const pos = {
-				left: ns.ctrlWidget.style.left,
-				top: ns.ctrlWidget.style.top
-			};
-			localStorage.setItem(prefix + 'ctrlWidgetPos' + isekaiSuffix, JSON.stringify(pos));
+            const rect = ns.ctrlWidget.getBoundingClientRect();
+            const pos = { left: Math.round(rect.left), top: Math.round(rect.top) };
+            localStorage.setItem(prefix + 'ctrlWidgetPos' + isekaiSuffix, JSON.stringify(pos));
 		} catch(e) {}
 	};
 
 	ns._restorePosition = function() {
 		try {
-			const saved = JSON.parse(localStorage.getItem(prefix + 'ctrlWidgetPos' + isekaiSuffix));
-			if (saved && saved.left && saved.top) {
-				ns.ctrlWidget.style.left = saved.left;
-				ns.ctrlWidget.style.top = saved.top;
-				ns.ctrlWidget.style.transform = 'none';
-			}
+            const saved = JSON.parse(localStorage.getItem(prefix + 'ctrlWidgetPos' + isekaiSuffix));
+            if (saved && typeof saved.left === 'number' && typeof saved.top === 'number') {
+                const maxLeft = Math.max(0, window.innerWidth - ns.ctrlWidget.offsetWidth);
+                const maxTop = Math.max(0, window.innerHeight - ns.ctrlWidget.offsetHeight - 0);
+                const left = Math.min(maxLeft, Math.max(0, saved.left));
+                const top = Math.min(maxTop, Math.max(0, saved.top));
+                ns.ctrlWidget.style.left = left + 'px';
+                ns.ctrlWidget.style.top = top + 'px';
+                ns.ctrlWidget.style.transform = 'none';
+            }
 		} catch(e) {}
 	};
 
