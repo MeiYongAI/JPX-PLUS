@@ -939,4 +939,173 @@
         background-color: #2d2d2d !important;
         border-color: #4a4a4a !important;
     }
+    
+    /* === hv-dark-mode fixes: lottery / equipment stat panel === */
+    /* Lottery / Equipment stat panel — dark mode fixes */
+    #lottery_eqstat,
+    #lottery_eqstat .eq,
+    #lottery_eqstat .es,
+    #lottery_eqstat .ex,
+    #lottery_eqstat .ep {
+        background: transparent !important;
+        color: #e6e6e6 !important;
+    }
+
+    #lottery_eqstat {
+        background-color: rgba(20,20,20,0.9) !important;
+        border: 1px solid rgba(255,255,255,0.04) !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+    }
+
+    #lottery_eqstat > div { color: #dcdcdc !important; }
+    #lottery_eqstat .eq > div,
+    #lottery_eqstat .es > div { color: #dcdcdc !important; }
+
+    /* stat blocks — keep inline row layout like original */
+    #lottery_eqstat .ex,
+    #lottery_eqstat .ep {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        align-items: center !important;
+        margin: 6px 0 6px 0 !important;
+    }
+
+    #lottery_eqstat .ex > div,
+    #lottery_eqstat .ep > div {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        background: rgba(255,255,255,0.02) !important;
+        border: 1px solid rgba(255,255,255,0.03) !important;
+        padding: 6px 12px !important;
+        margin: 0 !important;
+        border-radius: 6px !important;
+        color: #dcdcdc !important;
+        box-sizing: border-box !important;
+    }
+
+    /* numeric highlights */
+    #lottery_eqstat span,
+    #lottery_eqstat .ex span,
+    #lottery_eqstat .ep span {
+        color: #9fe6ff !important; /* soft cyan for numbers */
+        font-weight: 600 !important;
+    }
+
+    /* titles/tooltips */
+    #lottery_eqstat [title] {
+        color: #cfcfcf !important;
+    }
+
+    /* emphasize base labels */
+    #lottery_eqstat .ex > div > div:first-child,
+    #lottery_eqstat .ep > div > div:first-child {
+        color: #aeb8c2 !important;
+        font-weight: 600 !important;
+    }
+
+    /* ensure small text remains readable */
+    #lottery_eqstat div, #lottery_eqstat span {
+        text-shadow: none !important;
+    }
+
+    /* ======== 装备详情 - 极简扁平化适配 ======== */
+    
+    #showequip {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+        padding: 12px !important;
+    }
+
+    /* 标题区域：Peerless / Savage 等文字颜色保留 */
+    #showequip .fc4 { color: #f0c0ff !important; text-shadow: 0 0 3px rgba(240,192,255,0.3) !important; }
+    #showequip .fc2 { color: #ffbb00 !important; }
+
+    #equip_extended {
+        background: rgba(20,20,20,0.96) !important;
+        border: 1.5px solid rgba(255,255,255,0.10) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.18) !important;
+        margin-top: 5px !important;
+        padding: 18px 18px 12px 18px !important;
+        position: relative;
+    }
+    /* 标题行（属性减伤/主属性加成等）居中并加粗 */
+    #equip_extended > div {
+        width: 100% !important;
+        text-align: center !important;
+        font-weight: bold !important;
+        font-size: 14px !important;
+        margin: 10px 0 2px 0 !important;
+        letter-spacing: 1px;
+    }
+
+
+    /* 布局容器 - 极致紧凑多行胶囊排列 */
+    #equip_extended .ex,
+    #equip_extended .ep {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px 8px !important; /* 行间距4px，列间距8px */
+        margin: 4px 0 0 0 !important; /* 顶部4px，底部0，去除多余空隙 */
+        padding: 0 !important;
+        align-items: flex-start !important;
+    }
+
+    /* 每个属性条目 - 胶囊标签，紧凑对齐 */
+    #equip_extended .ex > div,
+    #equip_extended .ep > div {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.10) !important;
+        border-radius: 4px !important;
+        padding: 0 10px !important;
+        height: 22px !important;
+        font-size: 12px !important;
+        margin: 0 !important;
+        line-height: 22px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 内部文字与数字的间距，最后一个无右距 */
+    #equip_extended .ex > div > div,
+    #equip_extended .ep > div > div {
+        display: inline !important;
+        margin-right: 4px !important;
+    }
+    #equip_extended .ex > div > div:last-child,
+    #equip_extended .ep > div > div:last-child {
+        margin-right: 0 !important;
+    }
+
+    /* 属性标题颜色 */
+    #equip_extended .ex > div > div:first-child {
+        color: #aeb8c2 !important;
+    }
+
+    /* 数字与百分比高亮 */
+    #equip_extended span {
+        color: #9fe6ff !important;
+        font-weight: bold !important;
+    }
+
+    /* 负重与干扰 (Burden / Interference) 红色高亮 */
+    #equip_extended .er, 
+    #equip_extended .er span {
+        color: #ff7b7b !important;
+    }
+
+    /* 去除多余的原始背景色 */
+    #equip_extended .eq, #equip_extended .et, #equip_extended .es {
+        background: none !important;
+        border: none !important;
+        padding-left: 0 !important;
+    }
+
 }
