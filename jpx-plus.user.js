@@ -8627,6 +8627,10 @@ function renderSettings() {
         let activeTab = tabs.find(t => t.panel.style.display === 'block');
         if (!activeTab || !activeTab.onSave) return t('cGen.error!');
         activeTab.onSave();
+        // 新增：保存后立即刷新悬浮窗
+        if (typeof initEncounterWidget === 'function') {
+            try { initEncounterWidget(); } catch(e) { console.warn('刷新悬浮窗失败', e); }
+        }
         return t('cGen.saved!');
     });
 
@@ -8762,6 +8766,9 @@ function renderBattleTab(parent) {
     // Auto-save on any setting change (no need to click Save manually)
     cfgBattleUI.addEventListener('change', () => {
         localStorage.setItem(prefix + 'cfgBattle' + isekaiSuffix, JSON.stringify(cfgBattle));
+        if (typeof jpxPanelManager === 'object' && typeof jpxPanelManager.updateContent === 'function') {
+            jpxPanelManager.updateContent('battle');
+        }
     });
 
     let buttonsUI = document.createElement('div');
