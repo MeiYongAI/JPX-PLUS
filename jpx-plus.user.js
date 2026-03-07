@@ -6104,7 +6104,7 @@ function riddleRecorder() {
                     if (beepCount >= maxBeeps) {
                         stopAlarm();
                     }
-                }, 3000); // 间隔 3 秒响一次
+                }, 500); // 间隔 0.5 秒响一次
             }
         }
     } catch (e) {}
