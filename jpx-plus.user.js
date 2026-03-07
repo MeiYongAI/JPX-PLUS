@@ -3799,24 +3799,14 @@ function initEncounterWidget() {
         const isArenaPage = location.search.includes('ss=ar');
         const arenaTable = isArenaPage ? document.querySelector('#arena_list') : null;
         if (arenaTable) {
-            const allRows = arenaTable.querySelectorAll('tr');
-            const totalChallenges = allRows.length - 1; // Exclude header row
-            const availableChallenges = arenaTable.querySelectorAll('img[src$="/arena/startchallenge.png"][onclick]').length;
-            
-            // Calculate completed today (using UTC to match game server time)
-            const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD in UTC
-            const lastArenaDate = localStorage.getItem(prefix + 'lastArenaDate' + isekaiSuffix);
-            const initialAvailable = parseInt(localStorage.getItem(prefix + 'arenaInitialAvailable' + isekaiSuffix)) || totalChallenges;
-            
-            let completedToday = 0;
-            if (lastArenaDate === today) {
-                completedToday = Math.max(0, initialAvailable - availableChallenges);
-            }
-            
+            // 1. 直接通过你发现的图标统计“手打+自动”总计完成的场次
+            const completedToday = arenaTable.querySelectorAll('img[src$="/arena/startchallenge_d.png"]').length;
+            // 2. 统计当前还能打的场次
+            const remaining = arenaTable.querySelectorAll('img[src$="/arena/startchallenge.png"][onclick]').length;
+            // 3. 计算总场次（行数减1）
+            const totalChallenges = arenaTable.querySelectorAll('tr').length - 1;
             const limitReached = completedToday >= cfgBattle.arenaDailyLimit;
-            const remaining = availableChallenges; // 未完成的数量 = 可用的挑战数（有onclick的）
-            
-            // Cache arena status for other pages
+            // 同步缓存，确保其他页面也能看到正确的数据
             try {
                 localStorage.setItem(prefix + 'arenaStatusCache' + isekaiSuffix, JSON.stringify({
                     total: totalChallenges,
@@ -3826,11 +3816,11 @@ function initEncounterWidget() {
                     timestamp: Date.now()
                 }));
             } catch(e) {}
-            
+            // 更新 UI 显示
             if (limitReached) {
                 arenaInfoDiv.innerHTML = `<span style="color: #ff9800; font-weight: bold;">• 竞技场已达上限</span> <span style="color: var(--jpx-text-muted);">·</span> <span style="color: var(--jpx-text-muted);">${completedToday}/${cfgBattle.arenaDailyLimit}</span>`;
             } else {
-                arenaInfoDiv.innerHTML = `<span style="color: #4CAF50; font-weight: bold;">✓ 竞技场</span> <span style="color: var(--jpx-text-muted);">·</span> <span style="color: var(--jpx-text-muted);">${completedToday}/${cfgBattle.arenaDailyLimit} | ${remaining}未完成</span>`;
+                arenaInfoDiv.innerHTML = `<span style="color: #4CAF50; font-weight: bold;">✓ 竞技场</span> <span style="color: var(--jpx-text-muted);">·</span> <span style="color: var(--jpx-text-muted);">${completedToday}/${cfgBattle.arenaDailyLimit} | ${remaining}待战</span>`;
             }
         } else {
             // Not on arena page - check if in arena battle or use cached data
