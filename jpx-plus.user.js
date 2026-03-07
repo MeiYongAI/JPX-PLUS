@@ -3,7 +3,7 @@
 // @author       MeiYongAI
 // @icon           https://hentaiverse.org/y/favicon.png
 // @namespace    ijpx
-// @version      2026.03.06
+// @version      2026.03.07
 // @description  jpx
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -16,13 +16,14 @@
 
 let cfgBattle = {};
 let defaultCfgBattle = {
-    "battleVersion": 20260306,
+    "battleVersion": 20260307,
     "advanceToNextRound": false,
     "autoStartBattle": false,
     "autoEncounter": false,
     "autoDawn": false,
     "encounterDailyLimit": 24,
     "notifyOnRiddle": false,
+    "riddleAlarmLimit": 5, // 新增：默认响 5 次
     "autoArena": false,
     "arenaDailyLimit": 14,
     "autoRingOfBlood": false,
@@ -2041,6 +2042,7 @@ const cfgBattleSchema = {
         mkF('autoEncounter', 'boolean'),
         mkF('autoDawn', 'boolean'),
         mkF('notifyOnRiddle', 'boolean'),
+        mkF('riddleAlarmLimit', 'number'), // 新增：警报次数的数字输入框
         mkF('encounterDailyLimit', 'number'),
         mkF('autoArena', 'boolean'),
         mkF('arenaDailyLimit', 'number'),
@@ -2209,6 +2211,7 @@ const I18N = {
         "autoEncounter": "自动遭遇战",
             "autoDawn": "仅签到（不触发遭遇战战斗）",
             "notifyOnRiddle": "小马谜题通知",
+            "riddleAlarmLimit": "小马验证警报次数", // 新增：界面显示的中文说明
             "encounterDailyLimit": "每日遭遇战次数上限",
         "autoArena": "自动竞技场",
         "arenaDailyLimit": "每日竞技场场数上限",
@@ -6042,41 +6045,73 @@ function timeRecorder(turnLog, action, use) {
 function riddleRecorder() {
     if (jpxUtils.isEmpty(timeRecords)) timeRecords = JSON.parse(localStorage.getItem(prefix + 'timeRecords' + isekaiSuffix) || JSON.stringify(jpxUtils.createTimeRecords()));
 
-    // Show notification + beep when riddle appears (optional)
+    let alarmInterval = null;
+    const stopAlarm = () => {
+        if (alarmInterval) {
+            clearInterval(alarmInterval);
+            alarmInterval = null;
+        }
+    };
+
+    // Show notification + beep when riddle appears
     try {
         if (cfgBattle && cfgBattle.notifyOnRiddle) {
-            // Desktop notification (request permission if needed)
-            try {
+            // Desktop notification (保持一直显示，直到用户点击)
+            const showNotification = () => {
                 if (typeof Notification !== 'undefined') {
                     if (Notification.permission === 'granted') {
-                        new Notification('Hentaiverse', { body: '谜题大师出现了！', tag: 'jpx-riddle' });
+                        new Notification('Hentaiverse', { body: '谜题大师出现了！', tag: 'jpx-riddle', requireInteraction: true });
                     } else if (Notification.permission !== 'denied') {
-                        Notification.requestPermission().then(p => { if (p === 'granted') new Notification('Hentaiverse', { body: '谜题大师出现了！', tag: 'jpx-riddle' }); });
+                        Notification.requestPermission().then(p => { 
+                            if (p === 'granted') new Notification('Hentaiverse', { body: '谜题大师出现了！', tag: 'jpx-riddle', requireInteraction: true }); 
+                        });
                     }
                 }
-            } catch (e) {}
+            };
+            showNotification();
 
-            // Short beep via Web Audio API
-            try {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                if (AudioCtx) {
-                    const ctx = new AudioCtx();
-                    const o = ctx.createOscillator();
-                    const g = ctx.createGain();
-                    o.type = 'sine';
-                    o.frequency.value = 880;
-                    g.gain.value = 0.05;
-                    o.connect(g);
-                    g.connect(ctx.destination);
-                    o.start();
-                    setTimeout(() => { try { o.stop(); ctx.close(); } catch (e) {} }, 350);
-                }
-            } catch (e) {}
+            // Beep 循环逻辑
+            let beepCount = 0;
+            let maxBeeps = cfgBattle.riddleAlarmLimit > 0 ? cfgBattle.riddleAlarmLimit : 5; // 读取用户设置，如果填 0 或负数则默认 5
+
+            const playBeep = () => {
+                try {
+                    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                    if (AudioCtx) {
+                        const ctx = new AudioCtx();
+                        const o = ctx.createOscillator();
+                        const g = ctx.createGain();
+                        o.type = 'sine';
+                        o.frequency.value = 880;
+                        g.gain.value = 0.05;
+                        o.connect(g);
+                        g.connect(ctx.destination);
+                        o.start();
+                        setTimeout(() => { try { o.stop(); ctx.close(); } catch (e) {} }, 350);
+                    }
+                } catch (e) {}
+            };
+
+            // 立即响第一声
+            playBeep();
+            beepCount++;
+
+            // 按设定的次数进行循环
+            if (maxBeeps > 1) {
+                alarmInterval = setInterval(() => {
+                    playBeep();
+                    beepCount++;
+                    if (beepCount >= maxBeeps) {
+                        stopAlarm();
+                    }
+                }, 3000); // 间隔 3 秒响一次
+            }
         }
     } catch (e) {}
 
     let riddlesubmit = document.querySelector('#riddlesubmit')
     riddlesubmit && riddlesubmit.addEventListener('click', () => {
+        stopAlarm(); // 点击提交答案时，立刻关掉还没响完的警报
         timeRecords.riddle.solved += 1;
         localStorage.setItem(prefix + 'timeRecords' + isekaiSuffix, JSON.stringify(timeRecords));
     }, { once: true });
