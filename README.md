@@ -1,6 +1,6 @@
 # jpx-plus
 
-JPX-PLUS userscript for Hentaiverse. Installation file: `jpx-plus.user.js`.
+JPX-PLUS userscript for Hentaiverse. Installation file: `jpx-plusjs`.
 
 Install directly in Tampermonkey/Violentmonkey using the raw file URL from this repo.
 
@@ -16,7 +16,7 @@ Install directly in Tampermonkey/Violentmonkey using the raw file URL from this 
 
 说明：该样式会在页面最开始加载时生效，避免页面闪烁；因此建议使用 Stylus 而不是把 CSS 内嵌到 userscript。
 
-如果你想让 Tampermonkey 自动更新 `jpx-plus.user.js`，把脚本安装地址设置为：
+如果你想让 Tampermonkey 自动更新 `jpx-plus.js`，把脚本安装地址设置为：
 
 ```
 https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/jpx-plus.js
