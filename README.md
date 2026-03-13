@@ -19,5 +19,5 @@ Install directly in Tampermonkey/Violentmonkey using the raw file URL from this 
 如果你想让 Tampermonkey 自动更新 `jpx-plus.user.js`，把脚本安装地址设置为：
 
 ```
-https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/jpx-plus.user.js
+https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/jpx-plus.js
 ```
