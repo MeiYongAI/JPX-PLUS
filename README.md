@@ -91,7 +91,7 @@ Full-screen settings use a compact navigation menu. Statistics filters open when
 | `,` | Open settings |
 | `Z` | Open battle statistics |
 
-Shortcuts can be changed in Settings. The floating battle panel has Settings and Statistics buttons; touch devices also have a JPX-PLUS menu on the page. Review your battle style and rules before first use.
+Shortcuts can be changed in Settings. With HVUT, its gear menu includes **JPX-PLUS Settings** and **JPX-PLUS Stats**; tap the gear to open or close it on mobile. Touch pages without that menu keep the JPX-PLUS floating entry. The battle panel also provides both shortcuts. Review your battle style and rules before first use.
 
 ### Optional Config Store
 
