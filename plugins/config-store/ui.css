@@ -7,7 +7,7 @@
 #settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }
 #settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }
 #settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }
-#settings-container .jpx-store :is(button, a, input, select, textarea, summary):focus-visible { outline: 2px solid var(--jpx-theme-accent, #5c0d11); outline-offset: 2px; }
+#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
 #settings-container .jpx-store p { margin: 0; }
 #settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }
 #settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }
@@ -27,7 +27,10 @@
 #settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }
 #settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }
 #settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }
-#settings-container .jpx-store-scope { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+#settings-container .jpx-store-local-row > button { align-self: start; }
+#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
+#settings-container .jpx-store-selection > button { align-self: start; }
 #settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }
 #settings-container .jpx-store textarea { width: 100%; resize: vertical; }
 #settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }
@@ -43,5 +46,6 @@
     #settings-container .jpx-store-filters { flex-wrap: wrap; }
     #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }
     #settings-container .jpx-store-filters select { flex: 1; max-width: none; }
-    #settings-container .jpx-store-scope { gap: 8px; }
+    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }
 }

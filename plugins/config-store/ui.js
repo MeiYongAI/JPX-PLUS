@@ -15,7 +15,7 @@ function renderConfigStore(parent, hooks) {
     status.setAttribute('role', 'status');
     status.hidden = true;
     const stage = el('div', undefined, 'jpx-store-stage');
-    const state = { view: 'browse', entries: [], query: '', kind: '', user: null, editor: null, request: 0, login: null, disposed: false };
+    const state = { view: 'browse', entries: [], query: '', kind: '', local: { world: '', style: '', battleType: '' }, user: null, editor: null, request: 0, login: null, disposed: false };
     const alive = () => !state.disposed && root.isConnected;
     function message(text, error = false) {
         status.textContent = text || '';
@@ -63,13 +63,13 @@ function renderConfigStore(parent, hooks) {
         return [author ? '@' + author : '', kindName(envelope.kind), worldName(envelope.world), modeName(envelope.mode)].filter(Boolean).join(' · ');
     }
     const browseButton = button(tr('browse'), () => browse());
-    const mineButton = button(tr('mine'), () => mine());
+    const mineButton = button(tr('mine'), () => local());
     navigation.append(browseButton, mineButton);
     toolbar.append(navigation, account);
     root.append(toolbar, status, stage);
     parent.append(root);
     function accountControls() {
-        account.replaceChildren(button(tr('share'), () => edit(), 'jpx-store-primary'));
+        account.replaceChildren(button(tr('share'), () => local(), 'jpx-store-primary'));
         if (state.user) {
             const logout = button('@' + state.user.login, async () => {
                 await jpxConfigStore.logout(); state.user = null; accountControls();
@@ -86,7 +86,7 @@ function renderConfigStore(parent, hooks) {
         state.view = view;
         state.request++;
         browseButton.setAttribute('aria-pressed', String(view === 'browse' || view === 'detail'));
-        mineButton.setAttribute('aria-pressed', String(view === 'mine'));
+        mineButton.setAttribute('aria-pressed', String(['local', 'localDetail', 'mine', 'edit'].includes(view)));
         stage.replaceChildren(); message('');
         parent.scrollTop = 0;
         return state.request;
@@ -164,6 +164,73 @@ function renderConfigStore(parent, hooks) {
         });
         return details;
     }
+    function personalNavigation(shared) {
+        const tabs = el('div', undefined, 'jpx-store-navigation');
+        for (const [key, selected, action] of [['local', !shared, () => local()], ['shared', shared, () => mine()]]) {
+            const tab = button(tr(key), action); tab.setAttribute('aria-pressed', String(selected)); tabs.append(tab);
+        }
+        stage.append(tabs);
+    }
+    const localName = entry => entry.kind === 'battle-mode' ? modeName(entry.mode) : kindName(entry.kind);
+    const localDraft = entry => hooks.getDraft(entry.kind, entry.legacy ? undefined : { world: entry.world, mode: entry.mode });
+    function chooseLocal(entry, previous) {
+        const envelope = localDraft(entry);
+        envelope.title = previous?.envelope.title || [localName(entry), worldName(entry.world)].join(' · ');
+        envelope.description = previous?.envelope.description || '';
+        return edit({ ...(previous || {}), envelope, source: entry });
+    }
+    function local(previous) {
+        open('local');
+        if (previous) heading(tr('chooseConfig'), () => edit(previous));
+        else personalNavigation(false);
+        let entries;
+        if (hooks.listDrafts) entries = hooks.listDrafts();
+        else {
+            stage.append(el('p', tr('updateCore'), 'jpx-store-meta'));
+            entries = kinds().flatMap(([kind]) => {
+                try { const draft = hooks.getDraft(kind); return [{ kind, world: draft.world, mode: draft.mode, source: 'draft', legacy: true }]; }
+                catch { return []; }
+            });
+        }
+        if (previous?.id) entries = entries.filter(entry => entry.kind === previous.envelope.kind);
+        const filters = el('div', undefined, 'jpx-store-local-filters');
+        const list = el('div', undefined, 'jpx-store-list');
+        const parts = entry => { const split = entry.mode?.lastIndexOf('_'); return split >= 0 ? [entry.mode.slice(0, split), entry.mode.slice(split + 1)] : ['', '']; };
+        const options = [
+            ['world', 'world', [...new Set(entries.map(entry => entry.world))].map(value => [value, worldName(value)])],
+            ['style', 'style', [...new Set(entries.map(entry => parts(entry)[0]).filter(Boolean))].map(value => [value, tr(value)])],
+            ['battleType', 'battleType', [...new Set(entries.map(entry => parts(entry)[1]).filter(Boolean))].map(value => [value, tr(value)])]
+        ];
+        function render() {
+            list.replaceChildren();
+            const shown = entries.filter(entry => (!state.local.world || entry.world === state.local.world) &&
+                (!state.local.style || parts(entry)[0] === state.local.style) && (!state.local.battleType || parts(entry)[1] === state.local.battleType));
+            for (const entry of shown) {
+                const row = el('article', undefined, 'jpx-store-row jpx-store-local-row');
+                row.dataset.localWorld = entry.world; row.dataset.localKind = entry.kind; row.dataset.localMode = entry.mode || '';
+                const preview = button(localName(entry), () => localDetails(entry, previous), 'jpx-store-title'); preview.dataset.localAction = 'preview';
+                const share = button(tr(previous ? 'useConfig' : 'shareShort'), () => chooseLocal(entry, previous)); share.dataset.localAction = 'share';
+                row.append(preview, share);
+                const counts = ['supports', 'attacks'].filter(key => Number.isFinite(entry[key])).map(key => tr(key) + ': ' + entry[key]);
+                row.append(el('p', [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings'), ...counts].join(' · '), 'jpx-store-meta'));
+                list.append(row);
+            }
+            if (!shown.length) list.append(el('p', tr(entries.length ? 'noMatches' : 'noLocal'), 'jpx-store-empty'));
+        }
+        for (const [key, label, values] of options) {
+            if (!values.some(([value]) => value === state.local[key])) state.local[key] = '';
+            const control = select([['', tr('all')], ...values], state.local[key]); control.dataset.localFilter = key;
+            control.addEventListener('change', () => { state.local[key] = control.value; render(); });
+            filters.append(field(tr(label), control));
+        }
+        stage.append(filters, list); render();
+    }
+    function localDetails(entry, previous) {
+        const envelope = localDraft(entry);
+        open('localDetail'); heading(localName(entry), () => local(previous));
+        stage.append(el('p', [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings')].join(' · '), 'jpx-store-meta'),
+            el('p', configSummary(envelope), 'jpx-store-meta'), button(tr(previous ? 'useConfig' : 'share'), () => chooseLocal(entry, previous), 'jpx-store-primary'), rawPreview(envelope));
+    }
     async function details(entry) {
         const request = open('detail'); heading(entry.title, () => browse()); message(tr('loading'));
         try {
@@ -188,8 +255,8 @@ function renderConfigStore(parent, hooks) {
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => details(entry));
         }
     }
-    async function login(after = () => mine()) {
-        const request = open('login'); heading(tr('signIn'), () => browse());
+    async function login(after = () => local(), cancel = () => local()) {
+        const request = open('login'); heading(tr('signIn'), cancel);
         const panel = el('div', undefined, 'jpx-store-auth'); stage.append(panel);
         const controller = new AbortController(); state.login = controller; message(tr('connecting'));
         try {
@@ -202,51 +269,43 @@ function renderConfigStore(parent, hooks) {
                 const url = new URL(code.verificationUri);
                 if (url.origin !== 'https://github.com' || url.pathname !== '/login/device') throw new Error('Invalid authorization URL');
                 link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
-                panel.append(link, el('p', tr('waitingAuth'), 'jpx-store-meta'), button(tr('cancel'), () => browse()));
+                panel.append(link, el('p', tr('waitingAuth'), 'jpx-store-meta'), button(tr('cancel'), cancel));
             }, controller.signal);
             if (!alive() || request !== state.request) return;
             state.user = user || await jpxConfigStore.user(); state.login = null; accountControls(); await after();
         } catch (error) {
             if (!alive() || request !== state.request || error?.name === 'AbortError') return;
-            message(errorMessage(error), true); panel.replaceChildren(button(tr('retry'), () => login(after)));
+            message(errorMessage(error), true); panel.replaceChildren(button(tr('retry'), () => login(after, cancel)));
         }
     }
     async function edit(existing) {
-        const model = existing || { envelope: hooks.getDraft('battle-mode') };
-        state.editor = model; open('edit'); heading(model.id ? tr('editShare') : tr('share'), () => mine());
+        if (!existing) return local();
+        const model = existing;
+        state.editor = model; open('edit'); heading(model.id ? tr('editShare') : tr('share'), () => model.id ? mine() : local());
         const request = state.request;
         const form = el('form', undefined, 'jpx-store-form');
         const envelope = model.envelope;
-        const kind = select(kinds(), envelope.kind); kind.disabled = !!model.id;
-        const world = select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world);
+        const world = model.id ? select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world) : null;
         const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope.title || '';
         const description = el('textarea'); description.rows = 4; description.maxLength = 4000; description.value = envelope.description || '';
-        const scope = el('div', undefined, 'jpx-store-scope');
-        scope.append(field(tr('type'), kind), field(tr('world'), world));
         const summary = el('p', info(envelope) + ' · ' + configSummary(envelope), 'jpx-store-meta');
-        form.append(scope, field(tr('title'), title), field(tr('description'), description), summary);
+        const selection = el('div', undefined, 'jpx-store-selection');
+        selection.append(summary, button(tr('changeConfig'), () => local(model)));
+        form.append(selection);
+        if (world) form.append(field(tr('appliesTo'), world));
+        form.append(field(tr('title'), title), field(tr('description'), description));
         const source = el('div', undefined, 'jpx-store-actions');
-        if (model.id) source.append(button(tr('replaceConfig'), () => {
-            const draft = hooks.getDraft(envelope.kind);
-            Object.assign(envelope, draft, { title: title.value, description: description.value, world: world.value });
-            summary.textContent = info(envelope) + ' · ' + configSummary(envelope);
-            form.querySelector('.jpx-store-raw')?.replaceWith(rawPreview(envelope));
-            message(tr('replaced'));
-        }));
         const publish = el('button', model.id ? tr('submitUpdate') : tr('submit'), 'jpx-store-primary'); publish.type = 'submit';
         source.append(publish); form.append(rawPreview(envelope), source, el('p', tr('reviewHint'), 'jpx-store-meta'));
         if (!state.user) form.append(el('p', tr('loginBeforeShare'), 'jpx-store-meta'));
-        kind.addEventListener('change', () => {
-            model.envelope = { ...hooks.getDraft(kind.value), title: title.value, description: description.value };
-            edit(model);
-        });
-        for (const [control, key] of [[title, 'title'], [description, 'description'], [world, 'world']])
+        for (const [control, key] of [[title, 'title'], [description, 'description'], ...(world ? [[world, 'world']] : [])])
             control.addEventListener('input', () => { envelope[key] = control.value; });
         form.addEventListener('submit', async event => {
             event.preventDefault(); if (!form.reportValidity()) return;
-            envelope.title = title.value.trim(); envelope.description = description.value.trim(); envelope.world = world.value;
+            envelope.title = title.value.trim(); envelope.description = description.value.trim();
+            if (world) envelope.world = world.value;
             if (!envelope.title) { title.focus(); return; }
-            if (!state.user) { await login(() => edit(model)); return; }
+            if (!state.user) { await login(() => edit(model), () => edit(model)); return; }
             publish.disabled = true; message(tr('submitting'));
             try {
                 await jpxConfigStore.submit(envelope, model.id);
@@ -267,7 +326,7 @@ function renderConfigStore(parent, hooks) {
         return 'pending';
     }
     async function mine() {
-        const request = open('mine'); heading(tr('mine'));
+        const request = open('mine'); personalNavigation(true);
         if (!state.user) { empty(tr('loginRequired'), () => login(() => mine()), tr('signIn')); return; }
         const refresh = button(tr('refresh'), () => mine()); stage.firstElementChild.append(refresh);
         message(tr('loading'));
@@ -275,7 +334,7 @@ function renderConfigStore(parent, hooks) {
             const issues = await jpxConfigStore.mine();
             if (!alive() || request !== state.request) return;
             message('');
-            if (!issues.length) { empty(tr('noShares'), () => edit(), tr('share')); return; }
+            if (!issues.length) { empty(tr('noShares'), () => local(), tr('share')); return; }
             const list = el('div', undefined, 'jpx-store-list'); stage.append(list);
             for (const issue of issues) {
                 const row = el('article', undefined, 'jpx-store-row');
@@ -283,6 +342,10 @@ function renderConfigStore(parent, hooks) {
                 const statusKey = issueStatus(issue);
                 const badge = el('span', tr(statusKey === 'published' ? 'publishedVersion' : statusKey), 'jpx-store-badge');
                 row.append(title, badge);
+                try {
+                    const envelope = jpxConfigStore.parseSubmission(issue.body);
+                    row.append(el('p', info(envelope) + ' · ' + configSummary(envelope), 'jpx-store-meta'));
+                } catch { /* Keep malformed submissions manageable. */ }
                 const actions = el('div', undefined, 'jpx-store-actions');
                 if (issue.state !== 'closed') {
                     actions.append(button(tr('editShare'), () => edit({ id: issue.id, envelope: jpxConfigStore.parseSubmission(issue.body) })),

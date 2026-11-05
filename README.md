@@ -97,7 +97,7 @@ Shortcuts can be changed in Settings. With HVUT, its gear menu includes **JPX-PL
 
 The independent **Config Store** plugin requires JPX-PLUS **2026.11.06.8 or later** and adds a tab inside Settings. Browse, preview, download, and import shared configs without signing in. Imports use the usual undo and save controls.
 
-Sign in to GitHub to share your current battle mode, all battle settings, or statistics settings. Complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent to DeepSeek for review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My shares**.
+With JPX-PLUS **2026.11.06.10 or later**, **My configs** lists local configurations by world, battle style, and battle type. Preview the one you want to share, or choose full battle or statistics settings. Sign in to GitHub when submitting; complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent for AI review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My configs → Shared**.
 
 Plugin contributors: [source, build, and test instructions](plugins/config-store/README.md).
 

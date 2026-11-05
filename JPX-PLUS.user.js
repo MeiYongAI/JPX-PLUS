@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.06.9
+// @version      2026.11.06.10
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -24,7 +24,7 @@ const settingsPlugins = new Map();
 // Optional userscripts own their UI, network permissions and credentials.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.06.9',
+    version: '2026.11.06.10',
     registerSettingsTab(plugin) {
         if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
             ['battle', 'battleRules', 'keyBindings', 'stats'].includes(plugin.id) ||
@@ -8925,6 +8925,22 @@ function renderSettings() {
         settingsPanels.appendChild(tab.panel);
     }
     tabs.forEach(mountTab);
+    const draftWorld = isekaiSuffix ? 'Isekai' : 'Persistent';
+    const selectedDraftMode = () => document.querySelector('[data-role="battleMode"]')?.dataset.currentValue || getBattleMode('OneHanded');
+    const hasDraftRules = mode => mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks) &&
+        (mode.supports.length || mode.attacks.length || Object.entries(mode).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length));
+    const readDraftBattle = world => {
+        if (world === draftWorld) return cfgBattle;
+        if (!['Persistent', 'Isekai'].includes(world)) return null;
+        try {
+            const saved = JSON.parse(localStorage.getItem(prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '')) || 'null');
+            if (!saved || Array.isArray(saved) || typeof saved !== 'object' ||
+                (saved.battleVersion || saved.version || 0) < defaultCfgBattle.battleVersion) return null;
+            // Apply existing migrations on this detached copy, without filling an unvisited world with defaults.
+            mergeCfg(saved, { battleVersion: defaultCfgBattle.battleVersion }, saved, 'battle');
+            return saved;
+        } catch { return null; }
+    };
     const mountPlugins = () => {
         for (const plugin of settingsPlugins.values()) {
             if (tabs.some(tab => tab.id === plugin.id)) continue;
@@ -8933,13 +8949,33 @@ function renderSettings() {
                     version: window.JPXPlus.version,
                     translate: t,
                     notify: message => jpxUtils.createToast(String(message)),
-                    getDraft(kind) {
+                    listDrafts() {
+                        const drafts = [], selected = selectedDraftMode();
+                        for (const world of [draftWorld, draftWorld === 'Persistent' ? 'Isekai' : 'Persistent']) {
+                            const data = readDraftBattle(world);
+                            if (!data) continue;
+                            const modes = BATTLE_MODES.filter(mode => hasDraftRules(data[mode]));
+                            const source = world === draftWorld ? 'draft' : 'saved';
+                            for (const mode of modes) drafts.push({ kind: 'battle-mode', world, mode, source,
+                                supports: data[mode].supports.length, attacks: data[mode].attacks.length,
+                                current: world === draftWorld && mode === selected });
+                            if (modes.length) drafts.push({ kind: 'battle', world, source, modes: modes.length, current: world === draftWorld });
+                        }
+                        drafts.push({ kind: 'stats', world: 'Any', source: 'draft', current: true });
+                        return drafts;
+                    },
+                    getDraft(kind, selection = {}) {
                         if (!['battle-mode', 'battle', 'stats'].includes(kind)) throw new Error('Invalid configuration type');
-                        const mode = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue || getBattleMode('OneHanded');
-                        const data = kind === 'stats' ? cfgStats : kind === 'battle' ? cfgBattle :
-                            { battleVersion: cfgBattle.battleVersion, [mode]: cfgBattle[mode] };
+                        const world = selection.world || (kind === 'stats' ? 'Any' : draftWorld);
+                        if (kind === 'stats' ? world !== 'Any' : !['Persistent', 'Isekai'].includes(world)) throw new Error('Invalid configuration world');
+                        const battle = kind === 'stats' ? null : readDraftBattle(world);
+                        if (kind !== 'stats' && !battle) throw new Error('Configuration unavailable');
+                        const mode = selection.mode || selectedDraftMode();
+                        if (kind === 'battle-mode' && (!BATTLE_MODES.includes(mode) || !hasDraftRules(battle[mode]))) throw new Error('Configuration unavailable');
+                        const data = kind === 'stats' ? cfgStats : kind === 'battle' ? battle :
+                            { battleVersion: battle.battleVersion, [mode]: battle[mode] };
                         return JSON.parse(JSON.stringify({ schemaVersion: 1, kind, title: '', description: '',
-                            world: kind === 'stats' ? 'Any' : isekaiSuffix ? 'Isekai' : 'Persistent',
+                            world,
                             ...(kind === 'battle-mode' ? { mode } : {}), scriptVersion: window.JPXPlus.version, config: data }));
                     },
                     importConfig(envelope) {
