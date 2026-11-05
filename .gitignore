@@ -1,0 +1,11 @@
+.local-backups/
+backup/
+node_modules/
+*.log
+.env
+.env.*
+!.env.example
+cfgBattle*.txt
+cfgStats*.txt
+Thumbs.db
+.DS_Store

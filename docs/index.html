@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore JPX-PLUS on desktop and mobile. Compare the same screen in light and dark themes, in English or Chinese.">
+  <title>JPX-PLUS · Interface preview</title>
+  <link rel="stylesheet" href="preview.css">
+  <script src="preview.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="https://github.com/MeiYongAI/JPX-PLUS" aria-label="JPX-PLUS on GitHub"><span class="monogram" aria-hidden="true">J<span>+</span></span><strong>JPX-PLUS</strong></a>
+    <a class="repo-link" href="https://github.com/MeiYongAI/JPX-PLUS">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow">HENTAIVERSE HELPER</p><h1 id="page-title" data-i18n="headline">Your battles. A clearer view.</h1><p class="description" data-i18n="intro">Explore battle rules, statistics, and a more comfortable interface on desktop and mobile.</p><p class="description" id="author-credit"><span data-i18n="authorThanks">Special thanks to JPX author </span><a href="https://forums.e-hentai.org/index.php?showuser=4802944" lang="zh-CN"><strong>闯关弟子</strong></a><span data-i18n="authorFoundation">. Without his work, JPX-PLUS would not exist.</span></p></div>
+      <a class="install" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js"><span data-i18n="install">Install script</span><span aria-hidden="true">↗</span></a>
+    </section>
+    <section class="gallery" aria-label="Interactive interface preview" data-i18n-aria="gallery">
+      <div class="toolbar">
+        <div class="segmented devices" aria-label="Device" data-i18n-aria="device" role="group">
+          <button type="button" data-device="desktop" data-i18n="desktop" aria-pressed="true">Desktop</button>
+          <button type="button" data-device="mobile" data-i18n="mobile" aria-pressed="false">Mobile</button>
+        </div>
+        <div class="segmented themes" aria-label="Theme" data-i18n-aria="theme" role="group">
+          <button type="button" data-theme="light" aria-pressed="true"><span aria-hidden="true">☀</span> <span data-i18n="light">Light</span></button>
+          <button type="button" data-theme="dark" aria-pressed="false"><span aria-hidden="true">☾</span> <span data-i18n="dark">Dark</span></button>
+        </div>
+        <div class="segmented languages" aria-label="Language" data-i18n-aria="language" role="group">
+          <button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
+          <button type="button" data-language="zh-CN" lang="zh-CN" aria-pressed="false">中文</button>
+        </div>
+      </div>
+      <nav id="scenes" class="scenes" aria-label="Preview page" data-i18n-aria="pages"></nav>
+      <div class="caption"><div><h2 id="scene-title">Basic settings</h2><p id="scene-description">Battle controls, display options, and panel colors in one place.</p></div><a id="full-image" href="images/desktop-settings-light-en.png" target="_blank" rel="noopener"><span data-i18n="original">Open full image</span> <span aria-hidden="true">↗</span></a></div>
+      <div class="stage" id="stage" data-device="desktop" data-scene="settings" aria-busy="false">
+        <img id="preview" src="images/desktop-settings-light-en.png" width="848" height="808" alt="Basic settings · Desktop · Light theme" fetchpriority="high">
+        <p id="image-error" hidden><span data-i18n="imageError">The image could not be loaded.</span> <a id="retry-image" href="images/desktop-settings-light-en.png" data-i18n="retry">Open the original image</a></p>
+      </div>
+      <p class="gallery-note" id="theme-note">Switch themes without changing the page or sample data.</p>
+      <p id="status" class="sr-only" aria-live="polite"></p>
+    </section>
+    <footer><p data-i18n="disclaimer">Actual script interfaces with offline sample data. The settlement image shows only the statistics area.</p><p><a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md" id="static-preview" data-i18n="staticGallery">Gallery on GitHub</a><span aria-hidden="true"> · </span><a href="https://github.com/MeiYongAI/JPX-PLUS/issues" data-i18n="feedback">Report an issue</a></p></footer>
+    <noscript><p>JavaScript is needed to switch screenshots. Browse the <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md">English gallery</a> or <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.zh-CN.md">中文图集</a>.</p></noscript>
+  </main>
+</body>
+</html>

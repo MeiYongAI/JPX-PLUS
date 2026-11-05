@@ -1,0 +1,119 @@
+<p align="center"><a href="README.md">English</a> | <strong>简体中文</strong></p>
+
+<p align="center"><img src="assets/jpx-plus-icon.svg" width="80" height="80" alt="JPX-PLUS 图标"></p>
+
+# JPX-PLUS
+
+基于 JPX 增强的 [HentaiVerse](https://hentaiverse.org/) 战斗辅助用户脚本，提供可配置的战斗规则、统计记录和适配桌面与移动端的界面。
+
+## 特别感谢
+
+**特别感谢 JPX 原作者 [闯关弟子](https://forums.e-hentai.org/index.php?showuser=4802944)。** JPX-PLUS 基于他的工作修改增强。没有他开发并分享 JPX，就不会有今天的 JPX-PLUS。
+
+## 安装
+
+先安装 [Tampermonkey](https://www.tampermonkey.net/) 或 [Violentmonkey](https://violentmonkey.github.io/)，再安装以下脚本：
+
+- [安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
+- [安装简体中文语言包](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js)
+
+语言包需要与主脚本一起使用。安装后刷新游戏页面；后续由脚本管理器按版本检查更新。
+
+从原版 JPX 或 JPX-Revanced 迁移时，先导出需要保留的配置与记录，再停用旧主脚本和旧语言包，避免多份脚本同时运行。JPX-PLUS 支持原版配置格式导入。
+
+## 界面预览
+
+<p align="center">
+  <a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;theme=light"><img src="assets/preview-light.svg" width="156" height="42" alt="打开浅色交互预览"></a>
+  &nbsp;
+  <a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;theme=dark"><img src="assets/preview-dark.svg" width="156" height="42" alt="打开暗色交互预览"></a>
+</p>
+
+<p align="center">选择一个主题进入展示页，在同一页面切换浅暗主题、桌面与手机视图。<br>也可直接在仓库查看 <a href="docs/gallery-light.zh-CN.md">浅色图集</a> · <a href="docs/gallery-dark.zh-CN.md">暗色图集</a>。</p>
+
+展示页首次按浏览器语言选择：中文环境显示中文，其他语言默认英文。点击 **English / 中文** 可同时切换界面与截图，并记住选择；从两版 README 进入时会使用对应语言。
+
+截图使用当前脚本和离线示例数据，随浏览器的浅暗偏好展示对应主题；控制面板默认配色随主题切换，自定义配色保留。
+
+### 设置与配色
+
+<table>
+<tr><th width="50%">基本设置</th><th width="50%">战斗规则</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=settings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-settings-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-settings-light.png"><img src="docs/images/desktop-settings-light.png" width="100%" alt="基本设置：JPX-PLUS 实际界面"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=rules&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-rules-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-rules.png"><img src="docs/images/desktop-rules.png" width="100%" alt="战斗规则：JPX-PLUS 实际界面"></picture></a></td></tr>
+</table>
+
+<details>
+<summary>统计配色与实时预览</summary>
+
+<a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=colors&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-stats-settings-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-stats-settings.png"><img src="docs/images/desktop-stats-settings.png" width="100%" alt="统计配色：JPX-PLUS 实际界面"></picture></a>
+
+</details>
+
+<details>
+<summary>快捷键配置</summary>
+
+<a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=keybindings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-keybindings-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-keybindings.png"><img src="docs/images/desktop-keybindings.png" width="100%" alt="快捷键配置：JPX-PLUS 实际界面"></picture></a>
+
+</details>
+
+### 战斗统计
+
+筛选记录、汇总收益、查看单场明细，也可以复制或下载统计图片。显示项目可在统计设置中调整。
+
+<a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=records&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-records-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-records.png"><img src="docs/images/desktop-records.png" width="100%" alt="战斗统计：JPX-PLUS 实际界面"></picture></a>
+
+<table>
+<tr><th width="50%">历史明细</th><th width="50%">战斗结算</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=detail&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-detail-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-detail.png"><img src="docs/images/desktop-detail.png" width="100%" alt="历史明细：JPX-PLUS 实际界面"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=final&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-final-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-final.png"><img src="docs/images/desktop-final.png" width="100%" alt="战斗结算：JPX-PLUS 实际界面"></picture></a></td></tr>
+</table>
+
+### 悬浮控制面板
+
+拖动标题栏调整位置，自定义文本、标题栏、背景、边框和面板透明度。默认配色随主题切换，自定义配色保留。
+
+<p align="center"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=panel"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/control-panel-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/control-panel.png"><img src="docs/images/control-panel.png" width="652" alt="自动、手动、等待三种控制面板状态"></picture></a></p>
+
+### 移动端
+
+全屏设置配合下拉导航，统计筛选按需展开，明细表格支持横向滚动。
+
+<table>
+<tr><th width="33%">设置与导航</th><th width="33%">战斗统计</th><th width="33%">单场明细</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=settings&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-settings-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-settings.png"><img src="docs/images/mobile-settings.png" width="100%" alt="设置与导航：JPX-PLUS 实际界面"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=records&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-records-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-records.png"><img src="docs/images/mobile-records.png" width="100%" alt="战斗统计：JPX-PLUS 实际界面"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=detail&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-detail-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-detail.png"><img src="docs/images/mobile-detail.png" width="100%" alt="单场明细：JPX-PLUS 实际界面"></picture></a></td></tr>
+</table>
+
+## 使用
+
+| 默认快捷键 | 操作 |
+| --- | --- |
+| `M` | 在战斗内启停自动操作 |
+| `,` | 打开设置 |
+| `Z` | 打开战斗统计 |
+
+快捷键可以在设置中修改。战斗悬浮面板提供设置和统计按钮；触控设备也可通过页面上的 JPX-PLUS 入口操作。首次使用请先检查战斗流派和规则。
+
+## 功能
+
+- 战斗规则、条件与快捷键配置，支持撤销和重做。
+- 按设置进入下一轮；显示冷却、状态持续时间、熟练度及怪物生命值。怪物详细信息需要配合 Monster DB 脚本。
+- 战斗与收益统计、筛选汇总、历史明细，以及复制和下载统计图片。
+- 可拖动控制面板、配色实时预览、浅暗主题及移动端布局。
+- 战斗配置、统计配置和记录的导入导出。
+
+### 双手默认规则
+
+已同步原作者闯关弟子 **2026 年 11 月 5 日**更新的双手自动战斗规则。已有保存的规则不会被覆盖；如需加载新版默认规则，请进入**战斗规则**，选择双手通用模式，点击**重置**（重置当前战斗模式）并保存。重置前可先导出需要保留的规则。
+
+原作者规则会为**低于 300 级**的角色启用较保守的安全模式，但仍有战败可能。
+
+不提供自动开战、自动签到、自动遭遇战、自动竞技场或自动浴血擂台。旧配置中的对应字段仅保留用于兼容，不会执行；战斗结束后保留结算页面。
+
+## AJAX 换轮
+
+AJAX 局部换轮不会使脚本管理器重新注入其他用户脚本，部分汉化、Monster DB、HVUT 或谜题助手可能无法继续工作。遇到此类问题时，请关闭 AJAX 换轮，并按需保留“自动进入下一轮”。
+
+## 反馈
+
+在 [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues) 中提供脚本版本、浏览器、脚本管理器和复现步骤。
+
+同时感谢相关工具的维护者。
