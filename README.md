@@ -74,6 +74,25 @@ Drag the title bar to move the panel. Customize its text, title bar, background,
 
 <p align="center"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=panel"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/control-panel-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/control-panel-en.png"><img src="docs/images/control-panel-en.png" width="652" alt="Control panel in automatic, manual, and waiting states"></picture></a></p>
 
+### Config Store and Backpack
+
+The optional Config Store plugin lets you browse shared configs and keep your own alternatives in a local backpack. Apply a config, then use Save in Settings to keep the change.
+
+<table>
+<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-store-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-store-en.png"><img src="docs/images/desktop-store-en.png" width="100%" alt="Config Store"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=backpack&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-backpack-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-backpack-en.png"><img src="docs/images/desktop-backpack-en.png" width="100%" alt="Local backpack"></picture></a></td></tr>
+</table>
+
+<details>
+<summary>Store and backpack on mobile</summary>
+
+<table>
+<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-store-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-store-en.png"><img src="docs/images/mobile-store-en.png" width="100%" alt="Config Store"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=backpack&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-backpack-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-backpack-en.png"><img src="docs/images/mobile-backpack-en.png" width="100%" alt="Local backpack"></picture></a></td></tr>
+</table>
+
+</details>
+
 ### Mobile
 
 Full-screen settings use a compact navigation menu. Statistics filters open when needed, and detail tables scroll horizontally.
@@ -97,15 +116,16 @@ Shortcuts can be changed in Settings. With HVUT, its gear menu includes **JPX-PL
 
 The independent **Config Store** plugin requires JPX-PLUS **2026.11.06.8 or later** and adds a tab inside Settings. Browse, preview, download, and import shared configs without signing in. Imports use the usual undo and save controls.
 
-With JPX-PLUS **2026.11.06.10 or later**, **My configs** lists local configurations by world, battle style, and battle type. Preview the one you want to share, or choose full battle or statistics settings. Sign in to GitHub when submitting; complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent for AI review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My configs → Shared**.
+With JPX-PLUS **2026.11.06.10 or later**, **My configs → Current** lists your current configurations by world, battle style, and battle type. Preview the one you want to share, or choose full battle or statistics settings. Sign in to GitHub when submitting; complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent for AI review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My configs → Shared**.
 
-**My configs → Backpack** keeps multiple configs of the same kind, world, and battle mode. Save your own snapshots from **Current**, or save a config from the store, then name, preview, apply, or share each one separately. The backpack stays in this plugin's local userscript storage; saving there needs no GitHub login and changes no active settings. Applying uses the existing import, undo, and manual Save controls. Downloads keep the original JPX config format.
+With Config Store **2026.11.06.5 or later**, **My configs → Backpack** keeps multiple configs of the same kind, world, and battle mode. Save your own snapshots from **Current**, or save a config from the store, then name, preview, apply, or share each one separately. The backpack stays in this plugin's local userscript storage; saving there needs no GitHub login and changes no active settings. Applying uses the existing import, undo, and manual Save controls. Downloads keep the original JPX config format.
 
 Plugin contributors: [source, build, and test instructions](plugins/config-store/README.md).
 
 ## Features
 
 - Configure battle rules, conditions, and shortcuts, with undo and redo.
+- Optional Config Store with a local backpack for multiple saved configs and GitHub sharing.
 - Advance to the next round as configured; show cooldowns, effect durations, proficiency gains, and monster HP. Detailed monster information requires a Monster DB script.
 - Battle and revenue statistics, filtered summaries, historical details, and image copying or downloads.
 - A draggable control panel, live color previews, light/dark themes, and mobile layouts.

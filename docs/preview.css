@@ -17,6 +17,8 @@ button { font: inherit; cursor: pointer; }
 .eyebrow { margin: 0 0 8px; color: var(--accent); font: 600 11px/1.5 monospace; letter-spacing: .14em; }
 h1 { margin: 0; font-size: clamp(24px, 3vw, 36px); line-height: 1.4; letter-spacing: -.02em; font-weight: 650; }
 .description { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+.install-actions { display: grid; flex: none; justify-items: center; gap: 8px; }
+.plugin-install { font-size: 12px; }
 .install { flex: none; display: inline-flex; gap: 24px; align-items: center; padding: 10px 20px; background: #681b23; color: #fff8eb; border: 1px solid #681b23; border-radius: 6px; font-weight: 600; }
 .install:hover { background: #7d2830; text-decoration: none; }
 .gallery { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
@@ -35,7 +37,7 @@ h2 { margin: 0; font-size: 17px; font-weight: 650; }
 .caption>a { flex: none; font-size: 12px; padding-top: 3px; }
 .stage { padding: 24px; background: var(--stage); display: grid; place-items: start center; min-height: 240px; }
 .stage img { display: block; max-width: 100%; width: auto; height: auto; border: 1px solid var(--line); }
-.stage[data-device=desktop][data-scene=settings] img, .stage[data-device=desktop][data-scene=rules] img, .stage[data-device=desktop][data-scene=colors] img { width: min(100%, 764px); }
+.stage[data-device=desktop]:is([data-scene=settings], [data-scene=rules], [data-scene=colors], [data-scene=store], [data-scene=backpack]) img { width: min(100%, 764px); }
 .stage[data-device=mobile] img { width: min(100%, 390px); }
 .stage[aria-busy=true] img { opacity: .65; }
 .gallery-note { margin: 0; padding: 12px 24px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
@@ -48,7 +50,8 @@ footer p:last-child { white-space: nowrap; }
   .masthead, main { padding-inline: 16px; }
   .masthead { min-height: 72px; }
   .intro { padding: 24px 0; display: block; }
-  .install { margin-top: 20px; font-size: 13px; }
+  .install-actions { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: start; align-items: center; gap: 12px; }
+  .install { font-size: 13px; }
   .toolbar { padding: 12px; gap: 8px; flex-wrap: wrap; }
   .toolbar .devices { margin-right: 0; }
   .toolbar .themes { margin-left: auto; }

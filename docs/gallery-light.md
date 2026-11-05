@@ -30,9 +30,23 @@ Default control-panel colors follow the theme; custom colors are preserved.
 
 <a href="images/control-panel-en.png"><img src="images/control-panel-en.png" width="100%" alt="Floating control panel · Light theme"></a>
 
+## Config Store and Backpack
+
+An optional plugin. Keep multiple configs of the same kind in the local backpack; saving a copy leaves current settings unchanged. Apply it, then save in Settings.
+
+<table>
+<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
+<tr><td valign="top"><a href="images/desktop-store-en.png"><img src="images/desktop-store-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/desktop-backpack-en.png"><img src="images/desktop-backpack-en.png" width="100%" alt="Local backpack"></a></td></tr>
+</table>
+
 ## Mobile
 
 <table>
 <tr><th width="33%">Settings and navigation</th><th width="33%">Battle statistics</th><th width="33%">Single-battle details</th></tr>
 <tr><td valign="top"><a href="images/mobile-settings-en.png"><img src="images/mobile-settings-en.png" width="100%" alt="Settings and navigation · Light theme"></a></td><td valign="top"><a href="images/mobile-records-en.png"><img src="images/mobile-records-en.png" width="100%" alt="Battle statistics · Light theme"></a></td><td valign="top"><a href="images/mobile-detail-en.png"><img src="images/mobile-detail-en.png" width="100%" alt="Single-battle details · Light theme"></a></td></tr>
+</table>
+
+<table>
+<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
+<tr><td valign="top"><a href="images/mobile-store-en.png"><img src="images/mobile-store-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/mobile-backpack-en.png"><img src="images/mobile-backpack-en.png" width="100%" alt="Local backpack"></a></td></tr>
 </table>

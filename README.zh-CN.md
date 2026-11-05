@@ -74,6 +74,25 @@
 
 <p align="center"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=panel"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/control-panel-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/control-panel.png"><img src="docs/images/control-panel.png" width="652" alt="自动、手动、等待三种控制面板状态"></picture></a></p>
 
+### 配置商店与背包
+
+安装独立配置商店插件后，可浏览玩家分享的配置，也可在本地背包保存自己的多套同类规则。应用配置后，仍需在设置中手动保存。
+
+<table>
+<tr><th width="50%">配置商店</th><th width="50%">本地背包</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=store&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-store-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-store.png"><img src="docs/images/desktop-store.png" width="100%" alt="配置商店"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=backpack&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-backpack-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-backpack.png"><img src="docs/images/desktop-backpack.png" width="100%" alt="本地背包"></picture></a></td></tr>
+</table>
+
+<details>
+<summary>手机上的商店与背包</summary>
+
+<table>
+<tr><th width="50%">配置商店</th><th width="50%">本地背包</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=store&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-store-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-store.png"><img src="docs/images/mobile-store.png" width="100%" alt="配置商店"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=backpack&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-backpack-dark.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-backpack.png"><img src="docs/images/mobile-backpack.png" width="100%" alt="本地背包"></picture></a></td></tr>
+</table>
+
+</details>
+
 ### 移动端
 
 全屏设置配合下拉导航，统计筛选按需展开，明细表格支持横向滚动。
@@ -97,15 +116,16 @@
 
 **配置商店**是独立插件，需要 JPX-PLUS **2026.11.06.8 或更新版本**，安装后会在设置中增加入口。浏览、预览、下载和导入配置无需登录；导入沿用现有的撤销和保存流程。
 
-使用 JPX-PLUS **2026.11.06.10 或更新版本**时，**我的配置**会按世界、流派和战斗类型列出本地配置，选中后即可预览、分享，也可以选择整套战斗配置或统计配置。提交时登录 GitHub，首次按提示完成授权，随后即可在 JPX-PLUS 内提交、更新或撤下分享。所选配置和说明会**在 GitHub 公开，并发送给 AI 审阅**。通过规则校验和 AI 审阅后上架，有疑点的交给维护者确认；审核进度可在**我的配置 → 已分享**中查看。
+使用 JPX-PLUS **2026.11.06.10 或更新版本**时，**我的配置 → 当前配置**会按世界、流派和战斗类型列出当前配置，选中后即可预览、分享，也可以选择整套战斗配置或统计配置。提交时登录 GitHub，首次按提示完成授权，随后即可在 JPX-PLUS 内提交、更新或撤下分享。所选配置和说明会**在 GitHub 公开，并发送给 AI 审阅**。通过规则校验和 AI 审阅后上架，有疑点的交给维护者确认；审核进度可在**我的配置 → 已分享**中查看。
 
-**我的配置 → 背包**可以存放多套同世界、同流派、同类型的配置。在**当前配置**中保存自己的方案，或从商店保存别人的配置，再分别命名、预览、应用或分享。背包单独保存在插件的本地存储中，无需登录 GitHub，也不会改变正在使用的配置。应用时沿用现有导入、撤销和手动保存流程，下载的配置仍是原版 JPX 格式。
+使用配置商店 **2026.11.06.5 或更新版本**时，**我的配置 → 背包**可以存放多套同世界、同流派、同类型的配置。在**当前配置**中保存自己的方案，或从商店保存别人的配置，再分别命名、预览、应用或分享。背包单独保存在插件的本地存储中，无需登录 GitHub，也不会改变正在使用的配置。应用时沿用现有导入、撤销和手动保存流程，下载的配置仍是原版 JPX 格式。
 
 参与插件开发：[源码、构建与测试说明](plugins/config-store/README.md)。
 
 ## 功能
 
 - 战斗规则、条件与快捷键配置，支持撤销和重做。
+- 独立配置商店插件，本地背包保存多套配置，支持通过 GitHub 分享。
 - 按设置进入下一轮；显示冷却、状态持续时间、熟练度及怪物生命值。怪物详细信息需要配合 Monster DB 脚本。
 - 战斗与收益统计、筛选汇总、历史明细，以及复制和下载统计图片。
 - 可拖动控制面板、配色实时预览、浅暗主题及移动端布局。
