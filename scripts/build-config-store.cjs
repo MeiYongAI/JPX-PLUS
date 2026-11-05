@@ -12,7 +12,7 @@ const css = JSON.stringify(read('ui.css'));
 const header = `// ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.3
+// @version      2026.11.06.4
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end

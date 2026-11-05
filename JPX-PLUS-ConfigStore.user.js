@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.3
+// @version      2026.11.06.4
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -381,7 +381,7 @@ function renderConfigStore(parent, hooks) {
     root.append(toolbar, status, stage);
     parent.append(root);
     function accountControls() {
-        account.replaceChildren(button(tr('share'), () => local(), 'jpx-store-primary'));
+        account.replaceChildren();
         if (state.user) {
             const logout = button('@' + state.user.login, async () => {
                 await jpxConfigStore.logout(); state.user = null; accountControls();
