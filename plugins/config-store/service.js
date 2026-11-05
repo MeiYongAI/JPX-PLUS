@@ -3,6 +3,7 @@ const JPX_CONFIG_STORE = Object.freeze({ repository: 'MeiYongAI/JPX-PLUS-Configs
 const jpxConfigStore = (() => {
     const repository = JPX_CONFIG_STORE.repository, api = 'https://api.github.com', raw = 'https://raw.githubusercontent.com/' + repository + '/main/';
     const tokenKey = 'jpx-config-store-auth-v1', marker = '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n';
+    const backpackPrefix = 'jpx-config-store-backpack-v1:', backpackLimit = 2 * 1024 * 1024;
     const kinds = ['battle-mode', 'battle', 'stats'], worlds = ['Persistent', 'Isekai', 'Any'];
     const styles = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed'];
     const modes = styles.flatMap(style => ['General', 'Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'].map(type => style + '_' + type));
@@ -18,13 +19,21 @@ const jpxConfigStore = (() => {
     const text = (value, max, empty = false) => typeof value === 'string' && (empty || value.trim().length > 0) && value.length <= max && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value);
     const issueURL = id => 'https://github.com/' + repository + '/issues/' + id;
     function inspect(value, depth = 0, budget = { nodes: 0, stringLimit: Infinity }) {
-        if (++budget.nodes > 12000 || depth > 24) fail('invalidConfig');
+        if (++budget.nodes > (budget.nodeLimit || 12000) || depth > 24) fail('invalidConfig');
         if (typeof value === 'string') { if (value.length > budget.stringLimit) fail('tooLarge'); return; }
         if (value === null || typeof value === 'boolean') return;
         if (typeof value === 'number' && Number.isFinite(value)) return;
         if (typeof value !== 'object') fail('invalidConfig');
-        for (const key of Object.keys(value)) {
+        const keys = Object.keys(value);
+        if (budget.exactJSON && (Object.getOwnPropertySymbols(value).length ||
+            (Array.isArray(value) ? keys.length !== value.length || keys.some(key => !/^(0|[1-9]\d*)$/.test(key) || +key >= value.length) :
+                Object.prototype.toString.call(value) !== '[object Object]'))) fail('invalidConfig');
+        for (const key of keys) {
             if (['__proto__', 'prototype', 'constructor'].includes(key)) fail('invalidConfig');
+            if (budget.exactJSON) {
+                const property = Object.getOwnPropertyDescriptor(value, key);
+                if (property.get || property.set) fail('invalidConfig');
+            }
             inspect(value[key], depth + 1, budget);
         }
     }
@@ -92,6 +101,80 @@ const jpxConfigStore = (() => {
     function parseSubmission(body) {
         if (typeof body !== 'string' || !body.startsWith(marker) || !body.endsWith('\n```')) fail('invalidConfig');
         return validate(parse(body.slice(marker.length, -4)));
+    }
+    // The local backpack is an archive, not a submission: never migrate aliases or
+    // rewrite its configuration. Publishing/importing runs its own compatibility checks.
+    function backpackEnvelope(input) {
+        inspect(input, 0, { nodes: 0, nodeLimit: 150000, stringLimit: backpackLimit, exactJSON: true });
+        if (!object(input) || input.schemaVersion !== 1 || !kinds.includes(input.kind) || !worlds.includes(input.world) ||
+            !text(input.title, 100) || /[\r\n]/.test(input.title) || !text(input.description, 4000, true) ||
+            typeof input.scriptVersion !== 'string' || !/^[\d.\w-]{1,40}$/.test(input.scriptVersion) || !object(input.config) ||
+            Object.keys(input).some(key => !['schemaVersion', 'kind', 'title', 'description', 'world', 'mode', 'scriptVersion', 'config'].includes(key))) fail('invalidConfig');
+        const config = input.config;
+        if (input.kind === 'stats') {
+            if (!integer(config.statsVersion) || input.mode !== undefined) fail('invalidConfig');
+        } else {
+            if (!integer(config.battleVersion || config.version)) fail('invalidConfig');
+            if (input.kind === 'battle-mode' &&
+                (![...modes, 'Battlecaster_General'].includes(input.mode) || !object(config[input.mode]) ||
+                Object.keys(config).some(key => !['battleVersion', 'version', input.mode].includes(key)))) fail('invalidConfig');
+            if (input.kind === 'battle' && input.mode !== undefined) fail('invalidConfig');
+        }
+        const serialized = JSON.stringify(input);
+        if (encode(serialized).length > backpackLimit) fail('tooLarge');
+        return JSON.parse(serialized);
+    }
+    function backpackKey(id) {
+        if (typeof id !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(id)) fail('invalidConfig');
+        return backpackPrefix + id;
+    }
+    function newBackpackId() {
+        if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+        const bytes = crypto.getRandomValues(new Uint8Array(16));
+        bytes[6] = (bytes[6] & 15) | 64; bytes[8] = (bytes[8] & 63) | 128;
+        const hex = [...bytes].map(byte => byte.toString(16).padStart(2, '0')).join('');
+        return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join('-');
+    }
+    async function backpackStorage(action) {
+        try { return await action(); } catch { fail('storageError'); }
+    }
+    function backpackRecord(value, id) {
+        try {
+            if (!object(value) || value.id !== id || !text(value.savedAt, 40) || !Number.isFinite(Date.parse(value.savedAt)) ||
+                Object.keys(value).some(key => !['id', 'savedAt', 'envelope'].includes(key))) fail('storageCorrupt');
+            return { id, savedAt: value.savedAt, envelope: backpackEnvelope(value.envelope) };
+        } catch { fail('storageCorrupt'); }
+    }
+    async function backpackList() {
+        if (typeof GM_listValues !== 'function' || typeof GM_getValue !== 'function') fail('managerUnavailable');
+        const keys = await backpackStorage(() => GM_listValues());
+        if (!Array.isArray(keys) || keys.some(key => typeof key !== 'string')) fail('storageError');
+        const records = await Promise.all(keys.filter(key => key.startsWith(backpackPrefix)).map(async key => {
+            const id = key.slice(backpackPrefix.length);
+            try { backpackKey(id); } catch { fail('storageCorrupt'); }
+            const value = await backpackStorage(() => GM_getValue(key, null));
+            // Another tab may delete a record after the key enumeration.
+            return value === null ? null : backpackRecord(value, id);
+        }));
+        return records.filter(Boolean).sort((a, b) => b.savedAt.localeCompare(a.savedAt) || a.id.localeCompare(b.id));
+    }
+    async function backpackSave(input, id) {
+        if (typeof GM_getValue !== 'function' || typeof GM_setValue !== 'function') fail('managerUnavailable');
+        const envelope = backpackEnvelope(input), updating = id !== undefined;
+        id = updating ? id : newBackpackId();
+        const key = backpackKey(id), previous = await backpackStorage(() => GM_getValue(key, null));
+        if (updating) {
+            if (previous === null) fail('localNotFound');
+            backpackRecord(previous, id);
+        } else if (previous !== null) fail('storageError');
+        const record = { id, savedAt: new Date(Date.now()).toISOString(), envelope };
+        await backpackStorage(() => GM_setValue(key, clone(record)));
+        return clone(record);
+    }
+    async function backpackRemove(id) {
+        const key = backpackKey(id);
+        if (typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        await backpackStorage(() => GM_deleteValue(key));
     }
     async function hash(source) {
         const digest = await crypto.subtle.digest('SHA-256', encode(source));
@@ -278,5 +361,5 @@ const jpxConfigStore = (() => {
         }
         return latest;
     }
-    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, parseSubmission, feedback });
+    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, parseSubmission, feedback, backpackList, backpackSave, backpackRemove });
 })();

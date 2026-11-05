@@ -8,13 +8,14 @@ const body = data => '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n' + JSON.stringify(d
 const serialized = JSON.stringify(envelope) + '\n', digest = value => createHash('sha256').update(value).digest('hex');
 const entry = { id: 12, author: 'tester', title: envelope.title, description: envelope.description, world: envelope.world, kind: envelope.kind, mode: envelope.mode, scriptVersion: envelope.scriptVersion, updatedAt: '2026-11-06T00:00:00Z', sha256: digest(serialized), configPath: 'catalog/configs/12-' + digest(serialized) + '.json', issueUrl: url(12) };
 const identity = { id: 7, login: 'tester' };
-function setup({ clientId = 'Iv1.public-client-id', stored = true } = {}) {
+function setup({ clientId = 'Iv1.public-client-id', stored = true, sharedStorage } = {}) {
     let now = 1793923200000, routes = [], calls = [], waits = [];
-    const storage = new Map(stored ? [['jpx-config-store-auth-v1', { token: 'ghu_private_test_token', expiresAt: now + 3600000 }]] : []);
+    const storage = sharedStorage || new Map(stored ? [['jpx-config-store-auth-v1', { token: 'ghu_private_test_token', expiresAt: now + 3600000 }]] : []);
     const sandbox = { TextEncoder, URL, Uint8Array, crypto: webcrypto, AbortController, Date: class extends Date { static now() { return now; } },
         setTimeout(fn, time) { waits.push(time); now += time; queueMicrotask(fn); return 1; }, clearTimeout() {},
         GM_getValue: (key, fallback) => storage.has(key) ? storage.get(key) : fallback,
         GM_setValue: (key, value) => storage.set(key, value), GM_deleteValue: key => storage.delete(key),
+        GM_listValues: () => [...storage.keys()],
         GM_xmlhttpRequest(options) {
             const expected = routes.shift(); calls.push(options);
             assert.ok(expected, 'unexpected request ' + options.method + ' ' + options.url);
@@ -27,9 +28,10 @@ function setup({ clientId = 'Iv1.public-client-id', stored = true } = {}) {
         } };
     vm.createContext(sandbox);
     vm.runInContext(source.replace(/clientId: '[^']*'/, 'clientId: ' + JSON.stringify(clientId)) + '\nglobalThis.service = jpxConfigStore;', sandbox);
-    return { service: sandbox.service, storage, calls, waits, routes, done() { assert.equal(routes.length, 0); } };
+    return { service: sandbox.service, storage, calls, waits, routes, globals: sandbox, done() { assert.equal(routes.length, 0); } };
 }
 const code = value => err => err.code === value;
+const plain = value => JSON.parse(JSON.stringify(value));
 async function run() {
     {
         const env = setup();
@@ -151,6 +153,100 @@ async function run() {
         assert.equal((await env.service.catalog()).entries[0].sha256, updatedHash);
         assert.equal(env.calls.length, 4, 'neither refresh failure falls back to the stale raw endpoint'); env.done();
     }
-    console.log('Passed 12 configuration-store service scenarios (mocked GitHub; no network or real credentials).');
+    {
+        const env = setup({ stored: false }), original = JSON.stringify(envelope), backpackPrefix = 'jpx-config-store-backpack-v1:';
+        env.storage.set('unrelated-setting', { keep: true });
+        env.storage.set('jpx-config-store-auth-v1', { untouched: true });
+        const first = await env.service.backpackSave(envelope);
+        const second = await env.service.backpackSave(envelope);
+        assert.notEqual(first.id, second.id, 'same kind/world/mode/title can be saved as independent configurations');
+        assert.equal(JSON.stringify(first.envelope), original);
+        first.envelope.config.TwoHanded_General.attacks.length = 0;
+        first.envelope.title = 'mutated return value';
+        assert.equal(env.storage.get(backpackPrefix + first.id).envelope.title, envelope.title);
+        const full = { ...envelope, kind: 'battle', config: { ...envelope.config, Unarmed_General: {}, recordBattleLog: true } }; delete full.mode;
+        const stats = { schemaVersion: 1, kind: 'stats', title: '统计', description: '', world: 'Any', scriptVersion: '2026.11.06.11', config: { statsVersion: 20260109, statsColumns: [{ id: 'turns', customName: '回合数' }] } };
+        const fullRecord = await env.service.backpackSave(full), statsRecord = await env.service.backpackSave(stats);
+        const reloaded = setup({ stored: false, sharedStorage: env.storage });
+        const all = await reloaded.service.backpackList();
+        assert.equal(all.length, 4, 'records survive a new independent service context');
+        assert.deepEqual(plain(all.map(item => item.envelope.kind).sort()), ['battle', 'battle-mode', 'battle-mode', 'stats']);
+        assert.ok(all.every(item => typeof item.savedAt === 'string' && Number.isFinite(Date.parse(item.savedAt))));
+        all.find(item => item.id === statsRecord.id).envelope.config.statsColumns[0].customName = 'mutated list';
+        assert.equal((await env.service.backpackList()).find(item => item.id === statsRecord.id).envelope.config.statsColumns[0].customName, '回合数', 'lists return deep copies');
+        const updated = await reloaded.service.backpackSave({ ...envelope, title: 'Renamed local copy' }, second.id);
+        assert.equal(updated.id, second.id);
+        assert.equal((await env.service.backpackList()).find(item => item.id === first.id).envelope.title, envelope.title, 'updating one record cannot change a sibling');
+        await reloaded.service.backpackRemove(first.id);
+        assert.deepEqual(plain((await env.service.backpackList()).map(item => item.id).sort()), [second.id, fullRecord.id, statsRecord.id].sort());
+        assert.deepEqual(env.storage.get('unrelated-setting'), { keep: true });
+        assert.deepEqual(env.storage.get('jpx-config-store-auth-v1'), { untouched: true }, 'local operations do not inspect or expire authentication');
+        assert.equal(JSON.stringify(envelope), original, 'saving and renaming never modifies the source configuration');
+        assert.equal(env.calls.length + reloaded.calls.length, 0, 'local use requires neither login nor network');
+    }
+    {
+        const firstTab = setup({ stored: false }), secondTab = setup({ stored: false, sharedStorage: firstTab.storage });
+        secondTab.globals.crypto = { getRandomValues: values => webcrypto.getRandomValues(values) };
+        const records = await Promise.all([firstTab.service.backpackSave({ ...envelope, title: 'First tab' }), secondTab.service.backpackSave({ ...envelope, title: 'Second tab' })]);
+        assert.match(records[1].id, /^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/, 'HTTP contexts without randomUUID get a secure UUID fallback');
+        assert.deepEqual(plain((await firstTab.service.backpackList()).map(item => item.id).sort()), records.map(item => item.id).sort(), 'concurrent tabs do not overwrite a shared list index');
+        const legacy = { ...envelope, mode: 'Battlecaster_General', config: { version: 20251216, Battlecaster_General: { supports: [{ type: 'spellInstant', name: 'Cure', conditions: [] }], attacks: [{ type: 'target', bottomUp: true }] } } };
+        const serializedLegacy = JSON.stringify(legacy), savedLegacy = await firstTab.service.backpackSave(legacy);
+        assert.equal(JSON.stringify(savedLegacy.envelope), serializedLegacy, 'local storage preserves legacy mode/version/type names and original rule data');
+        assert.equal(JSON.stringify(legacy), serializedLegacy);
+        assert.equal(JSON.stringify((await secondTab.service.backpackList()).find(item => item.id === savedLegacy.id).envelope), serializedLegacy);
+        assert.equal(firstTab.calls.length + secondTab.calls.length, 0);
+    }
+    {
+        const env = setup({ stored: false }), large = structuredClone(envelope);
+        large.config.TwoHanded_General.note = '长'.repeat(50000);
+        const raw = JSON.stringify(large), record = await env.service.backpackSave(large);
+        assert.ok(Buffer.byteLength(raw) > 60000);
+        assert.equal(JSON.stringify(record.envelope), raw, 'the local backpack accepts configurations larger than the GitHub submission limit');
+        assert.throws(() => env.service.parseSubmission(body(large)), code('tooLarge'), 'publication keeps its existing smaller limit');
+        const before = [...env.storage];
+        large.config.TwoHanded_General.note = '长'.repeat(700000);
+        await assert.rejects(env.service.backpackSave(large), code('tooLarge'), 'local size limit counts UTF-8 bytes');
+        assert.deepEqual([...env.storage], before, 'oversized saves never overwrite existing records');
+        assert.equal(env.calls.length, 0);
+    }
+    {
+        const env = setup({ stored: false }), protectedKey = 'jpx-config-store-auth-v1';
+        env.storage.set(protectedKey, { token: 'do_not_touch' });
+        const record = await env.service.backpackSave(envelope), before = plain([...env.storage]);
+        const dangerous = JSON.parse(JSON.stringify(envelope).replace('"battleVersion":20251216', '"__proto__":{"polluted":true},"battleVersion":20251216'));
+        const cyclic = structuredClone(envelope); cyclic.config.loop = cyclic;
+        const invalids = [dangerous, cyclic, { ...envelope, config: [] }, { ...envelope, mode: '../auth' },
+            ...[() => 1, NaN, new Date(), [,,], new Map([['data', 1]])].map(future => ({ ...envelope, config: { ...envelope.config, future } }))];
+        for (const input of invalids) await assert.rejects(env.service.backpackSave(input), code('invalidConfig'));
+        for (const id of [protectedKey, '', null, '../' + record.id, 'jpx-config-store-backpack-v1:' + record.id, '__proto__']) {
+            await assert.rejects(env.service.backpackSave(envelope, id), code('invalidConfig'));
+            await assert.rejects(env.service.backpackRemove(id), code('invalidConfig'));
+        }
+        await assert.rejects(env.service.backpackSave(envelope, '11111111-1111-4111-8111-111111111111'), code('localNotFound'));
+        assert.deepEqual(plain([...env.storage]), before, 'invalid envelopes, ids and missing-record updates are inert');
+        assert.equal(({}).polluted, undefined);
+        assert.equal(env.calls.length, 0);
+    }
+    {
+        const env = setup({ stored: false }), prefix = 'jpx-config-store-backpack-v1:';
+        const one = await env.service.backpackSave(envelope), two = await env.service.backpackSave({ ...envelope, title: 'Kept' });
+        env.storage.set(prefix + one.id, { id: one.id, savedAt: 'not a date', envelope });
+        const before = plain([...env.storage]);
+        await assert.rejects(env.service.backpackList(), code('storageCorrupt'), 'corrupt records are visible errors instead of silently disappearing');
+        await assert.rejects(env.service.backpackSave(envelope, one.id), code('storageCorrupt'), 'editing refuses to overwrite an unreadable record');
+        assert.deepEqual(plain([...env.storage]), before, 'failed reads and updates never repair or erase unrelated entries');
+        await env.service.backpackRemove(one.id);
+        assert.deepEqual(plain((await env.service.backpackList()).map(item => item.id)), [two.id], 'an explicitly selected corrupt record can be removed without affecting others');
+        env.globals.GM_getValue = () => { throw Error('Read failed'); };
+        await assert.rejects(env.service.backpackList(), code('storageError'));
+        env.globals.GM_listValues = undefined;
+        await assert.rejects(env.service.backpackList(), code('managerUnavailable'));
+        env.globals.GM_deleteValue = () => { throw Error('Delete failed'); };
+        await assert.rejects(env.service.backpackRemove(two.id), code('storageError'));
+        assert.ok(env.storage.has(prefix + two.id));
+        assert.equal(env.calls.length, 0);
+    }
+    console.log('Passed 17 configuration-store service scenarios (mocked GitHub and local storage; no network or real credentials).');
 }
 run().catch(err => { console.error(err); process.exitCode = 1; });

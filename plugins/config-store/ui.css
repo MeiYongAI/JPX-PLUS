@@ -29,6 +29,7 @@
 #settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }
 #settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 #settings-container .jpx-store-local-row > button { align-self: start; }
+#settings-container .jpx-store-row-tools { display: flex; flex-wrap: wrap; justify-content: end; align-items: start; gap: 6px; }
 #settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }
 #settings-container .jpx-store-selection > button { align-self: start; }
 #settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }

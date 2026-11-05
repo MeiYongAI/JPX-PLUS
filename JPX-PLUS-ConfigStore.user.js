@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.4
+// @version      2026.11.06.5
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -13,6 +13,7 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_deleteValue
+// @grant        GM_listValues
 // @connect      github.com
 // @connect      api.github.com
 // @connect      raw.githubusercontent.com
@@ -25,13 +26,14 @@
     'use strict';
     const host = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     if (window.top !== window.self) return;
-    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","cancel":"Cancel","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Your config and description will be public on GitHub and sent to AI for review. Uncertain results go to the maintainer.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review. Open Shared in My configs to check the result.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"You have not shared a config yet.","withdraw":"Withdraw","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration is too large to share.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Local","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to"},"zh":{"name":"配置商店","browse":"浏览","mine":"我的配置","share":"分享配置","signIn":"登录","signOut":"退出登录","signedOut":"已退出登录。","currentMode":"战斗模式","allBattle":"整套战斗配置","stats":"统计配置","persistent":"主世界","isekai":"异世界","anyWorld":"两个世界","back":"返回","retry":"重试","refresh":"刷新","search":"搜索配置或作者","type":"类型","allTypes":"全部类型","loading":"加载中…","noMatches":"没有找到匹配的配置。","noConfigs":"还没有已上架的配置。","cannotLoad":"暂时无法加载内容。","columns":"统计列","combatRows":"战斗统计项目","revenueRows":"收益统计项目","supports":"辅助规则","attacks":"攻击规则","customCode":"自定义代码","viewConfig":"查看配置内容","scriptVersion":"脚本版本","import":"导入到设置","download":"下载配置","imported":"已导入，请检查设置后保存。","importHint":"导入后可以撤销，确认后再在设置中保存。","connecting":"正在连接 GitHub…","authHint":"前往 GitHub 输入以下代码，授权 JPX-PLUS。","authorize":"前往 GitHub 授权","waitingAuth":"等待授权，完成后将自动继续。","cancel":"取消","editShare":"编辑","world":"世界","title":"标题","description":"说明","submit":"提交审核","submitUpdate":"提交更新","reviewHint":"配置和说明将在 GitHub 公开，并发送给 AI 审阅；有疑点的交给维护者确认。","loginBeforeShare":"提交时需要登录 GitHub，当前草稿会保留。","submitting":"提交中…","submitted":"已提交审核，可在“我的配置 → 已分享”查看结果。","pending":"审核中","published":"已上架","changes":"需要修改","needsReview":"等待人工确认","unavailable":"审核暂不可用","hidden":"已隐藏","withdrawn":"已撤下","noShares":"你还没有分享配置。","withdraw":"撤下","withdrawConfirm":"将这份配置从商店撤下？已经导入的玩家仍会保留本地配置。","review":"审核反馈","noReview":"当前版本还没有审核结果。","loginRequired":"登录 GitHub 后即可管理自己的分享。","notConfigured":"GitHub 登录尚未配置。","rateLimit":"已达到 GitHub 请求限制，请稍后再试。","networkError":"无法连接 GitHub，请检查网络后重试。","invalidConfig":"这份配置的格式不正确。","tooLarge":"这份配置过大，无法分享。","integrityError":"下载的配置未通过完整性检查。","requestFailed":"请求失败，请重试。","OneHanded":"单手","1H_Mage":"单手法师","TwoHanded":"双手","2H_Mage":"双手法师","DualWielding":"双持","DW_Mage":"双持法师","NitenIchiryu":"二天一流","NI_Mage":"二天法师","Staff":"法杖","Unarmed":"空手","General":"通用","Arena":"竞技场","Encounter":"遭遇战","Colosseum":"浴血擂台","Battle1000":"压榨","Item":"道具界","Tower":"高塔","publishedVersion":"已有上架版本","accessDenied":"已取消 GitHub 授权。","loginExpired":"授权代码已过期，请重新登录。","managerUnavailable":"请在脚本管理器中启用插件权限。","notOwner":"只有作者可以编辑这份配置。","submissionClosed":"这份配置已撤下，可以重新分享。","tooManySubmissions":"分享数量过多，请前往 GitHub 管理。","local":"本地","shared":"已分享","style":"流派","battleType":"战斗类型","all":"全部","shareShort":"分享","useConfig":"使用此配置","chooseConfig":"选择配置","currentSettings":"当前设置","savedSettings":"已保存","noLocal":"没有可用的本地配置。","updateCore":"更新 JPX-PLUS 后可浏览两个世界的已保存配置。下方仍可选择当前设置。","changeConfig":"更换配置","appliesTo":"适用世界"}};
+    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","cancel":"Cancel","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Your config and description will be public on GitHub and sent to AI for review. Uncertain results go to the maintainer.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review. Open Shared in My configs to check the result.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"You have not shared a config yet.","withdraw":"Withdraw","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack."},"zh":{"name":"配置商店","browse":"浏览","mine":"我的配置","share":"分享配置","signIn":"登录","signOut":"退出登录","signedOut":"已退出登录。","currentMode":"战斗模式","allBattle":"整套战斗配置","stats":"统计配置","persistent":"主世界","isekai":"异世界","anyWorld":"两个世界","back":"返回","retry":"重试","refresh":"刷新","search":"搜索配置或作者","type":"类型","allTypes":"全部类型","loading":"加载中…","noMatches":"没有找到匹配的配置。","noConfigs":"还没有已上架的配置。","cannotLoad":"暂时无法加载内容。","columns":"统计列","combatRows":"战斗统计项目","revenueRows":"收益统计项目","supports":"辅助规则","attacks":"攻击规则","customCode":"自定义代码","viewConfig":"查看配置内容","scriptVersion":"脚本版本","import":"导入到设置","download":"下载配置","imported":"已导入，请检查设置后保存。","importHint":"导入后可以撤销，确认后再在设置中保存。","connecting":"正在连接 GitHub…","authHint":"前往 GitHub 输入以下代码，授权 JPX-PLUS。","authorize":"前往 GitHub 授权","waitingAuth":"等待授权，完成后将自动继续。","cancel":"取消","editShare":"编辑","world":"世界","title":"标题","description":"说明","submit":"提交审核","submitUpdate":"提交更新","reviewHint":"配置和说明将在 GitHub 公开，并发送给 AI 审阅；有疑点的交给维护者确认。","loginBeforeShare":"提交时需要登录 GitHub，当前草稿会保留。","submitting":"提交中…","submitted":"已提交审核，可在“我的配置 → 已分享”查看结果。","pending":"审核中","published":"已上架","changes":"需要修改","needsReview":"等待人工确认","unavailable":"审核暂不可用","hidden":"已隐藏","withdrawn":"已撤下","noShares":"你还没有分享配置。","withdraw":"撤下","withdrawConfirm":"将这份配置从商店撤下？已经导入的玩家仍会保留本地配置。","review":"审核反馈","noReview":"当前版本还没有审核结果。","loginRequired":"登录 GitHub 后即可管理自己的分享。","notConfigured":"GitHub 登录尚未配置。","rateLimit":"已达到 GitHub 请求限制，请稍后再试。","networkError":"无法连接 GitHub，请检查网络后重试。","invalidConfig":"这份配置的格式不正确。","tooLarge":"这份配置超过了大小限制。","integrityError":"下载的配置未通过完整性检查。","requestFailed":"请求失败，请重试。","OneHanded":"单手","1H_Mage":"单手法师","TwoHanded":"双手","2H_Mage":"双手法师","DualWielding":"双持","DW_Mage":"双持法师","NitenIchiryu":"二天一流","NI_Mage":"二天法师","Staff":"法杖","Unarmed":"空手","General":"通用","Arena":"竞技场","Encounter":"遭遇战","Colosseum":"浴血擂台","Battle1000":"压榨","Item":"道具界","Tower":"高塔","publishedVersion":"已有上架版本","accessDenied":"已取消 GitHub 授权。","loginExpired":"授权代码已过期，请重新登录。","managerUnavailable":"请在脚本管理器中启用插件权限。","notOwner":"只有作者可以编辑这份配置。","submissionClosed":"这份配置已撤下，可以重新分享。","tooManySubmissions":"分享数量过多，请前往 GitHub 管理。","local":"当前配置","backpack":"背包","shared":"已分享","style":"流派","battleType":"战斗类型","all":"全部","shareShort":"分享","useConfig":"使用此配置","chooseConfig":"选择配置","currentSettings":"当前设置","savedSettings":"已保存","noLocal":"没有可用的本地配置。","updateCore":"更新 JPX-PLUS 后可浏览两个世界的已保存配置。下方仍可选择当前设置。","changeConfig":"更换配置","appliesTo":"适用世界","saveBackpack":"存入背包","saveCurrent":"保存当前配置","emptyBackpack":"背包还是空的。可以从当前设置或商店存入配置，保留多套备用。","searchBackpack":"搜索背包","editBackpack":"编辑背包配置","save":"保存","saving":"保存中…","savedBackpack":"已存入背包。","backpackHint":"仅保存在当前浏览器，需要时再应用或分享。","apply":"应用配置","delete":"删除","deleteBackpackConfirm":"从背包删除这份配置？已应用的设置和已分享的配置不受影响。","storageCorrupt":"无法读取背包数据，原有数据已保留。","storageError":"无法访问背包存储，请检查插件权限后重试。","localNotFound":"这份配置已不在背包中。"}};
     const t = key => (host.jpxI18N?.cB?.basicSettings ? translations.zh : translations.en)[key.replace(/^cStore\./, '')] || key;
 // Only this public app identifier is embedded. Tokens stay in userscript-manager storage.
 const JPX_CONFIG_STORE = Object.freeze({ repository: 'MeiYongAI/JPX-PLUS-Configs', clientId: 'Iv23liGY2o8zyCDWgKBV' });
 const jpxConfigStore = (() => {
     const repository = JPX_CONFIG_STORE.repository, api = 'https://api.github.com', raw = 'https://raw.githubusercontent.com/' + repository + '/main/';
     const tokenKey = 'jpx-config-store-auth-v1', marker = '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n';
+    const backpackPrefix = 'jpx-config-store-backpack-v1:', backpackLimit = 2 * 1024 * 1024;
     const kinds = ['battle-mode', 'battle', 'stats'], worlds = ['Persistent', 'Isekai', 'Any'];
     const styles = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed'];
     const modes = styles.flatMap(style => ['General', 'Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'].map(type => style + '_' + type));
@@ -47,13 +49,21 @@ const jpxConfigStore = (() => {
     const text = (value, max, empty = false) => typeof value === 'string' && (empty || value.trim().length > 0) && value.length <= max && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value);
     const issueURL = id => 'https://github.com/' + repository + '/issues/' + id;
     function inspect(value, depth = 0, budget = { nodes: 0, stringLimit: Infinity }) {
-        if (++budget.nodes > 12000 || depth > 24) fail('invalidConfig');
+        if (++budget.nodes > (budget.nodeLimit || 12000) || depth > 24) fail('invalidConfig');
         if (typeof value === 'string') { if (value.length > budget.stringLimit) fail('tooLarge'); return; }
         if (value === null || typeof value === 'boolean') return;
         if (typeof value === 'number' && Number.isFinite(value)) return;
         if (typeof value !== 'object') fail('invalidConfig');
-        for (const key of Object.keys(value)) {
+        const keys = Object.keys(value);
+        if (budget.exactJSON && (Object.getOwnPropertySymbols(value).length ||
+            (Array.isArray(value) ? keys.length !== value.length || keys.some(key => !/^(0|[1-9]\d*)$/.test(key) || +key >= value.length) :
+                Object.prototype.toString.call(value) !== '[object Object]'))) fail('invalidConfig');
+        for (const key of keys) {
             if (['__proto__', 'prototype', 'constructor'].includes(key)) fail('invalidConfig');
+            if (budget.exactJSON) {
+                const property = Object.getOwnPropertyDescriptor(value, key);
+                if (property.get || property.set) fail('invalidConfig');
+            }
             inspect(value[key], depth + 1, budget);
         }
     }
@@ -121,6 +131,80 @@ const jpxConfigStore = (() => {
     function parseSubmission(body) {
         if (typeof body !== 'string' || !body.startsWith(marker) || !body.endsWith('\n```')) fail('invalidConfig');
         return validate(parse(body.slice(marker.length, -4)));
+    }
+    // The local backpack is an archive, not a submission: never migrate aliases or
+    // rewrite its configuration. Publishing/importing runs its own compatibility checks.
+    function backpackEnvelope(input) {
+        inspect(input, 0, { nodes: 0, nodeLimit: 150000, stringLimit: backpackLimit, exactJSON: true });
+        if (!object(input) || input.schemaVersion !== 1 || !kinds.includes(input.kind) || !worlds.includes(input.world) ||
+            !text(input.title, 100) || /[\r\n]/.test(input.title) || !text(input.description, 4000, true) ||
+            typeof input.scriptVersion !== 'string' || !/^[\d.\w-]{1,40}$/.test(input.scriptVersion) || !object(input.config) ||
+            Object.keys(input).some(key => !['schemaVersion', 'kind', 'title', 'description', 'world', 'mode', 'scriptVersion', 'config'].includes(key))) fail('invalidConfig');
+        const config = input.config;
+        if (input.kind === 'stats') {
+            if (!integer(config.statsVersion) || input.mode !== undefined) fail('invalidConfig');
+        } else {
+            if (!integer(config.battleVersion || config.version)) fail('invalidConfig');
+            if (input.kind === 'battle-mode' &&
+                (![...modes, 'Battlecaster_General'].includes(input.mode) || !object(config[input.mode]) ||
+                Object.keys(config).some(key => !['battleVersion', 'version', input.mode].includes(key)))) fail('invalidConfig');
+            if (input.kind === 'battle' && input.mode !== undefined) fail('invalidConfig');
+        }
+        const serialized = JSON.stringify(input);
+        if (encode(serialized).length > backpackLimit) fail('tooLarge');
+        return JSON.parse(serialized);
+    }
+    function backpackKey(id) {
+        if (typeof id !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(id)) fail('invalidConfig');
+        return backpackPrefix + id;
+    }
+    function newBackpackId() {
+        if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+        const bytes = crypto.getRandomValues(new Uint8Array(16));
+        bytes[6] = (bytes[6] & 15) | 64; bytes[8] = (bytes[8] & 63) | 128;
+        const hex = [...bytes].map(byte => byte.toString(16).padStart(2, '0')).join('');
+        return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join('-');
+    }
+    async function backpackStorage(action) {
+        try { return await action(); } catch { fail('storageError'); }
+    }
+    function backpackRecord(value, id) {
+        try {
+            if (!object(value) || value.id !== id || !text(value.savedAt, 40) || !Number.isFinite(Date.parse(value.savedAt)) ||
+                Object.keys(value).some(key => !['id', 'savedAt', 'envelope'].includes(key))) fail('storageCorrupt');
+            return { id, savedAt: value.savedAt, envelope: backpackEnvelope(value.envelope) };
+        } catch { fail('storageCorrupt'); }
+    }
+    async function backpackList() {
+        if (typeof GM_listValues !== 'function' || typeof GM_getValue !== 'function') fail('managerUnavailable');
+        const keys = await backpackStorage(() => GM_listValues());
+        if (!Array.isArray(keys) || keys.some(key => typeof key !== 'string')) fail('storageError');
+        const records = await Promise.all(keys.filter(key => key.startsWith(backpackPrefix)).map(async key => {
+            const id = key.slice(backpackPrefix.length);
+            try { backpackKey(id); } catch { fail('storageCorrupt'); }
+            const value = await backpackStorage(() => GM_getValue(key, null));
+            // Another tab may delete a record after the key enumeration.
+            return value === null ? null : backpackRecord(value, id);
+        }));
+        return records.filter(Boolean).sort((a, b) => b.savedAt.localeCompare(a.savedAt) || a.id.localeCompare(b.id));
+    }
+    async function backpackSave(input, id) {
+        if (typeof GM_getValue !== 'function' || typeof GM_setValue !== 'function') fail('managerUnavailable');
+        const envelope = backpackEnvelope(input), updating = id !== undefined;
+        id = updating ? id : newBackpackId();
+        const key = backpackKey(id), previous = await backpackStorage(() => GM_getValue(key, null));
+        if (updating) {
+            if (previous === null) fail('localNotFound');
+            backpackRecord(previous, id);
+        } else if (previous !== null) fail('storageError');
+        const record = { id, savedAt: new Date(Date.now()).toISOString(), envelope };
+        await backpackStorage(() => GM_setValue(key, clone(record)));
+        return clone(record);
+    }
+    async function backpackRemove(id) {
+        const key = backpackKey(id);
+        if (typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        await backpackStorage(() => GM_deleteValue(key));
     }
     async function hash(source) {
         const digest = await crypto.subtle.digest('SHA-256', encode(source));
@@ -307,7 +391,7 @@ const jpxConfigStore = (() => {
         }
         return latest;
     }
-    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, parseSubmission, feedback });
+    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, parseSubmission, feedback, backpackList, backpackSave, backpackRemove });
 })();
 
 function renderConfigStore(parent, hooks) {
@@ -327,7 +411,7 @@ function renderConfigStore(parent, hooks) {
     status.setAttribute('role', 'status');
     status.hidden = true;
     const stage = el('div', undefined, 'jpx-store-stage');
-    const state = { view: 'browse', entries: [], query: '', kind: '', local: { world: '', style: '', battleType: '' }, user: null, editor: null, request: 0, login: null, disposed: false };
+    const state = { view: 'browse', entries: [], query: '', kind: '', backpack: { query: '', kind: '' }, local: { world: '', style: '', battleType: '' }, user: null, editor: null, request: 0, login: null, disposed: false };
     const alive = () => !state.disposed && root.isConnected;
     function message(text, error = false) {
         status.textContent = text || '';
@@ -338,7 +422,8 @@ function renderConfigStore(parent, hooks) {
         const codes = { loginRequired: 'loginRequired', notConfigured: 'notConfigured', rateLimited: 'rateLimit',
             networkError: 'networkError', invalidConfig: 'invalidConfig', tooLarge: 'tooLarge', integrityFailed: 'integrityError',
             accessDenied: 'accessDenied', loginExpired: 'loginExpired', managerUnavailable: 'managerUnavailable',
-            notOwner: 'notOwner', submissionClosed: 'submissionClosed', tooManySubmissions: 'tooManySubmissions' };
+            notOwner: 'notOwner', submissionClosed: 'submissionClosed', tooManySubmissions: 'tooManySubmissions',
+            storageCorrupt: 'storageCorrupt', storageError: 'storageError', localNotFound: 'localNotFound' };
         return tr(codes[error?.code] || 'requestFailed');
     }
     function button(text, action, className) {
@@ -375,7 +460,7 @@ function renderConfigStore(parent, hooks) {
         return [author ? '@' + author : '', kindName(envelope.kind), worldName(envelope.world), modeName(envelope.mode)].filter(Boolean).join(' · ');
     }
     const browseButton = button(tr('browse'), () => browse());
-    const mineButton = button(tr('mine'), () => local());
+    const mineButton = button(tr('mine'), () => backpack());
     navigation.append(browseButton, mineButton);
     toolbar.append(navigation, account);
     root.append(toolbar, status, stage);
@@ -398,7 +483,7 @@ function renderConfigStore(parent, hooks) {
         state.view = view;
         state.request++;
         browseButton.setAttribute('aria-pressed', String(view === 'browse' || view === 'detail'));
-        mineButton.setAttribute('aria-pressed', String(['local', 'localDetail', 'mine', 'edit'].includes(view)));
+        mineButton.setAttribute('aria-pressed', String(['backpack', 'backpackDetail', 'local', 'localDetail', 'mine', 'edit'].includes(view)));
         stage.replaceChildren(); message('');
         parent.scrollTop = 0;
         return state.request;
@@ -476,14 +561,21 @@ function renderConfigStore(parent, hooks) {
         });
         return details;
     }
-    function personalNavigation(shared) {
+    function downloadConfig(envelope, id) {
+        const blob = new Blob([JSON.stringify(envelope.config, null, 2)], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob), link = el('a');
+        link.href = url; link.download = 'jpx-config-' + id + '.json'; link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    function personalNavigation(view) {
         const tabs = el('div', undefined, 'jpx-store-navigation');
-        for (const [key, selected, action] of [['local', !shared, () => local()], ['shared', shared, () => mine()]]) {
-            const tab = button(tr(key), action); tab.setAttribute('aria-pressed', String(selected)); tabs.append(tab);
+        for (const [key, action] of [['backpack', () => backpack()], ['local', () => local()], ['shared', () => mine()]]) {
+            const tab = button(tr(key), action); tab.setAttribute('aria-pressed', String(view === key)); tabs.append(tab);
         }
         stage.append(tabs);
     }
     const localName = entry => entry.kind === 'battle-mode' ? modeName(entry.mode) : kindName(entry.kind);
+    const localMeta = entry => [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings')];
     const localDraft = entry => hooks.getDraft(entry.kind, entry.legacy ? undefined : { world: entry.world, mode: entry.mode });
     function chooseLocal(entry, previous) {
         const envelope = localDraft(entry);
@@ -491,10 +583,69 @@ function renderConfigStore(parent, hooks) {
         envelope.description = previous?.envelope.description || '';
         return edit({ ...(previous || {}), envelope, source: entry });
     }
+    function saveToBackpack(envelope, back, id) {
+        return edit({ envelope: JSON.parse(JSON.stringify(envelope)), localOnly: true, backpackId: id, back });
+    }
+    function saveCurrent(entry) {
+        const envelope = localDraft(entry);
+        envelope.title = [localName(entry), worldName(entry.world)].join(' · ');
+        return saveToBackpack(envelope, () => local());
+    }
+    async function backpack() {
+        const request = open('backpack'); personalNavigation('backpack');
+        try {
+            const entries = await jpxConfigStore.backpackList();
+            if (!alive() || request !== state.request) return;
+            if (!entries.length) { empty(tr('emptyBackpack'), () => local(), tr('saveCurrent')); return; }
+            const filters = el('div', undefined, 'jpx-store-filters');
+            const search = el('input'); search.type = 'search'; search.value = state.backpack.query;
+            search.placeholder = tr('searchBackpack'); search.setAttribute('aria-label', tr('searchBackpack'));
+            const kind = select([['', tr('allTypes')], ...kinds()], state.backpack.kind); kind.setAttribute('aria-label', tr('type'));
+            const list = el('div', undefined, 'jpx-store-list');
+            filters.append(search, kind); stage.append(filters, list);
+            function render() {
+                list.replaceChildren();
+                const query = state.backpack.query.trim().toLocaleLowerCase();
+                const shown = entries.filter(({ envelope }) => (!state.backpack.kind || envelope.kind === state.backpack.kind) &&
+                    [envelope.title, envelope.description, info(envelope)].join(' ').toLocaleLowerCase().includes(query));
+                for (const entry of shown) {
+                    const envelope = entry.envelope, row = el('article', undefined, 'jpx-store-row'); row.dataset.backpackId = entry.id;
+                    row.append(button(envelope.title, () => backpackDetails(entry), 'jpx-store-title'),
+                        button(tr('shareShort'), () => edit({ envelope: JSON.parse(JSON.stringify(envelope)), back: () => backpackDetails(entry) })),
+                        el('p', info(envelope), 'jpx-store-meta'));
+                    if (envelope.description) row.append(el('p', envelope.description, 'jpx-store-excerpt'));
+                    list.append(row);
+                }
+                if (!shown.length) list.append(el('p', tr('noMatches'), 'jpx-store-empty'));
+            }
+            search.addEventListener('input', () => { state.backpack.query = search.value; render(); });
+            kind.addEventListener('change', () => { state.backpack.kind = kind.value; render(); });
+            render();
+        } catch (error) {
+            if (!alive() || request !== state.request) return;
+            message(errorMessage(error), true); empty(tr('cannotLoad'), () => backpack());
+        }
+    }
+    function backpackDetails(entry) {
+        const envelope = entry.envelope;
+        open('backpackDetail'); heading(envelope.title, () => backpack());
+        stage.append(el('p', info(envelope) + ' · ' + configSummary(envelope), 'jpx-store-meta'));
+        if (envelope.description) stage.append(el('p', envelope.description, 'jpx-store-description'));
+        const actions = el('div', undefined, 'jpx-store-actions');
+        actions.append(button(tr('apply'), async () => { await hooks.importConfig(envelope); hooks.notify?.(tr('imported')); }, 'jpx-store-primary'),
+            button(tr('shareShort'), () => edit({ envelope: JSON.parse(JSON.stringify(envelope)), back: () => backpackDetails(entry) })),
+            button(tr('download'), () => downloadConfig(envelope, entry.id)),
+            button(tr('editShare'), () => saveToBackpack(envelope, () => backpackDetails(entry), entry.id)),
+            button(tr('delete'), async () => {
+                if (!confirm(tr('deleteBackpackConfirm'))) return;
+                await jpxConfigStore.backpackRemove(entry.id); await backpack();
+            }));
+        stage.append(actions, el('p', tr('importHint'), 'jpx-store-meta'), rawPreview(envelope));
+    }
     function local(previous) {
         open('local');
         if (previous) heading(tr('chooseConfig'), () => edit(previous));
-        else personalNavigation(false);
+        else personalNavigation('local');
         let entries;
         if (hooks.listDrafts) entries = hooks.listDrafts();
         else {
@@ -522,9 +673,11 @@ function renderConfigStore(parent, hooks) {
                 row.dataset.localWorld = entry.world; row.dataset.localKind = entry.kind; row.dataset.localMode = entry.mode || '';
                 const preview = button(localName(entry), () => localDetails(entry, previous), 'jpx-store-title'); preview.dataset.localAction = 'preview';
                 const share = button(tr(previous ? 'useConfig' : 'shareShort'), () => chooseLocal(entry, previous)); share.dataset.localAction = 'share';
-                row.append(preview, share);
+                const actions = el('div', undefined, 'jpx-store-row-tools'); actions.append(share);
+                if (!previous) { const save = button(tr('saveBackpack'), () => saveCurrent(entry)); save.dataset.localAction = 'save'; actions.append(save); }
+                row.append(preview, actions);
                 const counts = ['supports', 'attacks'].filter(key => Number.isFinite(entry[key])).map(key => tr(key) + ': ' + entry[key]);
-                row.append(el('p', [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings'), ...counts].join(' · '), 'jpx-store-meta'));
+                row.append(el('p', [...localMeta(entry), ...counts].join(' · '), 'jpx-store-meta'));
                 list.append(row);
             }
             if (!shown.length) list.append(el('p', tr(entries.length ? 'noMatches' : 'noLocal'), 'jpx-store-empty'));
@@ -540,8 +693,10 @@ function renderConfigStore(parent, hooks) {
     function localDetails(entry, previous) {
         const envelope = localDraft(entry);
         open('localDetail'); heading(localName(entry), () => local(previous));
-        stage.append(el('p', [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings')].join(' · '), 'jpx-store-meta'),
-            el('p', configSummary(envelope), 'jpx-store-meta'), button(tr(previous ? 'useConfig' : 'share'), () => chooseLocal(entry, previous), 'jpx-store-primary'), rawPreview(envelope));
+        const actions = el('div', undefined, 'jpx-store-actions');
+        actions.append(button(tr(previous ? 'useConfig' : 'share'), () => chooseLocal(entry, previous), 'jpx-store-primary'));
+        if (!previous) actions.append(button(tr('saveBackpack'), () => saveCurrent(entry)));
+        stage.append(el('p', localMeta(entry).join(' · '), 'jpx-store-meta'), el('p', configSummary(envelope), 'jpx-store-meta'), actions, rawPreview(envelope));
     }
     async function details(entry) {
         const request = open('detail'); heading(entry.title, () => browse()); message(tr('loading'));
@@ -555,19 +710,15 @@ function renderConfigStore(parent, hooks) {
                 el('p', tr('scriptVersion') + ': ' + envelope.scriptVersion, 'jpx-store-meta'));
             const actions = el('div', undefined, 'jpx-store-actions');
             actions.append(button(tr('import'), async () => { await hooks.importConfig(envelope); hooks.notify?.(tr('imported')); }, 'jpx-store-primary'),
-                button(tr('download'), () => {
-                    const blob = new Blob([JSON.stringify(envelope.config, null, 2)], { type: 'application/json;charset=utf-8' });
-                    const url = URL.createObjectURL(blob), link = el('a');
-                    link.href = url; link.download = 'jpx-config-' + entry.id + '.json'; link.click();
-                    setTimeout(() => URL.revokeObjectURL(url), 1000);
-                }));
+                button(tr('saveBackpack'), () => saveToBackpack(envelope, () => details(entry))),
+                button(tr('download'), () => downloadConfig(envelope, entry.id)));
             stage.append(actions, el('p', tr('importHint'), 'jpx-store-meta'), rawPreview(envelope));
         } catch (error) {
             if (!alive() || request !== state.request) return;
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => details(entry));
         }
     }
-    async function login(after = () => local(), cancel = () => local()) {
+    async function login(after = () => backpack(), cancel = () => backpack()) {
         const request = open('login'); heading(tr('signIn'), cancel);
         const panel = el('div', undefined, 'jpx-store-auth'); stage.append(panel);
         const controller = new AbortController(); state.login = controller; message(tr('connecting'));
@@ -593,23 +744,27 @@ function renderConfigStore(parent, hooks) {
     async function edit(existing) {
         if (!existing) return local();
         const model = existing;
-        state.editor = model; open('edit'); heading(model.id ? tr('editShare') : tr('share'), () => model.id ? mine() : local());
+        state.editor = model; open('edit');
+        heading(model.localOnly ? tr(model.backpackId ? 'editBackpack' : 'saveBackpack') : model.id ? tr('editShare') : tr('share'),
+            model.back || (() => model.id ? mine() : local()));
         const request = state.request;
         const form = el('form', undefined, 'jpx-store-form');
+        form.dataset.storeEditor = model.localOnly ? 'backpack' : 'share';
         const envelope = model.envelope;
-        const world = model.id ? select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world) : null;
+        const world = model.id && !model.localOnly ? select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world) : null;
         const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope.title || '';
         const description = el('textarea'); description.rows = 4; description.maxLength = 4000; description.value = envelope.description || '';
         const summary = el('p', info(envelope) + ' · ' + configSummary(envelope), 'jpx-store-meta');
         const selection = el('div', undefined, 'jpx-store-selection');
-        selection.append(summary, button(tr('changeConfig'), () => local(model)));
+        selection.append(summary);
+        if (!model.localOnly) selection.append(button(tr('changeConfig'), () => local(model)));
         form.append(selection);
         if (world) form.append(field(tr('appliesTo'), world));
         form.append(field(tr('title'), title), field(tr('description'), description));
         const source = el('div', undefined, 'jpx-store-actions');
-        const publish = el('button', model.id ? tr('submitUpdate') : tr('submit'), 'jpx-store-primary'); publish.type = 'submit';
-        source.append(publish); form.append(rawPreview(envelope), source, el('p', tr('reviewHint'), 'jpx-store-meta'));
-        if (!state.user) form.append(el('p', tr('loginBeforeShare'), 'jpx-store-meta'));
+        const publish = el('button', model.localOnly ? tr('save') : model.id ? tr('submitUpdate') : tr('submit'), 'jpx-store-primary'); publish.type = 'submit';
+        source.append(publish); form.append(rawPreview(envelope), source, el('p', tr(model.localOnly ? 'backpackHint' : 'reviewHint'), 'jpx-store-meta'));
+        if (!model.localOnly && !state.user) form.append(el('p', tr('loginBeforeShare'), 'jpx-store-meta'));
         for (const [control, key] of [[title, 'title'], [description, 'description'], ...(world ? [[world, 'world']] : [])])
             control.addEventListener('input', () => { envelope[key] = control.value; });
         form.addEventListener('submit', async event => {
@@ -617,14 +772,15 @@ function renderConfigStore(parent, hooks) {
             envelope.title = title.value.trim(); envelope.description = description.value.trim();
             if (world) envelope.world = world.value;
             if (!envelope.title) { title.focus(); return; }
-            if (!state.user) { await login(() => edit(model), () => edit(model)); return; }
-            publish.disabled = true; message(tr('submitting'));
+            if (!model.localOnly && !state.user) { await login(() => edit(model), () => edit(model)); return; }
+            publish.disabled = true; message(tr(model.localOnly ? 'saving' : 'submitting'));
             try {
-                await jpxConfigStore.submit(envelope, model.id);
+                const saved = model.localOnly ? await jpxConfigStore.backpackSave(envelope, model.backpackId) : await jpxConfigStore.submit(envelope, model.id);
                 if (!alive()) return;
                 state.editor = null;
-                if (request !== state.request) { hooks.notify?.(tr('submitted')); return; }
-                await mine(); message(tr('submitted'));
+                if (request !== state.request) { hooks.notify?.(tr(model.localOnly ? 'savedBackpack' : 'submitted')); return; }
+                if (model.localOnly) { backpackDetails(saved); message(tr('savedBackpack')); }
+                else { await mine(); message(tr('submitted')); }
             } catch (error) { if (alive()) message(errorMessage(error), true); }
             finally { if (publish.isConnected) publish.disabled = false; }
         });
@@ -638,7 +794,7 @@ function renderConfigStore(parent, hooks) {
         return 'pending';
     }
     async function mine() {
-        const request = open('mine'); personalNavigation(true);
+        const request = open('mine'); personalNavigation('shared');
         if (!state.user) { empty(tr('loginRequired'), () => login(() => mine()), tr('signIn')); return; }
         const refresh = button(tr('refresh'), () => mine()); stage.firstElementChild.append(refresh);
         message(tr('loading'));
@@ -702,7 +858,7 @@ function renderConfigStore(parent, hooks) {
         core.registerSettingsTab({ id: 'configStore', title: () => t('cStore.name'), render(parent, hooks) {
             if (!document.getElementById('jpx-config-store-style')) {
                 const style = document.createElement('style'); style.id = 'jpx-config-store-style';
-                style.textContent = "#settings-container .jpx-store { display: grid; align-content: start; gap: 12px; min-width: 0; color: var(--jpx-theme-text, #392d25); font: 13px/1.45 Arial, Helvetica, sans-serif; }\n#settings-container .jpx-store * { box-sizing: border-box; }\n#settings-container .jpx-store [hidden] { display: none !important; }\n#settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account, #settings-container .jpx-store-actions, #settings-container .jpx-store-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }\n#settings-container .jpx-store-toolbar { justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 32px; max-width: 100%; margin: 0; padding: 4px 10px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 6px; background: var(--jpx-theme-surface, #f9f6ec); color: var(--jpx-theme-accent, #5c0d11); font: inherit; font-weight: 400; line-height: 1.4; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }\n#settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }\n#settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }\n#settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }\n#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }\n#settings-container .jpx-store p { margin: 0; }\n#settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store-empty p { margin-bottom: 8px; }\n#settings-container .jpx-store-stage { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-filters { display: flex; gap: 8px; min-width: 0; }\n#settings-container .jpx-store input, #settings-container .jpx-store select, #settings-container .jpx-store textarea { min-width: 0; max-width: 100%; min-height: 32px; margin: 0; padding: 5px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 4px; background: var(--jpx-theme-field, #fffdf7); color: var(--jpx-theme-text, #392d25); font: inherit; }\n#settings-container .jpx-store-filters input { flex: 1; width: 0; }\n#settings-container .jpx-store-filters select { max-width: 40%; }\n#settings-container .jpx-store-list { display: grid; min-width: 0; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 12px 0; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row > p, #settings-container .jpx-store-row > .jpx-store-actions, #settings-container .jpx-store-feedback { grid-column: 1 / -1; }\n#settings-container .jpx-store .jpx-store-title { width: fit-content; padding: 0; min-height: 24px; border: 0; background: transparent; text-align: left; font-weight: 600; }\n#settings-container .jpx-store .jpx-store-title:hover { text-decoration: underline; }\n#settings-container .jpx-store-meta { color: var(--jpx-theme-muted, #71634f); font-size: 12px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }\n#settings-container .jpx-store-local-row > button { align-self: start; }\n#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }\n#settings-container .jpx-store-selection > button { align-self: start; }\n#settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }\n#settings-container .jpx-store textarea { width: 100%; resize: vertical; }\n#settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }\n#settings-container .jpx-store-raw summary { padding: 8px; cursor: pointer; color: var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store pre { max-height: 280px; margin: 0; padding: 8px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 Consolas, monospace; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-auth { display: grid; justify-items: start; gap: 12px; padding: 16px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-auth-code { font: 600 22px/1.4 Consolas, monospace; user-select: all; letter-spacing: 2px; }\n#settings-container .jpx-store-badge { align-self: start; padding: 2px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 12px; color: var(--jpx-theme-accent, #5c0d11); font-size: 12px; white-space: nowrap; }\n#settings-container .jpx-store-feedback { display: grid; gap: 8px; padding: 8px 12px; border-left: 2px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); overflow-wrap: anywhere; white-space: pre-wrap; }\n@media (max-width: 650px) {\n    #settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account { gap: 6px; }\n    #settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 36px; padding: 5px 8px; }\n    #settings-container .jpx-store-filters { flex-wrap: wrap; }\n    #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }\n    #settings-container .jpx-store-filters select { flex: 1; max-width: none; }\n    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }\n}\n"; document.head.append(style);
+                style.textContent = "#settings-container .jpx-store { display: grid; align-content: start; gap: 12px; min-width: 0; color: var(--jpx-theme-text, #392d25); font: 13px/1.45 Arial, Helvetica, sans-serif; }\n#settings-container .jpx-store * { box-sizing: border-box; }\n#settings-container .jpx-store [hidden] { display: none !important; }\n#settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account, #settings-container .jpx-store-actions, #settings-container .jpx-store-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }\n#settings-container .jpx-store-toolbar { justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 32px; max-width: 100%; margin: 0; padding: 4px 10px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 6px; background: var(--jpx-theme-surface, #f9f6ec); color: var(--jpx-theme-accent, #5c0d11); font: inherit; font-weight: 400; line-height: 1.4; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }\n#settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }\n#settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }\n#settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }\n#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }\n#settings-container .jpx-store p { margin: 0; }\n#settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store-empty p { margin-bottom: 8px; }\n#settings-container .jpx-store-stage { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-filters { display: flex; gap: 8px; min-width: 0; }\n#settings-container .jpx-store input, #settings-container .jpx-store select, #settings-container .jpx-store textarea { min-width: 0; max-width: 100%; min-height: 32px; margin: 0; padding: 5px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 4px; background: var(--jpx-theme-field, #fffdf7); color: var(--jpx-theme-text, #392d25); font: inherit; }\n#settings-container .jpx-store-filters input { flex: 1; width: 0; }\n#settings-container .jpx-store-filters select { max-width: 40%; }\n#settings-container .jpx-store-list { display: grid; min-width: 0; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 12px 0; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row > p, #settings-container .jpx-store-row > .jpx-store-actions, #settings-container .jpx-store-feedback { grid-column: 1 / -1; }\n#settings-container .jpx-store .jpx-store-title { width: fit-content; padding: 0; min-height: 24px; border: 0; background: transparent; text-align: left; font-weight: 600; }\n#settings-container .jpx-store .jpx-store-title:hover { text-decoration: underline; }\n#settings-container .jpx-store-meta { color: var(--jpx-theme-muted, #71634f); font-size: 12px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }\n#settings-container .jpx-store-local-row > button { align-self: start; }\n#settings-container .jpx-store-row-tools { display: flex; flex-wrap: wrap; justify-content: end; align-items: start; gap: 6px; }\n#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }\n#settings-container .jpx-store-selection > button { align-self: start; }\n#settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }\n#settings-container .jpx-store textarea { width: 100%; resize: vertical; }\n#settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }\n#settings-container .jpx-store-raw summary { padding: 8px; cursor: pointer; color: var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store pre { max-height: 280px; margin: 0; padding: 8px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 Consolas, monospace; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-auth { display: grid; justify-items: start; gap: 12px; padding: 16px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-auth-code { font: 600 22px/1.4 Consolas, monospace; user-select: all; letter-spacing: 2px; }\n#settings-container .jpx-store-badge { align-self: start; padding: 2px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 12px; color: var(--jpx-theme-accent, #5c0d11); font-size: 12px; white-space: nowrap; }\n#settings-container .jpx-store-feedback { display: grid; gap: 8px; padding: 8px 12px; border-left: 2px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); overflow-wrap: anywhere; white-space: pre-wrap; }\n@media (max-width: 650px) {\n    #settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account { gap: 6px; }\n    #settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 36px; padding: 5px 8px; }\n    #settings-container .jpx-store-filters { flex-wrap: wrap; }\n    #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }\n    #settings-container .jpx-store-filters select { flex: 1; max-width: none; }\n    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }\n}\n"; document.head.append(style);
             }
             renderConfigStore(parent, hooks);
         } });

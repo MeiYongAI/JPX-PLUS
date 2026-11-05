@@ -99,6 +99,8 @@ The independent **Config Store** plugin requires JPX-PLUS **2026.11.06.8 or late
 
 With JPX-PLUS **2026.11.06.10 or later**, **My configs** lists local configurations by world, battle style, and battle type. Preview the one you want to share, or choose full battle or statistics settings. Sign in to GitHub when submitting; complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent for AI review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My configs → Shared**.
 
+**My configs → Backpack** keeps multiple configs of the same kind, world, and battle mode. Save your own snapshots from **Current**, or save a config from the store, then name, preview, apply, or share each one separately. The backpack stays in this plugin's local userscript storage; saving there needs no GitHub login and changes no active settings. Applying uses the existing import, undo, and manual Save controls. Downloads keep the original JPX config format.
+
 Plugin contributors: [source, build, and test instructions](plugins/config-store/README.md).
 
 ## Features
