@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.06.7
+// @version      2026.11.06.8
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -20,6 +20,21 @@
 (function jpxMain(window) {
 
 let cfgBattle = {};
+const settingsPlugins = new Map();
+// Optional userscripts own their UI, network permissions and credentials.
+window.JPXPlus = Object.freeze({
+    apiVersion: 1,
+    version: '2026.11.06.8',
+    registerSettingsTab(plugin) {
+        if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
+            ['battle', 'battleRules', 'keyBindings', 'stats'].includes(plugin.id) ||
+            typeof plugin.render !== 'function' || typeof plugin.title !== 'function') return false;
+        if (settingsPlugins.has(plugin.id)) return false;
+        settingsPlugins.set(plugin.id, plugin);
+        window.dispatchEvent(new Event('jpx:settings-plugin'));
+        return true;
+    }
+});
 let defaultCfgBattle = {
     "battleVersion": 20251216,
     "advanceToNextRound": false,
@@ -6633,6 +6648,7 @@ function createSettingsIcon(name) {
         battleRules: 'M9 5h12M9 12h12M9 19h12M3 4l1 1 2-2M3 11l1 1 2-2M3 18l1 1 2-2',
         keyBindings: 'M7 4v16M17 4v16M4 7h16M4 17h16M9 4v3m6-3v3M9 17v3m6-3v3',
         stats: 'M4 3v18h17M9 17v-6m5 6V7m5 10V4',
+        plugin: 'M8 3v4m8-4v4M5 7h14v3a7 7 0 0 1-14 0V7m7 10v4',
         edit: 'M14 4l5 5M4 18l5-1L20 6a2.8 2.8 0 0 0-4-4L5 13l-1 5M3 22h18',
         confirm: 'M5 12l4 4L19 6',
         collapse: 'M9 3v18M15 9l-3 3 3 3',
@@ -8730,7 +8746,9 @@ function renderSettings() {
 
     function importBattleConfig(content) {
         let data = JSON.parse(content);
-        if (BATTLE_MODES.some(key => data[key]?.attacks?.some(attack => attack.type === 'kamisamaniNattaHi')) && !confirm(t('cB.importCustomCodeWarning'))) {
+        if ([...BATTLE_MODES, 'Battlecaster_General'].some(key => Object.entries(data[key] || {}).some(([group, rules]) =>
+            (group === 'supports' || group === 'attacks' || group.startsWith('kb_')) &&
+            Array.isArray(rules) && rules.some(rule => rule?.type === 'kamisamaniNattaHi'))) && !confirm(t('cB.importCustomCodeWarning'))) {
             throw new Error('Custom code import rejected');
         }
         mergeCfg(data, cfgBattle, cfgBattle, 'battle');
@@ -8796,7 +8814,7 @@ function renderSettings() {
             },
         },
     ];
-    tabs.forEach(tab => {
+    function mountTab(tab) {
         tab.btn = jpxUtils.createButton(tabHeader, {
             className: 'settings-tab-btn',
             text: tab.text,
@@ -8810,7 +8828,7 @@ function renderSettings() {
         const tabLabel = document.createElement('span');
         tabLabel.className = 'jpx-tab-label';
         tabLabel.textContent = tab.text;
-        tab.btn.replaceChildren(createSettingsIcon(tab.id), tabLabel);
+        tab.btn.replaceChildren(createSettingsIcon(tab.plugin ? 'plugin' : tab.id), tabLabel);
         tab.btn.title = tab.text;
         tab.btn.setAttribute('aria-label', tab.text);
         tab.btn.setAttribute('role', 'tab');
@@ -8825,7 +8843,86 @@ function renderSettings() {
 
         tab.rendered = false;
         settingsPanels.appendChild(tab.panel);
-    });
+    }
+    tabs.forEach(mountTab);
+    const mountPlugins = () => {
+        for (const plugin of settingsPlugins.values()) {
+            if (tabs.some(tab => tab.id === plugin.id)) continue;
+            const tab = { id: plugin.id, text: String(plugin.title()), plugin: true, showTransfer: false,
+                render: parent => plugin.render(parent, {
+                    version: window.JPXPlus.version,
+                    translate: t,
+                    notify: message => jpxUtils.createToast(String(message)),
+                    getDraft(kind) {
+                        if (!['battle-mode', 'battle', 'stats'].includes(kind)) throw new Error('Invalid configuration type');
+                        const mode = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue || getBattleMode('OneHanded');
+                        const data = kind === 'stats' ? cfgStats : kind === 'battle' ? cfgBattle :
+                            { battleVersion: cfgBattle.battleVersion, [mode]: cfgBattle[mode] };
+                        return JSON.parse(JSON.stringify({ schemaVersion: 1, kind, title: '', description: '',
+                            world: kind === 'stats' ? 'Any' : isekaiSuffix ? 'Isekai' : 'Persistent',
+                            ...(kind === 'battle-mode' ? { mode } : {}), scriptVersion: window.JPXPlus.version, config: data }));
+                    },
+                    importConfig(envelope) {
+                        if (!container.isConnected || !container.open) throw new Error('Settings closed');
+                        const copy = JSON.parse(JSON.stringify(envelope), (key, value) => {
+                            if (['__proto__', 'prototype', 'constructor'].includes(key)) throw new Error('Invalid configuration key');
+                            return value;
+                        });
+                        if (!copy || !['battle-mode', 'battle', 'stats'].includes(copy.kind) || !copy.config ||
+                            Array.isArray(copy.config) || typeof copy.config !== 'object') throw new Error('Invalid configuration');
+                        const target = copy.kind === 'stats' ? 'stats' : 'battleRules';
+                        const targetTab = tabs.find(item => item.id === target);
+                        let config = copy.config;
+                        if (copy.kind === 'battle-mode') {
+                            if (!BATTLE_MODES.includes(copy.mode) || !config[copy.mode]) throw new Error('Invalid battle mode');
+                            config = { battleVersion: config.battleVersion, [copy.mode]: config[copy.mode] };
+                        }
+                        const versionKey = copy.kind === 'stats' ? 'statsVersion' : 'battleVersion';
+                        const requiredVersion = copy.kind === 'stats' ? defaultCfgStats.statsVersion : defaultCfgBattle.battleVersion;
+                        if ((config[versionKey] || config.version || 0) < requiredVersion) throw new Error('Unsupported configuration version');
+                        if (copy.kind !== 'stats') {
+                            // Use the editor's schema so a plugin cannot import rules it cannot render.
+                            const groups = cfgBattleSchema.properties.find(field => field.key === 'modes').itemSchema.properties;
+                            const conditions = new Map([...conditionsGeneral, ...conditionsTarget].map(field => [field.key, field]));
+                            const object = value => value && typeof value === 'object' && !Array.isArray(value);
+                            for (const mode of [...BATTLE_MODES, 'Battlecaster_General']) {
+                                if (!(mode in config)) continue;
+                                const data = config[mode];
+                                if (copy.kind === 'battle' && object(data) && !Object.keys(data).length) continue;
+                                if (!object(data) || !Array.isArray(data.supports) || !Array.isArray(data.attacks)) throw new Error('Invalid battle rules');
+                                for (const [key, rules] of Object.entries(data)) {
+                                    const group = groups.find(field => field.key === (key.startsWith('kb_') ? 'keyBindings' : key));
+                                    if (!group) continue;
+                                    if (!Array.isArray(rules)) throw new Error('Invalid battle rules');
+                                    for (const rule of rules) {
+                                        if (!object(rule) || !Object.hasOwn(group.itemSchema.oneOf, rule.type) ||
+                                            ('conditions' in rule && !Array.isArray(rule.conditions))) throw new Error('Unsupported battle rule');
+                                        for (const condition of rule.conditions || []) {
+                                            const field = object(condition) && conditions.get(condition.key);
+                                            if (!field || (field.type === 'boolean' ? typeof condition.value !== 'boolean' :
+                                                field.type === 'text' ? typeof condition.value !== 'string' : !Array.isArray(condition.value))) throw new Error('Invalid battle condition');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        // Build the target before applying the import; lazy renderers load saved settings.
+                        switchTab(target, tabs);
+                        editHistory.run(t('cGen.importConfig'), () => {
+                            const info = targetTab.onImport(JSON.stringify(config));
+                            if (copy.mode) document.getElementById('import-button').dataset.battleMode = copy.mode;
+                            if (info.refreshStats) renderStatsSettingsUI(document.getElementById('cfgStats-ui'));
+                            else refreshBattleViews();
+                        });
+                        return true;
+                    }
+                }) };
+            tabs.push(tab); mountTab(tab);
+        }
+    };
+    mountPlugins();
+    window.addEventListener('jpx:settings-plugin', mountPlugins);
+    container.addEventListener('close', () => window.removeEventListener('jpx:settings-plugin', mountPlugins), { once: true });
 
     let buttonsUI = document.createElement('div');
     buttonsUI.className = 'jpx-settings-footer';
@@ -8960,6 +9057,8 @@ function switchTab(targetId, tabs) {
         tab.panel.style.display = isActive ? 'flex' : 'none';
 
         if (isActive) {
+            const footer = document.querySelector('#settings-container .jpx-settings-footer');
+            if (footer) footer.style.display = tab.plugin ? 'none' : '';
             const mobile = document.getElementById('settings-container')?.classList.contains('jpx-settings-mobile');
             if (mobile) document.querySelector('#settings-container .jpx-settings-title').textContent = tab.text;
             let saveBtn = document.getElementById('save-button');
@@ -10989,5 +11088,6 @@ window.addEventListener('storage', event => {
     window.removeEventListener('beforeunload', storeTmp);
     window.location.reload();
 });
+window.dispatchEvent(new Event('jpx:ready'));
 initDo();
 })(typeof unsafeWindow === 'undefined' ? window : unsafeWindow);

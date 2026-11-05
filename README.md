@@ -16,6 +16,7 @@ Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https:/
 
 - [Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
 - [Optional: Simplified Chinese language pack](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js)
+- [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 
 The main script uses English by default. The optional Chinese language pack requires the main script. Refresh the game after installation; your userscript manager checks for version updates.
 
@@ -91,6 +92,14 @@ Full-screen settings use a compact navigation menu. Statistics filters open when
 | `Z` | Open battle statistics |
 
 Shortcuts can be changed in Settings. The floating battle panel has Settings and Statistics buttons; touch devices also have a JPX-PLUS menu on the page. Review your battle style and rules before first use.
+
+### Optional Config Store
+
+The independent **Config Store** plugin requires JPX-PLUS **2026.11.06.8 or later** and adds a tab inside Settings. Browse, preview, download, and import shared configs without signing in. Imports use the usual undo and save controls.
+
+Sign in to GitHub to share your current battle mode, all battle settings, or statistics settings. Complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent to DeepSeek for review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My shares**.
+
+Plugin contributors: [source, build, and test instructions](plugins/config-store/README.md).
 
 ## Features
 

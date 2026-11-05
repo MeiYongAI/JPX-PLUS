@@ -16,6 +16,7 @@
 
 - [安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
 - [安装简体中文语言包](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js)
+- [可选：安装配置商店插件](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 
 语言包需要与主脚本一起使用。安装后刷新游戏页面；后续由脚本管理器按版本检查更新。
 
@@ -91,6 +92,14 @@
 | `Z` | 打开战斗统计 |
 
 快捷键可以在设置中修改。战斗悬浮面板提供设置和统计按钮；触控设备也可通过页面上的 JPX-PLUS 入口操作。首次使用请先检查战斗流派和规则。
+
+### 可选配置商店
+
+**配置商店**是独立插件，需要 JPX-PLUS **2026.11.06.8 或更新版本**，安装后会在设置中增加入口。浏览、预览、下载和导入配置无需登录；导入沿用现有的撤销和保存流程。
+
+登录 GitHub 后，可以分享当前战斗模式、整套战斗配置或统计配置。首次按提示在 GitHub 完成授权，随后即可在 JPX-PLUS 内提交、更新或撤下分享。所选配置和说明会**在 GitHub 公开，并发送给 DeepSeek 审阅**。通过规则校验和 AI 审阅后上架，有疑点的交给维护者确认；审核进度可在**我的分享**中查看。
+
+参与插件开发：[源码、构建与测试说明](plugins/config-store/README.md)。
 
 ## 功能
 
