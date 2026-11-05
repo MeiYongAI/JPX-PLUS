@@ -129,6 +129,28 @@ async function run() {
         assert.equal((await env.service.mine()).length, 1, 'large issue bodies are network envelopes, not individual config fields');
         env.done();
     }
-    console.log('Passed 11 configuration-store service scenarios (mocked GitHub; no network or real credentials).');
+    {
+        const env = setup(), updated = { ...envelope, description: 'Newly approved update' };
+        const updatedHash = digest(JSON.stringify(updated) + '\n');
+        const updatedEntry = { ...entry, description: updated.description, sha256: updatedHash, configPath: 'catalog/configs/12-' + updatedHash + '.json' };
+        env.routes.push({ path: 'raw.githubusercontent.com/' + repo + '/main/catalog/index.json', result: { schemaVersion: 1, updatedAt: entry.updatedAt, entries: [entry] } });
+        assert.equal((await env.service.catalog()).entries[0].description, envelope.description, 'ordinary browsing can read the cached CDN snapshot');
+        env.routes.push({ path: 'api.github.com/repos/' + repo + '/contents/catalog/index.json?ref=main', result: { schemaVersion: 1, updatedAt: entry.updatedAt, entries: [updatedEntry] }, check: options => {
+            assert.equal(options.headers.Accept, 'application/vnd.github.raw+json');
+            assert.equal(options.headers['Cache-Control'], 'no-cache');
+            assert.equal(options.headers.Authorization, undefined, 'public refresh does not require or expose the login token');
+            assert.equal(options.anonymous, true);
+        } });
+        assert.equal((await env.service.catalog({ refresh: true })).entries[0].description, updated.description, 'manual refresh bypasses a stale raw CDN revision');
+        assert.equal((await env.service.catalog()).entries[0].sha256, updatedHash, 'the fresh API revision replaces the in-memory browsing cache');
+        env.routes.push({ path: '/contents/catalog/index.json?ref=main', status: 429, result: { message: 'rate limit' } });
+        await assert.rejects(env.service.catalog({ refresh: true }), code('rateLimited'), 'refresh errors are visible instead of silently returning stale CDN data');
+        assert.equal((await env.service.catalog()).entries[0].sha256, updatedHash, 'failed refresh preserves the last verified cache');
+        env.routes.push({ path: '/contents/catalog/index.json?ref=main', result: { schemaVersion: 1, updatedAt: entry.updatedAt, entries: [{ ...updatedEntry, configPath: '../injected.json' }] } });
+        await assert.rejects(env.service.catalog({ refresh: true }), code('invalidResponse'), 'API responses undergo the same catalog integrity checks');
+        assert.equal((await env.service.catalog()).entries[0].sha256, updatedHash);
+        assert.equal(env.calls.length, 4, 'neither refresh failure falls back to the stale raw endpoint'); env.done();
+    }
+    console.log('Passed 12 configuration-store service scenarios (mocked GitHub; no network or real credentials).');
 }
 run().catch(err => { console.error(err); process.exitCode = 1; });

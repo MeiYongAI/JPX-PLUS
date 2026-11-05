@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.1
+// @version      2026.11.06.2
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -126,7 +126,7 @@ const jpxConfigStore = (() => {
         const digest = await crypto.subtle.digest('SHA-256', encode(source));
         return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
     }
-    function request(url, { method = 'GET', data, token, signal, limit = 6000000 } = {}) {
+    function request(url, { method = 'GET', data, token, signal, limit = 6000000, accept = 'application/json' } = {}) {
         if (typeof GM_xmlhttpRequest !== 'function') return Promise.reject(error('managerUnavailable'));
         const target = new URL(url);
         if (target.protocol !== 'https:' || target.username || target.password || !['api.github.com', 'github.com', 'raw.githubusercontent.com'].includes(target.hostname) || (token && target.hostname !== 'api.github.com')) return Promise.reject(error('invalidResponse'));
@@ -135,7 +135,8 @@ const jpxConfigStore = (() => {
             const end = (callback, value) => { if (done) return; done = true; signal?.removeEventListener('abort', abort); callback(value); };
             const abort = () => { handle?.abort(); end(reject, error('cancelled')); };
             if (signal?.aborted) return abort();
-            const headers = { Accept: 'application/json' };
+            const headers = { Accept: accept };
+            if (accept === 'application/vnd.github.raw+json') headers['Cache-Control'] = 'no-cache';
             if (target.hostname === 'api.github.com') headers['X-GitHub-Api-Version'] = '2022-11-28';
             if (token) headers.Authorization = 'Bearer ' + token;
             if (data !== undefined) headers['Content-Type'] = 'application/json';
@@ -228,8 +229,9 @@ const jpxConfigStore = (() => {
     }
     async function catalog({ refresh = false } = {}) {
         if (!refresh && cache && Date.now() - cache.at < 60000) return clone(cache.value);
-        const url = raw + 'catalog/index.json' + (refresh ? '?t=' + Date.now() : '');
-        const value = parse(await request(url), 6000000);
+        // Raw GitHub can lag behind a publication even with a cache-busting query.
+        const url = refresh ? api + '/repos/' + repository + '/contents/catalog/index.json?ref=main' : raw + 'catalog/index.json';
+        const value = parse(await request(url, refresh ? { accept: 'application/vnd.github.raw+json' } : {}), 6000000);
         if (!object(value) || value.schemaVersion !== 1 || !Array.isArray(value.entries) || value.entries.length > 5000 || !text(value.updatedAt, 64)) fail('invalidResponse');
         const ids = new Set();
         for (const entry of value.entries) { if (!entryValid(entry) || ids.has(entry.id)) fail('invalidResponse'); ids.add(entry.id); }
