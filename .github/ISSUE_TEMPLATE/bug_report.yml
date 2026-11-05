@@ -1,0 +1,43 @@
+name: Bug report / 问题反馈
+description: Report something that is not working / 反馈使用中遇到的问题
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        English or Chinese is welcome. Please remove account details, cookies, and other private information from screenshots and logs.
+        可使用中文或英文。提交截图和日志前，请遮去账号信息、Cookie 等隐私内容。
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened? / 发生了什么？
+      description: Include what you expected to happen. / 请一并说明预期结果。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      placeholder: Describe the steps, or say if the issue is intermittent. / 请描述操作步骤；如果偶发，也请说明。
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: JPX-PLUS version / 脚本版本
+      placeholder: e.g. 2026.11.06.6
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment / 使用环境
+      description: Browser, userscript manager, and device or OS. / 浏览器、脚本管理器及设备或系统。
+      placeholder: e.g. Chrome, Tampermonkey, Windows 11
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional details / 补充信息
+      description: Other relevant scripts, screenshots, or redacted logs, if useful. / 可补充相关脚本、截图或脱敏后的日志。

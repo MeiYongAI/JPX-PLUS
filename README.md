@@ -114,6 +114,6 @@ AJAX replaces the battle area without making your userscript manager inject othe
 
 ## Feedback
 
-Report problems in [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues), including your script version, browser, userscript manager, and steps to reproduce.
+Report problems or suggest improvements in [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues). The issue forms and pull request template accept English or Chinese.
 
 Thanks also to the maintainers of related tools.

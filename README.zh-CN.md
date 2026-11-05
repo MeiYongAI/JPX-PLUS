@@ -114,6 +114,6 @@ AJAX 局部换轮不会使脚本管理器重新注入其他用户脚本，部分
 
 ## 反馈
 
-在 [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues) 中提供脚本版本、浏览器、脚本管理器和复现步骤。
+在 [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues) 中反馈问题或提出建议。Issue 表单和 PR 模板均可使用中文或英文填写。
 
 同时感谢相关工具的维护者。

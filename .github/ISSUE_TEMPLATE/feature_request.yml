@@ -1,0 +1,19 @@
+name: Feature request / 功能建议
+description: Suggest an improvement / 提出改进建议
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: English or Chinese is welcome. / 可使用中文或英文填写。
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to improve? / 想改进什么？
+      description: Describe the problem or need. / 请描述遇到的问题或需求。
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea / 你的想法
+      description: How might it work? Screenshots or examples are welcome. / 可以怎么实现？也可以附截图或示例。
