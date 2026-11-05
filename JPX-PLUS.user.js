@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.06.6
+// @version      2026.11.06.7
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -431,7 +431,7 @@ const JPX_RECORD_DETAIL_CSS = `
         body.jpx-record-detail { margin: 0; background: #edebdf; }
         .jpx-record-detail { color: #392d25; font: 13px/1.45 Arial, Helvetica, sans-serif; }
         .jpx-record-detail * { box-sizing: border-box; }
-        .jpx-record-detail-page { max-width: 1380px; margin: 0 auto; padding: 12px; }
+        .jpx-record-detail-page { width: fit-content; max-width: min(1240px, 100%); margin: 0 auto; padding: 12px; }
         .jpx-record-detail-summary { display: grid; gap: 8px; margin-bottom: 12px; padding: 8px 10px; border: 1px solid #c8b49b; background: #f9f6ec; }
         .jpx-record-detail-summary:has(> .jpx-record-image-actions) { grid-template-columns: minmax(0, 1fr) auto; }
         .jpx-record-detail-summary > .jpx-record-image-actions { grid-column: 2; grid-row: 1 / 3; align-self: center; padding-left: 12px; border-left: 1px solid #ddd0bd; }
@@ -442,25 +442,32 @@ const JPX_RECORD_DETAIL_CSS = `
         .jpx-record-detail #time-records-div { font-size: 12px; color: #71634f; }
         .jpx-record-detail .jpx-record-metric { display: inline-flex; align-items: baseline; gap: 4px; white-space: nowrap; }
         .jpx-record-detail .jpx-record-metric strong { color: #392d25; font-weight: 600; font-variant-numeric: tabular-nums; }
-        .jpx-record-detail-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; gap: 12px; }
-        .jpx-record-detail-column { display: grid; align-content: start; gap: 12px; min-width: 0; }
-        .jpx-record-detail-scroll { min-width: 0; max-width: 100%; overflow: auto; overscroll-behavior-x: contain; border: 1px solid #bda68e; background: #fffdf7; scrollbar-color: #5c0d11 #e3e0d1; }
+        .jpx-record-detail-grid { display: grid; grid-template-columns: minmax(0, max-content) minmax(0, max-content); align-items: start; gap: 12px; }
+        .jpx-record-detail-column { display: grid; align-content: start; gap: 12px; width: fit-content; min-width: 0; max-width: 100%; }
+        .jpx-record-detail-scroll { width: fit-content; min-width: 0; max-width: 100%; overflow: auto; overscroll-behavior-x: contain; border: 1px solid #bda68e; background: #fffdf7; scrollbar-color: #5c0d11 #e3e0d1; }
         .jpx-record-detail-scroll:focus-visible { outline: 2px solid #9b4e03; outline-offset: 2px; }
-        .jpx-record-detail table { width: 100%; margin: 0 !important; border: 0; border-collapse: collapse; background: #fffdf7; font-size: 12px; font-variant-numeric: tabular-nums; }
-        .jpx-record-detail td, .jpx-record-detail th { padding: 3px 6px; line-height: 1.5; vertical-align: middle; border: 1px solid #e1d7c7; }
+        .jpx-record-detail table { width: auto; margin: 0 !important; border: 0; border-collapse: collapse; background: #fffdf7; font-size: 12px; font-variant-numeric: tabular-nums; }
+        .jpx-record-detail td, .jpx-record-detail th { padding: 2px 4px; line-height: 1.5; vertical-align: middle; border: 1px solid #e1d7c7; }
         .jpx-record-detail tr:nth-child(even) { background-color: #f5f1e7; }
         .jpx-record-detail .records-table tr:nth-child(-n+2), .jpx-record-detail #combat-records-use-table tr:first-child { background: #e9d5ae; color: #5c0d11; font-weight: 700; }
         .jpx-record-detail .records-table tr:nth-child(2) { background: #f2e6ce; font-weight: 600; }
-        .jpx-record-detail #combat-records-table { min-width: 620px; }
+        .jpx-record-detail #combat-records-table { min-width: 0; }
         .jpx-record-detail #combat-records-table td { white-space: nowrap; }
-        .jpx-record-detail #combat-records-use-table { table-layout: fixed; }
+        .jpx-record-detail #combat-records-table tr:nth-child(-n+2) > td { border-bottom-color: #e1d7c7; }
+        .jpx-record-detail-scroll:has(> #combat-records-use-table) { width: 100%; contain: inline-size; }
+        .jpx-record-detail #combat-records-use-table { width: 100%; table-layout: fixed; }
         .jpx-record-detail #combat-records-use-table td, .jpx-record-detail #combat-records-use-table th { border-color: #e1d7c7; }
         .jpx-record-detail #combat-records-use-table td { white-space: normal; overflow-wrap: anywhere; }
         .jpx-record-detail #combat-records-use-table td:first-child { width: 96px; vertical-align: top; }
-        .jpx-record-detail #revenue-records-table { min-width: 500px; table-layout: auto; }
+        .jpx-record-detail #revenue-records-table { width: 500px; table-layout: auto; }
         .jpx-record-detail #revenue-records-table td { overflow-wrap: anywhere; }
+        .jpx-record-detail #revenue-records-table tr:nth-child(n+3) > td:first-child:not([colspan]) { white-space: nowrap; }
         .jpx-record-detail #revenue-records-table tr:nth-child(n+3) > td:not(:first-child):not([colspan]) { text-align: right; white-space: nowrap; }
-        @media (max-width: 1099px) { .jpx-record-detail-grid { grid-template-columns: minmax(0, 1fr); } }
+        @media (max-width: 1099px) {
+            .jpx-record-detail-grid { grid-template-columns: minmax(0, 1fr); }
+            .jpx-record-detail-page > .jpx-record-detail-summary { contain: inline-size; }
+            .jpx-record-detail-page .jpx-record-detail-column, .jpx-record-detail-page .jpx-record-detail-scroll, .jpx-record-detail-page #combat-records-table { width: 100%; }
+        }
         @media (max-width: 650px) { .jpx-record-detail-page { padding: 6px 6px 58px; } .jpx-record-detail-summary { padding: 6px 8px; } }
         @media (max-width: 650px), (pointer: coarse) and (orientation: landscape) and (max-height: 600px) {
             .jpx-record-detail-page { padding-bottom: 58px; }
@@ -470,13 +477,13 @@ const JPX_RECORD_DETAIL_CSS = `
         .jpx-record-final { display: grid; gap: 6px; min-width: 0; max-width: 100%; margin: 6px 0; text-align: left; }
         .jpx-record-final .jpx-record-detail-summary { margin: 0; }
         .jpx-record-final > a { margin: 0 !important; font-size: 12px !important; color: #5c0d11; }
-        .jpx-record-final td, .jpx-record-final th { padding: 2px 6px; line-height: 1.4; }
+        .jpx-record-final td, .jpx-record-final th { line-height: 1.4; }
         #btcp.jpx-final-result { box-sizing: border-box; display: block; width: 530px; min-width: 0; max-width: 530px; height: auto; min-height: 120px; max-height: 621px; overflow: auto; }
         /* Native result-panel div rules must not size or position the statistics. */
         #btcp.jpx-final-result #jpx-final-revenue, #btcp.jpx-final-result #jpx-final-revenue div { position: static; inset: auto; width: auto; min-width: 0; max-width: 100%; height: auto; min-height: 0; max-height: none; }
         #btcp.jpx-final-result #jpx-final-revenue { display: block; margin: 8px 0 0; }
         #btcp.jpx-final-result #jpx-final-revenue .jpx-record-detail-summary { margin: 0 0 6px; padding: 6px 8px; }
-        #btcp.jpx-final-result #revenue-records-table { min-width: 480px; }
+        #btcp.jpx-final-result #revenue-records-table { width: 100%; min-width: 480px; }
 `;
 let cfg = {
     //CSS
@@ -4809,17 +4816,16 @@ function combatRecordPlayer(combatRecords) {
     let table = document.createElement('table');
     table.id = 'combat-records-table';
     table.className = 'records-table';
-    table.innerHTML = '<colgroup><col style="width:18%"><col span="7"></colgroup>';
+    table.innerHTML = '<colgroup><col><col span="7"></colgroup>';
     let tbody = document.createElement('tbody');
 
     let innerHTML = `
         <tr>
-            <td></td>
+            <td rowspan="2"></td>
             <td colspan="3">${t('cP.damageDealt')}</td>
             <td colspan="4">${t('cP.damageTaken')}</td>
         </tr>
         <tr>
-            <td></td>
             <td>${t('cP.physical')}</td><td>${t('cP.magical')}</td><td>${t('cP.total')}</td>
             <td>${t('cP.physical')}</td><td>${t('cP.magical')}</td><td>${t('cP.spirit')}</td><td>${t('cP.total')}</td>
         </tr>`;
@@ -4918,7 +4924,7 @@ function combatRecordPlayer(combatRecords) {
                 debuffResistTotal += value;
                 innerHTML += `<td style="text-align: left;">${debuffMap[i].label}</td><td>${(value || '').toLocaleString()}</td>`;
             } else if (i === 4) {
-                innerHTML += `<td style="border: 1px solid; text-align: left;">${t('cP.total')}</td><td style="border: 1px solid;">${(debuffResistTotal || '').toLocaleString()}</td>`;
+                innerHTML += `<td style="text-align: left;">${t('cP.total')}</td><td>${(debuffResistTotal || '').toLocaleString()}</td>`;
             }
             innerHTML += '<td colspan="4"></td></tr>';
         } else if (critStack) {
@@ -4975,7 +4981,7 @@ function revenueRecordPlayer(revenueRecords, priceData) {
     let table = document.createElement('table');
     table.id = 'revenue-records-table';
     table.className = 'records-table';
-    table.innerHTML = '<colgroup><col style="width:24%"><col span="3" style="width:11%"><col style="width:19%"><col style="width:24%"></colgroup>';
+    table.innerHTML = '<colgroup><col><col span="3"><col><col></colgroup>';
     let tbody = document.createElement('tbody');
 
     let innerHTML = `
@@ -5121,13 +5127,17 @@ async function createRecordImageBlob(root) {
     clone.querySelectorAll('.jpx-record-image-actions, script, style, img, iframe, object, embed, link').forEach(node => node.remove());
     clone.style.margin = '0';
     if (detail) {
-        clone.style.width = '1200px'; clone.style.maxWidth = 'none'; clone.style.padding = '12px';
+        const combatWidth = Math.ceil(root.querySelector('#combat-records-table').getBoundingClientRect().width),
+            revenueWidth = Math.ceil(root.querySelector('#revenue-records-table').getBoundingClientRect().width);
+        clone.style.width = (combatWidth + revenueWidth + 40) + 'px'; clone.style.maxWidth = 'none'; clone.style.padding = '12px';
         const grid = clone.querySelector('.jpx-record-detail-grid');
-        if (grid) grid.style.gridTemplateColumns = 'minmax(620px, 1.2fr) minmax(500px, 1fr)';
+        if (grid) grid.style.gridTemplateColumns = (combatWidth + 2) + 'px ' + (revenueWidth + 2) + 'px';
         clone.querySelectorAll('.jpx-record-detail-column, .jpx-record-detail-summary').forEach(node => {
-            node.style.gridTemplateColumns = 'minmax(0, 1fr)'; node.style.minWidth = '0';
+            node.style.gridTemplateColumns = 'minmax(0, 1fr)'; node.style.minWidth = '0'; node.style.width = '100%';
         });
-        clone.querySelectorAll('table').forEach(table => table.style.width = '100%');
+        clone.querySelectorAll('table').forEach(table => {
+            table.style.width = table.id === 'combat-records-use-table' ? '100%' : (table.id === 'combat-records-table' ? combatWidth : revenueWidth) + 'px';
+        });
         clone.querySelectorAll('#combat-records-use-table td:first-child').forEach(cell => cell.style.width = '96px');
     } else {
         clone.style.width = Math.ceil(root.getBoundingClientRect().width) + 'px'; clone.style.minWidth = '0';
