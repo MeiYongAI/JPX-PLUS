@@ -8,8 +8,7 @@
 @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HV-Dark.user.css
 ==/UserStyle== */
 
-/* Install in Stylus and disable HentaiVerse Dark · Test in your userscript manager.
-   Native image labels, battle gauge values and game configuration stay intact.
+/* Native image labels, battle gauge values and game configuration stay intact.
    html:root preserves the original specificity over HVUT's later :root palette. */
 @-moz-document domain("hentaiverse.org") {
     html:root {

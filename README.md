@@ -21,7 +21,7 @@ Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https:/
 
 The main script uses English by default. The optional Chinese language pack requires the main script. Refresh the game after installation; your userscript manager checks for version updates.
 
-HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. Disable the earlier HentaiVerse Dark Test userscript if installed. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
+HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
 
 When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.
 
