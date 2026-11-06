@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         E-Hentai Forums Dark
 @namespace    meiyongai.eh-forums-dark
-@version      1.0.0
+@version      1.0.1
 @description  A quiet dark theme for E-Hentai Forums, matching HentaiVerse Dark.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -61,11 +61,12 @@
       .mainnav, .mainpagef, .subtitle, .subtitlediv, .postlinksbar, .formsubtitle,
       .formtable td.formtitle, .formtable td.formstrip, .borderwrap h3, .borderwrap h4,
       .fieldwrap h4, .errorwrap h4, #pmnotewrap h4, #pmnotewrap .pmnotefoot,
-      #redirectwrap h4, #redirectwrap .redirectfoot, #logostrip, #submenu, table th) {
+      #redirectwrap h4, #redirectwrap .redirectfoot, #logostrip, #submenu, table th, #print h3, #print h4) {
       background: var(--ehf-surface);
       color: var(--ehf-text);
       border-color: var(--ehf-border);
     }
+    html:root :is(#gfooter td, .errorwrap p, #pmnotewrap p) { color: var(--ehf-text); }
     html:root :is(#navstrip, #livechat, .postdetails, .desc, .forumdesc,
       .lastaction, .edit, .copyright, .signature, .toplinks, .normalname,
       .newslink span, .bar p, .barb p, .barc p) { color: var(--ehf-muted); }
@@ -111,6 +112,7 @@
       accent-color: var(--ehf-link);
       caret-color: var(--ehf-link);
     }
+    html:root :where(.newslink) input.button { color: var(--ehf-text); }
     html:root :is(input, textarea)::placeholder { color: var(--ehf-muted); opacity: 1; }
     html:root :is(button, input[type=button], input[type=submit], input[type=reset], .button, .gobutton):enabled:hover {
       background: var(--ehf-hover);
@@ -164,14 +166,18 @@
       background: var(--ehf-surface) !important;
     }
     html:root img[src*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)):is(
-      [src*="/ls_main_table_"], [src*="/rs_main_table_"], [src*="/cat_top_"]) { opacity: 0; }
+      [src*="/ls_main_table_"], [src*="/rs_main_table_"], [src*="/cat_top_"],
+      [src$="/expand_main_table.gif"], [src$="/extended_main_table_bottom.gif"]) { opacity: 0; }
+    html:root img[src$="style_images/ambience/pip.gif"]:not(:where(.postcolor *, .signature *)) { opacity: .55; }
     html:root img[src*="style_images/"]:not(:where(.postcolor *, .signature *)):is(
       [src*="/ambi_header_nav_eh_"], [src$="/header_eh_textbar.jpg"],
       [src$="/t_reply.gif"], [src$="/t_new.gif"], [src$="/t_qr.gif"],
       [src$="/p_quote.gif"], [src$="/p_mq_add.gif"], [src$="/p_mq_remove.gif"],
       [src$="/p_edit.gif"], [src$="/p_delete.gif"], [src$="/p_report.gif"],
       [src$="/p_card.gif"], [src$="/p_pm.gif"], [src$="/p_up.gif"],
+      [src$="/p_online.gif"], [src$="/p_offline.gif"],
       [src$="/nav.gif"], [src$="/nav_m.gif"], [src$="/menu_action_down.gif"],
+      [src$="/menu_item.gif"], [src$="/to_post_off.gif"], [src$="/loading.gif"], [src$="/warn0.gif"],
       [src*="/folder_rte_images/"]) {
       filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.55);
     }
