@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.2
+@version      1.0.4
 @description  Dark styling for HentaiVerse and HVUT, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -65,9 +65,9 @@
         --color-warn-alpha: #4c3b25ed;
         --color-warn-unread: #4f3034;
         --color-exp-bar: #5684ad;
-        --color-ab-max: #737980;
-        --color-ab-cap: #416eab;
-        --color-ab-up: #a44b55;
+        --color-ab-max: #41464f;
+        --color-ab-cap: #2d4d72;
+        --color-ab-up: #70404a;
         --color-ab-font: #fff;
         /* Unlock cost text sits on an unchanged, light native image. */
         --color-ab-slot: #333;
@@ -177,10 +177,26 @@
     html:root .hath-panel button { background: var(--hvd-field); color: var(--hvd-text); border-color: var(--hvd-border); }
     html:root .hath-price-box { color: var(--hvd-red); }
 
+    /* Slot frames and their empty/lock sprite are separate from the skill artwork. */
+    html:root :is(.ability_slotbar, .ability_slotbox) > div {
+        border-radius: 4px;
+        box-shadow: inset 0 0 0 30px rgb(25 27 30 / 32%);
+    }
+    html:root :is(.ability_slotbar, .ability_slotbox) > div > div[style*="/y/t/0.png"] {
+        filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.6);
+    }
+
     /* Battle uses a separate stylesheet, including two different player-bar layouts. */
     html:root #btcp { opacity: 1; border-color: var(--hvd-border); }
     html:root :is(.btm1, #infopane, #riddleimage > img) { border-color: var(--hvd-border); }
     html:root .btm1 { border-style: solid; }
+    /* Tint inline rank highlights beneath the content; keep boss/custom hues and native geometry. */
+    html:root .btm2[style*="background"] {
+        box-shadow: inset 0 0 0 100px rgb(25 27 30 / 76%);
+    }
+    html:root .btm2 img[src*="/y/battle/mon_"] {
+        filter: brightness(0) invert(.88) sepia(.12);
+    }
     /* Blend the trough into the panel; clip the original fills without changing their widths.
        Hide only the baked rim/dead decoration, which contains the black bevel and ivory corners. */
     html:root .btm4 :is(.chbd, .btm5:has(> img[src$="/nbardead.png"])) {
@@ -231,7 +247,7 @@
             [src$="/unlock_slot_d.png"], [src$="/wind.png"], [src$="/wind_a.png"], [src$="/wis.png"], [src$="/wis_a.png"]),
         [src*="/y/battle/attack_"], [src*="/y/battle/skill_"], [src*="/y/battle/items_"],
         [src*="/y/battle/spirit_"], [src*="/y/battle/defend_"], [src*="/y/battle/focus_"],
-        [src*="/y/battle/sbsel_"], [src*="/y/battle/skills_"], [src*="/y/battle/magic_"], [src*="/y/battle/mon_"],
+        [src*="/y/battle/sbsel_"], [src*="/y/battle/skills_"], [src*="/y/battle/magic_"],
         [src$="/finishbattle.png"], [src$="/arenacontinue.png"], [src$="/grindfestcontinue.png"],
         [src$="/itemworldcontinue.png"], [src$="/answer.png"], [src$="/ponychartbutton.png"]) {
         filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.6) opacity(var(--hvd-button-opacity, 1));
