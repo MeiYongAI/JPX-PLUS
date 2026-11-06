@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.5
+// @version      2026.11.06.6
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -410,6 +410,7 @@ function renderConfigStore(parent, hooks) {
     const status = el('p', '', 'jpx-store-status');
     status.setAttribute('role', 'status');
     status.hidden = true;
+    const viewHeader = el('div', undefined, 'jpx-store-view-header');
     const stage = el('div', undefined, 'jpx-store-stage');
     const state = { view: 'browse', entries: [], query: '', kind: '', backpack: { query: '', kind: '' }, local: { world: '', style: '', battleType: '' }, user: null, editor: null, request: 0, login: null, disposed: false };
     const alive = () => !state.disposed && root.isConnected;
@@ -463,7 +464,7 @@ function renderConfigStore(parent, hooks) {
     const mineButton = button(tr('mine'), () => backpack());
     navigation.append(browseButton, mineButton);
     toolbar.append(navigation, account);
-    root.append(toolbar, status, stage);
+    root.append(toolbar, status, viewHeader, stage);
     parent.append(root);
     function accountControls() {
         account.replaceChildren();
@@ -484,14 +485,14 @@ function renderConfigStore(parent, hooks) {
         state.request++;
         browseButton.setAttribute('aria-pressed', String(view === 'browse' || view === 'detail'));
         mineButton.setAttribute('aria-pressed', String(['backpack', 'backpackDetail', 'local', 'localDetail', 'mine', 'edit'].includes(view)));
-        stage.replaceChildren(); message('');
-        parent.scrollTop = 0;
+        viewHeader.replaceChildren(); stage.replaceChildren(); message('');
+        stage.scrollTop = 0;
         return state.request;
     }
     function heading(title, back) {
         const row = el('div', undefined, 'jpx-store-heading');
         if (back) row.append(button(tr('back'), back));
-        row.append(el('h3', title)); stage.append(row);
+        row.append(el('h3', title)); viewHeader.append(row);
     }
     function empty(text, action, label = tr('retry')) {
         const box = el('div', undefined, 'jpx-store-empty');
@@ -508,7 +509,7 @@ function renderConfigStore(parent, hooks) {
         filter.setAttribute('aria-label', tr('type'));
         filters.append(search, filter, button(tr('refresh'), () => browse(true)));
         const list = el('div', undefined, 'jpx-store-list');
-        stage.append(filters, list);
+        viewHeader.append(filters); stage.append(list);
         function render() {
             list.replaceChildren();
             const query = state.query.trim().toLocaleLowerCase();
@@ -572,7 +573,8 @@ function renderConfigStore(parent, hooks) {
         for (const [key, action] of [['backpack', () => backpack()], ['local', () => local()], ['shared', () => mine()]]) {
             const tab = button(tr(key), action); tab.setAttribute('aria-pressed', String(view === key)); tabs.append(tab);
         }
-        stage.append(tabs);
+        viewHeader.append(tabs);
+        return tabs;
     }
     const localName = entry => entry.kind === 'battle-mode' ? modeName(entry.mode) : kindName(entry.kind);
     const localMeta = entry => [worldName(entry.world), entry.source === 'saved' ? tr('savedSettings') : tr('currentSettings')];
@@ -602,7 +604,7 @@ function renderConfigStore(parent, hooks) {
             search.placeholder = tr('searchBackpack'); search.setAttribute('aria-label', tr('searchBackpack'));
             const kind = select([['', tr('allTypes')], ...kinds()], state.backpack.kind); kind.setAttribute('aria-label', tr('type'));
             const list = el('div', undefined, 'jpx-store-list');
-            filters.append(search, kind); stage.append(filters, list);
+            filters.append(search, kind); viewHeader.append(filters); stage.append(list);
             function render() {
                 list.replaceChildren();
                 const query = state.backpack.query.trim().toLocaleLowerCase();
@@ -688,7 +690,7 @@ function renderConfigStore(parent, hooks) {
             control.addEventListener('change', () => { state.local[key] = control.value; render(); });
             filters.append(field(tr(label), control));
         }
-        stage.append(filters, list); render();
+        viewHeader.append(filters); stage.append(list); render();
     }
     function localDetails(entry, previous) {
         const envelope = localDraft(entry);
@@ -794,9 +796,9 @@ function renderConfigStore(parent, hooks) {
         return 'pending';
     }
     async function mine() {
-        const request = open('mine'); personalNavigation('shared');
+        const request = open('mine'), tabs = personalNavigation('shared');
         if (!state.user) { empty(tr('loginRequired'), () => login(() => mine()), tr('signIn')); return; }
-        const refresh = button(tr('refresh'), () => mine()); stage.firstElementChild.append(refresh);
+        tabs.append(button(tr('refresh'), () => mine()));
         message(tr('loading'));
         try {
             const issues = await jpxConfigStore.mine();
@@ -858,7 +860,7 @@ function renderConfigStore(parent, hooks) {
         core.registerSettingsTab({ id: 'configStore', title: () => t('cStore.name'), render(parent, hooks) {
             if (!document.getElementById('jpx-config-store-style')) {
                 const style = document.createElement('style'); style.id = 'jpx-config-store-style';
-                style.textContent = "#settings-container .jpx-store { display: grid; align-content: start; gap: 12px; min-width: 0; color: var(--jpx-theme-text, #392d25); font: 13px/1.45 Arial, Helvetica, sans-serif; }\n#settings-container .jpx-store * { box-sizing: border-box; }\n#settings-container .jpx-store [hidden] { display: none !important; }\n#settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account, #settings-container .jpx-store-actions, #settings-container .jpx-store-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }\n#settings-container .jpx-store-toolbar { justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 32px; max-width: 100%; margin: 0; padding: 4px 10px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 6px; background: var(--jpx-theme-surface, #f9f6ec); color: var(--jpx-theme-accent, #5c0d11); font: inherit; font-weight: 400; line-height: 1.4; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }\n#settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }\n#settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }\n#settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }\n#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }\n#settings-container .jpx-store p { margin: 0; }\n#settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store-empty p { margin-bottom: 8px; }\n#settings-container .jpx-store-stage { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-filters { display: flex; gap: 8px; min-width: 0; }\n#settings-container .jpx-store input, #settings-container .jpx-store select, #settings-container .jpx-store textarea { min-width: 0; max-width: 100%; min-height: 32px; margin: 0; padding: 5px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 4px; background: var(--jpx-theme-field, #fffdf7); color: var(--jpx-theme-text, #392d25); font: inherit; }\n#settings-container .jpx-store-filters input { flex: 1; width: 0; }\n#settings-container .jpx-store-filters select { max-width: 40%; }\n#settings-container .jpx-store-list { display: grid; min-width: 0; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 12px 0; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row > p, #settings-container .jpx-store-row > .jpx-store-actions, #settings-container .jpx-store-feedback { grid-column: 1 / -1; }\n#settings-container .jpx-store .jpx-store-title { width: fit-content; padding: 0; min-height: 24px; border: 0; background: transparent; text-align: left; font-weight: 600; }\n#settings-container .jpx-store .jpx-store-title:hover { text-decoration: underline; }\n#settings-container .jpx-store-meta { color: var(--jpx-theme-muted, #71634f); font-size: 12px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }\n#settings-container .jpx-store-local-row > button { align-self: start; }\n#settings-container .jpx-store-row-tools { display: flex; flex-wrap: wrap; justify-content: end; align-items: start; gap: 6px; }\n#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }\n#settings-container .jpx-store-selection > button { align-self: start; }\n#settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }\n#settings-container .jpx-store textarea { width: 100%; resize: vertical; }\n#settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }\n#settings-container .jpx-store-raw summary { padding: 8px; cursor: pointer; color: var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store pre { max-height: 280px; margin: 0; padding: 8px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 Consolas, monospace; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-auth { display: grid; justify-items: start; gap: 12px; padding: 16px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-auth-code { font: 600 22px/1.4 Consolas, monospace; user-select: all; letter-spacing: 2px; }\n#settings-container .jpx-store-badge { align-self: start; padding: 2px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 12px; color: var(--jpx-theme-accent, #5c0d11); font-size: 12px; white-space: nowrap; }\n#settings-container .jpx-store-feedback { display: grid; gap: 8px; padding: 8px 12px; border-left: 2px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); overflow-wrap: anywhere; white-space: pre-wrap; }\n@media (max-width: 650px) {\n    #settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account { gap: 6px; }\n    #settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 36px; padding: 5px 8px; }\n    #settings-container .jpx-store-filters { flex-wrap: wrap; }\n    #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }\n    #settings-container .jpx-store-filters select { flex: 1; max-width: none; }\n    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }\n}\n"; document.head.append(style);
+                style.textContent = "#settings-container #panel_configStore { overflow: hidden; }\n#settings-container .jpx-store { display: flex; flex: 1; flex-direction: column; gap: 12px; min-width: 0; min-height: 0; color: var(--jpx-theme-text, #392d25); font: 13px/1.45 Arial, Helvetica, sans-serif; }\n#settings-container .jpx-store * { box-sizing: border-box; }\n#settings-container .jpx-store [hidden] { display: none !important; }\n#settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account, #settings-container .jpx-store-actions, #settings-container .jpx-store-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }\n#settings-container .jpx-store-toolbar { flex: none; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-view-header { display: grid; flex: none; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-view-header:empty { display: none; }\n#settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 32px; max-width: 100%; margin: 0; padding: 4px 10px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 6px; background: var(--jpx-theme-surface, #f9f6ec); color: var(--jpx-theme-accent, #5c0d11); font: inherit; font-weight: 400; line-height: 1.4; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }\n#settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }\n#settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }\n#settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }\n#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }\n#settings-container .jpx-store p { margin: 0; }\n#settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store-status { flex: none; }\n#settings-container .jpx-store-empty p { margin-bottom: 8px; }\n#settings-container .jpx-store-stage { display: grid; align-content: start; flex: 1; gap: 12px; min-width: 0; min-height: 0; overflow: auto; padding-right: 4px; overscroll-behavior: contain; scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: inherit; }\n#settings-container .jpx-store-filters { display: flex; gap: 8px; min-width: 0; }\n#settings-container .jpx-store input, #settings-container .jpx-store select, #settings-container .jpx-store textarea { min-width: 0; max-width: 100%; min-height: 32px; margin: 0; padding: 5px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 4px; background: var(--jpx-theme-field, #fffdf7); color: var(--jpx-theme-text, #392d25); font: inherit; }\n#settings-container .jpx-store-filters input { flex: 1; width: 0; }\n#settings-container .jpx-store-filters select { max-width: 40%; }\n#settings-container .jpx-store-list { display: grid; min-width: 0; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 12px 0; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row > p, #settings-container .jpx-store-row > .jpx-store-actions, #settings-container .jpx-store-feedback { grid-column: 1 / -1; }\n#settings-container .jpx-store .jpx-store-title { width: fit-content; padding: 0; min-height: 24px; border: 0; background: transparent; text-align: left; font-weight: 600; }\n#settings-container .jpx-store .jpx-store-title:hover { text-decoration: underline; }\n#settings-container .jpx-store-meta { color: var(--jpx-theme-muted, #71634f); font-size: 12px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }\n#settings-container .jpx-store-local-row > button { align-self: start; }\n#settings-container .jpx-store-row-tools { display: flex; flex-wrap: wrap; justify-content: end; align-items: start; gap: 6px; }\n#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }\n#settings-container .jpx-store-selection > button { align-self: start; }\n#settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }\n#settings-container .jpx-store textarea { width: 100%; resize: vertical; }\n#settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }\n#settings-container .jpx-store-raw summary { padding: 8px; cursor: pointer; color: var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store pre { max-height: 280px; margin: 0; padding: 8px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 Consolas, monospace; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-auth { display: grid; justify-items: start; gap: 12px; padding: 16px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-auth-code { font: 600 22px/1.4 Consolas, monospace; user-select: all; letter-spacing: 2px; }\n#settings-container .jpx-store-badge { align-self: start; padding: 2px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 12px; color: var(--jpx-theme-accent, #5c0d11); font-size: 12px; white-space: nowrap; }\n#settings-container .jpx-store-feedback { display: grid; gap: 8px; padding: 8px 12px; border-left: 2px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); overflow-wrap: anywhere; white-space: pre-wrap; }\n@media (max-width: 650px) {\n    #settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account { gap: 6px; }\n    #settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 36px; padding: 5px 8px; }\n    #settings-container .jpx-store-filters { flex-wrap: wrap; }\n    #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }\n    #settings-container .jpx-store-filters select { flex: 1; max-width: none; }\n    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }\n}\n"; document.head.append(style);
             }
             renderConfigStore(parent, hooks);
         } });
