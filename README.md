@@ -18,12 +18,17 @@ Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https:/
 - Optional language packs: [简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 - [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
+- [Optional: HentaiVerse game translation — Simplified Chinese](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
 
 English is built in; other languages are separate, optional userscripts. Keep the main script enabled and enable **one language pack at a time**. To switch languages, disable the previous pack, enable the new one, and refresh the game. Disable all language packs to return to English. Your userscript manager checks each script for version updates.
 
 The four new packs cover settings, battle statistics, and the control panel, plus Config Store and Backpack with **Config Store 2026.11.06.8 or later**. Taiwan and Hong Kong use regional wording; Japanese and Korean keep canonical game item, spell, and effect names in English where useful for recognition. Shared player content and AI review reports are not automatically translated. Language packs do not change battle rules or the original JPX configuration format.
 
 HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
+
+The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([upstream script](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Versions now use **YYYY.MM.DD.revision**, starting with **2026.11.06.1**.
+
+If you already use the earlier game translation, install this GitHub edition once and keep only one copy of that game-translation script enabled. The new edition includes GitHub update URLs; your existing installation will not discover the new location through its old Greasy Fork update URL. The script name, namespace, and saved-setting keys are retained.
 
 When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.
 

@@ -18,12 +18,17 @@
 - 可选语言包：[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [可选：安装配置商店插件](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 - [可选：HentaiVerse Dark 暗色主题（Stylus 测试版）](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
+- [可选：HentaiVerse 游戏汉化与词缀染色](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
 
 主脚本默认英语，其它语言通过独立语言包添加。保持主脚本启用，**一次只启用一个语言包**；切换时停用旧包、启用新包，再刷新游戏。停用所有语言包即可恢复英语。各语言包单独由脚本管理器检查更新。
 
 四个新语言包覆盖设置、战斗统计和控制面板；配置商店与背包需要更新到 **Config Store 2026.11.06.8 或更新版本**。台湾和香港采用各自常用词汇，日语和韩语保留便于对照的物品、技能、状态英文原名。玩家分享的内容和 AI 审阅报告不会自动翻译。语言包不改变战斗规则和原版 JPX 配置格式。
 
 HentaiVerse Dark 是适配游戏与 HVUT 的独立 UserCSS 主题，并非油猴脚本。安装 [Stylus](https://add0n.com/stylus.html) 后，从上面的主题页面打开原始 UserCSS 文件进行安装，也可将文件内容粘贴到新的 UserCSS 样式中。主题已包含更新地址，更新检查取决于 Stylus 设置。JPX-PLUS 界面仍使用自身的浅暗切换。主题目前处于测试阶段，首屏加载时机受浏览器和 Stylus 设置影响。
+
+**HentaiVerse 游戏汉化**用于游戏文本翻译与装备词缀染色，也支持已适配的拍卖列表。它与 JPX-PLUS 界面语言包各自独立，无需 JPX-PLUS 也能使用。感谢原作者 **mbbdzz**（[原脚本](https://greasyfork.org/scripts/600755)），当前版本由 **MeiYongAI** 维护增强，保留原有 MIT 许可声明。版本号改为 **年.月.日.当日修订号**，本次为 **2026.11.06.1**。
+
+已安装旧游戏汉化的用户，需要从 GitHub 安装一次新版，并确保这份游戏汉化只启用一个副本。新版已配置 GitHub 更新地址；旧版仍指向 Greasy Fork，不会自行迁移。脚本名称、命名空间与设置存储键保持不变。
 
 从原版 JPX 或 JPX-Revanced 迁移时，先导出需要保留的配置与记录，再停用旧主脚本和旧语言包，避免多份脚本同时运行。JPX-PLUS 支持原版配置格式导入。
 
