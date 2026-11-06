@@ -1,0 +1,186 @@
+/* ==UserStyle==
+@name         E-Hentai Forums Dark
+@namespace    meiyongai.eh-forums-dark
+@version      1.0.0
+@description  A quiet dark theme for E-Hentai Forums, matching HentaiVerse Dark.
+@author       MeiYongAI
+@homepageURL  https://github.com/MeiYongAI/JPX-PLUS
+@updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css
+==/UserStyle== */
+
+@-moz-document domain("forums.e-hentai.org") {
+  @media screen {
+    html:root {
+      color-scheme: dark;
+      --ehf-bg: #191b1e;
+      --ehf-panel: #202226;
+      --ehf-surface: #292c31;
+      --ehf-field: #24272b;
+      --ehf-text: #e5e0d8;
+      --ehf-muted: #b4afa7;
+      --ehf-link: #e2bc8c;
+      --ehf-border: #5a534c;
+      --ehf-hover: #3d3933;
+      --ehf-code: #1b1e22;
+      --ehf-red: #ff9295;
+      --ehf-green: #8cd6a3;
+      --ehf-blue: #93baff;
+      background: var(--ehf-bg) !important;
+      scrollbar-color: var(--ehf-border) var(--ehf-bg);
+    }
+    html:root body { background: var(--ehf-bg) !important; color: var(--ehf-text); }
+    html:root :is(table, tr, td, th) { color: var(--ehf-text); border-color: var(--ehf-border); }
+    html:root :is(a:link, a:visited, a:active) { color: var(--ehf-link); }
+    html:root a:hover { color: #f5d4ac; }
+    html:root ::selection { background: #65503b; color: #fff4e5; }
+    html:root :is(hr, fieldset) { border-color: var(--ehf-border); }
+
+    /* Recolor forum chrome; retain the original table layout and spacing. */
+    html:root :is(.tablebg, .round, .round2, .page, .borderwrap, .borderwrapm,
+      .plainborder, .tablefill, .tablepad, .activeusers, .activeuserstrip, .newslink,
+      .bar, .barb, .barc, .catend, .fullimagewrap, .posticons, .fieldwrap, .ruleswrap,
+      .mya-back, .mya-content, #ipbwrapper, #ucpmenu, #ucpcontent, #gfooter,
+      #userlinks, #userlinksguest, #redirectwrap, #pmnotewrap, .errorwrap,
+      .calmonths, .calday, .calweekday, .celldate, .celltoday, .mcelldate, .mcelltoday) {
+      background: var(--ehf-panel);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.row1, .row3, .post1, .post2, .bg1, .bg3, .darkrow1,
+      .formtable td, .pformleft, .pformleftw, .pformright, .borderwrap p) {
+      background: var(--ehf-panel);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.row2, .darkrow3, .row2shaded, .row4shaded, .post1shaded, .post2shaded, .info, .cellblank, .mcellblank) {
+      background: var(--ehf-field);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.maintitle, .maintitle2, .maintitlecollapse, .mainhead, .mainfoot,
+      .mainnav, .mainpagef, .subtitle, .subtitlediv, .postlinksbar, .formsubtitle,
+      .formtable td.formtitle, .formtable td.formstrip, .borderwrap h3, .borderwrap h4,
+      .fieldwrap h4, .errorwrap h4, #pmnotewrap h4, #pmnotewrap .pmnotefoot,
+      #redirectwrap h4, #redirectwrap .redirectfoot, #logostrip, #submenu, table th) {
+      background: var(--ehf-surface);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(#navstrip, #livechat, .postdetails, .desc, .forumdesc,
+      .lastaction, .edit, .copyright, .signature, .toplinks, .normalname,
+      .newslink span, .bar p, .barb p, .barc p) { color: var(--ehf-muted); }
+    html:root :is(#navstrip, #submenu, #gfooter, #pmnotewrap,
+      .maintitle, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:any-link { color: var(--ehf-link); }
+    html:root :is(#navstrip, #submenu, #gfooter, #pmnotewrap,
+      .maintitle, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:hover { color: #f5d4ac; }
+    html:root :is(.formbuttonrow, .formbuttonrow1, .thumbwrap p, .thumbwrapp p, .thumbwrap p.alt, .thumbwrapp p.alt) {
+      background: var(--ehf-field) !important;
+      color: var(--ehf-text);
+      border-color: var(--ehf-border) !important;
+    }
+    html:root :is(.thumbwrap, .thumbwrapp, .thumbwrap h4, .thumbwrapp h4, .thin, #phototitle) {
+      background: var(--ehf-surface);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border) !important;
+    }
+    html:root .thumbwrapp p.pin { background: #422c30 !important; }
+
+    /* Quotes stay distinct from code, including nested quotes and signatures. */
+    html:root :is(.quotetop, .codetop, .sqltop, .htmltop) { color: var(--ehf-link); }
+    html:root :is(.quotemain, #QUOTE) {
+      background: var(--ehf-surface);
+      color: var(--ehf-text);
+      border-color: #80705f;
+    }
+    html:root :is(.codemain, .sqlmain, .htmlmain, #CODE) {
+      background: var(--ehf-code);
+      color: #cbdac8;
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.searchlite, mark) { background: #55412a; color: #ffe2ac; }
+    html:root .warngood { color: var(--ehf-green); }
+    html:root .warnbad { color: var(--ehf-red); }
+
+    /* Native fields, quick reply and the BBCode editor. */
+    html:root :is(input:not(:where([type=hidden], [type=image])), textarea, select, option,
+      button, .textarea, .searchinput, .button, .gobutton, .codebuttons, .helpbox, .dny-edit-title) {
+      background: var(--ehf-field);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+      color-scheme: dark;
+      accent-color: var(--ehf-link);
+      caret-color: var(--ehf-link);
+    }
+    html:root :is(input, textarea)::placeholder { color: var(--ehf-muted); opacity: 1; }
+    html:root :is(button, input[type=button], input[type=submit], input[type=reset], .button, .gobutton):enabled:hover {
+      background: var(--ehf-hover);
+      color: var(--ehf-link);
+    }
+    html:root :is(input, textarea, select, button):disabled { color: #98958f; cursor: not-allowed; }
+    html:root :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+      outline: 2px solid var(--ehf-link);
+      outline-offset: 2px;
+    }
+    html:root :is(.rteBack, .rtebuttonbar1, .rtebuttonbar2, .rtebottombutton, .rteiframe) {
+      background: var(--ehf-field);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.rteimage:hover, .rteImageRaised, .rteImageLowered, .rtebottombuttonon) {
+      background: var(--ehf-hover);
+      color: var(--ehf-link);
+      border-color: var(--ehf-link);
+    }
+    /* Put hover color behind filtered toolbar images, so it is not inverted. */
+    html:root :is(.rtebuttonbar1, .rtebuttonbar2) div:has(> img:is(.rteimage:hover, .rteImageRaised, .rteImageLowered)) { background: var(--ehf-hover); }
+    html:root img:is(.rteimage:hover, .rteImageRaised, .rteImageLowered) { background: transparent; }
+    html:root #loading-layer { background: var(--ehf-panel) !important; color: var(--ehf-text); border-color: var(--ehf-border) !important; }
+    html:root :is(.celltoday, .mcelltoday) { border-color: var(--ehf-link) !important; }
+
+    /* Equipment previews added to forum posts by the game translation helper. */
+    html:root .hv-tip { background: var(--ehf-panel); color: var(--ehf-text); border-color: var(--ehf-border); }
+    html:root .hv-tip :is(.showequip > div:first-child, .ex) { border-color: var(--ehf-border); }
+    html:root .hv-tip a:any-link { color: var(--ehf-link); }
+
+    /* Menus and pagination use the same quiet active and hover colors. */
+    html:root :is(.popupmenu, .popupmenu-item, .popupmenu-item-last, .fauxbutton, .taboff,
+      .pagelink, .pagelinklast, .minipagelink, .minipagelinklast, .toplinks span) {
+      background: var(--ehf-field);
+      color: var(--ehf-text);
+      border-color: var(--ehf-border);
+    }
+    html:root :is(.popupmenu-category, .tabon, .pagecurrent) {
+      background: var(--ehf-hover);
+      color: var(--ehf-link);
+      border-color: #927b61;
+    }
+    html:root :is(.tabon, .taboff) a:any-link { color: var(--ehf-link); }
+    html:root .fauxbutton a:any-link { color: var(--ehf-link) !important; }
+    html:root :is(.popupmenu-item, .popupmenu-item-last, .pagelink, .pagelinklast,
+      .minipagelink, .minipagelinklast, .taboff, .fauxbutton):hover { background: var(--ehf-hover); }
+
+    /* Ambience's frame tiles are decorative; never hide or invert user images. */
+    html:root :is(td, tr)[style*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)) {
+      background: var(--ehf-surface) !important;
+    }
+    html:root img[src*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)):is(
+      [src*="/ls_main_table_"], [src*="/rs_main_table_"], [src*="/cat_top_"]) { opacity: 0; }
+    html:root img[src*="style_images/"]:not(:where(.postcolor *, .signature *)):is(
+      [src*="/ambi_header_nav_eh_"], [src$="/header_eh_textbar.jpg"],
+      [src$="/t_reply.gif"], [src$="/t_new.gif"], [src$="/t_qr.gif"],
+      [src$="/p_quote.gif"], [src$="/p_mq_add.gif"], [src$="/p_mq_remove.gif"],
+      [src$="/p_edit.gif"], [src$="/p_delete.gif"], [src$="/p_report.gif"],
+      [src$="/p_card.gif"], [src$="/p_pm.gif"], [src$="/p_up.gif"],
+      [src$="/nav.gif"], [src$="/nav_m.gif"], [src$="/menu_action_down.gif"],
+      [src*="/folder_rte_images/"]) {
+      filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.55);
+    }
+
+    html:root * { scrollbar-color: var(--ehf-border) var(--ehf-bg); }
+    html:root ::-webkit-scrollbar { width: 12px; height: 12px; }
+    html:root ::-webkit-scrollbar-track { background: var(--ehf-bg); }
+    html:root ::-webkit-scrollbar-thumb { background: var(--ehf-border); border: 3px solid var(--ehf-bg); border-radius: 8px; }
+    html:root ::-webkit-scrollbar-thumb:hover { background: #927b61; }
+    html:root ::-webkit-scrollbar-corner { background: var(--ehf-bg); }
+  }
+}

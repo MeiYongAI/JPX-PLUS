@@ -18,6 +18,7 @@ Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https:/
 - Optional language packs: [简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 - [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
+- [Optional: E-Hentai Forums Dark for Stylus](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css)
 - [Optional: HentaiVerse game translation — Simplified Chinese](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
 
 English is built in; other languages are separate, optional userscripts. Keep the main script enabled and enable **one language pack at a time**. To switch languages, disable the previous pack, enable the new one, and refresh the game. Disable all language packs to return to English. Your userscript manager checks each script for version updates.
@@ -26,7 +27,24 @@ The four new packs cover settings, battle statistics, and the control panel, plu
 
 HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
 
-**HentaiVerse Dark 1.0.5** adds dark styling for HV Paper Doll equipment windows, menus and battle portrait controls, plus the My Little Pony helper panel and sliders. Character artwork, custom backgrounds, color previews and puzzle-image effects are preserved.
+**HentaiVerse Dark 1.0.6** makes JPX quickbar cooldown numbers readable with light text and a subtle dark outline, including extended skill slots. It also supports HV Paper Doll equipment windows, menus and battle portrait controls, plus the My Little Pony helper panel and sliders. Character artwork, custom backgrounds, color previews and puzzle-image effects are preserved.
+
+**E-Hentai Forums Dark 1.0.0** is a separate Stylus theme for `forums.e-hentai.org`, using the same palette. It covers forum lists, threads, quotes, code blocks, reply editors, menus and native image buttons, while preserving avatars, emoji, posted images and author-selected text colors. Install it from the link above; it includes a GitHub update URL. Checked against the Ambience skin, including the full reply editor; Fusion has not been specifically tested. The forum's existing narrow-screen layout is preserved.
+
+<details>
+<summary>Dark theme previews: game and forum</summary>
+
+**HentaiVerse Dark — battle, cooldowns and effect timers**
+
+![HentaiVerse Dark: battle controls and readable cooldown numbers](docs/images/hv-battle-dark.png)
+
+**E-Hentai Forums Dark — posts, quotes and code blocks**
+
+![E-Hentai Forums Dark: posts, quotes and code blocks](docs/images/forum-dark.png)
+
+Offline previews using the sites' native styles and sample content.
+
+</details>
 
 The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([source](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Install the script above and refresh the game. GitHub update URLs are included for userscript-manager update checks.
 

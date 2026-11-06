@@ -18,6 +18,7 @@
 - 可选语言包：[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [可选：安装配置商店插件](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 - [可选：HentaiVerse Dark 暗色主题（Stylus 测试版）](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
+- [可选：E-Hentai Forums Dark 论坛暗色主题（Stylus）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css)
 - [可选：HentaiVerse 游戏汉化与词缀染色](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
 
 主脚本默认英语，其它语言通过独立语言包添加。保持主脚本启用，**一次只启用一个语言包**；切换时停用旧包、启用新包，再刷新游戏。停用所有语言包即可恢复英语。各语言包单独由脚本管理器检查更新。
@@ -26,7 +27,24 @@
 
 HentaiVerse Dark 是适配游戏与 HVUT 的独立 UserCSS 主题，并非油猴脚本。安装 [Stylus](https://add0n.com/stylus.html) 后，从上面的主题页面打开原始 UserCSS 文件进行安装，也可将文件内容粘贴到新的 UserCSS 样式中。主题已包含更新地址，更新检查取决于 Stylus 设置。JPX-PLUS 界面仍使用自身的浅暗切换。主题目前处于测试阶段，首屏加载时机受浏览器和 Stylus 设置影响。
 
-**HentaiVerse Dark 1.0.5** 新增纸娃娃装备窗口、菜单和战斗画像编辑控件，以及彩虹小马辅助面板与滑条的暗色适配。保留角色画像、自选背景、颜色预览和谜题图片处理效果。
+**HentaiVerse Dark 1.0.6** 将 JPX 快捷栏的冷却数字改为浅色文字配细暗边，兼容扩展技能槽。也已适配纸娃娃装备窗口、菜单和战斗画像编辑控件，以及彩虹小马辅助面板与滑条。保留角色画像、自选背景、颜色预览和谜题图片处理效果。
+
+**E-Hentai Forums Dark 1.0.0** 是独立的 Stylus 论坛主题，仅作用于 `forums.e-hentai.org`，配色与游戏暗色主题一致。覆盖论坛列表、帖子、引用、代码框、回复编辑器、菜单及原生图片按钮，保留头像、表情、帖子图片与作者设置的文字颜色。点击上方链接即可安装，已包含 GitHub 更新地址。已检查 Ambience 皮肤与完整回复编辑器；Fusion 皮肤尚未专项验证，论坛原有的窄屏布局保持不变。
+
+<details>
+<summary>查看游戏与论坛暗色示例</summary>
+
+**HentaiVerse Dark：战斗界面、冷却数字与状态计时**
+
+![HentaiVerse Dark：战斗控件与清晰的冷却数字](docs/images/hv-battle-dark.png)
+
+**E-Hentai Forums Dark：帖子、引用与代码框**
+
+![E-Hentai Forums Dark：帖子、引用与代码框](docs/images/forum-dark.png)
+
+使用各站原生样式与示例内容生成的离线预览。
+
+</details>
 
 **HentaiVerse 游戏汉化**用于游戏文本翻译与装备词缀染色，也支持已适配的拍卖列表。它与 JPX-PLUS 界面语言包各自独立，无需 JPX-PLUS 也能使用。感谢原作者 **mbbdzz**（[原脚本](https://greasyfork.org/scripts/600755)），由 **MeiYongAI** 维护增强，保留原有 MIT 许可声明。点击上方链接安装后刷新游戏即可，脚本管理器可通过内置的 GitHub 更新地址检查更新。
 

@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.5
+@version      1.0.6
 @description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -212,6 +212,11 @@
     html:root #dvrc { color: var(--hvd-accent); }
     /* Standard HP text is over the green gauge, so give it its own dark backing. */
     html:root :is(#vrhb, #vrhd) { color: var(--hvd-text); background: #17191ce6; border-radius: 3px; }
+    /* JPX cooldown labels overlay skill artwork; keep them readable on light and dark pixels. */
+    html:root #quickbar .cooldown {
+        color: var(--hvd-text);
+        text-shadow: 0 1px 2px #000, 1px 0 1px #000, -1px 0 1px #000, 0 -1px 1px #000;
+    }
     html:root :is(.effect-duration, .effect_duration) > div {
         color: var(--hvd-text) !important; background: var(--hvd-surface); border-color: var(--hvd-border);
     }
