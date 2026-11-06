@@ -15,11 +15,13 @@ An enhanced JPX userscript for [HentaiVerse](https://hentaiverse.org/), with con
 Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/), then install the userscript:
 
 - [Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
-- [Optional: Simplified Chinese language pack](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js)
+- Optional language packs: [简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
 - [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
 
-The main script uses English by default. The optional Chinese language pack requires the main script. Refresh the game after installation; your userscript manager checks for version updates.
+English is built in; other languages are separate, optional userscripts. Keep the main script enabled and enable **one language pack at a time**. To switch languages, disable the previous pack, enable the new one, and refresh the game. Disable all language packs to return to English. Your userscript manager checks each script for version updates.
+
+The four new packs cover settings, battle statistics, and the control panel, plus Config Store and Backpack with **Config Store 2026.11.06.8 or later**. Taiwan and Hong Kong use regional wording; Japanese and Korean keep canonical game item, spell, and effect names in English where useful for recognition. Shared player content and AI review reports are not automatically translated. Language packs do not change battle rules or the original JPX configuration format.
 
 HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
 

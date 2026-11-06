@@ -12,7 +12,7 @@ const css = JSON.stringify(read('ui.css'));
 const header = `// ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.6
+// @version      2026.11.06.8
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -38,7 +38,13 @@ const header = `// ==UserScript==
     const host = typeof unsafeWindow === 'undefined' ? window : unsafeWindow;
     if (window.top !== window.self) return;
     const translations = ${i18n};
-    const t = key => (host.jpxI18N?.cB?.basicSettings ? translations.zh : translations.en)[key.replace(/^cStore\\./, '')] || key;
+    const t = key => {
+        const name = key.replace(/^cStore\\./, '');
+        const external = host.jpxI18N?.cStore?.[name];
+        if (typeof external === 'string') return external;
+        const fallback = host.jpxI18N?.cB?.basicSettings === '基本设置' ? translations.zh : translations.en;
+        return fallback[name] || key;
+    };
 `;
 const footer = `
     function attach() {

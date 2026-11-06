@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         JPX-PLUS Chinese Language Pack
+// @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.05.14
-// @description  JPX-PLUS 简体中文语言包
+// @version      2026.11.06.1
+// @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
 // @exclude      *hentaiverse.org/equip/*

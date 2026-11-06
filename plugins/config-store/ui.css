@@ -10,7 +10,7 @@
 #settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }
 #settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }
 #settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }
-#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
+#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid var(--jpx-theme-accent, #9b4e03); outline-offset: -1px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--jpx-theme-accent, #9b4e03) 12%, transparent); }
 #settings-container .jpx-store p { margin: 0; }
 #settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }
 #settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }

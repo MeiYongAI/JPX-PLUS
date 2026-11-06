@@ -21,6 +21,9 @@ h1 { margin: 0; font-size: clamp(24px, 3vw, 36px); line-height: 1.4; letter-spac
 .plugin-install { font-size: 12px; }
 .install { flex: none; display: inline-flex; gap: 24px; align-items: center; padding: 10px 20px; background: #681b23; color: #fff8eb; border: 1px solid #681b23; border-radius: 6px; font-weight: 600; }
 .install:hover { background: #7d2830; text-decoration: none; }
+.language-packs { margin: 0 0 24px; font-size: 13px; }
+.language-packs p { margin: 4px 0; }
+.language-packs a { display: inline-block; }
 .gallery { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
 .toolbar { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); }
 .toolbar .devices { margin-right: auto; }
