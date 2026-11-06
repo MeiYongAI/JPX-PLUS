@@ -26,9 +26,7 @@ The four new packs cover settings, battle statistics, and the control panel, plu
 
 HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
 
-The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([upstream script](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Versions now use **YYYY.MM.DD.revision**, starting with **2026.11.06.1**.
-
-If you already use the earlier game translation, install this GitHub edition once and keep only one copy of that game-translation script enabled. The new edition includes GitHub update URLs; your existing installation will not discover the new location through its old Greasy Fork update URL. The script name, namespace, and saved-setting keys are retained.
+The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([source](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Install the script above and refresh the game. GitHub update URLs are included for userscript-manager update checks.
 
 When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.
 
