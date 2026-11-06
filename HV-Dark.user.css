@@ -1,8 +1,8 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.4
-@description  Dark styling for HentaiVerse and HVUT, with JPX-PLUS compatibility.
+@version      1.0.5
+@description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
 @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HV-Dark.user.css
@@ -257,5 +257,121 @@
     /* Font sprites only; spell artwork, puzzle images and gauge fills keep their original colors. */
     html:root :is(.f2b, .f4b) > div { filter: brightness(0) invert(.88) sepia(.12); }
     html:root :is(.f2r, .f4r, .f2a, .f4a) > div { filter: brightness(1.8); }
+    /* HV Paper Doll 1.9.9: equipment controls and battle portrait editors. */
+    html:root :is(#hvpd, #hvpd-gi) { color: var(--hvd-text); }
+    html:root #hvpd :is(.cuspanel, .pwin, .eqlist, .opts),
+    html:root #hvpd-gi,
+    html:root #hvpd-gi .gifb {
+        background: var(--hvd-panel);
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+    }
+    html:root #hvpd .pwin .ph,
+    html:root #hvpd-gi .gh {
+        background: var(--hvd-surface);
+        color: var(--hvd-text);
+    }
+    html:root #hvpd :is(.bar .sel, .bgcp .r > span, .eqlist span),
+    html:root #hvpd-gi .gm { color: var(--hvd-text); }
+    html:root #hvpd :is(button, select, option, input):not(:where(.bgcp .ps button, [type=color], [type=range])),
+    html:root #hvpd .cuspanel .pick input,
+    html:root #hvpd-gi .gb {
+        background: var(--hvd-field);
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+        color-scheme: dark;
+    }
+    html:root #hvpd input[type=range] { accent-color: var(--hvd-accent); }
+    html:root #hvpd :is(button, select):not(:where(.bgcp .ps button)):enabled:hover,
+    html:root #hvpd-gi .gb:hover {
+        background: var(--hvd-hover);
+        color: var(--hvd-accent);
+    }
+    html:root #hvpd :is(.bar, .cuspanel) button[aria-pressed=true] {
+        background: var(--hvd-hover);
+        color: var(--hvd-accent);
+        border-color: var(--hvd-accent);
+    }
+    html:root #hvpd .opts button { color: var(--hvd-text) !important; }
+    html:root #hvpd .opts button:hover,
+    html:root #hvpd .opts button[aria-pressed=true] {
+        background: var(--hvd-hover) !important;
+        color: var(--hvd-accent) !important;
+    }
+    html:root :is(#hvpd, #hvpd-gi) :is(button, select, input):focus-visible {
+        outline: 1px solid var(--hvd-accent);
+        outline-offset: 1px;
+    }
+    html:root #hvpd :is(.eqlist > span, .eqlist .k, .eqlist .lv, .eqlist .pab, .cuspanel .pre, .opts hr, .st, .pick .cur, .bgcp .pv, .bgcp input[type=color], .bgcp .ps button),
+    html:root #hvpd-gi .gifb > div:first-child { border-color: var(--hvd-border); }
+    html:root #hvpd .eqlist .lv.sb { background: var(--hvd-surface); }
+    /* Keep equipment quality hues beneath a dark wash, and retain color-picker swatches. */
+    html:root #hvpd .eqlist .v:not(.none) b {
+        background-image: linear-gradient(color-mix(in srgb, var(--hvd-bg) 78%, transparent), color-mix(in srgb, var(--hvd-bg) 78%, transparent)) !important;
+        color: var(--hvd-text);
+    }
+    html:root #hvpd .eqlist .v.none b { color: var(--hvd-muted) !important; }
+    html:root #hvpd .eqlist .v.none.pick:hover b { color: var(--hvd-accent) !important; }
+    html:root #hvpd-gi > div:not(.gh):not(.gc) { background-color: var(--hvd-panel) !important; }
+
+    html:root :is(#hvpd-bpo, .hvpd-exo) {
+        outline-color: var(--hvd-accent);
+        background: color-mix(in srgb, var(--hvd-bg) 24%, transparent);
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .bar {
+        background: var(--hvd-surface);
+        color: var(--hvd-text);
+        box-shadow: inset 0 0 0 1px var(--hvd-border);
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .bar :is(button, select, option) {
+        background: var(--hvd-field);
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+        color-scheme: dark;
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .bar :is(button, select):enabled:hover {
+        background: var(--hvd-hover);
+        color: var(--hvd-accent);
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .bar button.on {
+        background: var(--hvd-hover);
+        color: var(--hvd-accent);
+        box-shadow: inset 0 0 0 1px var(--hvd-accent);
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .bar :is(button, select):focus-visible {
+        outline: 1px solid var(--hvd-accent);
+        outline-offset: 1px;
+    }
+    html:root :is(#hvpd-bpe, .hvpd-exe) {
+        background: var(--hvd-surface);
+        color: var(--hvd-accent);
+        box-shadow: inset 0 0 0 1px var(--hvd-border);
+    }
+    html:root :is(#hvpd-bpo, .hvpd-exo) .sz {
+        background: var(--hvd-accent);
+    }
+    html:root #hvpd-bpo .tp {
+        background: var(--hvd-surface);
+        color: var(--hvd-accent);
+        border-color: var(--hvd-accent);
+        box-shadow: 0 0 0 1px var(--hvd-bg);
+    }
+    html:root #hvpd-bpo .tp.sel {
+        background: var(--hvd-accent);
+        color: var(--hvd-bg);
+        box-shadow: 0 0 0 2px var(--hvd-border);
+    }
+
+    /* My Little Pony: recolor only its controls, never the puzzle or reference images. */
+    html:root #mlp_pane {
+        color-scheme: dark;
+        background: var(--hvd-panel);
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+    }
+    html:root #mlp_box input[type=range] { accent-color: var(--hvd-accent); }
+    html:root #mlp_box input[type=range]:focus-visible { outline: 1px solid var(--hvd-accent); outline-offset: 2px; }
+    html:root #mlp_box > div:last-child { color: var(--hvd-muted); }
+
     html:root[data-jpx-theme=light] :is(#settings-container, .jpx-records-page, .jpx-record-detail, #jpx-mobile-entry) { color-scheme: light; }
 }

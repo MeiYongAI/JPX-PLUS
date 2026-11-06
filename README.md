@@ -26,6 +26,8 @@ The four new packs cover settings, battle statistics, and the control panel, plu
 
 HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
 
+**HentaiVerse Dark 1.0.5** adds dark styling for HV Paper Doll equipment windows, menus and battle portrait controls, plus the My Little Pony helper panel and sliders. Character artwork, custom backgrounds, color previews and puzzle-image effects are preserved.
+
 The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([source](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Install the script above and refresh the game. GitHub update URLs are included for userscript-manager update checks.
 
 When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.

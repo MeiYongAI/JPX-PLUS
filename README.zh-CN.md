@@ -26,6 +26,8 @@
 
 HentaiVerse Dark 是适配游戏与 HVUT 的独立 UserCSS 主题，并非油猴脚本。安装 [Stylus](https://add0n.com/stylus.html) 后，从上面的主题页面打开原始 UserCSS 文件进行安装，也可将文件内容粘贴到新的 UserCSS 样式中。主题已包含更新地址，更新检查取决于 Stylus 设置。JPX-PLUS 界面仍使用自身的浅暗切换。主题目前处于测试阶段，首屏加载时机受浏览器和 Stylus 设置影响。
 
+**HentaiVerse Dark 1.0.5** 新增纸娃娃装备窗口、菜单和战斗画像编辑控件，以及彩虹小马辅助面板与滑条的暗色适配。保留角色画像、自选背景、颜色预览和谜题图片处理效果。
+
 **HentaiVerse 游戏汉化**用于游戏文本翻译与装备词缀染色，也支持已适配的拍卖列表。它与 JPX-PLUS 界面语言包各自独立，无需 JPX-PLUS 也能使用。感谢原作者 **mbbdzz**（[原脚本](https://greasyfork.org/scripts/600755)），由 **MeiYongAI** 维护增强，保留原有 MIT 许可声明。点击上方链接安装后刷新游戏即可，脚本管理器可通过内置的 GitHub 更新地址检查更新。
 
 从原版 JPX 或 JPX-Revanced 迁移时，先导出需要保留的配置与记录，再停用旧主脚本和旧语言包，避免多份脚本同时运行。JPX-PLUS 支持原版配置格式导入。
