@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.06.10
+// @version      2026.11.06.11
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -24,7 +24,7 @@ const settingsPlugins = new Map();
 // Optional userscripts own their UI, network permissions and credentials.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.06.10',
+    version: '2026.11.06.11',
     registerSettingsTab(plugin) {
         if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
             ['battle', 'battleRules', 'keyBindings', 'stats'].includes(plugin.id) ||
@@ -386,16 +386,19 @@ function jpxThemeCSS(css) {
         '#f9f6ec': 'surface', '#f4f1e5': 'surface', '#f5f1e7': 'surface', '#eee': 'surface',
         '#fffdf7': 'field', '#fff': 'field', '#ffffff': 'field',
         '#392d25': 'text', '#333': 'text',
-        '#71634f': 'muted', '#79604f': 'muted', '#777': 'muted', '#666': 'muted', '#5c0d11': 'accent', '#9b4e03': 'accent',
-        '#c8b49b': 'border', '#bda68e': 'border', '#ddd0bd': 'border', '#d3c5b2': 'border', '#b49369': 'border', '#baa080': 'border', '#e1d7c7': 'border', '#444': 'border',
+        '#71634f': 'muted', '#79604f': 'muted', '#8c6551': 'muted', '#777': 'muted', '#666': 'muted', '#5c0d11': 'accent', '#9b4e03': 'accent',
+        '#c8b49b': 'border', '#bda68e': 'border', '#ddd0bd': 'border', '#d3c5b2': 'border', '#b49369': 'border', '#baa080': 'border', '#e1d7c7': 'border', '#c1ab8c': 'border', '#ccc': 'border', '#888': 'border', '#444': 'border',
         '#e9d5ae': 'header', '#f2e6ce': 'header', '#ead9b8': 'selected', '#eddbb2': 'selected', '#e0e0e0': 'selected',
         '#f1e2c5': 'hover', '#eee2c9': 'hover', '#f0eadf': 'hover', '#f4e5c4': 'hover'
     };
-    return css.replace(/#[\da-f]{3,8}\b|rgb\(92 13 17 \/ [\d.]+%\)/gi, color => {
+    return css.replace(/#[\da-f]{3,8}\b|rgb\((?:92 13 17|155 78 3|244 229 196|237 235 223) \/ [\d.]+%\)/gi, color => {
         const role = roles[color.toLowerCase()];
         if (role) return 'var(--jpx-theme-' + role + ', ' + color + ')';
-        const alpha = color.match(/^rgb\(92 13 17 \/ ([\d.]+)%\)$/i);
-        return alpha ? 'color-mix(in srgb, var(--jpx-theme-accent, #5c0d11) ' + alpha[1] + '%, transparent)' : color;
+        const alpha = color.match(/^rgb\(([\d ]+) \/ ([\d.]+)%\)$/i);
+        if (!alpha) return color;
+        const [alphaRole, fallback] = { '92 13 17': ['accent', '#5c0d11'], '155 78 3': ['accent', '#9b4e03'],
+            '244 229 196': ['hover', '#f4e5c4'], '237 235 223': ['background', '#edebdf'] }[alpha[1]];
+        return 'color-mix(in srgb, var(--jpx-theme-' + alphaRole + ', ' + fallback + ') ' + alpha[2] + '%, transparent)';
     });
 }
 // Reuse the same converted styles in settings and temporary detail windows.
@@ -427,7 +430,7 @@ const JPX_RECORD_IMAGE_CSS = `
         .jpx-record-image-actions > summary::-webkit-details-marker { display: none; }
         .jpx-record-image-actions > div { display: grid; gap: 4px; }
         .jpx-record-image-actions button { text-align: center; white-space: nowrap; }
-        .jpx-record-image-actions button:hover { background: #eee2c9; }
+        html .jpx-record-image-actions button:is(:hover, :focus, :active) { background: #eee2c9; color: inherit; border-color: #c8b49b; }
         .jpx-record-image-actions button:disabled { cursor: wait; opacity: .6; }
         .jpx-record-image-toast { max-width: min(280px, calc(100vw - 32px)); box-sizing: border-box; padding: 8px 12px; border: 1px solid #c8b49b; border-radius: 4px; background: #f9f6ec; color: #5c0d11; box-shadow: 0 2px 6px #0002; font: 13px/1.45 Arial, Helvetica, sans-serif; overflow-wrap: anywhere; }
         .jpx-record-image-actions :focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
@@ -540,7 +543,8 @@ let cfg = {
             --jpx-waiting-header: #5c491f; --jpx-waiting-surface: #302c22; --jpx-waiting-border: #b2934c; --jpx-waiting-ink: #ffebb7;
             --jpx-widget-info-hover: rgb(255 255 255 / 6%);
         }
-        .jpx-widget-card .jpx-widget-drag {
+        /* Outrank native button hover/focus/active rules without overriding custom palette values. */
+        #ctrl-widget .jpx-widget-drag, .jpx-widget-card .jpx-widget-drag {
             display: flex; box-sizing: border-box; align-items: center; gap: 6px;
             width: 100%; margin: 0; padding: 5px 8px; min-height: 28px;
             border: 0; border-bottom: 1px solid var(--jpx-state-border); border-radius: 0;
@@ -560,14 +564,15 @@ let cfg = {
             border-left: 3px solid var(--jpx-state-accent); font-weight: 700;
         }
         .jpx-widget-card .jpx-widget-actions { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--jpx-theme-border, #c9b7a2); }
-        .jpx-widget-card .jpx-widget-action {
+        #ctrl-widget .jpx-widget-action, .jpx-widget-card .jpx-widget-action {
             display: inline-flex; align-items: center; justify-content: center; gap: 4px;
             box-sizing: border-box; width: 100%; min-height: 28px; padding: 4px; margin: 0;
             border: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; cursor: pointer;
         }
         .jpx-widget-card .jpx-widget-action + .jpx-widget-action { border-left: 1px solid var(--jpx-theme-border, #c9b7a2); }
         .jpx-widget-card .jpx-widget-action svg { width: 13px; height: 13px; flex: none; }
-        .jpx-widget-card .jpx-widget-action:hover { background: #f4e5c4; }
+        #ctrl-widget .jpx-widget-action:is(:hover, :focus-visible, :active),
+        .jpx-widget-card .jpx-widget-action:is(:hover, :focus-visible, :active) { background: #f4e5c4; }
         .jpx-widget-card :focus-visible { outline: 2px solid #9b4e03; outline-offset: -2px; }
         #ctrl-widget.is-dragging, #ctrl-widget.is-dragging .jpx-widget-drag { cursor: grabbing; user-select: none; }
         #ctrl-widget.is-dragging { box-shadow: 0 4px 12px rgb(45 32 20 / 22%); }
@@ -750,7 +755,7 @@ let cfg = {
             color: #5c0d11;
             font-size: 20px;
         }
-        #settings-container .jpx-settings-titlebar button:hover { border-color: #5c0d11; background: #fff9; }
+        #settings-container .jpx-settings-titlebar button:hover { border-color: #5c0d11; background: var(--jpx-theme-hover, #fff9); }
         #settings-container .jpx-settings-sidebar {
             display: flex;
             flex: none;
@@ -1227,6 +1232,8 @@ let cfg = {
         #settings-container .jpx-rule-state-toggle svg { width: 16px; height: 16px; }
         #settings-container [data-change-state] { --jpx-change-color: #975000; --jpx-change-bg: #f5ebd5; }
         #settings-container [data-change-state=added] { --jpx-change-color: #39633b; --jpx-change-bg: #e7eddf; }
+        html[data-jpx-theme=dark] #settings-container [data-change-state] { --jpx-change-color: var(--jpx-theme-accent); --jpx-change-bg: var(--jpx-theme-selected); }
+        html[data-jpx-theme=dark] #settings-container [data-change-state=added] { --jpx-change-color: #a4cfaa; --jpx-change-bg: #293a2d; }
         #settings-container .field-block[data-change-state],
         #settings-container .array-row[data-change-state]:not(.is-drop-before, .is-drop-after, .is-dragging),
         #settings-container .dynamic-array-row[data-change-state],
@@ -1483,6 +1490,11 @@ let cfg = {
         html[data-jpx-theme=dark] :is(#settings-container, .jpx-records-page, .jpx-record-detail, .jpx-record-final, #jpx-mobile-entry) { color-scheme: dark; color: var(--jpx-theme-text); }
         html[data-jpx-theme=dark] #settings-container :is(input:not([type=color]):not([type=checkbox]):not([type=range]), select, textarea) { background-color: var(--jpx-theme-field); color: var(--jpx-theme-text); border-color: var(--jpx-theme-border); }
         html[data-jpx-theme=dark] #settings-container .jpx-rule-item { color: var(--jpx-theme-text); }
+        html[data-jpx-theme=dark] #settings-container button.jpx-delete-button { color: #ff9295; }
+        html[data-jpx-theme=dark] #settings-container button.jpx-delete-button:hover { color: #ffb4b6; background: #493034; border-color: #bb6c71; }
+        html[data-jpx-theme=dark] .effect-duration > div { color: var(--jpx-theme-text); border-color: var(--jpx-theme-border); }
+        html[data-jpx-theme=dark] .effect-duration > div[style*="aquamarine"] { background: #25483d !important; color: #b4efd4; }
+        html[data-jpx-theme=dark] .effect-duration > div[style*="lavender"] { background: #3e3555 !important; color: #e3d4ff; }
         html[data-jpx-theme=dark] #settings-container .settings-tab-btn:hover, html[data-jpx-theme=dark] #settings-container .jpx-settings-sidebar-toggle:hover { background: var(--jpx-theme-hover) !important; }
         #settings-container #jpx-settings-menu-button { display: none; }
         #settings-container.jpx-settings-mobile #close-button { order: -1; width: auto; min-width: 64px; height: 40px; padding: 0 6px; font-size: 14px; }
@@ -2638,8 +2650,8 @@ function renderJpxCleanup(owner) {
     const panel = document.createElement('main'), title = document.createElement('h2');
     const status = document.createElement('p'), actions = document.createElement('div');
     panel.id = 'jpx-cleanup-page';
-    panel.style.cssText = 'box-sizing:border-box;max-width:520px;margin:24px auto;padding:16px;border:1px solid #c8b49b;background:#f9f6ec;color:#5c0d11;font:14px/1.6 Arial,sans-serif;';
-    document.body.style.cssText = 'margin:12px;background:#edebdf;';
+    panel.style.cssText = jpxThemeCSS('box-sizing:border-box;max-width:520px;margin:24px auto;padding:16px;border:1px solid #c8b49b;background:#f9f6ec;color:#5c0d11;font:14px/1.6 Arial,sans-serif;');
+    document.body.style.cssText = jpxThemeCSS('margin:12px;background:#edebdf;');
     actions.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;';
     status.setAttribute('role', 'status');
     let message = owner ? 'cleanupRunning' : 'cleanupOther';
@@ -2652,7 +2664,7 @@ function renderJpxCleanup(owner) {
         window.location.reload();
     } });
     const retry = jpxUtils.createButton(actions, { history: false, onClick: requestJpxCleanup });
-    for (const button of [reload, retry]) button.style.cssText = 'min-height:40px;padding:6px 12px;border:1px solid #c8b49b;border-radius:4px;background:#fffdf7;color:inherit;font:inherit;cursor:pointer;';
+    for (const button of [reload, retry]) button.style.cssText = jpxThemeCSS('min-height:40px;padding:6px 12px;border:1px solid #c8b49b;border-radius:4px;background:#fffdf7;color:inherit;font:inherit;cursor:pointer;');
     const update = () => {
         title.textContent = t('cS.cleanup'); status.textContent = t('cS.' + message);
         reload.textContent = t('cS.cleanupReload'); retry.textContent = t('cS.cleanupRun');
@@ -10377,8 +10389,12 @@ function bindControlWidgetPosition(widget, handle, owner) {
         const desired = position || { left: maxLeft - 4, top: maxTop - 4 };
         const left = Math.max(view.left + margin, Math.min(maxLeft, desired.left));
         const top = Math.max(view.top + margin, Math.min(maxTop, desired.top));
-        widget.style.setProperty('left', left + 'px', 'important');
-        widget.style.setProperty('top', top + 'px', 'important');
+        // Home stays anchored to the viewport edge as rows/fonts change height.
+        // Numeric top/left would leave one stale frame until ResizeObserver runs.
+        widget.style.setProperty('left', position ? left + 'px' : 'auto', 'important');
+        widget.style.setProperty('top', position ? top + 'px' : 'auto', 'important');
+        widget.style.setProperty('right', position ? 'auto' : (innerWidth - left - width) + 'px', 'important');
+        widget.style.setProperty('bottom', position ? 'auto' : (innerHeight - top - height) + 'px', 'important');
         return { left, top };
     }
     function constrain() {
@@ -10535,10 +10551,10 @@ function jpxPanelManager(panelType) {
             }
         }
 
-        document.body.appendChild(ns.ctrlWidget);
-        ns.position = bindControlWidgetPosition(ns.ctrlWidget, parts.header, ns);
         ns.setBackground(isActiveBattle ? '#4f4' : '#fef');
         ns.updateContent();
+        document.body.appendChild(ns.ctrlWidget);
+        ns.position = bindControlWidgetPosition(ns.ctrlWidget, parts.header, ns);
         ns.dispatchState();
     };
 

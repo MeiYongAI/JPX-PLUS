@@ -17,8 +17,11 @@
 - [安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
 - [安装简体中文语言包](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js)
 - [可选：安装配置商店插件](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
+- [可选：HentaiVerse Dark 暗色主题（Stylus 测试版）](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
 
 语言包需要与主脚本一起使用。安装后刷新游戏页面；后续由脚本管理器按版本检查更新。
+
+HentaiVerse Dark 是适配游戏与 HVUT 的独立 UserCSS 主题，并非油猴脚本。安装 [Stylus](https://add0n.com/stylus.html) 后，从上面的主题页面打开原始 UserCSS 文件进行安装，也可将文件内容粘贴到新的 UserCSS 样式中。主题已包含更新地址，更新检查取决于 Stylus 设置。若装过旧版 HentaiVerse Dark Test 油猴脚本，请将其停用；JPX-PLUS 界面仍使用自身的浅暗切换。主题目前处于测试阶段，首屏加载时机受浏览器和 Stylus 设置影响。
 
 从原版 JPX 或 JPX-Revanced 迁移时，先导出需要保留的配置与记录，再停用旧主脚本和旧语言包，避免多份脚本同时运行。JPX-PLUS 支持原版配置格式导入。
 

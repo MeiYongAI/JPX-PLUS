@@ -1,0 +1,246 @@
+/* ==UserStyle==
+@name         HentaiVerse Dark
+@namespace    meiyongai.hv-dark
+@version      1.0.2
+@description  Dark styling for HentaiVerse and HVUT, with JPX-PLUS compatibility.
+@author       MeiYongAI
+@homepageURL  https://github.com/MeiYongAI/JPX-PLUS
+@updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HV-Dark.user.css
+==/UserStyle== */
+
+/* Install in Stylus and disable HentaiVerse Dark · Test in your userscript manager.
+   Native image labels, battle gauge values and game configuration stay intact.
+   html:root preserves the original specificity over HVUT's later :root palette. */
+@-moz-document domain("hentaiverse.org") {
+    html:root {
+        color-scheme: dark;
+        background-color: #191b1e !important;
+        --hvd-bg: #191b1e;
+        --hvd-panel: #202226;
+        --hvd-surface: #292c31;
+        --hvd-field: #24272b;
+        --hvd-text: #e5e0d8;
+        --hvd-muted: #b4afa7;
+        --hvd-accent: #e2bc8c;
+        --hvd-border: #5a534c;
+        --hvd-hover: #3d3933;
+        --hvd-red: #ff9295;
+        --hvd-blue: #93baff;
+        --hvd-green: #8cd6a3;
+        --hvd-purple: #c9a5ed;
+
+        /* HVUT's existing palette also covers menus and panels created later. */
+        --color-font-default: var(--hvd-text);
+        --color-font-light: var(--hvd-accent);
+        --color-font-invalid: #96918b;
+        --color-font-invert: #f5eee5;
+        --color-font-highlight: var(--hvd-red);
+        --color-font-warn: var(--hvd-red);
+        --color-font-bonus: var(--hvd-blue);
+        --color-border-default: var(--hvd-border);
+        --color-border-light: #927b61;
+        --color-border-alpha: #5a534c70;
+        --color-bg-default: var(--hvd-panel);
+        --color-bg-back: var(--hvd-bg);
+        --color-bg-light: var(--hvd-surface);
+        --color-bg-alpha: #ffffff0b;
+        --color-bg-invalid: #ffffff08;
+        --color-bg-invert: #514434;
+        --color-bg-h1: #453b30;
+        --color-bg-h2: var(--hvd-surface);
+        --color-equip-Ultimate: #45334f;
+        --color-equip-Peerless: #513136;
+        --color-equip-Legendary: #4c402b;
+        --color-equip-Magnificent: #2d4053;
+        --color-equip-Exquisite: #33452e;
+        --color-equip-Superior: #393b3f;
+        --color-item-Consumable: var(--hvd-green);
+        --color-item-Artifact: var(--hvd-blue);
+        --color-item-Trophy: var(--hvd-purple);
+        --color-item-Token: #b0cd8a;
+        --color-item-Crystal: #e39cdb;
+        --color-item-MonsterFood: #89caff;
+        --color-item-Material: var(--hvd-red);
+        --color-item-Collectable: var(--hvd-blue);
+        --color-warn-bg: #4c3b25;
+        --color-warn-alpha: #4c3b25ed;
+        --color-warn-unread: #4f3034;
+        --color-exp-bar: #5684ad;
+        --color-ab-max: #737980;
+        --color-ab-cap: #416eab;
+        --color-ab-up: #a44b55;
+        --color-ab-font: #fff;
+        /* Unlock cost text sits on an unchanged, light native image. */
+        --color-ab-slot: #333;
+        --color-mm-equip: var(--hvd-red);
+        --color-mm-item: var(--hvd-green);
+        --color-mm-credits: var(--hvd-blue);
+        --color-mm-hath: #e39cdb;
+        scrollbar-color: var(--hvd-border) var(--hvd-bg);
+    }
+    html:root body:not(.jpx-record-detail):not(:has(> .jpx-records-page)) {
+        background-color: var(--hvd-bg) !important;
+        color: var(--hvd-text);
+    }
+    html:root #csp {
+        background-color: var(--hvd-panel);
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+    }
+    html:root :is(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"]) {
+        scrollbar-color: var(--hvd-border) transparent;
+    }
+    html:root :is(#csp, #popup_box, .showequip, .hvut-cfg-div) div {
+        scrollbar-color: inherit;
+    }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div) a { color: var(--hvd-accent); }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div) a:hover { color: #f0d3ac; }
+    html:root .hvut-mm-attach-e > a { color: inherit; }
+    html:root :is(.fcb, .cfb, .market_tab, .armory_tab) { color: var(--hvd-text); }
+    html:root :is(.fcg, .sd > div:last-child > div, .eqp > div:last-child:not([onclick]), #mmail_pager > div > span) { color: var(--hvd-muted); }
+    html:root :is(.fcr, .eqs, .eqred, #eu > span, .emsg, .messagebox_error) { color: var(--hvd-red); }
+    html:root :is(.fca, #ep > span, .chm > div:nth-child(n+2)) { color: var(--hvd-blue); }
+    html:root #ee > span { color: var(--hvd-purple); }
+    html:root :is(.ss, .itemlist > tbody > tr > td > div[onclick]:not([style]):hover, .eqp > div:last-child[onclick]:not([data-locked="1"]):not([style]):hover) { color: var(--hvd-blue) !important; }
+
+    /* Native surfaces, including sticky table headers and equipment previews. */
+    html:root :is(.nc, .nc > div > div, #level_details > div, #world_text > div,
+        #messagebox_inner, #confirm_inner, #popup_box, #equip_extended, #lottery_eqstat, #ability_info,
+        #market_itemlist th, #market_accountlog th, #market_tradelog th, #equipselect_left, #equipselect_left table,
+        #btcp, #riddlemaster, #infopane, .msp > div:first-child) {
+        background-color: var(--hvd-panel) !important;
+        color: var(--hvd-text);
+        border-color: var(--hvd-border);
+    }
+    html:root :is(#messagebox_outer, #confirm_outer) { background-color: #101214cc !important; }
+    html:root :is(#navbar, #networth, #stats_scrollable, #attr_table, #prof_outer table,
+        .nc > div, .cfb, .cfbs, .showequip > div:first-child, .ex, #popup_box > div:first-child,
+        #ability_treelist, #ability_info > div:nth-child(3) > div, #ability_info > div:nth-child(3) > div > div:first-child,
+        .msl, .mcr > div, #monsterstats_right > div:first-child, #monsterskills th, #monstercreate_stats > div > div:first-child,
+        #train_progress > div:first-child > div:nth-child(2), #train_table td, #settings_challenge td, #settings_title td,
+        #mmail_list th, #mmail_list td, #arena_list td, #market_left > div, #market_left > a > div,
+        #market_itemlist td, #market_itemhistory th, .market_itemorders th, .market_cur,
+        #armory_left > div, #armory_left > a > div, .armory_cur, #equipselect_left td, .eqb, .eqcharm) { border-color: var(--hvd-border); }
+    html:root .cfbs { background-color: var(--hvd-surface); border-bottom-color: var(--hvd-panel); }
+    html:root #train_progress > div:first-child > div:nth-child(2) { background-color: var(--hvd-bg); }
+    html:root :is(.nc > div > div:hover, .msl:hover, #mmail_list tr[onclick]:hover,
+        #market_itemlist tr:hover:not(:first-child), .market_itemorders tr[onclick]:hover,
+        #equipselect_left tr:not(.eqselall):not(.eqtplabel):hover, tr[data-hover="1"],
+        .eqb:not(.eqdisabled):hover, .eqcharm:not(.eqdisabled):hover) { background: var(--hvd-hover); }
+    html:root :is(.cfb:hover, .market_tab:hover, .armory_tab:hover,
+        #market_itemlist tr:hover:not(:first-child), .market_itemorders tr[onclick]:hover,
+        #equipselect_left tr:not(.eqselall):not(.eqtplabel):hover) { color: var(--hvd-accent); }
+    html:root #csp .nc > div > div:hover { background-color: var(--hvd-hover) !important; }
+    html:root :is(#market_itemlist tr[data-orderdisabled="1"], .market_itemorders tr[data-orderconflict="1"], #buyorder_update[data-orderdisabled="1"]) { color: var(--hvd-red); }
+
+    /* Recolor controls without changing their dimensions or overriding JPX's own theme. */
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input:where(:not([type=image]):not([type=color]):not([type=range])), textarea, select, option):not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) {
+        color: var(--hvd-text);
+        background: var(--hvd-field);
+        border-color: var(--hvd-border);
+        accent-color: var(--hvd-accent);
+        color-scheme: dark;
+    }
+    /* Clear native pressed gradients as well as their background color. */
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input, textarea, select):enabled:is(:hover, :active):not([readonly]):not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) { background: var(--hvd-hover); }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input[type=button], input[type=submit]):enabled:hover:not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) { color: var(--hvd-accent); }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input, textarea, select):enabled:focus:not([readonly]):not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) {
+        background: var(--hvd-field); border-color: var(--hvd-accent);
+    }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input, textarea, select):enabled:focus:not([readonly]):not(:where([data-cod-match], .hvut-warn, .hvut-bonus, #settings-container *, .jpx-widget-card *, .jpx-record-final *)) { color: var(--hvd-text); }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input, textarea, select):focus-visible:not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) {
+        outline: 1px solid var(--hvd-accent); outline-offset: 1px;
+    }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) :is(button, input, textarea, select):disabled:not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) { color: #96918b; background: #242629; border-color: #47484a; }
+    html:root :where(#csp, #popup_box, .showequip, .hvut-cfg-div, [id^="hvut-"], [class^="hvut-"], .hath-panel) select:is([size], [multiple]) option:checked:not(:where(#settings-container *, .jpx-widget-card *, .jpx-record-final *)) { background: var(--color-bg-invert); color: var(--hvd-text); }
+    html:root #itshop_t1 > input { background: var(--hvd-field) !important; color: var(--hvd-text) !important; border-color: var(--hvd-border) !important; }
+    html:root :is(.lc, .lr) > span { background-color: var(--hvd-field); border-color: var(--hvd-border); }
+    html:root :is(.lc:hover, .lr:hover) input:enabled ~ span,
+    html:root :is(.lc, .lr) input:enabled:focus ~ span { background-color: var(--hvd-hover) !important; border-color: var(--hvd-accent) !important; }
+    html:root .lc > span::after { border-color: var(--hvd-accent); }
+    html:root .lr > span::after { background-color: var(--hvd-accent); }
+    html:root :is(.lc, .lr) input:disabled ~ span { border-color: #47484a !important; }
+    html:root .lc input:disabled ~ span::after { border-color: #96918b !important; }
+    html:root .lr input:disabled ~ span::after { background-color: #96918b; }
+    html:root .hvut-label input[type=checkbox]:checked + span::before { border-color: var(--hvd-accent); }
+    html:root .hvut-label input[type=radio]:checked + span::before { background-color: var(--hvd-accent); }
+    html:root .hvut-mm-view input[data-cod-match="1"] { color: var(--color-font-bonus) !important; }
+    html:root .hvut-mm-view input[data-cod-match="0"] { color: var(--color-font-warn) !important; }
+
+    /* HVUT's two legacy dialogs have inline colors and no class names. */
+    html:root body:has(#hvut-top) > div[style*="position: fixed"][style*="z-index: 1001"] > div {
+        background-color: var(--hvd-surface) !important; color: var(--hvd-text) !important; border-color: var(--hvd-border) !important;
+    }
+    html:root body:has(#hvut-top) > div[style*="position: fixed"][style*="z-index: 1001"] :is(input, textarea) {
+        background: var(--hvd-field); color: var(--hvd-text); border-color: var(--hvd-border); color-scheme: dark;
+    }
+    html:root .hath-panel { background: var(--hvd-surface); border-color: var(--hvd-border); color: var(--hvd-text); }
+    html:root .hath-panel button { background: var(--hvd-field); color: var(--hvd-text); border-color: var(--hvd-border); }
+    html:root .hath-price-box { color: var(--hvd-red); }
+
+    /* Battle uses a separate stylesheet, including two different player-bar layouts. */
+    html:root #btcp { opacity: 1; border-color: var(--hvd-border); }
+    html:root :is(.btm1, #infopane, #riddleimage > img) { border-color: var(--hvd-border); }
+    html:root .btm1 { border-style: solid; }
+    /* Blend the trough into the panel; clip the original fills without changing their widths.
+       Hide only the baked rim/dead decoration, which contains the black bevel and ivory corners. */
+    html:root .btm4 :is(.chbd, .btm5:has(> img[src$="/nbardead.png"])) {
+        background: var(--hvd-surface);
+        clip-path: inset(3px 0 round 3px);
+    }
+    html:root .btm4 img:is([src$="/nbarfg.png"], [src$="/nbardead.png"]) { opacity: 0; }
+    html:root :is(#dvbh, #dvbm, #dvbs, #dvbc, #vbh, #vbm, #vbs) { background-color: #17191c; border-color: var(--hvd-border); }
+    html:root :is(#dvrhb, #dvrhd, #dvrm, #dvrs, #dvrc, #vrhb, #vrhd, #vrm, #vrs) { opacity: 1; }
+    html:root :is(#dvrhb, #dvrhd) { color: var(--hvd-green); }
+    html:root :is(#dvrm, #vrm) { color: var(--hvd-blue); }
+    html:root :is(#dvrs, #vrs) { color: var(--hvd-red); }
+    html:root #dvrc { color: var(--hvd-accent); }
+    /* Standard HP text is over the green gauge, so give it its own dark backing. */
+    html:root :is(#vrhb, #vrhd) { color: var(--hvd-text); background: #17191ce6; border-radius: 3px; }
+    html:root :is(.effect-duration, .effect_duration) > div {
+        color: var(--hvd-text) !important; background: var(--hvd-surface); border-color: var(--hvd-border);
+    }
+    html:root :is(.effect-duration, .effect_duration) > div[style*="aquamarine"] { background: #25483d !important; color: #b4efd4 !important; }
+    html:root :is(.effect-duration, .effect_duration) > div[style*="lavender"] { background: #3e3555 !important; color: #e3d4ff !important; }
+
+    /* Preserve bitmap text, outlines, native size and translated image content.
+       These directories contain text controls; ability/monster artwork needs narrower matching. */
+    html:root #csp img:is([src*="/y/m/"], [src*="/y/character/"], [src$="/rename.png"],
+        [src$=".png"]:is([src*="/y/training/"], [src*="/y/equip/"], [src*="/y/shops/"], [src*="/y/arena/"],
+            [src*="/y/mmail/"]:not([src$="/ygm.png"])),
+        [src*="/y/ab/ta"], [src*="/y/ab/td"], [src*="/y/ab/reset"],
+        [src$="/startgrindfest.png"], [src$="/userestorative.png"], [src$="/scroll_up.png"], [src$="/scroll_down.png"],
+        [src*="/y/monster/"]:is(
+            [src$="/agi.png"], [src$="/agi_a.png"], [src$="/arthropod.png"], [src$="/arthropod_a.png"],
+            [src$="/avion.png"], [src$="/avion_a.png"], [src$="/beast.png"], [src$="/beast_a.png"],
+            [src$="/celestial.png"], [src$="/celestial_a.png"], [src$="/cold.png"], [src$="/cold_a.png"],
+            [src$="/createmonster.png"], [src$="/createmonster_d.png"], [src$="/crsh.png"], [src$="/crsh_a.png"],
+            [src$="/daimon.png"], [src$="/daimon_a.png"], [src$="/dark.png"], [src$="/dark_a.png"],
+            [src$="/delete.png"], [src$="/dex.png"], [src$="/dex_a.png"], [src$="/dragonkin.png"],
+            [src$="/dragonkin_a.png"], [src$="/drugallmonsters.png"], [src$="/drugallmonsters_d.png"], [src$="/drugmonster.png"],
+            [src$="/drugmonster_d.png"], [src$="/elec.png"], [src$="/elec_a.png"], [src$="/elemental.png"],
+            [src$="/elemental_a.png"], [src$="/end.png"], [src$="/end_a.png"], [src$="/feedallmonsters.png"],
+            [src$="/feedallmonsters_d.png"], [src$="/feedmonster.png"], [src$="/feedmonster_d.png"], [src$="/fire.png"],
+            [src$="/fire_a.png"], [src$="/giant.png"], [src$="/giant_a.png"], [src$="/holy.png"],
+            [src$="/holy_a.png"], [src$="/humanoid.png"], [src$="/humanoid_a.png"], [src$="/int.png"],
+            [src$="/int_a.png"], [src$="/mechanoid.png"], [src$="/mechanoid_a.png"], [src$="/ml_monstats.png"],
+            [src$="/ml_monstats_a.png"], [src$="/ml_skilledit.png"], [src$="/ml_skilledit_a.png"], [src$="/next.png"],
+            [src$="/prcg.png"], [src$="/prcg_a.png"], [src$="/prev.png"], [src$="/rename.png"],
+            [src$="/reptilian.png"], [src$="/reptilian_a.png"], [src$="/saveskills.png"], [src$="/slsh.png"],
+            [src$="/slsh_a.png"], [src$="/sprite.png"], [src$="/sprite_a.png"], [src$="/str.png"],
+            [src$="/str_a.png"], [src$="/undead.png"], [src$="/undead_a.png"], [src$="/unlock_slot.png"],
+            [src$="/unlock_slot_d.png"], [src$="/wind.png"], [src$="/wind_a.png"], [src$="/wis.png"], [src$="/wis_a.png"]),
+        [src*="/y/battle/attack_"], [src*="/y/battle/skill_"], [src*="/y/battle/items_"],
+        [src*="/y/battle/spirit_"], [src*="/y/battle/defend_"], [src*="/y/battle/focus_"],
+        [src*="/y/battle/sbsel_"], [src*="/y/battle/skills_"], [src*="/y/battle/magic_"], [src*="/y/battle/mon_"],
+        [src$="/finishbattle.png"], [src$="/arenacontinue.png"], [src$="/grindfestcontinue.png"],
+        [src$="/itemworldcontinue.png"], [src$="/answer.png"], [src$="/ponychartbutton.png"]) {
+        filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.6) opacity(var(--hvd-button-opacity, 1));
+    }
+    /* Only the filtered controls consume this value; unselected tabs remain fully readable. */
+    html:root #csp img[src$="_d.png"] { --hvd-button-opacity: .5; }
+    /* Font sprites only; spell artwork, puzzle images and gauge fills keep their original colors. */
+    html:root :is(.f2b, .f4b) > div { filter: brightness(0) invert(.88) sepia(.12); }
+    html:root :is(.f2r, .f4r, .f2a, .f4a) > div { filter: brightness(1.8); }
+    html:root[data-jpx-theme=light] :is(#settings-container, .jpx-records-page, .jpx-record-detail, #jpx-mobile-entry) { color-scheme: light; }
+}
