@@ -17,9 +17,9 @@ Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https:/
 - [Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
 - Optional language packs: [简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
-- [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
-- [Optional: E-Hentai Forums Dark for Stylus](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css)
-- [Optional: HentaiVerse game translation — Simplified Chinese](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
+- [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css) · [Forum thread](https://forums.e-hentai.org/index.php?showtopic=302930)
+- [Optional: E-Hentai Forums Dark for Stylus](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css) · [Forum thread](https://forums.e-hentai.org/index.php?showtopic=302931)
+- [Optional: HentaiVerse game translation — Simplified Chinese](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) · [中文发布帖](https://forums.e-hentai.org/index.php?showtopic=302932)
 
 English is built in; other languages are separate, optional userscripts. Keep the main script enabled and enable **one language pack at a time**. To switch languages, disable the previous pack, enable the new one, and refresh the game. Disable all language packs to return to English. Your userscript manager checks each script for version updates.
 
@@ -47,6 +47,15 @@ Offline previews using the sites' native styles and sample content.
 </details>
 
 The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([source](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Install the script above and refresh the game. GitHub update URLs are included for userscript-manager update checks.
+
+<details>
+<summary>Game translation and equipment color preview</summary>
+
+![HentaiVerse Chinese translation: navigation and equipment-affix colors](docs/images/hv-chinese-preview.png)
+
+Offline sample rendered with the released translation script; the comparison layout is for illustration.
+
+</details>
 
 When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.
 

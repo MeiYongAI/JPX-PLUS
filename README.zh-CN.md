@@ -17,9 +17,9 @@
 - [安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
 - 可选语言包：[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 - [可选：安装配置商店插件](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
-- [可选：HentaiVerse Dark 暗色主题（Stylus 测试版）](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css)
-- [可选：E-Hentai Forums Dark 论坛暗色主题（Stylus）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css)
-- [可选：HentaiVerse 游戏汉化与词缀染色](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js)
+- [可选：HentaiVerse Dark 暗色主题（Stylus 测试版）](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css) · [独立发布帖](https://forums.e-hentai.org/index.php?showtopic=302930)
+- [可选：E-Hentai Forums Dark 论坛暗色主题（Stylus）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css) · [独立发布帖](https://forums.e-hentai.org/index.php?showtopic=302931)
+- [可选：HentaiVerse 游戏汉化与词缀染色](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) · [中文发布帖](https://forums.e-hentai.org/index.php?showtopic=302932)
 
 主脚本默认英语，其它语言通过独立语言包添加。保持主脚本启用，**一次只启用一个语言包**；切换时停用旧包、启用新包，再刷新游戏。停用所有语言包即可恢复英语。各语言包单独由脚本管理器检查更新。
 
@@ -47,6 +47,15 @@ HentaiVerse Dark 是适配游戏与 HVUT 的独立 UserCSS 主题，并非油猴
 </details>
 
 **HentaiVerse 游戏汉化**用于游戏文本翻译与装备词缀染色，也支持已适配的拍卖列表。它与 JPX-PLUS 界面语言包各自独立，无需 JPX-PLUS 也能使用。感谢原作者 **mbbdzz**（[原脚本](https://greasyfork.org/scripts/600755)），由 **MeiYongAI** 维护增强，保留原有 MIT 许可声明。点击上方链接安装后刷新游戏即可，脚本管理器可通过内置的 GitHub 更新地址检查更新。
+
+<details>
+<summary>查看游戏汉化与词缀染色示例</summary>
+
+![HentaiVerse 汉化：导航翻译与装备词缀颜色](docs/images/hv-chinese-preview.png)
+
+使用发布脚本实际生成的离线示例；对照排版仅用于展示。
+
+</details>
 
 从原版 JPX 或 JPX-Revanced 迁移时，先导出需要保留的配置与记录，再停用旧主脚本和旧语言包，避免多份脚本同时运行。JPX-PLUS 支持原版配置格式导入。
 
