@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.06.1
+// @version     2026.11.07.1
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7293,6 +7293,8 @@
         if (el.closest(JPX_UNTRANSLATED_SELECTOR)) return;
         const attrsToTranslate = ['value', 'placeholder', 'title'];
         attrsToTranslate.forEach(attr => {
+            // option.value 是程序数据（如 Percentage Ranges 的品质键），只汉化选项文字。
+            if (attr === 'value' && el.tagName === 'OPTION') return;
             // HVUT 用原始 title 选择体力图标，并识别 Great / Exhausted 状态。
             if (attr === 'title' && el.closest('#stamina_readout')) return;
             // 提交值/选项值属于程序数据；仅翻译显示标签、普通按钮与提示。
