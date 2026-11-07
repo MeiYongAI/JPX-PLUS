@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.08.3
+// @version     2026.11.08.4
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7072,16 +7072,37 @@
     function sourceDisplayGroups(scope) {
         // 同一个父元素也可能随整块面板移动；缓存须包含实际生效的规则组。
         const groups = [];
+        // 多个规则共用同一个包含/排除选择器，同一次解析只查一次祖先。
+        // 只在本次调用内复用，面板移动、class/id 改变后不会沿用旧结果。
+        const matches = new Map();
+        const isWithin = selector => {
+            if (!matches.has(selector)) matches.set(selector, !!scope.closest(selector));
+            return matches.get(selector);
+        };
         let key = '';
         for (let i = 0; i < executionQueue.length; i++) {
             const group = executionQueue[i];
-            if ((!group.selector || scope.closest(group.selector))
-                && (!group.excludeSelector || !scope.closest(group.excludeSelector))) {
+            if ((!group.selector || isWithin(group.selector))
+                && (!group.excludeSelector || !isWithin(group.excludeSelector))) {
                 groups.push(group);
                 key += i + ',';
             }
         }
         return { groups, key };
+    }
+
+    function getCachedSourceTranslation(text, scope, context = sourceDisplayGroups(scope)) {
+        if (IS_LOG_TRANS_DISABLED && scope.closest('#pane_log')) return text;
+        const cacheKey = context.key + '\0' + text;
+        let translated = sourceDisplayTranslations.get(cacheKey);
+        if (translated === undefined) {
+            translated = getTranslatedString(text, scope, context.groups);
+            if (sourceDisplayTranslations.size >= 256) {
+                sourceDisplayTranslations.delete(sourceDisplayTranslations.keys().next().value);
+            }
+            sourceDisplayTranslations.set(cacheKey, translated);
+        }
+        return translated;
     }
 
     function flushSourceDisplays() {
@@ -7125,15 +7146,7 @@
             && previous.text === text && display.getAttribute(attributeName) === previous.translated) return true;
         // 相同技能/物品在换轮时会生成全新节点，按实际规则作用域复用纯文本结果。
         // 有界缓存不保留 DOM，也不随战斗轮数无限增长。
-        const cacheKey = key + '\0' + text;
-        let translated = sourceDisplayTranslations.get(cacheKey);
-        if (translated === undefined) {
-            translated = getTranslatedString(text, scope, groups);
-            if (sourceDisplayTranslations.size >= 256) {
-                sourceDisplayTranslations.delete(sourceDisplayTranslations.keys().next().value);
-            }
-            sourceDisplayTranslations.set(cacheKey, translated);
-        }
+        const translated = getCachedSourceTranslation(text, scope, { groups, key });
         if (display) {
             // HVUT 更新原有文本节点时，同步显示层，不能使用一次性翻译缓存。
             if (display.getAttribute(attributeName) !== translated) {
@@ -7406,12 +7419,16 @@
         }
     }
 
-    function translateCompletePhrase(text, element) {
+    function translateCompletePhrase(text, element, scopedGroups = null) {
         const candidates = completePhraseIndex.get(text.trim());
         if (!candidates) return null;
         for (const { group, key, value } of candidates) {
-            if (group.selector && element && !element.closest(group.selector)) continue;
-            if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
+            if (scopedGroups) {
+                if (!scopedGroups.includes(group)) continue;
+            } else {
+                if (group.selector && element && !element.closest(group.selector)) continue;
+                if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
+            }
             // 样式词条继续交给原有渲染路径处理，避免把 HTML 或样式当作纯文本。
             if (typeof value !== 'string' || /<[^>]+>/.test(value)) return null;
             return text.replace(text.includes(key) ? key : text.trim(), () => value);
@@ -7572,7 +7589,7 @@
         if (IS_LOG_TRANS_DISABLED && element && element.closest('#pane_log')) {
             return text;
         }
-        const complete = translateCompletePhrase(text, element);
+        const complete = translateCompletePhrase(text, element, scopedGroups);
         if (complete !== null) return complete;
         let result = text;
         for (const group of scopedGroups || executionQueue) {
@@ -7760,7 +7777,9 @@
             if (original && original.trim()) {
                 const cacheKey = `cache_${attr}`;
                 if (el[cacheKey] === original) return;
-                const translated = getTranslatedString(original, el);
+                // 带数值的提示常逐回合变化，直接处理，避免无效缓存查找/淘汰。
+                const translated = /\d/.test(original)
+                    ? getTranslatedString(original, el) : getCachedSourceTranslation(original, el);
                 if (translated !== original) {
                     if (el.setAttribute) el.setAttribute(attr, translated);
                     else el[attr] = translated;
