@@ -56,19 +56,17 @@ const baseFile = 'JPX-PLUS-ZhTrans.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
 const { cStore: baseStore, cM: baseManager, ...baseUI } = base;
 const baseEntries = flatten(baseUI);
-const translations = JSON.parse(read('plugins/config-store/i18n.json'));
 const storeSource = read('src/config-manager/store.js');
-const integratedTranslations = JSON.parse(storeSource.match(/    const translations = (.+);/)[1]);
-const storeEntries = flatten(integratedTranslations.en);
+const translations = JSON.parse(storeSource.match(/    const translations = (.+);/)[1]);
+const storeEntries = flatten(translations.en);
 const managerEntries = flatten(JSON.parse(read('src/config-manager/en.json')));
 validateEntries(flatten(baseStore), storeEntries, baseFile + '.cStore');
 validateEntries(flatten(baseManager), managerEntries, baseFile + '.cM');
-// Extract only the actual plugin lookup. No plugin startup or GM API is executed.
-const plugin = read('JPX-PLUS-ConfigStore.user.js');
-const lookupSource = plugin.match(/    const t = key => \{[\s\S]*?\n    \};/);
+// Extract only the integrated lookup. No store startup or GM API is executed.
+const lookupSource = storeSource.match(/    const t = key => \{[\s\S]*?\n    \};/);
 assert.ok(lookupSource, 'Config Store lookup can be tested in isolation');
 function lookup(dictionary) {
-    const context = vm.createContext({ host: { jpxI18N: dictionary }, translations });
+    const context = vm.createContext({ host: { jpxI18N: dictionary }, translations, translate: key => key });
     new vm.Script(lookupSource[0] + '\nt;').runInContext(context, { timeout: 1000 });
     return key => vm.runInContext('t(' + JSON.stringify(key) + ')', context, { timeout: 1000 });
 }
@@ -87,10 +85,10 @@ for (const locale of locales) {
     assert.deepEqual(merged.cW, dictionary.cW, file + ': replace owned namespace');
     assert.deepEqual(evaluate(source, file, plain(merged)), merged, file + ': repeat loading stays stable');
     const translate = lookup(dictionary);
-    for (const [key, value] of Object.entries(cStore)) assert.equal(translate('cStore.' + key), value, file + ': plugin lookup ' + key);
-    assert.equal(translate('cStore.unknownFixtureKey'), 'cStore.unknownFixtureKey', file + ': unknown key fallback');
+    for (const [key, value] of Object.entries(cStore)) assert.equal(translate('cStore.' + key), value, file + ': integrated lookup ' + key);
+    assert.equal(translate('cStore.unknownFixtureKey'), 'unknownFixtureKey', file + ': unknown key fallback');
     results.push({ file, base: Object.keys(baseEntries).length, store: Object.keys(cStore).length, total: Object.keys(flatten(dictionary)).length });
 }
-assert.equal(lookup(base)('cStore.name'), translations.zh.name, 'Existing Simplified Chinese pack retains store fallback');
+assert.equal(lookup(base)('cStore.name'), baseStore.name, 'Simplified Chinese pack translates the integrated store');
 assert.equal(lookup({})('cStore.name'), translations.en.name, 'Default store language remains English');
 console.log(JSON.stringify({ passed: true, results }, null, 2));

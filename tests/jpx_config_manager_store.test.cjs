@@ -1,5 +1,5 @@
 'use strict';
-// Full assembled main userscript and legacy plugin in separate mocked GM sandboxes.
+// Full assembled main userscript with mocked GM storage and transport.
 // Every HTTP request is fulfilled locally. Real game/account/manager data is untouched.
 const { test, before, after } = require('node:test');
 const assert = require('node:assert/strict');
@@ -8,7 +8,6 @@ const { createHash } = require('node:crypto');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve(__dirname, '..');
 const main = fs.readFileSync(process.env.JPX_TEST_SOURCE || path.join(root, 'JPX-PLUS.user.js'), 'utf8');
-const legacy = fs.readFileSync(path.join(root, 'JPX-PLUS-ConfigStore.user.js'), 'utf8');
 const html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:8px;background:#edebdf;color:#5c0d11;font:12px Verdana}#csp{width:1240px;height:704px}</style></head><body><div id="csp"><div id="navbar"></div></div></body></html>';
 const clone = value => JSON.parse(JSON.stringify(value));
 const config = { battleVersion: 20251216, OneHanded_General: { supports: [{ type: 'stop', customMessage: 'Original native settings', conditions: [] }], attacks: [{ type: 'normalAttack' }] } };
@@ -18,8 +17,6 @@ const envelope = (title, world = 'Any') => ({ schemaVersion: 1, kind: 'battle-mo
             futureMode: { preserved: true }, jpxPlusExecution: { style: '2H_Mage', element: 'cold' } } } });
 const legacyRecords = Array.from({ length: 7 }, (_, index) => ({ id: String(index + 1).padStart(8, '0') + '-1111-4111-8111-111111111111',
     savedAt: '2026-11-07T00:00:00Z', envelope: envelope('Legacy ' + (index + 1), index % 2 ? 'Isekai' : 'Persistent') }));
-const legacyToken = { token: 'fixture_legacy_secret_never_migrate', expiresAt: Date.now() + 3600000 };
-const oldStorage = [...legacyRecords.map(record => ['jpx-config-store-backpack-v1:' + record.id, record]), ['jpx-config-store-auth-v1', legacyToken]];
 
 function expose() {
     initDoI18n(); loadBattleConfig(); battleStyle = 'OneHanded'; battleType = 'General';
@@ -52,7 +49,7 @@ function inSandbox(source, id, initial = []) {
 let browser;
 before(async () => { browser = await chromium.launch({ ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}), headless: true }); });
 after(async () => { await browser?.close(); });
-async function fixture(t, { oldFirst, mobile = false, count = 1, records, language = 'en', signedIn = false, shareOverrides = {} } = {}) {
+async function fixture(t, { mobile = false, count = 1, records, language = 'en', signedIn = false, shareOverrides = {} } = {}) {
     const context = await browser.newContext({ viewport: mobile ? { width: 375, height: 812 } : { width: 1440, height: 960 }, isMobile: mobile, hasTouch: mobile, reducedMotion: 'reduce' });
     t.after(() => context.close());
     const page = await context.newPage(), errors = [], unexpected = [];
@@ -110,10 +107,7 @@ async function fixture(t, { oldFirst, mobile = false, count = 1, records, langua
         };
     }, { files, catalog, signedIn, shareOverrides });
     if (language !== 'en') await page.addScriptTag({ content: fs.readFileSync(path.join(root, 'JPX-PLUS-' + language + '.user.js'), 'utf8') });
-    if (oldFirst === true) await page.addScriptTag({ content: inSandbox(legacy, 'legacy', oldStorage) });
     await page.addScriptTag({ content: inSandbox(harness, 'main', signedIn ? [['jpx-config-store-auth-v1', { token: 'fixture_only', expiresAt: Date.now() + 3600000 }]] : []) });
-    if (oldFirst === false) await page.addScriptTag({ content: inSandbox(legacy, 'legacy', oldStorage) });
-    if (oldFirst !== undefined) await page.waitForFunction(() => __fullStore.library().entries.filter(entry => entry.id.startsWith('0000000')).length === 7);
     await page.evaluate(config => { __fullStore.seed(config); __fullStore.open(); }, config);
     await tab(page, 'configManager');
     await page.locator('.jpx-config-row').first().waitFor();
@@ -511,16 +505,16 @@ test('store filters fit the other language packs on a small phone with larger te
     }
 });
 
-for (const oldFirst of [true, false]) test('full core migrates separate legacy GM archive with ' + (oldFirst ? 'plugin first' : 'main first'), { timeout: 30000 }, async t => {
-    const f = await fixture(t, { oldFirst });
-    assert.deepEqual(await f.page.evaluate(() => __transport.snapshots.legacy()), oldStorage, 'source archive and token are untouched');
+test('core compatibility bridge preserves imported archives without transferring credentials', { timeout: 30000 }, async t => {
+    const f = await fixture(t);
+    await f.page.evaluate(entries => window.JPXPlus.migrateLegacyConfigs(entries), legacyRecords);
     assert.deepEqual(await f.page.evaluate(() => __transport.snapshots.main()), [], 'credentials and archives are not copied to the main GM store');
     const current = await f.page.evaluate(() => __fullStore.library());
     for (const before of legacyRecords) {
         const after = current.entries.find(entry => entry.id === before.id);
         assert.deepEqual(after.envelope, before.envelope); assert.equal(after.createdAt, before.savedAt);
     }
-    await f.page.evaluate(() => window.dispatchEvent(new Event('jpx:legacy-config-request')));
+    await f.page.evaluate(entries => window.JPXPlus.migrateLegacyConfigs(entries), legacyRecords);
     assert.equal((await f.page.evaluate(() => __fullStore.library())).entries.length, current.entries.length, 'repeated handoff does not duplicate archives');
     assert.equal(await f.page.locator('#tab_configStore').count(), 0);
     assert.equal(await f.page.locator('#tab_configManager').count(), 1);

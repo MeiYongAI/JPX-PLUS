@@ -10,13 +10,9 @@ Import battle configs under **Configs → My configs → Import**. Imported rule
 
 Statistics and historical records retain their own import/export controls. The local library is separate from the native battle settings. Original JPX files remain supported; PLUS-specific options are not a promise of lossless export back to original JPX.
 
-## From the optional Config Store
+## Existing Config Store installations
 
-1. Update JPX-PLUS, your language pack, and the old Config Store script to **2026.11.08.1**. Keep the old store enabled for this step, then refresh a game page.
-2. Open **Configs → My configs** and check that your backpack entries are present. Only configuration records are copied; the old archive is retained.
-3. Disable the old store script after checking the transfer. Sign in again inside the integrated Store when you want to share; its GitHub token is not transferred.
-
-New users need only the main script. Keeping the legacy script enabled does not add a second Store tab when the integrated manager is present.
+The standalone script is no longer distributed. Use **Configs → My configs / Store / Shared** in JPX-PLUS. Configs already in My configs remain available. If any configs are still only in the old plugin, export them before disabling or uninstalling it, then import those files into My configs. Sign in separately in the integrated Store when needed.
 
 ## Save, apply and update
 
@@ -42,13 +38,9 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 
 统计设置与历史记录仍使用各自的导入导出入口。本地配置库和原生战斗设置分别保存；支持导入原版 JPX 文件，但 PLUS 特有选项不保证降级到原版后完全保留。
 
-### 从旧商店迁移
+### 已安装旧商店
 
-1. 将主脚本、语言包及旧商店脚本更新到 **2026.11.08.1**。暂时保留旧商店启用，刷新游戏页面。
-2. 在**配置管理 → 我的配置**核对原背包条目。迁移只复制配置，保留旧插件里的原始数据。
-3. 确认迁移完成后停用旧商店。需要分享时在新商店重新登录，GitHub 凭据不会跨脚本迁移。
-
-新用户无需安装旧商店。
+旧独立脚本不再提供，请使用主脚本中的**配置管理 → 我的配置 / 商店 / 已分享**。已进入“我的配置”的条目继续保留；如果配置还只存在旧插件中，请先导出，再停用或卸载旧插件，并将文件导入“我的配置”。需要分享时在内置商店登录。
 
 ### 保存、应用与更新
 

@@ -6,11 +6,9 @@ const { webcrypto, createHash } = require('node:crypto');
 const { pathToFileURL } = require('node:url');
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'src/config-manager/store.js'), 'utf8');
-const legacy = fs.readFileSync(path.join(root, 'JPX-PLUS-ConfigStore.user.js'), 'utf8');
 const mode = { supports: [], attacks: [{ type: 'normalAttack' }], jpxPlusExecution: { style: '2H_Mage', element: 'fire' } };
 const envelope = { schemaVersion: 1, kind: 'battle-mode', title: 'Two-handed test', description: '', world: 'Persistent', mode: 'TwoHanded_General', scriptVersion: '2026.11.07.1', config: { battleVersion: 20251216, TwoHanded_General: mode } };
 const clone = value => JSON.parse(JSON.stringify(value));
-const tick = () => new Promise(resolve => setImmediate(resolve));
 function sandbox(storage = new Map()) {
     const events = new Map(), calls = [], host = {
         addEventListener(name, listener) { if (!events.has(name)) events.set(name, new Set()); events.get(name).add(listener); },
@@ -44,40 +42,6 @@ const serverValidator = path.resolve(root, '../JPX-PLUS-Configs/scripts/validati
 test('published store validator preserves mode execution metadata', { skip: !fs.existsSync(serverValidator) }, async () => {
     const { validateEnvelope } = await import(pathToFileURL(serverValidator));
     assert.deepEqual(validateEnvelope(envelope).envelope, envelope);
-});
-
-test('updated standalone plugin migrates archives once without tokens, deletion, or duplicate tab', async () => {
-    const id = '11111111-1111-4111-8111-111111111111';
-    const record = { id, savedAt: '2026-11-07T00:00:00Z', envelope };
-    const auth = { token: 'must_never_cross_sandbox', expiresAt: Date.now() + 60000 };
-    const fixture = sandbox(new Map([['jpx-config-store-backpack-v1:' + id, record], ['jpx-config-store-auth-v1', auth]]));
-    const received = [];
-    fixture.host.JPXPlus = { apiVersion: 1, features: { configManagement: true },
-        migrateLegacyConfigs: entries => { received.push(clone(entries)); return true; },
-        registerSettingsTab: () => { throw Error('Integrated core must not register the old store tab'); } };
-    vm.runInContext(legacy, fixture.context); await tick();
-    fixture.host.dispatchEvent({ type: 'jpx:legacy-config-request' }); await tick();
-    assert.deepEqual(received, [[record]]);
-    assert.equal(JSON.stringify(received).includes(auth.token), false);
-    assert.deepEqual(fixture.storage.get('jpx-config-store-auth-v1'), auth);
-    assert.deepEqual(fixture.storage.get('jpx-config-store-backpack-v1:' + id), record);
-});
-
-test('migration handles plugin-before-core and failed imports can retry without deleting source', async () => {
-    const id = '22222222-2222-4222-8222-222222222222';
-    const record = { id, savedAt: '2026-11-07T00:00:00Z', envelope };
-    const fixture = sandbox(new Map([['jpx-config-store-backpack-v1:' + id, record]]));
-    vm.runInContext(legacy, fixture.context); await tick();
-    let attempts = 0;
-    fixture.host.JPXPlus = { apiVersion: 1, features: { configManagement: true }, migrateLegacyConfigs: () => {
-        if (++attempts === 1) throw Error('token-like secret should never be forwarded');
-        return true;
-    } };
-    fixture.host.dispatchEvent({ type: 'jpx:ready' }); await tick();
-    assert.deepEqual(clone(fixture.calls.find(event => event.type === 'jpx:legacy-config-error').detail), { code: 'migrationFailed' });
-    fixture.host.dispatchEvent({ type: 'jpx:legacy-config-request' }); await tick();
-    assert.equal(attempts, 2);
-    assert.deepEqual(fixture.storage.get('jpx-config-store-backpack-v1:' + id), record);
 });
 
 test('embedded store exposes Browse and Shared, saves locally, and opens share without fetching catalog', async t => {

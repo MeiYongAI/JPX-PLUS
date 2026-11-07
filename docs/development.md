@@ -9,7 +9,6 @@ The installed entry point is `JPX-PLUS.user.js`. It contains the core and the ge
 | `JPX-PLUS.user.js` | Core, battle execution, settings, records and generated manager |
 | `src/config-manager/` | Local library, manager UI, integrated store, styles and English labels |
 | `JPX-PLUS-*.user.js` language packs | External interface translations |
-| `plugins/config-store/` | Legacy plugin retained for old installations and backpack transfer |
 | `docs/` | Pages preview, static galleries and screenshots |
 | `tests/` | Config storage, migration, UI, import/export and recognition regression tests |
 
@@ -25,7 +24,6 @@ npx playwright install chromium
 npm run build
 npm run check
 npm test
-node plugins/config-store/service.test.cjs
 ```
 
 `npm run check` verifies syntax, reproducible generated blocks and all five external language packs. Browser tests use disposable profiles and mocked transport. They do not access your installed userscripts, account, battle or GitHub credentials. They do not measure live game network latency.

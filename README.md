@@ -19,7 +19,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 Update the main script and your language pack together. GitHub update URLs are included; automatic checks follow your userscript-manager settings.
 
-**Configs and Store are now included in the main script.** No separate store installation is needed. Coming from JPX or the old Config Store? See the short [upgrade guide](docs/upgrading.md).
+**Configs and Store are included in the main script.** No separate store installation is needed. Coming from JPX? See the short [upgrade guide](docs/upgrading.md).
 
 ## Configs
 
