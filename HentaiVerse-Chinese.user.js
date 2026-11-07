@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.08.2
+// @version     2026.11.08.3
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -6957,6 +6957,16 @@
     // 人格名称也是用户数据，不能按物品/属性词条翻译。
     const JPX_UNTRANSLATED_SELECTOR = '#settings-container, #ctrl-widget, #persona_form option';
     const JPX_SOURCE_SELECTOR = '#iwinfo, .bts > div, .bti3 > div, .btii';
+    // 不进入已明确排除的子树；日志开关切换会刷新页面，因此可在启动时确定。
+    const SKIP_TRANSLATION_SELECTOR = 'script, style, textarea'
+        + (/(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)
+            ? ', ' + JPX_UNTRANSLATED_SELECTOR : '')
+        + (IS_LOG_TRANS_DISABLED ? ', #pane_log' : '');
+
+    function isTranslationExcluded(node) {
+        const element = node.nodeType === 1 ? node : node.parentElement;
+        return !!element?.closest(SKIP_TRANSLATION_SELECTOR);
+    }
 
     function translateJPXSource(node, parent) {
         if (!/(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)) return false;
@@ -7054,26 +7064,89 @@
         return translateSourceDisplay(node, parent, 'hv-tr-text', 'data-hv-tr-display');
     }
 
+    const sourceDisplays = new WeakMap();
+    const sourceDisplayTranslations = new Map();
+    const pendingSourceDisplays = new Map();
+    let sourceDisplayScheduled = false;
+
+    function sourceDisplayGroups(scope) {
+        // 同一个父元素也可能随整块面板移动；缓存须包含实际生效的规则组。
+        const groups = [];
+        let key = '';
+        for (let i = 0; i < executionQueue.length; i++) {
+            const group = executionQueue[i];
+            if ((!group.selector || scope.closest(group.selector))
+                && (!group.excludeSelector || !scope.closest(group.excludeSelector))) {
+                groups.push(group);
+                key += i + ',';
+            }
+        }
+        return { groups, key };
+    }
+
+    function flushSourceDisplays() {
+        sourceDisplayScheduled = false;
+        const pending = [...pendingSourceDisplays.values()];
+        pendingSourceDisplays.clear();
+        const styles = new Map();
+        const ready = pending.filter(item => item.node.isConnected
+            && item.node.parentNode === item.parent && item.node.nodeValue === item.text
+            && !isTranslationExcluded(item.parent));
+        // 先读取整批字体，再插入显示层。不能交替写 DOM / 读计算样式，
+        // 否则每个技能、物品标签都会迫使浏览器重算前一条写入的样式。
+        for (const { parent } of ready) {
+            if (styles.has(parent)) continue;
+            const style = getComputedStyle(parent);
+            styles.set(parent, { fontSize: style.fontSize, lineHeight: style.lineHeight });
+        }
+        for (const { node, parent, text, translated, groups, tagName, attributeName } of ready) {
+            const label = document.createElement(tagName);
+            label.setAttribute(attributeName, translated);
+            const style = styles.get(parent);
+            label.style.setProperty('--hv-ml-font-size', style.fontSize);
+            if (tagName === 'hv-jpx-text') label.style.setProperty('--hv-source-line-height', style.lineHeight);
+            parent.insertBefore(label, node);
+            label.appendChild(node);
+            sourceDisplays.set(node, { host: label, scope: parent, groups, text, translated });
+        }
+    }
+
     // 训练名称是 HVUT 的数据键；时长和正在训练的名称也必须保留原文。
     function translateSourceDisplay(node, parent, tagName, attributeName) {
         const display = parent.matches(tagName + '[' + attributeName + ']') ? parent : null;
-
+        const scope = display ? parent.parentElement : parent;
+        const { groups, key } = sourceDisplayGroups(scope);
         const text = node.nodeValue;
-        const translated = getTranslatedString(text, display ? parent.parentElement : parent);
+        const previous = sourceDisplays.get(node);
+        // 自己插入的包装会再次触发 observer；仅在原文和作用域未变时复用。
+        // 同一 Text 节点被游戏/HVUT 改写时仍须重新翻译。
+        if (display && previous?.host === display && previous.scope === scope
+            && previous.groups.length === groups.length && groups.every((group, i) => group === previous.groups[i])
+            && previous.text === text && display.getAttribute(attributeName) === previous.translated) return true;
+        // 相同技能/物品在换轮时会生成全新节点，按实际规则作用域复用纯文本结果。
+        // 有界缓存不保留 DOM，也不随战斗轮数无限增长。
+        const cacheKey = key + '\0' + text;
+        let translated = sourceDisplayTranslations.get(cacheKey);
+        if (translated === undefined) {
+            translated = getTranslatedString(text, scope, groups);
+            if (sourceDisplayTranslations.size >= 256) {
+                sourceDisplayTranslations.delete(sourceDisplayTranslations.keys().next().value);
+            }
+            sourceDisplayTranslations.set(cacheKey, translated);
+        }
         if (display) {
             // HVUT 更新原有文本节点时，同步显示层，不能使用一次性翻译缓存。
             if (display.getAttribute(attributeName) !== translated) {
                 display.setAttribute(attributeName, translated);
             }
+            sourceDisplays.set(node, { host: display, scope, groups, text, translated });
         } else if (translated !== text) {
-            // 使用专用内联元素，避免新增 span 被 HVUT 的库存选择器重复读取。
-            const label = document.createElement(tagName);
-            label.setAttribute(attributeName, translated);
-            const textStyle = getComputedStyle(parent);
-            label.style.setProperty('--hv-ml-font-size', textStyle.fontSize);
-            if (tagName === 'hv-jpx-text') label.style.setProperty('--hv-source-line-height', textStyle.lineHeight);
-            parent.insertBefore(label, node);
-            label.appendChild(node);
+            // 本次微任务中统一插入专用内联元素，原文一直供插件读取。
+            pendingSourceDisplays.set(node, { node, parent, text, translated, groups, tagName, attributeName });
+            if (!sourceDisplayScheduled) {
+                sourceDisplayScheduled = true;
+                queueMicrotask(flushSourceDisplays);
+            }
         }
         return true;
     }
@@ -7493,7 +7566,7 @@
      * 纯文本替换器 (用于 UI 元素)
      * 逻辑顺序：正则 -> 字典 (按优先级分层执行)
      */
-    function getTranslatedString(text, element) {
+    function getTranslatedString(text, element, scopedGroups = null) {
         if (!text || !text.trim()) return text;
         // --- 新增：如果禁用日志汉化且元素在日志区，返回原文 ---
         if (IS_LOG_TRANS_DISABLED && element && element.closest('#pane_log')) {
@@ -7502,9 +7575,11 @@
         const complete = translateCompletePhrase(text, element);
         if (complete !== null) return complete;
         let result = text;
-        for (const group of executionQueue) {
-            if (group.selector && element && !element.closest(group.selector)) continue;
-            if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
+        for (const group of scopedGroups || executionQueue) {
+            if (!scopedGroups) {
+                if (group.selector && element && !element.closest(group.selector)) continue;
+                if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
+            }
 
             // 1. 正则替换
             for (const p of group.patterns) {
@@ -7700,6 +7775,7 @@
 
     // ================= 5. 执行逻辑 =================
     function applyAll(root = document.body, displayContext = null) {
+        if (!displayContext && isTranslationExcluded(root)) return;
         if (!displayContext && !activeBattleCell && !IS_LOG_TRANS_DISABLED
             && /(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)) {
             const cell = root.closest?.('#textlog td');
@@ -7711,13 +7787,22 @@
         const scopedGroups = displayContext ? executionQueue.filter(group =>
             (!group.selector || displayContext.closest(group.selector))
             && (!group.excludeSelector || !displayContext.closest(group.excludeSelector))) : null;
-        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        const walker = displayContext
+            ? document.createTreeWalker(root, NodeFilter.SHOW_TEXT)
+            : document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
+                acceptNode(node) {
+                    if (node.nodeType === 3) return NodeFilter.FILTER_ACCEPT;
+                    return node.matches(SKIP_TRANSLATION_SELECTOR) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_SKIP;
+                }
+            });
         let node;
         while (node = walker.nextNode()) translateTextNode(node, displayContext, scopedGroups);
 
         if (root.matches && root.matches(UI_SELECTORS)) translateUIElement(root);
         if (root.querySelectorAll) {
-            root.querySelectorAll(UI_SELECTORS).forEach(translateUIElement);
+            root.querySelectorAll(UI_SELECTORS).forEach(el => {
+                if (displayContext || !isTranslationExcluded(el)) translateUIElement(el);
+            });
         }
     }
 
@@ -7741,6 +7826,8 @@
         const battleCellsToProcess = new Set();
 
         mutations.forEach(m => {
+            // 尤其是关闭日志汉化时，在收集行/遍历新增后代之前退出。
+            if (isTranslationExcluded(m.target)) return;
             if (m.type === 'childList' || m.type === 'characterData') {
                 const target = m.target.nodeType === 3 ? m.target.parentElement : m.target;
                 const cell = target.closest && target.closest('#textlog td');
@@ -7770,7 +7857,7 @@
         // 行内其他节点可能改变角色位置；整行与子节点合并后只扫描一次。
         battleCellsToProcess.forEach(cell => { if (cell.isConnected) nodesToProcess.add(cell); });
         nodesToProcess.forEach(n => {
-            if (!n.isConnected) return;
+            if (!n.isConnected || isTranslationExcluded(n)) return;
             for (let parent = n.parentNode; parent; parent = parent.parentNode) {
                 if (nodesToProcess.has(parent)) return;
             }
