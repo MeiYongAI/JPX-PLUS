@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.07.2
+// @version     2026.11.08.1
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -6525,6 +6525,42 @@
     ].join(', ');
     const battleDisplays = new WeakMap();
     const battleNameRanges = new WeakMap();
+    const pendingBattleCells = new Set();
+    let battlePruneAt = 256;
+    let battleRenderScheduled = false;
+    let activeBattleCell = null;
+
+    function scheduleBattleTranslation(cell) {
+        pendingBattleCells.add(cell);
+        // 后台或快速换轮时不保留已经移除的旧日志。
+        if (pendingBattleCells.size > battlePruneAt) {
+            for (const pending of pendingBattleCells) if (!pending.isConnected) pendingBattleCells.delete(pending);
+            // 以批次阈值清理，避免大批新增日志时每加入一行都重扫整条队列。
+            battlePruneAt = pendingBattleCells.size + 256;
+        }
+        if (battleRenderScheduled) return;
+        battleRenderScheduled = true;
+        if (document.hidden) setTimeout(flushBattleTranslations, 16);
+        else requestAnimationFrame(flushBattleTranslations);
+    }
+
+    function flushBattleTranslations() {
+        battleRenderScheduled = false;
+        const started = performance.now();
+        try {
+            for (const cell of pendingBattleCells) {
+                pendingBattleCells.delete(cell);
+                if (!cell.isConnected || !cell.closest('#textlog')) continue;
+                activeBattleCell = cell;
+                try { applyAll(cell); } finally { activeBattleCell = null; }
+                // 每次处理完整单元格，再让出主线程供游戏解析和输入处理。
+                if (performance.now() - started >= 4) break;
+            }
+        } finally {
+            battlePruneAt = pendingBattleCells.size + 256;
+            if (pendingBattleCells.size) scheduleBattleTranslation(pendingBattleCells.values().next().value);
+        }
+    }
     // 依据英文日志中的角色位置保护名字，不能全局屏蔽同名装备、技能或伤害类型。
     // 每条规则的前两个捕获组分别是前缀、怪物名；在整行上匹配以支持 strong 等内联节点。
     const battleNamePatterns = [
@@ -6631,6 +6667,10 @@
         let display = battleDisplays.get(node);
         if (display && display.source === node.nodeValue && display.line === masked.line
             && display.masked === masked.text) return true;
+        if (activeBattleCell !== cell) {
+            scheduleBattleTranslation(cell);
+            return true;
+        }
         if (!display || node.parentNode !== display.host) {
             const host = document.createElement('hv-battle-text');
             // 不使用 slot：原文保留在 light DOM，中文及着色只渲染在 shadow DOM。
@@ -7151,7 +7191,7 @@
      *
      * 优化：已完全处理节点跳过；日志区高频节点快速路径
      */
-    function translateTextNode(node, displayContext = null) {
+    function translateTextNode(node, displayContext = null, scopedGroups = null) {
         if (!node || node.nodeType !== 3) return;
         if (IS_NATIVE_AUCTION) { translateAuctionText(node); return; }
         const parent = node.parentNode;
@@ -7196,10 +7236,12 @@
 
         let hasAnyMatch = false;
         // 遍历每一个规则组 (按优先级)
-        for (const group of executionQueue) {
+        for (const group of scopedGroups || executionQueue) {
             // A. 作用域与排除检查
-            if (group.selector && !scope.closest(group.selector)) continue;
-            if (group.excludeSelector && scope.closest(group.excludeSelector)) continue;
+            if (!scopedGroups) {
+                if (group.selector && !scope.closest(group.selector)) continue;
+                if (group.excludeSelector && scope.closest(group.excludeSelector)) continue;
+            }
 
             // ================= STEP 1: 纯文本正则 (Plain Regex) =================
             let hasTextChanged = false;
@@ -7227,7 +7269,7 @@
                         const replaceText = (typeof p.replace === 'function') ? p.replace(...match) : match[0].replace(regex, p.replace);
                         if (applyStyleToNode(node, match.index, match[0].length, replaceText, p.style)) {
                             // shadow DOM 不触发外层观察器，前缀需在本次渲染中处理完。
-                            if (displayContext) translateTextNode(node, displayContext);
+                            if (displayContext) translateTextNode(node, displayContext, scopedGroups);
                             return;
                         }
                     }
@@ -7248,7 +7290,7 @@
                             }
                         }
                         if (applyStyleToNode(node, idx, key.length, target.replace, target.style)) {
-                            if (displayContext) translateTextNode(node, displayContext);
+                            if (displayContext) translateTextNode(node, displayContext, scopedGroups);
                             return;
                         }
                     }
@@ -7321,9 +7363,13 @@
 
     // ================= 5. 执行逻辑 =================
     function applyAll(root = document.body, displayContext = null) {
+        // 同一个日志显示片段的节点共享原始作用域，无须为每个词条重新查祖先。
+        const scopedGroups = displayContext ? executionQueue.filter(group =>
+            (!group.selector || displayContext.closest(group.selector))
+            && (!group.excludeSelector || !displayContext.closest(group.excludeSelector))) : null;
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
         let node;
-        while (node = walker.nextNode()) translateTextNode(node, displayContext);
+        while (node = walker.nextNode()) translateTextNode(node, displayContext, scopedGroups);
 
         if (root.matches && root.matches(UI_SELECTORS)) translateUIElement(root);
         if (root.querySelectorAll) {
