@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.08.1
+// @version     2026.11.08.2
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -4112,6 +4112,7 @@
         },
         {
             //战斗日志-低优先级
+            id: 'battle-common',
             priority: 1,
             selector: '#pane_log, #pane_skill, #pane_magic, #pane_item, #btcp',
             excludeSelector:"#combat-records-table_isekai",
@@ -4146,6 +4147,7 @@
         },
         {
             //战斗日志-扫描界面
+            id: 'battle-scan',
             priority: 4,
             selector: '#pane_log, #pane_skill, #pane_magic, #pane_item, #btcp',
             excludeSelector:"#combat-records-table_isekai",
@@ -4185,6 +4187,7 @@
         },
         {
             //战斗日志
+            id: 'battle-log',
             priority: 4,
             selector: '#pane_log, #pane_skill, #pane_magic, #pane_item, #btcp',
             excludeSelector:"#combat-records-table_isekai",
@@ -4906,6 +4909,7 @@
         },
         {
             //战斗日志掉落物品
+            id: 'battle-loot',
             priority: 5,
             selector: '#pane_log, #pane_item',
             //excludeSelector:'#pane_monster',
@@ -6524,6 +6528,8 @@
         '#mmail_attachcredits', '#mmail_attachhath', '#mmail_list td', '#upgrmats'
     ].join(', ');
     const battleDisplays = new WeakMap();
+    const battleTemplateDisplays = new WeakMap();
+    const complexBattleCells = new WeakSet();
     const battleNameRanges = new WeakMap();
     const pendingBattleCells = new Set();
     let battlePruneAt = 256;
@@ -6544,24 +6550,349 @@
         else requestAnimationFrame(flushBattleTranslations);
     }
 
+    function queueBattleTemplate(cell) {
+        if (pendingBattleCells.has(cell)) return;
+        const state = battleTemplateDisplays.get(cell);
+        if (state?.source === cell.textContent
+            && (!state.host || state.host.parentNode === cell && cell.childNodes.length === 1)
+            && !cell.querySelector(BATTLE_COMPLEX_CONTENT)) return;
+        scheduleBattleTranslation(cell);
+    }
+
     function flushBattleTranslations() {
         battleRenderScheduled = false;
         const started = performance.now();
+        let renderedCells = 0;
+        const cellLimit = pendingBattleCells.size > 64 ? 24 : 64;
         try {
             for (const cell of pendingBattleCells) {
                 pendingBattleCells.delete(cell);
                 if (!cell.isConnected || !cell.closest('#textlog')) continue;
-                activeBattleCell = cell;
-                try { applyAll(cell); } finally { activeBattleCell = null; }
+                renderBattleCell(cell);
                 // 每次处理完整单元格，再让出主线程供游戏解析和输入处理。
-                if (performance.now() - started >= 4) break;
+                // 模板渲染很快，也要限制一帧内的 DOM 更新量，给后续布局/绘制留余地。
+                if (++renderedCells >= cellLimit || performance.now() - started >= 4) break;
             }
         } finally {
             battlePruneAt = pendingBattleCells.size + 256;
             if (pendingBattleCells.size) scheduleBattleTranslation(pendingBattleCells.values().next().value);
         }
     }
-    // 依据英文日志中的角色位置保护名字，不能全局屏蔽同名装备、技能或伤害类型。
+    // 战斗热路径：整行解析为事件，参数按角色渲染；不再逐个文本节点扫通用词典。
+    // 未识别句式保留原文。带链接、表格等结构的日志继续使用兼容路径，保留交互。
+    const BATTLE_COMPLEX_CONTENT = 'a, button, input, select, textarea, table, img, br, hr, [onclick], [onmouseover]';
+    const BATTLE_DAMAGE = {
+        fire: ['火焰伤害', 'background:#f97c7c'], cold: ['冰冷伤害', 'background:#94c2f5'],
+        elec: ['闪电伤害', 'background:#f4f375'], wind: ['疾风伤害', 'background:#7ff97c'],
+        holy: ['神圣伤害', 'background:#ffffff;color:#000000'], dark: ['黑暗伤害', 'background:#000000;color:#ffffff'],
+        void: ['虚空伤害', 'background:#ffffff;color:#5c5a5a'], spirit: ['灵力损失', 'color:#a2042c'],
+        crushing: ['打击伤害', 'background:#000000;color:#F6F504'],
+        slashing: ['斩击伤害', 'background:#000000;color:#F6F504'],
+        piercing: ['刺击伤害', 'background:#000000;color:#F6F504']
+    };
+    const BATTLE_RESOURCES = {
+        HP: ['生命', 'color:#006400'], health: ['生命', 'color:#006400'],
+        MP: ['魔力', 'color:#639AD4'], mana: ['魔力', 'color:#639AD4'],
+        SP: ['灵力', 'color:#D4637A'], spirit: ['灵力', 'color:#D4637A']
+    };
+    const BATTLE_SYSTEM_MESSAGES = new Set([
+        'You are victorious', 'You fail to clear the tower floor', 'You gain no EXP due to exhaustion',
+        'Item world cleared', 'Arena challenge cleared', 'Grindfest cleared', 'Arena challenge failed',
+        'Spirit Stance Engaged', 'Spirit Stance Exhausted', 'Spirit Stance Disabled',
+        'Insufficient overcharge or spirit for Spirit Stance.', 'Stop kicking the dead horse',
+        'Stop beating dead ponies', 'Invalid target', 'Item does not exist', 'Inventory slot is empty',
+        'You do not have a powerup gem', 'Warning: Reached equipment inventory limit',
+        'Arena Token Bonus!', 'Battle Clear Bonus!', 'Arena Extra Bonus!',
+        'The potential of your equipment has grown!', 'The potential of Your equipment has grown!',
+        'Defending', 'Focusing', 'Fleeing'
+    ]);
+    let battleTerms, battleEquipmentTerms;
+
+    function getBattleTerms() {
+        if (battleTerms) return battleTerms;
+        battleTerms = new Map();
+        const groups = pageTranslations.filter(rule => /^battle-/.test(rule.id || ''))
+            .sort((a, b) => (b.priority || 1) - (a.priority || 1));
+        for (const group of groups) for (const [key, value] of Object.entries(group.translations || {})) {
+            if (!battleTerms.has(key)) battleTerms.set(key, value);
+        }
+        for (const [key, value] of Object.entries(dynamicItemDict)) if (!battleTerms.has(key)) battleTerms.set(key, value);
+        battleTerms.set('Spirit Shield', { replace: '灵力盾', style: 'color:#D4637A' });
+        battleTerms.set('spirit shield', battleTerms.get('Spirit Shield'));
+        battleTerms.set('spike shield', '刺盾');
+        return battleTerms;
+    }
+
+    // 只使用完整且带边界的句式。所有名字都是独立参数，不进行词典匹配或 HTML 解析。
+    function parseBattleLog(source) {
+        const suffix = /^(.*?) \(([\d.]+)% resisted\)[.!]?$/.exec(source.trim());
+        const event = parseBattleEvent(suffix ? suffix[1] : source);
+        if (event && suffix) event.resistedPercent = suffix[2];
+        return event;
+    }
+
+    function parseBattleEvent(source) {
+        const line = source.trim();
+        let m;
+        if (!line) return null;
+        if ((m = /^(.+?) (uses|casts) (.+?), (?:and |which )?(hits|crits|glances|blasts)(?: you for |! You take )([\d,]+) ([A-Za-z]+) damage[.!]?$/.exec(line))) {
+            return { type: 'incoming', actor: m[1], mode: m[2], ability: m[3], verb: m[4], amount: m[5], damage: m[6] };
+        }
+        if ((m = /^(.+?) (uses|casts) (.+?), (?:and |which )?(hits|crits|glances)! You ((?:partially )?(?:block|parry|resist)(?: and (?:partially )?(?:block|parry))?) the attack, and take ([\d,]+) ([A-Za-z]+) damage[.!]?$/.exec(line))) {
+            return { type: 'incoming', actor: m[1], mode: m[2], ability: m[3], verb: m[4], mitigation: m[5], amount: m[6], damage: m[7] };
+        }
+        if ((m = /^(.+?) (hits|crits|glances) you(?: for ([\d,]+) ([A-Za-z]+) damage)?[,!.]+ You ((?:partially )?(?:block|parry|resist)(?: and (?:partially )?(?:block|parry))?) the attack, and take ([\d,]+) ([A-Za-z]+) damage[.!]?$/.exec(line))) {
+            return { type: 'incoming', actor: m[1], verb: m[2], originalAmount: m[3], originalDamage: m[4], mitigation: m[5], amount: m[6], damage: m[7] };
+        }
+        if ((m = /^You cast (.+?), healing (you|.+?) for ([\d,]+) points of health[.!]?$/.exec(line))) return { type: 'healing', ability: m[1], target: m[2], amount: m[3], resource: 'health' };
+        if ((m = /^Your spirit shield absorbs ([\d,]+) damage from the attack into ([\d,]+) points of spirit(?: damage)?[.!]?$/.exec(line))) return { type: 'shield', absorbed: m[1], amount: m[2], resource: 'spirit' };
+        if ((m = /^(.+?) saves you from the brink of defeat!$/.exec(line))) return { type: 'rescue', effect: m[1] };
+        if ((m = /^(.+?) (?:(\d+)x-)?(hits?|crits?|glances?|counter|blasts) (.+?)(?:, causing | for )([\d,]+)( additional)?(?: points of)?(?: ([A-Za-z]+))? damage[.!]?$/.exec(line))) {
+            return { type: 'damage', actor: m[1], multiple: m[2], verb: m[3], target: m[4], amount: m[5], additional: !!m[6], damage: m[7] || '' };
+        }
+        if ((m = /^(.+?) (?:(resists), and )?was (?:(\d+)x-)?(hit|crit|glanced|blasted) for ([\d,]+)(?: points of)?(?: ([A-Za-z]+))? damage[.!]?$/.exec(line))) {
+            return { type: 'received', target: m[1], resisted: !!m[2], multiple: m[3], verb: m[4], amount: m[5], damage: m[6] || '' };
+        }
+        if ((m = /^(.+?) (uses|casts) (.+?), (?:but (?:it )?is absorbed|but misses the attack|(?:in the general direction of a shadow, )?missing you completely)[.!]?$/.exec(line))) {
+            return { type: 'incomingMiss', actor: m[1], mode: m[2], ability: m[3], absorbed: line.includes('absorbed') };
+        }
+        if ((m = /^(.+?) (explodes|is eviscerated) for ([\d,]+) ([A-Za-z]+) damage(?:, putting it out of its misery)?[.!]?$/.exec(line))) {
+            return { type: 'specialDamage', target: m[1], verb: m[2], amount: m[3], damage: m[4], defeated: line.includes('putting it out') };
+        }
+        if ((m = /^(You|.+?) (cast|casts|use|uses) (.+?)[.!]?$/.exec(line))) {
+            // 带后续动作的复合句必须完整识别；不把整段未知文字误当成技能名。
+            if (m[3].includes(',') || /[.!?]\s/.test(m[3])) return null;
+            return { type: 'ability', actor: m[1], mode: m[2], ability: m[3] };
+        }
+        if ((m = /^(.+?) gains? the effect (.+?)[.!]?$/.exec(line))) return { type: 'effect', actor: m[1], effect: m[2] };
+        if ((m = /^The effect (.+?)(?: on (.+?))? (has expired|has worn off|was dispelled)[.!]?$/.exec(line))) {
+            return { type: 'effectEnd', effect: m[1], target: m[2], dispelled: m[3] === 'was dispelled' };
+        }
+        if ((m = /^Cooldown expired for (.+?)[.!]?$/.exec(line))) return { type: 'cooldown', ability: m[1] };
+        if ((m = /^You (evade|block|parry) the attack(?: from (.+?))?[.!]?$/.exec(line))) return { type: 'defence', verb: m[1], actor: m[2] };
+        if ((m = /^(.+?) (deftly evades|evades|dodges|parries|resists) your (attack|offhand attack|spell)[.!]?$/.exec(line))) {
+            return { type: 'avoid', target: m[1], verb: m[2], attack: m[3] };
+        }
+        if ((m = /^(.+?) (partially resists|shrugs off) the effects of your spell[.!]?$/.exec(line))) {
+            return { type: 'resistEffect', target: m[1], partial: m[2] === 'partially resists' };
+        }
+        if ((m = /^(.+?) (has been defeated|got knocked out of confuse|has been roused from its sleep|vigorously whiffs at a shadow, missing you completely)[.!]?$/.exec(line))) {
+            return { type: 'monsterStatus', target: m[1], status: m[2] };
+        }
+        if ((m = /^You drain ([\d,]+) (HP|MP|SP|points of health|points of mana|points of spirit) from (.+?)[.!]?$/.exec(line))) {
+            return { type: 'drain', amount: m[1], resource: m[2].replace('points of ', ''), target: m[3] };
+        }
+        if ((m = /^You are healed for ([\d,]+) Health Points[.!]?$/.exec(line))) return { type: 'recover', amount: m[1], resource: 'health' };
+        if ((m = /^(?:Recovered|You recover) ([\d,]+) (?:points of )?(health|mana|spirit|HP|MP|SP)[.!]?$/.exec(line))) return { type: 'recover', amount: m[1], resource: m[2] };
+        if ((m = /^(.+?) restores ([\d,]+) (?:points of )?(health|mana|spirit)[.!]?$/.exec(line))) return { type: 'restore', effect: m[1], amount: m[2], resource: m[3] };
+        if ((m = /^You obtained (?:an? )?(.+?)[.!]?$/.exec(line))) return { type: 'loot', item: m[1] };
+        if ((m = /^(.+?) dropped \[(.+)\][.!]?$/.exec(line))) return { type: 'loot', actor: m[1], item: m[2] };
+        if ((m = /^(.+?) drops a (.+?) power ?up![.]?$/.exec(line))) return { type: 'powerup', actor: m[1], item: m[2] };
+        if ((m = /^You gain ([\d,]+) (EXP|exp|credits?)[.!]?$/.exec(line))) return { type: 'gain', amount: m[1], unit: /^exp$/i.test(m[2]) ? '经验' : 'Credits' };
+        if ((m = /^You gain ([\d,.]+) (.+? proficiency)[.!]?$/.exec(line))) {
+            if (getBattleTerms().has(m[2])) return { type: 'proficiency', amount: m[1], proficiency: m[2] };
+            return null;
+        }
+        if ((m = /^(?:Spawned Monster[^:\n]*:\s*)?MID=(\d+) \((.+)\) LV=(\d+) HP=([\d,]+)$/.exec(line))) {
+            return { type: 'spawn', mid: m[1], target: m[2], level: m[3], hp: m[4] };
+        }
+        if ((m = /^Scanning (.+)$/.exec(line))) return { type: 'scan', target: m[1] };
+        if ((m = /^Tower floor (\d+) cleared[.!]?$/.exec(line))) return { type: 'floor', floor: m[1] };
+        if ((m = /^You have reached Level (\d+)[.!]?$/.exec(line))) return { type: 'level', level: m[1] };
+        if ((m = /^Initializing (random encounter|arena challenge|Item World|Grindfest|The Tower)\s*\.{0,3}$/.exec(line))) return { type: 'initializing', activity: 'Initializing ' + m[1] };
+        if ((m = /^(Monster Class|Power Level|Melee Attack|Accuracy|Avoidance|Intercept|Resists):\s*(.+)$/.exec(line))) {
+            // 扫描中的复合描述继续保留，不把未知数据当词条拆开。
+            if (/^[\d,.%]+$/.test(m[2]) || getBattleTerms().has(m[2])) return { type: 'scanField', label: m[1], value: m[2] };
+        }
+        const key = BATTLE_SYSTEM_MESSAGES.has(line) ? line : line.replace(/[.!]$/, '');
+        if (BATTLE_SYSTEM_MESSAGES.has(key)) return { type: 'system', key };
+        return null;
+    }
+
+    const battleTermFragments = new Map();
+    function appendBattleTerm(root, term) {
+        const value = getBattleTerms().get(term);
+        if (!value) { root.append(document.createTextNode(term)); return; }
+        let fragment = battleTermFragments.get(term);
+        if (!fragment) {
+            fragment = document.createDocumentFragment();
+            const text = typeof value === 'string' ? value : value.replace;
+            const node = document.createElement('span');
+            if (value.style) node.style.cssText = value.style;
+            // innerHTML 只接收脚本内的固定译文，任何日志参数都通过 textContent 写入。
+            if (/<[^>]+>/.test(text)) node.innerHTML = text;
+            else node.textContent = text;
+            fragment.append(node);
+            battleTermFragments.set(term, fragment);
+        }
+        root.append(fragment.cloneNode(true));
+    }
+
+    function appendBattleLoot(root, item) {
+        if (getBattleTerms().has(item) || !looksLikeAuctionEquipment(item)) { appendBattleTerm(root, item); return; }
+        if (!battleEquipmentTerms) {
+            const dict = pageTranslations.find(rule => rule.id === 'equipment-name').translations;
+            const keys = Object.keys(dict).filter(key => !key.endsWith(':')).sort((a, b) => b.length - a.length);
+            battleEquipmentTerms = { dict, regex: new RegExp(keys.map(key => {
+                const escaped = escapeRegExp(key);
+                return /^\w+$/.test(key) ? `(?<![\\w-])${escaped}(?![\\w-])` : escaped;
+            }).join('|'), 'g') };
+        }
+        const { dict, regex } = battleEquipmentTerms;
+        regex.lastIndex = 0;
+        let offset = 0;
+        for (const match of item.matchAll(regex)) {
+            root.append(document.createTextNode(item.slice(offset, match.index)));
+            const value = dict[match[0]], span = document.createElement('span');
+            if (value.style) span.style.cssText = value.style;
+            const text = typeof value === 'string' ? value : value.replace;
+            if (/<[^>]+>/.test(text)) span.innerHTML = text; else span.textContent = text;
+            root.append(span); offset = match.index + match[0].length;
+        }
+        root.append(document.createTextNode(item.slice(offset)));
+    }
+
+    function renderBattleEvent(event) {
+        const root = document.createDocumentFragment();
+        const text = value => root.append(document.createTextNode(String(value)));
+        const styled = (value, style) => {
+            const node = document.createElement('span'); node.style.cssText = style; node.textContent = value; root.append(node);
+        };
+        const term = value => appendBattleTerm(root, value);
+        const actor = (value, isTerm = false) => {
+            if (/^(?:you|your)$/i.test(value)) styled(/^your$/i.test(value) ? '你的' : '你', 'color:#1E90FF');
+            else if (value === 'Your offhand attack') styled('你的副手攻击', 'color:#1E90FF');
+            else if (isTerm) { if (/^your /i.test(value)) { styled('你的', 'color:#1E90FF'); value = value.slice(5); } term(value); }
+            else text(value);
+        };
+        const action = (verb, multiple) => {
+            if (/crit|blast/.test(verb)) styled(multiple ? multiple + ' 倍暴击了' : '暴击了', 'background:#FF0000;color:#FFFFFF');
+            else if (/glanc/.test(verb)) styled('擦伤了', 'color:#696969');
+            else if (verb === 'counter') styled('反击了', 'background:#FFFF00');
+            else styled('击中了', 'color:#E63F00');
+        };
+        const damage = () => {
+            text(event.amount + ' 点');
+            const pair = BATTLE_DAMAGE[event.damage.toLowerCase()];
+            if (pair) styled(...pair); else text(event.damage ? event.damage + ' 伤害' : '伤害');
+        };
+        const resource = () => { const pair = BATTLE_RESOURCES[event.resource]; text(event.amount + ' 点'); styled(...pair); };
+        switch (event.type) {
+            case 'damage':
+                actor(event.actor, event.target.toLowerCase() !== 'you'); action(event.verb, event.multiple); text(' '); actor(event.target);
+                text(event.additional ? '，额外造成 ' : '，造成 '); damage(); break;
+            case 'received':
+                actor(event.target); if (event.resisted) text('抵抗了部分法术，'); text('被'); action(event.verb, event.multiple); text('，受到 '); damage(); break;
+            case 'incoming':
+            case 'incomingMiss':
+                actor(event.actor);
+                if (event.ability) { styled(event.mode === 'casts' ? '施放了' : '使用了', 'background:#7CFC00'); text(' '); term(event.ability); if (event.type === 'incoming') text('，'); }
+                if (event.type === 'incomingMiss') text(event.absorbed ? '，但被吸收了' : '，但没有命中你');
+                else {
+                    action(event.verb); actor('You');
+                    if (event.originalAmount) { text('，原本造成 ' + event.originalAmount + ' 点'); const pair = BATTLE_DAMAGE[event.originalDamage.toLowerCase()]; if (pair) styled(...pair); else text(event.originalDamage + ' 伤害'); }
+                    if (event.mitigation) {
+                        text('，你');
+                        text(event.mitigation.split(' and ').map(part => (part.startsWith('partially ') ? '部分' : '') + ({ block: '格挡', parry: '招架', resist: '抵抗' })[part.replace('partially ', '')]).join('并'));
+                        text('了攻击，受到 ');
+                    } else text('，造成 ');
+                    damage();
+                }
+                break;
+            case 'specialDamage':
+                actor(event.target); text(event.verb === 'explodes' ? '爆裂并受到 ' : '被切除了内脏，受到 '); damage();
+                if (event.defeated) text('，随后被击败'); break;
+            case 'ability':
+                actor(event.actor); styled(event.mode.startsWith('cast') ? '施放了' : '使用了', event.mode.startsWith('cast') ? 'background:#7CFC00' : 'background:#ADFF2F');
+                text(' '); term(event.ability); break;
+            case 'effect': actor(event.actor); styled('获得了状态', 'background:#ADFF2F'); text(' '); term(event.effect); break;
+            case 'effectEnd':
+                if (event.target) { actor(event.target); text(' 身上的'); } text('状态 '); term(event.effect);
+                styled(event.dispelled ? ' 已被替换' : ' 已失效❗', 'color:#C22508'); break;
+            case 'cooldown': term(event.ability); styled(' 已可使用✅', 'background:#97ffb2'); break;
+            case 'defence':
+                actor('You'); text('完全' + ({ evade: '闪避', block: '格挡', parry: '招架' })[event.verb] + '了');
+                if (event.actor) { text('来自 '); actor(event.actor); text(' 的'); } text('攻击🛡️'); break;
+            case 'avoid':
+                actor(event.target); styled(({ 'deftly evades': '灵巧地闪避', evades: '闪避', dodges: '闪避', parries: '招架', resists: '抵抗' })[event.verb] + '了你的', 'color:#696969');
+                text(({ attack: '攻击', 'offhand attack': '副手攻击', spell: '法术' })[event.attack]); break;
+            case 'resistEffect': actor(event.target); styled(event.partial ? '部分抵抗了你的法术' : '完全抵抗了你的法术', 'background:#81f7f3'); break;
+            case 'monsterStatus':
+                if (event.status === 'has been defeated') { styled('☠️ 击败了 ', 'background:#000000;color:#FFFFFF'); actor(event.target); }
+                else { actor(event.target); text(({ 'got knocked out of confuse': '从混乱中脱离', 'has been roused from its sleep': '已从睡梦中苏醒', 'vigorously whiffs at a shadow, missing you completely': '发动的攻击只掠过了你的阴影' })[event.status]); }
+                break;
+            case 'drain': actor('You'); text('从 '); actor(event.target); text(' 身上吸取了 '); resource(); break;
+            case 'recover': actor('You'); text('恢复了 '); resource(); break;
+            case 'restore': term(event.effect); text('恢复了你 '); resource(); break;
+            case 'healing': actor('You'); text('施放了 '); term(event.ability); text('，为 '); actor(event.target); text(' 恢复了 '); resource(); break;
+            case 'shield': actor('Your'); term('Spirit Shield'); text('吸收了 ' + event.absorbed + ' 点伤害，转化为 '); resource(); text('损失'); break;
+            case 'rescue': term(event.effect); styled('让你从死亡的边缘复活了！', 'background:#2E6F15;color:#FFFFFF'); return root;
+            case 'loot':
+            case 'powerup':
+                actor(event.actor || 'You'); text(event.actor ? '掉落了 ' : '获得了 '); appendBattleLoot(root, event.item); break;
+            case 'gain': actor('You'); text('获得了 ' + event.amount + ' ' + event.unit); break;
+            case 'proficiency': actor('You'); text('获得了 ' + event.amount + ' 点'); term(event.proficiency); break;
+            case 'spawn': text('生成怪物：MID=' + event.mid + ' ('); text(event.target); text(') 等级=' + event.level + ' 生命=' + event.hp); return root;
+            case 'scan': text('已扫描 '); text(event.target); return root;
+            case 'scanField': term(event.label); text('：'); term(event.value); return root;
+            case 'floor': text('已通关第 ' + event.floor + ' 层塔楼'); break;
+            case 'level': actor('You'); styled('升级至 ' + event.level + ' 级', 'background:#00FF00'); break;
+            case 'initializing': term(event.activity); text('……'); return root;
+            case 'system': term(event.key); return root;
+        }
+        if (event.resistedPercent !== undefined) text('（抵抗 ' + event.resistedPercent + '%）');
+        text('。'); return root;
+    }
+
+    function unwrapBattleTemplate(cell, state) {
+        if (state?.host?.parentNode !== cell) return;
+        while (state.host.firstChild) cell.insertBefore(state.host.firstChild, state.host);
+        state.host.remove();
+    }
+
+    function renderBattleCell(cell) {
+        const source = cell.textContent, state = battleTemplateDisplays.get(cell);
+        if (cell.querySelector(BATTLE_COMPLEX_CONTENT)) {
+            complexBattleCells.add(cell);
+            unwrapBattleTemplate(cell, state); battleTemplateDisplays.delete(cell);
+            activeBattleCell = cell;
+            try { applyAll(cell); } finally { activeBattleCell = null; }
+            return;
+        }
+        if (complexBattleCells.has(cell)) {
+            // 从带链接的兼容渲染切回普通句式时，清掉旧显示包装，保留所有原节点。
+            for (const host of cell.querySelectorAll('hv-battle-text')) {
+                const node = host.firstChild;
+                if (!node || battleDisplays.get(node)?.host !== host) continue;
+                while (host.firstChild) host.parentNode.insertBefore(host.firstChild, host);
+                host.remove(); battleDisplays.delete(node);
+            }
+        }
+        complexBattleCells.delete(cell);
+        if (state?.source === source && (!state.host || state.host.parentNode === cell && cell.childNodes.length === 1)) return;
+        const event = parseBattleLog(source);
+        if (!event) {
+            unwrapBattleTemplate(cell, state);
+            battleTemplateDisplays.set(cell, { source, host: null });
+            return;
+        }
+        const content = renderBattleEvent(event);
+        let host = state?.host, root = state?.root;
+        if (!host || host.parentNode !== cell) {
+            host = document.createElement('hv-battle-text'); root = host.attachShadow({ mode: 'closed' });
+        }
+        // 只移动原有节点，不重建它们；原文、内联标签和监听器继续留在 light DOM。
+        // JPX 的只读快照会移除这个与旧版同名的透明包装，得到原始 td/strong 边界。
+        if (host.parentNode !== cell || cell.childNodes.length !== 1) {
+            unwrapBattleTemplate(cell, state);
+            for (const child of [...cell.childNodes]) host.appendChild(child);
+            cell.appendChild(host);
+        }
+        root.replaceChildren(content);
+        battleTemplateDisplays.set(cell, { source, host, root });
+    }
+
+    // 兼容复杂日志结构时，依据英文日志中的角色位置保护名字。
     // 每条规则的前两个捕获组分别是前缀、怪物名；在整行上匹配以支持 strong 等内联节点。
     const battleNamePatterns = [
         /^(\s*(?:Spawned Monster[^:\n]*:\s*)?MID=\d+\s+\()(.+)(?=\)\s+LV=\d+\s+HP=\d+)/,
@@ -6660,9 +6991,15 @@
         // 怪物名与日志中的名字共同用于定位飘字，不能当成普通词条翻译。
         if (parent.closest('#pane_monster .btm3')) return true;
         if (!parent.closest('#textlog')) return false;
-        if (IS_LOG_TRANS_DISABLED || !node.nodeValue.trim()) return true;
+        if (IS_LOG_TRANS_DISABLED) return true;
 
-        const cell = parent.closest('#textlog td') || parent;
+        const cell = parent.closest('#textlog td') || parent.closest('hv-battle-text')?.parentElement || parent;
+        // 表格缩进空白不是日志行；不能把 tbody/tr 当作显示宿主。
+        if (!node.nodeValue.trim() && !parent.closest('#textlog td') && !battleTemplateDisplays.has(cell)) return true;
+        if (activeBattleCell !== cell && !complexBattleCells.has(cell)) {
+            queueBattleTemplate(cell);
+            return true;
+        }
         const masked = maskBattleNames(node, cell);
         let display = battleDisplays.get(node);
         if (display && display.source === node.nodeValue && display.line === masked.line
@@ -7363,6 +7700,13 @@
 
     // ================= 5. 执行逻辑 =================
     function applyAll(root = document.body, displayContext = null) {
+        if (!displayContext && !activeBattleCell && !IS_LOG_TRANS_DISABLED
+            && /(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)) {
+            const cell = root.closest?.('#textlog td');
+            if (cell && (!complexBattleCells.has(cell) || !cell.querySelector(BATTLE_COMPLEX_CONTENT))) {
+                queueBattleTemplate(cell); return;
+            }
+        }
         // 同一个日志显示片段的节点共享原始作用域，无须为每个词条重新查祖先。
         const scopedGroups = displayContext ? executionQueue.filter(group =>
             (!group.selector || displayContext.closest(group.selector))
@@ -7506,33 +7850,30 @@
         // 仅在 HV 页面启用（排除论坛）
         if (!location.hostname.includes('hentaiverse.org')) return;
 
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
         let styleText = '';
 
-        // 生成普通中文图片
+        // 固定文字直接生成 SVG，避免每次换轮重载都绘制/编码整套 PNG。
+        // 只替换图片内容，保留原 img 的 src、尺寸约定、事件和按钮状态。
+        function textImage(word, width, height, size, x, y, fill, stroke) {
+            const escaped = word.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' })[char]);
+            const outline = stroke ? '<text x="0" y="' + y + '" fill="none" stroke="' + stroke + '">' + escaped + '</text>' : '';
+            const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height
+                + '"><g font-family="微软雅黑,sans-serif" font-size="' + size + '" font-weight="bold">' + outline
+                + '<text x="' + x + '" y="' + y + '" fill="' + fill + '">' + escaped + '</text></g></svg>';
+            return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        }
+
         function word2img(word, stroke) {
             const h = 14;
-            canvas.height = h + 2;
-            canvas.width = word.length * h + 5;
-            ctx.font = 'bold ' + h + 'px 微软雅黑,sans-serif';
-            if (stroke) {
-                ctx.strokeStyle = stroke.strokeStyle;
-                ctx.strokeText(word, 0, h);
-                ctx.fillStyle = stroke.fillStyle;
-                ctx.fillText(word, 2, h);
-            } else {
-                ctx.fillStyle = '#202020';
-                ctx.fillText(word, 2, h);
-            }
-            return canvas.toDataURL();
+            return textImage(word, word.length * h + 5, h + 2, h, 2, h,
+                stroke ? stroke.fillStyle : '#202020', stroke?.strokeStyle);
         }
         function activeWord2img(value) {
             return word2img(value, { strokeStyle: '#EFD34F', fillStyle: '#5C0D11' });
         }
         // 添加 CSS 规则，加 !important 确保覆盖图片源文件
         function imgRule(src, dataUrl) {
-            return 'img[src*="' + src + '"]{content:url(' + dataUrl + ')!important}';
+            return 'img[src*="' + src + '"]{content:url("' + dataUrl + '")!important}';
         }
 
         // 主菜单大字（角色/商店/战斗/强化/百科）
@@ -7545,12 +7886,7 @@
         };
         Object.entries(menuImgs).forEach(function(_ref) {
             var img = _ref[0], txt = _ref[1];
-            canvas.height = 21;
-            canvas.width = 120;
-            ctx.font = 'bold 19px 微软雅黑,sans-serif';
-            ctx.fillStyle = '#000';
-            ctx.fillText(txt, 40, 16);
-            styleText += imgRule(img, canvas.toDataURL());
+            styleText += imgRule(img, textImage(txt, 120, 21, 19, 40, 16, '#000'));
         });
 
         // 通用图片字典（不含战斗页）
