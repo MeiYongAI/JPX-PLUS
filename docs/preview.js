@@ -32,6 +32,16 @@
   const pane = document.getElementById('preview-pane');
   const error = document.getElementById('image-error');
   const packs = document.getElementById('language-packs');
+  const header = document.querySelector('.site-header');
+  const updateHeaderHeight = () => {
+    document.documentElement.style.setProperty('--header-height', Math.ceil(header.getBoundingClientRect().height) + 'px');
+  };
+  updateHeaderHeight();
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(updateHeaderHeight).observe(header);
+  } else {
+    window.addEventListener('resize', updateHeaderHeight);
+  }
   let revision = 0;
   const sceneTitle = key => scenes[key][language === 'en' ? 'en' : 'zh'];
   function renderNavigation() {
