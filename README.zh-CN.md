@@ -1,4 +1,4 @@
-<p align="center"><a href="README.md">English</a> | <strong>简体中文</strong></p>
+<p align="center"><a href="README.md">English</a> | <strong>简体中文</strong> | <a href="README.zh-TW.md">繁體中文（台灣）</a> | <a href="README.zh-HK.md">繁體中文（香港）</a> | <a href="README.ja.md">日本語</a> | <a href="README.ko.md">한국어</a></p>
 
 <p align="center"><img src="assets/jpx-plus-icon.svg" width="80" height="80" alt="JPX-PLUS"></p>
 
