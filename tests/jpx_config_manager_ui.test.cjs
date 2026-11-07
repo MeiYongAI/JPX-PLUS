@@ -832,7 +832,10 @@ test('manual subset order preserves hidden positions and survives automatic sort
     for(const id of hidden)assert.equal(saved.indexOf(id),all.indexOf(id));
     await filter.selectOption('');await manager(f).locator('[data-config-sort]').selectOption('name');await manager(f).locator('[data-config-sort]').selectOption('manual');
     assert.deepEqual(await configIds(f),saved);
-    await f.page.locator('#close-button').click();await f.page.evaluate(()=>__manager.open());await selectTab(f.page,'configManager');
+    await f.page.locator('#close-button').click();
+    // Native dialog.close() queues its close event; wait for cleanup before reopening.
+    await f.page.locator('#settings-container').waitFor({state:'detached'});
+    await f.page.evaluate(()=>__manager.open());await selectTab(f.page,'configManager');
     assert.equal(await manager(f).locator('[data-config-sort]').inputValue(),'manual');assert.deepEqual(await configIds(f),saved);
     await noErrors(f);
 });
