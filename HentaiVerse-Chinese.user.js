@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.07.1
+// @version     2026.11.07.2
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -6552,10 +6552,13 @@
             parsed = { line, ranges: ranges.sort((a, b) => a.start - b.start) };
             battleNameRanges.set(cell, parsed);
         }
-        const prefix = document.createRange();
-        prefix.selectNodeContents(cell);
-        prefix.setEnd(node, 0);
-        const offset = prefix.toString().length;
+        // 只需要原文偏移，不创建会参与后续 DOM 更新维护的 live Range。
+        let offset = 0;
+        for (let current = node; current && current !== cell; current = current.parentNode) {
+            for (let previous = current.previousSibling; previous; previous = previous.previousSibling) {
+                if (previous.nodeType === 1 || previous.nodeType === 3) offset += previous.textContent.length;
+            }
+        }
         const source = node.nodeValue;
         const names = new Map();
         let text = '', cursor = 0, markerCode = 0xe000;
@@ -6935,6 +6938,7 @@
             ignoreWordBoundary: rule.ignoreWordBoundary || false,
             dict: dict,
             keys: keys,
+            styleKeys: keys.filter(key => typeof dict[key] === 'object' && dict[key]?.style),
             staticRegex: staticRegex,
             patterns: rule.patterns || []
         };
@@ -7067,10 +7071,6 @@
 
     function applyStyleToNode(node, matchIndex, matchLength, newText, style) {
         try {
-            const range = document.createRange();
-            range.setStart(node, matchIndex);
-            range.setEnd(node, matchIndex + matchLength);
-
             const mark = document.createElement('mark');
             mark.className = 'trans-styled';
             // 重置 mark 默认样式，应用自定义样式
@@ -7079,8 +7079,10 @@
 
             processedMarks.add(mark);
 
-            range.deleteContents();
-            range.insertNode(mark);
+            // 词条始终位于同一个文本节点中，直接分割即可保留两侧文本和原节点。
+            const suffix = node.splitText(matchIndex);
+            suffix.deleteData(0, matchLength);
+            suffix.parentNode.insertBefore(mark, suffix);
             return true;
         } catch (e) {
             console.error("[Translation Error] Style injection failed:", e);
@@ -7233,7 +7235,7 @@
             }
 
             // ================= STEP 3: 样式字典 (Style Dict) =================
-            for (const key of group.keys) {
+            for (const key of group.styleKeys) {
                 const target = group.dict[key];
                 if (typeof target === 'object' && target.style) {
                     const idx = text.indexOf(key);
@@ -7375,13 +7377,16 @@
             }
         });
 
-        // 批量处理文本节点
+        // 行内其他节点可能改变角色位置；整行与子节点合并后只扫描一次。
+        battleCellsToProcess.forEach(cell => { if (cell.isConnected) nodesToProcess.add(cell); });
         nodesToProcess.forEach(n => {
+            if (!n.isConnected) return;
+            for (let parent = n.parentNode; parent; parent = parent.parentNode) {
+                if (nodesToProcess.has(parent)) return;
+            }
             if (n.nodeType === 1) applyAll(n);
             else if (n.nodeType === 3) translateTextNode(n);
         });
-        // 同一行的其他节点可能改变了角色位置；重新渲染该行，原文相同的显示会直接复用。
-        battleCellsToProcess.forEach(cell => { if (cell.isConnected) applyAll(cell); });
         // 批量处理 UI 元素
         uiToProcess.forEach(el => translateUIElement(el));
     });
