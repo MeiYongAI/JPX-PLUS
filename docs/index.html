@@ -3,52 +3,85 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore JPX-PLUS settings, statistics, Config Store, and local backpack on desktop and mobile. Compare light and dark themes in English or Chinese.">
+  <meta name="description" content="JPX-PLUS for HentaiVerse. Install the script and explore its desktop and mobile interfaces.">
+  <meta name="theme-color" content="#e3e0d1">
   <title>JPX-PLUS · Interface preview</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="images/jpx-plus-icon.png">
   <link rel="stylesheet" href="preview.css">
   <script src="preview.js" defer></script>
 </head>
 <body>
-  <header class="masthead">
-    <a class="wordmark" href="https://github.com/MeiYongAI/JPX-PLUS" aria-label="JPX-PLUS on GitHub"><span class="monogram" aria-hidden="true">J<span>+</span></span><strong>JPX-PLUS</strong></a>
-    <a class="repo-link" href="https://github.com/MeiYongAI/JPX-PLUS">GitHub <span aria-hidden="true">↗</span></a>
-  </header>
-  <main>
-    <section class="intro" aria-labelledby="page-title">
-      <div><p class="eyebrow">HENTAIVERSE HELPER</p><h1 id="page-title" data-i18n="headline">Your battles. A clearer view.</h1><p class="description" data-i18n="intro">Explore battle rules, statistics, and shared configs on desktop and mobile.</p><p class="description" id="author-credit"><span data-i18n="authorThanks">Special thanks to JPX author </span><a href="https://forums.e-hentai.org/index.php?showuser=4802944" lang="zh-CN"><strong>闯关弟子</strong></a><span data-i18n="authorFoundation">. Without his work, JPX-PLUS would not exist.</span></p></div>
-      <div class="install-actions"><a class="install" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js"><span data-i18n="install">Install script</span><span aria-hidden="true">↗</span></a><a class="plugin-install" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js" data-i18n="installStore">Optional Config Store</a></div>
-    </section>
-    <section class="language-packs" aria-labelledby="language-packs-title">
-      <p><strong id="language-packs-title" data-i18n="languagePacks">Optional language packs</strong></p>
-      <p><a lang="zh-CN" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js">简体中文</a> · <a lang="zh-TW" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js">繁體中文（台灣）</a> · <a lang="zh-HK" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js">繁體中文（香港）</a> · <a lang="ja" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js">日本語</a> · <a lang="ko" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js">한국어</a></p>
-      <p class="description" data-i18n="languagePackHint">Enable one pack with the main script, then refresh. English needs no pack. Preview screenshots below are available in English and Simplified Chinese.</p>
-    </section>
-    <section class="gallery" aria-label="Interactive interface preview" data-i18n-aria="gallery">
+  <a class="skip-link" href="#gallery" data-i18n="skip">Skip to preview</a>
+  <div class="page-shell">
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="JPX-PLUS">
+        <img src="images/jpx-plus-icon.png" width="56" height="56" alt="">
+        <h1>JPX<span class="wordmark-plus">-PLUS</span></h1>
+      </a>
+      <div class="header-actions">
+        <a class="button repo-link" href="https://github.com/MeiYongAI/JPX-PLUS">GitHub <span aria-hidden="true">↗</span></a>
+        <a class="button install" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg>
+          <span data-i18n="install">Install script</span>
+        </a>
+      </div>
+    </header>
+    <div class="resource-bar">
+      <div class="resources">
+        <a class="resource-link" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js" data-i18n="installStore">Config Store</a>
+        <details class="language-packs" id="language-packs">
+          <summary data-i18n="languagePacks">Language packs</summary>
+          <div class="pack-menu">
+            <a lang="zh-CN" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js">简体中文</a>
+            <a lang="zh-TW" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js">繁體中文（台灣）</a>
+            <a lang="zh-HK" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js">繁體中文（香港）</a>
+            <a lang="ja" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js">日本語</a>
+            <a lang="ko" href="https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js">한국어</a>
+            <p data-i18n="languagePackHint">Enable one pack, then refresh. English needs no pack.</p>
+          </div>
+        </details>
+      </div>
+      <div class="languages" role="group" aria-label="Language" data-i18n-aria="language">
+        <button type="button" data-language="en" lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span>
+        <button type="button" data-language="zh-CN" lang="zh-CN" aria-pressed="false">中文</button>
+      </div>
+    </div>
+    <main id="gallery" class="gallery" tabindex="-1" aria-label="Interface preview" data-i18n-aria="gallery">
       <div class="toolbar">
         <div class="segmented devices" aria-label="Device" data-i18n-aria="device" role="group">
-          <button type="button" data-device="desktop" data-i18n="desktop" aria-pressed="true">Desktop</button>
-          <button type="button" data-device="mobile" data-i18n="mobile" aria-pressed="false">Mobile</button>
+          <button type="button" data-device="desktop" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M12 16v4m-5 0h10"/></svg><span data-i18n="desktop">Desktop</span></button>
+          <button type="button" data-device="mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg><span data-i18n="mobile">Mobile</span></button>
         </div>
         <div class="segmented themes" aria-label="Theme" data-i18n-aria="theme" role="group">
-          <button type="button" data-theme="light" aria-pressed="true"><span aria-hidden="true">☀</span> <span data-i18n="light">Light</span></button>
-          <button type="button" data-theme="dark" aria-pressed="false"><span aria-hidden="true">☾</span> <span data-i18n="dark">Dark</span></button>
-        </div>
-        <div class="segmented languages" aria-label="Language" data-i18n-aria="language" role="group">
-          <button type="button" data-language="en" lang="en" aria-pressed="true">English</button>
-          <button type="button" data-language="zh-CN" lang="zh-CN" aria-pressed="false">中文</button>
+          <button type="button" data-theme="light" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg><span data-i18n="light">Light</span></button>
+          <button type="button" data-theme="dark" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A9 9 0 0 1 9.8 3.5 9 9 0 1 0 20.5 14.2Z"/></svg><span data-i18n="dark">Dark</span></button>
         </div>
       </div>
-      <nav id="scenes" class="scenes" aria-label="Preview page" data-i18n-aria="pages"></nav>
-      <div class="caption"><div><h2 id="scene-title">Basic settings</h2><p id="scene-description">Battle controls, display options, and panel colors in one place.</p></div><a id="full-image" href="images/desktop-settings-light-en.png" target="_blank" rel="noopener"><span data-i18n="original">Open full image</span> <span aria-hidden="true">↗</span></a></div>
-      <div class="stage" id="stage" data-device="desktop" data-scene="settings" aria-busy="false">
-        <img id="preview" src="images/desktop-settings-light-en.png" width="848" height="808" alt="Basic settings · Desktop · Light theme" fetchpriority="high">
-        <p id="image-error" hidden><span data-i18n="imageError">The image could not be loaded.</span> <a id="retry-image" href="images/desktop-settings-light-en.png" data-i18n="retry">Open the original image</a></p>
+      <div class="preview-layout">
+        <nav class="scene-rail" aria-label="Preview page" data-i18n-aria="pages">
+          <div id="scenes" class="scenes" role="tablist" aria-orientation="vertical" aria-label="Preview page" data-i18n-aria="pages"></div>
+          <select id="scene-select" aria-label="Preview page" data-i18n-aria="pages"></select>
+        </nav>
+        <section class="preview-pane" id="preview-pane" role="tabpanel" aria-labelledby="scene-title" tabindex="0">
+          <div class="caption"><h2 id="scene-title">Basic settings</h2><a id="full-image" href="images/desktop-settings-light-en.png" target="_blank" rel="noopener"><span data-i18n="original">Full size</span> <span aria-hidden="true">↗</span></a></div>
+          <div class="stage" id="stage" data-device="desktop" data-scene="settings" aria-busy="false">
+            <img id="preview" src="images/desktop-settings-light-en.png" width="848" height="808" alt="Basic settings · Desktop · Light" fetchpriority="high">
+            <div id="image-error" hidden><p data-i18n="imageError">The image could not be loaded.</p><button class="button" id="retry-image" type="button" data-i18n="retry">Try again</button></div>
+          </div>
+        </section>
       </div>
-      <p class="gallery-note" id="theme-note">Switch themes without changing the page or sample data.</p>
-      <p id="status" class="sr-only" aria-live="polite"></p>
-    </section>
-    <footer><p data-i18n="disclaimer">Actual script interfaces with offline demo data, including the sample catalog and backpack. The results image shows the statistics area.</p><p><a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md" id="static-preview" data-i18n="staticGallery">Gallery on GitHub</a><span aria-hidden="true"> · </span><a href="https://github.com/MeiYongAI/JPX-PLUS/issues" data-i18n="feedback">Report an issue</a></p></footer>
-    <noscript><p>JavaScript is needed to switch screenshots. Browse the <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md">English gallery</a> or <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.zh-CN.md">中文图集</a>.</p></noscript>
-  </main>
+      <p id="status" class="sr-only" aria-live="polite" aria-atomic="true"></p>
+    </main>
+    <footer class="footer">
+      <p class="author-credit"><span data-i18n="authorThanks">Original JPX by </span><a href="https://forums.e-hentai.org/index.php?showuser=4802944" lang="zh-CN">闯关弟子</a></p>
+      <div class="footer-links">
+        <a class="mobile-repo-link" href="https://github.com/MeiYongAI/JPX-PLUS">GitHub</a>
+        <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md" id="static-preview" data-i18n="staticGallery">Gallery</a>
+        <a href="https://github.com/MeiYongAI/JPX-PLUS/issues" data-i18n="feedback">Feedback</a>
+        <details class="preview-notes"><summary data-i18n="about">About</summary><div><p data-i18n="disclaimer">Actual script interfaces with offline demo data. The results image shows the statistics area.</p><p id="scene-note"></p></div></details>
+      </div>
+    </footer>
+    <noscript><p>JavaScript is needed to switch screenshots. <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.md">English gallery</a> · <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/gallery-light.zh-CN.md">中文图集</a>.</p></noscript>
+  </div>
 </body>
 </html>
