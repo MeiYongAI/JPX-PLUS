@@ -1,6 +1,8 @@
-# Config Store source
+# Legacy Config Store and migration
 
-This directory contains the independent Config Store plugin. `service.js` handles GitHub requests, authorization, validation, and integrity checks. `ui.js`, `ui.css`, and `i18n.json` provide the settings tab and its English/Chinese interface. The main script exposes the small `JPXPlus.registerSettingsTab` bridge; it does not contain the plugin's network permissions or credentials.
+The current main script includes config management and Store. This plugin remains for older installations and for transferring its backpack after upgrading. New users do not need it. See [upgrading](../../docs/upgrading.md) and [current manager sources](../../src/config-manager/README.md).
+
+This directory contains the independent Config Store plugin. `service.js` handles GitHub requests, authorization, validation, and integrity checks. `ui.js`, `ui.css`, and `i18n.json` provide the settings tab and its English/Chinese interface. The main script includes its own Store and network permissions. The two scripts keep separate storage; migration copies config records only, never login credentials. The generic settings-tab bridge remains available to other extensions.
 
 The local backpack uses one userscript-manager storage key per saved configuration. Its names and descriptions wrap an unchanged JPX configuration; they never enter the game's battle or statistics settings. Saving and editing backpack entries do not require login or send requests. Applying an entry goes through the core import bridge and remains undoable until the user saves. Public submissions still use the separate publishing validator and review process.
 

@@ -12,7 +12,7 @@ const css = JSON.stringify(read('ui.css'));
 const header = `// ==UserScript==
 // @name         JPX-PLUS Config Store
 // @namespace    ijpx
-// @version      2026.11.06.8
+// @version      2026.11.08.1
 // @description  Optional configuration sharing and discovery for JPX-PLUS
 // @author       MeiYongAI
 // @run-at       document-end
@@ -47,9 +47,25 @@ const header = `// ==UserScript==
     };
 `;
 const footer = `
+    let migrationPending = null, migrationComplete = false;
     function attach() {
         const core = host.JPXPlus;
         if (!core || core.apiVersion !== 1) return;
+        if (core.features?.configManagement) {
+            // Manager storage belongs to another userscript. Transfer configurations only;
+            // the source archive and its authorization token stay in this sandbox.
+            if (!migrationComplete && !migrationPending && typeof core.migrateLegacyConfigs === 'function') {
+                migrationPending = jpxConfigStore.backpackList()
+                    .then(entries => core.migrateLegacyConfigs(JSON.parse(JSON.stringify(entries))))
+                    .then(result => { if (result === false) throw new Error('Migration declined'); migrationComplete = true; })
+                    .catch(error => host.dispatchEvent(new CustomEvent('jpx:legacy-config-error', { detail: {
+                        code: ['storageCorrupt', 'storageError', 'managerUnavailable'].includes(error?.code) ? error.code : 'migrationFailed'
+                    } })))
+                    .finally(() => { migrationPending = null; });
+            }
+            host.removeEventListener('jpx:ready', attach);
+            return;
+        }
         core.registerSettingsTab({ id: 'configStore', title: () => t('cStore.name'), render(parent, hooks) {
             if (!document.getElementById('jpx-config-store-style')) {
                 const style = document.createElement('style'); style.id = 'jpx-config-store-style';
@@ -60,6 +76,7 @@ const footer = `
         host.removeEventListener('jpx:ready', attach);
     }
     host.addEventListener('jpx:ready', attach);
+    host.addEventListener('jpx:legacy-config-request', attach);
     attach();
 })();
 `;

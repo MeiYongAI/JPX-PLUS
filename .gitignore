@@ -9,3 +9,5 @@ cfgBattle*.txt
 cfgStats*.txt
 Thumbs.db
 .DS_Store
+.test-output/
+*.pem

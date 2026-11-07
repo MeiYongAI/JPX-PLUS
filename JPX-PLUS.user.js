@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.06.12
+// @version      2026.11.08.1
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAGdklEQVR4AeyZW2wUVRjHvxkqiBAFqSigQuoFEiAhEa2GbAUCmijSlIv4oJFwFQn6YqvR6IOJRlpeFBEplGDCA4hAimiiICBL1SomJEACKg2IgJZyMyCCZY7nN2E2ZZjZnZndtrvbbvr1zLl98//958zZzYwpAT/xj+b1ji+bOTVePXvhzuqZn+2qnvVNvHrW9mwItKAprrXZGrXWgFiS0gCddBzJpeC/02IYn1rWlfJzjedLjzc0jT3+28nRWRFaC5rQJlojWtGM9lRG+BoQXzmjiCQiasulC5dL92w7KLWLd8jy8o3G2oVfF2xa8q18vnRnVgRa0IQ2NKIVzWiHARY/IzwNYBmpy8ZeZalJ9Zv3yidvbS6o/2Kf/Hn4lF+erGlHI1ptzVo7DLDA5CXyOgPiy2fNYRnpRDetq9pi7Nn+i9e8nGhDOwywwGSzuZRfY4DtkpJlh/ceE5bV2cbzruG5V4UBFphEs9mMLTASBnCfKCWrTjQ0yVerfmgxJD8OYYINRlgdqoQBqtmoVKK671z3s9OXdyVsMMLqwNkG8HVhiDH5py/3GywZpzPfSthghBVm+GwDlFgv/HvhUjObBo35HDDCCjOcJr/wcORA/eECGjpCwAoz7KZ0uTwO6CP7T1B0iEiwanZTDHOkZVlKf1d2CHggYbUsS8Fu6nvhnr+bLlyhI9eiaNhAqVg23w6Ow+iHGXZTL4HeF89fysn7f+y0mPTq28uOKQsmhOEXmGHXK0BM/Xs51GRn8MRXFkjl7u1S89evGQlykbPPXXc6p0hatrzqGJF08NVOp4BZiegF4LSELBFaWv6SBBUbJD25yDlqWlmQ4RkZY0bNgtCoc1PNa83c7nNHNuDU0T/cuVq1znJnw3t34xvihPuETjslY5njHuOuRzZg15oN7lytWnc2vKAnYU8IsjFGNmDTosVSt2a9tPVKCGoA4043nqNIGpENIOvKl1+TipFjZObt90UO8gSJbWvj0rDvSJCh9pizjWeFOXYlyb+0DEiSN+NdwK94c7W8XvZOItwnadlXOXdJIMNyxgA3bKbqnQZkysn2yMNt4Zy35bHTFqTM6RXAJgd40A3Py5CcNgB4NsagG17eGeAFFLYtp1dAWFiv8Z0GeLmST22pWDpXQCqH8r2/cwXk+xVOxRdpBfA8kAeYBMc8y0t1omztD20AwDyzA5rgOOpDTOa3tzGhDQDYLdqrzT0mTL0tnzKFNsBPXJSrWXj3gDC+tMrY0Ab4qYgCM/iRhzzTHair92xvjcbQBpz8/ZinDj8Yz8FXG/1unaaj3ue4Oi2jRWgDDn7nfXWAGTyqOLA4NlO/wXVrN/p1Zbw9vAHf/+gromLDahn1zOSUr8uAxzCvROwxhFdfa7SFN0Dfn7wP8BMz4/33hMAIVoSzOVInyrVJfvDkrF30IUWbRWgDUIbIZFdpiL4VMIEVwY8l3h5TJ+gjh1ew+SUz12tOum2RDAA+lQlhhZGzatKzYaelPT6SAZyVK7VLvx9EOPV0ghw1+i1TOjmcuWHLyAZwok36/eDCsueEpUs9SjCX12sH9d4SZX66c0xDxDL4HzETV4+lW6mXL8dh0vBukblh5mRqLMywm5aoM917dmtONzFXkCuJEbVVHwjB1XVMoaRep98oM4YXqhyne96o82GGXV9789DNhT26RE3knocR3BoEVxdTgKWkzlVnjHteW9dhNsQ8ZIqydpumadwxqI90lA+sMNvscqXrVsAHDu1H0SEiwarZzdiLS88oUeuHFA9Kex/IFfdghRl2+2vQEPPjG3t0Kxgx5n7J9w+MsBqaWfTHNiA2Z/lWHHnwiaGqV9+eujk//2CDEVaYobQN4MAoUBWGGBdLpj5ANS8DNhhhdQATBsRmrGwwDJner6hQHp/+sNOfNyVMsMEIqwOWMICG2NyadWLI3EHDB8jE+Y8KS4b2XA4YYIEJNpuxBdA1BtAem72iWpR6Wn9X/jO1fLxi06A9FwPtMMACk83mArnOAPpxyeiqhuvfyxuKJwyX59+e0Fz85DDRiejO6kAjWm3NWjsMsMDkJdz0aqSN+6RkTs0UEWN8tx5da0eMHSylC0bL7KoyNe3Vx5pZVk/NK5FsCLSgCW1oRCuaRWuHARbx+fga4IyP6a/IEoxovuFWlpFpdqm6pW/P2v5Fhdv633vbjvYO+/xaC5rQhkbRWtEc09odDr/yfwAAAP//nlygdwAAAAZJREFUAwCEBED17v6rSAAAAABJRU5ErkJggg==
 // @run-at       document-end
@@ -10,6 +10,13 @@
 // @exclude      *hentaiverse.org/equip/*
 // @exclude      *hentaiverse.org/isekai/equip/*
 // @grant        unsafeWindow
+// @grant        GM_xmlhttpRequest
+// @grant        GM_getValue
+// @grant        GM_setValue
+// @grant        GM_deleteValue
+// @connect      github.com
+// @connect      api.github.com
+// @connect      raw.githubusercontent.com
 // @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
 // @supportURL   https://github.com/MeiYongAI/JPX-PLUS/issues
 // @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js
@@ -21,13 +28,15 @@
 
 let cfgBattle = {};
 const settingsPlugins = new Map();
-// Optional userscripts own their UI, network permissions and credentials.
+// Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.06.12',
+    version: '2026.11.08.1',
+    features: Object.freeze({ configManagement: true }),
+    migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
         if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
-            ['battle', 'battleRules', 'keyBindings', 'stats'].includes(plugin.id) ||
+            ['battle', 'battleRules', 'keyBindings', 'stats', 'configManager', 'configStore'].includes(plugin.id) ||
             typeof plugin.render !== 'function' || typeof plugin.title !== 'function') return false;
         if (settingsPlugins.has(plugin.id)) return false;
         settingsPlugins.set(plugin.id, plugin);
@@ -38,6 +47,7 @@ window.JPXPlus = Object.freeze({
 let defaultCfgBattle = {
     "battleVersion": 20251216,
     "advanceToNextRound": false,
+    "autoFinishBattle": false,
     // Retired automation fields remain inert for legacy configuration round trips.
     "autoStartBattle": false,
     "autoCheckIn": false,
@@ -678,6 +688,8 @@ let cfg = {
         .field-picker-select option:checked { background-color: #e0e0e0; }
 
         #settings-container.jpx-settings-dialog {
+            --jpx-motion: 160ms;
+            --jpx-motion-fast: 120ms;
             position: fixed;
             box-sizing: border-box;
             inset: 0;
@@ -765,6 +777,7 @@ let cfg = {
             overflow: hidden;
             border-right: 1px solid #5c0d11;
             background: #e3e0d1;
+            transition: width var(--jpx-motion) ease-out;
         }
         #settings-container .jpx-settings-sidebar-toggle {
             display: flex;
@@ -843,10 +856,17 @@ let cfg = {
         #settings-container .jpx-settings-sidebar-toggle:hover {
             background: rgb(237 235 223 / 72%) !important;
         }
-        #settings-container .jpx-tab-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+        #settings-container .jpx-tab-label {
+            min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+            opacity: 1; translate: 0; visibility: visible;
+            transition: opacity var(--jpx-motion-fast) ease-out, translate var(--jpx-motion) ease-out, visibility 0s;
+        }
         #settings-container .jpx-settings-workspace.sidebar-collapsed .jpx-settings-sidebar { width: 56px; }
         #settings-container .jpx-settings-workspace.sidebar-collapsed .settings-tab-btn[aria-selected=true] { box-shadow: inset -3px 0 #5c0d11; }
-        #settings-container .jpx-settings-workspace.sidebar-collapsed .jpx-tab-label { display: none; }
+        #settings-container .jpx-settings-workspace.sidebar-collapsed .jpx-tab-label {
+            opacity: 0; translate: -4px 0; visibility: hidden;
+            transition-delay: 0s, 0s, var(--jpx-motion);
+        }
         #settings-container [role=tabpanel] {
             display: flex;
             min-height: 0;
@@ -1012,6 +1032,11 @@ let cfg = {
         #settings-container select:not([multiple]) { field-sizing: content; min-width: 0; }
         #settings-container select,
         #settings-container textarea { scrollbar-width: thin; scrollbar-color: #5c0d11 #e3e0d1; }
+        /* Host option rules do not inherit the themed select's colors. */
+        #settings-container select :is(option,optgroup) {
+            color: var(--jpx-theme-text, #5c0d11); background: #fffdf7;
+        }
+        #settings-container select option:checked { background: #eddbb2; }
         @supports (appearance: base-select) {
             #settings-container select:not([multiple]),
             #settings-container select:not([multiple])::picker(select) { appearance: base-select; }
@@ -1043,16 +1068,19 @@ let cfg = {
             #settings-container select:not([multiple]) option {
                 box-sizing: border-box;
                 min-height: 30px;
+                margin: 0;
                 padding: 5px 8px;
                 gap: 8px;
                 white-space: normal;
                 overflow-wrap: anywhere;
-                border-radius: 0;
+                border: 0; border-radius: 0; background: transparent;
+                color: var(--jpx-theme-text, #5c0d11);
                 border-bottom: 1px solid rgb(92 13 17 / 12%);
             }
             #settings-container select:not([multiple]) option:checked { background: #eddbb2; }
             #settings-container select:not([multiple]) option:hover,
             #settings-container select:not([multiple]) option:focus { background: #f4e5c4; outline: 1px solid #9b4e03; outline-offset: -1px; }
+            #settings-container select:open::picker(select) { animation: jpx-settings-fade var(--jpx-motion-fast) ease-out; }
         }
         #settings-container input:not([type=checkbox]):not([type=radio]),
         #settings-container textarea {
@@ -1170,6 +1198,7 @@ let cfg = {
             border-top: 4px solid transparent;
             border-bottom: 4px solid transparent;
             border-left: 5px solid #5c0d11;
+            transition: transform var(--jpx-motion) ease-out;
             content: '';
         }
         #settings-container .jpx-rule-item[open] > summary::before { transform: rotate(90deg); }
@@ -1177,8 +1206,17 @@ let cfg = {
         #settings-container .jpx-rule-item > summary > .drag-handle { grid-column: 1; grid-row: 1; }
         #settings-container .jpx-rule-item > summary > .jpx-array-item-actions { grid-column: 4; grid-row: 1; }
         #settings-container .jpx-rule-summary-heading { display: flex; min-width: 0; align-items: center; gap: 8px; }
-        #settings-container .jpx-rule-item[open] .jpx-rule-item-meta,
-        #settings-container .jpx-rule-item[open] .jpx-rule-item-preview { display: none; }
+        /* Keep the summary and actions stationary throughout disclosure. */
+        @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+            #settings-container .jpx-rule-item::details-content {
+                interpolate-size: allow-keywords;
+                block-size: 0; overflow: clip;
+                transition: block-size var(--jpx-motion) ease-out, content-visibility var(--jpx-motion) allow-discrete;
+            }
+            #settings-container .jpx-rule-item[open]::details-content { block-size: auto; }
+            #settings-container .jpx-rule-item:has(.multiSelect-summary[aria-expanded=true])::details-content { overflow: visible; }
+            #settings-container .jpx-rule-bulk-toggle .jpx-rule-item::details-content { transition: none; }
+        }
         #settings-container .jpx-rule-item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
         #settings-container .jpx-rule-item-meta { margin-left: auto; color: #71634f; font-size: 11px; white-space: nowrap; }
         #settings-container .jpx-rule-item-preview { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #71634f; font-size: 11px; line-height: 18px; }
@@ -1502,12 +1540,16 @@ let cfg = {
         #settings-container #jpx-settings-menu-button svg { width: 20px; height: 20px; }
         #settings-container.jpx-settings-mobile .jpx-settings-workspace { position: relative; flex-direction: column; }
         #settings-container.jpx-settings-mobile .jpx-settings-workspace .jpx-settings-sidebar {
-            display: none; position: absolute; z-index: 2; inset: 6px 10px auto auto; box-sizing: border-box;
+            display: flex; position: absolute; z-index: 2; inset: 6px 10px auto auto; box-sizing: border-box;
             width: max-content; max-width: calc(100% - 20px); max-height: calc(100% - 12px);
             padding: 3px; border: 1px solid #bda68e; border-radius: 3px;
             box-shadow: 0 3px 8px #0002;
+            opacity: 0; translate: 0 -6px; visibility: hidden; pointer-events: none;
+            transition: opacity var(--jpx-motion-fast) ease-out, translate var(--jpx-motion) ease-out, visibility 0s var(--jpx-motion);
         }
-        #settings-container.jpx-settings-mobile.jpx-settings-navigation-open .jpx-settings-sidebar { display: flex; }
+        #settings-container.jpx-settings-mobile.jpx-settings-navigation-open .jpx-settings-sidebar {
+            opacity: 1; translate: 0; visibility: visible; pointer-events: auto; transition-delay: 0s;
+        }
         #settings-container.jpx-settings-mobile .jpx-settings-sidebar-toggle { display: none; }
         #settings-container.jpx-settings-mobile .settings-tab-header { display: flex; flex-direction: column; overflow: auto; border: 0; }
         #settings-container.jpx-settings-mobile .settings-tab-btn {
@@ -1516,7 +1558,9 @@ let cfg = {
             border: 0 !important; text-align: left; font-size: 14px; line-height: 1.4;
         }
         #settings-container.jpx-settings-mobile .settings-tab-btn > svg { display: block; }
-        #settings-container.jpx-settings-mobile .settings-tab-btn .jpx-tab-label { display: block; overflow: visible; }
+        #settings-container.jpx-settings-mobile .settings-tab-btn .jpx-tab-label {
+            display: block; overflow: visible; opacity: 1; translate: 0; visibility: visible; transition: none;
+        }
         #settings-container.jpx-settings-mobile .settings-tab-btn[aria-selected=true] { box-shadow: inset 3px 0 #5c0d11 !important; }
         #settings-container.jpx-settings-mobile [role=tabpanel] { padding: 12px 10px; overscroll-behavior-y: contain; }
         #settings-container.jpx-settings-mobile .jpx-settings-footer {
@@ -1538,6 +1582,18 @@ let cfg = {
         #settings-container.jpx-settings-mobile .jpx-stats-color-heading > div { grid-template-columns: 40px 40px minmax(44px, 1fr); }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row { grid-template-columns: auto minmax(52px, 1fr) auto 40px 24px; }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row:has(.jpx-stats-threshold-legacy) { grid-template-columns: minmax(0, 1fr) 24px; }
+        @keyframes jpx-settings-reveal { from { opacity: 0; translate: 0 -4px; } to { opacity: 1; translate: 0; } }
+        @keyframes jpx-settings-fade { from { opacity: 0; } to { opacity: 1; } }
+        #settings-container :is(.jpx-config-menu:popover-open,.jpx-rule-sort-popover:popover-open,.multiSelect-popup-panel,.jpx-config-confirm) {
+            animation: jpx-settings-reveal var(--jpx-motion-fast) ease-out;
+        }
+        #settings-container :is(.jpx-config-overlay,.jpx-config-notice:not(:empty)) { animation: jpx-settings-fade var(--jpx-motion-fast) ease-out; }
+        #settings-container :is(.settings-tab-btn,.jpx-config-nav>button,.jpx-rule-section-tabs>button) {
+            transition: background-color var(--jpx-motion-fast), color var(--jpx-motion-fast), border-color var(--jpx-motion-fast);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #settings-container.jpx-settings-dialog { --jpx-motion: 0ms; --jpx-motion-fast: 0ms; }
+        }
         ${JPX_RECORD_DETAIL_CSS}
     `,
 };
@@ -1655,7 +1711,7 @@ let battleLogRecordCurrent = [];
 let timeRecords = {};
 let combatRecords = {};
 let revenueRecords = {};
-let spellDamageBonus = JSON.parse(localStorage.getItem(prefix + 'spellDamageBonus' + isekaiSuffix) || '{"maxType":"fire","maxValue":0}');
+let spellDamageBonus = readJpxSpellDamageBonus();
 
 let dummy = document.createElement('div');
 let newWindow;
@@ -1769,7 +1825,7 @@ const CTRLWIDGET_FIELDS = [
     { id: 'isActiveBattle', get: () => isActiveBattle ? t('cW.auto') : t('cW.manual') },
     { id: 'readyNext', get: () => readyNext },
     { id: 'networkDelay', get: () => (lastLogTimestamp > lastActionTimestamp ? lastLogTimestamp - lastActionTimestamp : '-') },
-    { id: 'battleStyle', get: () => t(`cW.${battleStyle}`) + (/Staff|Mage/.test(battleStyle) ? ` (${t(`cW.${spellDamageBonus.maxType}`)})` : '') },
+    { id: 'battleStyle', get: () => t(`cW.${getManagedBattleStyle(battleStyle)}`) + (/Staff|Mage/.test(getManagedBattleStyle(battleStyle)) ? ` (${t(`cW.${getManagedSpellType()}`)})` : '') },
     { id: 'battleType', get: () => t(`cW.${battleType}`) + (worldLevel ? ` (WL${worldLevel})` : '') + (towerFloor ? ` (${towerFloor}F)` : '') },
     { id: 'battleMode', get: () => getBattleMode() },
     { id: 'round', get: () => roundInfo.total ? `${roundInfo.current} / ${roundInfo.total}` : '-' },
@@ -2112,6 +2168,7 @@ const cfgBattleSchema = {
     properties: [
         mkF('battleControls', 'group', { properties: [
             mkF('advanceToNextRound', 'boolean'),
+            mkF('autoFinishBattle', 'boolean'),
             mkF('ctrlWidgetMouseEnter', 'boolean', { label: 'cB.panelMouseEnter' }),
             mkF('ajaxRound', 'boolean', { label: 'cB.ajaxRoundShort', help: 'cB.ajaxRound' }),
             mkF('dailyStaminaQuotaPlus', 'number'),
@@ -2321,6 +2378,7 @@ const I18N = {
         exportModeShort: 'Export', resetModeShort: 'Reset',
         battleControls: 'Battle controls', battleDisplay: 'Battle display', controlPanel: 'Control panel', ajaxRoundShort: 'Next round without reloading',
         advanceToNextRound: 'Auto next round',
+        autoFinishBattle: 'Auto finish battle',
         battleRecordWarning: 'Could not complete battle statistics. Keep this page open to inspect the result.',
         ajaxRound: "Enable AJAX for advancing to the next round. Disable it if other scripts don't support it.",
         showCooldowns: 'Quickbar cooldowns',
@@ -2376,6 +2434,13 @@ const I18N = {
         styleText: 'CSS style', displaySettings: 'Display settings', outputDisplay: 'Damage dealt', takenDisplay: 'Damage taken',
 
         exportDB: 'Export records', importDB: 'Import records',
+        clearRecords: 'Clear records', recordsAllWorlds: 'All worlds', recordsAllBattles: 'All battles',
+        recordsPeriod: 'Dates', recordsAllDates: 'All dates', recordsDateRange: 'Date range',
+        recordsFrom: 'From', recordsTo: 'Through', recordsDateHint: 'Dates shown in your records. Leave either end blank for no limit.',
+        recordsScopeHint: 'Only saved battle records are cleared. Settings and the current battle are kept.',
+        recordsPreview: '${count} records selected', recordsRangeInvalid: 'Enter a valid date range.',
+        recordsClearConfirm: 'Permanently delete ${count} battle records? This cannot be undone.',
+        recordsCleared: 'Deleted ${count} records.', recordsClearFailed: 'Records could not be cleared. No records were deleted.',
         statsSettings: 'Stats', saveStatsConfig: 'Save stats settings', exportStatsConfig: 'Export stats settings', importStatsConfig: 'Import stats settings',
         cleanup: 'Clear all JPX-PLUS data',
         cleanupScope: 'Deletes settings, shortcuts, temporary data and all battle records for both worlds on this site. Export anything you need first. This cannot be undone.',
@@ -2392,7 +2457,7 @@ const I18N = {
         help_combatRows: 'Choose combat stats to show. Select one to change its colors.',
         help_revenueRows: 'Choose loot and earnings to show. Select one to change its colors.',
         help_statsColumns: 'Choose columns for the stats table.',
-        help_data: 'Import or export battle records, or clear all JPX-PLUS local data.',
+        help_data: 'Import, export or clear battle records, or reset all local data.',
         allFields: 'Items', enabledCount: '${count} / ${total} enabled', reorderFields: 'Reorder stats',
         enableField: 'Enable item', disableField: 'Disable item',
         reorderHint: 'Drag to reorder · Alt + ↑ / ↓ also works',
@@ -2697,6 +2762,280 @@ function renderJpxCleanup(owner) {
     } catch (error) { fail(error); }
 }
 
+// Detection is separate from the selected configuration. Cached magic stats are
+// useful only for the same world/persona; legacy cache values remain a runtime
+// fallback until a character page supplies a verified snapshot.
+function getJpxDetectionContext(root = document) {
+    const select = root.querySelector('#persona_form select');
+    const selected = select?.selectedOptions?.[0] || select?.options?.[select.selectedIndex];
+    return {
+        world: isekaiSuffix ? 'Isekai' : 'Persistent',
+        persona: selected?.textContent?.trim() || localStorage.getItem(prefix + 'persona' + isekaiSuffix) || '',
+        personaId: select?.value || localStorage.getItem(prefix + 'personaId' + isekaiSuffix) || ''
+    };
+}
+
+let jpxDetectionSourceIgnored = false;
+let jpxDetectionGeneration = 0;
+let jpxDetectionRequest = null;
+let jpxDetectionRetryAt = 0;
+const jpxDetectedFamilyKey = () => prefix + 'detectedWeaponFamily_v1' + isekaiSuffix;
+const jpxDetectedFamilyValid = family => ['OneHanded', 'TwoHanded', 'DualWielding', 'NitenIchiryu', 'Staff'].includes(family);
+
+function readJpxDetectedFamily() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(jpxDetectedFamilyKey())), current = getJpxDetectionContext();
+        if (saved?.version === 1 && jpxDetectedFamilyValid(saved.family) &&
+            saved.world === current.world && saved.persona === current.persona && saved.personaId === current.personaId &&
+            Number.isFinite(saved.verifiedAt) && Date.now() >= saved.verifiedAt && Date.now() - saved.verifiedAt < 60000) return saved.family;
+    } catch { /* A missing or corrupt observation is not a detected style. */ }
+    return '';
+}
+
+function rememberJpxDetectedFamily(family, context = getJpxDetectionContext()) {
+    if (!jpxDetectedFamilyValid(family)) return;
+    try {
+        const key = jpxDetectedFamilyKey();
+        let saved;
+        try { saved = JSON.parse(localStorage.getItem(key)); } catch { /* Replace corrupt cached evidence with the live observation. */ }
+        if (saved?.family === family && saved.world === context.world && saved.persona === context.persona &&
+            saved.personaId === context.personaId && Date.now() - saved.verifiedAt < 30000) return;
+        localStorage.setItem(key, JSON.stringify({ version: 1, ...context, family, verifiedAt: Date.now() }));
+    } catch { /* Live evidence remains usable even when browser storage is full. */ }
+}
+
+function getJpxSpellDamageFromPage(root = document) {
+    const label = Array.from(root.querySelectorAll('.spc')).find(node =>
+        (node.textContent || '').includes('Spell Damage Bonus') ||
+        jpxUtils.parseHVClasses(node.querySelector('div')).includes('Spell Damage Bonus'));
+    let maximum = null;
+    for (const row of label?.nextElementSibling?.querySelectorAll('tr') || []) {
+        const cells = row.querySelectorAll('td');
+        if (cells.length < 2) continue;
+        const maxValue = parseFloat(cells[0].textContent.trim());
+        const maxType = cells[1].textContent.trim().toLowerCase();
+        if (Number.isFinite(maxValue) && maxValue >= 0 && ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(maxType) &&
+            (!maximum || maxValue > maximum.maxValue)) maximum = { maxType, maxValue };
+    }
+    return maximum;
+}
+
+function readJpxSpellDamageBonus(verifiedOnly = false) {
+    const fallback = () => verifiedOnly ? null : { maxType: 'fire', maxValue: 0 };
+    try {
+        const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+        const value = JSON.parse(localStorage.getItem(key));
+        if (!value || !['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(value.maxType) ||
+            !Number.isFinite(value.maxValue) || value.maxValue < 0) return fallback();
+        const saved = JSON.parse(localStorage.getItem(key + ':context'));
+        if (!saved) return verifiedOnly ? null : { maxType: value.maxType, maxValue: value.maxValue };
+        const current = getJpxDetectionContext();
+        if (saved.version !== 1 || saved.world !== current.world || saved.persona !== current.persona || saved.personaId !== current.personaId ||
+            !current.persona) return fallback();
+        return { maxType: value.maxType, maxValue: value.maxValue };
+    } catch { return fallback(); }
+}
+
+function refreshJpxModeDetection() {
+    const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+    const before = localStorage.getItem(key) + localStorage.getItem(key + ':context') + localStorage.getItem(jpxDetectedFamilyKey());
+    const context = getJpxDetectionContext();
+    const previous = localStorage.getItem(prefix + 'persona' + isekaiSuffix) || '';
+    const previousId = localStorage.getItem(prefix + 'personaId' + isekaiSuffix) || '';
+    if (context.persona && (context.persona !== previous || (previousId && context.personaId && context.personaId !== previousId))) {
+        localStorage.removeItem(key);
+        localStorage.removeItem(key + ':context');
+        localStorage.removeItem(jpxDetectedFamilyKey());
+    }
+    if (context.persona) {
+        localStorage.setItem(prefix + 'persona' + isekaiSuffix, context.persona);
+        if (context.personaId) localStorage.setItem(prefix + 'personaId' + isekaiSuffix, context.personaId);
+    }
+    const maximum = getJpxSpellDamageFromPage();
+    if (maximum && context.persona) {
+        localStorage.setItem(key, JSON.stringify(maximum));
+        localStorage.setItem(key + ':context', JSON.stringify({ version: 1, ...context }));
+    }
+    spellDamageBonus = maximum || readJpxSpellDamageBonus();
+    getDetectedJpxBattleStyle();
+    if (before !== localStorage.getItem(key) + localStorage.getItem(key + ':context') + localStorage.getItem(jpxDetectedFamilyKey())) window.dispatchEvent(new Event('jpx:mode-detected'));
+}
+
+function initJpxModeDetection() {
+    refreshJpxModeDetection();
+    const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+    const invalidate = () => {
+        jpxDetectionSourceIgnored = true;
+        jpxDetectionGeneration++;
+        jpxDetectionRetryAt = 0;
+        localStorage.removeItem(key);
+        localStorage.removeItem(key + ':context');
+        localStorage.removeItem(jpxDetectedFamilyKey());
+        spellDamageBonus = readJpxSpellDamageBonus();
+        window.dispatchEvent(new Event('jpx:mode-detected'));
+    };
+    document.addEventListener('change', event => {
+        if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
+    }, true);
+    document.addEventListener('submit', event => {
+        if (event.target.matches?.('#persona_form, #equipform')) invalidate();
+    }, true);
+    document.addEventListener('click', event => {
+        if (event.target.closest?.('#eqsl')) invalidate();
+    }, true);
+    window.addEventListener('storage', event => {
+        if (![key, key + ':context', jpxDetectedFamilyKey(), prefix + 'persona' + isekaiSuffix, prefix + 'personaId' + isekaiSuffix].includes(event.key)) return;
+        jpxDetectionGeneration++;
+        if (event.key === jpxDetectedFamilyKey() || event.key.startsWith(prefix + 'persona')) jpxDetectionSourceIgnored = true;
+        if (!log) spellDamageBonus = readJpxSpellDamageBonus();
+        window.dispatchEvent(new Event('jpx:mode-detected'));
+    });
+}
+
+function getJpxBattleSkillFamily(actions) {
+    const families = Object.entries({ 'Shield Bash': 'OneHanded', 'Great Cleave': 'TwoHanded',
+        'Iris Strike': 'DualWielding', 'Skyward Sword': 'NitenIchiryu', 'Concussive Strike': 'Staff' })
+        .filter(([skill]) => actions && Object.hasOwn(actions, skill)).map(([, family]) => family);
+    return families.length === 1 ? families[0] : '';
+}
+
+function getJpxEquippedStyleFamily(root = document, metadata = window.dynjs_equip) {
+    // Only read equipped slot metadata. Inventory names and translated labels
+    // cannot establish which weapons are currently equipped.
+    const slots = Array.from(root.querySelectorAll('#eqsb > .eqb'));
+    const slot = number => slots.find(node => node.getAttribute('onclick')?.match(/equip_slot=(\d+)(?:[^0-9]|$)/)?.[1] === String(number));
+    const read = node => {
+        const item = node?.children?.[1];
+        if (!item) return null;
+        const id = item.dataset?.eid || item.getAttribute('onmouseover')?.match(/(?:hover_equip|equips\.set)\((\d+)/)?.[1];
+        if (!id) return '';
+        const data = metadata?.[id];
+        return typeof data?.n === 'string' && data.n.trim() ? data.n : typeof data?.t === 'string' ? data.t : null;
+    };
+    const mainSlot = slot(1), next = mainSlot?.nextElementSibling;
+    // Staff/two-handed equipment disables the adjacent offhand slot and removes
+    // its navigation handler. This is explicit emptiness, not missing evidence.
+    const offSlot = slot(2) || (next?.matches('.eqb.eqdisabled') && next.children[1]?.matches('.eqempty') ? next : null);
+    const main = read(mainSlot), off = read(offSlot);
+    if (main === null || off === null || !main) return '';
+    const has = (name, types) => new RegExp('\\b(?:' + types.join('|') + ')\\b').test(name);
+    const oneHanded = ['Axe', 'Club', 'Rapier', 'Shortsword', 'Wakizashi', 'Dagger'];
+    if (has(main, ['Katana']) && has(off, ['Wakizashi'])) return 'NitenIchiryu';
+    if (has(main, oneHanded) && has(off, oneHanded)) return 'DualWielding';
+    if (has(main, oneHanded) && has(off, ['Buckler', 'Kite Shield', 'Tower Shield', 'Force Shield'])) return 'OneHanded';
+    if (!off && has(main, ['Longsword', 'Estoc', 'Mace', 'Katana', 'Scythe', 'Swordchucks'])) return 'TwoHanded';
+    if (!off && has(main, ['Staff'])) return 'Staff';
+    return '';
+}
+
+function getJpxStyleFromFamily(family, magic) {
+    if (family === 'Staff') return family;
+    const mages = { OneHanded: '1H_Mage', TwoHanded: '2H_Mage', DualWielding: 'DW_Mage', NitenIchiryu: 'NI_Mage' };
+    if (!mages[family] || !magic) return '';
+    return magic.maxValue > (family === 'OneHanded' ? 70 : 100) ? mages[family] : family;
+}
+
+function getDetectedJpxBattleStyle() {
+    try {
+        const battle = log || document.querySelector('#textlog');
+        const equipped = !jpxDetectionSourceIgnored && document.querySelector('#eqsb');
+        const family = battle ? getJpxBattleSkillFamily(getActionCooldowns().spellCooldowns) :
+            equipped ? getJpxEquippedStyleFamily() : readJpxDetectedFamily();
+        if (battle || equipped) {
+            if (family) rememberJpxDetectedFamily(family);
+            else localStorage.removeItem(jpxDetectedFamilyKey());
+        }
+        return getJpxStyleFromFamily(family, readJpxSpellDamageBonus(true));
+    } catch { return ''; }
+}
+
+function parseJpxEquipmentMetadata(text) {
+    // Extract only the native JSON assignment; never execute fetched scripts.
+    const match = /\bdynjs_equip\s*=\s*\{/.exec(text);
+    if (!match) return null;
+    const start = match.index + match[0].length - 1;
+    let depth = 0, quoted = false, escaped = false;
+    for (let i = start; i < text.length; i++) {
+        const char = text[i];
+        if (quoted) {
+            if (escaped) escaped = false;
+            else if (char === '\\') escaped = true;
+            else if (char === '"') quoted = false;
+        } else if (char === '"') quoted = true;
+        else if (char === '{') depth++;
+        else if (char === '}' && --depth === 0) {
+            try { return JSON.parse(text.slice(start, i + 1)); } catch { return null; }
+        }
+    }
+    return null;
+}
+
+async function readJpxEquipmentMetadata(root, base, signal) {
+    for (const script of root.scripts) {
+        const data = parseJpxEquipmentMetadata(script.textContent);
+        if (data) return data;
+    }
+    // Native equipment pages normally keep names in a separate dynjs resource.
+    // Follow only the current world's equipment-data URL, not other page scripts.
+    for (const script of root.querySelectorAll('script[src]')) {
+        const url = new URL(script.getAttribute('src'), new URL(base, location.origin));
+        if (url.origin !== location.origin || url.username || url.password ||
+            !url.pathname.startsWith(base + 'dynjs/') || !/\/equip-\d+\.js$/.test(url.pathname)) continue;
+        const response = await fetch(url.href, { method: 'GET', credentials: 'same-origin', cache: 'no-store', redirect: 'error', signal });
+        return response.ok ? parseJpxEquipmentMetadata(await response.text()) : null;
+    }
+    return null;
+}
+
+function ensureJpxModeDetection(loadout = false) {
+    // Character pages are unavailable during battle. Never probe them in combat,
+    // and never mistake a battle/verification response for a character snapshot.
+    if (jpxLoadoutBusy || !loadout && getDetectedJpxBattleStyle() || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
+        !/(^|\.)hentaiverse\.org$/.test(location.hostname)) return Promise.resolve();
+    if (jpxDetectionRequest) return jpxDetectionRequest;
+    if (Date.now() < jpxDetectionRetryAt) return Promise.resolve();
+    const generation = jpxDetectionGeneration, initial = JSON.stringify(getJpxDetectionContext());
+    const isCurrent = () => generation === jpxDetectionGeneration && initial === JSON.stringify(getJpxDetectionContext()) &&
+        !log && !document.querySelector('#textlog, #battle_main, #riddlemaster');
+    const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 8000);
+    jpxDetectionRetryAt = Date.now() + 10000;
+    jpxDetectionRequest = (async () => {
+        try {
+            const base = isekaiSuffix ? '/isekai/' : '/';
+            const pages = await Promise.all(['ch', 'eq'].map(async page => {
+                const response = await fetch(base + '?s=Character&ss=' + page, { method: 'GET', credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
+                if (!response.ok) throw new Error('Character lookup failed');
+                const root = new DOMParser().parseFromString(await response.text(), 'text/html');
+                if (root.querySelector('#textlog, #battle_main, #riddlemaster')) throw new Error('Character pages are unavailable during battle');
+                return root;
+            }));
+            if (!isCurrent()) return;
+            const [character, equipment] = pages;
+            if (!jpxLoadoutPending || loadout) rememberJpxLoadout(character, equipment);
+            if (!character.querySelector('#persona_form select') || !equipment.querySelector('#eqsb')) return;
+            const metadata = await readJpxEquipmentMetadata(equipment, base, controller.signal);
+            if (!isCurrent()) return;
+            const context = getJpxDetectionContext(character), family = getJpxEquippedStyleFamily(equipment, metadata);
+            const magic = getJpxSpellDamageFromPage(character);
+            if (!context.persona || !family || (family !== 'Staff' && !magic)) return;
+            localStorage.setItem(prefix + 'persona' + isekaiSuffix, context.persona);
+            localStorage.setItem(prefix + 'personaId' + isekaiSuffix, context.personaId);
+            const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+            if (magic) {
+                localStorage.setItem(key, JSON.stringify(magic));
+                localStorage.setItem(key + ':context', JSON.stringify({ version: 1, ...context }));
+                spellDamageBonus = magic;
+            }
+            rememberJpxDetectedFamily(family, context);
+            jpxDetectionSourceIgnored = true;
+            jpxDetectionRetryAt = 0;
+            window.dispatchEvent(new Event('jpx:mode-detected'));
+        } catch { /* Retry on a later visit; no modal or false detection on failure. */ }
+        finally { clearTimeout(timeout); controller.abort(); jpxDetectionRequest = null; }
+    })();
+    return jpxDetectionRequest;
+}
+
 function initDo() {
     applyJpxTheme();
     const cleanupRequest = localStorage.getItem(cleanupKey);
@@ -2733,6 +3072,8 @@ function initDo() {
     ));
     log = document.querySelector('#textlog');
     loadBattleConfig();
+    initJpxModeDetection();
+    initJpxLoadoutBindings();
 
     //Battle
     if (log && !doInitDoBattle) {
@@ -2788,45 +3129,6 @@ function initDo() {
             }
         }
 
-        let persona = localStorage.getItem(prefix + 'persona' + isekaiSuffix) || 'undefined';
-        let personaSelected = document.querySelector('#persona_form > select > option[selected]')?.innerText;
-        if (personaSelected && persona != personaSelected) {
-            localStorage.setItem(prefix + 'persona' + isekaiSuffix, personaSelected);
-        }
-
-        let spcArray = Array.from(document.querySelectorAll('.spc'));
-        let spellDamageBonus = spcArray.find(spc =>
-            spc.innerText.includes('Spell Damage Bonus') || jpxUtils.parseHVClasses(spc.querySelector('div')).includes('Spell Damage Bonus')
-        );
-        if (spellDamageBonus) {
-            let rows = spellDamageBonus.nextElementSibling.querySelectorAll('tr');
-            let maxValue = -Infinity;
-            let maxType = "";
-
-            rows.forEach((tr) => {
-                let tds = tr.querySelectorAll('td');
-                if (tds.length < 2) return;
-
-                let value = parseFloat(tds[0].textContent.trim());
-                let spellsDamageType = tds[1].textContent.trim();
-
-                if (value > maxValue) {
-                    maxValue = value;
-                    maxType = jpxUtils.lowerFirst(spellsDamageType);
-                }
-            });
-
-            if (
-                (maxType && spellDamageBonus.maxType != maxType) ||
-                (maxValue > 0 && spellDamageBonus.maxValue != maxValue)
-            ) {
-                localStorage.setItem(prefix + 'spellDamageBonus' + isekaiSuffix, JSON.stringify({
-                    maxType: maxType,
-                    maxValue: maxValue,
-                }));
-            }
-        }
-
         return;
     }
 }
@@ -2868,23 +3170,8 @@ function initDoBattle() {
     if (jpxUtils.isEmpty(revenueRecords)) revenueRecords = jpxUtils.createRevenueRecords();
 
     //Battle Style
-    let {
-        spellCooldowns
-    } = getActionCooldowns();
-    let spells = Object.keys(spellCooldowns);
-    if (spells.includes('Shield Bash')) {
-        battleStyle = spellDamageBonus.maxValue <= 70 ? 'OneHanded' : '1H_Mage';
-    } else if (spells.includes('Great Cleave')) {
-        battleStyle = spellDamageBonus.maxValue <= 100 ? 'TwoHanded' : '2H_Mage';
-    } else if (spells.includes('Iris Strike')) {
-        battleStyle = spellDamageBonus.maxValue <= 100 ? 'DualWielding' : 'DW_Mage';
-    } else if (spells.includes('Skyward Sword')) {
-        battleStyle = spellDamageBonus.maxValue <= 100 ? 'NitenIchiryu' : 'NI_Mage';
-    } else if (spells.includes('Concussive Strike')) {
-        battleStyle = 'Staff';
-    } else {
-        battleStyle = 'Unarmed';
-    }
+    const skillFamily = getJpxBattleSkillFamily(getActionCooldowns().spellCooldowns);
+    battleStyle = getJpxStyleFromFamily(skillFamily, spellDamageBonus) || 'Unarmed';
 
     //Battle Type
     let battleTypeLog = getBattleLogHTML().match(regExp.battleTypeLog);
@@ -3032,15 +3319,28 @@ function preDoBattle() {
     let obs = new MutationObserver(throttledPreProcessLog);
 	obs.observe(log.firstElementChild || (log.prepend(document.createElement('tbody')), log.firstElementChild), { childList: true });
 
-    preRender();
+    if (cfgBattle.autoFinishBattle === true && document.querySelector('#btcp img[src$="finishbattle.png"]')) preProcessLog();
+    else preRender();
 }
 
 // A final log may be observed more than once; share the same recording operation.
 function recordFinalBattle() {
     if (!recordFinalBattle.pending) {
-        recordFinalBattle.pending = Promise.resolve().then(() => battleRecordPlayer()).catch(error => {
+        const finishBattle = document.querySelector('#btcp img[src$="finishbattle.png"]');
+        recordFinalBattle.pending = Promise.resolve().then(async () => {
+            await battleRecordPlayer();
+            for (const key of ['battleLogRecord', 'timeRecords', 'combatRecords', 'revenueRecords']) {
+                localStorage.removeItem(prefix + key + isekaiSuffix);
+            }
+            // Use the game's own exit handler only after the record transaction commits.
+            if (cfgBattle.autoFinishBattle === true && finishBattle?.isConnected && !document.querySelector('#riddlemaster')) {
+                finishBattle.click();
+            }
+            return true;
+        }).catch(error => {
             console.error('Battle statistics could not finish:', error);
             jpxUtils.createToast(t('cB.battleRecordWarning'), 10000);
+            return false;
         });
     }
     return recordFinalBattle.pending;
@@ -3067,12 +3367,6 @@ function preProcessLog() {
             btcp.classList.add('jpx-final-result');
 
             recordFinalBattle();
-
-            localStorage.removeItem(prefix + 'battleLogRecord' + isekaiSuffix);
-            localStorage.removeItem(prefix + 'timeRecords' + isekaiSuffix);
-            localStorage.removeItem(prefix + 'combatRecords' + isekaiSuffix);
-            localStorage.removeItem(prefix + 'revenueRecords' + isekaiSuffix);
-
             return;
         }
     }
@@ -3252,6 +3546,7 @@ function onKeyDown(e, throttledActionManager) {
     if (jpxUtils.keyCaptureController) return;
 
     let target = e.target;
+    if (target.closest?.('#jpx-records-cleanup-dialog')) return;
     // Focused panel controls own their arrows, Home, Enter and Space keys.
     if (target.closest?.('#ctrl-widget') && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'Enter', ' ', 'Escape'].includes(e.key)) return;
     if (
@@ -3968,7 +4263,7 @@ function initConditions() {
     const generalHandlers = {
         world: arr => arr.includes(!isekaiSuffix ? 'Persistent' : 'Isekai'),
         pLevel: range => jpxUtils.inRange(parseInt(localStorage.getItem(prefix + 'playerLevel' + isekaiSuffix) || 1), range),
-        pMaxSpellType: arr => arr.includes(spellDamageBonus.maxType),
+        pMaxSpellType: arr => arr.includes(getManagedSpellType()),
         battleTypes: arr => arr.includes(battleType),
         difficulty: arr => arr.includes(localStorage.getItem(prefix + 'difficulty' + isekaiSuffix) || 'PFUDOR'),
         roundCurrent: range => jpxUtils.inRange(roundInfo.current, range),
@@ -3981,7 +4276,7 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[spellDamageBonus.maxType][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
                 let cooldown = spellCooldowns[action2] ?? itemCooldowns[action2];
                 if (cooldown === '-') cooldown = 9999;
                 return jpxUtils.inRange(cooldown, range);
@@ -3993,7 +4288,7 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[spellDamageBonus.maxType][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
 				return actionCounts.history.some((act, index) => act === action2 && jpxUtils.inRange(index, range));
             });
         },
@@ -4003,7 +4298,7 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[spellDamageBonus.maxType][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
                 return jpxUtils.inRange(actionCounts[action2] ?? 0, range);
             });
         },
@@ -4013,7 +4308,7 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[spellDamageBonus.maxType][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
 				return jpxUtils.inRange(combatRecords.use[action2] || revenueRecords.consumable[action2]?.use || 0, range);
             });
         },
@@ -4255,7 +4550,7 @@ const actionHandlers = {
     spellDamage(action, monster) {
         const { name, conditions } = action;
         let tier = name.match(/^T(\d)$/)?.[1];
-        let spell = tier ? spellsDamageObj[spellDamageBonus.maxType][tier - 1] : name;
+        let spell = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : name;
         return (
             monster &&
             checkConditions(conditions, monster) &&
@@ -4845,37 +5140,48 @@ async function battleRecordPlayer(doFinal = true) {
         revenueRecords: revenueSnapshot,
     }
 
-    let battleLogEl = cfgBattle.recordBattleLog ? battleLogPlayer() : null;
-    let timeRecordEl = document.querySelector('#time-records-div') || timeRecordPlayer(battleRecords);
-    let combatRecordEl = document.querySelector('#combat-records-table') || combatRecordPlayer(combatRecords);
-    let combatRecord_UseEl = document.querySelector('#combat-records-use-table') || combatRecordPlayer_Use(combatRecords);
-    let revenueRecordEl = document.querySelector('#revenue-records-table') || revenueRecordPlayer(revenueSnapshot, priceData);
+    const renderRecords = () => {
+        let battleLogEl = cfgBattle.recordBattleLog ? battleLogPlayer() : null;
+        let timeRecordEl = document.querySelector('#time-records-div') || timeRecordPlayer(battleRecords);
+        let combatRecordEl = document.querySelector('#combat-records-table') || combatRecordPlayer(combatRecords);
+        let combatRecord_UseEl = document.querySelector('#combat-records-use-table') || combatRecordPlayer_Use(combatRecords);
+        let revenueRecordEl = document.querySelector('#revenue-records-table') || revenueRecordPlayer(revenueSnapshot, priceData);
 
-    if (doFinal) {
-        const combatPanel = document.getElementById('jpx-final-combat') || document.createElement('div');
-        combatPanel.id = 'jpx-final-combat';
-        combatPanel.className = 'jpx-record-detail jpx-record-detail-column jpx-record-final';
-        combatPanel.replaceChildren(...[battleLogEl, createRecordTableScroll(combatRecordEl, document), createRecordTableScroll(combatRecord_UseEl, document)].filter(Boolean));
-        log.parentNode.prepend(combatPanel);
+        if (doFinal) {
+            const combatPanel = document.getElementById('jpx-final-combat') || document.createElement('div');
+            combatPanel.id = 'jpx-final-combat';
+            combatPanel.className = 'jpx-record-detail jpx-record-detail-column jpx-record-final';
+            combatPanel.replaceChildren(...[battleLogEl, createRecordTableScroll(combatRecordEl, document), createRecordTableScroll(combatRecord_UseEl, document)].filter(Boolean));
+            log.parentNode.prepend(combatPanel);
 
-        const revenuePanel = document.getElementById('jpx-final-revenue') || document.createElement('div');
-        revenuePanel.id = 'jpx-final-revenue';
-        revenuePanel.className = 'jpx-record-detail jpx-record-final';
-        const summary = document.createElement('div');
-        summary.className = 'jpx-record-detail-summary';
-        summary.append(timeRecordEl);
-        revenuePanel.replaceChildren(summary, createRecordTableScroll(revenueRecordEl, document));
-        const resultPanel = document.querySelector('#btcp');
-        if (resultPanel) {
-            resultPanel.classList.add('jpx-final-result');
-            resultPanel.append(revenuePanel);
+            const revenuePanel = document.getElementById('jpx-final-revenue') || document.createElement('div');
+            revenuePanel.id = 'jpx-final-revenue';
+            revenuePanel.className = 'jpx-record-detail jpx-record-final';
+            const summary = document.createElement('div');
+            summary.className = 'jpx-record-detail-summary';
+            summary.append(timeRecordEl);
+            revenuePanel.replaceChildren(summary, createRecordTableScroll(revenueRecordEl, document));
+            const resultPanel = document.querySelector('#btcp');
+            if (resultPanel) {
+                resultPanel.classList.add('jpx-final-result');
+                resultPanel.append(revenuePanel);
+            }
+
+        } else {
+            newWindowRecordPlayer(document.querySelector('#time-records-div'), battleRecords, timeRecordEl, combatRecordEl, combatRecord_UseEl, revenueRecordEl);
         }
+    };
 
-        await storeBattleRecords(battleRecords)
-            .then(result => console.log(result))
-            .catch(err => console.error('Save failed: ', err));
-    } else {
-        newWindowRecordPlayer(document.querySelector('#time-records-div'), battleRecords, timeRecordEl, combatRecordEl, combatRecord_UseEl, revenueRecordEl);
+    const skipResult = doFinal && cfgBattle.autoFinishBattle === true;
+    if (!skipResult) renderRecords();
+    if (doFinal) {
+        try {
+            console.log(await storeBattleRecords(battleRecords));
+        } catch (error) {
+            if (skipResult) renderRecords();
+            throw error;
+        }
+        if (skipResult && cfgBattle.autoFinishBattle !== true) renderRecords();
     }
 
     cfgBattle.recordBattleLog && console.log(battleLogRecord);
@@ -5444,22 +5750,190 @@ function openDB() {
 
 async function storeBattleRecords(battleRecords) {
     const db = await openDB();
-
-    const transaction = db.transaction('battleRecords', 'readwrite');
-    transaction.objectStore('battleRecords').put(battleRecords);
-
-    return new Promise((resolve, reject) => {
-        transaction.oncomplete = () => {
-            resolve('Saved successfully');
-        };
-        transaction.onerror = () => {
-            reject(transaction.error);
-        };
-    });
+    try {
+        return await new Promise((resolve, reject) => {
+            const transaction = db.transaction('battleRecords', 'readwrite');
+            transaction.objectStore('battleRecords').put(battleRecords);
+            transaction.oncomplete = () => resolve('Saved successfully');
+            transaction.onabort = () => reject(transaction.error || new Error('Record write aborted'));
+        });
+    } finally { db.close(); }
 }
 
 function openBattleRecords() {
     newWindow = window.open(new URL((isekaiSuffix ? '/isekai/' : '/') + '#jpx-records', location.origin).href);
+}
+
+function normalizeJpxRecordsScope(value) {
+    const scope = {};
+    for (const key of ['world', 'battleType', 'from', 'to']) {
+        if (typeof value?.[key] !== 'string') throw new Error(t('cS.recordsRangeInvalid'));
+        scope[key] = value[key];
+    }
+    const validDate = date => !date || /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+        Number.isFinite(Date.parse(date + 'T00:00:00Z')) && new Date(date + 'T00:00:00Z').toISOString().slice(0, 10) === date;
+    if (!['', 'Persistent', 'Isekai'].includes(scope.world) ||
+        !['', ...STATS_FILTERS.find(field => field.key === 'battleType').options].includes(scope.battleType) ||
+        !validDate(scope.from) || !validDate(scope.to) || scope.from && scope.to && scope.from > scope.to) {
+        throw new Error(t('cS.recordsRangeInvalid'));
+    }
+    return Object.freeze(scope);
+}
+
+function matchesJpxRecordsScope(record, scope) {
+    if (!record || scope.world && record.world !== scope.world || scope.battleType && record.battleType !== scope.battleType) return false;
+    if (!scope.from && !scope.to) return true;
+    // Match the stored/displayed date, without converting it to the browser's timezone.
+    const date = record.date;
+    return typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+        (!scope.from || date >= scope.from) && (!scope.to || date <= scope.to);
+}
+
+async function previewJpxRecordsCleanup(value, signal) {
+    const scope = normalizeJpxRecordsScope(value), keys = [];
+    const db = await openDB();
+    try {
+        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+        return await new Promise((resolve, reject) => {
+            const tx = db.transaction('battleRecords', 'readonly');
+            const abort = () => { try { tx.abort(); } catch { /* Completion can precede its queued event. */ } };
+            signal?.addEventListener('abort', abort, { once: true });
+            const cursor = tx.objectStore('battleRecords').openCursor();
+            cursor.onsuccess = () => {
+                if (!cursor.result) return;
+                if (matchesJpxRecordsScope(cursor.result.value, scope)) keys.push(cursor.result.primaryKey);
+                cursor.result.continue();
+            };
+            tx.oncomplete = () => {
+                signal?.removeEventListener('abort', abort);
+                if (signal?.aborted) reject(new DOMException('Aborted', 'AbortError'));
+                else resolve(Object.freeze({ scope, keys: Object.freeze(keys) }));
+            };
+            tx.onabort = () => { signal?.removeEventListener('abort', abort); reject(signal?.aborted ? new DOMException('Aborted', 'AbortError') : tx.error || new Error('Record preview aborted')); };
+        });
+    } finally { db.close(); }
+}
+
+async function deleteJpxRecordsCleanup(plan) {
+    const scope = normalizeJpxRecordsScope(plan?.scope);
+    if (!Array.isArray(plan?.keys)) throw new Error(t('cS.recordsRangeInvalid'));
+    if (!plan.keys.length) return 0;
+    const db = await openDB();
+    try {
+        return await new Promise((resolve, reject) => {
+            const tx = db.transaction('battleRecords', 'readwrite'), store = tx.objectStore('battleRecords');
+            let index = 0, deleted = 0, failure = null;
+            const abort = error => { failure = error; tx.abort(); };
+            // Only confirmed keys are eligible. New records from another battle tab survive.
+            const next = () => {
+                try {
+                    if (index >= plan.keys.length) return;
+                    const key = plan.keys[index++], request = store.get(key);
+                    request.onsuccess = () => {
+                        try {
+                            if (!matchesJpxRecordsScope(request.result, scope)) { next(); return; }
+                            const removal = store.delete(key);
+                            removal.onsuccess = () => { deleted++; next(); };
+                        } catch (error) { abort(error); }
+                    };
+                } catch (error) { abort(error); }
+            };
+            tx.oncomplete = () => resolve(deleted);
+            tx.onabort = () => reject(failure || tx.error || new Error('Record cleanup aborted'));
+            next();
+        });
+    } finally { db.close(); }
+}
+
+function openJpxRecordsCleanup(targetWindow = window, initial = {}) {
+    const doc = targetWindow.document;
+    if (doc.getElementById('jpx-records-cleanup-dialog')) return;
+    if (!doc.getElementById('jpx-records-cleanup-style')) {
+        const style = doc.createElement('style'); style.id = 'jpx-records-cleanup-style';
+        style.textContent = jpxThemeCSS(`
+            #jpx-records-cleanup-dialog { box-sizing:border-box; width:min(460px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); margin:auto; padding:20px; overflow:auto; border:1px solid #c8b49b; border-radius:4px; background:#f9f6ec; color:#392d25; font:13px/1.45 Arial,Helvetica,sans-serif; text-align:left; }
+            #jpx-records-cleanup-dialog::backdrop { background:#0008; }
+            html[data-jpx-theme=dark] #jpx-records-cleanup-dialog { color-scheme:dark; }
+            #jpx-records-cleanup-dialog * { box-sizing:border-box; }
+            #jpx-records-cleanup-dialog [hidden] { display:none!important; }
+            #jpx-records-cleanup-dialog h2 { margin:0 0 8px; color:inherit; font-size:16px; }
+            #jpx-records-cleanup-dialog p { margin:8px 0 12px; }
+            #jpx-records-cleanup-dialog .jpx-records-cleanup-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+            #jpx-records-cleanup-dialog label { display:flex; flex-direction:column; gap:4px; min-width:0; }
+            #jpx-records-cleanup-dialog .jpx-records-cleanup-wide { grid-column:1/-1; }
+            #jpx-records-cleanup-dialog :is(select,input,button) { margin:0; min-width:0; max-width:100%; min-height:34px; padding:5px 8px; border:1px solid #c8b49b; border-radius:2px; color:inherit; background:#fffdf7; font:inherit; }
+            #jpx-records-cleanup-dialog select { width:100%; align-items:center; }
+            #jpx-records-cleanup-dialog button { cursor:pointer; }
+            #jpx-records-cleanup-dialog button:hover { background:#f1e2c5; }
+            #jpx-records-cleanup-dialog button:disabled { opacity:.5; cursor:default; }
+            #jpx-records-cleanup-dialog :focus-visible { outline:1px solid #5c0d11; outline-offset:-1px; }
+            #jpx-records-cleanup-dialog .jpx-records-cleanup-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:12px; }
+            #jpx-records-cleanup-dialog [data-action=clear] { border-color:#5c0d11; color:#5c0d11; }
+            #jpx-records-cleanup-dialog .jpx-records-cleanup-hint { color:#71634f; font-size:12px; }
+            @media(max-width:650px),(pointer:coarse) { #jpx-records-cleanup-dialog { padding:16px; } #jpx-records-cleanup-dialog :is(select,input,button) { min-height:44px; } }
+        `);
+        doc.head.append(style);
+    }
+    const el = (tag, text, className) => { const node = doc.createElement(tag); if (text) node.textContent = text; if (className) node.className = className; return node; };
+    const tr = key => t('cS.' + key), focused = doc.activeElement;
+    const dialog = el('dialog'); dialog.id = 'jpx-records-cleanup-dialog';
+    const title = el('h2', tr('clearRecords')); title.id = 'jpx-records-cleanup-title'; dialog.setAttribute('aria-labelledby', title.id);
+    const fields = el('div', '', 'jpx-records-cleanup-fields');
+    const select = (name, label, choices, value) => {
+        const field = el('label', label), input = el('select'); input.name = name;
+        for (const [key, text] of choices) { const option = el('option', text); option.value = key; input.append(option); }
+        input.value = value; field.append(input); fields.append(field); return input;
+    };
+    const world = select('world', t('sP.world'), [['', tr('recordsAllWorlds')], ...['Persistent','Isekai'].map(key => [key,t('sP.'+key)])],
+        ['','Persistent','Isekai'].includes(initial.world) ? initial.world : isekaiSuffix ? 'Isekai' : 'Persistent');
+    const battleType = select('battleType', t('sP.battleType'), [['',tr('recordsAllBattles')], ...STATS_FILTERS.find(field => field.key === 'battleType').options.map(key => [key,t('sP.'+key)])], initial.battleType || '');
+    const period = select('period', tr('recordsPeriod'), [['all',tr('recordsAllDates')],['range',tr('recordsDateRange')]], 'all');
+    period.parentElement.classList.add('jpx-records-cleanup-wide');
+    const dates = ['from','to'].map(key => {
+        const field = el('label',tr(key === 'from' ? 'recordsFrom' : 'recordsTo')), input = el('input');
+        input.type = 'date'; input.name = key; field.append(input); fields.append(field); field.hidden = true; return input;
+    });
+    const dateHint = el('p',tr('recordsDateHint'),'jpx-records-cleanup-hint'); dateHint.hidden = true;
+    const status = el('p'); status.setAttribute('role','status'); status.setAttribute('aria-live','polite');
+    const actions = el('div','','jpx-records-cleanup-actions');
+    const cancel = el('button',t('cM.close')), clear = el('button',tr('clearRecords')); cancel.type = clear.type = 'button'; clear.dataset.action = 'clear'; clear.disabled = true;
+    actions.append(cancel,clear); dialog.append(title,el('p',tr('recordsScopeHint'),'jpx-records-cleanup-hint'),fields,dateHint,status,actions);
+    let plan = null, revision = 0, preview = null, busy = false;
+    const update = async () => {
+        const current = ++revision; preview?.abort(); preview = new AbortController(); plan = null; clear.disabled = true;
+        const range = period.value === 'range'; dates.forEach(input => input.parentElement.hidden = !range); dateHint.hidden = !range;
+        dates[0].max = dates[1].value; dates[1].min = dates[0].value;
+        if (range && ((!dates[0].value && !dates[1].value) || dates.some(input => !input.validity.valid))) { status.textContent = tr('recordsRangeInvalid'); return; }
+        status.textContent = t('sP.loadingRecords');
+        try {
+            const value = await previewJpxRecordsCleanup({ world:world.value, battleType:battleType.value, from:range?dates[0].value:'', to:range?dates[1].value:'' },preview.signal);
+            if (!dialog.isConnected || current !== revision) return;
+            plan = value; status.textContent = t('cS.recordsPreview',{count:plan.keys.length}); clear.disabled = !plan.keys.length;
+        } catch (error) { if (dialog.isConnected && current === revision && error.name !== 'AbortError') status.textContent = t('sP.recordsError'); }
+    };
+    fields.addEventListener('change',update);
+    // Invalidate immediately while a date is being typed, before its change event.
+    fields.addEventListener('input',() => { revision++; preview?.abort(); plan = null; clear.disabled = true; status.textContent = ''; });
+    cancel.addEventListener('click',() => dialog.close());
+    dialog.addEventListener('cancel',event => { if (busy) event.preventDefault(); });
+    dialog.addEventListener('close',() => { revision++; preview?.abort(); dialog.remove(); if (focused?.isConnected) focused.focus({preventScroll:true}); },{once:true});
+    clear.addEventListener('click',async () => {
+        if (busy || !plan?.keys.length) return;
+        const approved = plan;
+        const summary = [world.selectedOptions[0].textContent,battleType.selectedOptions[0].textContent,
+            period.value === 'all' ? tr('recordsAllDates') : `${approved.scope.from || '…'} → ${approved.scope.to || '…'}`].join(' · ');
+        if (!targetWindow.confirm(summary + '\n\n' + t('cS.recordsClearConfirm',{count:approved.keys.length}))) return;
+        busy = true; clear.disabled = cancel.disabled = true; fields.querySelectorAll('input,select').forEach(input => input.disabled = true);
+        status.textContent = tr('cleanupRunning');
+        try {
+            const count = await deleteJpxRecordsCleanup(approved); plan = null;
+            status.textContent = t('cS.recordsCleared',{count});
+            try { targetWindow.localStorage.setItem(prefix+'recordsChanged',Date.now()+':'+Math.random()); } catch { /* Local refresh still works if browser storage is unavailable. */ }
+            targetWindow.dispatchEvent(new targetWindow.Event('jpx:records-changed'));
+        } catch (error) { status.textContent = tr('recordsClearFailed'); clear.disabled = false; console.error('Record cleanup failed:',error); }
+        finally { busy = false; cancel.disabled = false; fields.querySelectorAll('input,select').forEach(input => input.disabled = false); }
+    });
+    doc.body.append(dialog); dialog.showModal(); update();
 }
 
 function renderBattleRecordsPage(targetWindow = window) {
@@ -5477,6 +5951,7 @@ function renderBattleRecordsPage(targetWindow = window) {
 
     newWindow = targetWindow;
     const doc = targetWindow.document;
+    doc.getElementById('jpx-records-cleanup-dialog')?.close();
     const previousImageActions = doc.querySelector('.jpx-record-image-actions');
     previousImageActions?.dispose?.(); previousImageActions?.remove();
     const filterState = targetWindow._jpxRecordsFilterState ||= { open: false, inputs: null };
@@ -5526,6 +6001,10 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-filter-tools .jpx-records-filter { flex-wrap: wrap; gap: 0 8px; }
         .jpx-records-range { display: inline-flex; align-items: center; gap: 6px; }
         #filtersDiv input[type=number] { width: 68px; min-width: 0; height: 28px; padding: 2px 5px; border: 1px solid #bda68e; border-radius: 2px; background: #fffdf7; }
+        #filtersDiv .jpx-records-clear { display:inline-flex; align-items:center; justify-content:center; width:32px; min-height:32px; padding:4px; border:1px solid #c8b49b; border-radius:2px; background:#fffdf7; color:#5c0d11; }
+        #filtersDiv .jpx-records-clear svg { width:16px; height:16px; }
+        #filtersDiv .jpx-records-clear:hover { background:#f1e2c5; }
+        @media(max-width:650px),(pointer:coarse) { #filtersDiv .jpx-records-clear { width:44px; min-height:44px; } }
         .jpx-records-table-scroll { --jpx-scrollbar-width: auto; flex: 1; min-height: 140px; min-width: 0; overflow: auto; border: 1px solid #bda68e; background: #fffdf7; overscroll-behavior: contain; }
         #battleStatsTable { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
         #battleStatsTable th, #battleStatsTable td { padding: 5px 10px; height: 30px; border-right: 1px solid #e1d7c7; border-bottom: 1px solid #e1d7c7; white-space: nowrap; text-align: left; }
@@ -5594,16 +6073,17 @@ function renderBattleRecordsPage(targetWindow = window) {
     const message = doc.createElement('p');
     message.className = 'jpx-records-message'; message.textContent = t('sP.loadingRecords');
     tableRegion.append(message);
-    let revision = 0;
+    let revision = 0, pendingRead;
     const refresh = async () => {
+        pendingRead?.abort(); pendingRead = new AbortController();
         const request = ++revision, filters = getFilters(targetWindow);
         tableRegion.setAttribute('aria-busy', 'true');
         try {
-            const records = await getBattleRecordsRender(filters);
+            const records = await getBattleRecordsRender(filters, pendingRead.signal);
             if (targetWindow.closed || request !== revision) return;
             renderDynamicTable(records, cfgStats.statsColumns, tableRegion);
         } catch (error) {
-            if (targetWindow.closed || request !== revision) return;
+            if (targetWindow.closed || request !== revision || error.name === 'AbortError') return;
             const notice = doc.createElement('p');
             notice.className = 'jpx-records-message'; notice.textContent = t('sP.recordsError');
             tableRegion.replaceChildren(notice);
@@ -5613,6 +6093,9 @@ function renderBattleRecordsPage(targetWindow = window) {
         }
     };
     filterState.refresh = refresh;
+    const recordsChanged = event => { if (event.type !== 'storage' || event.key === prefix+'recordsChanged') refresh(); };
+    targetWindow.addEventListener('storage',recordsChanged);
+    targetWindow.addEventListener('jpx:records-changed',recordsChanged);
     const filters = filterState.filters || createFilter(targetWindow, () => filterState.refresh?.());
     filterState.filters = filters;
     if (filterState.inputs) [...filters.querySelectorAll('input')].forEach((input, index) => {
@@ -5633,6 +6116,17 @@ function renderBattleRecordsPage(targetWindow = window) {
         if (field.type === 'rangeNumber') ['min', 'max'].forEach((part, index) => group.querySelector('.range-' + part).setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin')));
     }
     const filterButton = doc.createElement('button');
+    let clearRecords = filters.querySelector('.jpx-records-clear');
+    if (!clearRecords) {
+        clearRecords = doc.createElement('button'); clearRecords.type = 'button'; clearRecords.className = 'jpx-records-clear';
+        clearRecords.addEventListener('click',() => {
+            const current = getFilters(targetWindow);
+            openJpxRecordsCleanup(targetWindow,{world:current.world?.length === 1 ? current.world[0] : '',battleType:current.battleType?.length === 1 ? current.battleType[0] : ''});
+        });
+        filters.querySelector('.jpx-records-tools-row').append(clearRecords);
+    }
+    clearRecords.replaceChildren(createSettingsIcon('delete'));
+    clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',t('cS.clearRecords'));
     filterButton.type = 'button'; filterButton.className = 'jpx-records-filter-toggle';
     filterButton.textContent = t('sP.filters') + ' ▴';
     filterButton.setAttribute('aria-label', t('sP.filters'));
@@ -5683,6 +6177,9 @@ function renderBattleRecordsPage(targetWindow = window) {
     targetWindow.visualViewport?.addEventListener('resize', positionFilters);
     targetWindow.visualViewport?.addEventListener('scroll', positionFilters);
     filterState.cleanup = () => {
+        revision++; pendingRead?.abort();
+        targetWindow.removeEventListener('storage',recordsChanged);
+        targetWindow.removeEventListener('jpx:records-changed',recordsChanged);
         disposed = true; compactFilters.removeEventListener('change', updateFilterLayout);
         targetWindow.removeEventListener('resize', positionFilters);
         targetWindow.visualViewport?.removeEventListener('resize', positionFilters);
@@ -5695,55 +6192,54 @@ function renderBattleRecordsPage(targetWindow = window) {
     refresh();
 }
 
-async function getBattleRecordsRender(filters = getFilters()) {
+async function getBattleRecordsRender(filters = getFilters(), signal) {
+    if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
     const db = await openDB();
-    const transaction = db.transaction('battleRecords', 'readonly');
-    const objectStore = transaction.objectStore('battleRecords');
-
-    let battleRecords = [];
-    let indexName = filters.aggregate ? 'date' : 'default';
-
-    let keyRange = IDBKeyRange.bound(0, 'z');
-    let source = (indexName === 'default' ? objectStore : objectStore.index(indexName));
-    let i = 0;
-
-    return new Promise(resolve => {
-        const req = source.openCursor(keyRange, 'prevunique');
-        req.onsuccess = function(e) {
-            let cursor = e.target.result;
-
-            if (!cursor || i >= filters.rows) {
-                battleRecords.unshift(generateAggregate(battleRecords, 'Total'), generateAggregate(battleRecords, 'Average'));
-
-                resolve(battleRecords);
-                return;
-            }
-
-            if (indexName === 'date') {
-                let dailyReq = objectStore.index('date').getAll(cursor.key);
-                dailyReq.onsuccess = function(ev) {
-                    let results = ev.target.result || [];
-                    results = results.filter(x => filterData(x, filters));
-                    if (results.length > 0) {
-                        battleRecords.push(generateAggregate(results, 'Total', results[0].date));
-                        i += 1;
+    try {
+        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+        return await new Promise((resolve, reject) => {
+            const transaction = db.transaction('battleRecords', 'readonly');
+            const objectStore = transaction.objectStore('battleRecords');
+            const source = filters.aggregate ? objectStore.index('date') : objectStore;
+            const request = source.openCursor(IDBKeyRange.bound(0, 'z'), 'prevunique');
+            const records = [];
+            let failure;
+            const abort = () => { try { transaction.abort(); } catch { /* The completion event may already be queued. */ } };
+            const fail = error => { failure = error; abort(); };
+            const release = () => signal?.removeEventListener('abort', abort);
+            signal?.addEventListener('abort', abort, { once: true });
+            transaction.oncomplete = () => {
+                release();
+                if (signal?.aborted) { reject(new DOMException('Aborted', 'AbortError')); return; }
+                try {
+                    records.unshift(generateAggregate(records, 'Total'), generateAggregate(records, 'Average'));
+                    resolve(records);
+                } catch (error) { reject(error); }
+            };
+            transaction.onabort = () => { release(); reject(signal?.aborted ? new DOMException('Aborted', 'AbortError') : failure || transaction.error || new Error('Record query aborted')); };
+            request.onsuccess = () => {
+                if (signal?.aborted) return;
+                const cursor = request.result;
+                if (!cursor || records.length >= filters.rows) return;
+                try {
+                    if (filters.aggregate) {
+                        const daily = source.getAll(cursor.key);
+                        daily.onsuccess = () => {
+                            if (signal?.aborted) return;
+                            try {
+                                const matches = daily.result.filter(record => filterData(record, filters));
+                                if (matches.length) records.push(generateAggregate(matches, 'Total', matches[0].date));
+                                cursor.continue();
+                            } catch (error) { fail(error); }
+                        };
+                    } else {
+                        if (filterData(cursor.value, filters)) records.push(cursor.value);
+                        cursor.continue();
                     }
-
-                    cursor.continue();
-                };
-
-                return;
-            }
-
-            let bs = filterData(cursor.value, filters);
-            if (bs) {
-                battleRecords.push(bs);
-                i += 1;
-            }
-
-            cursor.continue();
-        };
-    });
+                } catch (error) { fail(error); }
+            };
+        });
+    } finally { db.close(); }
 }
 
 async function exportIndexedDB() {
@@ -6342,7 +6838,9 @@ function createSettingsChangeTracker(container, readData) {
             node.nodeType === 1 && (node.matches('[data-jpx-change-bound]') || node.querySelector('[data-jpx-change-bound]'))))) refresh();
     });
     observer.observe(container, { childList: true, subtree: true });
-    return { refresh, save, captureIdentities, restore: (snapshot, scopes) => restoreIdentities(roots(), snapshot, scopes), dispose: () => observer.disconnect() };
+    return { refresh, save, captureIdentities,
+        commit(scope, patch) { Object.assign(saved[scope], JSON.parse(JSON.stringify(patch))); refresh(); },
+        restore: (snapshot, scopes) => restoreIdentities(roots(), snapshot, scopes), dispose: () => observer.disconnect() };
 }
 
 // Editing history is scoped to one open dialog. Persistence remains an explicit save action.
@@ -6481,7 +6979,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         if (position < entries.length) { const entry = entries[position++]; apply(entry, entry.after); }
     }
     function beforeInput(event) {
-        if (restoring || event.target.closest('.jpx-battle-mode-selects')) return;
+        if (restoring || event.target.closest('.jpx-battle-mode-selects, .jpx-config-manager, #jpx-battle-export')) return;
         if (event.target.matches?.('input[type=color], input[type=range]')) {
             if (colorEdit?.target !== event.target) flushColorEdit();
             if (!colorEdit) {
@@ -6495,6 +6993,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
     }
     function afterInput(event) {
         const target = event.target;
+        if (target.closest('.jpx-config-manager, #jpx-battle-export')) return;
         if (!target.matches?.('input, textarea, select')) return;
         if (target.matches('input[type=color], input[type=range]')) {
             if (event.type === 'change') flushColorEdit();
@@ -6511,6 +7010,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
     const endTyping = () => { flushColorEdit(); mergeKey = null; };
     const beforeAction = event => { if (colorEdit && event.target !== colorEdit.target) flushColorEdit(); };
     function onKeyDown(event) {
+        if (event.target.closest('.jpx-config-manager, #jpx-battle-export')) return;
         beforeAction(event);
         if (jpxUtils.keyCaptureController || event.isComposing || !(event.ctrlKey || event.metaKey) || event.altKey) return;
         if (event.target.closest('input, textarea, [contenteditable=true]')) return;
@@ -6534,6 +7034,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         run,
         flushColorEdit,
         markSaved: scopes => { flushColorEdit(); changes.save(scopes); },
+        commit(scope, patch) { entries.length = 0; position = 0; mergeKey = null; changes.commit(scope, patch); update(); },
         breakTypingGroup: endTyping,
         dispose() {
             flushColorEdit();
@@ -6553,7 +7054,10 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
 }
 
 function getBattleMode(defaultBattleStyle = 'Unarmed') {
-    let modeKey = `${battleStyle || defaultBattleStyle}_${battleType}`;
+    const selected = getJpxSelectedBattleMode();
+    if (selected) return selected;
+    const effectiveStyle = getManagedBattleStyle(battleStyle || defaultBattleStyle);
+    let modeKey = `${effectiveStyle}_${battleType}`;
 
     if (!jpxUtils.isEmpty(cfgBattle[modeKey])) {
         const isValid = value => Array.isArray(value) && value.length > 0;
@@ -6565,7 +7069,7 @@ function getBattleMode(defaultBattleStyle = 'Unarmed') {
         }
     }
 
-    return `${battleStyle || defaultBattleStyle}_General`;
+    return `${effectiveStyle}_General`;
 }
 
 function renderSchema(container, schema, data) {
@@ -6581,6 +7085,32 @@ function renderSchema(container, schema, data) {
             container.appendChild(fieldDiv);
         });
     }
+}
+
+// Defer complete rule forms. Legacy records needing the renderer's default
+// normalization still take the original eager path, before the undo baseline.
+function canDeferRuleFields(schema, data) {
+    return schema.properties.every(field => {
+        const value = data[field.key];
+        if (field.type === 'dropdown') return Array.isArray(field.options) &&
+            field.options.some(option => String(option.value) === String(value)) &&
+            jpxUtils.parseValue(String(value)) === value;
+        if (field.type === 'rangeNumber') return Array.isArray(value);
+        if (field.type === 'array') return Array.isArray(value) && (!field.hasRange || value.length >= 2) &&
+            (field.multiSelectOptions || value.every(item => {
+                const child = resolveSchema(field.itemSchema, item);
+                return !child || child.type !== 'object' || canDeferRuleFields(child, item);
+            }));
+        if (field.type === 'conditionsArray') return Array.isArray(value) && value.every(item => {
+            const option = field.options.find(option => option.key === item.key);
+            if (!option) return item.key !== undefined;
+            const extras = option.extraFields || [];
+            return extras.every(extra => item[extra.key] !== undefined) &&
+                canDeferRuleFields({ properties: [{ ...option, key: 'value' }, ...extras] }, item);
+        });
+        if (field.type === 'object') return !!value && canDeferRuleFields(field, value);
+        return ['constant', 'heading', 'text', 'textarea', 'number', 'boolean', 'time'].includes(field.type);
+    });
 }
 
 function renderBattleRuleSections(container, schema, data, mode) {
@@ -6737,6 +7267,8 @@ function bindSettingsNativePickers(container) {
 
 function createSettingsIcon(name) {
     const paths = {
+        configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
+        more: 'M5 12h.01M12 12h.01M19 12h.01',
         battle: 'M4 21v-7m0-4V3m8 18v-4m0-4V3m8 18V10m0-4V3M1 14h6m2-1h6m2-3h6',
         battleRules: 'M9 5h12M9 12h12M9 19h12M3 4l1 1 2-2M3 11l1 1 2-2M3 18l1 1 2-2',
         keyBindings: 'M7 4v16M17 4v16M4 7h16M4 17h16M9 4v3m6-3v3M9 17v3m6-3v3',
@@ -7474,12 +8006,15 @@ const fieldRenderers = {
                 history: false,
                 onClick: () => {
                     const shouldExpand = [...renderedRuleItems.values()].some(details => !details.open);
+                    listDiv.classList.add('jpx-rule-bulk-toggle');
                     for (const [item, details] of renderedRuleItems) {
+                        if (shouldExpand) details.jpxBuildBody();
                         details.open = shouldExpand;
                         if (shouldExpand) fieldRenderers.expandedRuleItems.add(item);
                         else fieldRenderers.expandedRuleItems.delete(item);
                     }
                     updateAllRulesToggle();
+                    requestAnimationFrame(() => requestAnimationFrame(() => listDiv.classList.remove('jpx-rule-bulk-toggle')));
                 }
             });
             toolbar.append(allRulesToggle, liveRegion);
@@ -7972,17 +8507,37 @@ const fieldRenderers = {
                 let itemSchema = field.itemSchema;
                 if (itemSchema.discriminator) itemSchema = resolveSchema(itemSchema, value);
 
+                // Preserve extension rules without guessing their type or discarding data.
+                if (!itemSchema) {
+                    const unknown = document.createElement('details');
+                    unknown.className = 'jpx-rule-unknown';
+                    const summary = document.createElement('summary');
+                    summary.textContent = `${index + 1}. ${t('cM.unsupportedRule')} · ${value.type || value.key || ''}`;
+                    const raw = document.createElement('pre');
+                    raw.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%';
+                    raw.textContent = JSON.stringify(value, null, 2);
+                    unknown.append(summary, raw); row.append(unknown);
+                    itemSchema = { type: 'readonly' };
+                }
+
                 if (itemSchema.type === 'text') {
                     renderField(row, { ...itemSchema, key: index, label: index + 1 }, dataObj[field.key]);
                 } else if (itemSchema.type === 'object') {
                     let objDiv = document.createElement('div');
                     objDiv.className = 'object-item';
-                    renderSchema(objDiv, itemSchema, value);
+                    let bodyReady = false;
+                    const buildBody = () => {
+                        if (bodyReady) return;
+                        bodyReady = true;
+                        renderSchema(objDiv, itemSchema, value);
+                    };
                     if (field.collapsibleItems) {
                         row.classList.add('jpx-rule-array-item');
                         const details = document.createElement('details');
                         details.className = 'jpx-rule-item';
                         details.open = fieldRenderers.expandedRuleItems.has(value);
+                        details.jpxBuildBody = buildBody;
+                        if (details.open || !canDeferRuleFields(itemSchema, value)) buildBody();
                         const summary = document.createElement('summary');
                         const summaryText = document.createElement('span');
                         summaryText.className = 'jpx-rule-summary-text';
@@ -7997,6 +8552,11 @@ const fieldRenderers = {
                         heading.append(name, meta);
                         summaryText.append(heading, preview);
                         summary.appendChild(summaryText);
+                        // Build before the native open action, so its first paint
+                        // already has the final content size for the transition.
+                        summary.addEventListener('click', event => {
+                            if (!details.open && !event.target.closest('button,input,select,textarea,a')) buildBody();
+                        });
                         const updateSummary = () => {
                             const type = t(`cB.${value.type}`);
                             const label = value.name ? t(`cB.${value.name}`) : value.customMessage || '';
@@ -8020,6 +8580,7 @@ const fieldRenderers = {
                         objDiv.addEventListener('click', updateSummary);
                         details.addEventListener('toggle', () => {
                             if (!details.isConnected) return;
+                            if (details.open) buildBody();
                             // Bulk disclosure already updates the view state once.
                             if (fieldRenderers.expandedRuleItems.has(value) !== details.open) {
                                 if (details.open) fieldRenderers.expandedRuleItems.add(value);
@@ -8035,7 +8596,7 @@ const fieldRenderers = {
                         details.append(summary, objDiv);
                         renderedRuleItems.set(value, details);
                         row.appendChild(details);
-                    } else row.appendChild(objDiv);
+                    } else { buildBody(); row.appendChild(objDiv); }
                 }
 
                 if (itemSchema.type === 'object') bindSettingsChange(row, value, null,
@@ -8561,7 +9122,9 @@ function mergeCfg(storedCfg, defaultCfg, mergedCfg, mergedType) {
                 }
                 //-
                 //patch 20260507
-                if (attack.type === 'smartDebuff') {
+                // Older rules omit this optional field and use the runtime default.
+                // Do not introduce undefined into otherwise valid JSON configs.
+                if (attack.type === 'smartDebuff' && Object.hasOwn(attack, 'targetCount')) {
                     attack.targetCount = jpxUtils.parseValue(attack.targetCount);
                 }
                 //-
@@ -8583,7 +9146,7 @@ function mergeCfg(storedCfg, defaultCfg, mergedCfg, mergedType) {
 function renderSettings() {
     let container = document.getElementById('settings-container');
     if (container) {
-        if (container.open) container.close();
+        if (container.open) container.jpxRequestClose ? container.jpxRequestClose() : container.close();
         else container.remove();
         return;
     }
@@ -8597,6 +9160,17 @@ function renderSettings() {
     container.tabIndex = -1;
     container.setAttribute('aria-label', 'JPX-PLUS');
     let editHistory = null;
+    const requestClose = () => {
+        if (container.classList.contains('jpx-settings-mobile') &&
+            document.getElementById('tab_configManager')?.getAttribute('aria-selected') === 'true' &&
+            jpxConfigManagerView?.back()) return;
+        return jpxConfigManagerView?.isEditing()
+            ? jpxConfigManagerView.leave(() => container.close()) : container.close();
+    };
+    container.jpxRequestClose = requestClose;
+    container.addEventListener('cancel', event => {
+        if (jpxConfigManagerView?.isEditing()) { event.preventDefault(); requestClose(); }
+    });
     const disposeNativePickers = bindSettingsNativePickers(container);
 
     let windowPanel = document.createElement('div');
@@ -8615,7 +9189,7 @@ function renderSettings() {
     let closeButton = jpxUtils.createButton(titleBar, {
         id: 'close-button',
         text: '×',
-        onClick: () => container.close()
+        onClick: requestClose
     });
     closeButton.setAttribute('aria-label', t('cGen.closeSettings'));
     const navigationButton = jpxUtils.createButton(titleBar, {
@@ -8773,6 +9347,7 @@ function renderSettings() {
         }
     };
     const cleanup = () => {
+        jpxConfigManagerView?.dispose();
         disposeNativePickers();
         editHistory?.dispose();
         if (settingsEditHistory === editHistory) settingsEditHistory = null;
@@ -8811,6 +9386,7 @@ function renderSettings() {
         console.log(cfgBattle);
         localStorage.setItem(prefix + 'cfgBattle' + isekaiSuffix, JSON.stringify(cfgBattle));
         localStorage.setItem(prefix + 'userKeybinds' + isekaiSuffix, JSON.stringify(userKeybinds));
+        refreshJpxSelectedConfig();
         jpxPanelManager.refreshAppearance?.();
     }
 
@@ -8821,21 +9397,25 @@ function renderSettings() {
     function refreshBattleViews() {
         [
             { id: 'cfgBattle-ui', schema: cfgBattleSettingsSchema },
-            { id: 'cfgBattle-rules-ui', schema: cfgBattleRulesSchema },
         ].forEach(({ id, schema }) => {
             let oldUI = document.getElementById(id);
             if (!oldUI) return;
             let newUI = document.createElement('div');
             newUI.id = id;
             oldUI.replaceWith(newUI);
-            if (schema === cfgBattleRulesSchema) renderBattleRulesUI(newUI);
-            else renderSchema(newUI, schema, cfgBattle);
+            renderSchema(newUI, schema, cfgBattle);
         });
     }
 
     function exportBattleConfig() {
-        return { data: cfgBattle, fileName: `cfgBattle${!isekaiSuffix ? '_Persistent' : '_Isekai'}.txt`, depth: 3 };
+        return chooseJpxBattleExport(container, cfgBattle);
     }
+
+    container.jpxConfigApplied = (patch, scope) => {
+        if (scope === 'battle') refreshBattleViews();
+        else if (document.getElementById('cfgStats-ui')) renderStatsSettingsUI(document.getElementById('cfgStats-ui'));
+        editHistory?.commit(scope, patch);
+    };
 
     function importBattleConfig(content) {
         let data = JSON.parse(content);
@@ -8874,15 +9454,10 @@ function renderSettings() {
             showTransfer: false,
         },
         {
-            id: 'battleRules',
-            text: t('cB.battleRules'),
-            saveBtnText: t('cB.saveBattleConfig'),
-            exportBtnText: t('cB.exportBattleConfig'),
-            importBtnText: t('cB.importBattleConfig'),
-            render: renderBattleRulesTab,
-            onSave: saveBattleConfig,
-            onExport: exportBattleConfig,
-            onImport: importBattleConfig,
+            id: 'configManager',
+            text: t('cM.name'),
+            ownActions: true,
+            render: parent => renderJpxConfigManager(parent, { onApplied: container.jpxConfigApplied }),
         },
         {
             id: 'stats',
@@ -8999,7 +9574,7 @@ function renderSettings() {
                         });
                         if (!copy || !['battle-mode', 'battle', 'stats'].includes(copy.kind) || !copy.config ||
                             Array.isArray(copy.config) || typeof copy.config !== 'object') throw new Error('Invalid configuration');
-                        const target = copy.kind === 'stats' ? 'stats' : 'battleRules';
+                        const target = copy.kind === 'stats' ? 'stats' : 'battle';
                         const targetTab = tabs.find(item => item.id === target);
                         let config = copy.config;
                         if (copy.kind === 'battle-mode') {
@@ -9058,11 +9633,13 @@ function renderSettings() {
 
     jpxUtils.createButton(buttonsUI, {
         id: 'export-button',
-        onClick: () => {
+        history: false,
+        onClick: async () => {
             let activeTab = tabs.find(t => t.panel.style.display === 'flex');
             if (!activeTab || !activeTab.onExport) return t('cGen.exportFailed!');
 
-            let info = activeTab.onExport();
+            let info = await activeTab.onExport();
+            if (!info) return;
             let blob = new Blob([jpxUtils.stringifyLimited(info.data, info.depth)], { type: 'text/plain;charset=utf-8' });
             let url = URL.createObjectURL(blob);
             let a = document.createElement('a');
@@ -9173,6 +9750,13 @@ function renderSettings() {
 }
 
 function switchTab(targetId, tabs) {
+    if (targetId !== 'configManager' && jpxConfigManagerView?.isEditing()) {
+        jpxConfigManagerView.leave(() => switchTab(targetId, tabs));
+        return;
+    }
+    const previousId = tabs.find(tab => tab.btn.getAttribute('aria-selected') === 'true')?.id;
+    if (previousId === 'configManager' && targetId !== previousId) jpxConfigManagerView?.onHidden();
+    if (targetId === 'configManager' && previousId !== targetId) jpxConfigManagerView?.onShown();
     if (targetId !== 'stats') captureStatsListScroll(document.getElementById('cfgStats-ui'));
     tabs.forEach(tab => {
         let isActive = (tab.id === targetId);
@@ -9187,7 +9771,7 @@ function switchTab(targetId, tabs) {
 
         if (isActive) {
             const footer = document.querySelector('#settings-container .jpx-settings-footer');
-            if (footer) footer.style.display = tab.plugin ? 'none' : '';
+            if (footer) footer.style.display = tab.plugin || tab.ownActions ? 'none' : '';
             const mobile = document.getElementById('settings-container')?.classList.contains('jpx-settings-mobile');
             if (mobile) document.querySelector('#settings-container .jpx-settings-title').textContent = tab.text;
             let saveBtn = document.getElementById('save-button');
@@ -9271,113 +9855,6 @@ function renderKeybindingsTab(parent) {
     parent.appendChild(keybindsUI);
 }
 
-function renderBattleRulesUI(container) {
-    renderSchema(container, cfgBattleRulesSchema, cfgBattle);
-    // Keep mode-level actions mounted when import, reset or history rebuilds the rule editor.
-    const selection = container.parentElement.querySelector('.jpx-rule-mode-selection');
-    selection.replaceChildren(container.querySelector('.jpx-battle-mode-selects'));
-}
-
-function renderBattleRulesTab(parent) {
-    const modeHeader = document.createElement('div');
-    modeHeader.className = 'jpx-rule-mode-header';
-    const modeSelection = document.createElement('div');
-    modeSelection.className = 'jpx-rule-mode-selection';
-    const modeActions = document.createElement('div');
-    modeActions.className = 'jpx-rule-mode-actions';
-    modeHeader.append(modeSelection, modeActions);
-    parent.append(modeHeader);
-    let cfgBattleRulesUI = document.createElement('div');
-    cfgBattleRulesUI.id = 'cfgBattle-rules-ui';
-    parent.appendChild(cfgBattleRulesUI);
-    renderBattleRulesUI(cfgBattleRulesUI);
-
-    const exportModeButton = jpxUtils.createButton(modeActions, {
-        id: 'export-current-button',
-        text: t('cB.exportModeShort'),
-        onClick: () => {
-            let modeKey = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue;
-            if (!cfgBattle[modeKey]) return t('cGen.exportFailed!');
-            let exportData = { [modeKey]: cfgBattle[modeKey], battleVersion: cfgBattle.battleVersion };
-            let blob = new Blob([jpxUtils.stringifyLimited(exportData, 3)], { type: 'text/plain;charset=utf-8' });
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = `cfgBattle${!isekaiSuffix ? '_Persistent' : '_Isekai'}_${modeKey}.txt`;
-            a.click();
-            URL.revokeObjectURL(url);
-
-            return t('cGen.exported!');
-        }
-    });
-
-    exportModeButton.title = t('cB.exportCurrentBattleMode');
-    exportModeButton.setAttribute('aria-label', exportModeButton.title);
-
-    const resetModeButton = jpxUtils.createButton(modeActions, {
-        id: 'reset-current-button',
-        text: t('cB.resetModeShort'),
-        onClick: (btn) => {
-            let modeKey = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue;
-            cfgBattle[modeKey] = !jpxUtils.isEmpty(defaultCfgBattle[modeKey]) ? JSON.parse(JSON.stringify(defaultCfgBattle[modeKey])) : {};
-            btn.dataset.battleMode = modeKey;
-
-            let oldUI = document.getElementById('cfgBattle-rules-ui');
-            let newUI = document.createElement('div');
-            newUI.id = 'cfgBattle-rules-ui';
-            if (oldUI) {
-                oldUI.replaceWith(newUI);
-                renderBattleRulesUI(newUI);
-            }
-
-            return t('cGen.reset!');
-        }
-    });
-	
-    resetModeButton.title = t('cB.resetCurrentBattleMode');
-    resetModeButton.setAttribute('aria-label', resetModeButton.title);
-
-    const styleControl = document.createElement('div');
-    styleControl.className = 'jpx-style-override';
-    const choices = [['melee', 'fire', 0], ['fireMage', 'fire', 9999], ['coldMage', 'cold', 9999], ['windMage', 'wind', 9999], ['elecMage', 'elec', 9999], ['holyMage', 'holy', 9999], ['darkMage', 'dark', 9999]];
-    let current = spellDamageBonus;
-    try { current = JSON.parse(localStorage.getItem(prefix + 'spellDamageBonus' + isekaiSuffix)) || current; }
-    catch { /* Retain the current page's detected value if storage is unreadable. */ }
-    const selected = choices.find(([, type, value]) => current.maxType === type && current.maxValue === value);
-    const label = document.createElement('label');
-    label.id = 'jpx-style-override-label';
-    label.className = 'jpx-style-override-label';
-    label.textContent = t('cB.force');
-    const select = document.createElement('select');
-    select.id = 'jpx-style-override-select';
-    label.htmlFor = select.id;
-    if (!selected) {
-        const detected = document.createElement('option');
-        detected.value = '';
-        detected.textContent = t('cB.currentStyle');
-        detected.disabled = true;
-        select.append(detected);
-    }
-    choices.forEach(([name]) => {
-        const option = document.createElement('option');
-        option.value = name;
-        option.textContent = t(`cB.${name}`);
-        select.append(option);
-    });
-    const currentValue = selected?.[0] || '';
-    select.value = currentValue;
-    select.addEventListener('change', () => {
-        const choice = choices.find(([name]) => name === select.value);
-        if (!choice || select.value === currentValue) return;
-        if (!confirm(t('cB.reloadWarning'))) { select.value = currentValue; return; }
-        const [, type, value] = choice;
-        localStorage.setItem(prefix + 'spellDamageBonus' + isekaiSuffix, JSON.stringify({ maxType: type, maxValue: value }));
-        window.location.href = window.location.href;
-    });
-    styleControl.append(label, select);
-    modeHeader.insertBefore(styleControl, modeActions);
-}
-
 // Legacy lists contain only displayed fields. Keep their order/styles and append missing fields disabled.
 function normalizeStatsConfig(data) {
     for (const field of cfgStatsSchema.properties.filter(field => field.statsEditor)) {
@@ -9455,16 +9932,18 @@ function renderStatsImportPreview(parent, data, fileName) {
 }
 
 // Keep the preview clipped to this list and retain the original grab point.
-function bindStatsListDrag(list, moveField) {
+function bindStatsListDrag(list, moveField, options = {}) {
+    const rowSelector = options.row || '.jpx-stats-row', handleSelector = options.handle || '.jpx-stats-grip';
+    const scroller = options.scroller || list;
     let drag = null;
     let suppressClick = false;
     const clearMarkers = () => list.querySelectorAll('.is-drop-before, .is-drop-after').forEach(row => row.classList.remove('is-drop-before', 'is-drop-after'));
     const bounds = () => {
-        const rect = list.getBoundingClientRect();
+        const rect = scroller.getBoundingClientRect();
         const panel = list.closest('[role=tabpanel]').getBoundingClientRect();
         const { scale } = getSettingsCoordinateSpace(list);
-        return { left: Math.max(rect.left, panel.left), right: Math.min(rect.left + list.clientWidth * scale, panel.right),
-            top: Math.max(rect.top, panel.top), bottom: Math.min(rect.top + list.clientHeight * scale, panel.bottom) };
+        return { left: Math.max(rect.left, panel.left), right: Math.min(rect.left + scroller.clientWidth * scale, panel.right),
+            top: Math.max(rect.top, panel.top), bottom: Math.min(rect.top + scroller.clientHeight * scale, panel.bottom) };
     };
     const cancel = () => {
         if (!drag) return;
@@ -9488,13 +9967,15 @@ function bindStatsListDrag(list, moveField) {
         const space = getSettingsCoordinateSpace(list);
         Object.assign(drag.layer.style, { left: `${(area.left - space.left) / space.scale}px`, top: `${(area.top - space.top) / space.scale}px`,
             width: `${Math.max(0, area.right - area.left) / space.scale}px`, height: `${Math.max(0, area.bottom - area.top) / space.scale}px` });
-        const top = Math.max(0, Math.min(area.bottom - area.top - row.height, drag.y - drag.offsetY - area.top));
+        const height = drag.preview.getBoundingClientRect().height;
+        const offset = options.preview ? Math.min(drag.offsetY, height / 2) : drag.offsetY;
+        const top = Math.max(0, Math.min(area.bottom - area.top - height, drag.y - offset - area.top));
         Object.assign(drag.preview.style, { left: `${(row.left - area.left) / space.scale}px`, top: `${top / space.scale}px` });
         clearMarkers();
         drag.target = null;
         drag.marker.hidden = true;
         if (drag.x < area.left || drag.x >= area.right || drag.y < area.top || drag.y >= area.bottom) return;
-        const target = document.elementFromPoint(drag.x, drag.y)?.closest('.jpx-stats-row');
+        const target = document.elementFromPoint(drag.x, drag.y)?.closest(rowSelector);
         if (!target || target.parentElement !== list || target === drag.row) return;
         const rect = target.getBoundingClientRect();
         drag.target = target;
@@ -9503,7 +9984,7 @@ function bindStatsListDrag(list, moveField) {
         const markerTop = (drag.after ? rect.bottom - 3 * space.scale : rect.top) - area.top;
         drag.marker.hidden = false;
         drag.marker.style.top = `${markerTop / space.scale}px`;
-        drag.marker.classList.toggle('over-preview', markerTop < top + row.height && markerTop + 3 * space.scale > top);
+        drag.marker.classList.toggle('over-preview', markerTop < top + height && markerTop + 3 * space.scale > top);
     }
     function track() {
         if (!drag?.started) return;
@@ -9511,17 +9992,17 @@ function bindStatsListDrag(list, moveField) {
         const area = bounds();
         const edge = 24 * getSettingsCoordinateSpace(list).scale;
         if (drag.x >= area.left && drag.x < area.right && drag.y >= area.top && drag.y < area.bottom) {
-            if (drag.y < area.top + edge) list.scrollTop -= 5;
-            else if (drag.y > area.bottom - edge) list.scrollTop += 5;
+            if (drag.y < area.top + edge) scroller.scrollTop -= 5;
+            else if (drag.y > area.bottom - edge) scroller.scrollTop += 5;
         }
         update();
         drag.frame = requestAnimationFrame(track);
     }
     list.addEventListener('pointerdown', event => {
-        const handle = event.target.closest('.jpx-stats-grip');
+        const handle = event.target.closest(handleSelector);
         if (!handle || !event.isPrimary || event.button !== 0) return;
         fieldRenderers.dragState.cancel?.();
-        const row = handle.closest('.jpx-stats-row');
+        const row = handle.closest(rowSelector);
         drag = { row, handle, pointerId: event.pointerId, x: event.clientX, y: event.clientY,
             startX: event.clientX, startY: event.clientY, offsetY: event.clientY - row.getBoundingClientRect().top };
         fieldRenderers.dragState.cancel = cancel;
@@ -9543,9 +10024,9 @@ function bindStatsListDrag(list, moveField) {
             drag.layer.setAttribute('aria-hidden', 'true');
             drag.layer.inert = true;
             drag.preview = document.createElement('div');
-            drag.preview.className = 'jpx-stats-drag-preview';
-            Object.assign(drag.preview.style, { width: `${rect.width / scale}px`, height: `${rect.height / scale}px`, fontWeight: getComputedStyle(drag.row).fontWeight });
-            drag.preview.append(...[...drag.row.children].map(child => child.cloneNode(true)));
+            drag.preview.className = 'jpx-stats-drag-preview' + (options.previewClass ? ' ' + options.previewClass : '');
+            Object.assign(drag.preview.style, { width: `${rect.width / scale}px`, height: options.preview ? 'auto' : `${rect.height / scale}px`, fontWeight: getComputedStyle(drag.row).fontWeight });
+            drag.preview.append(...(options.preview ? options.preview(drag.row) : [...drag.row.children].map(child => child.cloneNode(true))));
             drag.marker = document.createElement('div');
             drag.marker.className = 'jpx-stats-drop-marker';
             drag.layer.append(drag.preview, drag.marker);
@@ -9562,15 +10043,16 @@ function bindStatsListDrag(list, moveField) {
             drag.y = event.clientY;
             update();
         }
-        const id = drag.row.dataset.fieldId;
-        const rows = [...list.querySelectorAll(':scope > .jpx-stats-row')];
+        const id = drag.row.dataset[options.idKey || 'fieldId'];
+        const rows = [...list.querySelectorAll(':scope > ' + rowSelector)];
         const from = rows.indexOf(drag.row), target = rows.indexOf(drag.target);
         let destination = target + (drag.after ? 1 : 0);
         if (from < destination) destination--;
         cancel();
         if (target >= 0 && destination !== from) {
             moveField(id, destination);
-            list.querySelector('.jpx-stats-select[aria-pressed=true]')?.focus({ preventScroll: true });
+            if (options.afterMove) options.afterMove();
+            else list.querySelector('.jpx-stats-select[aria-pressed=true]')?.focus({ preventScroll: true });
         }
     });
     for (const type of ['pointercancel', 'lostpointercapture']) list.addEventListener(type, event => {
@@ -10216,6 +10698,7 @@ function renderStatsDataActions(parent) {
         }
     });
 
+    jpxUtils.createButton(buttonsUI, { id:'clear-records-button', text:t('cS.clearRecords'), history:false, onClick:() => openJpxRecordsCleanup() });
     parent.appendChild(buttonsUI);
     const cleanup = document.createElement('section');
     cleanup.className = 'jpx-stats-cleanup';
@@ -11214,6 +11697,2516 @@ function jpxUtils() {
     ns._init = true;
     return ns;
 }
+
+// BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)
+I18N.cM = {"name":"Configs","mine":"My configs","store":"Store","new":"New","import":"Import","search":"Search configs","apply":"Apply","edit":"Edit","more":"More","inUse":"In use","updateApply":"Update & apply","settings":"Config settings","duplicate":"Duplicate","export":"Export","share":"Share","delete":"Delete","title":"Name","style":"Style","element":"Element","world":"World","scenario":"Battle","auto":"Auto","anyWorld":"Both worlds","create":"Create","cancel":"Cancel","back":"Back","save":"Save","undo":"Undo","redo":"Redo","saveChanges":"Save changes?","keepEditing":"Keep editing","discard":"Discard","deleteConfirm":"Delete this config?","empty":"No configs yet.","noMatches":"No matching configs.","copySuffix":"copy","chooseGroup":"Choose rules to edit","allBattle":"All battle settings","stats":"Stats","applyScope":"Apply this config?","applyAll":"This updates the battle settings and rule groups included in this file.","applyWorld":"Apply in","applyPaused":"Applied. Auto-battle is paused.","applied":"Applied.","saved":"Saved.","reset":"Reset rules","resetConfirm":"Replace this group's rules with the defaults?","imported":"Added to My configs.","savedFromStore":"Saved to My configs.","sourceExists":"You already saved this config.","updateCopy":"Update saved copy","keepCopy":"Save another copy","invalidConfig":"This config cannot be read.","unsupportedVersion":"This config version is not supported.","storageCorrupt":"Saved configs could not be read. The original data is untouched.","storageError":"Could not save. Check browser storage and try again.","tooLarge":"This config is too large.","notFound":"This config no longer exists.","appliedConfig":"Apply another config before deleting this one.","migrationConflict":"This config conflicts with saved data.","error":"Could not complete this action.","groupCount":"${count} rule groups","rename":"Rename","current":"Current settings","close":"Close","fire":"Fire","cold":"Cold","wind":"Wind","elec":"Lightning","holy":"Holy","dark":"Dark","restore":"Undo delete","deleted":"Config deleted.","refresh":"Refresh","worldMismatch":"This config is for another world.","description":"Description","editor":"Rule editor","customCode":"This config contains custom code. Apply it only if you trust its source.","recovery":"Import backup","importWorld":"Save config","statsEdit":"Edit stats","preserveModes":"Rules","applyCurrent":"Apply here","libraryChanged":"This config was changed in another tab. Reopen it before saving.","unsupportedRule":"Unsupported rule (kept unchanged)","currentStyle":"Current style","filters":"Filters","allWorlds":"All worlds","allStyles":"All styles","allBattles":"All battles","allTypes":"All types","type":"Type","singleMode":"Battle mode","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","typeSort":"By type","manualSort":"Manual","multiStyle":"Mixed styles","multiBattle":"Multiple battles","resultCount":"${count} found","exportCurrent":"In use","exportAll":"Full config","exportChoose":"Choose rules","exportUnknown":"Current rules are not known yet.","bind":"Bind loadout","unbind":"Unbind","persona":"Persona","equipSet":"Equipment set","personaNumber":"Persona ${id}","setNumber":"Set ${id}","replaceBinding":"Replace the binding to “${name}”?","bound":"Loadout bound.","bindingUnknown":"Persona and set details are unavailable. Refresh the game outside battle, then try again.","bindingUnavailable":"No saved persona/set details. Try again outside battle."};
+const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:16px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:44px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-meta{margin:3px 0 0;color:var(--jpx-theme-muted, #756753);font-size:12px;overflow-wrap:anywhere}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 3;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:4px;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button),#settings-container.jpx-settings-mobile .jpx-config-rename input{height:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n";
+// The local library is deliberately independent of the editor and battle runtime.
+// Keep PLUS metadata outside native JPX configuration objects.
+function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersion }) {
+    const MAX_JSON = 8 * 1024 * 1024;
+    const MAX_ENVELOPE = 2 * 1024 * 1024;
+    const MAX_ENTRIES = 500;
+    const blockedKeys = new Set(['__proto__', 'prototype', 'constructor']);
+    const modeSet = new Set(modes || []);
+    const worlds = new Set(['Persistent', 'Isekai', 'Any']);
+    const backupKey = `${key}:backup`;
+    const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+    const fail = (code, message = code) => { const error = new Error(message); error.code = code; throw error; };
+    if (!storage || typeof storage.getItem !== 'function' || typeof storage.setItem !== 'function' ||
+        typeof key !== 'string' || !key || !modeSet.size) fail('invalidConfig');
+
+    function encode(value, limit = MAX_JSON) {
+        let nodes = 0;
+        const seen = new Set();
+        function visit(item, depth) {
+            if (++nodes > 250000 || depth > 80) fail('tooLarge');
+            if (item === null || typeof item === 'string' || typeof item === 'boolean') return;
+            if (typeof item === 'number') { if (!Number.isFinite(item)) fail('invalidConfig'); return; }
+            if (typeof item !== 'object' || seen.has(item)) fail('invalidConfig');
+            const proto = Object.getPrototypeOf(item);
+            if (!Array.isArray(item) && proto !== null && Object.getPrototypeOf(proto) !== null) fail('invalidConfig');
+            seen.add(item);
+            if (Array.isArray(item)) {
+                if (item.length > 100000) fail('tooLarge');
+                for (let i = 0; i < item.length; i++) if (!Object.hasOwn(item, i)) fail('invalidConfig');
+            }
+            for (const name of Reflect.ownKeys(item)) {
+                if (typeof name !== 'string' || blockedKeys.has(name)) fail('invalidConfig');
+                if (Array.isArray(item) && name === 'length') continue;
+                const descriptor = Object.getOwnPropertyDescriptor(item, name);
+                if (!descriptor.enumerable || descriptor.get || descriptor.set) fail('invalidConfig');
+                if (Array.isArray(item) && !/^(0|[1-9]\d*)$/.test(name)) fail('invalidConfig');
+                visit(descriptor.value, depth + 1);
+            }
+            seen.delete(item);
+        }
+        visit(value, 0);
+        const result = JSON.stringify(value);
+        if (result.length > limit) fail('tooLarge');
+        return result;
+    }
+    const clone = (value, limit) => JSON.parse(encode(value, limit));
+    function getRaw(name) {
+        try { return storage.getItem(name); }
+        catch { return fail('storageError'); }
+    }
+    function putRaw(name, raw) {
+        try { storage.setItem(name, raw); }
+        catch { fail('storageError'); }
+    }
+    function parse(raw) {
+        if (typeof raw !== 'string' || raw.length > MAX_JSON) fail('storageCorrupt');
+        try { return clone(JSON.parse(raw)); }
+        catch { return fail('storageCorrupt'); }
+    }
+    function validId(id) {
+        return typeof id === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,159}$/.test(id) && !blockedKeys.has(id);
+    }
+    function validateRules(mode) {
+        if (!object(mode)) fail('invalidConfig');
+        // Native JPX permits an explicitly empty scene and falls back to General.
+        if (!Object.keys(mode).length) return;
+        if (!Array.isArray(mode.supports) || !Array.isArray(mode.attacks)) fail('invalidConfig');
+        for (const [group, rules] of Object.entries(mode)) {
+            if (group !== 'supports' && group !== 'attacks' && !group.startsWith('kb_')) continue;
+            if (!Array.isArray(rules)) fail('invalidConfig');
+            for (const rule of rules) {
+                if (!object(rule) || typeof rule.type !== 'string' || !rule.type) fail('invalidConfig');
+                if ('conditions' in rule && (!Array.isArray(rule.conditions) || rule.conditions.some(condition =>
+                    !object(condition) || typeof condition.key !== 'string' || !condition.key))) fail('invalidConfig');
+            }
+        }
+    }
+    function envelopeCopy(input) {
+        const envelope = clone(input, MAX_ENVELOPE);
+        if (!object(envelope) || envelope.schemaVersion !== 1 ||
+            !['battle', 'battle-mode', 'stats'].includes(envelope.kind) || !object(envelope.config) ||
+            typeof envelope.title !== 'string' || (envelope.description !== undefined && typeof envelope.description !== 'string') ||
+            !worlds.has(envelope.world)) fail('invalidConfig');
+        const config = envelope.config;
+        const versionKey = envelope.kind === 'stats' ? 'statsVersion' : 'battleVersion';
+        const minimum = envelope.kind === 'stats' ? statsVersion : battleVersion;
+        if (envelope.kind !== 'stats' && config.version && !config.battleVersion) {
+            config.battleVersion = config.version;
+            delete config.version;
+        }
+        if (!['number', 'string'].includes(typeof config[versionKey]) || String(config[versionKey]).trim() === '' ||
+            !Number.isFinite(Number(config[versionKey])) || config[versionKey] < minimum) fail('unsupportedVersion');
+        if (envelope.kind === 'stats') {
+            for (const field of ['combatRows', 'revenueRows', 'statsColumns']) {
+                if (field in config && (!Array.isArray(config[field]) || config[field].some(row => !object(row) || typeof row.id !== 'string'))) fail('invalidConfig');
+            }
+            return envelope;
+        }
+        if (config.Battlecaster_General && !config['1H_Mage_General']) {
+            config['1H_Mage_General'] = config.Battlecaster_General;
+            delete config.Battlecaster_General;
+        }
+        if (envelope.mode === 'Battlecaster_General') envelope.mode = '1H_Mage_General';
+        if (envelope.kind === 'battle-mode' && (!modeSet.has(envelope.mode) || !Object.hasOwn(config, envelope.mode))) fail('invalidConfig');
+        for (const mode of [...modeSet, 'Battlecaster_General']) {
+            if (!Object.hasOwn(config, mode)) continue;
+            const data = config[mode];
+            validateRules(data);
+            for (const rule of data.supports || []) {
+                if (['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
+                else if (['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
+            }
+            for (const rule of data.attacks || []) {
+                if (rule.type === 'target' && 'bottomUp' in rule) {
+                    rule.priorityRule = rule.bottomUp ? 'Bottom Up' : 'Top Down';
+                    delete rule.bottomUp;
+                }
+                if (rule.type === 'smartDebuff' && typeof rule.targetCount === 'string' && rule.targetCount.trim() && !isNaN(rule.targetCount)) {
+                    rule.targetCount = Number(rule.targetCount);
+                }
+            }
+        }
+        return envelope;
+    }
+    const emptyState = () => ({ schemaVersion: 1, entries: [], applied: {}, migrations: [] });
+    const validSlot = value => typeof value === 'string' && /^[1-9]\d{0,5}$/.test(value);
+    const validBinding = value => object(value) && ['Persistent', 'Isekai'].includes(value.world) &&
+        validSlot(value.personaId) && validSlot(value.setId);
+    const sameBinding = (a, b) => a.world === b.world && a.personaId === b.personaId && a.setId === b.setId;
+    const validTime = value => typeof value === 'string' && Number.isFinite(Date.parse(value));
+    const validRecordMode = record => !Object.hasOwn(record, 'mode') ||
+        typeof record.mode === 'string' && modeSet.has(record.mode) && record.scopes.includes(record.mode) && Object.hasOwn(record.config, record.mode);
+    let validatedRaw, validatedState;
+    function readState() {
+        const raw = getRaw(key);
+        if (raw === null || raw === undefined) return emptyState();
+        // Revalidate only when storage changes; callers still receive independent
+        // copies, including after another tab replaces or corrupts the archive.
+        if (raw === validatedRaw) return JSON.parse(validatedState);
+        const state = parse(raw);
+        try {
+            if (!object(state) || state.schemaVersion !== 1 || !Array.isArray(state.entries) || state.entries.length > MAX_ENTRIES ||
+                !object(state.applied) || !Array.isArray(state.migrations) || state.migrations.some(marker => typeof marker !== 'string' || !marker)) fail('storageCorrupt');
+            const ids = new Set();
+            for (const entry of state.entries) {
+                if (!object(entry) || !validId(entry.id) || ids.has(entry.id) || !Number.isSafeInteger(entry.revision) || entry.revision < 1 ||
+                    !validTime(entry.createdAt) || !validTime(entry.updatedAt) || ('execution' in entry && !object(entry.execution))) fail('storageCorrupt');
+                ids.add(entry.id);
+                entry.envelope = envelopeCopy(entry.envelope);
+            }
+            for (const [world, records] of Object.entries(state.applied)) {
+                if (!worlds.has(world) || !object(records)) fail('storageCorrupt');
+                for (const [id, record] of Object.entries(records)) {
+                    const entry = state.entries.find(item => item.id === id);
+                    if (!entry || !object(record) || record.id !== id || !Number.isSafeInteger(record.revision) || record.revision < 1 ||
+                        record.revision > entry.revision || !Array.isArray(record.scopes) || !record.scopes.length ||
+                        record.scopes.some(scope => typeof scope !== 'string' || !scope) || !object(record.config) ||
+                        ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('storageCorrupt');
+                }
+            }
+            if (Object.hasOwn(state, 'active')) {
+                if (!object(state.active)) fail('storageCorrupt');
+                for (const [world, id] of Object.entries(state.active)) {
+                    if (!worlds.has(world) || !validId(id) || !Object.hasOwn(state.applied[world] || {}, id)) fail('storageCorrupt');
+                }
+            }
+            if (Object.hasOwn(state, 'bindings')) {
+                if (!Array.isArray(state.bindings) || state.bindings.length > 2000) fail('storageCorrupt');
+                const slots = new Set();
+                for (const binding of state.bindings) {
+                    const entry = state.entries.find(item => item.id === binding?.id);
+                    const slot = JSON.stringify([binding?.world, binding?.personaId, binding?.setId]);
+                    if (!validBinding(binding) || !entry || entry.envelope.kind === 'stats' || slots.has(slot) ||
+                        !Number.isSafeInteger(binding.trustedRevision) || binding.trustedRevision < 1 || binding.trustedRevision > entry.revision) fail('storageCorrupt');
+                    slots.add(slot);
+                }
+            }
+        } catch { return fail('storageCorrupt'); }
+        validatedRaw = raw;
+        validatedState = JSON.stringify(state);
+        return state;
+    }
+    function write(state) { putRaw(key, encode(state)); }
+    function newId(state) {
+        let id;
+        do {
+            id = typeof globalThis.crypto?.randomUUID === 'function' ? globalThis.crypto.randomUUID() :
+                `config-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+        } while (state.entries.some(entry => entry.id === id));
+        return id;
+    }
+    function save(input, options = {}) {
+        const envelope = envelopeCopy(input);
+        const state = readState();
+        const previous = options.id === undefined ? null : state.entries.find(entry => entry.id === options.id);
+        if (options.id !== undefined && !previous) fail('notFound');
+        if (envelope.kind === 'stats' && state.bindings?.some(binding => binding.id === previous?.id)) fail('invalidConfig');
+        if (!previous && state.entries.length >= MAX_ENTRIES) fail('tooLarge');
+        const now = new Date().toISOString();
+        const entry = { ...(previous || {}), id: previous?.id || newId(state), envelope,
+            revision: (previous?.revision || 0) + 1, createdAt: previous?.createdAt || now, updatedAt: now };
+        for (const name of ['source', 'execution']) if (Object.hasOwn(options, name)) {
+            if (options[name] === null || options[name] === undefined) delete entry[name];
+            else entry[name] = clone(options[name]);
+        }
+        if ('execution' in entry && !object(entry.execution)) fail('invalidConfig');
+        if (previous) state.entries[state.entries.indexOf(previous)] = entry;
+        else state.entries.push(entry);
+        write(state);
+        return clone(entry);
+    }
+    function rename(id, title, expectedRevision) {
+        if (typeof title !== 'string' || !title.trim() || title.trim().length > 100 || /[\x00-\x1f\x7f]/.test(title)) fail('invalidConfig');
+        const state = readState(), entry = state.entries.find(item => item.id === id);
+        if (!entry) fail('notFound');
+        if (entry.revision !== expectedRevision) fail('libraryChanged');
+        title = title.trim();
+        if (entry.envelope.title === title) return clone(entry);
+        const previousRevision = entry.revision;
+        entry.envelope.title = title; entry.revision++; entry.updatedAt = new Date().toISOString();
+        // A name change does not alter applied rules. Keep genuinely stale
+        // snapshots stale, but do not ask users to reapply a metadata-only edit.
+        for (const records of Object.values(state.applied)) {
+            if (records[id]?.revision === previousRevision) records[id].revision = entry.revision;
+        }
+        for (const binding of state.bindings || []) {
+            if (binding.id === id && binding.trustedRevision === previousRevision) binding.trustedRevision = entry.revision;
+        }
+        write(state);
+        return clone(entry);
+    }
+    function reorder(ids, expected) {
+        const state = readState();
+        if (!Array.isArray(ids) || ids.length > MAX_ENTRIES || ids.some(id => !validId(id)) || new Set(ids).size !== ids.length) fail('invalidConfig');
+        const selected = new Set(ids), entries = new Map(state.entries.map(entry => [entry.id, entry]));
+        if (ids.some(id => !entries.has(id))) fail('notFound');
+        const current = state.entries.filter(entry => selected.has(entry.id)).map(entry => entry.id);
+        if (expected !== undefined && (!Array.isArray(expected) || JSON.stringify(current) !== JSON.stringify(expected))) fail('libraryChanged');
+        if (JSON.stringify(current) === JSON.stringify(ids)) return;
+        let index = 0;
+        // Reorder only the visible subset. Hidden entries and rule revisions stay intact.
+        state.entries = state.entries.map(entry => selected.has(entry.id) ? entries.get(ids[index++]) : entry);
+        write(state);
+    }
+    function remove(id) {
+        const state = readState();
+        if (!state.entries.some(entry => entry.id === id)) fail('notFound');
+        if (Object.values(state.applied).some(records => Object.hasOwn(records, id))) fail('appliedConfig');
+        state.entries = state.entries.filter(entry => entry.id !== id);
+        if (state.bindings) state.bindings = state.bindings.filter(binding => binding.id !== id);
+        write(state);
+        return true;
+    }
+    function setBinding(context, id, expectedRevision, previousId = null) {
+        if (!validBinding(context)) fail('invalidConfig');
+        const state = readState(), entry = state.entries.find(item => item.id === id);
+        if (!entry || entry.envelope.kind === 'stats') fail('invalidConfig');
+        if (entry.revision !== expectedRevision) fail('libraryChanged');
+        const bindings = state.bindings ||= [], index = bindings.findIndex(binding => sameBinding(binding, context));
+        if ((index < 0 ? null : bindings[index].id) !== previousId) fail('libraryChanged');
+        const binding = { world: context.world, personaId: context.personaId, setId: context.setId, id, trustedRevision: entry.revision };
+        if (index < 0) { if (bindings.length >= 2000) fail('tooLarge'); bindings.push(binding); }
+        else bindings[index] = binding;
+        write(state);
+        return clone(binding);
+    }
+    function removeBinding(context, id) {
+        if (!validBinding(context)) fail('invalidConfig');
+        const state = readState(), index = state.bindings?.findIndex(binding => sameBinding(binding, context)) ?? -1;
+        if (index < 0) return false;
+        if (state.bindings[index].id !== id) fail('libraryChanged');
+        state.bindings.splice(index, 1); write(state); return true;
+    }
+    function backup() {
+        readState(); // Never replace or hide a corrupt source with an apparently valid backup.
+        const raw = getRaw(key);
+        if (getRaw(backupKey) === null || getRaw(backupKey) === undefined) {
+            putRaw(backupKey, JSON.stringify({ savedAt: new Date().toISOString(), raw: raw ?? null }));
+        }
+        return backupKey;
+    }
+    function migrate(entries, marker, options = {}) {
+        if (!Array.isArray(entries) || typeof marker !== 'string' || !marker || marker.length > 200) fail('invalidConfig');
+        const state = readState();
+        if (state.migrations.includes(marker)) return clone(state);
+        const migratedIds = new Map();
+        entries.forEach((input, index) => {
+            if (!object(input) || !object(input.envelope)) fail('invalidConfig');
+            const envelope = envelopeCopy(input.envelope);
+            let id = validId(input.id) ? input.id : `migrated-${marker.replace(/[^A-Za-z0-9_.:-]/g, '-').slice(0, 100)}-${index}`;
+            const same = state.entries.find(entry => entry.id === id);
+            if (same && encode(same.envelope) === encode(envelope)) {
+                migratedIds.set(input.id, same.id);
+                return;
+            }
+            const base = id.slice(0, 140);
+            let suffix = 0;
+            while (state.entries.some(entry => entry.id === id)) id = `${base}-migrated${suffix++ ? '-' + suffix : ''}`;
+            const now = new Date().toISOString();
+            const entry = { id, envelope, revision: Number.isSafeInteger(input.revision) && input.revision > 0 ? input.revision : 1,
+                createdAt: validTime(input.createdAt) ? input.createdAt : validTime(input.savedAt) ? input.savedAt : now,
+                updatedAt: validTime(input.updatedAt) ? input.updatedAt : validTime(input.savedAt) ? input.savedAt : now };
+            for (const name of ['source', 'execution']) if (input[name] !== undefined) entry[name] = clone(input[name]);
+            if ('execution' in entry && !object(entry.execution)) fail('invalidConfig');
+            state.entries.push(entry);
+            migratedIds.set(input.id, entry.id);
+        });
+        if (state.entries.length > MAX_ENTRIES) fail('tooLarge');
+        if (options.applied !== undefined) {
+            if (!Array.isArray(options.applied)) fail('invalidConfig');
+            for (const request of clone(options.applied)) {
+                const id = migratedIds.get(request.id);
+                const entry = state.entries.find(item => item.id === id);
+                if (!entry || !worlds.has(request.world) || !Array.isArray(request.scopes) || !request.scopes.length ||
+                    request.scopes.some(scope => typeof scope !== 'string' || !scope)) fail('invalidConfig');
+                const records = state.applied[request.world] ||= {};
+                // Seeding must never replace a user's explicit application.
+                if (Object.values(records).some(record => overlaps(record.scopes, request.scopes))) continue;
+                records[id] = { id, revision: entry.revision, scopes: [...new Set(request.scopes)], config: clone(entry.envelope.config) };
+            }
+        }
+        state.migrations.push(marker);
+        const serialized = encode(state); // Validate everything before writing either record.
+        backup();
+        putRaw(key, serialized);
+        return clone(state);
+    }
+    const overlaps = (a, b) => a.includes('*') || b.includes('*') || a.some(scope => b.includes(scope));
+    function pruneActive(state) {
+        if (!state.active) return;
+        for (const [world, id] of Object.entries(state.active)) {
+            if (!Object.hasOwn(state.applied[world] || {}, id)) delete state.active[world];
+        }
+        if (!Object.keys(state.active).length) delete state.active;
+    }
+    function setApplied(world, input, { activate = false } = {}) {
+        if (!worlds.has(world)) fail('invalidConfig');
+        const record = clone(input);
+        const state = readState();
+        const entry = state.entries.find(item => item.id === record?.id);
+        if (!entry) fail('notFound');
+        if (!object(record) || !Number.isSafeInteger(record.revision) || record.revision < 1 || record.revision > entry.revision ||
+            !Array.isArray(record.scopes) || !record.scopes.length || record.scopes.some(scope => typeof scope !== 'string' || !scope) ||
+            !object(record.config) || ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('invalidConfig');
+        record.scopes = [...new Set(record.scopes)];
+        const records = state.applied[world] ||= {};
+        for (const [id, applied] of Object.entries(records)) {
+            if (overlaps(applied.scopes, record.scopes)) delete records[id];
+        }
+        records[record.id] = record;
+        if (activate === true) (state.active ||= {})[world] = record.id;
+        pruneActive(state);
+        write(state);
+        return clone(record);
+    }
+    function clearApplied(world, id) {
+        if (!worlds.has(world) || !validId(id)) fail('invalidConfig');
+        const state = readState();
+        const records = state.applied[world];
+        if (!records || !Object.hasOwn(records, id)) return false;
+        delete records[id];
+        if (!Object.keys(records).length) delete state.applied[world];
+        pruneActive(state);
+        write(state);
+        return true;
+    }
+    return Object.freeze({
+        list: () => readState().entries,
+        get: id => readState().entries.find(entry => entry.id === id) || null,
+        save, rename, reorder, remove, migrate, backup, readState, setApplied, clearApplied, setBinding, removeBinding
+    });
+}
+
+// Config Store stays inside the userscript sandbox. No credentials or transport are exposed to the page.
+// Construction is offline; network activity starts only after render() is explicitly called.
+function createJpxIntegratedStore(host, translate) {
+    'use strict';
+    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","cancel":"Cancel","updateShare":"Update","configContents":"Config content","keepSharedConfig":"Keep shared config","noMatchingLocal":"No matching saved configs","shareChanged":"This share changed elsewhere. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn share from the list? Its GitHub record and local configs will stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more"}};
+    const t = key => {
+        const name = key.replace(/^cStore\./, '');
+        const pack = host.jpxI18N?.cStore?.[name];
+        if (typeof pack === 'string') return pack;
+        const external = translate?.(key);
+        const missing = name.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/_/g, ' ').toLowerCase().replace(/^./, c => c.toUpperCase());
+        if (typeof external === 'string' && external !== key && external !== name && external !== missing) return external;
+        const fallback = translations.en;
+        return fallback[name] || name;
+    };
+// Only this public app identifier is embedded. Tokens stay in userscript-manager storage.
+const JPX_CONFIG_STORE = Object.freeze({ repository: 'MeiYongAI/JPX-PLUS-Configs', clientId: 'Iv23liGY2o8zyCDWgKBV' });
+const styles = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed'];
+const battleTypes = ['General', 'Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'];
+const jpxConfigStore = (() => {
+    const repository = JPX_CONFIG_STORE.repository, api = 'https://api.github.com', raw = 'https://raw.githubusercontent.com/' + repository + '/main/';
+    const tokenKey = 'jpx-config-store-auth-v1', marker = '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n';
+    const archivedMarker = '<!-- JPX-PLUS-CONFIG-ARCHIVED:v1 -->\n```json\n';
+    const kinds = ['battle-mode', 'battle', 'stats'], worlds = ['Persistent', 'Isekai', 'Any'];
+    const modes = styles.flatMap(style => battleTypes.map(type => style + '_' + type));
+    const ruleTypes = { supports: ['spellSupport', 'item', 'toggle', 'stop'], attacks: ['target', 'toggle', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'], keys: ['target', 'spellSupport', 'item', 'toggle', 'stop', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'] };
+    const conditionKeys = new Set('world pLevel pMaxSpellType battleTypes difficulty roundCurrent roundLeft roundTotal floor pActionCooldown pActionHistory pActionCounts pTotalActionCounts pHP pMP pSP pOC pSpiritStatus pEffects pIgnoredEffects pEffectStacks monsters activeMonsters defeatedMonsters bosses activeBosses defeatedBosses mLevel mWithoutEffects tName tTypes tClasses tPowerLevel tIndex tHP tMP tSP tEffects tIgnoredEffects tEffectStacks tDaysSinceUpdate'.split(' '));
+    const encode = value => new TextEncoder().encode(value), clone = value => JSON.parse(JSON.stringify(value));
+    let cache, loginPending, sessionGeneration = 0;
+    const pendingSubmissions = new Map();
+    const error = code => Object.assign(new Error(code), { code });
+    const fail = code => { throw error(code); };
+    const object = value => value && typeof value === 'object' && !Array.isArray(value);
+    const integer = value => Number.isSafeInteger(value) && value > 0;
+    const validToken = value => typeof value === 'string' && /^[A-Za-z0-9_]{1,512}$/.test(value);
+    const text = (value, max, empty = false) => typeof value === 'string' && (empty || value.trim().length > 0) && value.length <= max && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value);
+    const issueURL = id => 'https://github.com/' + repository + '/issues/' + id;
+    function inspect(value, depth = 0, budget = { nodes: 0, stringLimit: Infinity }) {
+        if (++budget.nodes > (budget.nodeLimit || 12000) || depth > 24) fail('invalidConfig');
+        if (typeof value === 'string') { if (value.length > budget.stringLimit) fail('tooLarge'); return; }
+        if (value === null || typeof value === 'boolean') return;
+        if (typeof value === 'number' && Number.isFinite(value)) return;
+        if (typeof value !== 'object') fail('invalidConfig');
+        const keys = Object.keys(value);
+        if (budget.exactJSON && (Object.getOwnPropertySymbols(value).length ||
+            (Array.isArray(value) ? keys.length !== value.length || keys.some(key => !/^(0|[1-9]\d*)$/.test(key) || +key >= value.length) :
+                Object.prototype.toString.call(value) !== '[object Object]'))) fail('invalidConfig');
+        for (const key of keys) {
+            if (['__proto__', 'prototype', 'constructor'].includes(key)) fail('invalidConfig');
+            if (budget.exactJSON) {
+                const property = Object.getOwnPropertyDescriptor(value, key);
+                if (property.get || property.set) fail('invalidConfig');
+            }
+            inspect(value[key], depth + 1, budget);
+        }
+    }
+    function parse(source, max = 60000) {
+        if (typeof source !== 'string' || encode(source).length > max) fail('tooLarge');
+        let value;
+        try { value = JSON.parse(source); } catch { fail('invalidConfig'); }
+        inspect(value); return value;
+    }
+    function validate(value) {
+        inspect(value, 0, { nodes: 0, stringLimit: 30000 });
+        if (!object(value) || value.schemaVersion !== 1 || !kinds.includes(value.kind) || !worlds.includes(value.world) ||
+            !text(value.title, 100) || /[\r\n]/.test(value.title) || !text(value.description, 4000, true) || typeof value.scriptVersion !== 'string' || !/^[\d.\w-]{1,40}$/.test(value.scriptVersion) || !object(value.config)) fail('invalidConfig');
+        if (Object.keys(value).some(key => !['schemaVersion', 'kind', 'title', 'description', 'world', 'mode', 'scriptVersion', 'config'].includes(key))) fail('invalidConfig');
+        const config = value.config;
+        if (value.kind === 'stats') {
+            if (!integer(config.statsVersion) || config.statsVersion < 20260109 || value.mode !== undefined) fail('invalidConfig');
+            let count = 0;
+            for (const name of ['combatRows', 'revenueRows', 'statsColumns']) if (name in config) {
+                if (!Array.isArray(config[name]) || config[name].length > 500) fail('invalidConfig');
+                const ids = new Set(); count++;
+                for (const row of config[name]) {
+                    if (!object(row) || !text(row.id, 100) || ids.has(row.id) || ('disabled' in row && typeof row.disabled !== 'boolean')) fail('invalidConfig');
+                    for (const field of ['customName', 'styleText', 'colorThresholds', ...Object.keys(row).filter(key => key.startsWith('s_'))]) if (field in row && typeof row[field] !== 'string') fail('invalidConfig');
+                    ids.add(row.id);
+                }
+            }
+            if (!count) fail('invalidConfig');
+        } else {
+            // Match the original JPX aliases on this detached submission only.
+            if (!config.battleVersion && config.version) config.battleVersion = config.version;
+            delete config.version;
+            if (!config['1H_Mage_General'] && config.Battlecaster_General) config['1H_Mage_General'] = config.Battlecaster_General;
+            delete config.Battlecaster_General;
+            if (value.mode === 'Battlecaster_General') value.mode = '1H_Mage_General';
+            if (!integer(config.battleVersion) || config.battleVersion < 20251216) fail('invalidConfig');
+            const selected = modes.filter(mode => mode in config);
+            if (!selected.length) fail('invalidConfig');
+            let ruleCount = 0;
+            for (const mode of selected) {
+                if (value.kind === 'battle' && object(config[mode]) && !Object.keys(config[mode]).length) continue;
+                if (!object(config[mode]) || !Array.isArray(config[mode].supports) || !Array.isArray(config[mode].attacks)) fail('invalidConfig');
+                for (const group of ['supports', 'attacks', ...Object.keys(config[mode]).filter(key => key.startsWith('kb_'))]) {
+                    const rules = config[mode][group], allowed = ruleTypes[group] || ruleTypes.keys;
+                    if (!Array.isArray(rules)) fail('invalidConfig');
+                    if ((ruleCount += rules.length) > 2000) fail('tooLarge');
+                    for (const rule of rules) {
+                        if (object(rule) && ['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
+                        if (object(rule) && ['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
+                        if (!object(rule) || !allowed.includes(rule.type) || ('conditions' in rule && !Array.isArray(rule.conditions))) fail('invalidConfig');
+                        for (const condition of rule.conditions || []) {
+                            if (!object(condition) || !conditionKeys.has(condition.key)) fail('invalidConfig');
+                            if (condition.key === 'pSpiritStatus' ? typeof condition.value !== 'boolean' : condition.key === 'tName' ? typeof condition.value !== 'string' : !Array.isArray(condition.value)) fail('invalidConfig');
+                        }
+                    }
+                }
+            }
+            if (value.kind === 'battle-mode' && (!modes.includes(value.mode) || selected.length !== 1 || selected[0] !== value.mode || Object.keys(config).some(key => key !== 'battleVersion' && key !== value.mode))) fail('invalidConfig');
+            if (value.kind === 'battle' && value.mode !== undefined) fail('invalidConfig');
+        }
+        const serialized = JSON.stringify(value) + '\n';
+        if (encode(serialized).length + 50 > 60000) fail('tooLarge');
+        return value;
+    }
+    function parseSubmission(body) {
+        if (typeof body !== 'string' || !body.startsWith(marker) || !body.endsWith('\n```')) fail('invalidConfig');
+        return validate(parse(body.slice(marker.length, -4)));
+    }
+    async function hash(source) {
+        const digest = await crypto.subtle.digest('SHA-256', encode(source));
+        return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+    function request(url, { method = 'GET', data, token, signal, limit = 6000000, accept = 'application/json' } = {}) {
+        if (typeof GM_xmlhttpRequest !== 'function') return Promise.reject(error('managerUnavailable'));
+        const target = new URL(url);
+        if (target.protocol !== 'https:' || target.username || target.password || !['api.github.com', 'github.com', 'raw.githubusercontent.com'].includes(target.hostname) || (token && target.hostname !== 'api.github.com')) return Promise.reject(error('invalidResponse'));
+        return new Promise((resolve, reject) => {
+            let handle, done = false;
+            const end = (callback, value) => { if (done) return; done = true; signal?.removeEventListener('abort', abort); callback(value); };
+            const abort = () => { handle?.abort(); end(reject, error('cancelled')); };
+            if (signal?.aborted) return abort();
+            const headers = { Accept: accept };
+            if (accept === 'application/vnd.github.raw+json') headers['Cache-Control'] = 'no-cache';
+            if (target.hostname === 'api.github.com') headers['X-GitHub-Api-Version'] = '2022-11-28';
+            if (token) headers.Authorization = 'Bearer ' + token;
+            if (data !== undefined) headers['Content-Type'] = 'application/json';
+            signal?.addEventListener('abort', abort, { once: true });
+            try {
+                handle = GM_xmlhttpRequest({ method, url, headers, data: data === undefined ? undefined : JSON.stringify(data), timeout: 25000, anonymous: true, redirect: 'error',
+                    onload(response) {
+                        if (response.finalUrl && response.finalUrl !== url) return end(reject, error('invalidResponse'));
+                        if (typeof response.responseText !== 'string' || encode(response.responseText).length > limit) return end(reject, error('tooLarge'));
+                        if (response.status < 200 || response.status >= 300) {
+                            const limited = response.status === 429 || (response.status === 403 && /(?:x-ratelimit-remaining:\s*0\b|retry-after:)/i.test(response.responseHeaders || ''));
+                            const code = response.status === 401 ? 'loginRequired' : response.status === 404 ? 'notFound' : limited ? 'rateLimited' : response.status === 403 ? 'accessDenied' : 'networkError';
+                            return end(reject, Object.assign(error(code), { status: response.status }));
+                        }
+                        end(resolve, response.responseText);
+                    },
+                    onerror: () => end(reject, error('networkError')),
+                    ontimeout: () => end(reject, error('networkError')),
+                    onabort: () => end(reject, error('cancelled')) });
+            } catch { end(reject, error('managerUnavailable')); }
+        });
+    }
+    async function storedToken() {
+        if (typeof GM_getValue !== 'function') fail('managerUnavailable');
+        const auth = await GM_getValue(tokenKey, null);
+        if (!object(auth) || !validToken(auth.token) || !Number.isFinite(auth.expiresAt) || auth.expiresAt <= Date.now() + 30000) {
+            if (auth) await logout();
+            return null;
+        }
+        return auth.token;
+    }
+    async function authenticated(path, options = {}) {
+        const token = await storedToken();
+        if (!token) fail('loginRequired');
+        try { return parse(await request(api + path, { ...options, token }), options.limit || 6000000); }
+        catch (err) { if (err.code === 'loginRequired') await logout(); throw err; }
+    }
+    async function user() {
+        if (!await storedToken()) return null;
+        try {
+            const identity = await authenticated('/user');
+            if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+            return { id: identity.id, login: identity.login };
+        } catch (err) { if (err.code === 'loginRequired') return null; throw err; }
+    }
+    async function logout() { sessionGeneration++; pendingSubmissions.clear(); if (typeof GM_deleteValue !== 'function') fail('managerUnavailable'); await GM_deleteValue(tokenKey); }
+    function pause(milliseconds, signal) {
+        return new Promise((resolve, reject) => {
+            const abort = () => { clearTimeout(timer); reject(error('cancelled')); };
+            if (signal?.aborted) return reject(error('cancelled'));
+            const timer = setTimeout(() => { signal?.removeEventListener('abort', abort); resolve(); }, milliseconds);
+            signal?.addEventListener('abort', abort, { once: true });
+        });
+    }
+    async function login(onDeviceCode, signal) {
+        if (!JPX_CONFIG_STORE.clientId) fail('notConfigured');
+        if (loginPending) fail('loginPending');
+        if (typeof GM_setValue !== 'function') fail('managerUnavailable');
+        const generation = sessionGeneration; loginPending = true;
+        try {
+            const device = parse(await request('https://github.com/login/device/code', { method: 'POST', data: { client_id: JPX_CONFIG_STORE.clientId }, signal }));
+            if (!text(device.device_code, 256) || !text(device.user_code, 64) || device.verification_uri !== 'https://github.com/login/device' || !integer(device.expires_in) || device.expires_in > 1800 || !integer(device.interval) || device.interval > 60) fail('invalidResponse');
+            onDeviceCode?.({ userCode: device.user_code, verificationUri: device.verification_uri, expiresIn: device.expires_in });
+            const expires = Date.now() + device.expires_in * 1000; let interval = Math.max(5, device.interval);
+            while (Date.now() < expires) {
+                await pause(Math.min(interval * 1000, expires - Date.now()), signal);
+                if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
+                if (Date.now() >= expires) break;
+                const result = parse(await request('https://github.com/login/oauth/access_token', { method: 'POST', signal, data: { client_id: JPX_CONFIG_STORE.clientId, device_code: device.device_code, grant_type: 'urn:ietf:params:oauth:grant-type:device_code' } }));
+                if (result.error === 'authorization_pending') continue;
+                if (result.error === 'slow_down') { interval += 5; continue; }
+                if (result.error) fail(result.error === 'access_denied' ? 'accessDenied' : result.error === 'expired_token' ? 'loginExpired' : result.error === 'device_flow_disabled' ? 'notConfigured' : 'loginFailed');
+                if (!validToken(result.access_token) || result.token_type?.toLowerCase() !== 'bearer') fail('invalidResponse');
+                const identity = parse(await request(api + '/user', { token: result.access_token, signal }));
+                if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+                if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
+                const lifetime = integer(result.expires_in) ? Math.min(result.expires_in, 28800) : 28800;
+                await GM_setValue(tokenKey, { token: result.access_token, expiresAt: Date.now() + lifetime * 1000 });
+                if (generation !== sessionGeneration || signal?.aborted) { await logout(); fail('cancelled'); }
+                return { id: identity.id, login: identity.login };
+            }
+            fail('loginExpired');
+        } finally { loginPending = false; }
+    }
+    function entryValid(entry) {
+        return object(entry) && integer(entry.id) && text(entry.author, 100) && text(entry.title, 100) && text(entry.description, 4000, true) &&
+            kinds.includes(entry.kind) && worlds.includes(entry.world) && text(entry.scriptVersion, 64) && text(entry.updatedAt, 64) &&
+            /^[a-f0-9]{64}$/.test(entry.sha256) && entry.configPath === 'catalog/configs/' + entry.id + '-' + entry.sha256 + '.json' && entry.issueUrl === issueURL(entry.id) &&
+            (entry.kind === 'battle-mode' ? modes.includes(entry.mode) : entry.mode === undefined) &&
+            (entry.modes === undefined || Array.isArray(entry.modes) && entry.modes.length <= modes.length && new Set(entry.modes).size === entry.modes.length &&
+                entry.modes.every(mode => modes.includes(mode)) && (entry.kind === 'stats' ? !entry.modes.length : entry.kind !== 'battle-mode' || entry.modes.length === 1 && entry.modes[0] === entry.mode));
+    }
+    async function catalog({ refresh = false } = {}) {
+        if (!refresh && cache && Date.now() - cache.at < 60000) return clone(cache.value);
+        // Raw GitHub can lag behind a publication even with a cache-busting query.
+        const url = refresh ? api + '/repos/' + repository + '/contents/catalog/index.json?ref=main' : raw + 'catalog/index.json';
+        const value = parse(await request(url, refresh ? { accept: 'application/vnd.github.raw+json' } : {}), 6000000);
+        if (!object(value) || value.schemaVersion !== 1 || !Array.isArray(value.entries) || value.entries.length > 5000 || !text(value.updatedAt, 64)) fail('invalidResponse');
+        const ids = new Set();
+        for (const entry of value.entries) { if (!entryValid(entry) || ids.has(entry.id)) fail('invalidResponse'); ids.add(entry.id); }
+        cache = { at: Date.now(), value }; return clone(value);
+    }
+    async function load(entry) {
+        if (!entryValid(entry)) fail('invalidResponse');
+        const source = await request(raw + entry.configPath, { limit: 60000 });
+        if (await hash(source) !== entry.sha256) fail('integrityFailed');
+        const value = validate(parse(source));
+        if (['kind', 'title', 'description', 'world', 'mode', 'scriptVersion'].some(key => value[key] !== entry[key])) fail('integrityFailed');
+        return value;
+    }
+    async function ownIssue(id) {
+        if (!integer(id)) fail('invalidResponse');
+        const identity = await user(); if (!identity) fail('loginRequired');
+        const issue = await authenticated('/repos/' + repository + '/issues/' + id);
+        if (issue.pull_request || issue.user?.id !== identity.id || issue.number !== id || issue.html_url !== issueURL(id)) fail('notOwner');
+        return issue;
+    }
+    async function mine() {
+        const identity = await user(); if (!identity) fail('loginRequired');
+        const collected = [];
+        for (let page = 1; page <= 10; page++) {
+            const rows = await authenticated('/repos/' + repository + '/issues?state=all&creator=' + encodeURIComponent(identity.login) + '&per_page=100&page=' + page);
+            if (!Array.isArray(rows)) fail('invalidResponse');
+            for (const row of rows) {
+                if (row.pull_request || row.user?.id !== identity.id || !integer(row.number) || row.html_url !== issueURL(row.number) || typeof row.body !== 'string' || !row.body.startsWith(marker)) continue;
+                collected.push({ id: row.number, title: row.title, state: row.state, labels: (row.labels || []).map(label => typeof label === 'string' ? label : label.name).filter(label => typeof label === 'string'), body: row.body, url: row.html_url, updatedAt: row.updated_at,
+                    pending: pendingSubmissions.get(row.number) === row.body });
+            }
+            if (rows.length < 100) break;
+            if (page === 10) fail('tooManySubmissions');
+        }
+        return collected;
+    }
+    async function submit(input, issueNumber, expectedBody) {
+        const value = validate(clone(input));
+        const generation = sessionGeneration;
+        if (issueNumber !== undefined) {
+            const existing = await ownIssue(issueNumber);
+            if (existing.state !== 'open') fail('submissionClosed');
+            if (!existing.body?.startsWith(marker)) fail('invalidConfig');
+            if (typeof expectedBody !== 'string' || existing.body !== expectedBody) fail('shareChanged');
+        }
+        if (generation !== sessionGeneration) fail('loginRequired');
+        const body = marker + JSON.stringify(value) + '\n```';
+        if (encode(body).length > 60000) fail('tooLarge');
+        const result = await authenticated('/repos/' + repository + '/issues' + (issueNumber === undefined ? '' : '/' + issueNumber), { method: issueNumber === undefined ? 'POST' : 'PATCH', data: { title: '[Config] ' + value.title, body } });
+        if (!integer(result.number) || result.html_url !== issueURL(result.number) || result.body !== body || result.state !== 'open' || issueNumber !== undefined && result.number !== issueNumber) fail('invalidResponse');
+        pendingSubmissions.set(result.number, body);
+        return { id: result.number, url: result.html_url };
+    }
+    async function withdraw(id) {
+        const issue = await ownIssue(id); if (!issue.body?.startsWith(marker)) fail('invalidConfig');
+        await authenticated('/repos/' + repository + '/issues/' + id, { method: 'PATCH', data: { state: 'closed' } });
+        cache = null;
+    }
+    async function archive(id) {
+        const generation = sessionGeneration, issue = await ownIssue(id);
+        if (generation !== sessionGeneration) fail('loginRequired');
+        if (issue.state !== 'closed') fail('withdrawFirst');
+        if (issue.body?.startsWith(archivedMarker)) return;
+        if (!issue.body?.startsWith(marker)) fail('invalidConfig');
+        // Keep the issue and exact configuration as an audit record. A distinct
+        // marker removes it from Shared on every device without admin privileges.
+        const body = archivedMarker + issue.body.slice(marker.length);
+        const result = await authenticated('/repos/' + repository + '/issues/' + id, { method: 'PATCH', data: { state: 'closed', body } });
+        if (result.number !== id || result.html_url !== issueURL(id) || result.user?.id !== issue.user.id || result.state !== 'closed' || result.body !== body) fail('invalidResponse');
+        cache = null;
+    }
+    async function feedback(id) {
+        const issue = await ownIssue(id), envelope = parseSubmission(issue.body), revision = await hash(JSON.stringify(envelope) + '\n');
+        let latest = null;
+        for (let page = 1; page <= 10; page++) {
+            const rows = await authenticated('/repos/' + repository + '/issues/' + id + '/comments?per_page=100&page=' + page);
+            if (!Array.isArray(rows)) fail('invalidResponse');
+            for (const row of rows) {
+                if (row.user?.login !== 'github-actions[bot]' || row.user.type !== 'Bot' || typeof row.body !== 'string') continue;
+                const match = row.body.match(/<!-- JPX-PLUS-REVIEW:v1 (\{[^\r\n]+\}) -->/);
+                if (!match) continue;
+                try {
+                    const value = parse(match[1], 24000);
+                    if (value.revision !== revision || !['published', 'changes-requested', 'needs-review', 'unavailable', 'pending'].includes(value.status) || !object(value.summary) || !text(value.summary.en, 3000, true) || !text(value.summary.zh, 3000, true) || !Array.isArray(value.findings) || value.findings.length > 50) continue;
+                    if (value.findings.some(item => !object(item) || !['info', 'warning', 'error'].includes(item.severity) || !text(item.path, 300, true) || !text(item.en, 3000, true) || !text(item.zh, 3000, true))) continue;
+                    latest = value;
+                } catch { /* Ignore malformed, unrelated, or stale comments. */ }
+            }
+            if (rows.length < 100) break;
+            if (page === 10) fail('tooManySubmissions');
+        }
+        if (latest && latest.status !== 'pending' && pendingSubmissions.get(id) === issue.body) pendingSubmissions.delete(id);
+        return latest;
+    }
+    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, archive, parseSubmission, feedback, prepare: input => validate(clone(input)) });
+})();
+
+
+function renderConfigStore(parent, hooks, options = {}) {
+    const doc = parent.ownerDocument;
+    const tr = key => t('cStore.' + key);
+    const el = (tag, text, className) => {
+        const node = doc.createElement(tag);
+        if (text !== undefined) node.textContent = text;
+        if (className) node.className = className;
+        return node;
+    };
+    const root = el('section', undefined, 'jpx-store');
+    const toolbar = el('div', undefined, 'jpx-store-toolbar');
+    const navigation = el('div', undefined, 'jpx-store-navigation');
+    const account = el('div', undefined, 'jpx-store-account');
+    const status = el('p', '', 'jpx-store-status');
+    status.setAttribute('role', 'status');
+    status.hidden = true;
+    const viewHeader = el('div', undefined, 'jpx-store-view-header');
+    const stage = el('div', undefined, 'jpx-store-stage');
+    const layoutEvents = new AbortController();
+    let browseControls = null;
+    const state = { view: 'browse', entries: [], query: '', sharedQuery: '', kind: '', world: '', style: '', battleType: '', sort: 'updated',
+        filtersOpen: false, visible: 30, browseScroll: 0,
+        user: null, editor: null, request: 0, login: null, disposed: false, suspended: false, saved: new Set(), authGeneration: 0, currentEntry: null };
+    const alive = () => !state.disposed && !state.suspended && root.isConnected;
+    function layoutBrowseControls() {
+        if (!alive()) return;
+        if (!browseControls) return;
+        const { queryBar, results, refresh, clear, sort } = browseControls;
+        const mobile = root.closest('.jpx-settings-mobile');
+        const focused = doc.activeElement;
+        if (options.toolbarHost) {
+            if (mobile) {
+                if (queryBar.parentElement !== options.toolbarHost || queryBar.previousElementSibling !== toolbar) options.toolbarHost.append(queryBar);
+                if (refresh.parentElement !== queryBar) queryBar.append(refresh);
+                if (clear && clear.parentElement !== results) results.insertBefore(clear, sort);
+            } else {
+                if (queryBar.parentElement !== options.toolbarHost || queryBar.nextElementSibling !== toolbar) options.toolbarHost.insertBefore(queryBar, toolbar);
+                const refreshHost = results || queryBar;
+                if (refresh.parentElement !== refreshHost) refreshHost.append(refresh);
+                if (clear && clear.parentElement !== queryBar) queryBar.append(clear);
+            }
+            if (results && results.parentElement !== viewHeader) viewHeader.append(results);
+        } else if (mobile) {
+            if (results.parentElement !== viewHeader) viewHeader.append(results);
+        } else if (results.parentElement !== queryBar) queryBar.insertBefore(results, queryBar.lastElementChild);
+        if (focused?.isConnected && focused !== doc.activeElement) focused.focus({ preventScroll: true });
+    }
+    doc.defaultView.addEventListener('resize', layoutBrowseControls, { signal: layoutEvents.signal });
+    doc.defaultView.visualViewport?.addEventListener('resize', layoutBrowseControls, { signal: layoutEvents.signal });
+    function message(text, error = false) {
+        status.textContent = text || '';
+        status.hidden = !text;
+        status.dataset.error = String(error);
+    }
+    function errorMessage(error) {
+        const codes = { loginRequired: 'loginRequired', notConfigured: 'notConfigured', rateLimited: 'rateLimit',
+            networkError: 'networkError', invalidConfig: 'invalidConfig', tooLarge: 'tooLarge', integrityFailed: 'integrityError',
+            accessDenied: 'accessDenied', loginExpired: 'loginExpired', managerUnavailable: 'managerUnavailable',
+            notOwner: 'notOwner', submissionClosed: 'submissionClosed', withdrawFirst: 'withdrawFirst', shareChanged: 'shareChanged', localChanged: 'localChanged', tooManySubmissions: 'tooManySubmissions',
+            storageCorrupt: 'storageCorrupt', storageError: 'storageError', localNotFound: 'localNotFound' };
+        return tr(codes[error?.code] || 'requestFailed');
+    }
+    function button(text, action, className) {
+        const node = el('button', text, className);
+        node.type = 'button';
+        node.addEventListener('click', async () => {
+            node.disabled = true;
+            try { await action(node); }
+            catch (error) { if (alive() && error?.name !== 'AbortError') message(errorMessage(error), true); }
+            finally { if (node.isConnected) node.disabled = false; }
+        });
+        return node;
+    }
+    const confirmShare = (title, description, action) => hooks.confirm
+        ? hooks.confirm(title, description, action) : Promise.resolve(confirm(description));
+    function field(text, input) {
+        const label = el('label', undefined, 'jpx-store-field');
+        input.setAttribute('aria-label', text);
+        label.append(el('span', text), input);
+        return label;
+    }
+    function refreshControl(action) {
+        const node = button(tr('refresh'), action);
+        if (options.toolbarHost) {
+            node.className = 'jpx-store-refresh';
+            node.title = tr('refresh'); node.setAttribute('aria-label', tr('refresh'));
+            node.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 0 1 15.6-5.4L21 8M21 3v5h-5M21 13A9 9 0 0 1 5.4 18.4L3 16M3 21v-5h5"/></svg>';
+        }
+        return node;
+    }
+    function select(options, value) {
+        const node = el('select');
+        for (const [key, name] of options) { const option = el('option', name); option.value = key; node.append(option); }
+        node.value = value;
+        return node;
+    }
+    const kinds = () => [['battle-mode', tr('currentMode')], ['battle', tr('allBattle')], ['stats', tr('stats')]];
+    const kindName = kind => kinds().find(([key]) => key === kind)?.[1] || kind;
+    const worldName = world => tr(world === 'Isekai' ? 'isekai' : world === 'Persistent' ? 'persistent' : 'anyWorld');
+    const styleName = style => host.jpxI18N?.cB?.[style] || host.jpxI18N?.cW?.[style] || tr(style);
+    const battleName = battle => host.jpxI18N?.cB?.[battle] || tr(battle);
+    function modeName(mode) {
+        if (!mode) return '';
+        const split = mode.lastIndexOf('_'), style = mode.slice(0, split), battle = mode.slice(split + 1);
+        return styleName(style) + ' · ' + battleName(battle);
+    }
+    function info(envelope, author) {
+        return [author ? '@' + author : '', kindName(envelope.kind), worldName(envelope.world), modeName(envelope.mode)].filter(Boolean).join(' · ');
+    }
+    function tags(envelope, author, choose) {
+        if (!hooks.renderTags) return el('p', info(envelope, author), 'jpx-store-meta');
+        const group = hooks.renderTags(envelope, choose);
+        if (author) group.prepend(el('span', '@' + author, 'jpx-config-tag-author'));
+        return group;
+    }
+    const browseButton = button(tr('browse'), () => browse());
+    const mineButton = button(tr('shared'), () => options.toolbarHost && state.view === 'mine' ? browse() : mine());
+    navigation.append(...(options.toolbarHost ? [mineButton] : [browseButton, mineButton]));
+    toolbar.append(navigation, account);
+    root.append(toolbar, viewHeader, status, stage);
+    parent.append(root);
+    if (options.toolbarHost) options.toolbarHost.append(toolbar);
+    function accountControls() {
+        account.replaceChildren();
+        if (state.user) {
+            const logout = button('@' + state.user.login, async () => {
+                const generation = ++state.authGeneration;
+                await jpxConfigStore.logout();
+                if (!alive() || generation !== state.authGeneration) return;
+                state.user = null; accountControls();
+                if (state.view === 'mine') await mine();
+                message(tr('signedOut'));
+            });
+            logout.title = tr('signOut');
+            logout.setAttribute('aria-label', tr('signOut') + ' · ' + state.user.login);
+            account.append(logout);
+        } else account.append(button(tr('signIn'), () => login()));
+    }
+    function open(view) {
+        browseControls?.queryBar.remove(); browseControls = null;
+        state.login?.abort(); state.login = null;
+        if (view !== 'edit' && view !== 'login') state.editor = null;
+        if (view !== 'detail') state.currentEntry = null;
+        state.view = view; state.back = null;
+        root.classList.toggle('jpx-store-browsing', !!options.toolbarHost && view === 'browse');
+        viewHeader.classList.toggle('jpx-store-browse-header', !!options.toolbarHost && view === 'browse');
+        viewHeader.classList.toggle('jpx-config-list-header', !!options.toolbarHost && view === 'browse');
+        state.request++;
+        browseButton.setAttribute('aria-pressed', String(view === 'browse' || view === 'detail'));
+        mineButton.setAttribute('aria-pressed', String(view === 'mine' || view === 'edit'));
+        viewHeader.replaceChildren(); stage.replaceChildren(); message('');
+        stage.scrollTop = 0;
+        return state.request;
+    }
+    function heading(title, back) {
+        const row = el('div', undefined, 'jpx-store-heading');
+        state.back = back || null;
+        if (back) row.append(button(tr('back'), back, 'jpx-store-back'));
+        row.append(el('h3', title)); viewHeader.append(row);
+    }
+    function empty(text, action, label = tr('retry')) {
+        const box = el('div', undefined, 'jpx-store-empty');
+        box.append(el('p', text));
+        if (action) box.append(button(label, action));
+        stage.append(box);
+    }
+    async function browse(refresh = false) {
+        const backEntry = state.view === 'detail' ? state.currentEntry?.id : null;
+        const backScroll = backEntry ? state.browseScroll : 0;
+        const request = open('browse');
+        const queryBar = el('div', undefined, 'jpx-store-querybar');
+        const search = el('input'); search.type = 'search'; search.value = state.query; search.placeholder = tr('search');
+        search.setAttribute('aria-label', tr('search'));
+        const filters = el('div', undefined, 'jpx-store-filter-grid');
+        filters.id = 'jpx-store-catalog-filters';
+        const toggle = button(tr('filters'), () => { state.filtersOpen = !state.filtersOpen; updateFilters(); }, 'jpx-store-filter-toggle');
+        toggle.setAttribute('aria-controls', filters.id);
+        const refreshButton = refreshControl(() => loadCatalog(true));
+        queryBar.append(search, toggle, refreshButton);
+        const controls = {};
+        for (const [key, label, choices] of [
+            ['world', 'world', [['', tr('allWorlds')], ...['Persistent', 'Isekai'].map(value => [value, worldName(value)])]],
+            ['style', 'style', [['', tr('allStyles')], ...styles.map(value => [value, styleName(value)])]],
+            ['battleType', 'battleType', [['', tr('allBattles')], ...battleTypes.map(value => [value, battleName(value)])]],
+            ['kind', 'type', [['', tr('allTypes')], ...kinds()]]
+        ]) {
+            const control = select(choices, state[key]); controls[key] = control;
+            control.setAttribute('aria-label', tr(label)); control.dataset.storeFilter = key;
+            control.addEventListener('change', () => {
+                state[key] = control.value;
+                if (key === 'kind' && state.kind === 'stats') state.style = state.battleType = '';
+                render(true);
+            });
+            filters.append(control);
+        }
+        const results = el('div', undefined, 'jpx-store-results');
+        const count = el('span', '', 'jpx-store-result-count');
+        count.setAttribute('role', 'status'); count.setAttribute('aria-live', 'polite');
+        const reset = () => {
+            state.query = state.kind = state.world = state.style = state.battleType = '';
+            search.value = ''; render(true);
+        };
+        const clear = button(tr('clearFilters'), reset, 'jpx-store-clear');
+        const sort = select([['updated', tr('latest')], ['name', tr('nameSort')], ...(hooks.compareTypes ? [['type', t('cM.typeSort')]] : [])], state.sort);
+        sort.setAttribute('aria-label', tr('sort')); sort.dataset.storeSort = '';
+        sort.addEventListener('change', () => { state.sort = sort.value; render(true); });
+        results.append(count, clear, sort);
+        const list = el('div', undefined, 'jpx-store-list');
+        list.setAttribute('aria-busy', 'true');
+        browseControls = { queryBar, results, refresh: refreshButton, clear, sort };
+        viewHeader.append(queryBar, filters, results); stage.append(list); layoutBrowseControls();
+        // Normalize catalog metadata once, then filter locally without more requests.
+        const normalize = value => String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/[@_·/\-]+/g, ' ').replace(/\s+/g, ' ').trim();
+        const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+        let index = null, orderedBy = null;
+        function updateFilters() {
+            const active = ['world', 'style', 'battleType', 'kind'].filter(key => state[key]).length;
+            toggle.textContent = tr('filters') + (active ? ' (' + active + ')' : '');
+            toggle.setAttribute('aria-expanded', String(state.filtersOpen));
+            filters.dataset.open = String(state.filtersOpen);
+            clear.hidden = !active && !state.query;
+            for (const [key, control] of Object.entries(controls)) {
+                control.value = state[key];
+                control.disabled = ['style', 'battleType'].includes(key) && state.kind === 'stats';
+            }
+        }
+        filters.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && state.filtersOpen && root.closest('.jpx-settings-mobile')) {
+                event.stopPropagation(); state.filtersOpen = false; updateFilters(); toggle.focus();
+            }
+        });
+        function render(resetPosition = false) {
+            updateFilters();
+            if (!index) return;
+            if (orderedBy !== state.sort) {
+                index.sort((a, b) => state.sort === 'type' ? hooks.compareTypes(a.entry,b.entry) || collator.compare(a.entry.title,b.entry.title) || a.entry.id-b.entry.id :
+                    state.sort === 'name' ? collator.compare(a.entry.title, b.entry.title) || a.entry.id - b.entry.id : b.updated - a.updated || b.entry.id - a.entry.id);
+                orderedBy = state.sort;
+            }
+            if (resetPosition) { state.visible = 30; state.browseScroll = 0; stage.scrollTop = 0; }
+            list.replaceChildren();
+            const words = normalize(state.query).split(' ').filter(Boolean);
+            const matches = index.filter(({ entry, modes, text }) => (!state.kind || entry.kind === state.kind) &&
+                (!state.world || entry.world === state.world || entry.world === 'Any') &&
+                ((!state.style && !state.battleType) || modes.some(mode => (!state.style || mode.slice(0,mode.lastIndexOf('_')) === state.style) &&
+                    (!state.battleType || mode.slice(mode.lastIndexOf('_')+1) === state.battleType))) && words.every(word => text.includes(word)));
+            count.textContent = tr('resultCount').replace('${count}', String(matches.length));
+            if (!matches.length) {
+                const box = el('div', undefined, 'jpx-store-empty');
+                box.append(el('p', tr(index.length ? 'noMatches' : 'noConfigs')));
+                if (!clear.hidden) box.append(button(tr('clearFilters'), () => { reset(); search.focus(); }));
+                list.append(box); return;
+            }
+            const fragment = doc.createDocumentFragment();
+            for (const { entry, updated } of matches.slice(0, state.visible)) {
+                const row = el('article', undefined, 'jpx-store-row');
+                row.dataset.storeId = String(entry.id);
+                const title = button(entry.title, () => { state.browseScroll = stage.scrollTop; return details(entry); }, 'jpx-store-title');
+                row.append(title);
+                const tools = el('div', undefined, 'jpx-store-row-tools');
+                if (updated) {
+                    const date = el('time', new Date(updated).toLocaleDateString(), 'jpx-store-date');
+                    date.dateTime = entry.updatedAt; date.title = tr('latest'); tools.append(date);
+                }
+                const download = button('', async node => {
+                    node.setAttribute('aria-busy', 'true');
+                    try {
+                        const envelope = await jpxConfigStore.load(entry);
+                        if (alive() && request === state.request && node.isConnected) downloadConfig(envelope, entry.id);
+                    } catch (error) {
+                        if (alive() && request === state.request && node.isConnected) throw error;
+                    } finally { node.removeAttribute('aria-busy'); }
+                }, 'jpx-store-download');
+                download.title = tr('download'); download.setAttribute('aria-label', tr('download') + ': ' + entry.title);
+                download.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>';
+                tools.prepend(download); row.append(tools);
+                row.append(tags(entry, entry.author, (key, value) => {
+                    state[key === 'scenario' ? 'battleType' : key] = value;
+                    if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
+                    render(true);
+                }));
+                if (entry.description) row.append(el('p', entry.description, 'jpx-store-excerpt'));
+                fragment.append(row);
+            }
+            if (matches.length > state.visible) fragment.append(button(tr('showMore'), () => {
+                const position = stage.scrollTop, next = matches[state.visible]?.entry.id;
+                state.visible += 30; render();
+                list.querySelector('[data-store-id="' + next + '"] .jpx-store-title')?.focus({ preventScroll: true });
+                stage.scrollTop = position;
+            }, 'jpx-store-show-more'));
+            list.append(fragment);
+        }
+        search.addEventListener('input', event => { state.query = search.value; if (!event.isComposing) render(true); });
+        search.addEventListener('compositionend', () => { state.query = search.value; render(true); });
+        updateFilters();
+        async function loadCatalog(force) {
+            refreshButton.disabled = true; refreshButton.setAttribute('aria-busy', 'true');
+            refreshButton.setAttribute('aria-label', tr('loading')); refreshButton.title = tr('loading');
+            list.setAttribute('aria-busy', 'true'); message('');
+            try {
+                const catalog = await jpxConfigStore.catalog({ refresh: force });
+                if (!alive() || request !== state.request) return;
+                state.entries = catalog.entries; orderedBy = null;
+                index = state.entries.map(entry => {
+                    const modes = entry.mode ? [entry.mode] : entry.modes || [];
+                    const labels = modes.flatMap(mode => { const split=mode.lastIndexOf('_'), style=mode.slice(0,split), battle=mode.slice(split+1);
+                        return [mode,modeName(mode),tr(style),tr(battle),translations.en[style],translations.en[battle]]; });
+                    return { entry, modes, updated: Date.parse(entry.updatedAt) || 0,
+                        text: normalize([entry.title, entry.description, entry.author, entry.kind, kindName(entry.kind), entry.world,
+                            worldName(entry.world), entry.world === 'Any' ? t('cM.anyWorld') : '',
+                            entry.kind === 'stats' ? t('cM.stats') : entry.kind === 'battle' ? modes.length ? t('cM.groupCount').replace('${count}',String(modes.length)) : t('cM.allBattle') : '',
+                            ...labels].join(' ')) };
+                });
+                const scroll = stage.scrollTop; render(); stage.scrollTop = scroll;
+            } catch (error) {
+                if (!alive() || request !== state.request) return;
+                message(errorMessage(error), true);
+            } finally {
+                refreshButton.disabled = false; refreshButton.removeAttribute('aria-busy');
+                refreshButton.setAttribute('aria-label', tr('refresh')); refreshButton.title = tr('refresh');
+                list.setAttribute('aria-busy', 'false');
+            }
+        }
+        await loadCatalog(refresh);
+        if (backEntry && alive() && request === state.request) {
+            list.querySelector('[data-store-id="' + backEntry + '"] .jpx-store-title')?.focus({ preventScroll: true });
+            stage.scrollTop = backScroll;
+        }
+    }
+    function configSummary(envelope) {
+        const values = envelope.config;
+        const counts = [];
+        if (envelope.kind === 'stats') {
+            for (const [key, name] of [['statsColumns', 'columns'], ['combatRows', 'combatRows'], ['revenueRows', 'revenueRows']])
+                if (Array.isArray(values[key])) counts.push(tr(name) + ': ' + values[key].filter(item => item.disabled !== true).length);
+        } else {
+            let supports = 0, attacks = 0, code = 0;
+            for (const mode of Object.values(values)) if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) {
+                supports += mode.supports.length; attacks += mode.attacks.length;
+                code += [...mode.supports, ...mode.attacks].filter(rule => rule.type === 'kamisamaniNattaHi').length;
+            }
+            counts.push(tr('supports') + ': ' + supports, tr('attacks') + ': ' + attacks);
+            if (code) counts.push(tr('customCode') + ': ' + code);
+        }
+        return counts.join(' · ');
+    }
+    function rawPreview(envelope) {
+        const details = el('details', undefined, 'jpx-store-raw');
+        details.append(el('summary', tr('viewConfig')));
+        details.addEventListener('toggle', () => {
+            if (details.open && details.childElementCount === 1) details.append(el('pre', JSON.stringify(envelope.config, null, 2)));
+        });
+        return details;
+    }
+    function downloadConfig(envelope, id) {
+        const blob = new Blob([JSON.stringify(envelope.config, null, 2)], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob), link = el('a');
+        link.href = url; link.download = 'jpx-config-' + id + '.json'; link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    async function details(entry) {
+        const request = open('detail'); heading(entry.title, () => browse()); message(tr('loading'));
+        state.currentEntry = entry;
+        try {
+            const envelope = await jpxConfigStore.load(entry);
+            if (!alive() || request !== state.request) return;
+            message('');
+            stage.append(tags(envelope, entry.author, (key, value) => {
+                state[key === 'scenario' ? 'battleType' : key] = value;
+                if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
+                return browse();
+            }));
+            if (envelope.description) stage.append(el('p', envelope.description, 'jpx-store-description'));
+            stage.append(el('p', configSummary(envelope), 'jpx-store-meta'),
+                el('p', tr('scriptVersion') + ': ' + envelope.scriptVersion, 'jpx-store-meta'));
+            const actions = el('div', undefined, 'jpx-store-actions');
+            const save = button(tr(state.saved.has(entry.id) ? 'saved' : 'save'), async node => {
+                if (typeof hooks.saveConfig !== 'function') throw new Error('Save unavailable');
+                const saved = await hooks.saveConfig(JSON.parse(JSON.stringify(envelope)), { id: entry.id, author: entry.author,
+                    source: { repository: JPX_CONFIG_STORE.repository, id: entry.id, author: entry.author, sha256: entry.sha256, url: entry.issueUrl } });
+                if (saved === false) return;
+                state.saved.add(entry.id);
+                if (!alive() || request !== state.request) return;
+                node.textContent = tr('saved'); message(tr('savedConfig'));
+            }, 'jpx-store-primary');
+            actions.append(save);
+            if (typeof hooks.applyConfig === 'function') actions.append(button(tr('apply'), () => hooks.applyConfig(JSON.parse(JSON.stringify(envelope)))));
+            actions.append(button(tr('download'), () => downloadConfig(envelope, entry.id)));
+            stage.append(actions, rawPreview(envelope));
+        } catch (error) {
+            if (!alive() || request !== state.request) return;
+            message(errorMessage(error), true); empty(tr('cannotLoad'), () => details(entry));
+        }
+    }
+    async function login(after = () => browse(), cancel = () => browse()) {
+        const generation = ++state.authGeneration;
+        const request = open('login'); heading(tr('signIn'), cancel);
+        const panel = el('div', undefined, 'jpx-store-auth'); stage.append(panel);
+        const controller = new AbortController(); state.login = controller; message(tr('connecting'));
+        try {
+            const user = await jpxConfigStore.login(code => {
+                if (!alive() || request !== state.request) return;
+                message(''); panel.replaceChildren(el('p', tr('authHint')));
+                panel.append(el('code', code.userCode, 'jpx-store-auth-code'));
+                const link = el('a', tr('authorize'), 'jpx-store-link');
+                // Device authorization is the only external navigation in the publishing flow.
+                const url = new URL(code.verificationUri);
+                if (url.origin !== 'https://github.com' || url.pathname !== '/login/device') throw new Error('Invalid authorization URL');
+                link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
+                panel.append(link, el('p', tr('waitingAuth'), 'jpx-store-meta'), button(tr('cancel'), cancel));
+            }, controller.signal);
+            if (!alive() || request !== state.request || generation !== state.authGeneration) return;
+            state.user = user || await jpxConfigStore.user(); state.login = null; accountControls(); await after();
+        } catch (error) {
+            if (!alive() || request !== state.request || error?.name === 'AbortError') return;
+            message(errorMessage(error), true); panel.replaceChildren(button(tr('retry'), () => login(after, cancel)));
+        }
+    }
+    async function edit(existing) {
+        if (!existing?.envelope) return options.onBack?.();
+        const model = existing;
+        if (model.id && !model.originalEnvelope) model.originalEnvelope = JSON.parse(JSON.stringify(model.envelope));
+        state.editor = model; open('edit');
+        heading(tr(model.id ? 'updateShare' : 'share'), model.back || options.onBack || (() => mine()));
+        const request = state.request;
+        const form = el('form', undefined, 'jpx-store-form'); form.dataset.storeEditor = 'share';
+        const envelope = model.envelope;
+        const world = model.id ? select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world) : null;
+        const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope.title || '';
+        const description = el('textarea'); description.rows = 4; description.maxLength = 4000; description.value = envelope.description || '';
+        const metadata = el('p', info(envelope), 'jpx-store-meta'); form.append(metadata);
+        let preview = rawPreview(envelope);
+        if (model.id && typeof hooks.listShareConfigs === 'function' && typeof hooks.getShareConfig === 'function') {
+            const matches = entry => entry?.envelope?.kind === model.originalEnvelope.kind && entry.envelope.mode === model.originalEnvelope.mode;
+            const entries = hooks.listShareConfigs().filter(matches);
+            const content = select([['', tr('keepSharedConfig')], ...entries.map(entry => [entry.id, entry.envelope.title + ' · ' + worldName(entry.envelope.world)])], model.localSource?.id || '');
+            content.dataset.shareSource = '';
+            if (!entries.length) { const option = el('option', tr('noMatchingLocal')); option.disabled = true; content.append(option); }
+            // A source deleted in another tab stays visible until the user selects
+            // a replacement; never silently submit its stale snapshot as current.
+            if (model.localSource && !entries.some(entry => entry.id === model.localSource.id)) {
+                const option = el('option', model.localSource.title); option.value = model.localSource.id; content.append(option); content.value = option.value;
+            }
+            content.addEventListener('change', () => {
+                const previous = model.localSource?.id || '';
+                try {
+                    const entry = content.value ? hooks.getShareConfig(content.value) : null;
+                    if (content.value && !matches(entry)) { content.value = previous; message(tr('localChanged'), true); return; }
+                    const chosen = jpxConfigStore.prepare(entry?.envelope || model.originalEnvelope);
+                    envelope.config = chosen.config; envelope.scriptVersion = chosen.scriptVersion;
+                    model.localSource = entry ? { id: entry.id, revision: entry.revision, title: entry.envelope.title } : null;
+                    const replacement = rawPreview(envelope), expanded = preview.open;
+                    preview.replaceWith(replacement); preview = replacement; preview.open = expanded; message('');
+                } catch (error) { content.value = previous; message(errorMessage(error), true); }
+            });
+            form.append(field(tr('configContents'), content));
+        }
+        if (world) form.append(field(tr('appliesTo'), world));
+        form.append(field(tr('title'), title), field(tr('description'), description));
+        const actions = el('div', undefined, 'jpx-store-actions');
+        const publish = el('button', tr(model.id ? 'submitUpdate' : 'submit'), 'jpx-store-primary'); publish.type = 'submit';
+        actions.append(publish); form.append(preview, actions, el('p', tr('reviewHint'), 'jpx-store-meta'));
+        for (const [control, key] of [[title, 'title'], [description, 'description'], ...(world ? [[world, 'world']] : [])])
+            control.addEventListener('input', () => { envelope[key] = control.value; if (key === 'world') metadata.textContent = info(envelope); });
+        form.addEventListener('submit', async event => {
+            event.preventDefault(); if (!form.reportValidity()) return;
+            envelope.title = title.value.trim(); envelope.description = description.value.trim();
+            if (world) envelope.world = world.value;
+            if (!envelope.title) { title.focus(); return; }
+            if (model.localSource && hooks.getShareConfig(model.localSource.id)?.revision !== model.localSource.revision) {
+                message(tr('localChanged'), true); return;
+            }
+            if (!state.user) { await login(() => edit(model), () => edit(model)); return; }
+            publish.disabled = true; message(tr('submitting'));
+            try {
+                await jpxConfigStore.submit(envelope, model.id, model.originalBody);
+                state.editor = null;
+                if (!alive()) { state.view = 'mine'; return; }
+                if (request !== state.request) { hooks.notify?.(tr('submitted')); return; }
+                await mine();
+                if (hooks.notify) hooks.notify(tr(model.id ? 'updateSubmitted' : 'submitted'));
+                else message(tr(model.id ? 'updateSubmitted' : 'submitted'));
+            } catch (error) { if (alive()) message(errorMessage(error), true); }
+            finally { if (publish.isConnected) publish.disabled = false; }
+        });
+        stage.append(form);
+    }
+    function issueStatus(issue) {
+        if (issue.state === 'closed') return 'withdrawn';
+        if (issue.labels.includes('store:hide')) return 'hidden';
+        if (issue.pending) return 'pending';
+        const labels = issue.labels;
+        for (const [label, key] of [['store:hide', 'hidden'], ['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
+            if (labels.includes(label)) return key;
+        return 'pending';
+    }
+    async function mine() {
+        const request = open('mine');
+        let search;
+        const filterShares = () => {
+            const words = state.sharedQuery.normalize('NFKC').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+            for (const row of stage.querySelectorAll('.jpx-store-row')) row.hidden = !words.every(word => (row.dataset.searchText || row.textContent).normalize('NFKC').toLocaleLowerCase().includes(word));
+        };
+        if (options.toolbarHost) {
+            const queryBar = el('div', undefined, 'jpx-store-querybar');
+            search = el('input'); search.type = 'search'; search.value = state.sharedQuery;
+            search.placeholder = t('cM.search'); search.setAttribute('aria-label', t('cM.search')); search.disabled = !state.user;
+            search.addEventListener('input', () => { state.sharedQuery = search.value; filterShares(); });
+            const refresh = refreshControl(() => mine()); refresh.disabled = !state.user;
+            queryBar.append(search, refresh); browseControls = { queryBar, refresh }; layoutBrowseControls();
+        }
+        if (!state.user) { empty(tr('loginRequired'), () => login(() => mine()), tr('signIn')); return; }
+        if (!options.toolbarHost) viewHeader.append(button(tr('refresh'), () => mine()));
+        message(tr('loading'));
+        try {
+            const issues = await jpxConfigStore.mine();
+            if (!alive() || request !== state.request) return;
+            message('');
+            if (!issues.length) { empty(tr('noShares')); return; }
+            const list = el('div', undefined, 'jpx-store-list'); stage.append(list);
+            for (const issue of issues) {
+                const row = el('article', undefined, 'jpx-store-row'); row.dataset.sharedId = issue.id;
+                const title = el('strong', issue.title.replace(/^\[Config\]\s*/, ''));
+                const statusKey = issueStatus(issue);
+                const badge = el('span', tr(statusKey === 'published' ? 'publishedVersion' : statusKey), 'jpx-store-badge');
+                row.append(title, badge);
+                try {
+                    const envelope = jpxConfigStore.parseSubmission(issue.body);
+                    const group = tags(envelope, null, (key, value, label) => {
+                        state.sharedQuery = label; if (search) search.value = label; filterShares();
+                    });
+                    row.append(group);
+                    row.dataset.searchText = [title.textContent, info(envelope), ...group.querySelectorAll('[title]')].map(value => typeof value === 'string' ? value : value.title).join(' ') + ' ' + group.textContent;
+                } catch { /* Keep malformed submissions manageable. */ }
+                const actions = el('div', undefined, 'jpx-store-actions');
+                if (issue.state !== 'closed') {
+                    actions.append(button(tr('updateShare'), () => edit({ id: issue.id, envelope: jpxConfigStore.parseSubmission(issue.body), originalBody: issue.body, back: () => mine() })),
+                        button(tr('withdraw'), async () => {
+                            if (!await confirmShare(tr('withdraw'), tr('withdrawConfirm'), tr('withdraw'))) return;
+                            if (!alive() || request !== state.request) return;
+                            await jpxConfigStore.withdraw(issue.id); await mine();
+                        }));
+                } else {
+                    actions.append(button(tr('removeShare'), async () => {
+                        if (!await confirmShare(tr('removeShare'), tr('removeShareConfirm'), tr('removeShare'))) return;
+                        if (!alive() || request !== state.request) return;
+                        message('');
+                        await jpxConfigStore.archive(issue.id);
+                        if (!alive() || request !== state.request) return;
+                        const visible = [...list.children].filter(item => !item.hidden), index = visible.indexOf(row);
+                        const neighbor = visible[index + 1] || visible[index - 1];
+                        row.remove();
+                        if (!list.children.length) { list.remove(); empty(tr('noShares')); }
+                        (neighbor?.querySelector('button:not(:disabled)') || search || browseControls?.refresh)?.focus({ preventScroll: true });
+                    }, 'jpx-store-remove-share'));
+                }
+                actions.append(button(tr('review'), async node => {
+                    const old = row.querySelector('.jpx-store-feedback');
+                    if (old) { old.remove(); node.setAttribute('aria-expanded', 'false'); return; }
+                    const feedback = await jpxConfigStore.feedback(issue.id);
+                    if (!alive() || request !== state.request) return;
+                    if (issue.state !== 'closed' && !issue.labels.includes('store:hide')) badge.textContent = tr(feedback ? ({ published: 'publishedVersion', 'changes-requested': 'changes', 'needs-review': 'needsReview', unavailable: 'unavailable', pending: 'pending' })[feedback.status] : 'pending');
+                    const box = el('div', undefined, 'jpx-store-feedback');
+                    const language = tr('browse') === '浏览' ? 'zh' : 'en';
+                    box.append(el('p', feedback?.summary?.[language] || tr('noReview')));
+                    for (const finding of feedback?.findings || []) box.append(el('p', [finding.path, finding[language]].filter(Boolean).join(' — ')));
+                    row.append(box); node.setAttribute('aria-expanded', 'true');
+                }));
+                row.append(actions); list.append(row);
+                // Reconcile only this session's submissions when the user opens
+                // or refreshes Shared. No battle-time polling or per-row timers.
+                if (issue.pending && issue.state !== 'closed' && !issue.labels.includes('store:hide')) jpxConfigStore.feedback(issue.id).then(feedback => {
+                    if (!alive() || request !== state.request || !feedback) return;
+                    badge.textContent = tr(({ published: 'publishedVersion', 'changes-requested': 'changes', 'needs-review': 'needsReview', unavailable: 'unavailable', pending: 'pending' })[feedback.status]);
+                }).catch(() => { /* Keep pending until a later refresh succeeds. */ });
+            }
+            filterShares();
+        } catch (error) {
+            if (!alive() || request !== state.request) return;
+            message(errorMessage(error), true); empty(tr('cannotLoad'), () => mine());
+        }
+    }
+    const observer = new MutationObserver(() => {
+        if (!root.isConnected) { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); }
+    });
+    // The core removes its dialog directly from body; ignore battle-content mutations.
+    observer.observe(doc.body, { childList: true });
+    observer.observe(parent, { childList: true });
+    accountControls();
+    const authGeneration = state.authGeneration;
+    jpxConfigStore.user().then(user => {
+        if (!state.disposed && authGeneration === state.authGeneration) {
+            state.user = user; if (alive()) accountControls();
+        }
+    }).catch(() => {});
+    if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
+    else browse();
+    const dispose = () => { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
+    dispose.back = () => {
+        if (!alive() || !state.back) return false;
+        Promise.resolve().then(state.back).catch(error => { if (alive()) message(errorMessage(error), true); });
+        return true;
+    };
+    dispose.suspend = () => {
+        if (state.disposed || state.suspended) return;
+        state.suspended = true; state.request++;
+        if (state.login) { state.authGeneration++; state.login.abort(); state.login = null; }
+    };
+    dispose.resume = () => {
+        if (state.disposed || !state.suspended) return;
+        state.suspended = false; accountControls();
+        if (state.editor) edit(state.editor);
+        else if (state.view === 'mine') mine();
+        else if (state.view === 'detail' && state.currentEntry) details(state.currentEntry);
+        else browse();
+    };
+    return dispose;
+}
+
+    return Object.freeze({ service: jpxConfigStore, render(parent, hooks, options = {}) {
+        const doc = parent.ownerDocument;
+        if (!doc.getElementById('jpx-integrated-store-style')) {
+            const style = doc.createElement('style'); style.id = 'jpx-integrated-store-style';
+            style.textContent = "#settings-container #panel_configStore { overflow: hidden; }\n#settings-container .jpx-store { display: flex; flex: 1; flex-direction: column; gap: 12px; min-width: 0; min-height: 0; color: var(--jpx-theme-text, #392d25); font: 13px/1.45 Arial, Helvetica, sans-serif; }\n#settings-container .jpx-store * { box-sizing: border-box; }\n#settings-container .jpx-store [hidden] { display: none !important; }\n#settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account, #settings-container .jpx-store-actions, #settings-container .jpx-store-heading { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-width: 0; }\n#settings-container .jpx-store-toolbar { flex: none; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-view-header { display: grid; flex: none; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-view-header:empty { display: none; }\n#settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 32px; max-width: 100%; margin: 0; padding: 4px 10px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 6px; background: var(--jpx-theme-surface, #f9f6ec); color: var(--jpx-theme-accent, #5c0d11); font: inherit; font-weight: 400; line-height: 1.4; text-decoration: none; cursor: pointer; overflow-wrap: anywhere; }\n#settings-container .jpx-store button:hover, #settings-container .jpx-store-link:hover { background: var(--jpx-theme-hover, #f1e2c5); }\n#settings-container .jpx-store button[aria-pressed=true], #settings-container .jpx-store .jpx-store-primary { border-color: var(--jpx-theme-accent, #5c0d11); background: var(--jpx-theme-selected, #ead9b8); }\n#settings-container .jpx-store button:disabled { opacity: .55; cursor: default; }\n#settings-container .jpx-store :is(a, summary):focus-visible { outline: 1px solid var(--jpx-theme-accent, #9b4e03); outline-offset: -1px; box-shadow: 0 0 0 2px color-mix(in srgb, var(--jpx-theme-accent, #9b4e03) 12%, transparent); }\n#settings-container .jpx-store p { margin: 0; }\n#settings-container .jpx-store-status, #settings-container .jpx-store-empty { padding: 12px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-status[data-error=true] { border-left: 3px solid var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store-status { flex: none; }\n#settings-container .jpx-store-empty p { margin-bottom: 8px; }\n#settings-container .jpx-store-stage { display: grid; align-content: start; flex: 1; gap: 12px; min-width: 0; min-height: 0; overflow: auto; padding-right: 4px; overscroll-behavior: contain; scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: inherit; }\n#settings-container .jpx-store-filters { display: flex; gap: 8px; min-width: 0; }\n#settings-container .jpx-store input, #settings-container .jpx-store select, #settings-container .jpx-store textarea { min-width: 0; max-width: 100%; min-height: 32px; margin: 0; padding: 5px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 4px; background: var(--jpx-theme-field, #fffdf7); color: var(--jpx-theme-text, #392d25); font: inherit; }\n#settings-container .jpx-store-filters input { flex: 1; width: 0; }\n#settings-container .jpx-store-filters select { max-width: 40%; }\n#settings-container .jpx-store-list { display: grid; min-width: 0; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 8px; padding: 12px 0; border-bottom: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-row > p, #settings-container .jpx-store-row > .jpx-store-actions, #settings-container .jpx-store-feedback { grid-column: 1 / -1; }\n#settings-container .jpx-store .jpx-store-title { width: fit-content; padding: 0; min-height: 24px; border: 0; background: transparent; text-align: left; font-weight: 600; }\n#settings-container .jpx-store .jpx-store-title:hover { text-decoration: underline; }\n#settings-container .jpx-store-meta { color: var(--jpx-theme-muted, #71634f); font-size: 12px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-excerpt { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-description { white-space: pre-wrap; overflow-wrap: anywhere; }\n#settings-container .jpx-store-heading h3 { flex: 1; margin: 0; color: var(--jpx-theme-accent, #5c0d11); font-size: 14px; overflow-wrap: anywhere; }\n#settings-container .jpx-store-form { display: grid; gap: 12px; min-width: 0; }\n#settings-container .jpx-store-local-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }\n#settings-container .jpx-store-local-row > button { align-self: start; }\n#settings-container .jpx-store-row-tools { display: flex; flex-wrap: wrap; justify-content: end; align-items: start; gap: 6px; }\n#settings-container .jpx-store-selection { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; }\n#settings-container .jpx-store-selection > button { align-self: start; }\n#settings-container .jpx-store-field { display: grid; gap: 4px; min-width: 0; }\n#settings-container .jpx-store textarea { width: 100%; resize: vertical; }\n#settings-container .jpx-store-raw { min-width: 0; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-field, #fffdf7); }\n#settings-container .jpx-store-raw summary { padding: 8px; cursor: pointer; color: var(--jpx-theme-accent, #5c0d11); }\n#settings-container .jpx-store pre { max-height: 280px; margin: 0; padding: 8px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px/1.5 Consolas, monospace; border-top: 1px solid var(--jpx-theme-border, #c8b49b); }\n#settings-container .jpx-store-auth { display: grid; justify-items: start; gap: 12px; padding: 16px; border: 1px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); }\n#settings-container .jpx-store-auth-code { font: 600 22px/1.4 Consolas, monospace; user-select: all; letter-spacing: 2px; }\n#settings-container .jpx-store-badge { align-self: start; padding: 2px 8px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 12px; color: var(--jpx-theme-accent, #5c0d11); font-size: 12px; white-space: nowrap; }\n#settings-container .jpx-store-feedback { display: grid; gap: 8px; padding: 8px 12px; border-left: 2px solid var(--jpx-theme-border, #c8b49b); background: var(--jpx-theme-surface, #f9f6ec); overflow-wrap: anywhere; white-space: pre-wrap; }\n@media (max-width: 650px) {\n    #settings-container .jpx-store-toolbar, #settings-container .jpx-store-navigation, #settings-container .jpx-store-account { gap: 6px; }\n    #settings-container .jpx-store button, #settings-container .jpx-store-link { min-height: 36px; padding: 5px 8px; }\n    #settings-container .jpx-store-filters { flex-wrap: wrap; }\n    #settings-container .jpx-store-filters input { flex-basis: 100%; width: 100%; }\n    #settings-container .jpx-store-filters select { flex: 1; max-width: none; }\n    #settings-container .jpx-store-local-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n    #settings-container .jpx-store-local-filters > label:last-child { grid-column: 1 / -1; }\n}\n\n#settings-container .jpx-store { width: 100%; }\n#settings-container .jpx-store-toolbar { gap: 8px; padding-bottom: 8px; }\n#settings-container .jpx-store-row { padding: 10px 0; }\n#settings-container .jpx-store input:focus-visible, #settings-container .jpx-store select:focus-visible, #settings-container .jpx-store textarea:focus-visible, #settings-container .jpx-store button:focus-visible { outline: 1px solid var(--jpx-theme-accent, #9b4e03); outline-offset: -1px; }\n@media (max-width:650px) { #settings-container .jpx-store button, #settings-container .jpx-store-link, #settings-container .jpx-store input, #settings-container .jpx-store select { min-height:44px; } }\n"; doc.head.append(style);
+        }
+        return renderConfigStore(parent, hooks, options);
+    } });
+}
+
+// Configuration ownership is separate from the native battle settings and editor drafts.
+let jpxConfigLibrary = null;
+let jpxConfigManagerView = null;
+let jpxEmbeddedStore = null;
+const jpxConfigLibraryKey = 'jpx_configLibrary_v1';
+const jpxConfigApplyKey = 'jpx_configApplySignal_v1';
+const jpxConfigClone = value => JSON.parse(JSON.stringify(value));
+const jpxConfigWorld = () => isekaiSuffix ? 'Isekai' : 'Persistent';
+const jpxConfigHasRules = value => value && Array.isArray(value.supports) && Array.isArray(value.attacks);
+const jpxConfigHasContent = value => jpxConfigHasRules(value) && Object.entries(value).some(([key, rules]) =>
+    (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
+let jpxSelectedConfig;
+const jpxConfigModeLabel = mode => {
+    const split = mode.lastIndexOf('_');
+    return t('cB.' + mode.slice(0, split)) + ' · ' + t('cB.' + mode.slice(split + 1));
+};
+
+function getJpxConfigLibrary() {
+    return jpxConfigLibrary ||= createJpxConfigLibrary({ storage: localStorage, key: jpxConfigLibraryKey,
+        modes: BATTLE_MODES, battleVersion: defaultCfgBattle.battleVersion, statsVersion: defaultCfgStats.statsVersion });
+}
+
+async function migrateJpxLegacyConfigs(entries) {
+    if (!Array.isArray(entries) || entries.length > 1000) throw new Error('Invalid configuration archive');
+    // The legacy plugin owns its GM store. Only configuration records cross this boundary.
+    const copied = jpxConfigClone(entries).map(entry => ({ id: entry.id, savedAt: entry.savedAt,
+        envelope: entry.envelope, ...(entry.source ? { source: entry.source } : {}) }));
+    const library = getJpxConfigLibrary();
+    // A source revision is imported once, even if its local copy was subsequently
+    // edited. A changed legacy source gets a new copy rather than replacing edits.
+    for (const entry of copied) {
+        const source = JSON.stringify({ id: entry.id, envelope: entry.envelope, ...(entry.source ? { source: entry.source } : {}) });
+        const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(source));
+        const fingerprint = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+        library.migrate([entry], 'legacy-backpack:' + fingerprint);
+    }
+    window.dispatchEvent(new Event('jpx:config-library'));
+    return library.readState();
+}
+
+function seedJpxConfigLibrary() {
+    const library = getJpxConfigLibrary();
+    for (const world of ['Persistent', 'Isekai']) {
+        const marker = 'native-configs-v1:' + world;
+        if (library.readState().migrations.includes(marker)) continue;
+        const raw = localStorage.getItem(prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : ''));
+        let config;
+        try { config = raw ? JSON.parse(raw) : null; } catch { /* Keep the original malformed storage untouched. */ }
+        const valid = config && typeof config === 'object' && !Array.isArray(config) &&
+            Number(config.battleVersion || config.version || 0) >= defaultCfgBattle.battleVersion;
+        if (!valid) continue;
+        // Never split away a user's original multi-mode file during file import. These
+        // entries are snapshots of the already-applied native mode slots, not an import.
+        const normal = {}, entries = [];
+        mergeCfg(jpxConfigClone(config), { battleVersion: defaultCfgBattle.battleVersion }, normal, 'battle');
+        for (const mode of BATTLE_MODES) if (jpxConfigHasContent(normal[mode])) entries.push({
+            id: 'native-' + world + '-' + mode,
+            source: { type: 'native' },
+            envelope: { schemaVersion: 1, kind: 'battle-mode', title: jpxConfigModeLabel(mode), description: '', world,
+                mode, scriptVersion: window.JPXPlus.version, config: { battleVersion: normal.battleVersion, [mode]: normal[mode] } }
+        });
+        // Entries, initial applied snapshots and the completion marker are committed
+        // together. A failed write can be retried without losing an applied label.
+        library.migrate(entries, marker, { applied: entries.map(entry => ({ world, id: entry.id, scopes: [entry.envelope.mode] })) });
+    }
+    return library;
+}
+
+// Cache the explicit selection once, outside the battle action loop. The active
+// snapshot belongs to the library; native exports still contain only JPX rules.
+function refreshJpxSelectedConfig() {
+    jpxSelectedConfig = null;
+    try {
+        const state = getJpxConfigLibrary().readState(), world = jpxConfigWorld();
+        const id = state.active?.[world], record = state.applied[world]?.[id];
+        if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
+            JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
+            jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };
+        }
+    } catch (error) { console.warn('JPX-PLUS selected configuration could not be loaded.', error); }
+}
+
+function getJpxSelectedBattleMode() {
+    if (jpxSelectedConfig === undefined || jpxSelectedConfig && cfgBattle[jpxSelectedConfig.mode] !== jpxSelectedConfig.rules) refreshJpxSelectedConfig();
+    return jpxSelectedConfig?.mode || '';
+}
+
+// Explicit PLUS choices live with their rules, never in the detected magic-damage cache.
+function getManagedBattleStyle(detected) {
+    const selected = getJpxSelectedBattleMode();
+    if (selected) return selected.slice(0, selected.lastIndexOf('_'));
+    const family = value => ({ '1H_Mage': 'OneHanded', '2H_Mage': 'TwoHanded', DW_Mage: 'DualWielding', NI_Mage: 'NitenIchiryu' }[value] || value);
+    for (const type of [battleType, 'General']) {
+        const choices = BATTLE_STYLES.filter(style => family(style) === family(detected));
+        for (const style of choices) {
+            const data = cfgBattle[style + '_' + type], execution = data?.jpxPlusExecution;
+            if (execution?.style === style && jpxConfigHasRules(data) &&
+                (data.supports.length || data.attacks.length || Object.entries(data).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length))) return style;
+        }
+    }
+    return detected;
+}
+
+function getManagedSpellType() {
+    const element = cfgBattle[getBattleMode()]?.jpxPlusExecution?.element;
+    return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element : spellDamageBonus.maxType;
+}
+
+function pauseForJpxConfigApplication() {
+    if (!log) return false;
+    isActiveBattle = false; readyNext = 0;
+    jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#fef'); jpxPanelManager.dispatchState();
+    return true;
+}
+
+// Applying from a second tab must also stop the battle tab before its next action.
+window.addEventListener('storage', event => {
+    if (event.key !== jpxConfigApplyKey || !event.newValue) return;
+    try {
+        const signal = JSON.parse(event.newValue), stats = signal.world === 'Any';
+        if (!stats && signal.world !== jpxConfigWorld() || !Array.isArray(signal.scopes)) return;
+        const key = stats ? prefix + 'cfgStats' : prefix + 'cfgBattle' + isekaiSuffix;
+        const data = JSON.parse(localStorage.getItem(key) || 'null');
+        if (!data || typeof data !== 'object' || Array.isArray(data)) return;
+        if (stats) {
+            validateStatsConfig(data); cfgStats = jpxConfigClone(data);
+            document.getElementById('settings-container')?.jpxConfigApplied?.(data, 'stats');
+        } else {
+            if ((data.battleVersion || 0) < defaultCfgBattle.battleVersion) return;
+            pauseForJpxConfigApplication();
+            const patch = {};
+            for (const key of signal.scopes) if (BATTLE_MODES.includes(key) || Object.hasOwn(defaultCfgBattle,key)) {
+                if (Object.hasOwn(data,key)) patch[key] = jpxConfigClone(data[key]);
+            }
+            Object.assign(cfgBattle,patch);
+            refreshJpxSelectedConfig();
+            document.getElementById('settings-container')?.jpxConfigApplied?.(patch,'battle');
+            jpxPanelManager.refreshAppearance?.();
+        }
+    } catch (error) { console.warn('JPX-PLUS configuration update could not be loaded.', error); }
+});
+
+function commitJpxConfigEntry(entry, world, onApplied = (patch, scope) => document.getElementById("settings-container")?.jpxConfigApplied?.(patch, scope)) {
+    const library = getJpxConfigLibrary(), envelope = entry.envelope, stats = envelope.kind === "stats";
+    if (!["Persistent", "Isekai", "Any"].includes(world) || stats !== (world === "Any")) throw Object.assign(new Error(), { code: "invalidConfig" });
+    if (library.get(entry.id)?.revision !== entry.revision) throw Object.assign(new Error(), { code: "libraryChanged" });
+    const key=stats?prefix+'cfgStats':prefix+'cfgBattle'+(world==='Isekai'?'_isekai':'');
+    const original=localStorage.getItem(key), originalLibrary=localStorage.getItem(jpxConfigLibraryKey);
+    let current=original?JSON.parse(original):null;
+    const versionKey=stats?'statsVersion':'battleVersion',defaults=stats?defaultCfgStats:defaultCfgBattle;
+    if(!current||typeof current!=='object'||Array.isArray(current)||Number(current[versionKey]||(!stats&&current.version)||0)<defaults[versionKey])current=jpxConfigClone(defaults);
+    const patch={};
+    if(stats){ validateStatsConfig(envelope.config); mergeCfg(jpxConfigClone(envelope.config),current,patch,'stats'); }
+    else {
+        // Native migration rules apply on a detached copy. Single-mode application
+        // cannot touch a different slot or persist unrelated settings drafts.
+        const normalized={}; mergeCfg(jpxConfigClone(envelope.config),{battleVersion:defaultCfgBattle.battleVersion},normalized,'battle');
+        for(const mode of BATTLE_MODES.filter(mode=>Object.hasOwn(envelope.config,mode)))
+            patch[mode]=normalized[mode]||jpxConfigClone(envelope.config[mode]);
+        if(envelope.kind==='battle')for(const key of Object.keys(envelope.config))if(!BATTLE_MODES.includes(key)&&Object.hasOwn(defaultCfgBattle,key))patch[key]=jpxConfigClone(envelope.config[key]);
+        patch.battleVersion=defaultCfgBattle.battleVersion;
+        // A newer explicit choice replaces a prior sibling's override, without
+        // altering its rules or falsifying equipment stats.
+        for(const mode of Object.keys(patch).filter(mode=>BATTLE_MODES.includes(mode))){
+            const type=mode.slice(mode.lastIndexOf('_'));
+            const families=[['OneHanded','1H_Mage'],['TwoHanded','2H_Mage'],['DualWielding','DW_Mage'],['NitenIchiryu','NI_Mage']];
+            const group=families.find(group=>group.includes(mode.slice(0,-type.length)));
+            for(const sibling of group||[])if(sibling+type!==mode&&!Object.hasOwn(envelope.config,sibling+type)&&current[sibling+type]?.jpxPlusExecution){
+                patch[sibling+type]=jpxConfigClone(current[sibling+type]);delete patch[sibling+type].jpxPlusExecution;
+            }
+        }
+    }
+    const result=stats?patch:{...current,...patch};
+    const paused=world===jpxConfigWorld()&&!!log;
+    if(paused)pauseForJpxConfigApplication();
+    try{
+        if(original!==null&&localStorage.getItem(key+':configManagerBackup')===null)localStorage.setItem(key+':configManagerBackup',original);
+        localStorage.setItem(key,JSON.stringify(result));
+        library.setApplied(world,{id:entry.id,revision:entry.revision,scopes:stats?['stats']:Object.keys(patch).filter(key=>key!=='battleVersion'),config:stats?result:patch,
+            ...(envelope.kind==='battle-mode'?{mode:envelope.mode}:{})},{activate:true});
+        localStorage.setItem(jpxConfigApplyKey,JSON.stringify({world,scopes:stats?['stats']:Object.keys(patch),nonce:Date.now()+':'+Math.random()}));
+    }catch(cause){
+        if(original===null)localStorage.removeItem(key);else localStorage.setItem(key,original);
+        if(originalLibrary===null)localStorage.removeItem(jpxConfigLibraryKey);else localStorage.setItem(jpxConfigLibraryKey,originalLibrary);
+        throw cause;
+    }
+    if(stats){cfgStats=jpxConfigClone(result);onApplied?.(patch,'stats');}
+    else if(world===jpxConfigWorld()){Object.assign(cfgBattle,jpxConfigClone(patch));refreshJpxSelectedConfig();onApplied?.(patch,'battle');jpxPanelManager.refreshAppearance?.();}
+    return paused;
+}
+
+function ensureJpxConfigManagerStyle() {
+    if (!document.getElementById('jpx-config-manager-style')) {
+        const style = document.createElement('style'); style.id = 'jpx-config-manager-style';
+        style.textContent = JPX_CONFIG_MANAGER_CSS; document.head.append(style);
+    }
+}
+
+function chooseJpxBattleExport(parent, config) {
+    if (parent.querySelector('#jpx-battle-export')) return Promise.resolve(null);
+    ensureJpxConfigManagerStyle();
+    const tr = (key, args) => t('cM.' + key, args), data = jpxConfigClone(config);
+    const activeMode = getJpxSelectedBattleMode();
+    const detected = activeMode ? '' : log ? battleStyle : getDetectedJpxBattleStyle();
+    const mode = activeMode || (detected ? getBattleMode(detected) : '');
+    const current = jpxConfigHasRules(data[mode]) ? mode : '';
+    const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current);
+    let scope = current ? 'current' : 'all', update = () => {};
+    const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text) node.textContent = text; return node; };
+    const dialog = el('dialog', 'jpx-export-dialog'); dialog.id = 'jpx-battle-export';
+    const title = el('h3', '', t('cB.exportBattleConfig')); title.id = getUniqueId('export-title'); dialog.setAttribute('aria-labelledby', title.id);
+    const nav = el('div', 'jpx-rule-section-tabs'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', title.textContent);
+    const summary = el('p', 'jpx-export-summary'), fields = el('div', 'jpx-export-fields');
+    const footer = el('div', 'jpx-export-footer');
+    const button = (host, text, action) => { const node = jpxUtils.createButton(host, { text, history: false, onClick: action }); node.type = 'button'; return node; };
+    const switches = ['current', 'all', 'choose'].map(value => {
+        const node = button(nav, tr({ current: 'exportCurrent', all: 'exportAll', choose: 'exportChoose' }[value]), () => { scope = value; update(); });
+        node.dataset.exportScope = value; node.disabled = value === 'current' && !current || value === 'choose' && !modes.length;
+        if (value === 'current' && !current) node.title = tr('exportUnknown'); return node;
+    });
+    const style = el('select'), scene = el('select'); style.dataset.exportStyle = ''; scene.dataset.exportScene = '';
+    const addOption = (select, value) => { const option = el('option', '', t('cB.' + value)); option.value = value; select.append(option); };
+    [...new Set(modes.map(key => key.slice(0, key.lastIndexOf('_'))))].forEach(value => addOption(style, value));
+    if (current) style.value = current.slice(0, current.lastIndexOf('_'));
+    function updateScenes() {
+        const previous = scene.value || current.slice(current.lastIndexOf('_') + 1);
+        scene.replaceChildren();
+        modes.filter(key => key.slice(0, key.lastIndexOf('_')) === style.value).forEach(key => addOption(scene, key.slice(key.lastIndexOf('_') + 1)));
+        if ([...scene.options].some(option => option.value === previous)) scene.value = previous;
+        update();
+    }
+    style.addEventListener('change', updateScenes); scene.addEventListener('change', () => update()); updateScenes();
+    for (const [key, input] of [['style', style], ['scenario', scene]]) {
+        const label = el('label'); label.append(el('span', '', tr(key)), input); fields.append(label);
+    }
+    dialog.append(title, nav, summary, fields, footer);
+    const focused = document.activeElement;
+    return new Promise(resolve => {
+        let settled = false;
+        const finish = result => {
+            if (settled) return; settled = true; parent.removeEventListener('close', parentClosed);
+            if (dialog.open) dialog.close(); dialog.remove();
+            if (focused?.isConnected) focused.focus({ preventScroll: true }); resolve(result);
+        };
+        const parentClosed = () => finish(null);
+        button(footer, tr('cancel'), () => finish(null));
+        const submit = button(footer, tr('export'), () => {
+            const key = scope === 'current' ? current : style.value + '_' + scene.value;
+            const output = scope === 'all' ? data : { battleVersion: data.battleVersion, [key]: data[key] };
+            const suffix = scope === 'all' ? '' : '_' + key;
+            finish({ data: output, fileName: `cfgBattle_${jpxConfigWorld()}${suffix}.txt`, depth: 3 });
+        });
+        submit.className = 'jpx-export-submit';
+        update = () => {
+            switches.forEach(node => node.setAttribute('aria-pressed', String(node.dataset.exportScope === scope)));
+            fields.hidden = scope !== 'choose'; summary.hidden = scope === 'choose';
+            summary.textContent = scope === 'current' ? jpxConfigModeLabel(current) :
+                t('cB.basicSettings') + ' · ' + tr('groupCount', { count: BATTLE_MODES.filter(key => jpxConfigHasRules(data[key])).length });
+            submit.disabled = scope === 'choose' && !modes.includes(style.value + '_' + scene.value);
+        };
+        dialog.addEventListener('cancel', event => { event.preventDefault(); finish(null); });
+        dialog.addEventListener('keydown', event => {
+            if (event.key !== 'Tab') return;
+            const controls = [...dialog.querySelectorAll('button,select')].filter(node => !node.disabled && node.getClientRects().length);
+            if (event.shiftKey && document.activeElement === controls[0]) { event.preventDefault(); controls.at(-1).focus(); }
+            else if (!event.shiftKey && document.activeElement === controls.at(-1)) { event.preventDefault(); controls[0].focus(); }
+        });
+        dialog.addEventListener('close', () => finish(null)); parent.addEventListener('close', parentClosed);
+        parent.append(dialog); update(); dialog.showModal(); switches.find(node => node.dataset.exportScope === scope).focus();
+    });
+}
+
+function renderJpxConfigManager(parent, hooks = {}) {
+    ensureJpxConfigManagerStyle();
+    const el = (tag, text, className) => {
+        const node = document.createElement(tag); if (text !== undefined) node.textContent = text;
+        if (className) node.className = className; return node;
+    };
+    const tr = (key, args) => t('cM.' + key, args);
+    const root = el('section', undefined, 'jpx-config-manager'); parent.append(root);
+    const sortKey = 'jpx_configListSort_v1';
+    let savedSort; try { savedSort = localStorage.getItem(sortKey); } catch {}
+    const state = { query: '', world: '', style: '', scenario: '', kind: '', sort: ['type', 'updated', 'name', 'manual'].includes(savedSort) ? savedSort : 'type', filtersOpen: false,
+        scroll: 0, editor: null, page: 'mine', storeDispose: null, history: null, disposed: false, dialog: null };
+    const library = getJpxConfigLibrary();
+    const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
+    let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+    const clearNotice = () => { clearTimeout(noticeTimer); noticeTimer = null; notice.textContent = ''; };
+    const notify = (message, persistent = false) => {
+        clearNotice(); if (state.disposed) return;
+        notice.textContent = message;
+        if (!persistent) noticeTimer = setTimeout(clearNotice, 4000);
+    };
+    const error = cause => notify(tr(cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'error'), true);
+    function button(label, action, cls = '') {
+        const node = el('button', label, cls); node.type = 'button';
+        node.addEventListener('click', async () => {
+            if (node.disabled) return;
+            try { await action(node); } catch (cause) { error(cause); }
+        }); return node;
+    }
+    function backButton(action) {
+        state.back = action;
+        return button(tr('back'), action, 'jpx-config-back');
+    }
+    function select(values, selected) {
+        const node = el('select');
+        for (const [value, label] of values) { const option = el('option', label); option.value = value; node.append(option); }
+        node.value = selected; return node;
+    }
+    function field(label, input, wide = false) {
+        const node = el('label', undefined, wide ? 'jpx-config-wide' : ''); node.append(el('span', label), input); return node;
+    }
+    const worlds = [['Persistent', t('cB.Persistent')], ['Isekai', t('cB.Isekai')], ['Any', tr('anyWorld')]];
+    const modesOf = envelope => BATTLE_MODES.filter(mode => jpxConfigHasRules(envelope.config[mode]));
+    function meta(envelope) {
+        const detail = envelope.kind === 'stats' ? tr('stats') : envelope.mode ? jpxConfigModeLabel(envelope.mode) : tr('groupCount', { count: modesOf(envelope).length });
+        const execution = envelope.mode && envelope.config[envelope.mode]?.jpxPlusExecution;
+        return [envelope.title === detail ? '' : detail, execution?.element && execution.element !== 'auto' ? tr(execution.element) : '', worlds.find(([world]) => world === envelope.world)?.[1]].filter(Boolean).join(' · ');
+    }
+    const classifications = new WeakMap(), scenarios = ['General', ...BATTLE_TYPES];
+    function classify(envelope) {
+        if (classifications.has(envelope)) return classifications.get(envelope);
+        const modes = envelope.kind === 'battle-mode' ? [envelope.mode] : envelope.config ? modesOf(envelope).filter(mode => jpxConfigHasContent(envelope.config[mode])) : (envelope.modes || []);
+        const styles = [...new Set(modes.map(mode => mode.slice(0, mode.lastIndexOf('_'))))];
+        const battles = [...new Set(modes.map(mode => mode.slice(mode.lastIndexOf('_') + 1)))];
+        const elements = [...new Set(modes.map(mode => envelope.config?.[mode]?.jpxPlusExecution?.element).filter(value => ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(value)))];
+        const result = { modes, styles, battles, elements };
+        classifications.set(envelope, result); return result;
+    }
+    function typeOrder(a, b) {
+        const rank = entry => {
+            const data = classify(entry.envelope);
+            return [entry.envelope.kind === 'stats' ? BATTLE_STYLES.length + 2 : data.styles.length === 1 ? BATTLE_STYLES.indexOf(data.styles[0]) : BATTLE_STYLES.length,
+                data.battles.length === 1 ? scenarios.indexOf(data.battles[0]) : scenarios.length,
+                worlds.findIndex(([world]) => world === entry.envelope.world)];
+        };
+        const left = rank(a), right = rank(b);
+        return left.reduce((order, value, index) => order || value - right[index], 0);
+    }
+    function tags(envelope, choose = (key, value) => {
+        state[key] = value;
+        if (key === 'kind' && value === 'stats') state.style = state.scenario = '';
+        refreshFilters();
+    }) {
+        const data = classify(envelope), group = el('div', undefined, 'jpx-config-tags');
+        const add = (label, kind, key, value, title) => {
+            const tag = key && choose ? button(label, () => choose(key, value, label)) : el('span', label);
+            tag.className = 'jpx-config-tag'; tag.dataset.tagKind = kind;
+            if (value) tag.dataset.tagValue = value;
+            if (title) tag.title = title;
+            group.append(tag);
+        };
+        if (envelope.kind === 'stats') add(tr('stats'), 'kind', 'kind', 'stats');
+        else {
+            for (const [values, kind, key, summary] of [[data.styles, 'style', 'style', 'multiStyle'], [data.battles, 'scenario', 'scenario', 'multiBattle']]) {
+                if (values.length > 3) add(tr(summary), kind, null, 'mixed', values.map(value => t('cB.' + value)).join(' · '));
+                else for (const value of values) add(t('cB.' + value), kind, key, value);
+            }
+            for (const value of data.elements) add(tr(value), 'element', null, value);
+            if (envelope.kind === 'battle') add(data.modes.length ? tr('groupCount', { count: data.modes.length }) : tr('allBattle'), 'kind', null, 'battle');
+        }
+        add(worlds.find(([world]) => world === envelope.world)?.[1], 'world', envelope.world === 'Any' ? null : 'world', envelope.world);
+        return group;
+    }
+    const matchesApplied = (saved, current) => saved && current && (saved.mode ? [saved.mode] : saved.scopes).every(scope =>
+        JSON.stringify(scope === 'stats' ? current : current[scope]) === JSON.stringify(scope === 'stats' ? saved.config : saved.config[scope]));
+    function appliedContext() {
+        const version = [jpxConfigLibraryKey, prefix + 'cfgBattle', prefix + 'cfgBattle_isekai', prefix + 'cfgStats'].map(key => localStorage.getItem(key));
+        if (contextVersion?.every((raw, index) => raw === version[index])) return cachedContext;
+        const state = library.readState(), native = {}, saved = {};
+        for (const world of ['Persistent', 'Isekai', 'Any']) {
+            const key = world === 'Any' ? prefix + 'cfgStats' : prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '');
+            let current;
+            try { current = JSON.parse(localStorage.getItem(key) || 'null'); } catch { continue; }
+            saved[world] = current;
+            current ||= world === jpxConfigWorld() ? cfgBattle : world === 'Any' ? cfgStats : {};
+            if (world !== 'Any') {
+                const normalized = {};
+                mergeCfg(jpxConfigClone(current), defaultCfgBattle, normalized, 'battle');
+                // Explicit empty modes deliberately clear a scene and must stay empty.
+                for (const mode of BATTLE_MODES) if (current[mode] && !Object.keys(current[mode]).length) normalized[mode] = {};
+                current = normalized;
+            }
+            native[world] = current;
+        }
+        const active = {};
+        for (const world of ['Persistent', 'Isekai', 'Any']) {
+            const id = state.active?.[world];
+            if (id && matchesApplied(state.applied[world]?.[id], native[world])) active[world] = id;
+        }
+        contextVersion = version;
+        return cachedContext = { state, native, active, saved };
+    }
+    function currentApplied(entry, context = appliedContext()) {
+        const result = [];
+        for (const world of ['Persistent', 'Isekai', 'Any']) {
+            const saved = context.state.applied[world]?.[entry.id], current = context.native[world];
+            if (!saved || !current) continue;
+            if (matchesApplied(saved, current)) result.push({ ...saved, world });
+        }
+        return result;
+    }
+    function resetPage(page) {
+        cancelListDrag?.(); cancelListDrag = null;
+        state.storeDispose?.(); state.storeDispose = null;
+        root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
+        state.page = page; state.back = null; clearNotice(); root.replaceChildren();
+    }
+    async function confirmAction(title, options, content, { validate, focus } = {}) {
+        if (state.dialog) return null;
+        const focused = document.activeElement, overlay = el('div', undefined, 'jpx-config-overlay');
+        const box = el('section', undefined, 'jpx-config-confirm'); box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
+        const heading = el('h3', title); heading.id = getUniqueId('config-confirm'); box.setAttribute('aria-labelledby', heading.id); box.append(heading);
+        if (content) box.append(content);
+        const actions = el('div', undefined, 'jpx-config-actions'); box.append(actions); overlay.append(box);
+        const siblings = [...root.children]; siblings.forEach(node => node.inert = true); root.append(overlay);
+        return new Promise(resolve => {
+            const finish = value => {
+                overlay.remove(); state.dialog = null; siblings.forEach(node => node.inert = false);
+                if (focused?.isConnected) focused.focus({ preventScroll: true }); resolve(value);
+            };
+            state.dialog = finish;
+            for (const [value, label, primary] of options) actions.append(button(label, () => {
+                if (!validate || validate(value)) finish(value);
+            }, primary ? 'jpx-config-primary' : ''));
+            overlay.addEventListener('keydown', event => {
+                if (event.key === 'Escape') { event.stopPropagation(); event.preventDefault(); finish(null); }
+                if (event.key === 'Tab') {
+                    const controls = [...box.querySelectorAll('button,select,input')].filter(node => !node.disabled);
+                    const first = controls[0], last = controls.at(-1);
+                    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+                    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+                }
+            });
+            (focus || actions.querySelector('button'))?.focus();
+        });
+    }
+    function captureList() { if (state.page === 'mine' && body) state.scroll = body.scrollTop; }
+    function showMine() {
+        resetPage('mine');
+        listVersion = null;
+        toolbar = el('div', undefined, 'jpx-config-toolbar');
+        const nav = el('div', undefined, 'jpx-config-nav'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', tr('name'));
+        const mine = button(tr('mine'), () => {}); mine.setAttribute('aria-pressed', 'true');
+        const store = button(tr('store'), () => { captureList(); showStore(); }); store.setAttribute('aria-pressed', 'false');
+        nav.append(mine, store);
+        const search = el('input'); search.type = 'search'; search.placeholder = tr('search'); search.setAttribute('aria-label', tr('search')); search.value = state.query;
+        search.addEventListener('input', () => { state.query = search.value; refresh(); });
+        const queryBar = el('div', undefined, 'jpx-store-querybar');
+        const filters = el('div', undefined, 'jpx-store-filter-grid'); filters.id = getUniqueId('config-filters');
+        const toggle = button(tr('filters'), () => { state.filtersOpen = !state.filtersOpen; updateFilters(); }, 'jpx-store-filter-toggle');
+        toggle.setAttribute('aria-controls', filters.id); queryBar.append(search, toggle);
+        const controls = {};
+        for (const [key, label, choices] of [
+            ['world', 'world', [['', tr('allWorlds')], ...worlds.filter(([value]) => value !== 'Any')]],
+            ['style', 'style', [['', tr('allStyles')], ...BATTLE_STYLES.map(value => [value, t('cB.' + value)])]],
+            ['scenario', 'scenario', [['', tr('allBattles')], ...['General', ...BATTLE_TYPES].map(value => [value, t('cB.' + value)])]],
+            ['kind', 'type', [['', tr('allTypes')], ['battle-mode', tr('singleMode')], ['battle', tr('allBattle')], ['stats', tr('stats')]]]
+        ]) {
+            const control = select(choices, state[key]); controls[key] = control;
+            control.setAttribute('aria-label', tr(label)); control.dataset.configFilter = key;
+            control.addEventListener('change', () => {
+                state[key] = control.value;
+                if (key === 'kind' && state.kind === 'stats') state.style = state.scenario = '';
+                refresh();
+            });
+            filters.append(control);
+        }
+        const results = el('div', undefined, 'jpx-store-results');
+        resultCount = el('span', '', 'jpx-store-result-count'); resultCount.setAttribute('role', 'status');
+        const clear = button(tr('clearFilters'), () => {
+            state.query = state.world = state.style = state.scenario = state.kind = ''; search.value = ''; refresh();
+        }, 'jpx-store-clear');
+        const sort = select([['type', tr('typeSort')], ['updated', tr('latest')], ['name', tr('nameSort')], ['manual', tr('manualSort')]], state.sort);
+        sort.setAttribute('aria-label', tr('sort')); sort.dataset.configSort = '';
+        sort.addEventListener('change', () => {
+            state.sort = sort.value; refresh();
+            try { localStorage.setItem(sortKey, state.sort); } catch (cause) { error({ code: 'storageError' }); }
+        });
+        results.append(resultCount, clear, sort);
+        const header = el('div', undefined, 'jpx-config-list-header jpx-store-browse-header jpx-store-view-header'); header.append(filters, results);
+        function updateFilters() {
+            const active = Object.keys(controls).filter(key => state[key]).length;
+            toggle.textContent = tr('filters') + (active ? ' (' + active + ')' : '');
+            toggle.setAttribute('aria-expanded', String(state.filtersOpen)); filters.dataset.open = String(state.filtersOpen);
+            clear.hidden = !active && !state.query;
+            for (const [key, control] of Object.entries(controls)) {
+                control.value = state[key];
+                control.disabled = ['style', 'scenario'].includes(key) && state.kind === 'stats';
+            }
+        }
+        function refresh() { updateFilters(); state.scroll = 0; renderList(); body.scrollTop = 0; }
+        refreshFilters = refresh;
+        filters.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && state.filtersOpen && root.closest('.jpx-settings-mobile')) {
+                event.preventDefault(); event.stopPropagation(); state.filtersOpen = false; updateFilters(); toggle.focus();
+            }
+        });
+        const actions = el('div', undefined, 'jpx-config-actions');
+        actions.append(button(tr('new'), () => { captureList(); showSettings(); }, 'jpx-config-primary'), button(tr('import'), () => importFile()));
+        toolbar.append(nav, queryBar, actions);
+        body = el('div', undefined, 'jpx-config-body'); list = el('div', undefined, 'jpx-config-list'); body.append(list);
+        root.append(toolbar, header, notice, body); updateFilters(); renderList(); body.scrollTop = state.scroll;
+        cancelListDrag = bindStatsListDrag(list, moveEntry, { row: '.jpx-config-row', handle: '.jpx-config-grip', idKey: 'configId', scroller: body, previewClass: 'jpx-config-drag-preview',
+            preview: row => [createSettingsIcon('grip'), el('strong', row.querySelector('.jpx-config-title strong').textContent)], afterMove: () => {} });
+    }
+    function visibleSavedEntry(entry, application = appliedContext()) {
+        // Hide only untouched placeholders from older migrations, in every picker.
+        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id)) {
+            const mode = entry.envelope.mode, saved = application.saved[entry.envelope.world];
+            const rules = saved?.[mode] || (mode === '1H_Mage_General' ? saved?.Battlecaster_General : null);
+            return !!(jpxConfigHasContent(entry.envelope.config[mode]) && jpxConfigHasContent(rules));
+        }
+        return true;
+    }
+    function renderList() {
+        cancelListDrag?.();
+        const normalize = value => String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/[_·/\-]+/g, ' ').replace(/\s+/g, ' ').trim();
+        const query = normalize(state.query), words = query.split(' ').filter(Boolean);
+        const application = appliedContext();
+        const detectedStyle = getDetectedJpxBattleStyle();
+        const detectedMode = detectedStyle ? getBattleMode(detectedStyle) : '';
+        const version = [application, query, detectedStyle, detectedMode, state.world, state.style, state.scenario, state.kind, state.sort,
+            localStorage.getItem(jpxLoadoutKey('Persistent')), localStorage.getItem(jpxLoadoutKey('Isekai'))];
+        if (listVersion?.every((value, index) => value === version[index])) { ensureJpxModeDetection(); return; }
+        const fragment = document.createDocumentFragment();
+        const loadouts = new Map(), entryBindings = new Map();
+        for (const binding of application.state.bindings || []) {
+            if (!loadouts.has(binding.world)) loadouts.set(binding.world, getJpxLoadoutCatalog(binding.world));
+            if (!entryBindings.has(binding.id)) entryBindings.set(binding.id, []);
+            entryBindings.get(binding.id).push(binding);
+        }
+        if (orderedContext !== application || orderedBy !== state.sort) {
+            orderedEntries = [...application.state.entries];
+            if (state.sort !== 'manual') orderedEntries.sort((a, b) =>
+                (state.sort === 'type' ? typeOrder(a, b) : state.sort === 'updated' ? Date.parse(b.updatedAt) - Date.parse(a.updatedAt) : 0) ||
+                collator.compare(a.envelope.title, b.envelope.title) || a.id.localeCompare(b.id));
+            orderedContext = application; orderedBy = state.sort;
+        }
+        const entries = orderedEntries.filter(entry => {
+            if (!visibleSavedEntry(entry, application)) return false;
+            const envelope = entry.envelope, data = classify(envelope);
+            return (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
+                (!state.kind || envelope.kind === state.kind) &&
+                ((!state.style && !state.scenario) || data.modes.some(mode => (!state.style || mode.slice(0, mode.lastIndexOf('_')) === state.style) &&
+                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
+                words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
+        });
+        for (const entry of entries) {
+            const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;
+            const applied = currentApplied(entry, application), current = applied.some(item => {
+                if (item.world !== 'Any' && item.world !== jpxConfigWorld()) return false;
+                const selected = application.active[item.world];
+                return selected ? selected === entry.id : item.world === 'Any' || !!detectedMode && item.scopes.includes(detectedMode);
+            }),
+                outdated = applied.some(item => item.revision !== entry.revision);
+            row.dataset.active = String(current);
+            const info = el('div', undefined, 'jpx-config-info'), title = el('div', undefined, 'jpx-config-title');
+            if (state.sort === 'manual') {
+                const grip = button(t('cGen.dragRule'), () => {}, 'jpx-config-grip'); grip.replaceChildren(createSettingsIcon('grip'));
+                grip.title = t('cGen.dragRule'); grip.setAttribute('aria-label', t('cGen.dragRule') + ': ' + entry.envelope.title);
+                grip.addEventListener('keydown', event => {
+                    if (!['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+                    event.preventDefault(); event.stopPropagation();
+                    const rows = [...list.querySelectorAll('.jpx-config-row')], from = rows.findIndex(row => row.dataset.configId === entry.id);
+                    const to = event.key === 'Home' ? 0 : event.key === 'End' ? rows.length - 1 : from + (event.key === 'ArrowUp' ? -1 : 1);
+                    moveEntry(entry.id, Math.max(0, Math.min(rows.length - 1, to)));
+                }); title.append(grip);
+            }
+            title.append(el('strong', entry.envelope.title));
+            if (current) title.append(el('span', tr('inUse'), 'jpx-config-status'));
+            if (detectedStyle && classify(entry.envelope).styles.includes(detectedStyle) &&
+                ['Any', jpxConfigWorld()].includes(entry.envelope.world)) title.append(el('span', tr('currentStyle'), 'jpx-config-detected'));
+            info.append(title, tags(entry.envelope));
+            const bindings = entryBindings.get(entry.id) || [];
+            if (bindings.length) {
+                const label = bindings.map(binding => bindingLabel(binding, loadouts.get(binding.world))).join(' / ');
+                const bound = button(label, () => showBindings(entry), 'jpx-config-binding');
+                bound.title = tr('bind') + ': ' + label; info.append(bound);
+            }
+            const actions = el('div', undefined, 'jpx-config-actions');
+            if (!current || outdated) actions.append(button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary'));
+            actions.append(button(tr('edit'), () => { captureList(); chooseEditor(entry); }));
+            const more = button(tr('more'), () => showMore(more, entry), 'jpx-config-more');
+            more.replaceChildren(createSettingsIcon('more')); more.setAttribute('aria-label', tr('more') + ': ' + entry.envelope.title); more.title = tr('more');
+            actions.append(more); row.append(info, actions); fragment.append(row);
+        }
+        resultCount.textContent = tr('resultCount', { count: entries.length });
+        if (!entries.length) fragment.append(el('p', tr(query || state.world || state.style || state.scenario || state.kind ? 'noMatches' : 'empty'), 'jpx-config-empty'));
+        list.replaceChildren(fragment);
+        listVersion = version;
+        ensureJpxModeDetection();
+    }
+    function moveEntry(id, destination) {
+        if (state.sort !== 'manual') return;
+        const ids = [...list.querySelectorAll('.jpx-config-row')].map(row => row.dataset.configId), from = ids.indexOf(id);
+        if (from < 0 || destination < 0 || destination >= ids.length || destination === from) return;
+        const reordered = [...ids]; reordered.splice(from, 1); reordered.splice(destination, 0, id);
+        try {
+            captureList(); library.reorder(reordered, ids); renderList(); body.scrollTop = state.scroll;
+            [...list.children].find(row => row.dataset.configId === id)?.querySelector('.jpx-config-grip')?.focus({ preventScroll: true });
+        } catch (cause) { error(cause); }
+    }
+    function showMore(anchor, entry) {
+        if (anchor.popoverTargetElement?.isConnected) return;
+        root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
+        const menu = el('div', undefined, 'jpx-config-menu'); menu.setAttribute('popover', 'auto'); menu.setAttribute('role', 'group');
+        const add = (label, action, disabled = false) => {
+            const item = button(label.startsWith('cGen.') ? t(label) : tr(label), async () => { menu.hidePopover(); await action(); }); item.disabled = disabled; menu.append(item);
+        };
+        if (state.sort === 'manual') {
+            const rows = [...list.querySelectorAll('.jpx-config-row')], index = rows.findIndex(row => row.dataset.configId === entry.id);
+            for (const [label, destination] of [['moveTop', 0], ['moveUp', index - 1], ['moveDown', index + 1], ['moveBottom', rows.length - 1]])
+                add('cGen.' + label, () => moveEntry(entry.id, destination), destination < 0 || destination >= rows.length || destination === index);
+        }
+        add('rename', () => renameEntry(entry, anchor));
+        if (entry.envelope.kind !== 'stats') add('bind', () => showBindings(entry));
+        add('settings', () => { captureList(); showSettings(entry); });
+        add('duplicate', () => { const envelope = jpxConfigClone(entry.envelope); envelope.title = (envelope.title + ' · ' + tr('copySuffix')).slice(0,100); library.save(envelope, { source: entry.source }); showMine(); });
+        add('export', () => exportEntry(entry));
+        if (entry.envelope.kind === 'battle-mode') add('reset', async () => {
+            if (await confirmAction(tr('resetConfirm'), [['cancel', tr('cancel')], ['reset', tr('reset'), true]]) !== 'reset') return;
+            captureList(); openEditor(entry, entry.envelope.mode);
+            state.editor.history.run(tr('reset'), () => {
+                const mode = entry.envelope.mode, execution = state.editor.draft.envelope.config[mode].jpxPlusExecution;
+                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { supports: [], attacks: [] });
+                if (execution) state.editor.draft.envelope.config[mode].jpxPlusExecution = execution;
+                state.editor.redraw();
+            });
+        });
+        add('share', () => { captureList(); showStore(entry.envelope); });
+        add('delete', async () => {
+            if (await confirmAction(tr('deleteConfirm'), [['cancel', tr('cancel')], ['delete', tr('delete'), true]]) !== 'delete') return;
+            if (currentApplied(entry).length) { notify(tr('appliedConfig')); return; }
+            for (const world of ['Persistent', 'Isekai', 'Any']) library.clearApplied(world, entry.id);
+            library.remove(entry.id); refreshJpxSelectedConfig(); showMine(); notify(tr('deleted'));
+        }, currentApplied(entry).length > 0);
+        // Keep the opener linked so native light-dismiss and a second click agree.
+        menu.style.visibility = 'hidden';
+        root.append(menu); anchor.popoverTargetElement = menu;
+        menu.addEventListener('toggle', () => {
+            if (menu.matches(':popover-open')) {
+                positionSettingsPopover(anchor, menu); menu.style.removeProperty('visibility');
+                menu.querySelector('button')?.focus({ preventScroll: true });
+            } else {
+                menu.remove(); if (anchor.popoverTargetElement === menu) anchor.popoverTargetElement = null;
+            }
+        });
+    }
+    async function renameEntry(entry, anchor) {
+        captureList(); anchor.focus({ preventScroll: true });
+        const input = el('input'); input.type = 'text'; input.required = true; input.maxLength = 100;
+        input.pattern = '.*\\S.*'; input.value = entry.envelope.title; input.setAttribute('aria-label', tr('title'));
+        const content = el('div', undefined, 'jpx-config-rename'); content.append(input);
+        input.addEventListener('keydown', event => {
+            if (event.key === 'Enter' && !event.isComposing) {
+                event.preventDefault(); input.closest('.jpx-config-confirm').querySelector('.jpx-config-primary').click();
+            }
+        });
+        const answer = confirmAction(tr('rename'), [['cancel', tr('cancel')], ['save', tr('save'), true]], content,
+            { validate: value => value !== 'save' || input.reportValidity(), focus: input });
+        input.select();
+        if (await answer !== 'save' || state.disposed || state.page !== 'mine') return;
+        library.rename(entry.id, input.value, entry.revision);
+        renderList(); body.scrollTop = state.scroll;
+        [...list.children].find(row => row.dataset.configId === entry.id)?.querySelector('.jpx-config-more')?.focus({ preventScroll: true });
+        notify(tr('saved'));
+    }
+    function exportEntry(entry) {
+        const blob = new Blob([JSON.stringify(entry.envelope.config, null, 2)], { type: 'application/json;charset=utf-8' });
+        const url = URL.createObjectURL(blob), anchor = el('a'); anchor.href = url;
+        anchor.download = entry.envelope.title.replace(/[\\/:*?"<>|]/g, '_') + '.json'; anchor.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    function showSettings(entry, imported) {
+        resetPage('settings');
+        const header = el('div', undefined, 'jpx-config-editor-header'); header.append(backButton(showMine), el('strong', tr(entry ? 'settings' : imported ? 'importWorld' : 'new')));
+        body = el('div', undefined, 'jpx-config-body');
+        const form = el('form', undefined, 'jpx-config-form');
+        const envelope = entry ? jpxConfigClone(entry.envelope) : imported;
+        const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope?.title || '';
+        const mode = envelope?.mode || getBattleMode('OneHanded'), split = mode.lastIndexOf('_');
+        const existing = envelope?.mode ? envelope.config[envelope.mode]?.jpxPlusExecution : null;
+        const style = select([['auto', tr('auto')], ...BATTLE_STYLES.map(value => [value, t('cB.' + value)])], existing?.style || (entry ? 'auto' : mode.slice(0,split)));
+        const element = select([['auto', tr('auto')], ...['fire','cold','wind','elec','holy','dark'].map(value => [value,tr(value)])], existing?.element || 'auto');
+        const world = select(worlds, envelope?.world || jpxConfigWorld());
+        const scenario = select(['General', ...BATTLE_TYPES].map(value => [value, t('cB.' + value)]), mode.slice(split + 1));
+        const single = !envelope || envelope.kind === 'battle-mode';
+        form.append(field(tr('title'), title, true));
+        if (single) form.append(field(tr('style'), style), field(tr('element'), element));
+        form.append(field(tr('world'), world));
+        if (single) form.append(field(tr('scenario'), scenario));
+        if (envelope?.kind === 'stats') { world.value = 'Any'; world.disabled = true; }
+        // An imported mode keeps its exact key. Changing a saved key is an explicit
+        // config-setting action, never an automatic remapping during import.
+        if (imported && single) { style.value = 'auto'; style.disabled = true; scenario.disabled = true; element.disabled = true; }
+        const actions = el('div', undefined, 'jpx-config-actions jpx-config-wide');
+        actions.append(button(tr('cancel'), showMine));
+        const submit = el('button', tr(entry || imported ? 'save' : 'create'), 'jpx-config-primary'); submit.type = 'submit'; actions.append(submit); form.append(actions);
+        form.addEventListener('submit', event => {
+            event.preventDefault(); if (!form.reportValidity()) return;
+            try {
+                let next = envelope ? jpxConfigClone(envelope) : { schemaVersion:1, kind:'battle-mode', title:'', description:'', world:world.value, scriptVersion:window.JPXPlus.version, config:{battleVersion:defaultCfgBattle.battleVersion} };
+                next.title = title.value.trim(); if (!next.title) { title.focus(); return; } next.world = world.value;
+                if (single && !imported) {
+                    const selectedStyle = style.value === 'auto' ? mode.slice(0,split) : style.value;
+                    const nextMode = selectedStyle + '_' + scenario.value;
+                    const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { supports:[],attacks:[] });
+                    if (next.mode && next.mode !== nextMode) delete next.config[next.mode];
+                    if (style.value !== 'auto' || element.value !== 'auto') rules.jpxPlusExecution = { style:style.value, element:element.value };
+                    else delete rules.jpxPlusExecution;
+                    next.mode = nextMode; next.config[nextMode] = rules;
+                }
+                const saved = library.save(next, entry ? { id:entry.id, source:entry.source } : {});
+                if (!entry && !imported) chooseEditor(saved); else { showMine(); notify(tr(imported ? 'imported' : 'saved')); }
+            } catch (cause) { error(cause); }
+        });
+        body.append(form); root.append(header,notice,body); title.focus();
+    }
+    function importFile() {
+        const input = el('input'); input.type = 'file'; input.accept = '.txt,.json';
+        input.addEventListener('change', async () => {
+            const file = input.files[0]; if (!file) return;
+            try {
+                if (file.size > 2 * 1024 * 1024) throw Object.assign(new Error(), { code:'tooLarge' });
+                const value = JSON.parse(await file.text(), (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
+                let envelope;
+                if (value?.schemaVersion === 1 && value.config) envelope = value;
+                else {
+                    const config = value, modes = BATTLE_MODES.filter(mode => Object.hasOwn(config,mode));
+                    if (config.Battlecaster_General && !modes.includes('1H_Mage_General')) modes.push('Battlecaster_General');
+                    const stats = !!config.statsVersion;
+                    const mode = modes.length === 1 && Object.keys(config).every(key => ['battleVersion','version',modes[0]].includes(key)) ? modes[0] : null;
+                    envelope = { schemaVersion:1, kind:stats?'stats':mode?'battle-mode':'battle', title:file.name.replace(/\.(json|txt)$/i,'').slice(0,100), description:'', world:stats?'Any':jpxConfigWorld(), scriptVersion:window.JPXPlus.version, ...(mode?{mode}:{}), config };
+                }
+                // Validate in a detached temporary store so the naming form never
+                // writes a malformed archive to the real library.
+                const temporary = new Map();
+                const validator = createJpxConfigLibrary({ storage:{getItem:key=>temporary.get(key)||null,setItem:(key,value)=>temporary.set(key,value)}, key:'check', modes:BATTLE_MODES,battleVersion:defaultCfgBattle.battleVersion,statsVersion:defaultCfgStats.statsVersion });
+                envelope = validator.save(envelope).envelope;
+                captureList(); showSettings(null,envelope);
+            } catch(cause) { error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
+        }); input.click();
+    }
+    function bindingLabel(binding, catalog = getJpxLoadoutCatalog(binding.world)) {
+        const persona = catalog.personas.find(item => item.id === binding.personaId);
+        const set = persona?.sets.find(item => item.id === binding.setId);
+        return [t('cB.' + binding.world), persona?.name || tr('personaNumber', { id: binding.personaId }),
+            set?.name || tr('setNumber', { id: binding.setId })].join(' · ');
+    }
+    async function showBindings(entry) {
+        if (library.get(entry.id)?.revision !== entry.revision) throw Object.assign(new Error(), { code: 'libraryChanged' });
+        initJpxLoadoutBindings();
+        if (state.disposed || !root.isConnected) return;
+        const content = el('div', undefined, 'jpx-config-bindings'), assignments = el('div', undefined, 'jpx-config-binding-list');
+        const world = select(worlds.slice(0, 2), entry.envelope.world === 'Any' ? jpxConfigWorld() : entry.envelope.world);
+        const persona = select([], ''), set = select([], ''), hint = el('p', undefined, 'jpx-config-binding-hint');
+        const form = el('div', undefined, 'jpx-config-binding-fields');
+        world.dataset.bindingWorld = ''; persona.dataset.bindingPersona = ''; set.dataset.bindingSet = '';
+        form.append(field(tr('world'), world), field(tr('persona'), persona), field(tr('equipSet'), set));
+        const fill = (select, values, value) => {
+            select.replaceChildren();
+            for (const [id, name] of values) { const option = el('option', name); option.value = id; select.append(option); }
+            if (values.some(([id]) => id === value)) select.value = value;
+            select.disabled = !values.length;
+        };
+        function updateSets() {
+            const catalog = getJpxLoadoutCatalog(world.value), known = catalog.personas.find(item => item.id === persona.value);
+            const ids = [...new Set([...catalog.sets, ...(known?.sets || []).map(item => item.id)])].sort((a, b) => Number(a) - Number(b));
+            fill(set, ids.map(id => [id, known?.sets.find(item => item.id === id)?.name || tr('setNumber', { id })]),
+                catalog.current?.personaId === persona.value ? catalog.current.setId : set.value);
+            hint.hidden = !!persona.value && !!set.value;
+            hint.textContent = tr(log || document.querySelector('#riddlemaster') ? 'bindingUnavailable' : 'bindingUnknown');
+            const submit = root.querySelector('.jpx-config-confirm .jpx-config-primary');
+            if (submit) submit.disabled = !persona.value || !set.value;
+        }
+        function updatePersonas() {
+            const catalog = getJpxLoadoutCatalog(world.value);
+            fill(persona, catalog.personas.map(item => [item.id, item.name || tr('personaNumber', { id: item.id })]), catalog.current?.personaId || persona.value);
+            updateSets();
+        }
+        function drawAssignments() {
+            assignments.replaceChildren();
+            for (const binding of library.readState().bindings?.filter(item => item.id === entry.id) || []) {
+                const row = el('div', undefined, 'jpx-config-binding-item');
+                row.append(el('span', bindingLabel(binding)), button(tr('unbind'), () => {
+                    library.removeBinding(binding, entry.id); drawAssignments();
+                    (assignments.querySelector('button') || (persona.disabled ? world : persona)).focus({ preventScroll: true });
+                    window.dispatchEvent(new Event('jpx:config-library'));
+                })); assignments.append(row);
+            }
+        }
+        world.addEventListener('change', updatePersonas); persona.addEventListener('change', updateSets);
+        updatePersonas(); drawAssignments(); content.append(assignments, form, hint);
+        if (entry.envelope.kind === 'battle') content.append(el('p', tr('applyAll')));
+        if (jpxConfigContainsCode(entry.envelope)) content.append(el('p', tr('customCode')));
+        const choicePromise = confirmAction(tr('bind'), [['close', tr('close')], ['bind', tr('bind'), true]], content,
+            { focus: persona.disabled ? world : persona, validate: value => value !== 'bind' || !!persona.value && !!set.value });
+        updateSets();
+        if (!jpxLoadoutConfirmed) {
+            ensureJpxModeDetection(true).then(() => { if (content.isConnected) updatePersonas(); });
+        }
+        const choice = await choicePromise;
+        if (choice !== 'bind') return;
+        const context = { world: world.value, personaId: persona.value, setId: set.value };
+        const previous = library.readState().bindings?.find(item => jpxLoadoutSame(item, context));
+        if (previous && previous.id !== entry.id) {
+            const previousName = library.get(previous.id)?.envelope.title || '';
+            if (await confirmAction(tr('replaceBinding', { name: previousName }), [['cancel', tr('cancel')], ['bind', tr('bind'), true]]) !== 'bind') return;
+        }
+        library.setBinding(context, entry.id, entry.revision, previous?.id || null);
+        if (jpxLoadoutSame(jpxLoadoutConfirmed, context)) applyJpxLoadoutBinding(context, true);
+        window.dispatchEvent(new Event('jpx:config-library')); notify(tr('bound'));
+    }
+    async function applyEntry(entry) {
+        if (library.get(entry.id)?.revision !== entry.revision) { notify(tr('libraryChanged'), true); return; }
+        const envelope = entry.envelope, stats = envelope.kind === 'stats';
+        if (envelope.kind === 'battle-mode' && !jpxConfigHasRules(envelope.config[envelope.mode])) throw Object.assign(new Error(), { code: 'invalidConfig' });
+        let world = stats ? 'Any' : envelope.world === 'Any' ? jpxConfigWorld() : envelope.world;
+        const content = el('div');
+        if (envelope.kind === 'battle') content.append(el('p', tr('applyAll')));
+        if (!stats) {
+            const target = select(worlds.slice(0,2),world); content.append(field(tr('applyWorld'),target));
+            target.addEventListener('change',()=>{world=target.value;});
+        }
+        const custom = jpxConfigContainsCode(envelope);
+        if(custom) content.append(el('p',tr('customCode')));
+        if (envelope.kind==='battle'||envelope.world==='Any'||world!==jpxConfigWorld()||custom) {
+            if(await confirmAction(tr('applyScope'),[['cancel',tr('cancel')],['apply',tr('apply'),true]],content)!=='apply')return;
+        }
+        if (library.get(entry.id)?.revision !== entry.revision) { notify(tr('libraryChanged'), true); return; }
+        const paused = commitJpxConfigEntry(entry, world, hooks.onApplied);
+        captureList();showMine();notify(tr(paused?'applyPaused':'applied'));
+    }
+    function chooseEditor(entry) {
+        const modes=modesOf(entry.envelope);
+        if(entry.envelope.kind==='stats'){openStatsEditor(entry);return;}
+        if(modes.length===1){openEditor(entry,modes[0]);return;}
+        resetPage('groups');const header=el('div',undefined,'jpx-config-editor-header');header.append(backButton(showMine),el('strong',entry.envelope.title));
+        body=el('div',undefined,'jpx-config-body');
+        for(const mode of modes)body.append(button(jpxConfigModeLabel(mode),()=>openEditor(entry,mode),'jpx-config-group'));
+        root.append(header,notice,body);
+    }
+    function openStatsEditor(entry){
+        // A detached schema editor uses the same fields without touching live cfgStats.
+        openEditor(entry,null);
+    }
+    function openEditor(entry,mode){
+        resetPage('editor');
+        const draft=jpxConfigClone(entry),editor=el('div',undefined,'jpx-config-editor');
+        const header=el('div',undefined,'jpx-config-editor-header');
+        const back=backButton(()=>leave(showMine));header.append(back,el('strong',entry.envelope.title));
+        const content=el('div',undefined,'jpx-config-editor-content'), footer=el('div',undefined,'jpx-config-editor-footer');
+        const undoButton=button(tr('undo'),()=>history.undo()),redoButton=button(tr('redo'),()=>history.redo());
+        const saveButton=button(tr('save'),()=>saveEditor(),'jpx-config-primary');
+        footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);root.append(notice,editor);
+        const previousHistory=settingsEditHistory;
+        state.editor={draft,mode,baseline:'',previousHistory,revision:entry.revision,history:null};
+        const draw=()=>{
+            content.replaceChildren();
+            if(mode){const section=el('div');content.append(section);renderBattleRuleSections(section,cfgBattleSchema.properties.find(field=>field.key==='modes').itemSchema,draft.envelope.config[mode],mode);}
+            else{content.classList.add('jpx-config-stats-editor');content.style.overflow='auto';renderSchema(content,cfgStatsSchema,draft.envelope.config);}
+        };
+        state.editor.redraw=draw;
+        draw();state.editor.baseline=JSON.stringify(draft.envelope);
+        const capture=()=>{
+            const expanded=[];
+            const visit=(value,path)=>{
+                if(!value||typeof value!=='object')return;
+                if(fieldRenderers.expandedRuleItems.has(value))expanded.push(path);
+                Object.entries(value).forEach(([key,child])=>visit(child,[...path,key]));
+            };
+            visit(draft.envelope.config,[]);
+            for(const panel of content.querySelectorAll('.jpx-rule-section:not([hidden])'))
+                battleRulesView.scroll[mode+':'+panel.dataset.fieldKey]=panel.querySelector('.jpx-rule-scroll').scrollTop;
+            return {value:JSON.stringify(draft.envelope),view:jpxConfigClone(battleRulesView),expanded,
+                scroll:[...content.querySelectorAll('.jpx-rule-scroll')].map(node=>node.scrollTop)};
+        };
+        const entries=[];let position=0,restoring=false,pending=null,typing=null,typedAt=0;
+        const update=()=>{undoButton.disabled=position===0;redoButton.disabled=position===entries.length;saveButton.disabled=!dirty();};
+        const finish=(before,key)=>{
+            if(restoring||!before)return;const after=capture();if(before.value===after.value)return;
+            if(key&&typing===key&&position===entries.length&&Date.now()-typedAt<700)entries.at(-1).after=after;
+            else{entries.splice(position);entries.push({before,after});if(entries.length>60)entries.shift();position=entries.length;}
+            typing=key;typedAt=Date.now();update();
+        };
+        const restore=snapshot=>{
+            restoring=true;draft.envelope=JSON.parse(snapshot.value);battleRulesView=jpxConfigClone(snapshot.view);
+            fieldRenderers.expandedRuleItems=new WeakSet();
+            for(const path of snapshot.expanded){const value=path.reduce((item,key)=>item?.[key],draft.envelope.config);if(value&&typeof value==='object')fieldRenderers.expandedRuleItems.add(value);}
+            try{draw();[...content.querySelectorAll('.jpx-rule-scroll')].forEach((node,index)=>node.scrollTop=snapshot.scroll[index]||0);}finally{restoring=false;typing=null;update();}
+        };
+        const beforeInput=event=>{if(event.target.matches('input,select,textarea'))pending=capture();};
+        const afterInput=event=>{finish(pending,event.type==='input'?event.target:null);pending=null;};
+        for(const type of ['input','change']){editor.addEventListener(type,beforeInput,true);editor.addEventListener(type,afterInput);}
+        const history={
+            run(label,action){const before=capture();try{return action();}finally{finish(before,null);}},
+            undo(){if(position>0)restore(entries[--position].before);},redo(){if(position<entries.length)restore(entries[position++].after);},
+            flushColorEdit(){},breakTypingGroup(){typing=null;},
+            dispose(){for(const type of ['input','change']){editor.removeEventListener(type,beforeInput,true);editor.removeEventListener(type,afterInput);}}
+        };
+        editor.addEventListener('keydown',event=>{
+            if(!(event.ctrlKey||event.metaKey)||event.altKey||event.isComposing||jpxUtils.keyCaptureController||event.target.closest('input,textarea,[contenteditable=true]'))return;
+            if(!['z','y'].includes(event.key.toLowerCase()))return;event.preventDefault();event.stopPropagation();
+            if(event.key.toLowerCase()==='y'||event.shiftKey)history.redo();else history.undo();
+        });
+        state.editor.history=history;settingsEditHistory=history;update();
+        (root.closest('.jpx-settings-mobile') ? document.getElementById('close-button') : back).focus({preventScroll:true});
+    }
+    const dirty=()=>!!state.editor&&JSON.stringify(state.editor.draft.envelope)!==state.editor.baseline;
+    function disposeEditor(){
+        if(!state.editor)return;fieldRenderers.dragState.cancel?.();jpxUtils.keyCaptureController?.abort();
+        state.editor.history.dispose();settingsEditHistory=state.editor.previousHistory;state.editor=null;
+    }
+    function saveEditor(){
+        const edit=state.editor;if(!edit)return true;
+        const current=library.get(edit.draft.id);
+        if(!current||current.revision!==edit.revision){notify(tr('libraryChanged'));return false;}
+        try{library.save(edit.draft.envelope,{id:edit.draft.id,source:edit.draft.source});disposeEditor();showMine();notify(tr('saved'));return true;}
+        catch(cause){error(cause);return false;}
+    }
+    async function leave(next){
+        if(state.dialog)return;
+        if(dirty()){
+            const choice=await confirmAction(tr('saveChanges'),[['keep',tr('keepEditing')],['discard',tr('discard')],['save',tr('save'),true]]);
+            if(!choice||choice==='keep')return;
+            if(choice==='save'&&!saveEditor())return;
+        }
+        disposeEditor();if(state.page==='editor')showMine();next();
+    }
+    function showStore(share){
+        resetPage('store');
+        const top=el('div',undefined,'jpx-config-toolbar jpx-config-store-header'),nav=el('div',undefined,'jpx-config-nav');
+        const mine=button(tr('mine'),showMine),store=button(tr('store'),()=>showStore());
+        mine.setAttribute('aria-pressed','false');store.setAttribute('aria-pressed','true');nav.append(mine,store);top.append(nav);root.append(top,notice);
+        const mount=el('div');mount.style.cssText='display:flex;flex:1;min-height:0;min-width:0;overflow:hidden';root.append(mount);
+        jpxEmbeddedStore ||= createJpxIntegratedStore(window,t);
+        state.storeDispose=jpxEmbeddedStore.render(mount,{
+            notify,
+            renderTags:(envelope,choose)=>tags(envelope,choose||null),
+            compareTypes:(a,b)=>typeOrder({envelope:a},{envelope:b}),
+            confirm:(title,description,action)=>confirmAction(title,[['cancel',tr('cancel')],['confirm',action,true]],el('p',description)).then(value=>value==='confirm'),
+            listShareConfigs(){
+                const application=appliedContext();
+                return application.state.entries.filter(entry=>visibleSavedEntry(entry,application))
+                    .sort((a,b)=>Date.parse(b.updatedAt)-Date.parse(a.updatedAt)||collator.compare(a.envelope.title,b.envelope.title));
+            },
+            getShareConfig:id=>library.get(id),
+            async saveConfig(envelope,origin){
+                const source=origin?.source,previous=source&&library.list().find(entry=>entry.source?.repository===source.repository&&entry.source?.id===source.id);
+                let id;
+                if(previous){const choice=await confirmAction(tr('sourceExists'),[['cancel',tr('cancel')],['copy',tr('keepCopy')],['update',tr('updateCopy'),true]]);if(!choice||choice==='cancel')return false;if(choice==='update'){
+                    if(library.get(previous.id)?.revision!==previous.revision){notify(tr('libraryChanged'));return false;}
+                    id=previous.id;
+                }}
+                library.save(envelope,{...(id?{id}:{}),...(source?{source}:{})});notify(tr('savedFromStore'));return true;
+            }
+        },{...(share?{share:jpxConfigClone(share)}:{}),onBack:showMine,toolbarHost:top});
+    }
+    const beforeUnload=event=>{if(dirty()){event.preventDefault();event.returnValue='';}};
+    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}};
+    const onStorage=event=>{if(event.key===jpxConfigLibraryKey)changed();};
+    const migrationError=()=>notify(tr('storageError'));
+    window.addEventListener('beforeunload',beforeUnload);window.addEventListener('storage',onStorage);
+    window.addEventListener('jpx:config-library',changed);window.addEventListener('jpx:legacy-config-error',migrationError);
+    window.addEventListener('jpx:mode-detected',changed);
+    window.addEventListener('jpx:loadout-detected',changed);
+    const controller={
+        isEditing:()=>!!state.editor,leave,
+        back(){
+            if(state.dialog)return true;
+            if(state.page==='store')return state.storeDispose?.back?.()||false;
+            if(!state.back)return false;
+            Promise.resolve().then(state.back).catch(error);return true;
+        },
+        onHidden(){cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
+        onShown(){state.storeDispose?.resume?.();changed();},
+        dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();window.removeEventListener('beforeunload',beforeUnload);window.removeEventListener('storage',onStorage);window.removeEventListener('jpx:config-library',changed);window.removeEventListener('jpx:mode-detected',changed);window.removeEventListener('jpx:loadout-detected',changed);window.removeEventListener('jpx:legacy-config-error',migrationError);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
+    };
+    jpxConfigManagerView=controller;
+    try{seedJpxConfigLibrary();showMine();window.dispatchEvent(new Event('jpx:legacy-config-request'));}
+    catch(cause){root.append(notice);error(cause);}
+    return controller;
+}
+
+// Persona/set observations stay outside native rules and exported configs.
+const jpxLoadoutSlot = value => /^[1-9]\d{0,5}$/.test(String(value || '')) ? String(value) : '';
+const jpxLoadoutKey = (world = jpxConfigWorld()) => prefix + 'loadouts_v1' + (world === 'Isekai' ? '_isekai' : '');
+const jpxLoadoutSame = (a, b) => !!a && !!b && a.world === b.world && a.personaId === b.personaId && a.setId === b.setId;
+let jpxLoadoutConfirmed = null, jpxLoadoutPending = false, jpxLoadoutBusy = false, jpxLoadoutInitialized = false;
+
+function readJpxLoadoutCatalog(world = jpxConfigWorld()) {
+    let saved;
+    try {
+        const raw = localStorage.getItem(jpxLoadoutKey(world));
+        if (raw?.length < 100000) saved = JSON.parse(raw);
+    } catch { /* Missing observations can be recovered from the game. */ }
+    const catalog = { version: 1, personas: [], sets: [] };
+    if (saved?.version !== 1) return catalog;
+    if (Array.isArray(saved.sets)) catalog.sets = [...new Set(saved.sets.map(jpxLoadoutSlot).filter(Boolean))].slice(0, 100);
+    if (Array.isArray(saved.personas)) for (const item of saved.personas.slice(0, 100)) {
+        if (!jpxLoadoutSlot(item?.id) || catalog.personas.some(persona => persona.id === String(item.id))) continue;
+        const persona = { id: String(item.id), name: String(item.name || '').slice(0, 100), sets: [] };
+        if (Array.isArray(item.sets)) for (const set of item.sets.slice(0, 100)) {
+            if (jpxLoadoutSlot(set?.id)) persona.sets.push({ id: String(set.id), name: String(set.name || '').slice(0, 100) });
+        }
+        catalog.personas.push(persona);
+    }
+    if (saved.current?.world === world && jpxLoadoutSlot(saved.current.personaId) && jpxLoadoutSlot(saved.current.setId))
+        catalog.current = { world, personaId: String(saved.current.personaId), setId: String(saved.current.setId) };
+    return catalog;
+}
+
+function readJpxHvutLoadout(world = jpxConfigWorld()) {
+    try {
+        const raw = localStorage.getItem((world === 'Isekai' ? 'hvuti' : 'hvut') + '_persona');
+        if (!raw || raw.length > 100000) return null;
+        const data = JSON.parse(raw), personas = [];
+        if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+        for (const [id, item] of Object.entries(data)) {
+            if (!jpxLoadoutSlot(id) || !item || typeof item !== 'object') continue;
+            const sets = Object.entries(item).filter(([id]) => jpxLoadoutSlot(id))
+                .slice(0, 100).map(([id, set]) => ({ id, name: typeof set?.name === 'string' ? set.name.slice(0, 100) : '' }));
+            personas.push({ id, name: typeof item.name === 'string' ? item.name.slice(0, 100) : '', sets });
+            if (personas.length >= 100) break;
+        }
+        const personaId = jpxLoadoutSlot(data.pset), setId = jpxLoadoutSlot(data.eset);
+        return { personas, sets: [...new Set(personas.flatMap(item => item.sets.map(set => set.id)))],
+            current: personaId && setId ? { world, personaId, setId } : null };
+    } catch { return null; }
+}
+
+function getJpxLoadoutCatalog(world = jpxConfigWorld()) {
+    const catalog = readJpxLoadoutCatalog(world), hvut = readJpxHvutLoadout(world);
+    // HVUT's cache supplies names/options, never proof of a completed switch.
+    for (const item of hvut?.personas || []) {
+        const previous = catalog.personas.find(persona => persona.id === item.id);
+        if (!previous) catalog.personas.push(item);
+        else for (const set of item.sets) {
+            const known = previous.sets.find(value => value.id === set.id);
+            if (!known) previous.sets.push(set); else if (set.name) known.name = set.name;
+        }
+    }
+    catalog.sets = [...new Set([...catalog.sets, ...(hvut?.sets || [])])].sort((a, b) => Number(a) - Number(b));
+    return catalog;
+}
+
+function jpxConfigContainsCode(envelope) {
+    return BATTLE_MODES.some(mode => Object.entries(envelope.config[mode] || {}).some(([key, rules]) =>
+        (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) &&
+        Array.isArray(rules) && rules.some(rule => rule.type === 'kamisamaniNattaHi')));
+}
+
+function applyJpxLoadoutBinding(context, force = false) {
+    if (!context || jpxLoadoutPending || log || document.querySelector('#textlog, #battle_main, #riddlemaster')) return false;
+    const library = getJpxConfigLibrary(), state = library.readState();
+    const binding = state.bindings?.find(item => jpxLoadoutSame(item, context));
+    if (!binding) return false;
+    const entry = state.entries.find(item => item.id === binding.id);
+    // A later imported update cannot acquire permission to run custom code.
+    if (!entry || jpxConfigContainsCode(entry.envelope) && binding.trustedRevision !== entry.revision) return false;
+    const applied = state.applied[context.world]?.[entry.id];
+    if (!force && state.active?.[context.world] === entry.id && applied?.revision === entry.revision &&
+        applied.scopes.every(scope => JSON.stringify(cfgBattle[scope]) === JSON.stringify(applied.config[scope]))) return false;
+    commitJpxConfigEntry(entry, context.world);
+    window.dispatchEvent(new Event('jpx:config-library'));
+    return true;
+}
+
+function confirmJpxLoadout(current, catalog) {
+    if (jpxLoadoutBusy || log || document.querySelector('#textlog, #battle_main, #riddlemaster') || current.world !== jpxConfigWorld()) return;
+    const previous = readJpxLoadoutCatalog().current;
+    jpxLoadoutPending = false;
+    if (!jpxLoadoutSame(previous, current)) applyJpxLoadoutBinding(current);
+    catalog.current = current;
+    const raw = JSON.stringify(catalog), key = jpxLoadoutKey();
+    if (localStorage.getItem(key) !== raw) localStorage.setItem(key, raw);
+    jpxLoadoutConfirmed = current;
+    window.dispatchEvent(new Event('jpx:loadout-detected'));
+}
+
+function rememberJpxLoadout(character = document, equipment = document) {
+    if (jpxLoadoutPending && character === document) return;
+    const selector = character.querySelector('#persona_form select');
+    const personaId = jpxLoadoutSlot(selector?.value);
+    const equipmentPersona = equipment.querySelector('#persona_form select');
+    if (!personaId || equipmentPersona && equipmentPersona.value !== personaId) return;
+    const active = equipment.querySelector('#eqsl img[src*="_on.png"]');
+    const setId = jpxLoadoutSlot(active?.getAttribute('src')?.match(/(?:^|\/)set(\d+)_on\.png(?:[?#]|$)/)?.[1]);
+    const catalog = getJpxLoadoutCatalog();
+    for (const option of selector.options) {
+        const id = jpxLoadoutSlot(option.value);
+        if (!id) continue;
+        const item = catalog.personas.find(persona => persona.id === id);
+        if (item) item.name = option.textContent.trim().slice(0, 100);
+        else catalog.personas.push({ id, name: option.textContent.trim().slice(0, 100), sets: [] });
+    }
+    const sets = [...equipment.querySelectorAll('#eqsl img')].map(node =>
+        jpxLoadoutSlot(node.getAttribute('src')?.match(/(?:^|\/)set(\d+)_(?:on|off)\.png(?:[?#]|$)/)?.[1])).filter(Boolean);
+    if (sets.length) catalog.sets = [...new Set(sets)];
+    if (!setId || !catalog.sets.includes(setId)) return;
+    confirmJpxLoadout({ world: jpxConfigWorld(), personaId, setId }, catalog);
+}
+
+function initJpxLoadoutBindings() {
+    if (jpxLoadoutInitialized) return;
+    jpxLoadoutInitialized = true;
+    const unavailable = () => !!log || !!document.querySelector('#textlog, #battle_main, #riddlemaster');
+    if (unavailable()) return;
+    const invalidate = () => {
+        jpxLoadoutPending = true; jpxLoadoutConfirmed = null;
+        jpxDetectionGeneration++; jpxDetectionRetryAt = 0;
+        jpxDetectionSourceIgnored = true;
+    };
+    document.addEventListener('change', event => {
+        if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
+    }, true);
+    document.addEventListener('submit', event => {
+        if (event.target.matches?.('#persona_form, #equipform')) invalidate();
+    }, true);
+    document.addEventListener('click', event => { if (event.target.closest?.('#eqsl')) invalidate(); }, true);
+    let hvutPending = false;
+    function watchHvut(top) {
+        const isBusy = () => [...top.children].some(node => /^\([PE]\.\.\.\)$/.test(node.firstElementChild?.textContent?.trim()));
+        if (isBusy()) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); }
+        new MutationObserver(() => {
+            if (unavailable()) return;
+            const busy = isBusy();
+            if (busy) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); return; }
+            if (!hvutPending) return;
+            hvutPending = false; jpxLoadoutBusy = false;
+            const observed = readJpxHvutLoadout();
+            if (!observed?.current || !observed.personas.some(persona => persona.id === observed.current.personaId && persona.sets.some(set => set.id === observed.current.setId))) return;
+            // HVUT writes persona first, set second. Its P/E indicator must finish
+            // before the tuple is accepted; intermediate cache values are ignored.
+            try {
+                confirmJpxLoadout(observed.current, getJpxLoadoutCatalog());
+                // The DOM can still show the old equipment after HVUT's AJAX swap.
+                localStorage.setItem(prefix + 'personaId' + isekaiSuffix, observed.current.personaId);
+                localStorage.setItem(prefix + 'persona' + isekaiSuffix, observed.personas.find(item => item.id === observed.current.personaId)?.name || '');
+                localStorage.removeItem(jpxDetectedFamilyKey());
+                localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
+                window.dispatchEvent(new Event('jpx:mode-detected'));
+            }
+            catch (error) { console.warn('JPX-PLUS loadout binding failed.', error); }
+        }).observe(top, { childList: true, subtree: true, characterData: true });
+    }
+    const top = document.getElementById('hvut-top');
+    if (top) watchHvut(top);
+    else {
+        const observer = new MutationObserver(() => {
+            const top = document.getElementById('hvut-top');
+            if (top) { observer.disconnect(); clearTimeout(timeout); watchHvut(top); }
+        });
+        observer.observe(document.getElementById('navbar')?.parentElement || document.body, { childList: true });
+        const timeout = setTimeout(() => observer.disconnect(), 10000);
+    }
+    window.addEventListener('storage', event => {
+        if (event.key !== jpxLoadoutKey() && event.key !== (isekaiSuffix ? 'hvuti' : 'hvut') + '_persona') return;
+        invalidate();
+    });
+    window.addEventListener('focus', () => {
+        if (jpxLoadoutPending && !unavailable()) ensureJpxModeDetection(true);
+    });
+    try {
+        rememberJpxLoadout();
+        if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().readState().bindings?.some(item => item.world === jpxConfigWorld())) ensureJpxModeDetection(true);
+    } catch (error) { console.warn('JPX-PLUS loadout binding could not be read.', error); }
+}
+
+// END JPX CONFIG MANAGEMENT
 
 window.addEventListener('storage', event => {
     if (event.key !== cleanupKey || !event.newValue || cleanupInProgress) return;

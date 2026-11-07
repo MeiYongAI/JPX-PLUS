@@ -1,0 +1,100 @@
+[
+  [
+    "configs",
+    "My configs",
+    "我的配置",
+    "desktop-configs",
+    "mobile-configs"
+  ],
+  [
+    "bindings",
+    "Loadout bindings",
+    "套装绑定",
+    "desktop-bindings",
+    "mobile-bindings"
+  ],
+  [
+    "rules",
+    "Rule editor",
+    "规则编辑",
+    "desktop-rules",
+    "mobile-rules"
+  ],
+  [
+    "order",
+    "Manual order",
+    "手动排序",
+    "desktop-order",
+    "mobile-order"
+  ],
+  [
+    "store",
+    "Store",
+    "商店",
+    "desktop-store",
+    "mobile-store"
+  ],
+  [
+    "shared",
+    "Shared configs",
+    "已分享",
+    "desktop-shared",
+    "mobile-shared"
+  ],
+  [
+    "export",
+    "Export rules",
+    "导出规则",
+    "desktop-export",
+    "mobile-export"
+  ],
+  [
+    "settings",
+    "Basic settings",
+    "基本设置",
+    "desktop-settings-light",
+    "mobile-settings"
+  ],
+  [
+    "keybindings",
+    "Key bindings",
+    "按键绑定",
+    "desktop-keybindings",
+    null
+  ],
+  [
+    "colors",
+    "Statistics colors",
+    "统计配色",
+    "desktop-stats-settings",
+    null
+  ],
+  [
+    "records",
+    "Battle stats",
+    "战斗统计",
+    "desktop-records",
+    "mobile-records"
+  ],
+  [
+    "detail",
+    "Battle details",
+    "单场明细",
+    "desktop-detail",
+    "mobile-detail"
+  ],
+  [
+    "final",
+    "Battle results",
+    "战斗结算",
+    "desktop-final",
+    null
+  ],
+  [
+    "panel",
+    "Floating panel",
+    "悬浮面板",
+    "control-panel",
+    null
+  ]
+]

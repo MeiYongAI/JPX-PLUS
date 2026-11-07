@@ -1,52 +1,105 @@
-# JPX-PLUS · Light Theme
+# JPX-PLUS · Light
 
-[English](gallery-light.md) · [简体中文](gallery-light.zh-CN.md)
+[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&theme=light&page=configs) · [Other theme](gallery-dark.md) · [中文](gallery-light.zh-CN.md)
 
-[Back to README](../README.md) · [Switch to dark theme](gallery-dark.md) · [Open interactive preview](https://meiyongai.github.io/JPX-PLUS/?theme=light&lang=en)
+Actual script interfaces with offline sample data.
 
-Actual script interfaces with offline sample data and demonstration settings. Click an image to view it at full size.
+## Desktop
 
-## Desktop Settings
+### My configs
 
-<table>
-<tr><th width="50%">Basic settings</th><th width="50%">Battle rules</th></tr>
-<tr><td valign="top"><a href="images/desktop-settings-light-en.png"><img src="images/desktop-settings-light-en.png" width="100%" alt="Basic settings · Light theme"></a></td><td valign="top"><a href="images/desktop-rules-en.png"><img src="images/desktop-rules-en.png" width="100%" alt="Battle rules · Light theme"></a></td></tr>
-</table>
+![My configs](images/desktop-configs-en.png)
 
-<a href="images/desktop-stats-settings-en.png"><img src="images/desktop-stats-settings-en.png" width="100%" alt="Statistics color settings · Light theme"></a>
+### Loadout bindings
 
-## Battle statistics
+![Loadout bindings](images/desktop-bindings-en.png)
 
-<a href="images/desktop-records-en.png"><img src="images/desktop-records-en.png" width="100%" alt="Battle statistics · Light theme"></a>
+### Rule editor
 
-<table>
-<tr><th width="50%">Historical battle details</th><th width="50%">Battle results</th></tr>
-<tr><td valign="top"><a href="images/desktop-detail-en.png"><img src="images/desktop-detail-en.png" width="100%" alt="Historical battle details · Light theme"></a></td><td valign="top"><a href="images/desktop-final-en.png"><img src="images/desktop-final-en.png" width="100%" alt="Battle results · Light theme"></a></td></tr>
-</table>
+![Rule editor](images/desktop-rules-en.png)
 
-## Floating control panel
+### Manual order
 
-Default control-panel colors follow the theme; custom colors are preserved.
+![Manual order](images/desktop-order-en.png)
 
-<a href="images/control-panel-en.png"><img src="images/control-panel-en.png" width="100%" alt="Floating control panel · Light theme"></a>
+### Store
 
-## Config Store and Backpack
+![Store](images/desktop-store-en.png)
 
-An optional plugin. Keep multiple configs of the same kind in the local backpack; saving a copy leaves current settings unchanged. Apply it, then save in Settings.
+### Shared configs
 
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="images/desktop-store-en.png"><img src="images/desktop-store-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/desktop-backpack-en.png"><img src="images/desktop-backpack-en.png" width="100%" alt="Local backpack"></a></td></tr>
-</table>
+![Shared configs](images/desktop-shared-en.png)
+
+### Export rules
+
+![Export rules](images/desktop-export-en.png)
+
+### Basic settings
+
+![Basic settings](images/desktop-settings-light-en.png)
+
+### Key bindings
+
+![Key bindings](images/desktop-keybindings-en.png)
+
+### Statistics colors
+
+![Statistics colors](images/desktop-stats-settings-en.png)
+
+### Battle stats
+
+![Battle stats](images/desktop-records-en.png)
+
+### Battle details
+
+![Battle details](images/desktop-detail-en.png)
+
+### Battle results
+
+![Battle results](images/desktop-final-en.png)
+
+### Floating panel
+
+![Floating panel](images/control-panel-en.png)
 
 ## Mobile
 
-<table>
-<tr><th width="33%">Settings and navigation</th><th width="33%">Battle statistics</th><th width="33%">Single-battle details</th></tr>
-<tr><td valign="top"><a href="images/mobile-settings-en.png"><img src="images/mobile-settings-en.png" width="100%" alt="Settings and navigation · Light theme"></a></td><td valign="top"><a href="images/mobile-records-en.png"><img src="images/mobile-records-en.png" width="100%" alt="Battle statistics · Light theme"></a></td><td valign="top"><a href="images/mobile-detail-en.png"><img src="images/mobile-detail-en.png" width="100%" alt="Single-battle details · Light theme"></a></td></tr>
-</table>
+### My configs
 
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="images/mobile-store-en.png"><img src="images/mobile-store-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/mobile-backpack-en.png"><img src="images/mobile-backpack-en.png" width="100%" alt="Local backpack"></a></td></tr>
-</table>
+![My configs](images/mobile-configs-en.png)
+
+### Loadout bindings
+
+![Loadout bindings](images/mobile-bindings-en.png)
+
+### Rule editor
+
+![Rule editor](images/mobile-rules-en.png)
+
+### Manual order
+
+![Manual order](images/mobile-order-en.png)
+
+### Store
+
+![Store](images/mobile-store-en.png)
+
+### Shared configs
+
+![Shared configs](images/mobile-shared-en.png)
+
+### Export rules
+
+![Export rules](images/mobile-export-en.png)
+
+### Basic settings
+
+![Basic settings](images/mobile-settings-en.png)
+
+### Battle stats
+
+![Battle stats](images/mobile-records-en.png)
+
+### Battle details
+
+![Battle details](images/mobile-detail-en.png)

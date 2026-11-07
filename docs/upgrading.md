@@ -1,0 +1,57 @@
+# Upgrading
+
+[English README](../README.md) · [简体中文](#简体中文)
+
+## From original JPX
+
+Export the settings and records you want to keep, then disable the old main script and its language pack. Install JPX-PLUS and, if needed, one matching language pack.
+
+Import battle configs under **Configs → My configs → Import**. Imported rules are saved first; choose **Apply** when ready to use them. A complete JPX config stays one item and keeps its rule groups. Applying a complete config uses the original automatic routing; applying one mode explicitly selects that ruleset.
+
+Statistics and historical records retain their own import/export controls. The local library is separate from the native battle settings. Original JPX files remain supported; PLUS-specific options are not a promise of lossless export back to original JPX.
+
+## From the optional Config Store
+
+1. Update JPX-PLUS, your language pack, and the old Config Store script to **2026.11.08.1**. Keep the old store enabled for this step, then refresh a game page.
+2. Open **Configs → My configs** and check that your backpack entries are present. Only configuration records are copied; the old archive is retained.
+3. Disable the old store script after checking the transfer. Sign in again inside the integrated Store when you want to share; its GitHub token is not transferred.
+
+New users need only the main script. Keeping the legacy script enabled does not add a second Store tab when the integrated manager is present.
+
+## Save, apply and update
+
+In **My configs → More → Bind loadout**, choose a world, persona and equipment set. A confirmed switch applies the matching saved config. Bindings stay local and are not included in native JPX exports. One config can bind to several combinations; each combination selects one config. Manual application is kept until you switch to another combination. Unbound sets and removing a binding keep the current rules. Editing a bound copy affects the next matching switch; code added by a later update requires binding confirmation again.
+
+| Action | Result |
+| --- | --- |
+| Save in the rule editor | Update the local saved copy |
+| Apply / Update & apply | Write those rules to the selected world and use them; pause automatic battle actions if running |
+| Store → Save | Add a local copy without applying it |
+| Store → Update saved copy | Replace that local copy after your confirmation; apply it separately |
+| Shared → Update | Submit a revision to the same public listing |
+| Shared → Withdraw | Remove the listing from the store; imported copies remain |
+| Remove from list | Archive a withdrawn submission in the UI; keep its GitHub record and local rules |
+
+## 简体中文
+
+### 从原版 JPX 迁移
+
+先导出需要保留的配置与记录，再停用旧主脚本及其语言包，安装 JPX-PLUS 和一个所需语言包。
+
+在**配置管理 → 我的配置 → 导入**添加战斗配置，导入后先保存为副本，需要使用时再点击**应用**。完整 JPX 配置保留为一个条目，内部规则组不拆散；应用完整配置仍按原版方式自动选组，应用单组配置则直接使用所选规则。
+
+统计设置与历史记录仍使用各自的导入导出入口。本地配置库和原生战斗设置分别保存；支持导入原版 JPX 文件，但 PLUS 特有选项不保证降级到原版后完全保留。
+
+### 从旧商店迁移
+
+1. 将主脚本、语言包及旧商店脚本更新到 **2026.11.08.1**。暂时保留旧商店启用，刷新游戏页面。
+2. 在**配置管理 → 我的配置**核对原背包条目。迁移只复制配置，保留旧插件里的原始数据。
+3. 确认迁移完成后停用旧商店。需要分享时在新商店重新登录，GitHub 凭据不会跨脚本迁移。
+
+新用户无需安装旧商店。
+
+### 保存、应用与更新
+
+在**我的配置 → 更多 → 绑定套装**选择世界、人格和装备套装。切换到已绑定组合后自动应用对应规则；同一配置可绑定多个组合，每个组合对应一份配置。绑定仅保存在本地，不进入原版 JPX 导出文件。手动应用保持有效，直到切换到其它组合；未绑定的套装和解除绑定都保持当前规则。修改已绑定副本后，下次切换时使用新版；后续更新加入自定义代码时需重新确认绑定。
+
+编辑页**保存**更新本地副本，**应用 / 更新并应用**才让规则生效；从商店保存或更新副本同样不会自动应用。**已分享 → 更新**修改同一投稿，审核期间保留已通过的旧版。撤下不删除他人的本地副本，移除记录也不会删除自己的规则或 GitHub 历史。

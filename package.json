@@ -1,0 +1,14 @@
+{
+  "name": "jpx-plus",
+  "private": true,
+  "description": "Build and offline verification tools for the standalone JPX-PLUS userscript",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build-config-manager.cjs && node scripts/build-config-store.cjs",
+    "check": "node --check JPX-PLUS.user.js && node --check JPX-PLUS-ConfigStore.user.js && node scripts/build-config-manager.cjs --check && node scripts/build-config-store.cjs --check && node scripts/check-language-packs.cjs",
+    "test": "node --test --test-concurrency=2 tests/*.test.cjs",
+    "screenshots": "node scripts/screenshots/capture.cjs",
+    "check:docs": "node scripts/check-preview.cjs"
+  },
+  "devDependencies": { "playwright": "1.62.1", "sharp": "0.35.5" }
+}

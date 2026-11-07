@@ -1,52 +1,105 @@
-# JPX-PLUS · Dark Theme
+# JPX-PLUS · Dark
 
-[English](gallery-dark.md) · [简体中文](gallery-dark.zh-CN.md)
+[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&theme=dark&page=configs) · [Other theme](gallery-light.md) · [中文](gallery-dark.zh-CN.md)
 
-[Back to README](../README.md) · [Switch to light theme](gallery-light.md) · [Open interactive preview](https://meiyongai.github.io/JPX-PLUS/?theme=dark&lang=en)
+Actual script interfaces with offline sample data.
 
-Actual script interfaces with offline sample data and demonstration settings. Click an image to view it at full size.
+## Desktop
 
-## Desktop Settings
+### My configs
 
-<table>
-<tr><th width="50%">Basic settings</th><th width="50%">Battle rules</th></tr>
-<tr><td valign="top"><a href="images/desktop-settings-dark-en.png"><img src="images/desktop-settings-dark-en.png" width="100%" alt="Basic settings · Dark theme"></a></td><td valign="top"><a href="images/desktop-rules-dark-en.png"><img src="images/desktop-rules-dark-en.png" width="100%" alt="Battle rules · Dark theme"></a></td></tr>
-</table>
+![My configs](images/desktop-configs-dark-en.png)
 
-<a href="images/desktop-stats-settings-dark-en.png"><img src="images/desktop-stats-settings-dark-en.png" width="100%" alt="Statistics color settings · Dark theme"></a>
+### Loadout bindings
 
-## Battle statistics
+![Loadout bindings](images/desktop-bindings-dark-en.png)
 
-<a href="images/desktop-records-dark-en.png"><img src="images/desktop-records-dark-en.png" width="100%" alt="Battle statistics · Dark theme"></a>
+### Rule editor
 
-<table>
-<tr><th width="50%">Historical battle details</th><th width="50%">Battle results</th></tr>
-<tr><td valign="top"><a href="images/desktop-detail-dark-en.png"><img src="images/desktop-detail-dark-en.png" width="100%" alt="Historical battle details · Dark theme"></a></td><td valign="top"><a href="images/desktop-final-dark-en.png"><img src="images/desktop-final-dark-en.png" width="100%" alt="Battle results · Dark theme"></a></td></tr>
-</table>
+![Rule editor](images/desktop-rules-dark-en.png)
 
-## Floating control panel
+### Manual order
 
-Default control-panel colors follow the theme; custom colors are preserved.
+![Manual order](images/desktop-order-dark-en.png)
 
-<a href="images/control-panel-dark-en.png"><img src="images/control-panel-dark-en.png" width="100%" alt="Floating control panel · Dark theme"></a>
+### Store
 
-## Config Store and Backpack
+![Store](images/desktop-store-dark-en.png)
 
-An optional plugin. Keep multiple configs of the same kind in the local backpack; saving a copy leaves current settings unchanged. Apply it, then save in Settings.
+### Shared configs
 
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="images/desktop-store-dark-en.png"><img src="images/desktop-store-dark-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/desktop-backpack-dark-en.png"><img src="images/desktop-backpack-dark-en.png" width="100%" alt="Local backpack"></a></td></tr>
-</table>
+![Shared configs](images/desktop-shared-dark-en.png)
+
+### Export rules
+
+![Export rules](images/desktop-export-dark-en.png)
+
+### Basic settings
+
+![Basic settings](images/desktop-settings-dark-en.png)
+
+### Key bindings
+
+![Key bindings](images/desktop-keybindings-dark-en.png)
+
+### Statistics colors
+
+![Statistics colors](images/desktop-stats-settings-dark-en.png)
+
+### Battle stats
+
+![Battle stats](images/desktop-records-dark-en.png)
+
+### Battle details
+
+![Battle details](images/desktop-detail-dark-en.png)
+
+### Battle results
+
+![Battle results](images/desktop-final-dark-en.png)
+
+### Floating panel
+
+![Floating panel](images/control-panel-dark-en.png)
 
 ## Mobile
 
-<table>
-<tr><th width="33%">Settings and navigation</th><th width="33%">Battle statistics</th><th width="33%">Single-battle details</th></tr>
-<tr><td valign="top"><a href="images/mobile-settings-dark-en.png"><img src="images/mobile-settings-dark-en.png" width="100%" alt="Settings and navigation · Dark theme"></a></td><td valign="top"><a href="images/mobile-records-dark-en.png"><img src="images/mobile-records-dark-en.png" width="100%" alt="Battle statistics · Dark theme"></a></td><td valign="top"><a href="images/mobile-detail-dark-en.png"><img src="images/mobile-detail-dark-en.png" width="100%" alt="Single-battle details · Dark theme"></a></td></tr>
-</table>
+### My configs
 
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="images/mobile-store-dark-en.png"><img src="images/mobile-store-dark-en.png" width="100%" alt="Config Store"></a></td><td valign="top"><a href="images/mobile-backpack-dark-en.png"><img src="images/mobile-backpack-dark-en.png" width="100%" alt="Local backpack"></a></td></tr>
-</table>
+![My configs](images/mobile-configs-dark-en.png)
+
+### Loadout bindings
+
+![Loadout bindings](images/mobile-bindings-dark-en.png)
+
+### Rule editor
+
+![Rule editor](images/mobile-rules-dark-en.png)
+
+### Manual order
+
+![Manual order](images/mobile-order-dark-en.png)
+
+### Store
+
+![Store](images/mobile-store-dark-en.png)
+
+### Shared configs
+
+![Shared configs](images/mobile-shared-dark-en.png)
+
+### Export rules
+
+![Export rules](images/mobile-export-dark-en.png)
+
+### Basic settings
+
+![Basic settings](images/mobile-settings-dark-en.png)
+
+### Battle stats
+
+![Battle stats](images/mobile-records-dark-en.png)
+
+### Battle details
+
+![Battle details](images/mobile-detail-dark-en.png)

@@ -54,11 +54,15 @@ function metadata(source, file) {
 }
 const baseFile = 'JPX-PLUS-ZhTrans.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
-const baseEntries = flatten(base);
+const { cStore: baseStore, cM: baseManager, ...baseUI } = base;
+const baseEntries = flatten(baseUI);
 const translations = JSON.parse(read('plugins/config-store/i18n.json'));
-const storeEntries = flatten(translations.en);
-assert.equal(Object.keys(baseEntries).length, 895, 'Simplified Chinese baseline: 895 string keys');
-assert.equal(Object.keys(storeEntries).length, 124, 'Config Store baseline: 124 string keys');
+const storeSource = read('src/config-manager/store.js');
+const integratedTranslations = JSON.parse(storeSource.match(/    const translations = (.+);/)[1]);
+const storeEntries = flatten(integratedTranslations.en);
+const managerEntries = flatten(JSON.parse(read('src/config-manager/en.json')));
+validateEntries(flatten(baseStore), storeEntries, baseFile + '.cStore');
+validateEntries(flatten(baseManager), managerEntries, baseFile + '.cM');
 // Extract only the actual plugin lookup. No plugin startup or GM API is executed.
 const plugin = read('JPX-PLUS-ConfigStore.user.js');
 const lookupSource = plugin.match(/    const t = key => \{[\s\S]*?\n    \};/);
@@ -73,9 +77,10 @@ for (const locale of locales) {
     const file = 'JPX-PLUS-' + locale + '.user.js';
     const source = read(file), dictionary = evaluate(source, file), fields = metadata(source, file);
     for (const key of ['namespace', 'match', 'exclude', 'run-at']) assert.deepEqual(fields[key], baseMetadata[key], file + ': @' + key + ' compatibility');
-    const { cStore, ...ui } = dictionary;
+    const { cStore, cM, ...ui } = dictionary;
     validateEntries(flatten(ui), baseEntries, file);
     validateEntries(flatten(cStore), storeEntries, file + '.cStore');
+    validateEntries(flatten(cM), managerEntries, file + '.cM');
     const unknown = { extension: { retained: 'custom extension' } };
     const merged = evaluate(source, file, { ...unknown, cW: { obsolete: 'replace owned namespace' } });
     assert.deepEqual(merged.extension, unknown.extension, file + ': preserve unknown namespace');

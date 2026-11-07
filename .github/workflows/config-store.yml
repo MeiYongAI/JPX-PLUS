@@ -1,9 +1,9 @@
-name: Check configuration store
+name: Check configuration management
 on:
   push:
-    paths: ['JPX-PLUS*.user.js', 'plugins/config-store/**', 'scripts/build-config-store.cjs', '.github/workflows/config-store.yml']
+    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'plugins/config-store/**', 'scripts/build-config-*.cjs', 'scripts/check-preview.cjs', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
   pull_request:
-    paths: ['JPX-PLUS*.user.js', 'plugins/config-store/**', 'scripts/build-config-store.cjs', '.github/workflows/config-store.yml']
+    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'plugins/config-store/**', 'scripts/build-config-*.cjs', 'scripts/check-preview.cjs', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -15,7 +15,9 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
-      - run: node --check JPX-PLUS.user.js
-      - run: node --check JPX-PLUS-ConfigStore.user.js
-      - run: node scripts/build-config-store.cjs --check
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run check
       - run: node plugins/config-store/service.test.cjs
+      - run: npm test
+      - run: npm run check:docs

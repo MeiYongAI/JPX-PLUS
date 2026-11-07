@@ -1,52 +1,105 @@
-# JPX-PLUS · 暗色界面
+# JPX-PLUS · 暗色
 
-[English](gallery-dark.md) · [简体中文](gallery-dark.zh-CN.md)
+[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&theme=dark&page=configs) · [另一主题](gallery-light.zh-CN.md) · [English](gallery-dark.md)
 
-[返回 README](../README.zh-CN.md) · [切换为浅色](gallery-light.zh-CN.md) · [打开交互预览](https://meiyongai.github.io/JPX-PLUS/?theme=dark&lang=zh-CN)
+截图来自实际脚本界面，使用离线示例数据。
 
-实际脚本界面，使用离线示例数据与演示配置。点击图片查看原图。
+## 桌面
 
-## 桌面设置
+### 我的配置
 
-<table>
-<tr><th width="50%">基本设置</th><th width="50%">战斗规则</th></tr>
-<tr><td valign="top"><a href="images/desktop-settings-dark.png"><img src="images/desktop-settings-dark.png" width="100%" alt="基本设置 · 暗色"></a></td><td valign="top"><a href="images/desktop-rules-dark.png"><img src="images/desktop-rules-dark.png" width="100%" alt="战斗规则 · 暗色"></a></td></tr>
-</table>
+![我的配置](images/desktop-configs-dark.png)
 
-<a href="images/desktop-stats-settings-dark.png"><img src="images/desktop-stats-settings-dark.png" width="100%" alt="统计配色 · 暗色"></a>
+### 套装绑定
 
-## 战斗统计
+![套装绑定](images/desktop-bindings-dark.png)
 
-<a href="images/desktop-records-dark.png"><img src="images/desktop-records-dark.png" width="100%" alt="战斗统计 · 暗色"></a>
+### 规则编辑
 
-<table>
-<tr><th width="50%">历史明细</th><th width="50%">战斗结算</th></tr>
-<tr><td valign="top"><a href="images/desktop-detail-dark.png"><img src="images/desktop-detail-dark.png" width="100%" alt="历史明细 · 暗色"></a></td><td valign="top"><a href="images/desktop-final-dark.png"><img src="images/desktop-final-dark.png" width="100%" alt="战斗结算 · 暗色"></a></td></tr>
-</table>
+![规则编辑](images/desktop-rules-dark.png)
 
-## 悬浮控制面板
+### 手动排序
 
-控制面板默认配色随主题切换，自定义配色保留。
+![手动排序](images/desktop-order-dark.png)
 
-<a href="images/control-panel-dark.png"><img src="images/control-panel-dark.png" width="100%" alt="悬浮控制面板 · 暗色"></a>
+### 商店
 
-## 配置商店与背包
+![商店](images/desktop-store-dark.png)
 
-独立可选插件。背包可保留多套同类配置；存入不改变当前设置，应用后再手动保存。
+### 已分享
 
-<table>
-<tr><th width="50%">配置商店</th><th width="50%">本地背包</th></tr>
-<tr><td valign="top"><a href="images/desktop-store-dark.png"><img src="images/desktop-store-dark.png" width="100%" alt="配置商店"></a></td><td valign="top"><a href="images/desktop-backpack-dark.png"><img src="images/desktop-backpack-dark.png" width="100%" alt="本地背包"></a></td></tr>
-</table>
+![已分享](images/desktop-shared-dark.png)
 
-## 移动端
+### 导出规则
 
-<table>
-<tr><th width="33%">设置与导航</th><th width="33%">战斗统计</th><th width="33%">单场明细</th></tr>
-<tr><td valign="top"><a href="images/mobile-settings-dark.png"><img src="images/mobile-settings-dark.png" width="100%" alt="设置与导航 · 暗色"></a></td><td valign="top"><a href="images/mobile-records-dark.png"><img src="images/mobile-records-dark.png" width="100%" alt="战斗统计 · 暗色"></a></td><td valign="top"><a href="images/mobile-detail-dark.png"><img src="images/mobile-detail-dark.png" width="100%" alt="单场明细 · 暗色"></a></td></tr>
-</table>
+![导出规则](images/desktop-export-dark.png)
 
-<table>
-<tr><th width="50%">配置商店</th><th width="50%">本地背包</th></tr>
-<tr><td valign="top"><a href="images/mobile-store-dark.png"><img src="images/mobile-store-dark.png" width="100%" alt="配置商店"></a></td><td valign="top"><a href="images/mobile-backpack-dark.png"><img src="images/mobile-backpack-dark.png" width="100%" alt="本地背包"></a></td></tr>
-</table>
+### 基本设置
+
+![基本设置](images/desktop-settings-dark.png)
+
+### 按键绑定
+
+![按键绑定](images/desktop-keybindings-dark.png)
+
+### 统计配色
+
+![统计配色](images/desktop-stats-settings-dark.png)
+
+### 战斗统计
+
+![战斗统计](images/desktop-records-dark.png)
+
+### 单场明细
+
+![单场明细](images/desktop-detail-dark.png)
+
+### 战斗结算
+
+![战斗结算](images/desktop-final-dark.png)
+
+### 悬浮面板
+
+![悬浮面板](images/control-panel-dark.png)
+
+## 手机
+
+### 我的配置
+
+![我的配置](images/mobile-configs-dark.png)
+
+### 套装绑定
+
+![套装绑定](images/mobile-bindings-dark.png)
+
+### 规则编辑
+
+![规则编辑](images/mobile-rules-dark.png)
+
+### 手动排序
+
+![手动排序](images/mobile-order-dark.png)
+
+### 商店
+
+![商店](images/mobile-store-dark.png)
+
+### 已分享
+
+![已分享](images/mobile-shared-dark.png)
+
+### 导出规则
+
+![导出规则](images/mobile-export-dark.png)
+
+### 基本设置
+
+![基本设置](images/mobile-settings-dark.png)
+
+### 战斗统计
+
+![战斗统计](images/mobile-records-dark.png)
+
+### 单场明细
+
+![单场明细](images/mobile-detail-dark.png)

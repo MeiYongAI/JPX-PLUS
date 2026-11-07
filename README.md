@@ -1,187 +1,127 @@
 <p align="center"><strong>English</strong> | <a href="README.zh-CN.md">简体中文</a></p>
 
-<p align="center"><img src="assets/jpx-plus-icon.svg" width="80" height="80" alt="JPX-PLUS icon"></p>
+<p align="center"><img src="assets/jpx-plus-icon.svg" width="80" height="80" alt="JPX-PLUS"></p>
 
 # JPX-PLUS
 
-An enhanced JPX userscript for [HentaiVerse](https://hentaiverse.org/), with configurable battle rules, battle records, and an interface for desktop and mobile.
+An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle rules, share setups, and review battle stats on desktop or mobile.
 
-## Special Thanks
+**Special thanks to [闯关弟子](https://forums.e-hentai.org/index.php?showuser=4802944), the original JPX author.** JPX-PLUS builds on his work. Without him creating and sharing JPX, this project would not exist.
 
-**Special thanks to [闯关弟子](https://forums.e-hentai.org/index.php?showuser=4802944), the original author of JPX.** JPX-PLUS builds on his work. Without him creating and sharing JPX, JPX-PLUS would not exist.
+**[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-## Installation
+## Install
 
-Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/), then install the userscript:
+1. Install JPX-PLUS in your userscript manager, then refresh HentaiVerse.
+2. English is built in. For another language, enable **one** language pack alongside the main script:
 
-- [Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)
-- Optional language packs: [简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
-- [Optional: Config Store plugin](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ConfigStore.user.js)
-- [Optional: HentaiVerse Dark for Stylus (experimental)](https://github.com/MeiYongAI/JPX-PLUS/blob/main/HV-Dark.user.css) · [Forum thread](https://forums.e-hentai.org/index.php?showtopic=302930)
-- [Optional: E-Hentai Forums Dark for Stylus](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css) · [Forum thread](https://forums.e-hentai.org/index.php?showtopic=302931)
-- [Optional: HentaiVerse game translation — Simplified Chinese](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) · [中文发布帖](https://forums.e-hentai.org/index.php?showtopic=302932)
+[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 
-English is built in; other languages are separate, optional userscripts. Keep the main script enabled and enable **one language pack at a time**. To switch languages, disable the previous pack, enable the new one, and refresh the game. Disable all language packs to return to English. Your userscript manager checks each script for version updates.
+Update the main script and your language pack together. GitHub update URLs are included; automatic checks follow your userscript-manager settings.
 
-The four new packs cover settings, battle statistics, and the control panel, plus Config Store and Backpack with **Config Store 2026.11.06.8 or later**. Taiwan and Hong Kong use regional wording; Japanese and Korean keep canonical game item, spell, and effect names in English where useful for recognition. Shared player content and AI review reports are not automatically translated. Language packs do not change battle rules or the original JPX configuration format.
+**Configs and Store are now included in the main script.** No separate store installation is needed. Coming from JPX or the old Config Store? See the short [upgrade guide](docs/upgrading.md).
 
-HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a userscript. Install [Stylus](https://add0n.com/stylus.html), then open the theme link above and install it from the raw UserCSS file, or copy the file into a new UserCSS style. The theme includes an update URL; update checks depend on your Stylus settings. The JPX-PLUS interface retains its own light/dark setting. The theme is experimental; first-paint timing varies by browser and Stylus settings.
+## Configs
 
-**HentaiVerse Dark 1.0.6** makes JPX quickbar cooldown numbers readable with light text and a subtle dark outline, including extended skill slots. It also supports HV Paper Doll equipment windows, menus and battle portrait controls, plus the My Little Pony helper panel and sliders. Character artwork, custom backgrounds, color previews and puzzle-image effects are preserved.
-
-**E-Hentai Forums Dark 1.0.0** is a separate Stylus theme for `forums.e-hentai.org`, using the same palette. It covers forum lists, threads, quotes, code blocks, reply editors, menus and native image buttons, while preserving avatars, emoji, posted images and author-selected text colors. Install it from the link above; it includes a GitHub update URL. Checked against the Ambience skin, including the full reply editor; Fusion has not been specifically tested. The forum's existing narrow-screen layout is preserved.
-
-<details>
-<summary>Dark theme previews: game and forum</summary>
-
-**HentaiVerse Dark — battle, cooldowns and effect timers**
-
-![HentaiVerse Dark: battle controls and readable cooldown numbers](docs/images/hv-battle-dark.png)
-
-**E-Hentai Forums Dark — posts, quotes and code blocks**
-
-![E-Hentai Forums Dark: posts, quotes and code blocks](docs/images/forum-dark.png)
-
-Offline previews using the sites' native styles and sample content.
-
-</details>
-
-The optional **HentaiVerse game translation** translates game text and adds equipment-affix colors, including supported auction listings. It is separate from the JPX-PLUS language packs and can run without JPX-PLUS. Thanks to **mbbdzz**, its original author ([source](https://greasyfork.org/scripts/600755)); this edition is maintained and enhanced by **MeiYongAI**, retaining its MIT license declaration. Install the script above and refresh the game. GitHub update URLs are included for userscript-manager update checks.
-
-<details>
-<summary>Game translation and equipment color preview</summary>
-
-![HentaiVerse Chinese translation: navigation and equipment-affix colors](docs/images/hv-chinese-preview.png)
-
-Offline sample rendered with the released translation script; the comparison layout is for illustration.
-
-</details>
-
-When migrating from JPX or JPX-Revanced, export any settings and records you want to keep, then disable the old main script and language pack to avoid running duplicate copies. JPX-PLUS accepts the original configuration format.
-
-## Interface Preview
-
-<p align="center">
-  <a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;theme=light"><img src="assets/preview-light-en.svg" width="156" height="42" alt="Open the light preview"></a>
-  &nbsp;
-  <a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;theme=dark"><img src="assets/preview-dark-en.svg" width="156" height="42" alt="Open the dark preview"></a>
-</p>
-
-<p align="center">Open the preview page with either theme, then switch light/dark themes and desktop/mobile views on that page.<br>You can also browse the repository’s <a href="docs/gallery-light.md">light gallery</a> · <a href="docs/gallery-dark.md">dark gallery</a>.</p>
-
-The preview detects your browser language on the first visit: Chinese for Chinese-language browsers, English otherwise. Use **English / 中文** to switch the interface and screenshots; your choice is remembered. Links from each README open its matching language.
-
-These screenshots show the current script with offline sample data. README images follow your browser’s light/dark preference. Default control-panel colors follow the theme; custom colors are preserved. The preview page switches between screenshots of the same view.
-
-### Settings and Colors
+Keep several setups for the same style, battle and world. **My configs** handles saving, renaming, filtering and sorting; **Edit** opens a separate rule editor.
 
 <table>
-<tr><th width="50%">Basic settings</th><th width="50%">Battle rules</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=settings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-settings-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-settings-light-en.png"><img src="docs/images/desktop-settings-light-en.png" width="100%" alt="Basic settings: actual JPX-PLUS interface"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=rules&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-rules-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-rules-en.png"><img src="docs/images/desktop-rules-en.png" width="100%" alt="Battle rules: actual JPX-PLUS interface"></picture></a></td></tr>
+<tr><th width="50%">My configs</th><th width="50%">Rule editor</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=configs&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-configs-dark-en.png"><img src="docs/images/desktop-configs-en.png" width="100%" alt="My configs"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=rules&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-rules-dark-en.png"><img src="docs/images/desktop-rules-en.png" width="100%" alt="Rule editor"></picture></a></td></tr>
 </table>
 
-<details>
-<summary>Statistics colors and live preview</summary>
+- **Apply** uses the selected rule set immediately. **In use** marks the applied copy; **Current style** separately marks the detected equipment style. Applying during battle pauses automatic actions.
+- **Save** in the editor updates your saved copy. Use **Update & apply** when you want the edited rules to take effect.
+- **More → Bind loadout** links a config to a world's persona and equipment set. Switching to that combination applies its saved rules. One config can serve several sets; unbound sets keep the current rules.
+- Colored tags identify styles, worlds, battle types and elements consistently in both themes. Tags come from the config's rule groups. Filter by world, style, battle or type; search by name and tags. Sort by type, update time, name, or drag configs into a manual order.
+- Import original JPX files. Export the rules **In use**, the **Full config**, or **Choose rules**. A full config keeps the original automatic group routing.
 
-<a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=colors&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-stats-settings-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-stats-settings-en.png"><img src="docs/images/desktop-stats-settings-en.png" width="100%" alt="Statistics colors: actual JPX-PLUS interface"></picture></a>
+<details>
+<summary>Loadout bindings and Export rules</summary>
+
+<table>
+<tr><th width="50%">Loadout bindings</th><th width="50%">Export rules</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=bindings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-bindings-dark-en.png"><img src="docs/images/desktop-bindings-en.png" width="100%" alt="Loadout bindings"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=export&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-export-dark-en.png"><img src="docs/images/desktop-export-en.png" width="100%" alt="Export rules"></picture></a></td></tr>
+</table>
 
 </details>
 
+### Store and sharing
+
+Browse and download without signing in. Save a store config to **My configs**, then apply it when ready. Sign in with GitHub to share a saved config and manage it under **Shared**.
+
+<table>
+<tr><th width="50%">Store</th><th width="50%">Shared configs</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-store-dark-en.png"><img src="docs/images/desktop-store-en.png" width="100%" alt="Store"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=shared&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-shared-dark-en.png"><img src="docs/images/desktop-shared-en.png" width="100%" alt="Shared configs"></picture></a></td></tr>
+</table>
+
+Update the same listing, check review feedback, withdraw it, or remove a withdrawn submission from your list. The previous approved version stays available while an update is reviewed. Updating a share never silently replaces another player's saved copy.
+
+Submissions are public on GitHub. Review checks format and device/data security, not battle strategy. Code and suspicious content require AI security review and maintainer approval. [Review policy](https://github.com/MeiYongAI/JPX-PLUS-Configs#how-sharing-works).
+
+## Interface preview
+
+[**Light theme**](https://meiyongai.github.io/JPX-PLUS/?lang=en&theme=light&page=configs) · [**Dark theme**](https://meiyongai.github.io/JPX-PLUS/?lang=en&theme=dark&page=configs) · [Desktop and mobile gallery](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)
+
+Switch the theme, language or device to compare the same page. Screenshots use the actual script UI with offline sample data.
+
+<table>
+<tr><th width="50%">My configs</th><th width="50%">Store</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=configs&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-configs-dark-en.png"><img src="docs/images/mobile-configs-en.png" width="100%" alt="My configs"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-store-dark-en.png"><img src="docs/images/mobile-store-en.png" width="100%" alt="Store"></picture></a></td></tr>
+</table>
+
+On mobile, filters fold beside search, row actions stay compact, and settings use a single Back control. The HVUT gear menu includes Settings and Stats; touch pages without it retain the JPX-PLUS floating entry.
+
 <details>
-<summary>Custom shortcuts</summary>
+<summary>Settings, stats and battle results</summary>
 
-<a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=keybindings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-keybindings-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-keybindings-en.png"><img src="docs/images/desktop-keybindings-en.png" width="100%" alt="Key bindings: actual JPX-PLUS interface"></picture></a>
+<table>
+<tr><th width="50%">Basic settings</th><th width="50%">Statistics colors</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=settings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-settings-dark-en.png"><img src="docs/images/desktop-settings-light-en.png" width="100%" alt="Basic settings"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=colors&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-stats-settings-dark-en.png"><img src="docs/images/desktop-stats-settings-en.png" width="100%" alt="Statistics colors"></picture></a></td></tr>
+</table>
 
-</details>
-
-### Battle Statistics
-
-Filter records, aggregate revenue, inspect individual battles, and copy or download statistics as images. Choose which metrics to show in Statistics settings.
-
-<a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=records&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-records-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-records-en.png"><img src="docs/images/desktop-records-en.png" width="100%" alt="Battle statistics: actual JPX-PLUS interface"></picture></a>
+<a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=records&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-records-dark-en.png"><img src="docs/images/desktop-records-en.png" width="100%" alt="Battle stats"></picture></a>
 
 <table>
 <tr><th width="50%">Battle details</th><th width="50%">Battle results</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=detail&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-detail-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-detail-en.png"><img src="docs/images/desktop-detail-en.png" width="100%" alt="Battle details: actual JPX-PLUS interface"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=final&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-final-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-final-en.png"><img src="docs/images/desktop-final-en.png" width="100%" alt="Battle results: actual JPX-PLUS interface"></picture></a></td></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=detail&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-detail-dark-en.png"><img src="docs/images/desktop-detail-en.png" width="100%" alt="Battle details"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=final&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-final-dark-en.png"><img src="docs/images/desktop-final-en.png" width="100%" alt="Battle results"></picture></a></td></tr>
 </table>
 
-### Floating Control Panel
-
-Drag the title bar to move the panel. Customize its text, title bar, background, border, and opacity. Default colors follow the theme; custom colors are preserved.
-
-<p align="center"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=panel"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/control-panel-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/control-panel-en.png"><img src="docs/images/control-panel-en.png" width="652" alt="Control panel in automatic, manual, and waiting states"></picture></a></p>
-
-### Config Store and Backpack
-
-The optional Config Store plugin lets you browse shared configs and keep your own alternatives in a local backpack. Apply a config, then use Save in Settings to keep the change.
-
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-store-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-store-en.png"><img src="docs/images/desktop-store-en.png" width="100%" alt="Config Store"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=backpack&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-backpack-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/desktop-backpack-en.png"><img src="docs/images/desktop-backpack-en.png" width="100%" alt="Local backpack"></picture></a></td></tr>
-</table>
-
-<details>
-<summary>Store and backpack on mobile</summary>
-
-<table>
-<tr><th width="50%">Config Store</th><th width="50%">Local backpack</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=store&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-store-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-store-en.png"><img src="docs/images/mobile-store-en.png" width="100%" alt="Config Store"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=backpack&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-backpack-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-backpack-en.png"><img src="docs/images/mobile-backpack-en.png" width="100%" alt="Local backpack"></picture></a></td></tr>
-</table>
+<a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=panel&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/control-panel-dark-en.png"><img src="docs/images/control-panel-en.png" width="100%" alt="Floating panel"></picture></a>
 
 </details>
 
-### Mobile
+## Battle stats and controls
 
-Full-screen settings use a compact navigation menu. Statistics filters open when needed, and detail tables scroll horizontally.
-
-<table>
-<tr><th width="33%">Settings and navigation</th><th width="33%">Battle statistics</th><th width="33%">Battle details</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=settings&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-settings-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-settings-en.png"><img src="docs/images/mobile-settings-en.png" width="100%" alt="Settings and navigation: actual JPX-PLUS interface"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=records&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-records-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-records-en.png"><img src="docs/images/mobile-records-en.png" width="100%" alt="Battle statistics: actual JPX-PLUS interface"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=detail&amp;device=mobile"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/mobile-detail-dark-en.png"><source media="(prefers-color-scheme: light)" srcset="docs/images/mobile-detail-en.png"><img src="docs/images/mobile-detail-en.png" width="100%" alt="Battle details: actual JPX-PLUS interface"></picture></a></td></tr>
-</table>
-
-## Usage
+- Filter records, inspect an individual battle, and copy or download stats as an image.
+- Clear stored records by a selected range.
+- Customize the draggable panel and statistics colors with live previews; choose light or dark UI.
+- Edit battle rules, conditions and shortcuts with undo and redo.
 
 | Default key | Action |
 | --- | --- |
-| `M` | Start or pause automatic actions during a battle |
-| `,` | Open settings |
-| `Z` | Open battle statistics |
+| <kbd>M</kbd> | Start or pause automatic battle actions |
+| <kbd>,</kbd> | Open settings |
+| <kbd>Z</kbd> | Open battle stats |
 
-Shortcuts can be changed in Settings. With HVUT, its gear menu includes **JPX-PLUS Settings** and **JPX-PLUS Stats**; tap the gear to open or close it on mobile. Touch pages without that menu keep the JPX-PLUS floating entry. The battle panel also provides both shortcuts. Review your battle style and rules before first use.
+The upstream two-handed defaults from November 5, 2026 are included. Existing saved rules are preserved; open a two-handed config in the rule editor and use **Reset rules** to load its defaults. Saving that copy does not apply it. The upstream Safe Mode below level 300 does not guarantee survival.
 
-### Optional Config Store
+Battle results stay open by default. Enable **General → Battle controls → Auto finish battle** to save the statistics and use the game's exit button automatically; it does not start another battle. If saving fails, the result stays open.
 
-The independent **Config Store** plugin requires JPX-PLUS **2026.11.06.8 or later** and adds a tab inside Settings. Browse, preview, download, and import shared configs without signing in. Imports use the usual undo and save controls.
+Automatic battle start, daily check-in and lobby task scheduling are not included. If another script stops working after AJAX round transitions, disable that option in Basic settings; AJAX does not reinject other userscripts.
 
-With JPX-PLUS **2026.11.06.10 or later**, **My configs → Current** lists your current configurations by world, battle style, and battle type. Preview the one you want to share, or choose full battle or statistics settings. Sign in to GitHub when submitting; complete the first authorization on GitHub, then submit, update, and withdraw your shares from JPX-PLUS. The selected configuration and description are **public on GitHub and sent for AI review**. Automated checks and AI review run before listing a config; uncertain results go to the maintainer. Check progress under **My configs → Shared**.
+## Companion scripts
 
-With Config Store **2026.11.06.5 or later**, **My configs → Backpack** keeps multiple configs of the same kind, world, and battle mode. Save your own snapshots from **Current**, or save a config from the store, then name, preview, apply, or share each one separately. The backpack stays in this plugin's local userscript storage; saving there needs no GitHub login and changes no active settings. Applying uses the existing import, undo, and manual Save controls. Downloads keep the original JPX config format.
+| Add-on | Install | Discussion |
+| --- | --- | --- |
+| HentaiVerse Dark · Stylus | [UserCSS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HV-Dark.user.css) | [Forum](https://forums.e-hentai.org/index.php?showtopic=302930) |
+| E-Hentai Forums Dark · Stylus | [UserCSS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css) | [Forum](https://forums.e-hentai.org/index.php?showtopic=302931) |
+| HentaiVerse Chinese translation | [Userscript](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) | [中文帖](https://forums.e-hentai.org/index.php?showtopic=302932) |
 
-Plugin contributors: [source, build, and test instructions](plugins/config-store/README.md).
+These are separate add-ons. The game translation is different from a JPX-PLUS language pack. [Screenshots, installation and credits](docs/addons.md).
 
-## Features
+## Feedback and development
 
-- Configure battle rules, conditions, and shortcuts, with undo and redo.
-- Optional Config Store with a local backpack for multiple saved configs and GitHub sharing.
-- Advance to the next round as configured; show cooldowns, effect durations, proficiency gains, and monster HP. Detailed monster information requires a Monster DB script.
-- Battle and revenue statistics, filtered summaries, historical details, and image copying or downloads.
-- A draggable control panel, live color previews, light/dark themes, and mobile layouts.
-- Import and export battle settings, statistics settings, and records.
+[Issues](https://github.com/MeiYongAI/JPX-PLUS/issues) accept English or Chinese. Include your script version, browser, world and steps to reproduce. Remove private information from screenshots and exported configs.
 
-### Two-handed defaults
-
-Includes the two-handed auto-battle rules from 闯关弟子’s **November 5, 2026** JPX update. Existing saved rules are preserved. To load the new defaults, open **Battle rules**, choose the two-handed general mode, then use **Reset** (Reset Current Battle Mode) and save. Export any rules you want to keep before resetting.
-
-The upstream rules enable their conservative Safe Mode for characters **below level 300**. This does not guarantee survival.
-
-Automatic battle start, daily check-in, Random Encounters, Arenas, and Ring of Blood scheduling are not included. Their old configuration fields are retained only for compatibility and do nothing. The results page stays open after a battle ends.
-
-## AJAX Round Transitions
-
-AJAX replaces the battle area without making your userscript manager inject other scripts again. Some translation, Monster DB, HVUT, or puzzle-helper features may stop working. If that happens, disable AJAX round transitions; you can keep automatic advancement to the next round enabled.
-
-## Feedback
-
-Report problems or suggest improvements in [Issues](https://github.com/MeiYongAI/JPX-PLUS/issues). The issue forms and pull request template accept English or Chinese.
-
-Thanks also to the maintainers of related tools.
+See [source, builds and offline tests](docs/development.md). The installed script stays a single self-contained userscript; development modules and test dependencies are not loaded in the game.
