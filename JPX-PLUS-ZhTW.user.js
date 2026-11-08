@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.1
+// @version      2026.11.08.3
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -23,6 +23,7 @@
             "movePanel": "拖曳調整位置；方向鍵微調，Home 回到原位",
             "toggleBattle": "切換自動戰鬥",
             "waiting": "等待",
+            "elementUnknown": "尚未讀取到法術屬性，請在戰鬥外開啟角色頁重新辨識。",
             "ctrlWidgetRows": "面板顯示項目",
             "isActiveBattle": "戰鬥狀態",
             "auto": "自動",

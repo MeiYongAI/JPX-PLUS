@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.1
+// @version      2026.11.08.3
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -23,6 +23,7 @@
 			"movePanel": "拖动调整位置；方向键微调，Home 恢复位置",
 			"toggleBattle": "切换自动战斗",
 			"waiting": "等待",
+			"elementUnknown": "未读取到法术属性，请在战斗外打开角色页重新识别。",
 			"ctrlWidgetRows": "控制面板显示项",
 			"isActiveBattle": "战斗状态",
 			"auto": "自动",

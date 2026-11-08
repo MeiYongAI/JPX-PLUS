@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.2
+// @version      2026.11.08.3
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.2',
+    version: '2026.11.08.3',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1825,7 +1825,10 @@ const CTRLWIDGET_FIELDS = [
     { id: 'isActiveBattle', get: () => isActiveBattle ? t('cW.auto') : t('cW.manual') },
     { id: 'readyNext', get: () => readyNext },
     { id: 'networkDelay', get: () => (lastLogTimestamp > lastActionTimestamp ? lastLogTimestamp - lastActionTimestamp : '-') },
-    { id: 'battleStyle', get: () => t(`cW.${getManagedBattleStyle(battleStyle)}`) + (/Staff|Mage/.test(getManagedBattleStyle(battleStyle)) ? ` (${t(`cW.${getManagedSpellType()}`)})` : '') },
+    { id: 'battleStyle', get: () => {
+        const style = getManagedBattleStyle(battleStyle), element = getManagedSpellType();
+        return t('cW.' + style) + (/Staff|Mage/.test(style) && element ? ' (' + t('cW.' + element) + ')' : '');
+    } },
     { id: 'battleType', get: () => t(`cW.${battleType}`) + (worldLevel ? ` (WL${worldLevel})` : '') + (towerFloor ? ` (${towerFloor}F)` : '') },
     { id: 'battleMode', get: () => getBattleMode() },
     { id: 'round', get: () => roundInfo.total ? `${roundInfo.current} / ${roundInfo.total}` : '-' },
@@ -2360,6 +2363,7 @@ const I18N = {
     cW: {
         movePanel: 'Drag to move; arrow keys adjust; Home resets position',
         toggleBattle: 'Toggle automatic battle', waiting: 'Waiting',
+        elementUnknown: 'Spell element unavailable. Open Character outside battle to refresh.',
         ctrlWidgetRows: 'Panel items', openStats: 'Stats', openSettings: 'Settings',
         isActiveBattle: 'Status', readyNext: 'Ready', networkDelay: 'Latency', battleStyle: 'Style', battleType: 'Battle', battleMode: 'Ruleset',
         OneHanded: 'One-handed', '1H_Mage': '1H Mage', TwoHanded: 'Two-handed', '2H_Mage': '2H Mage',
@@ -2810,15 +2814,19 @@ function rememberJpxDetectedFamily(family, context = getJpxDetectionContext()) {
 }
 
 function getJpxSpellDamageFromPage(root = document) {
-    const label = Array.from(root.querySelectorAll('.spc')).find(node =>
-        (node.textContent || '').includes('Spell Damage Bonus') ||
-        jpxUtils.parseHVClasses(node.querySelector('div')).includes('Spell Damage Bonus'));
+    const label = Array.from(root.querySelectorAll('.spc')).find(node => {
+        if ((node.textContent || '').includes('Spell Damage Bonus')) return true;
+        const glyphs = node.querySelector('div');
+        return !!glyphs && jpxUtils.parseHVClasses(glyphs).includes('Spell Damage Bonus');
+    });
     let maximum = null;
     for (const row of label?.nextElementSibling?.querySelectorAll('tr') || []) {
         const cells = row.querySelectorAll('td');
         if (cells.length < 2) continue;
         const maxValue = parseFloat(cells[0].textContent.trim());
-        const maxType = cells[1].textContent.trim().toLowerCase();
+        // Display-only translations may append Chinese to the native element.
+        // Match its leading English token, never another stat table or tooltip.
+        const maxType = cells[1].textContent.trim().match(/^(fire|cold|wind|elec|holy|dark)(?![a-z])/i)?.[1].toLowerCase();
         if (Number.isFinite(maxValue) && maxValue >= 0 && ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(maxType) &&
             (!maximum || maxValue > maximum.maxValue)) maximum = { maxType, maxValue };
     }
@@ -2826,7 +2834,7 @@ function getJpxSpellDamageFromPage(root = document) {
 }
 
 function readJpxSpellDamageBonus(verifiedOnly = false) {
-    const fallback = () => verifiedOnly ? null : { maxType: 'fire', maxValue: 0 };
+    const fallback = () => verifiedOnly ? null : { maxType: '', maxValue: 0 };
     try {
         const key = prefix + 'spellDamageBonus' + isekaiSuffix;
         const value = JSON.parse(localStorage.getItem(key));
@@ -2995,7 +3003,7 @@ async function readJpxEquipmentMetadata(root, base, signal) {
 function ensureJpxModeDetection(loadout = false) {
     // Character pages are unavailable during battle. Never probe them in combat,
     // and never mistake a battle/verification response for a character snapshot.
-    if (jpxLoadoutBusy || !loadout && getDetectedJpxBattleStyle() || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
+    if (jpxLoadoutBusy || !loadout && getDetectedJpxBattleStyle() && readJpxSpellDamageBonus(true) || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
         !/(^|\.)hentaiverse\.org$/.test(location.hostname)) return Promise.resolve();
     if (jpxDetectionRequest) {
         if (jpxDetectionRequestGeneration === jpxDetectionGeneration) {
@@ -4312,7 +4320,8 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
+                if (!action2) return false;
                 let cooldown = spellCooldowns[action2] ?? itemCooldowns[action2];
                 if (cooldown === '-') cooldown = 9999;
                 return jpxUtils.inRange(cooldown, range);
@@ -4324,7 +4333,8 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
+                if (!action2) return false;
 				return actionCounts.history.some((act, index) => act === action2 && jpxUtils.inRange(index, range));
             });
         },
@@ -4334,7 +4344,8 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
+                if (!action2) return false;
                 return jpxUtils.inRange(actionCounts[action2] ?? 0, range);
             });
         },
@@ -4344,7 +4355,8 @@ function initConditions() {
 
             return actions.every(action => {
                 let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : action;
+                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
+                if (!action2) return false;
 				return jpxUtils.inRange(combatRecords.use[action2] || revenueRecords.consumable[action2]?.use || 0, range);
             });
         },
@@ -4586,7 +4598,16 @@ const actionHandlers = {
     spellDamage(action, monster) {
         const { name, conditions } = action;
         let tier = name.match(/^T(\d)$/)?.[1];
-        let spell = tier ? spellsDamageObj[getManagedSpellType()][tier - 1] : name;
+        const element = tier ? getManagedSpellType() : '';
+        let spell = tier ? spellsDamageObj[element]?.[tier - 1] : name;
+        if (tier && !element && monster) {
+            isActiveBattle = false;
+            readyNext = t('cW.elementUnknown');
+            jpxPanelManager.updateContent('battle');
+            jpxPanelManager.setBackground('#ff5');
+            jpxPanelManager.dispatchState();
+            return true;
+        }
         return (
             monster &&
             checkConditions(conditions, monster) &&

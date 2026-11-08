@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.1
+// @version      2026.11.08.3
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -24,6 +24,7 @@
             "movePanel": "ドラッグで移動・矢印キーで微調整・Home で位置をリセット",
             "toggleBattle": "自動戦闘を切り替え",
             "waiting": "待機中",
+            "elementUnknown": "魔法属性を取得できません。戦闘外でキャラクターページを開いて再確認してください。",
             "ctrlWidgetRows": "パネルの表示項目",
             "isActiveBattle": "戦闘状態",
             "auto": "自動",

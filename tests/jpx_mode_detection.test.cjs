@@ -91,7 +91,7 @@ test('invalid caches cannot crash startup and legacy values do not claim verifie
     const h = fixture();
     for (const raw of ['{broken', 'null', '{"maxType":"fire","maxValue":"200"}', '{"maxType":"unknown","maxValue":200}', '{"maxType":"cold","maxValue":-1}']) {
         h.data.set(h.key, raw);
-        assert.deepEqual(h.read(), { maxType: 'fire', maxValue: 0 });
+        assert.deepEqual(h.read(), { maxType: '', maxValue: 0 });
         assert.equal(h.read(true), null);
     }
     h.cache({ maxType: 'cold', maxValue: 123 }, null);
@@ -123,7 +123,7 @@ test('persona identity changes without visible stats invalidate old caches inclu
         h.persona(name, id); h.api.refresh();
         assert.equal(h.data.has(h.key), false);
         assert.equal(h.read(true), null);
-        assert.deepEqual(h.memory(), { maxType: 'fire', maxValue: 0 });
+        assert.deepEqual(h.memory(), { maxType: '', maxValue: 0 });
     }
 });
 
@@ -145,7 +145,7 @@ test('verified stats are isolated by world and persona without changing battle c
     for (const change of [{ world: 'Isekai' }, { persona: 'Other' }, { personaId: '2' }]) {
         h.cache({ maxType: 'wind', maxValue: 160 }, { version: 1, world: 'Persistent', persona: 'Persona One', personaId: '1', ...change });
         assert.equal(h.read(true), null);
-        assert.deepEqual(h.read(), { maxType: 'fire', maxValue: 0 });
+        assert.deepEqual(h.read(), { maxType: '', maxValue: 0 });
     }
     const other = fixture({ suffix: '_isekai', data: h.data });
     assert.equal(other.read(true), null);
@@ -212,7 +212,7 @@ test('native persona/equipment changes invalidate cache and publish a recognitio
         const h = fixture(); h.cache({ maxType: 'holy', maxValue: 150 }); h.api.init();
         h.emit('document', type, { target });
         assert.equal(h.read(true), null);
-        assert.deepEqual(h.memory(), { maxType: 'fire', maxValue: 0 });
+        assert.deepEqual(h.memory(), { maxType: '', maxValue: 0 });
         assert.ok(h.events.includes('jpx:mode-detected'));
     }
 });

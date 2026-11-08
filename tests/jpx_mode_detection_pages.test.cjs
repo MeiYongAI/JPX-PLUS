@@ -33,6 +33,29 @@ function expose() {
         cache: () => localStorage.getItem(jpxDetectedFamilyKey()),
         native: () => localStorage.getItem(prefix + 'cfgBattle' + isekaiSuffix),
         context: getJpxDetectionContext,
+        magic: () => ({ memory: spellDamageBonus, verified: readJpxSpellDamageBonus(true), element: getManagedSpellType() }),
+        parseMagic: getJpxSpellDamageFromPage,
+        simulateSpell(name = 'T1', explicitElement = '') {
+            battleStyle = 'Staff'; battleType = 'General'; jpxSelectedConfig = null;
+            cfgBattle.Staff_General = { supports: [], attacks: [] };
+            if (explicitElement) cfgBattle.Staff_General.jpxPlusExecution = { element: explicitElement };
+            monstersObj = { monsters: [], activeMonsters: [], bosses: [], activeBosses: [] };
+            conditionsObj = null; isActiveBattle = true; readyNext = 0;
+            spellCooldowns = {}; itemCooldowns = {}; actionCounts = { history: [] };
+            timeRecords = jpxUtils.createTimeRecords(); combatRecords = jpxUtils.createCombatRecords(); revenueRecords = jpxUtils.createRevenueRecords();
+            const conditions = initConditions().generalHandlers;
+            const guarded = ['pActionCooldown', 'pActionHistory', 'pActionCounts', 'pTotalActionCounts'].map(key => conditions[key]([0, 9999, 'T1']));
+            const original = doSpellGoNext, updates = jpxPanelManager.updateContent, background = jpxPanelManager.setBackground, dispatch = jpxPanelManager.dispatchState;
+            const casts = []; doSpellGoNext = spell => { casts.push(spell); return true; };
+            jpxPanelManager.updateContent = jpxPanelManager.setBackground = jpxPanelManager.dispatchState = () => {};
+            try {
+                const panel = CTRLWIDGET_FIELDS.find(field => field.id === 'battleStyle').get();
+                actionHandlers.spellDamage({ name, conditions: [] }, { isAlive: true });
+                return { casts, active: isActiveBattle, status: readyNext, panel, guarded };
+            } finally {
+                doSpellGoNext = original; jpxPanelManager.updateContent = updates; jpxPanelManager.setBackground = background; jpxPanelManager.dispatchState = dispatch;
+            }
+        },
         setPersona(name, id) {
             localStorage.setItem(prefix + 'persona' + isekaiSuffix, name);
             localStorage.setItem(prefix + 'personaId' + isekaiSuffix, id);
@@ -88,6 +111,62 @@ async function fixture(t, { isekai = false, initialHtml = base, responseBattle =
     return { page, context, url, start, open, original, requests, unexpected, errors, replies, release, releaseMetadata };
 }
 function clean(f) { assert.deepEqual(f.errors, []); assert.deepEqual(f.unexpected, []); }
+
+for (const isekai of [false, true]) test('all native stat headings preserve wind detection in ' + (isekai ? 'Isekai' : 'Persistent'), async t => {
+    const headings = '<div class="spc">Mainhand Attack</div><table><tr><td>4613</td><td>Crushing Damage</td></tr></table>' +
+        '<div class="spc">Magic Attack</div><table><tr><td>5140</td><td>Damage Bonus</td></tr></table>';
+    const stats = '<div class="spc">Spell Damage Bonus</div><table>' +
+        [[0, 'Fire'], [0, 'Cold'], [38.4, 'Elec'], [398.6, 'Wind'], [0, 'Holy'], [76.8, 'Dark']].map(([value, name]) =>
+            '<tr><td>' + value + '%</td><td>' + name + '</td></tr>').join('') + '</table>';
+    const initialHtml = character().replace(/<div class="spc">[\s\S]*$/, '<div id="stats_scrollable">' + headings + stats + '</div>');
+    const f = await fixture(t, { isekai, initialHtml });
+    const magic = await f.page.evaluate(() => __pages.magic());
+    assert.deepEqual(magic.memory, { maxType: 'wind', maxValue: 398.6 });
+    assert.deepEqual(magic.verified, magic.memory); assert.equal(magic.element, 'wind');
+    await f.page.goto('https://hentaiverse.org/' + (isekai ? 'isekai/' : '') + '?battle-fixture');
+    await f.page.evaluate(() => { document.body.innerHTML = '<div id="csp"><div id="navbar"></div><table id="textlog"></table></div>'; });
+    await f.start();
+    const action = await f.page.evaluate(() => __pages.simulateSpell());
+    assert.deepEqual(action.casts, ['Gale'], 'a normal T1 rule follows the persisted wind observation in combat');
+    assert.equal(action.active, true); assert.match(action.panel, /Wind/);
+    assert.deepEqual(f.requests, []); clean(f);
+});
+
+test('missing element is not fire, tier actions pause, and explicit choices remain authoritative', async t => {
+    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' });
+    const unknown = await f.page.evaluate(() => __pages.simulateSpell());
+    assert.deepEqual(unknown.casts, []); assert.equal(unknown.active, false);
+    assert.deepEqual(unknown.guarded, [false, false, false, false]);
+    assert.match(unknown.status, /Spell element unavailable/); assert.doesNotMatch(unknown.panel, /Fire|undefined/);
+    const named = await f.page.evaluate(() => __pages.simulateSpell('Gale'));
+    assert.deepEqual(named.casts, ['Gale']); assert.equal(named.active, true);
+    const explicit = await f.page.evaluate(() => __pages.simulateSpell('T1', 'fire'));
+    assert.deepEqual(explicit.casts, ['Fiery Blast']); assert.equal(explicit.active, true);
+    assert.deepEqual(f.requests, []); clean(f);
+});
+
+test('a cached staff family without spell stats still refreshes outside combat', async t => {
+    const f = await fixture(t);
+    await f.page.evaluate(() => {
+        __pages.setPersona('Fixture Persona', '17');
+        localStorage.setItem('jpx_detectedWeaponFamily_v1', JSON.stringify({ version: 1, ...__pages.context(), family: 'Staff', verifiedAt: Date.now() }));
+    });
+    await f.page.evaluate(() => __pages.ensure());
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'wind');
+    assert.equal(f.requests.length, 2); clean(f);
+});
+
+test('bilingual stat captions use native source text and never select mitigation values', async t => {
+    const f = await fixture(t);
+    const result = await f.page.evaluate(() => {
+        const doc = new DOMParser().parseFromString('<div class="spc">Damage Mitigation</div><table><tr><td>999%</td><td>Fire</td></tr></table>' +
+            '<div class="spc">Spell Damage Bonus 法术伤害加成</div><table><tr><td>0.0%</td><td>Fire火焰</td></tr>' +
+            '<tr><td>398.6%</td><td><hv-source-text>Wind</hv-source-text><span>疾风</span></td></tr>' +
+            '<tr><td>76.8%</td><td>Dark 黑暗</td></tr></table>', 'text/html');
+        return __pages.parseMagic(doc);
+    });
+    assert.deepEqual(result, { maxType: 'wind', maxValue: 398.6 }); clean(f);
+});
 
 for (const isekai of [false, true]) test(`first open detects automatically without visiting equipment, ${isekai ? 'Isekai' : 'Persistent'}`, async t => {
     const f = await fixture(t, { isekai }); await f.open();

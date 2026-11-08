@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.1
+// @version      2026.11.08.3
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -24,6 +24,7 @@
         "movePanel": "드래그로 이동 · 방향키로 미세 조정 · Home으로 위치 초기화",
         "toggleBattle": "자동 전투 전환",
         "waiting": "대기",
+        "elementUnknown": "마법 속성을 확인하지 못했습니다. 전투 밖에서 캐릭터 페이지를 열어 다시 확인해 주세요.",
         "ctrlWidgetRows": "패널 표시 항목",
         "isActiveBattle": "전투 상태",
         "auto": "자동",

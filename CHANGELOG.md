@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.08.3
+
+- **Correct spell-element detection.** Skip stat headings without glyph containers instead of aborting the character-page scan. Recognize native element names even when translated display text is appended, and refresh missing elemental data outside battle.
+- **No guessed Fire fallback.** Missing or invalid elemental data no longer displays Fire or silently selects fire spells. Automatic T1/T2/T3 actions pause with a clear message when their element is unknown; explicitly named spells and selected element overrides keep working.
+- **Compatibility and coverage.** Preserve native JPX config formats and separate Persistent/Isekai observations. Update all five language packs and add regressions for both worlds, translated labels, and unknown-element handling.
+
+### 简体中文
+
+- **修复法术属性识别**：跳过没有字形容器的属性标题，避免角色页读取中断；兼容英文属性名后附中文显示文本，并在战斗外补全缺失的属性数据。
+- **不再默认火系**：属性缺失或无效时不再误显示火系、误选火系法术；依赖自动识别的 T1/T2/T3 操作会暂停并提示，明确指定技能或属性的规则仍正常工作。
+- **保持兼容**：原版 JPX 配置格式和主世界／异世界数据隔离不变，同步五个语言包，补充双世界、混排标签及未知属性的回归测试。
+
 ## 2026.11.08.2
 
 - **More reliable persona/set bindings.** Handle fast HVUT switches, native AJAX equipment updates and changes in another tab. Cancel obsolete lookups and publish the active-config update after the confirmed persona/set state is ready.
