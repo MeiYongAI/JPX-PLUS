@@ -198,6 +198,15 @@ test('concurrent opens share one lookup and changed persona rejects its stale re
     assert.equal(await f.page.evaluate(() => __pages.native()), f.original); clean(f);
 });
 
+test('style detection joins an in-flight binding lookup without losing its result', async t => {
+    const f = await fixture(t, { hold: true });
+    await f.page.evaluate(() => { window.__bindingRead = __pages.ensure(true); window.__modeRead = __pages.ensure(); });
+    f.release(); await f.page.evaluate(() => Promise.all([window.__bindingRead, window.__modeRead]));
+    assert.equal(await f.page.evaluate(() => __pages.detect()), 'Staff');
+    assert.equal(f.requests.length, 2, 'the equipment response is shared by binding and recognition');
+    clean(f);
+});
+
 test('battle and puzzle pages never make character or equipment requests', async t => {
     for (const markup of ['<div id="textlog"></div>', '<div id="battle_main"></div>', '<div id="riddlemaster"></div>']) {
         const f = await fixture(t, { initialHtml: base + markup }); await f.open();

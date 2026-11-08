@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.1
+// @version      2026.11.08.2
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.1',
+    version: '2026.11.08.2',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -2766,7 +2766,9 @@ function renderJpxCleanup(owner) {
 // useful only for the same world/persona; legacy cache values remain a runtime
 // fallback until a character page supplies a verified snapshot.
 function getJpxDetectionContext(root = document) {
-    const select = root.querySelector('#persona_form select');
+    // After an AJAX swap or another tab's switch, this page can still contain
+    // the previous persona selector. Explicitly fetched documents stay usable.
+    const select = root === document && jpxDetectionSourceIgnored ? null : root.querySelector('#persona_form select');
     const selected = select?.selectedOptions?.[0] || select?.options?.[select.selectedIndex];
     return {
         world: isekaiSuffix ? 'Isekai' : 'Persistent',
@@ -2775,9 +2777,12 @@ function getJpxDetectionContext(root = document) {
     };
 }
 
-let jpxDetectionSourceIgnored = false;
+// Hoisted because initial spell-stat loading also reads the persona context.
+var jpxDetectionSourceIgnored = false;
 let jpxDetectionGeneration = 0;
 let jpxDetectionRequest = null;
+let jpxDetectionController = null, jpxDetectionRequestGeneration = -1;
+let jpxDetectionReadLoadout = false, jpxDetectionReadMode = false;
 let jpxDetectionRetryAt = 0;
 const jpxDetectedFamilyKey = () => prefix + 'detectedWeaponFamily_v1' + isekaiSuffix;
 const jpxDetectedFamilyValid = family => ['OneHanded', 'TwoHanded', 'DualWielding', 'NitenIchiryu', 'Staff'].includes(family);
@@ -2992,26 +2997,54 @@ function ensureJpxModeDetection(loadout = false) {
     // and never mistake a battle/verification response for a character snapshot.
     if (jpxLoadoutBusy || !loadout && getDetectedJpxBattleStyle() || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
         !/(^|\.)hentaiverse\.org$/.test(location.hostname)) return Promise.resolve();
-    if (jpxDetectionRequest) return jpxDetectionRequest;
+    if (jpxDetectionRequest) {
+        if (jpxDetectionRequestGeneration === jpxDetectionGeneration) {
+            jpxDetectionReadLoadout ||= loadout;
+            jpxDetectionReadMode ||= !loadout;
+            return jpxDetectionRequest;
+        }
+        jpxDetectionController?.abort();
+    }
     if (Date.now() < jpxDetectionRetryAt) return Promise.resolve();
-    const generation = jpxDetectionGeneration, initial = JSON.stringify(getJpxDetectionContext());
+    const generation = jpxDetectionGeneration;
+    let initial = JSON.stringify(getJpxDetectionContext());
     const isCurrent = () => generation === jpxDetectionGeneration && initial === JSON.stringify(getJpxDetectionContext()) &&
         !log && !document.querySelector('#textlog, #battle_main, #riddlemaster');
     const controller = new AbortController(), timeout = setTimeout(() => controller.abort(), 8000);
+    jpxDetectionController = controller; jpxDetectionRequestGeneration = generation;
+    jpxDetectionReadLoadout = loadout; jpxDetectionReadMode = !loadout;
     jpxDetectionRetryAt = Date.now() + 10000;
     jpxDetectionRequest = (async () => {
         try {
             const base = isekaiSuffix ? '/isekai/' : '/';
-            const pages = await Promise.all(['ch', 'eq'].map(async page => {
+            const readPage = async page => {
                 const response = await fetch(base + '?s=Character&ss=' + page, { method: 'GET', credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
                 if (!response.ok) throw new Error('Character lookup failed');
                 const root = new DOMParser().parseFromString(await response.text(), 'text/html');
                 if (root.querySelector('#textlog, #battle_main, #riddlemaster')) throw new Error('Character pages are unavailable during battle');
                 return root;
-            }));
+            };
+            // Binding needs only a confirmed persona/set pair. The equipment
+            // response normally supplies both, without an extra character GET.
+            let character, equipment;
+            if (loadout) {
+                equipment = await readPage('eq');
+                if (!isCurrent()) return;
+                character = equipment.querySelector('#persona_form select') ? equipment : await readPage('ch');
+                if (!isCurrent()) return;
+                rememberJpxLoadout(character, equipment);
+                initial = JSON.stringify(getJpxDetectionContext());
+                if (!jpxDetectionReadMode) { jpxDetectionRetryAt = 0; return; }
+                // An open manager can request style detection while binding is
+                // in flight. Reuse the equipment response for that request too.
+                if (character === equipment) character = await readPage('ch');
+            } else [character, equipment] = await Promise.all(['ch', 'eq'].map(readPage));
             if (!isCurrent()) return;
-            const [character, equipment] = pages;
-            if (!jpxLoadoutPending || loadout) rememberJpxLoadout(character, equipment);
+            const characterPersona = character.querySelector('#persona_form select');
+            const equipmentPersona = equipment.querySelector('#persona_form select');
+            if (characterPersona && equipmentPersona && characterPersona.value !== equipmentPersona.value) return;
+            if (!jpxLoadoutPending || jpxDetectionReadLoadout) rememberJpxLoadout(character, equipment);
+            initial = JSON.stringify(getJpxDetectionContext());
             if (!character.querySelector('#persona_form select') || !equipment.querySelector('#eqsb')) return;
             const metadata = await readJpxEquipmentMetadata(equipment, base, controller.signal);
             if (!isCurrent()) return;
@@ -3031,7 +3064,10 @@ function ensureJpxModeDetection(loadout = false) {
             jpxDetectionRetryAt = 0;
             window.dispatchEvent(new Event('jpx:mode-detected'));
         } catch { /* Retry on a later visit; no modal or false detection on failure. */ }
-        finally { clearTimeout(timeout); controller.abort(); jpxDetectionRequest = null; }
+        finally {
+            clearTimeout(timeout); controller.abort();
+            if (jpxDetectionController === controller) { jpxDetectionRequest = null; jpxDetectionController = null; }
+        }
     })();
     return jpxDetectionRequest;
 }
@@ -13804,9 +13840,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
         };
         function updateSets() {
             const catalog = getJpxLoadoutCatalog(world.value), known = catalog.personas.find(item => item.id === persona.value);
-            const ids = [...new Set([...catalog.sets, ...(known?.sets || []).map(item => item.id)])].sort((a, b) => Number(a) - Number(b));
+            const ids = [...new Set(known?.sets.length ? known.sets.map(item => item.id) : catalog.sets)].sort((a, b) => Number(a) - Number(b));
             fill(set, ids.map(id => [id, known?.sets.find(item => item.id === id)?.name || tr('setNumber', { id })]),
-                catalog.current?.personaId === persona.value ? catalog.current.setId : set.value);
+                catalog.current?.personaId === persona.value ? catalog.current.setId : known?.lastSetId || set.value);
             hint.hidden = !!persona.value && !!set.value;
             hint.textContent = tr(log || document.querySelector('#riddlemaster') ? 'bindingUnavailable' : 'bindingUnknown');
             const submit = root.querySelector('.jpx-config-confirm .jpx-config-primary');
@@ -14042,6 +14078,7 @@ function readJpxLoadoutCatalog(world = jpxConfigWorld()) {
         if (Array.isArray(item.sets)) for (const set of item.sets.slice(0, 100)) {
             if (jpxLoadoutSlot(set?.id)) persona.sets.push({ id: String(set.id), name: String(set.name || '').slice(0, 100) });
         }
+        if (persona.sets.some(set => set.id === jpxLoadoutSlot(item.lastSetId))) persona.lastSetId = String(item.lastSetId);
         catalog.personas.push(persona);
     }
     if (saved.current?.world === world && jpxLoadoutSlot(saved.current.personaId) && jpxLoadoutSlot(saved.current.setId))
@@ -14074,9 +14111,12 @@ function getJpxLoadoutCatalog(world = jpxConfigWorld()) {
     for (const item of hvut?.personas || []) {
         const previous = catalog.personas.find(persona => persona.id === item.id);
         if (!previous) catalog.personas.push(item);
-        else for (const set of item.sets) {
-            const known = previous.sets.find(value => value.id === set.id);
-            if (!known) previous.sets.push(set); else if (set.name) known.name = set.name;
+        else {
+            if (item.name) previous.name = item.name;
+            for (const set of item.sets) {
+                const known = previous.sets.find(value => value.id === set.id);
+                if (!known) previous.sets.push(set); else if (set.name) known.name = set.name;
+            }
         }
     }
     catalog.sets = [...new Set([...catalog.sets, ...(hvut?.sets || [])])].sort((a, b) => Number(a) - Number(b));
@@ -14089,8 +14129,9 @@ function jpxConfigContainsCode(envelope) {
         Array.isArray(rules) && rules.some(rule => rule.type === 'kamisamaniNattaHi')));
 }
 
-function applyJpxLoadoutBinding(context, force = false) {
-    if (!context || jpxLoadoutPending || log || document.querySelector('#textlog, #battle_main, #riddlemaster')) return false;
+function applyJpxLoadoutBinding(context, force = false, notify = true) {
+    if (!context || context.world !== jpxConfigWorld() || jpxLoadoutPending || jpxLoadoutBusy ||
+        log || document.querySelector('#textlog, #battle_main, #riddlemaster')) return false;
     const library = getJpxConfigLibrary(), state = library.readState();
     const binding = state.bindings?.find(item => jpxLoadoutSame(item, context));
     if (!binding) return false;
@@ -14101,28 +14142,45 @@ function applyJpxLoadoutBinding(context, force = false) {
     if (!force && state.active?.[context.world] === entry.id && applied?.revision === entry.revision &&
         applied.scopes.every(scope => JSON.stringify(cfgBattle[scope]) === JSON.stringify(applied.config[scope]))) return false;
     commitJpxConfigEntry(entry, context.world);
-    window.dispatchEvent(new Event('jpx:config-library'));
+    if (notify) window.dispatchEvent(new Event('jpx:config-library'));
     return true;
 }
 
-function confirmJpxLoadout(current, catalog) {
+function confirmJpxLoadout(current, catalog, livePage = false) {
     if (jpxLoadoutBusy || log || document.querySelector('#textlog, #battle_main, #riddlemaster') || current.world !== jpxConfigWorld()) return;
     const previous = readJpxLoadoutCatalog().current;
+    const pending = jpxLoadoutPending;
+    let applied = false;
     jpxLoadoutPending = false;
-    if (!jpxLoadoutSame(previous, current)) applyJpxLoadoutBinding(current);
+    try {
+        if (!jpxLoadoutSame(previous, current)) applied = applyJpxLoadoutBinding(current, false, false);
+    } catch (error) { jpxLoadoutPending = pending; throw error; }
+    const persona = catalog.personas.find(item => item.id === current.personaId);
+    if (!livePage && !jpxLoadoutSame(previous, current)) {
+        localStorage.removeItem(jpxDetectedFamilyKey());
+        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
+        jpxDetectionSourceIgnored = true;
+    }
+    localStorage.setItem(prefix + 'personaId' + isekaiSuffix, current.personaId);
+    if (persona?.name) localStorage.setItem(prefix + 'persona' + isekaiSuffix, persona.name);
     catalog.current = current;
+    if (persona?.sets.some(set => set.id === current.setId)) persona.lastSetId = current.setId;
     const raw = JSON.stringify(catalog), key = jpxLoadoutKey();
+    const changed = localStorage.getItem(key) !== raw || !jpxLoadoutSame(jpxLoadoutConfirmed, current);
     if (localStorage.getItem(key) !== raw) localStorage.setItem(key, raw);
     jpxLoadoutConfirmed = current;
-    window.dispatchEvent(new Event('jpx:loadout-detected'));
+    // Publish only after both configuration and persona/set state are ready.
+    if (applied) window.dispatchEvent(new Event('jpx:config-library'));
+    if (changed) window.dispatchEvent(new Event('jpx:loadout-detected'));
 }
 
 function rememberJpxLoadout(character = document, equipment = document) {
     if (jpxLoadoutPending && character === document) return;
-    const selector = character.querySelector('#persona_form select');
-    const personaId = jpxLoadoutSlot(selector?.value);
     const equipmentPersona = equipment.querySelector('#persona_form select');
-    if (!personaId || equipmentPersona && equipmentPersona.value !== personaId) return;
+    const selector = equipmentPersona || character.querySelector('#persona_form select');
+    const personaId = jpxLoadoutSlot(selector?.value);
+    const characterPersona = character.querySelector('#persona_form select');
+    if (!personaId || characterPersona && characterPersona.value !== personaId) return;
     const active = equipment.querySelector('#eqsl img[src*="_on.png"]');
     const setId = jpxLoadoutSlot(active?.getAttribute('src')?.match(/(?:^|\/)set(\d+)_on\.png(?:[?#]|$)/)?.[1]);
     const catalog = getJpxLoadoutCatalog();
@@ -14137,7 +14195,12 @@ function rememberJpxLoadout(character = document, equipment = document) {
         jpxLoadoutSlot(node.getAttribute('src')?.match(/(?:^|\/)set(\d+)_(?:on|off)\.png(?:[?#]|$)/)?.[1])).filter(Boolean);
     if (sets.length) catalog.sets = [...new Set(sets)];
     if (!setId || !catalog.sets.includes(setId)) return;
-    confirmJpxLoadout({ world: jpxConfigWorld(), personaId, setId }, catalog);
+    const persona = catalog.personas.find(item => item.id === personaId);
+    if (!persona) return;
+    // Keep the actual observed slots per persona as well as the legacy catalog.
+    // No fixed persona/set count, and no borrowed selection from another world.
+    persona.sets = sets.map(id => persona.sets.find(item => item.id === id) || { id, name: '' });
+    confirmJpxLoadout({ world: jpxConfigWorld(), personaId, setId }, catalog, character === document && equipment === document);
 }
 
 function initJpxLoadoutBindings() {
@@ -14149,6 +14212,15 @@ function initJpxLoadoutBindings() {
         jpxLoadoutPending = true; jpxLoadoutConfirmed = null;
         jpxDetectionGeneration++; jpxDetectionRetryAt = 0;
         jpxDetectionSourceIgnored = true;
+        localStorage.removeItem(jpxDetectedFamilyKey());
+        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
+    };
+    let refreshTimer;
+    const refresh = () => {
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(() => {
+            if (jpxLoadoutPending && !jpxLoadoutBusy && !unavailable() && document.visibilityState !== 'hidden') ensureJpxModeDetection(true);
+        }, 80);
     };
     document.addEventListener('change', event => {
         if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
@@ -14157,31 +14229,41 @@ function initJpxLoadoutBindings() {
         if (event.target.matches?.('#persona_form, #equipform')) invalidate();
     }, true);
     document.addEventListener('click', event => { if (event.target.closest?.('#eqsl')) invalidate(); }, true);
+    // Native navigation is handled on the next page. AJAX replacements need a
+    // fresh server snapshot, not the dropdown's provisional selection.
+    const nativeObserver = new MutationObserver(records => {
+        if (unavailable()) { nativeObserver.disconnect(); return; }
+        if (!jpxLoadoutPending || jpxLoadoutBusy) return;
+        if (records.some(record => record.type === 'attributes' ? record.target.closest?.('#eqsl') :
+            [...record.addedNodes].some(node => node.nodeType === 1 &&
+                (node.matches('#persona_form, #eqsl, #eqsb') || node.querySelector('#persona_form, #eqsl, #eqsb'))))) refresh();
+    });
+    nativeObserver.observe(document.getElementById('csp') || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
     let hvutPending = false;
     function watchHvut(top) {
         const isBusy = () => [...top.children].some(node => /^\([PE]\.\.\.\)$/.test(node.firstElementChild?.textContent?.trim()));
         if (isBusy()) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); }
-        new MutationObserver(() => {
+        new MutationObserver(records => {
             if (unavailable()) return;
             const busy = isBusy();
             if (busy) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); return; }
-            if (!hvutPending) return;
+            // A cached/fast response can enter and leave P/E busy in one task.
+            // Mutation records retain the removed busy text even then.
+            const completed = records.some(record => /^\([PE]\.\.\.\)$/.test(record.oldValue?.trim()) ||
+                [...record.removedNodes].some(node => /^\([PE]\.\.\.\)$/.test(node.textContent?.trim())));
+            if (!hvutPending && !completed) return;
+            if (!hvutPending) invalidate();
             hvutPending = false; jpxLoadoutBusy = false;
             const observed = readJpxHvutLoadout();
-            if (!observed?.current || !observed.personas.some(persona => persona.id === observed.current.personaId && persona.sets.some(set => set.id === observed.current.setId))) return;
+            if (!observed?.current || !observed.personas.some(persona => persona.id === observed.current.personaId && persona.sets.some(set => set.id === observed.current.setId))) { refresh(); return; }
             // HVUT writes persona first, set second. Its P/E indicator must finish
             // before the tuple is accepted; intermediate cache values are ignored.
             try {
                 confirmJpxLoadout(observed.current, getJpxLoadoutCatalog());
-                // The DOM can still show the old equipment after HVUT's AJAX swap.
-                localStorage.setItem(prefix + 'personaId' + isekaiSuffix, observed.current.personaId);
-                localStorage.setItem(prefix + 'persona' + isekaiSuffix, observed.personas.find(item => item.id === observed.current.personaId)?.name || '');
-                localStorage.removeItem(jpxDetectedFamilyKey());
-                localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
                 window.dispatchEvent(new Event('jpx:mode-detected'));
             }
             catch (error) { console.warn('JPX-PLUS loadout binding failed.', error); }
-        }).observe(top, { childList: true, subtree: true, characterData: true });
+        }).observe(top, { childList: true, subtree: true, characterData: true, characterDataOldValue: true });
     }
     const top = document.getElementById('hvut-top');
     if (top) watchHvut(top);
@@ -14195,11 +14277,26 @@ function initJpxLoadoutBindings() {
     }
     window.addEventListener('storage', event => {
         if (event.key !== jpxLoadoutKey() && event.key !== (isekaiSuffix ? 'hvuti' : 'hvut') + '_persona') return;
+        if (unavailable()) return;
+        if (event.key === jpxLoadoutKey()) {
+            // Another JPX tab has already confirmed and applied this tuple.
+            // Share its observation; do not re-apply over a manual selection.
+            const current = readJpxLoadoutCatalog().current;
+            if (current && !jpxLoadoutBusy) {
+                jpxDetectionGeneration++; jpxDetectionSourceIgnored = true;
+                jpxLoadoutConfirmed = current; jpxLoadoutPending = false;
+                window.dispatchEvent(new Event('jpx:loadout-detected'));
+                return;
+            }
+        }
         invalidate();
+        refresh();
     });
     window.addEventListener('focus', () => {
-        if (jpxLoadoutPending && !unavailable()) ensureJpxModeDetection(true);
+        if (jpxLoadoutPending) refresh();
     });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && jpxLoadoutPending) refresh(); });
+    window.addEventListener('pagehide', () => clearTimeout(refreshTimer));
     try {
         rememberJpxLoadout();
         if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().readState().bindings?.some(item => item.world === jpxConfigWorld())) ensureJpxModeDetection(true);

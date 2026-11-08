@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.2
+
+- **More reliable persona/set bindings.** Handle fast HVUT switches, native AJAX equipment updates and changes in another tab. Cancel obsolete lookups and publish the active-config update after the confirmed persona/set state is ready.
+- **Remember each persona's set.** The binding picker remembers its last observed set and prefers that persona's known slots. Persistent and Isekai observations remain separate.
+- **Fewer background requests.** Binding checks use the equipment response when it contains both IDs, and share it with style detection when needed. Combat and puzzle pages still make no character/equipment lookup requests.
+- **Keep existing choices.** Manual applications survive ordinary reloads; an unbound set keeps the current config. Native JPX config import/export stays compatible.
+
+### 简体中文
+
+- **人格／套装切换更稳**：修复 HVUT 快速切换、原生页面 AJAX 换装及跨标签页同步中的遗漏，取消过期查询，确认人格和套装后再更新“使用中”。
+- **分别记住套装**：绑定窗口记住每个人格上次读取到的套装，优先显示该人格已知的套装；主世界与异世界分别保存。
+- **减少后台请求**：装备页包含完整信息时，仅读取一次即可确认绑定；需要识别流派时复用请求，战斗和谜题中仍不请求角色／装备页。
+- **保留现有选择**：普通刷新保留手动应用的配置，未绑定套装沿用当前配置，原版 JPX 配置导入导出格式不变。
+
 ## 2026.11.08.1
 
 Compared with the previous public main script, 2026.11.06.12:

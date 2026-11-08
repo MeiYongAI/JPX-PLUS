@@ -768,9 +768,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
         };
         function updateSets() {
             const catalog = getJpxLoadoutCatalog(world.value), known = catalog.personas.find(item => item.id === persona.value);
-            const ids = [...new Set([...catalog.sets, ...(known?.sets || []).map(item => item.id)])].sort((a, b) => Number(a) - Number(b));
+            const ids = [...new Set(known?.sets.length ? known.sets.map(item => item.id) : catalog.sets)].sort((a, b) => Number(a) - Number(b));
             fill(set, ids.map(id => [id, known?.sets.find(item => item.id === id)?.name || tr('setNumber', { id })]),
-                catalog.current?.personaId === persona.value ? catalog.current.setId : set.value);
+                catalog.current?.personaId === persona.value ? catalog.current.setId : known?.lastSetId || set.value);
             hint.hidden = !!persona.value && !!set.value;
             hint.textContent = tr(log || document.querySelector('#riddlemaster') ? 'bindingUnavailable' : 'bindingUnknown');
             const submit = root.querySelector('.jpx-config-confirm .jpx-config-primary');
