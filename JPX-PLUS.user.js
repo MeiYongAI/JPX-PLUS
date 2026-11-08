@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.7
+// @version      2026.11.08.8
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.7',
+    version: '2026.11.08.8',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -6979,6 +6979,18 @@ function createSettingsChangeTracker(container, readData) {
     }
     function refresh() {
         const matches = new WeakMap();
+        // Canonical content narrows recreated rules to a small candidate bucket.
+        // Empty containers stay equivalent to missing fields; equal() remains
+        // authoritative when those deliberately broad keys share a bucket.
+        function matchKey(value) {
+            if (value === undefined) return '';
+            if (!value || typeof value !== 'object') return JSON.stringify(value);
+            const entries = Object.entries(value).map(([key, child]) => [key, matchKey(child)]);
+            if (entries.every(([key, content]) => !key.startsWith('kb_') && content === '')) return '';
+            if (Array.isArray(value)) return 'a' + value.length + '[' + entries.map(([key, content]) => key + ':' + content).join(',') + ']';
+            return 'o{' + entries.filter(([key, content]) => key.startsWith('kb_') || content !== '')
+                .sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([key, content]) => JSON.stringify(key) + ':' + content).join(',') + '}';
+        }
         function match(current, baseline, moved = false) {
             if (!current || typeof current !== 'object') return;
             matches.set(current, { baseline, moved });
@@ -6994,10 +7006,26 @@ function createSettingsChangeTracker(container, readData) {
                     identities.set(value, id);
                     claimed.add(id);
                 };
-                objects.filter(value => value.id === undefined && !oldById.has(identity(value))).forEach(value => {
-                    const previous = old.find(entry => entry && typeof entry === 'object' && !claimed.has(identity(entry)) && equal(value, entry));
-                    if (previous) adopt(value, previous);
-                });
+                const recreated = objects.filter(value => value.id === undefined && !oldById.has(identity(value)));
+                if (recreated.length) {
+                    const byContent = new Map();
+                    for (const entry of old) {
+                        if (!entry || typeof entry !== 'object' || claimed.has(identity(entry))) continue;
+                        const key = matchKey(entry);
+                        if (!byContent.has(key)) byContent.set(key, { items: [], head: 0 });
+                        byContent.get(key).items.push(entry);
+                    }
+                    for (const value of recreated) {
+                        const bucket = byContent.get(matchKey(value));
+                        if (!bucket) continue;
+                        for (let i = bucket.head; i < bucket.items.length; i++) {
+                            const previous = bucket.items[i];
+                            if (!previous || claimed.has(identity(previous))) continue;
+                            if (equal(value, previous)) { adopt(value, previous); bucket.items[i] = null; break; }
+                        }
+                        while (bucket.head < bucket.items.length && (!bucket.items[bucket.head] || claimed.has(identity(bucket.items[bucket.head])))) bucket.head++;
+                    }
+                }
                 current.forEach((value, index) => {
                     if (!value || typeof value !== 'object' || value.id !== undefined || oldById.has(identity(value))) return;
                     const previous = old[index];
@@ -7008,12 +7036,15 @@ function createSettingsChangeTracker(container, readData) {
                 const currentIdSet = new Set(currentIds);
                 const oldCommon = old.filter(v => v && typeof v === 'object' && currentIdSet.has(identity(v))).map(identity);
                 const currentCommon = currentIds.filter(id => oldById.has(id));
+                const oldPositions = new Map(), currentPositions = new Map();
+                oldCommon.forEach((id, index) => { if (!oldPositions.has(id)) oldPositions.set(id, index); });
+                currentCommon.forEach((id, index) => { if (!currentPositions.has(id)) currentPositions.set(id, index); });
                 const unchanged = equal(current, old);
                 current.forEach((value, index) => {
                     if (!value || typeof value !== 'object') return;
                     const id = identity(value);
                     match(value, unchanged ? old[index] : oldById.get(id),
-                        !unchanged && oldById.has(id) && oldCommon.indexOf(id) !== currentCommon.indexOf(id));
+                        !unchanged && oldById.has(id) && oldPositions.get(id) !== currentPositions.get(id));
                 });
             } else Object.entries(current).forEach(([key, value]) => match(value, baseline?.[key]));
         }
@@ -7066,7 +7097,26 @@ function createSettingsChangeTracker(container, readData) {
     });
     observer.observe(container, { childList: true, subtree: true });
     return { refresh, save, captureIdentities,
-        commit(scope, patch) { Object.assign(saved[scope], JSON.parse(JSON.stringify(patch))); refresh(); },
+        commit(scope, patch) {
+            const committed = JSON.parse(JSON.stringify(patch)), current = roots()[scope];
+            // A committed snapshot already matches the live values. Carry its
+            // array identities directly instead of rediscovering each rule by
+            // scanning all earlier entries (quadratic on large imports).
+            function shareIdentities(value, snapshot) {
+                if (!value || typeof value !== 'object' || !snapshot || typeof snapshot !== 'object') return;
+                for (const [key, child] of Object.entries(value)) {
+                    if (!child || typeof child !== 'object' || !snapshot[key] || typeof snapshot[key] !== 'object') continue;
+                    if (Array.isArray(value)) identities.set(snapshot[key], identity(child));
+                    shareIdentities(child, snapshot[key]);
+                }
+            }
+            for (const [key, value] of Object.entries(committed)) {
+                if (equal(current?.[key], value)) shareIdentities(current[key], value);
+            }
+            // Only applied keys become clean; unrelated drafts keep their baseline.
+            Object.assign(saved[scope], committed);
+            refresh();
+        },
         restore: (snapshot, scopes) => restoreIdentities(roots(), snapshot, scopes), dispose: () => observer.disconnect() };
 }
 
@@ -9370,6 +9420,15 @@ function mergeCfg(storedCfg, defaultCfg, mergedCfg, mergedType) {
     }
 }
 
+function parseJpxSettingsImport(content) {
+    const data = JSON.parse(content, (key, value) => {
+        if (['__proto__', 'prototype', 'constructor'].includes(key)) throw new Error('Invalid configuration key');
+        return value;
+    });
+    if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid configuration');
+    return data;
+}
+
 function renderSettings() {
     let container = document.getElementById('settings-container');
     if (container) {
@@ -9645,13 +9704,23 @@ function renderSettings() {
     };
 
     function importBattleConfig(content) {
-        let data = JSON.parse(content);
+        const temporary = new Map();
+        const validator = createJpxConfigLibrary({ storage: { getItem: key => temporary.get(key) || null, setItem: (key, value) => temporary.set(key, value) },
+            key: 'check', modes: BATTLE_MODES, battleVersion: defaultCfgBattle.battleVersion, statsVersion: defaultCfgStats.statsVersion });
+        const data = validator.save({ schemaVersion: 1, kind: 'battle', title: 'Settings import', description: '', world: jpxConfigWorld(),
+            config: parseJpxSettingsImport(content) }).envelope.config;
         if ([...BATTLE_MODES, 'Battlecaster_General'].some(key => Object.entries(data[key] || {}).some(([group, rules]) =>
             (group === 'supports' || group === 'attacks' || group.startsWith('kb_')) &&
             Array.isArray(rules) && rules.some(rule => rule?.type === 'kamisamaniNattaHi'))) && !confirm(t('cB.importCustomCodeWarning'))) {
             throw new Error('Custom code import rejected');
         }
-        mergeCfg(data, cfgBattle, cfgBattle, 'battle');
+        // Prepare all modes before touching live rules: invalid later modes must
+        // not leave a half-imported strategy running in the current battle.
+        const next = {};
+        mergeCfg(data, cfgBattle, next, 'battle');
+        pauseForJpxConfigApplication();
+        Object.assign(cfgBattle, next);
+        refreshJpxSelectedConfig();
         return { refreshBattleViews: true, transModeKey: true };
     }
 
@@ -9701,9 +9770,15 @@ function renderSettings() {
                 return { data: cfgStats, fileName: 'cfgStats.txt', depth: 2 };
             },
             onImport(content) {
-                let data = JSON.parse(content);
+                let data = parseJpxSettingsImport(content);
+                const version = data.statsVersion;
+                if (!['number', 'string'].includes(typeof version) || String(version).trim() === '' ||
+                    !Number.isFinite(Number(version)) || Number(version) < defaultCfgStats.statsVersion)
+                    throw new Error('Unsupported configuration version');
                 validateStatsConfig(data);
-                mergeCfg(data, cfgStats, cfgStats, 'stats');
+                const next = {};
+                mergeCfg(data, cfgStats, next, 'stats');
+                Object.assign(cfgStats, next);
                 delete cfgStats.darkMode;
                 return { refreshStats: true };
             },
@@ -9881,9 +9956,13 @@ function renderSettings() {
 
     jpxUtils.createButton(buttonsUI, {
         id: 'import-button',
+        history: false,
         onClick: (btn) => {
             let activeTab = tabs.find(t => t.panel.style.display === 'flex');
             if (!activeTab || !activeTab.onImport) return t('cGen.importFailed!');
+            const generation = container.jpxImportGeneration = (container.jpxImportGeneration || 0) + 1;
+            const current = () => container.isConnected && container.open && container.jpxImportGeneration === generation &&
+                activeTab.btn.getAttribute('aria-selected') === 'true';
             let input = document.createElement('input');
             input.type = 'file';
             input.accept = '.txt,.json';
@@ -9891,11 +9970,12 @@ function renderSettings() {
             return new Promise((resolve, reject) => {
                 input.addEventListener('change', async (e) => {
                     const file = e.target.files[0];
-                    if (!file) return resolve();
+                    if (!file || !current()) return resolve();
 
                     try {
+                        if (file.size > 2 * 1024 * 1024) throw new Error('Configuration file too large');
                         const content = await file.text();
-                        if (!container.isConnected) return resolve();
+                        if (!current()) return resolve();
                         editHistory.run(t('cGen.importConfig'), () => {
                         let info = activeTab.onImport(content);
 
@@ -9919,11 +9999,13 @@ function renderSettings() {
 
                         resolve(t('cGen.imported!'));
                     } catch (err) {
+                        if (!current()) return resolve();
                         console.error(err);
                         reject(t('cGen.importFailed!'));
                     }
                 });
 
+                input.addEventListener('cancel', () => resolve(), { once: true });
                 input.click();
             });
         }
@@ -9982,6 +10064,10 @@ function switchTab(targetId, tabs) {
         return;
     }
     const previousId = tabs.find(tab => tab.btn.getAttribute('aria-selected') === 'true')?.id;
+    if (previousId !== targetId) {
+        const container = document.getElementById('settings-container');
+        if (container) container.jpxImportGeneration = (container.jpxImportGeneration || 0) + 1;
+    }
     if (previousId === 'configManager' && targetId !== previousId) jpxConfigManagerView?.onHidden();
     if (targetId === 'configManager' && previousId !== targetId) jpxConfigManagerView?.onShown();
     if (targetId !== 'stats') captureStatsListScroll(document.getElementById('cfgStats-ui'));
@@ -13577,6 +13663,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     const library = getJpxConfigLibrary();
     const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
     let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
+    let importGeneration = 0;
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
     const clearNotice = () => { clearTimeout(noticeTimer); noticeTimer = null; notice.textContent = ''; };
     const notify = (message, persistent = false) => {
@@ -13695,6 +13782,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         return result;
     }
     function resetPage(page) {
+        importGeneration++;
         cancelListDrag?.(); cancelListDrag = null;
         state.storeDispose?.(); state.storeDispose = null;
         root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
@@ -14012,12 +14100,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
         body.append(form); root.append(header,notice,body); title.focus();
     }
     function importFile() {
+        const generation = ++importGeneration;
+        const current = () => generation === importGeneration && !state.disposed && root.isConnected && state.page === 'mine';
         const input = el('input'); input.type = 'file'; input.accept = '.txt,.json';
         input.addEventListener('change', async () => {
-            const file = input.files[0]; if (!file) return;
+            const file = input.files[0]; if (!file || !current()) return;
             try {
                 if (file.size > 2 * 1024 * 1024) throw Object.assign(new Error(), { code:'tooLarge' });
-                const value = JSON.parse(await file.text(), (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
+                const fileText = await file.text();
+                // A newer selection, closed dialog or navigation owns the UI now.
+                if (!current()) return;
+                const value = JSON.parse(fileText, (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
                 let envelope;
                 if (value?.schemaVersion === 1 && value.config) envelope = value;
                 else {
@@ -14033,7 +14126,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 const validator = createJpxConfigLibrary({ storage:{getItem:key=>temporary.get(key)||null,setItem:(key,value)=>temporary.set(key,value)}, key:'check', modes:BATTLE_MODES,battleVersion:defaultCfgBattle.battleVersion,statsVersion:defaultCfgStats.statsVersion });
                 envelope = validator.save(envelope).envelope;
                 captureList(); showSettings(null,envelope);
-            } catch(cause) { error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
+            } catch(cause) { if (current()) error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
         }); input.click();
     }
     function bindingLabel(binding, catalog = getJpxLoadoutCatalog(binding.world)) {
@@ -14267,7 +14360,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             if(!state.back)return false;
             Promise.resolve().then(state.back).catch(error);return true;
         },
-        onHidden(){cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
+        onHidden(){importGeneration++;cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
         onShown(){state.storeDispose?.resume?.();changed();},
         dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();window.removeEventListener('beforeunload',beforeUnload);window.removeEventListener('storage',onStorage);window.removeEventListener('jpx:config-library',changed);window.removeEventListener('jpx:mode-detected',changed);window.removeEventListener('jpx:loadout-detected',changed);window.removeEventListener('jpx:legacy-config-error',migrationError);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
     };

@@ -68,7 +68,7 @@ async function open(context, options = {}) {
     const page = await context.newPage(), errors = [];
     page.on('pageerror', error => errors.push(error.message));
     await context.route('**/*', route => route.request().isNavigationRequest() ? route.fulfill({ contentType: 'text/html', body: html }) : route.fulfill({ status: 204, body: '' }));
-    await page.goto('https://hentaiverse.org/');
+    await page.goto(options.url || 'https://hentaiverse.org/');
     const input = options.source || source;
     if (!input.includes('\ninitDo();')) throw Error('Missing startup anchor');
     if (options.translation === 'before') await page.addScriptTag({ content: fs.readFileSync(path.join(root, 'HentaiVerse-Chinese.user.js'), 'utf8') });

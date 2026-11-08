@@ -289,6 +289,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     const library = getJpxConfigLibrary();
     const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
     let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
+    let importGeneration = 0;
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
     const clearNotice = () => { clearTimeout(noticeTimer); noticeTimer = null; notice.textContent = ''; };
     const notify = (message, persistent = false) => {
@@ -407,6 +408,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         return result;
     }
     function resetPage(page) {
+        importGeneration++;
         cancelListDrag?.(); cancelListDrag = null;
         state.storeDispose?.(); state.storeDispose = null;
         root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
@@ -724,12 +726,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
         body.append(form); root.append(header,notice,body); title.focus();
     }
     function importFile() {
+        const generation = ++importGeneration;
+        const current = () => generation === importGeneration && !state.disposed && root.isConnected && state.page === 'mine';
         const input = el('input'); input.type = 'file'; input.accept = '.txt,.json';
         input.addEventListener('change', async () => {
-            const file = input.files[0]; if (!file) return;
+            const file = input.files[0]; if (!file || !current()) return;
             try {
                 if (file.size > 2 * 1024 * 1024) throw Object.assign(new Error(), { code:'tooLarge' });
-                const value = JSON.parse(await file.text(), (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
+                const fileText = await file.text();
+                // A newer selection, closed dialog or navigation owns the UI now.
+                if (!current()) return;
+                const value = JSON.parse(fileText, (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
                 let envelope;
                 if (value?.schemaVersion === 1 && value.config) envelope = value;
                 else {
@@ -745,7 +752,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 const validator = createJpxConfigLibrary({ storage:{getItem:key=>temporary.get(key)||null,setItem:(key,value)=>temporary.set(key,value)}, key:'check', modes:BATTLE_MODES,battleVersion:defaultCfgBattle.battleVersion,statsVersion:defaultCfgStats.statsVersion });
                 envelope = validator.save(envelope).envelope;
                 captureList(); showSettings(null,envelope);
-            } catch(cause) { error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
+            } catch(cause) { if (current()) error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
         }); input.click();
     }
     function bindingLabel(binding, catalog = getJpxLoadoutCatalog(binding.world)) {
@@ -979,7 +986,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             if(!state.back)return false;
             Promise.resolve().then(state.back).catch(error);return true;
         },
-        onHidden(){cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
+        onHidden(){importGeneration++;cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
         onShown(){state.storeDispose?.resume?.();changed();},
         dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();window.removeEventListener('beforeunload',beforeUnload);window.removeEventListener('storage',onStorage);window.removeEventListener('jpx:config-library',changed);window.removeEventListener('jpx:mode-detected',changed);window.removeEventListener('jpx:loadout-detected',changed);window.removeEventListener('jpx:legacy-config-error',migrationError);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
     };
