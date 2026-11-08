@@ -109,6 +109,9 @@ function getManagedSpellType() {
 
 function pauseForJpxConfigApplication() {
     if (!log) return false;
+    cancelBattleDecision();
+    jpxPanelManager.roundHoverResume = null;
+    if (cfgBattle.ctrlWidgetMouseEnter) jpxPanelManager.ready = false;
     isActiveBattle = false; readyNext = 0;
     jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#fef'); jpxPanelManager.dispatchState();
     return true;

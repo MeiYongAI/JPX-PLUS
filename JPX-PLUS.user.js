@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.6
+// @version      2026.11.08.7
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.6',
+    version: '2026.11.08.7',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1724,6 +1724,12 @@ let roundInfo = { current: 0, total: 0 };
 let monsterData = [];
 let allMonsterInfo = {};
 let prevMonsterIds = '';
+let prevMonsterInfoSignature = '';
+let battleUpdateGeneration = 0;
+let battleLogObserver = null;
+let battleLogUpdate = null;
+let monsterInfoRequest = null;
+let battleDecisionTimer = null;
 let monstersEffects = {};
 let actionCounts = { history: [] };
 let battleLogRecord = [];
@@ -3298,8 +3304,30 @@ function initDoBattle() {
     }
 }
 
+function stopBattleUpdates() {
+    battleUpdateGeneration++;
+    cancelBattleDecision();
+    battleLogObserver?.disconnect();
+    battleLogObserver = null;
+    battleLogUpdate?.cancel();
+    battleLogUpdate = null;
+    monsterInfoRequest?.cancel();
+    monsterInfoRequest = null;
+}
+
+function isCurrentBattleUpdate(generation, battleLog) {
+    return generation === battleUpdateGeneration && battleLog === log &&
+        battleLog?.isConnected && !document.getElementById('riddlemaster');
+}
+
+function cancelBattleDecision() {
+    clearTimeout(battleDecisionTimer);
+    battleDecisionTimer = null;
+}
+
 function reDoBattle(e) {
     if (e?.isTrusted) return;
+    stopBattleUpdates();
     if (document.querySelector('#riddlemaster')) {
         riddleRecorder();
         return;
@@ -3324,6 +3352,9 @@ function reDoBattle(e) {
 }
 
 function preDoBattle() {
+    // Reinitialization can target the same DOM, not just a newly fetched round.
+    stopBattleUpdates();
+    if (!log?.isConnected || document.getElementById('riddlemaster')) return;
     //Round
     let round = getBattleLogHTML().match(regExp.round);
     let storedRoundInfo = JSON.parse(localStorage.getItem(prefix + 'roundInfo' + isekaiSuffix) || '{}');
@@ -3398,9 +3429,12 @@ function preDoBattle() {
 
     jpxPanelManager.createCtrlWidget('battle');
 
-    let throttledPreProcessLog = jpxUtils.throttle(preProcessLog, 200, true);
-    let obs = new MutationObserver(throttledPreProcessLog);
-	obs.observe(log.firstElementChild || (log.prepend(document.createElement('tbody')), log.firstElementChild), { childList: true });
+    const generation = battleUpdateGeneration, battleLog = log;
+    battleLogUpdate = jpxUtils.throttle(() => {
+        if (isCurrentBattleUpdate(generation, battleLog)) preProcessLog();
+    }, 200, true);
+    battleLogObserver = new MutationObserver(battleLogUpdate);
+    battleLogObserver.observe(log.firstElementChild || (log.prepend(document.createElement('tbody')), log.firstElementChild), { childList: true });
 
     if (cfgBattle.autoFinishBattle === true && document.querySelector('#btcp img[src$="finishbattle.png"]')) preProcessLog();
     else preRender();
@@ -3621,8 +3655,11 @@ function goNext() {
                 break;
             default:
                 readyNext = -1;
-                setTimeout(() => {
-                    if (isActiveBattle && !document.querySelector('#riddlemaster')) smartBattle();
+                cancelBattleDecision();
+                const generation = battleUpdateGeneration, battleLog = log;
+                battleDecisionTimer = setTimeout(() => {
+                    battleDecisionTimer = null;
+                    if (isActiveBattle && isCurrentBattleUpdate(generation, battleLog)) smartBattle();
                 }, 0);
                 break;
         }
@@ -3685,6 +3722,7 @@ function onKeyDown(e, throttledActionManager) {
 
 function toggleActive() {
     if (!log) return;
+    cancelBattleDecision();
     jpxPanelManager.roundHoverResume = null;
     isActiveBattle = !isActiveBattle;
     if (isActiveBattle) readyNext = 0;
@@ -4362,45 +4400,74 @@ function updateMonsterEffects(turnLog) {
     }
 }
 
-function monsterDBReady(prevInfo) {
-    const getMonsterIds = info => info ? Object.values(info).map(monsterInfo => monsterInfo?.monsterId ?? '').join('|') : '';
-
-    return new Promise((resolve, reject) => {
-        let start = Date.now();
-
-        (function loop() {
-            let info = window.HVMonsterDB?.getCurrentMonstersInformation();
-            let monsterIds = getMonsterIds(info);
-            if (info && !jpxUtils.isEmpty(info) && monsterIds !== prevMonsterIds) {
-                resolve({ info, monsterIds });
-                return;
-            }
-
-            if (Date.now() - start > 250) {
-                resolve();
-                return;
-            }
-
-            setTimeout(loop, 10);
-        })();
-    });
+function getMonsterInfoSignature(info) {
+    // The fields consumed by display and battle conditions can change after Scan
+    // even when the database mutates the same object and keeps the monster IDs.
+    return JSON.stringify(Object.entries(info).map(([key, monster]) =>
+        [key, monster?.monsterId, monster?.monsterClass, monster?.attack, monster?.plvl, monster?.lastUpdate]));
 }
 
-function updateMonsterInfo() {
-    monsterDBReady(prevMonsterIds).then((result) => {
-        if (!result) return;
+function monsterDBReady(previousIds, previousSignature, generation, battleLog, refresh) {
+    const request = { refresh, cancel: null, promise: null };
+    request.promise = new Promise(resolve => {
+        const start = Date.now();
+        let timer = null;
+        const finish = result => { clearTimeout(timer); timer = null; resolve(result); };
+        request.cancel = () => finish();
+        (function loop() {
+            if (!isCurrentBattleUpdate(generation, battleLog)) { finish(); return; }
+            const database = window.HVMonsterDB;
+            const available = typeof database?.getCurrentMonstersInformation === 'function';
+            let info;
+            try { if (available) info = database.getCurrentMonstersInformation(); }
+            catch { /* An optional plugin may not have completed initialization. */ }
+            const valid = info && typeof info === 'object' && !jpxUtils.isEmpty(info);
+            const monsterIds = valid ? Object.values(info).map(monster => monster?.monsterId ?? '').join('|') : '';
+            const signature = valid && (monsterIds !== previousIds || request.refresh) ? getMonsterInfoSignature(info) : '';
+            const result = valid ? { info, monsterIds, signature } : undefined;
+            if (valid && (monsterIds !== previousIds || (request.refresh && signature !== previousSignature))) {
+                finish(result); return;
+            }
+            const remaining = 250 - (Date.now() - start);
+            if (remaining <= 0) { finish(request.refresh ? result : undefined); return; }
+            // Keep the existing ready-plugin cadence, but discover an absent API
+            // at most five more times within the same bounded compatibility window.
+            timer = setTimeout(loop, available ? Math.min(10, remaining) : 50);
+        })();
+    });
+    return request;
+}
+
+function updateMonsterInfo(refresh = false) {
+    const generation = battleUpdateGeneration, battleLog = log;
+    if (!isCurrentBattleUpdate(generation, battleLog)) return Promise.resolve();
+    // Same IDs are safe for Scan refresh only after accepting this round's data.
+    refresh = refresh && !jpxUtils.isEmpty(allMonsterInfo);
+    if (monsterInfoRequest) {
+        monsterInfoRequest.refresh ||= refresh;
+        return monsterInfoRequest.promise;
+    }
+    const request = monsterDBReady(prevMonsterIds, prevMonsterInfoSignature, generation, battleLog, refresh);
+    monsterInfoRequest = request;
+    request.promise = request.promise.then(result => {
+        if (!result || !isCurrentBattleUpdate(generation, battleLog)) return;
         allMonsterInfo = result.info;
         prevMonsterIds = result.monsterIds;
+        prevMonsterInfoSignature = result.signature;
 
         if (!cfgBattle.showMonsterInfo) return;
         for (const monster of monstersObj.monsters) {
+            if (!monster.monster_btm1.isConnected) continue;
             let monsterInfo = allMonsterInfo?.[`mkey_${(monster.index + 1) % 10}`];
             let monClass = monster.monster_btm1.querySelector('[data-field="monClass"]');
-            monClass.textContent = monsterInfo?.monsterClass ?? '?';
+            if (monClass) setBattleText(monClass, monsterInfo?.monsterClass ?? '?');
             let monTrAtkPl = monster.monster_btm1.querySelector('[data-field="monTrAtkPl"]')
-            monTrAtkPl.textContent = `${monsterInfo?.attack ?? '?'}, ${monsterInfo?.plvl ?? '?'}`;
+            if (monTrAtkPl) setBattleText(monTrAtkPl, `${monsterInfo?.attack ?? '?'}, ${monsterInfo?.plvl ?? '?'}`);
         }
+    }).finally(() => {
+        if (monsterInfoRequest === request) monsterInfoRequest = null;
     });
+    return request.promise;
 }
 
 function initConditions() {
@@ -4876,7 +4943,7 @@ function combatRecorder(turnLog, action, use) {
             jpxUtils.inc(combatRecords.use, use);
             jpxUtils.inc(actionCounts, use);
 			actionCounts.history.unshift(use);
-            use === 'Scan' && updateMonsterInfo();
+            use === 'Scan' && updateMonsterInfo(true);
         }
     } else if (action.includes('Spirit Stance Engaged')) {
         jpxUtils.inc(combatRecords.use, 'Spirit');
@@ -11453,7 +11520,7 @@ function jpxUtils() {
         let trailingThis = null;
         let trailingArgs = null;
 
-        return (...args) => {
+        const throttled = (...args) => {
             if (Date.now() - lastRan > cooldownMillis) {
                 lastRan = Date.now();
                 func.call(this, ...args);
@@ -11464,11 +11531,19 @@ function jpxUtils() {
                     timeoutId = setTimeout(() => {
                         lastRan = Date.now();
                         timeoutId = null;
-                        func.call(trailingThis, ...trailingArgs);
+                        const context = trailingThis, args = trailingArgs;
+                        trailingThis = trailingArgs = null;
+                        func.call(context, ...args);
                     }, cooldownMillis - (Date.now() - lastRan));
                 }
             }
         };
+        throttled.cancel = () => {
+            clearTimeout(timeoutId);
+            timeoutId = trailingThis = trailingArgs = null;
+            lastRan = 0;
+        };
+        return throttled;
     };
 
     ns.secondsToTime = function (seconds, showMillisecond = false) {
@@ -13322,6 +13397,9 @@ function getManagedSpellType() {
 
 function pauseForJpxConfigApplication() {
     if (!log) return false;
+    cancelBattleDecision();
+    jpxPanelManager.roundHoverResume = null;
+    if (cfgBattle.ctrlWidgetMouseEnter) jpxPanelManager.ready = false;
     isActiveBattle = false; readyNext = 0;
     jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#fef'); jpxPanelManager.dispatchState();
     return true;
