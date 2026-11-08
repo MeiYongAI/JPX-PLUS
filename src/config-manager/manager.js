@@ -103,7 +103,8 @@ function getManagedBattleStyle(detected) {
 
 function getManagedSpellType() {
     const element = cfgBattle[getBattleMode()]?.jpxPlusExecution?.element;
-    return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element : spellDamageBonus.maxType;
+    return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element :
+        spellDamageBonus.maxType || jpxQuickbarSpellType;
 }
 
 function pauseForJpxConfigApplication() {

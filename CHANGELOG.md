@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.08.4
+
+- **Quickbar fallback.** When character elemental data is unavailable, use the quickbar only if its attack spells belong to one element. Read native tooltip metadata, including unavailable/cooling-down spells, so translated labels do not affect the result. Mixed elements remain unknown.
+- **Preserve priorities and performance.** Explicit config choices and existing character attributes take precedence. Scan at initialization and AJAX round changes, with no extra requests or per-action scans; keep native config and stat-cache formats unchanged.
+
+### 简体中文
+
+- **快捷栏补充识别**：读取不到角色属性时，若快捷栏攻击法术只有一种属性，就采用该属性；读取原生技能提示数据，兼容冷却状态和中文显示，混合多系时不猜测。
+- **保留优先级与性能**：明确指定的配置属性、已有角色属性仍优先；只在初始化和 AJAX 换轮时扫描，不增加请求或每次行动的扫描，也不修改原版配置和属性缓存格式。
+
 ## 2026.11.08.3
 
 - **Correct spell-element detection.** Skip stat headings without glyph containers instead of aborting the character-page scan. Recognize native element names even when translated display text is appended, and refresh missing elemental data outside battle.

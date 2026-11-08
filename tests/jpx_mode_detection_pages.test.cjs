@@ -7,8 +7,11 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const source = fs.readFileSync(path.join(__dirname, '../JPX-PLUS.user.js'), 'utf8');
+const translation = fs.readFileSync(path.join(__dirname, '../HentaiVerse-Chinese.user.js'), 'utf8');
 const rules = name => ({ supports: [{ type: 'stop', customMessage: name }], attacks: [{ type: 'normalAttack' }] });
 const base = '<!doctype html><meta charset="utf-8"><div id="csp"><div id="navbar"></div></div>';
+const quickbar = names => '<div id="quickbar">' + names.map(name =>
+    '<div class="btqs" onmouseover="set_infopane_spell(\'' + name + '\', \'Fixture\', \'fixture\', 10, 0, 5)">中文显示<div class="cooldown">3</div></div>').join('') + '</div>';
 const character = (name = 'Fixture Persona', id = '17', magic = 20) => base +
     `<form id="persona_form"><select><option value="${id}" selected>${name}</option></select></form>` +
     `<div class="spc">Spell Damage Bonus</div><div><table><tr><td>${magic}%</td><td>Wind</td></tr></table></div>`;
@@ -35,6 +38,15 @@ function expose() {
         context: getJpxDetectionContext,
         magic: () => ({ memory: spellDamageBonus, verified: readJpxSpellDamageBonus(true), element: getManagedSpellType() }),
         parseMagic: getJpxSpellDamageFromPage,
+        parseQuickbar: getJpxSpellTypeFromQuickbar,
+        refresh: refreshJpxModeDetection,
+        nextRound() {
+            const prepare = preDoBattle, background = jpxPanelManager.setBackground, dispatch = jpxPanelManager.dispatchState;
+            preDoBattle = jpxPanelManager.setBackground = jpxPanelManager.dispatchState = () => {};
+            try { reDoBattle(); } finally {
+                preDoBattle = prepare; jpxPanelManager.setBackground = background; jpxPanelManager.dispatchState = dispatch;
+            }
+        },
         simulateSpell(name = 'T1', explicitElement = '') {
             battleStyle = 'Staff'; battleType = 'General'; jpxSelectedConfig = null;
             cfgBattle.Staff_General = { supports: [], attacks: [] };
@@ -142,6 +154,74 @@ test('missing element is not fire, tier actions pause, and explicit choices rema
     assert.deepEqual(named.casts, ['Gale']); assert.equal(named.active, true);
     const explicit = await f.page.evaluate(() => __pages.simulateSpell('T1', 'fire'));
     assert.deepEqual(explicit.casts, ['Fiery Blast']); assert.equal(explicit.active, true);
+    assert.deepEqual(f.requests, []); clean(f);
+});
+
+for (const isekai of [false, true]) test('quickbar supplies a missing element without altering stats in ' + (isekai ? 'Isekai' : 'Persistent'), async t => {
+    const f = await fixture(t, { isekai, initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale', 'Downburst', 'Cure', 'Imperil']) });
+    const magic = await f.page.evaluate(() => __pages.magic());
+    assert.deepEqual(magic.memory, { maxType: '', maxValue: 0 });
+    assert.equal(magic.verified, null); assert.equal(magic.element, 'wind');
+    const action = await f.page.evaluate(() => __pages.simulateSpell());
+    assert.deepEqual(action.casts, ['Gale']); assert.equal(action.active, true); assert.match(action.panel, /Wind/);
+    const explicit = await f.page.evaluate(() => __pages.simulateSpell('T1', 'fire'));
+    assert.deepEqual(explicit.casts, ['Fiery Blast']);
+    for (const suffix of ['', '_isekai']) assert.equal(await f.page.evaluate(s => localStorage.getItem('jpx_spellDamageBonus' + s), suffix), null);
+    assert.equal(await f.page.evaluate(() => __pages.native()), f.original);
+    assert.deepEqual(f.requests, []); clean(f);
+});
+
+test('quickbar requires one unambiguous attack element and ignores visible labels and full spell lists', async t => {
+    const f = await fixture(t);
+    const cases = [
+        [quickbar(['Gale', 'Gale', 'Downburst', 'Fiery Blast']), ''],
+        [quickbar(['Cure', 'Imperil', 'Arcane Focus']), ''],
+        ['<div id="quickbar"><div class="btqs">Gale</div><div class="btqs" onmouseover="void(0)">Downburst</div></div>', ''],
+        [quickbar(['Storms of Njord', 'Cure']) + quickbar(['Fiery Blast']).replace('id="quickbar"', 'id="pane_magic"'), 'wind'],
+        [quickbar(['Fiery Blast']), 'fire'], [quickbar(['Freeze']), 'cold'],
+        [quickbar(['Shockblast']), 'elec'], [quickbar(['Smite']), 'holy'], [quickbar(['Ragnarok']), 'dark'],
+        ['<div id="quickbar"><div class="btqs" onmouseover="set_infopane_spell(&quot;Gale&quot;, &quot;Fixture&quot;)">烈风</div></div>', 'wind']
+    ];
+    for (const [html, expected] of cases) {
+        const actual = await f.page.evaluate(html => __pages.parseQuickbar(new DOMParser().parseFromString(html, 'text/html')), html);
+        assert.equal(actual, expected, html);
+    }
+    clean(f);
+});
+
+test('character attributes take priority over quickbar hints', async t => {
+    const f = await fixture(t, { initialHtml: character() + quickbar(['Fiery Blast']) });
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'wind');
+    assert.deepEqual((await f.page.evaluate(() => __pages.simulateSpell())).casts, ['Gale']);
+    clean(f);
+});
+
+test('quickbar fallback refreshes on AJAX rounds and stays out of repeated action reads', async t => {
+    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale']) });
+    const queries = await f.page.evaluate(() => {
+        const original = document.querySelectorAll; let scans = 0;
+        document.querySelectorAll = function(selector) { if (selector.includes('#quickbar')) scans++; return original.call(this, selector); };
+        try { for (let i = 0; i < 100; i++) __pages.magic(); } finally { document.querySelectorAll = original; }
+        return scans;
+    });
+    assert.equal(queries, 0);
+    await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze']));
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'cold');
+    await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze', 'Gale']));
+    const action = await f.page.evaluate(() => __pages.simulateSpell());
+    assert.deepEqual(action.casts, []); assert.equal(action.active, false);
+    assert.deepEqual(f.requests, []); clean(f);
+});
+
+for (const order of ['translation-first', 'translation-last']) test('quickbar metadata survives the published game translation: ' + order, async t => {
+    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale', 'Downburst', 'Cure']) });
+    if (order === 'translation-first') {
+        // Navigate to a clean fixture, then load the real translator before JPX.
+        await f.page.goto(f.url); await f.page.addScriptTag({ content: translation }); await f.start();
+    } else await f.page.addScriptTag({ content: translation });
+    await f.page.evaluate(() => __pages.refresh());
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'wind');
+    assert.deepEqual((await f.page.evaluate(() => __pages.simulateSpell())).casts, ['Gale']);
     assert.deepEqual(f.requests, []); clean(f);
 });
 
