@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026.11.08.13
+
+- **Hover starts auto battle without pausing it on re-entry.** When panel hover activation is enabled, leaving and entering again keeps an already-running battle automatic by default. An ignored hover does not consume the click toggle's throttle.
+- **Optional original toggle behavior.** Battle settings → Battle controls adds “Re-enter panel to switch to manual”, off by default and dependent on hover activation. Enable it to restore the previous entry-to-toggle behavior. Existing configs without this field use the new start-only default.
+- **Keep explicit controls and round recovery.** Panel click, Enter/Space and shortcut toggles remain available; AJAX mouse-movement recovery still activates once without toggling off on subsequent movement. Five language packs include the option and explanation.
+- **Verification.** 490/490 offline regression tests and build/language checks pass, including 29 panel/AJAX hover tests. No live account battle was used for this change.
+
+### 简体中文
+
+- **移入默认只开启自动战斗**：自动中移出再移入保持自动，不再因重复进入切换手动；忽略的移入不会占用点击切换的节流时间。
+- **二次进入切换手动可选**：战斗设置 → 战斗控制新增“再次移入面板时切换为手动”，默认关闭，仅在开启移入自动战斗时有效。开启可恢复原来的行为，旧配置缺少该字段时默认为关闭。
+- **保留主动暂停和换轮恢复**：点击、Enter/空格、快捷键仍可切换；AJAX 换轮后面板内移动仍只恢复一次。五种语言包同步更新。
+
 ## 2026.11.08.12
 
 - **Share data between primary and alt.** Settings, shortcuts, config archives, completed battle history and daily stamina use the same userscript-owned store, with Persistent and Isekai kept separate.

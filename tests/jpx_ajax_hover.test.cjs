@@ -31,6 +31,11 @@ function expose() {
             return panel.onclick().then(() => ({ samePanel: widget === jpxPanelManager.ctrlWidget, connected: widget.isConnected }));
         },
         enable: value => { cfgBattle.ctrlWidgetMouseEnter = value; },
+        reentry: value => { cfgBattle.ctrlWidgetMouseEnterPause = value; },
+        config: () => JSON.parse(JSON.stringify(cfgBattle)),
+        open: renderSettings,
+        theme: toggleJpxTheme,
+        reload: loadBattleConfig,
         suppress: () => { jpxPanelManager.suppressHover = true; },
         detachedLog: () => { log.remove(); }
     };
@@ -38,8 +43,8 @@ function expose() {
 let browser;
 before(async () => { browser = await chromium.launch({ ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}), headless: true }); });
 after(async () => browser?.close());
-async function fixture(t, isekai = false) {
-    const context = await browser.newContext({ viewport: { width: 1024, height: 768 } });
+async function fixture(t, isekai = false, { language = '', width = 1024, dark = false } = {}) {
+    const context = await browser.newContext({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
     t.after(() => context.close());
     const page = await context.newPage(), errors = [];
     page.setDefaultTimeout(5000);
@@ -47,7 +52,9 @@ async function fixture(t, isekai = false) {
     await context.route('**/*', route => route.request().isNavigationRequest()
         ? route.fulfill({ contentType: 'text/html', body: pageHTML(1) }) : route.abort());
     await page.goto('https://hentaiverse.org/' + (isekai ? 'isekai/' : ''));
+    if (language) await page.addScriptTag({ content: fs.readFileSync(path.join(__dirname, '../JPX-PLUS-' + language + '.user.js'), 'utf8') });
     await page.addScriptTag({ content: source.replace('\ninitDo();', '\n(' + expose.toString() + ')();') });
+    if (dark) await page.evaluate(() => __hover.theme());
     await settle(page);
     t.after(() => assert.deepEqual(errors, []));
     return page;
@@ -86,7 +93,7 @@ for (const isekai of [false, true]) for (const fallback of [false, true]) {
         await cooldown(page); await page.mouse.move(p.x + 8, p.y);
         assert.equal((await state(page)).active, false, 'movement preserves deliberate pause');
         await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
-        assert.equal((await state(page)).active, true, 'normal leave and reenter still toggles');
+        assert.equal((await state(page)).active, true, 'leaving and reentering resumes a paused battle');
     });
 }
 test('movement outside panel can arm input without consuming round recovery', async t => {
@@ -164,4 +171,70 @@ test('trusted touch movement does not consume pending mouse recovery', async t =
     assert.equal((await state(page)).active, false);
     assert.equal((await state(page)).pending, true);
     await session.detach();
+});
+
+for (const isekai of [false, true]) test('default hover only starts and repeated entry never pauses: ' + (isekai ? 'Isekai' : 'Persistent'), async t => {
+    const page = await fixture(t, isekai), p = await enter(page);
+    assert.equal(await page.evaluate(() => __hover.config().ctrlWidgetMouseEnterPause), false);
+    for (let i = 0; i < 3; i++) {
+        await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+        assert.equal((await state(page)).active, true);
+        assert.equal((await state(page)).toggles, 1, 'ignored entry does not invoke the toggle or consume its throttle');
+    }
+    await page.mouse.click(p.x, p.y);
+    assert.equal((await state(page)).active, false, 'an explicit click still pauses immediately after an ignored entry');
+    await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, true, 'hover starts again after explicit pause');
+});
+
+for (const isekai of [false, true]) test('opt-in re-entry toggles manual and changing it off takes effect immediately: ' + (isekai ? 'Isekai' : 'Persistent'), async t => {
+    const page = await fixture(t, isekai); await page.evaluate(() => __hover.reentry(true));
+    const p = await enter(page); await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, false); assert.equal((await state(page)).toggles, 2);
+    await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, true);
+    await page.evaluate(() => __hover.reentry(false)); await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, true); assert.equal((await state(page)).toggles, 3);
+});
+
+test('re-entry opt-in never enables hovering when the master option is off', async t => {
+    const page = await fixture(t); await page.evaluate(() => { __hover.reentry(true); __hover.enable(false); });
+    const p = await point(page); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, false); assert.equal((await state(page)).toggles, 0);
+    await page.mouse.click(p.x, p.y); assert.equal((await state(page)).active, true);
+    await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y);
+    assert.equal((await state(page)).active, true); assert.equal((await state(page)).toggles, 1);
+});
+
+test('AJAX recovery still resumes once when re-entry pause is enabled', async t => {
+    const page = await fixture(t); await page.evaluate(() => __hover.reentry(true)); const p = await enter(page);
+    await next(page); await cooldown(page); await page.mouse.move(p.x + 2, p.y);
+    assert.equal((await state(page)).active, true); await cooldown(page); await page.mouse.move(p.x + 3, p.y);
+    assert.equal((await state(page)).toggles, 2, 'movement inside never toggles manual');
+    await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y); assert.equal((await state(page)).active, false);
+});
+
+for (const isekai of [false, true]) test('legacy config without re-entry option defaults to start-only: ' + isekai, async t => {
+    const page = await fixture(t, isekai);
+    await page.evaluate(() => { const config = __hover.config(); delete config.ctrlWidgetMouseEnterPause; localStorage.setItem('jpx_cfgBattle' + (location.pathname.includes('isekai') ? '_isekai' : ''), JSON.stringify(config)); __hover.reentry(true); __hover.reload(); });
+    assert.equal(await page.evaluate(() => __hover.config().ctrlWidgetMouseEnterPause), false);
+    const p = await enter(page); await cooldown(page); await page.mouse.move(10, 10); await page.mouse.move(p.x, p.y); assert.equal((await state(page)).active, true);
+});
+
+for (const [language, label, width, dark] of [
+    ['', 'Re-enter panel to switch to manual', 1024, false], ['ZhTrans', '再次移入面板时切换为手动', 390, true],
+    ['ZhTW', '再次移入面板時切換為手動', 768, false], ['ZhHK', '再次移入面板時切換為手動', 1024, true],
+    ['Ja', '再びパネルに入ると手動に切り替え', 390, false], ['Ko', '패널에 다시 들어오면 수동으로 전환', 390, true]
+]) test('re-entry setting saves and exports with translated label: ' + (language || 'English'), async t => {
+    const page = await fixture(t, false, { language, width, dark }); await page.evaluate(() => __hover.open());
+    const control = page.getByRole('checkbox', { name: label, exact: true }); assert.equal(await control.isChecked(), false);
+    const fields = await page.locator('[data-field-key="battleControls"] [data-field-key]').evaluateAll(nodes => nodes.map(node => node.dataset.fieldKey));
+    assert.equal(fields.indexOf('ctrlWidgetMouseEnterPause'), fields.indexOf('ctrlWidgetMouseEnter') + 1);
+    await control.focus(); await page.keyboard.press('Space'); await page.locator('#save-button').click();
+    assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('jpx_cfgBattle')).ctrlWidgetMouseEnterPause), true);
+    await page.evaluate(() => { __hover.reentry(false); __hover.reload(); }); assert.equal(await page.evaluate(() => __hover.config().ctrlWidgetMouseEnterPause), true);
+    const bounds = await control.locator('..').evaluate(el => { const r = el.getBoundingClientRect(); return { left: r.left, right: r.right, viewport: innerWidth }; }); assert.ok(bounds.left >= 0 && bounds.right <= bounds.viewport);
+    if (language === 'ZhTrans') { const dir = path.join(__dirname, '../.test-output/hover-reentry'); fs.mkdirSync(dir, { recursive: true }); await page.locator('#settings-container').screenshot({ path: path.join(dir, 'settings-mobile-dark.png') }); }
+    await page.locator('#export-button').click(); await page.locator('[data-export-scope=all]').click(); const downloading = page.waitForEvent('download'); await page.locator('.jpx-export-submit').click();
+    const download = await downloading; assert.equal(JSON.parse(fs.readFileSync(await download.path(), 'utf8')).ctrlWidgetMouseEnterPause, true);
 });
