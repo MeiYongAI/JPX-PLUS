@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         E-Hentai Forums Dark
 @namespace    meiyongai.eh-forums-dark
-@version      1.1.0
+@version      1.1.1
 @description  A quiet dark theme for E-Hentai Forums, matching HentaiVerse Dark.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -253,7 +253,7 @@
     html:root img[src$="style_images/ambience/pip.gif"]:not(:where(.postcolor *, .signature *)) { opacity: .55; }
     html:root img[src*="style_images/"]:not(:where(.postcolor *, .signature *)):is(
       [src*="/ambi_header_nav_eh_"], [src$="/header_eh_textbar.jpg"],
-      [src$="/t_reply.gif"], [src$="/t_new.gif"], [src$="/t_qr.gif"],
+      [src$="/t_reply.gif"], [src$="/t_new.gif"], [src$="/t_qr.gif"], [src$="/t_closed.gif"],
       [src$="/p_quote.gif"], [src$="/p_mq_add.gif"], [src$="/p_mq_remove.gif"],
       [src$="/p_edit.gif"], [src$="/p_delete.gif"], [src$="/p_report.gif"],
       [src$="/p_card.gif"], [src$="/p_pm.gif"], [src$="/p_up.gif"],
