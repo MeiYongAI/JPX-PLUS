@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.17
+// @version      2026.11.08.18
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -270,7 +270,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.17',
+    version: '2026.11.08.18',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -668,10 +668,10 @@ function ensureJpxStyle(doc = document) {
     return style;
 }
 const JPX_SCROLLBAR_CSS = `
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll) { scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: #5c0d11 #e3e0d1; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll)::-webkit-scrollbar { width: 9px; height: 9px; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll)::-webkit-scrollbar-track { background: #e3e0d1; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll)::-webkit-scrollbar-thumb { border: 2px solid #e3e0d1; background: #5c0d11; }
+    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body) { scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: #5c0d11 #e3e0d1; }
+    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar { width: 9px; height: 9px; }
+    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar-track { background: #e3e0d1; }
+    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar-thumb { border: 2px solid #e3e0d1; background: #5c0d11; }
 `;
 const JPX_RECORD_IMAGE_CSS = `
         .jpx-record-image-actions { position: relative; z-index: 5; flex: none; color: #5c0d11; font: 13px/1.45 Arial, Helvetica, sans-serif; }
@@ -2720,6 +2720,7 @@ const I18N = {
         s_ps: 'Physical (spirit)', s_mt: 'Magical', s_ms: 'Magical (spirit)', s_tt: 'Total',
         styleText: 'CSS style', displaySettings: 'Display settings', outputDisplay: 'Damage dealt', takenDisplay: 'Damage taken',
 
+        dataRecords: 'Battle records', resetStatsSettings: 'Reset statistics settings',
         exportDB: 'Export records', importDB: 'Import records',
         clearRecords: 'Clear records', recordsAllWorlds: 'All worlds', recordsAllBattles: 'All battles',
         recordsPeriod: 'Dates', recordsAllDates: 'All dates', recordsDateRange: 'Date range',
@@ -6694,7 +6695,8 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-sheet-header { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid #ddd0bd; }
         .jpx-records-sheet-header h2 { margin:0; font-size:18px; color:#5c0d11; }
         .jpx-records-sheet-close { border-color:transparent; background:transparent; }
-        .jpx-records-sheet-body { min-height:0; overflow:auto; overscroll-behavior:contain; padding:16px; scroll-padding:12px; }
+        .jpx-records-sheet-body { min-height:0; overflow:auto; overflow-y:scroll; scrollbar-gutter:stable; overscroll-behavior:contain; padding:16px; scroll-padding:12px; }
+        @supports(scrollbar-gutter:stable) { .jpx-records-sheet-body { overflow-y:auto; } }
         .jpx-records-sheet [hidden] { display:none!important; }
         .jpx-records-sheet :focus-visible { outline:2px solid #9b4e03; outline-offset:2px; }
         #filtersDiv { display:grid; gap:16px; min-width:0; }
@@ -6707,9 +6709,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         #filtersDiv input[type=checkbox] { position:static; width:16px; height:16px; flex:none; margin:0; opacity:1; }
         #filter-aggregate { flex:none; margin-right:8px; }
         #filter-aggregate label { position:relative; display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:8px 10px; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#5c0d11; cursor:pointer; white-space:nowrap; user-select:none; touch-action:manipulation; }
-        #filter-aggregate label:has(input:checked) { background:#ead9b8; border-color:#b49369; }
-        #filter-aggregate label::before { content:'✓'; width:12px; visibility:hidden; }
-        #filter-aggregate label:has(input:checked)::before { visibility:visible; }
+        #filter-aggregate label:has(input:checked) { background:#ead9b8; border-color:#b49369; box-shadow:inset 0 -2px currentColor; }
         #filter-aggregate label:has(input:focus-visible) { outline:2px solid #9b4e03; outline-offset:2px; }
         #filter-aggregate input { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
         .jpx-records-filter-tools .jpx-records-filter-label { flex: none; font-weight: normal; }
@@ -6717,10 +6717,6 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-filter-tools .jpx-records-filter { flex-wrap: wrap; gap: 0 8px; }
         .jpx-records-range { display: inline-flex; align-items: center; gap: 6px; }
         #filtersDiv input[type=number] { width: 80px; min-width: 0; height: 44px; padding: 2px 5px; border: 1px solid #bda68e; border-radius: 2px; background: #fffdf7; }
-        #filtersDiv .jpx-records-clear { display:inline-flex; align-items:center; justify-content:center; width:44px; min-height:44px; padding:10px; border:1px solid #c8b49b; border-radius:2px; background:#fffdf7; color:#5c0d11; }
-        #filtersDiv .jpx-records-clear svg { width:16px; height:16px; }
-        #filtersDiv .jpx-records-clear:hover { background:#f1e2c5; }
-        @media(max-width:650px),(pointer:coarse) { #filtersDiv .jpx-records-clear { width:44px; min-height:44px; } }
         .jpx-records-table-scroll { --jpx-scrollbar-width: auto; flex: 1; min-height: 140px; min-width: 0; overflow: auto; border: 1px solid #bda68e; background: #fffdf7; overscroll-behavior: contain; }
         #battleStatsTable { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
         #battleStatsTable th, #battleStatsTable td { padding: 5px 10px; height: 30px; border-right: 1px solid #e1d7c7; border-bottom: 1px solid #e1d7c7; white-space: nowrap; text-align: left; }
@@ -6771,7 +6767,9 @@ function renderBattleRecordsPage(targetWindow = window) {
             .jpx-records-heading h1 { font-size:15px; }
             .jpx-records-count { margin:0; }
             .jpx-records-actions { min-width:0; }
-            #filter-aggregate { margin-right:auto; }
+            #filter-aggregate { flex:1; min-width:0; margin-right:0; }
+            #filter-aggregate .jpx-records-filter-options { width:100%; }
+            #filter-aggregate label { width:100%; max-width:100%; min-width:0; padding:6px 8px; white-space:normal; text-align:center; }
             .jpx-records-sheet[data-panel=columns] { height:min(620px,88dvh); }
             .jpx-records-sheet { inset:auto 0 0; width:100%; max-height:88dvh; margin:0; border-radius:0; border-bottom:0; }
             .jpx-records-sheet-header { padding:12px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px)); }
@@ -6849,17 +6847,15 @@ function renderBattleRecordsPage(targetWindow = window) {
         });
         if (field.type === 'rangeNumber') ['min', 'max'].forEach((part, index) => group.querySelector('.range-' + part).setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin')));
     }
-    let clearRecords = filters.querySelector('.jpx-records-clear');
-    if (!clearRecords) {
-        clearRecords = doc.createElement('button'); clearRecords.type = 'button'; clearRecords.className = 'jpx-records-clear';
-        clearRecords.addEventListener('click',() => {
-            const current = getFilters(targetWindow);
-            openJpxRecordsCleanup(targetWindow,{world:current.world?.length === 1 ? current.world[0] : '',battleType:current.battleType?.length === 1 ? current.battleType[0] : ''});
-        });
-        filters.querySelector('.jpx-records-tools-row').append(clearRecords);
-    }
-    clearRecords.replaceChildren(createSettingsIcon('delete'));
-    clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',t('cS.clearRecords'));
+    const clearRecords = doc.createElement('button'); clearRecords.type = 'button';
+    clearRecords.className = 'jpx-records-icon jpx-records-clear';
+    clearRecords.append(createSettingsIcon('delete'));
+    clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',clearRecords.title);
+    clearRecords.setAttribute('aria-haspopup','dialog');
+    clearRecords.onclick = () => {
+        const current = getFilters(targetWindow);
+        openJpxRecordsCleanup(targetWindow,{world:current.world?.length === 1 ? current.world[0] : '',battleType:current.battleType?.length === 1 ? current.battleType[0] : ''});
+    };
     const toolbar = doc.createElement('header'); toolbar.className = 'jpx-records-toolbar';
     const heading = doc.createElement('div'); heading.className = 'jpx-records-heading';
     const title = doc.createElement('h1'); title.textContent = t('sP.jpxStats');
@@ -6898,6 +6894,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         button.append(createSettingsIcon(icon)); button.onclick = () => openPanel(name); triggers.set(name,button); actions.append(button);
         panels[name].hidden = true; sheetBody.append(panels[name]);
     }
+    actions.append(clearRecords);
     close.onclick = () => sheet.close();
     sheet.addEventListener('keydown',event => {
         if (event.key !== 'Tab') return;
@@ -11535,11 +11532,16 @@ function renderStatsTab(parent) {
 }
 
 function renderStatsDataActions(parent) {
-    renderJpxSharedDataActions(parent);
+    const root = document.createElement('div'); root.className = 'jpx-stats-data';
+    const style = document.createElement('style'); style.textContent = jpxThemeCSS(JPX_STATS_DATA_CSS + jpxDisclosureCSS('.jpx-stats-data .jpx-shared-data'));
+    root.append(style); parent.append(root);
+    const records = document.createElement('section'); records.className = 'jpx-stats-data-section';
+    const recordsTitle = document.createElement('h3'); recordsTitle.textContent = t('cS.dataRecords'); records.append(recordsTitle); root.append(records);
+    const maintenance = document.createElement('section'); maintenance.className = 'jpx-stats-data-maintenance';
     let buttonsUI = document.createElement('div');
     buttonsUI.className = 'jpx-stats-toolbar';
 
-    jpxUtils.createButton(buttonsUI, {
+    jpxUtils.createButton(maintenance, {
         id: 'reset-cfgStats-button',
         text: t('cS.resetStatsSettings'),
         onClick: (btn) => {
@@ -11585,7 +11587,7 @@ function renderStatsDataActions(parent) {
                         let json = JSON.parse(content);
 
                         validateStatsBackup(json);
-                        if (parent.isConnected) renderStatsImportPreview(parent, json, file.name);
+                        if (parent.isConnected) renderStatsImportPreview(records, json, file.name);
                         resolve();
                     } catch (err) {
                         console.error(err);
@@ -11599,15 +11601,10 @@ function renderStatsDataActions(parent) {
     });
 
     jpxUtils.createButton(buttonsUI, { id:'clear-records-button', text:t('cS.clearRecords'), history:false, onClick:() => openJpxRecordsCleanup() });
-    parent.appendChild(buttonsUI);
-    const cleanup = document.createElement('section');
-    cleanup.className = 'jpx-stats-cleanup';
-    const title = document.createElement('strong'), description = document.createElement('p');
-    title.textContent = t('cS.cleanup');
-    description.className = 'jpx-stats-help'; description.textContent = t('cS.cleanupScope') + (jpxShared.enabled ? ' ' + sharedText('resetScope') : '');
-    cleanup.append(title, description);
-    jpxUtils.createButton(cleanup, { id: 'cleanup-data-button', text: t('cS.cleanupRun'), history: false, onClick: requestJpxCleanup });
-    parent.append(cleanup);
+    records.append(buttonsUI);
+    renderJpxSharedDataActions(root);
+    jpxUtils.createButton(maintenance, { id:'cleanup-data-button', text:t('cS.cleanup'), history:false, onClick:requestJpxCleanup });
+    root.append(maintenance);
 }
 
 //Misc
@@ -15297,10 +15294,55 @@ function initJpxLoadoutBindings() {
     } catch (error) { console.warn('JPX-PLUS loadout binding could not be read.', error); }
 }
 
+const JPX_STATS_DATA_CSS = `
+    #settings-container #panel_stats { scrollbar-gutter:stable; }
+    .jpx-stats-data { --jpx-motion:160ms; color:#392d25; font:13px/1.45 Arial,Helvetica,sans-serif; min-width:0; max-width:100%; text-align:left; }
+    .jpx-stats-data * { box-sizing:border-box; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) h3 { margin:0 0 12px; font-size:14px; color:#5c0d11; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) h4 { margin:0 0 8px; font-size:13px; font-weight:600; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) .jpx-stats-toolbar { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
+    .jpx-stats-data-section { padding:16px 0; }
+    .jpx-stats-data .jpx-shared-data { border-top:1px solid #c8b49b; border-bottom:1px solid #c8b49b; min-width:0; }
+    .jpx-shared-data > summary { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; padding:8px 4px 8px 0; cursor:pointer; list-style:none; color:#5c0d11; font-weight:600; }
+    .jpx-shared-data > summary::-webkit-details-marker { display:none; }
+    .jpx-shared-data > summary svg { width:18px; height:18px; flex:none; transition:transform var(--jpx-motion) ease-out; }
+    .jpx-shared-data[open] > summary svg { transform:rotate(180deg); }
+    .jpx-shared-data-body { padding:0 0 16px; display:grid; gap:20px; }
+    .jpx-shared-data-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:8px 16px; padding:8px 0; }
+    .jpx-shared-data-actions { display:flex; gap:8px; flex:none; }
+    .jpx-shared-data-source { min-width:0; overflow-wrap:anywhere; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) :is(button,select,input) { font:inherit; margin:0; min-height:36px; max-width:100%; border:1px solid #c8b49b; border-radius:2px; background:#fffdf7; color:#5c0d11; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) button { padding:7px 12px; cursor:pointer; white-space:normal; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) button:hover { background:#f1e2c5; }
+    .jpx-stats-data button:disabled { opacity:.6; cursor:default; }
+    .jpx-stats-data :focus-visible { outline:2px solid #9b4e03; outline-offset:2px; }
+    .jpx-shared-data-row select { min-width:0; width:100%; padding:6px; }
+    .jpx-shared-data-stamina label { display:grid; grid-template-columns:minmax(0,1fr) 96px; align-items:center; gap:12px; min-width:0; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) .jpx-shared-data-stamina input[type=number] { width:100%; min-width:0; min-height:36px; field-sizing:fixed; padding:6px; background:#fffdf7; color:#392d25; border-color:#c8b49b; }
+    .jpx-stats-data-maintenance { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 0; flex-wrap:wrap; border-top:1px solid #c8b49b; }
+    .jpx-shared-data + .jpx-stats-data-maintenance { border-top:0; }
+    :is(.jpx-stats-data,#settings-container .jpx-stats-data) .jpx-stats-transfer { margin:16px 0 0; padding:12px 0 0; border:0; border-top:1px solid #c8b49b; background:transparent; }
+    .jpx-stats-data .jpx-stats-transfer label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:12px 0; }
+    .jpx-stats-data .jpx-stats-transfer select { min-width:0; padding:6px; }
+    @media(max-width:650px),(pointer:coarse) {
+        :is(.jpx-stats-data,#settings-container .jpx-stats-data) :is(button,select,input) { min-height:44px; }
+        .jpx-shared-data-row { gap:8px; }
+        .jpx-shared-data-revision { grid-template-columns:minmax(0,1fr); }
+        .jpx-shared-data-revision .jpx-shared-data-actions { justify-self:end; }
+        .jpx-stats-data-section { padding-top:12px; }
+        :is(.jpx-stats-data,#settings-container .jpx-stats-data) .jpx-shared-data-stamina input[type=number] { font-size:16px; min-height:44px; }
+    }
+    @media(prefers-reduced-motion:reduce) { .jpx-stats-data { --jpx-motion:0ms; } }
+`;
+
 function sharedText(key) {
     const zh = /导出|匯出|汇出/.test(t('cS.exportDB'));
     const labels = {
         title: ['Primary / alt shared data', '主站 / alt 共享数据'],
+        backupSection: ['Pre-sharing settings', '共享前配置'],
+        historySection: ['Shared history', '共享历史'],
+        quotaShort: ['Pre-sharing stamina', '共享前体力'],
+        restoreAction: ['Restore', '恢复'],
         scope: ['The same userscript installation shares settings, archives and daily stamina between hosts. Persistent and Isekai remain separate. The first visited host supplies the initial settings; both old copies remain available below.', '同一份油猴脚本在主站和 alt 共用配置、战斗记录和当日体力账本；主世界与异世界分开。首次访问的站点提供初始配置，两站旧配置均保留在下方。'],
         backup: ['Download pre-sharing settings', '下载共享前的配置备份'],
         restore: ['Use this host’s old settings', '使用此站点的旧配置'],
@@ -15359,12 +15401,14 @@ function onJpxSharedChange(change) {
 
 function renderJpxSharedDataActions(parent) {
     if (!jpxShared.enabled) return;
-    const section = document.createElement('section'); section.className = 'jpx-shared-data';
-    const style = document.createElement('style');
-    style.textContent = '.jpx-shared-data{max-width:100%;overflow-wrap:anywhere}.jpx-shared-data .jpx-stats-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}.jpx-shared-data label{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.jpx-shared-data select{max-width:100%;min-width:0}.jpx-shared-data input{width:100px;max-width:100%}';
-    const title = document.createElement('h3'); title.textContent = sharedText('title');
-    const help = document.createElement('p'); help.className = 'jpx-stats-help'; help.textContent = sharedText('scope');
-    section.append(style, title, help); parent.append(section);
+    const section = document.createElement('details'); section.className = 'jpx-shared-data';
+    const title = document.createElement('summary'); title.textContent = sharedText('title'); title.append(createSettingsIcon('chevronDown'));
+    const body = document.createElement('div'); body.className = 'jpx-shared-data-body'; section.append(title,body); parent.append(section);
+    const group = (caption, tooltip) => {
+        const block = document.createElement('section'), heading = document.createElement('h4'); heading.textContent = caption;
+        if (tooltip) heading.title = tooltip;
+        block.append(heading); body.append(block); return block;
+    };
     const download = (name, value) => {
         const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
         const link = document.createElement('a'); link.href = url; link.download = name; link.click(); URL.revokeObjectURL(url);
@@ -15376,32 +15420,39 @@ function renderJpxSharedDataActions(parent) {
         loadStatsSettingsConfig();
         jpxUtils.createToast(sharedText('saved'));
     };
-    for (const snapshot of jpxShared.backups()) {
-        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
-        const label = document.createElement('span'); label.textContent = snapshot.origin; row.append(label);
-        jpxUtils.createButton(row, { text: sharedText('backup'), history: false, onClick: () => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) });
-        jpxUtils.createButton(row, { text: sharedText('restore'), history: false, onClick: () => restore(snapshot) }); section.append(row);
+    const backups = jpxShared.backups();
+    if (backups.length) {
+        const block = group(sharedText('backupSection'));
+        for (const snapshot of backups) {
+            const row = document.createElement('div'); row.className = 'jpx-shared-data-row';
+            const label = document.createElement('span'); label.className = 'jpx-shared-data-source'; label.textContent = new URL(snapshot.origin).hostname; row.append(label);
+            const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+            jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) }).title = sharedText('backup');
+            jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => restore(snapshot) }).title = sharedText('restore'); block.append(row);
+        }
     }
     const revisions = jpxShared.revisions();
     if (revisions.length) {
-        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
+        const block = group(sharedText('historySection'));
+        const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-revision';
         const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
         revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
         row.append(select);
-        jpxUtils.createButton(row, { text: sharedText('history'), history: false, onClick: () => download('jpx-shared-settings-history.json', revisions) });
-        jpxUtils.createButton(row, { text: sharedText('restoreRevision'), history: false, onClick: () => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({ values: { [revision.key]: revision.value } }); } }); section.append(row);
+        const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+        jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-shared-settings-history.json', revisions) }).title = sharedText('history');
+        jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({values:{[revision.key]:revision.value}}); } }).title = sharedText('restoreRevision'); block.append(row);
     }
-    const note = document.createElement('p'); note.className = 'jpx-stats-help'; note.textContent = sharedText('quotaHelp'); section.append(note);
     const date = new Date().toISOString().slice(0, 10);
+    const stamina = group(sharedText('quotaShort') + ' · ' + date + ' UTC', sharedText('quotaHelp'));
     for (const world of ['Persistent', 'Isekai']) {
-        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
-        const label = document.createElement('label'); label.textContent = t('sP.' + world) + ' · ' + sharedText('quota');
+        const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-stamina';
+        const label = document.createElement('label'); label.textContent = t('sP.' + world);
         const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.step = '0.01'; input.value = jpxShared.baseline(world, date);
         input.dataset.sharedStamina = world; label.append(input); row.append(label);
         jpxUtils.createButton(row, { text: sharedText('save'), history: false, onClick: () => {
             if (!input.value.trim() || !input.reportValidity()) return;
             jpxShared.setBaseline(world, date, Number(input.value)); window.dispatchEvent(new Event('jpx:records-changed')); return sharedText('saved');
-        } }); section.append(row);
+        } }); stamina.append(row);
     }
 }
 

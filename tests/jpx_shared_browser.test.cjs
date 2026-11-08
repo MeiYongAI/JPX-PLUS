@@ -15,6 +15,7 @@ function expose(){
  cfg:()=>JSON.parse(JSON.stringify(cfgBattle)),active:()=>isActiveBattle,activate:()=>{log=document.createElement('table');log.id='textlog';document.getElementById('csp').append(log);isActiveBattle=true;},migrate:ensureJpxSharedRecords,
  export:exportIndexedDB,import:importIndexedDB,store:storeBattleRecords,preview:previewJpxRecordsCleanup,remove:deleteJpxRecordsCleanup,
  usage:world=>jpxShared.usage(world),open:()=>renderStatsDataActions(document.body),backups:()=>jpxShared.backups(),render:()=>renderBattleRecordsPage(window),
+ settings:()=>{loadStatsSettingsConfig();renderSettings();},theme:toggleJpxTheme,
  recordReads:()=>recordReads,
  seedLibrary:seedJpxConfigLibrary,renameLibrary(){const library=getJpxConfigLibrary(),entry=library.readState().entries[0];library.rename(entry.id,'Renamed',entry.revision);},
  async finish(timestamp){
@@ -87,4 +88,34 @@ test('record category preferences are shared across primary and alt without rere
  assert.equal(await b.locator('th[data-column=eqL]').count(),0);
  assert.equal(await b.evaluate(()=>__share.recordReads()),reads);
  assert.equal(JSON.parse(await b.evaluate(()=>__share.get('jpx_cfgStats'))).columnGroups.drops,false);assert.deepEqual(f.errors,[]);
+});
+
+async function dataSettings(page){await page.evaluate(()=>__share.settings());if(!await page.locator('#tab_stats').isVisible())await page.locator('#jpx-settings-menu-button').click();await page.locator('#tab_stats').click();await page.locator('[data-stats-section=data]').click();}
+for(const width of [320,390,1440])for(const dark of [false,true])test('data manager uses compact task groups at '+width+' '+dark,async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});await f.flush();await page.setViewportSize({width,height:900});
+ if(width!==320)await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'../JPX-PLUS-ZhTrans.user.js'),'utf8')});await page.evaluate(()=>__share.set('jpx_cfgBattle',JSON.stringify({...__share.cfg(),dailyStaminaQuotaPlus:8})));await f.flush();await dataSettings(page);if(dark)await page.evaluate(()=>__share.theme());
+ const panel=page.locator('#jpx-stats-data');assert.equal(await panel.locator('.jpx-shared-data').evaluate(n=>n.open),false);assert.equal(await panel.locator('p').count(),0);
+ assert.deepEqual(await panel.locator('.jpx-stats-data-section > .jpx-stats-toolbar > button').evaluateAll(n=>n.map(b=>b.id)),['export-db-button','import-db-button','clear-records-button']);
+ assert.equal(await panel.locator('.jpx-stats-data-maintenance #cleanup-data-button').count(),1);assert.equal(await panel.locator('.jpx-stats-data-maintenance #reset-cfgStats-button').count(),1);
+ const output=path.join(__dirname,'../.test-output/stats-data');fs.mkdirSync(output,{recursive:true});await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-closed.png')});
+ await panel.locator('.jpx-shared-data > summary').click();const frames=await panel.locator('.jpx-shared-data').evaluate(async n=>{const root=n.closest('.jpx-stats-data'),frames=[];for(let i=0;i<20;i++){await new Promise(requestAnimationFrame);frames.push({client:root.clientWidth,scroll:root.scrollWidth});if(i>1&&!n.getAnimations({subtree:true}).length)break;}await Promise.all(n.getAnimations({subtree:true}).map(a=>a.finished));return frames;});assert.ok(frames.every(g=>g.scroll<=g.client+1),JSON.stringify(frames));assert.equal(await panel.locator('[data-shared-stamina]').count(),2);assert.equal(await panel.locator('[data-shared-stamina]').first().isVisible(),true);assert.equal(await panel.locator('.jpx-shared-data-revision').count(),1);if(width<650){const targets=await panel.locator('button,input,select').evaluateAll(nodes=>nodes.map(n=>({height:n.getBoundingClientRect().height,label:n.textContent||n.type})));assert.ok(targets.every(n=>n.height>=44),JSON.stringify(targets));}
+ await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-open.png')});
+ const geometry=await panel.locator('.jpx-stats-data').evaluate(n=>({client:n.clientWidth,scroll:n.scrollWidth,overflow:[...n.querySelectorAll('*')].filter(e=>e.getBoundingClientRect().right>n.getBoundingClientRect().right+1).map(e=>({tag:e.tagName,class:e.className,width:e.getBoundingClientRect().width,right:e.getBoundingClientRect().right,margin:getComputedStyle(e).margin}))}));assert.ok(geometry.scroll<=geometry.client+1,JSON.stringify(geometry));
+ const before=await page.evaluate(()=>__share.export());page.once('dialog',d=>d.dismiss());await panel.locator('#cleanup-data-button').click();assert.deepEqual(await page.evaluate(()=>__share.export()),before);assert.deepEqual(f.errors,[]);
+});
+test('data manager imports only after preview confirmation and exports the current archive',async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org',{},[rec()]);await f.flush();await dataSettings(page);const before=await page.evaluate(()=>__share.export());
+ const waitFile=page.waitForEvent('filechooser');await page.locator('#import-db-button').click();const chooser=await waitFile;await chooser.setFiles({name:'records.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...before,stores:{battleRecords:[rec('2026-11-08 11:00:00')]}}))});
+ await page.locator('.jpx-stats-transfer').waitFor();assert.equal(await page.locator('.jpx-stats-data-section > .jpx-stats-transfer').count(),1);assert.deepEqual(await page.evaluate(()=>__share.export()),before);
+ await page.locator('.jpx-stats-transfer .jpx-stats-toolbar button').first().click();await page.locator('.jpx-stats-transfer').waitFor({state:'detached'});assert.equal((await page.evaluate(()=>__share.export())).stores.battleRecords.length,2);
+ const download=page.waitForEvent('download');await page.locator('#export-db-button').click();const file=await download;assert.equal(await file.failure(),null);assert.equal(JSON.parse(fs.readFileSync(await file.path(),'utf8')).stores.battleRecords.length,2);
+ assert.deepEqual(f.errors,[]);
+});
+test('compact shared recovery preserves confirmation and stamina correction',async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});await f.flush();await dataSettings(page);await page.locator('.jpx-shared-data > summary').click();
+ const first=page.locator('.jpx-shared-data-row').filter({has:page.locator('.jpx-shared-data-source')}).first(),before=await page.evaluate(()=>__share.cfg());
+ page.once('dialog',d=>d.dismiss());await first.locator('button').last().click();assert.deepEqual(await page.evaluate(()=>__share.cfg()),before);
+ const download=page.waitForEvent('download');await first.locator('button').first().click();assert.equal(await (await download).failure(),null);
+ const stamina=page.locator('[data-shared-stamina=Persistent]');await stamina.fill('12.5');await stamina.locator('..').locator('..').locator('button').click();await f.flush();assert.equal(await page.evaluate(()=>__share.usage('Persistent').staminaCost),12.5);
+ assert.equal(await page.evaluate(()=>__share.usage('Isekai').staminaCost),0);assert.deepEqual(f.errors,[]);
 });

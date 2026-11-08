@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.17
+// @version      2026.11.08.18
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -600,6 +600,7 @@
         "section_combatRows": "전투 통계",
         "section_revenueRows": "수익 통계",
         "section_statsColumns": "표의 열",
+        "dataRecords": "전투 기록",
         "section_data": "데이터 관리",
         "help_combatRows": "표시할 전투 통계를 선택하세요. 항목을 누르면 색상을 바꿀 수 있어요.",
         "help_revenueRows": "표시할 수익 항목을 선택하세요. 항목을 누르면 색상을 바꿀 수 있어요.",

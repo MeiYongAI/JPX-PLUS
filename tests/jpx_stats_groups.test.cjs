@@ -94,7 +94,7 @@ test('toolbar stays compact, exposes named icon targets and leaves data in the f
  for(const width of [320,390,768,1440]){
   const page=await fixture(t,{width,language:'ZhTrans'});
   const data=await page.evaluate(()=>({top:document.querySelector('.jpx-records-table-scroll').getBoundingClientRect().top,open:document.querySelector('dialog').open,buttons:[...document.querySelectorAll('.jpx-records-actions button')].map(b=>({text:b.textContent,label:b.getAttribute('aria-label'),width:b.getBoundingClientRect().width,height:b.getBoundingClientRect().height,svg:!!b.querySelector('svg'),radius:parseFloat(getComputedStyle(b).borderRadius)}))}));
-  assert.ok(data.top<100,JSON.stringify(data));assert.equal(data.open,false);assert.equal(data.buttons.length,3);
+  assert.ok(data.top<100,JSON.stringify(data));assert.equal(data.open,false);assert.equal(data.buttons.length,4);
   for(const button of data.buttons){assert.equal(button.text,'');assert.ok(button.label);assert.ok(button.svg);assert.ok(button.width>=44&&button.height>=44);assert.ok(button.radius<=2);}
   assert.equal(await page.locator('.jpx-records-count').textContent(),'35 条记录');
  }
@@ -136,10 +136,12 @@ test('filter sheets fit small portrait and landscape without page scrolling',asy
   const g=await page.locator('#jpx-records-sheet').evaluate(n=>{const r=n.getBoundingClientRect(),b=n.querySelector('.jpx-records-sheet-body');return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:innerWidth,height:innerHeight,scroll:b.scrollWidth,client:b.clientWidth};});
   assert.ok(g.x>=0&&g.y>=0&&g.right<=g.width+1&&g.bottom<=g.height+1,JSON.stringify(g));assert.ok(g.scroll<=g.client+1,JSON.stringify(g));
   await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-filters.png')});
-  await page.locator('.jpx-records-clear').scrollIntoViewIfNeeded();assert.equal(await page.locator('.jpx-records-clear').isVisible(),true);
-  await page.locator('.jpx-records-clear').click();await page.locator('#jpx-records-cleanup-dialog').waitFor();await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#jpx-records-cleanup-dialog'));assert.equal(await page.locator('#jpx-records-sheet').evaluate(n=>n.open),true);
+  assert.equal(await page.locator('#filtersDiv .jpx-records-clear').count(),0);
   await page.locator('.jpx-records-sheet-body').evaluate(n=>n.scrollTop=10000);assert.equal(await page.evaluate(()=>scrollY),0);
   await page.locator('.jpx-records-sheet-close').click();assert.equal(await page.locator('[data-records-panel=filters]').evaluate(n=>n===document.activeElement),true);
+  await page.locator('.jpx-records-toolbar .jpx-records-clear').click();await page.locator('#jpx-records-cleanup-dialog').waitFor();await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#jpx-records-cleanup-dialog'));
+  assert.equal(await page.locator('.jpx-records-clear').evaluate(n=>n===document.activeElement),true);
+
  }
 });
 
@@ -197,4 +199,34 @@ test('reused disclosure motion animates content, supports reversal and reduced m
 for(const language of ['', 'ZhTrans','ZhTW','ZhHK','Ja','Ko'])test('toolbar aggregation fits 320px without truncation: '+(language||'English'),async t=>{
  const page=await fixture(t,{width:320,language});const data=await page.locator('.jpx-records-toolbar').evaluate(n=>({scroll:document.documentElement.scrollWidth,width:innerWidth,top:document.querySelector('.jpx-records-table-scroll').getBoundingClientRect().top,controls:[...n.querySelectorAll('button,#filter-aggregate label')].map(b=>{const r=b.getBoundingClientRect();return{left:r.left,right:r.right,height:r.height,client:b.clientWidth,scroll:b.scrollWidth};})}));
  assert.ok(data.scroll<=data.width+1,JSON.stringify(data));assert.ok(data.top<110);for(const c of data.controls){assert.ok(c.left>=0&&c.right<=321,JSON.stringify(c));assert.ok(c.height>=44);assert.ok(c.scroll<=c.client+1);}
+});
+
+test('daily toggle has centered text without checkmark space and stable selected geometry',async t=>{
+ const page=await fixture(t,{width:390,language:'ZhTrans'}),input=page.locator('#filter-aggregate input');
+ const state=()=>page.locator('#filter-aggregate label').evaluate(label=>{const r=document.createRange();r.selectNodeContents(label.lastChild);const text=r.getBoundingClientRect(),box=label.getBoundingClientRect(),css=getComputedStyle(label);return{box:box.toJSON(),textCenter:(text.left+text.right)/2,center:(box.left+box.right)/2,before:getComputedStyle(label,'::before').content,shadow:css.boxShadow};});
+ const off=await state();assert.equal(off.before,'none');assert.ok(Math.abs(off.textCenter-off.center)<1);await input.check();await ready(page);
+ const on=await state();assert.deepEqual(on.box,off.box);assert.equal(on.before,'none');assert.ok(Math.abs(on.textCenter-on.center)<1);assert.notEqual(on.shadow,off.shadow);
+ await input.uncheck();await ready(page);assert.deepEqual(await state(),off);
+});
+test('toolbar cleanup retains current filter scope and cancellation preserves records',async t=>{
+ const page=await fixture(t,{width:390});await page.locator('[data-records-panel=filters]').click();
+ for(const value of ['Encounter','Colosseum','Battle1000','Item','Tower'])await page.locator('#filter-battleType input[value='+value+']').uncheck();await ready(page);
+ await page.keyboard.press('Escape');const rows=await page.locator('#battleStatsTable tbody tr').count();
+ await page.locator('.jpx-records-toolbar .jpx-records-clear').click();await page.locator('#jpx-records-cleanup-dialog').waitFor();
+ assert.equal(await page.locator('#jpx-records-cleanup-dialog select[name=world]').inputValue(),'Persistent');assert.equal(await page.locator('#jpx-records-cleanup-dialog select[name=battleType]').inputValue(),'Arena');
+ assert.equal(await page.locator('#jpx-records-sheet').evaluate(n=>n.open),false);assert.equal(await page.locator('#filtersDiv .jpx-records-clear').count(),0);
+ await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#jpx-records-cleanup-dialog'));assert.equal(await page.locator('#battleStatsTable tbody tr').count(),rows);
+ await page.evaluate(()=>__groups.render());await ready(page);assert.equal(await page.locator('.jpx-records-clear').count(),1);await page.locator('.jpx-records-clear').click();assert.equal(await page.locator('#jpx-records-cleanup-dialog select[name=battleType]').inputValue(),'Arena');
+});
+for(const width of [390,1440])for(const dark of [false,true])test('scrollbar appearance never shifts category labels and arrows at '+width+' '+dark,async t=>{
+ const page=await fixture(t,{width,dark,language:'ZhTrans'});await openColumns(page);await page.emulateMedia({reducedMotion:'no-preference'});
+ const result=await page.locator('.jpx-records-sheet-body').evaluate(async body=>{
+  const button=body.querySelector('[data-expand-group=basic]'),label=body.querySelector('.jpx-records-column-heading label'),sheet=body.closest('dialog');
+  const snapshot=()=>({buttonX:button.getBoundingClientRect().x,labelX:label.getBoundingClientRect().x,labelWidth:label.getBoundingClientRect().width,client:body.clientWidth,gutter:body.offsetWidth-body.clientWidth,scroll:body.scrollHeight,bodyHeight:body.clientHeight,sheet:sheet.getBoundingClientRect().toJSON()});
+  const before=snapshot(),samples=[];button.click();const start=performance.now();do{await new Promise(requestAnimationFrame);samples.push(snapshot());}while(performance.now()-start<240);
+  button.click();await new Promise(resolve=>setTimeout(resolve,220));return{before,samples,after:snapshot(),gutter:getComputedStyle(body).scrollbarGutter};
+ });
+ assert.equal(result.gutter,'stable');if(width>=600)assert.ok(result.before.gutter>0,'desktop reserves a classic scrollbar gutter');else assert.ok(result.before.gutter>=0,'overlay scrollbars need no gutter');assert.ok(result.before.scroll<=result.before.bodyHeight+1,'collapsed content initially fits');assert.ok(result.samples.at(-1).scroll>result.before.bodyHeight,'expanded content overflows');
+ for(const sample of [...result.samples,result.after])for(const key of ['buttonX','labelX','labelWidth','client','gutter','sheet'])assert.deepEqual(sample[key],result.before[key],key);
+ const output=path.join(root,'.test-output/stats-toolbar');fs.mkdirSync(output,{recursive:true});await page.locator('[data-expand-group=potions]').click();await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-columns.png')});await page.keyboard.press('Escape');await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-toolbar.png')});
 });

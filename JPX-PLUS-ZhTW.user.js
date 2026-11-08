@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.17
+// @version      2026.11.08.18
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -599,6 +599,7 @@
             "section_combatRows": "戰鬥統計",
             "section_revenueRows": "收益統計",
             "section_statsColumns": "統計欄位",
+            "dataRecords": "戰鬥紀錄",
             "section_data": "資料管理",
             "help_combatRows": "選擇要顯示的戰鬥統計，點選項目可調整配色。",
             "help_revenueRows": "選擇要顯示的收益統計，點選項目可調整配色。",

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.17
+// @version      2026.11.08.18
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -559,7 +559,7 @@
 			"customName": "自定义名称",
 			"colorThresholds": "颜色阈值",
 			"resetStatsSettings": "重置统计设置",
-			"exportDB": "导出数据库",
+			"exportDB": "导出记录",
             "clearRecords": "清理记录",
             "recordsAllWorlds": "全部世界",
             "recordsAllBattles": "全部战斗",
@@ -586,11 +586,12 @@
             "cleanupDone": "JPX-PLUS 本地数据已清空。重新加载后使用默认设置。",
             "cleanupOther": "另一个标签页正在清理数据。请关闭本页，或等清理完成后重新加载。",
             "cleanupReload": "重新加载",
-			"importDB": "导入数据库",
+			"importDB": "导入记录",
 			"importConfirm": "如何导入数据？\n\n点击“确定”：合并数据，仅添加新记录。\n点击“取消”：覆盖已有记录。",
 			"section_combatRows": "战斗统计",
 			"section_revenueRows": "收益统计",
 			"section_statsColumns": "统计表列",
+			"dataRecords": "战斗记录",
 			"section_data": "数据管理",
 			"help_combatRows": "选择战斗记录中显示的战斗指标，点击条目可编辑样式。",
 			"help_revenueRows": "选择战斗记录中显示的收益分组，点击条目可编辑样式。",

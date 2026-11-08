@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.18
+
+- **Cleaner records toolbar.** Aggregate by Day uses centered text with a selected background and underline, without a checkmark or empty indicator space. Clear records moves beside the other toolbar icons and retains its range preview, current world/battle scope and confirmation.
+- **Stable expanding controls.** Column panels reserve scrollbar space so labels and arrows stay aligned when categories expand. Settings statistics also reserves its scrollbar gutter; disclosure arrows have enough space throughout rotation. Existing animation and reduced-motion behavior remain.
+- **Compact data management.** Record export, import and cleanup share one action row. Primary/alt backups, shared history and stamina correction sit in an initially collapsed section. Reset statistics settings and full-data cleanup remain separate, with concise labels and no permanent explanatory paragraphs. Import preview and destructive confirmation remain intact. Mobile controls use 44px targets and the existing HV square-corner palette.
+- **Verification.** Full offline regression: 562/562. Final statistics/shared-browser checks: 62/62. Build, language consistency and 96 preview scenarios pass. Layouts and data flows use isolated Chrome fixtures with mocked GM transport; no real account or installed userscript was exercised.
+
+### 简体中文
+
+- **顶栏更简洁**：按天汇总使用居中文字，以底色和下划线区分开启状态，移除对勾及占位。清理记录移到顶栏图标区，保留当前世界/战斗类型范围、预览和删除确认。
+- **展开不再挤动**：显示项目窗口预留滚动条空间，分类文字和箭头保持对齐；统计设置也预留滚动条位置，并为箭头旋转留足空间。沿用原有展开动画与减少动画偏好。
+- **数据管理精简布局**：记录导出、导入、清理集中排列；主站/alt 旧配置、共享历史和体力修正默认折叠。重置统计设置与清空全部数据独立放置，移除常驻说明段落，保留导入预览和删除确认。手机控件保持 44px 点击区域，沿用 HV 直角、细边框及明暗配色。
+- **验证范围**：全量离线回归 562/562、最终统计/共享专项 62/62、构建、语言一致性及 96 个预览场景通过。使用隔离 Chrome 页面与模拟 GM 传输，未操作真实账号或已安装脚本。
+
 ## 2026.11.08.17
 
 - **Checkbox filters.** World, result, battle type and difficulty return to visible native checkboxes with touch-sized labels. The toolbar exposes Aggregate by Day as a compact text toggle with a check indicator; it retains the original filter input, keyboard behavior and redraw state.

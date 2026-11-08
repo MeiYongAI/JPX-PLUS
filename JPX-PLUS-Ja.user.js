@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.17
+// @version      2026.11.08.18
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -600,6 +600,7 @@
             "section_combatRows": "戦闘統計",
             "section_revenueRows": "収支統計",
             "section_statsColumns": "統計表の列",
+            "dataRecords": "戦闘記録",
             "section_data": "データ管理",
             "help_combatRows": "表示する戦闘データを選択します。項目を押すと配色を変更できます。",
             "help_revenueRows": "表示する戦利品・収支を選択します。項目を押すと配色を変更できます。",

@@ -96,9 +96,9 @@ On mobile, filters fold beside search, row actions stay compact, and settings us
 ## Battle stats and controls
 
 - Filter records, inspect an individual battle, and copy or download stats as an image.
-- The records page opens directly on the table. The toolbar offers an **Aggregate by Day** toggle and three icon buttons for **Filters**, **Choose columns** and **Image**; on phones these open a bottom sheet with a fixed close button. Filters use visible checkboxes. Controls follow the existing HV square-corner, thin-border style.
-- In **Choose columns**, toggle one of eight categories or expand its arrow to select individual metrics. Expansion reuses the settings editor animation; the window keeps its height and the contents scroll inside. Changes save automatically and are shared between primary and alt; hiding a category keeps its item selections. Group headers preserve names, colors and order within each category.
-- Clear stored records by a selected range.
+- The records page opens directly on the table. The toolbar offers a text-only **Aggregate by Day** toggle and four icon buttons: **Filters**, **Choose columns**, **Image** and **Clear records**. Filters use visible checkboxes; clear opens a separate range confirmation. Controls follow the existing HV square-corner, thin-border style.
+- In **Choose columns**, toggle one of eight categories or expand its arrow to select individual metrics. Expansion reuses the settings editor animation; the window keeps its height and the contents scroll inside without shifting sideways. Changes save automatically and are shared between primary and alt; hiding a category keeps its item selections. Group headers preserve names, colors and order within each category.
+- In **Stats → Data**, record import, export and range cleanup are grouped together. Primary/alt recovery tools expand on demand; reset statistics settings and clear all data remain separate. Import keeps its preview, and destructive actions require confirmation.
 - Customize the draggable panel and statistics colors with live previews; choose light or dark UI.
 - Edit battle rules, conditions and shortcuts with undo and redo.
 
