@@ -82,7 +82,7 @@ test('record category preferences are shared across primary and alt without rere
  await f.flush();await a.evaluate(()=>__share.render());await b.evaluate(()=>__share.render());
  for(const page of [a,b])await page.waitForFunction(()=>document.querySelector('.jpx-records-table-scroll')?.getAttribute('aria-busy')==='false');
  await f.flush();const reads=await b.evaluate(()=>__share.recordReads());
- await a.locator('input[data-column-group=drops]').uncheck();await f.flush();
+ await a.locator('[data-records-panel=columns]').click();await a.locator('input[data-column-group=drops]').uncheck();await f.flush();
  assert.equal(await b.locator('input[data-column-group=drops]').isChecked(),false);
  assert.equal(await b.locator('th[data-column=eqL]').count(),0);
  assert.equal(await b.evaluate(()=>__share.recordReads()),reads);

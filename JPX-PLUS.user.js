@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.15
+// @version      2026.11.08.16
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -270,7 +270,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.15',
+    version: '2026.11.08.16',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -6169,20 +6169,21 @@ async function createRecordImageBlob(root) {
     return new Promise((resolve, reject) => canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error(t('sP.imageFailed'))), 'image/png'));
 }
 
-function createRecordImageActions(doc, getContent) {
+function createRecordImageActions(doc, getContent, inline = false) {
     const win = doc.defaultView, menu = doc.createElement('details');
     const compact = win.matchMedia('(max-width: 650px), (pointer: coarse) and (orientation: landscape) and (max-height: 600px)');
-    menu.className = 'jpx-record-image-actions';
+    menu.className = 'jpx-record-image-actions' + (inline ? ' jpx-record-image-inline' : '');
     const summary = doc.createElement('summary');
     summary.textContent = t('sP.image');
     const actions = doc.createElement('div');
     actions.setAttribute('role', 'group'); actions.setAttribute('aria-label', t('sP.image'));
     const notify = (message, success = false) => {
-        if (success && compact.matches) menu.open = false;
+        if (success && !inline && compact.matches) menu.open = false;
         doc.querySelectorAll('.jpx-record-image-toast').forEach(toast => toast.remove());
         const toast = jpxUtils.createToast(message, success ? 2400 : 5000, 'jpx-record-image-toast', doc);
         ['padding', 'background', 'color', 'font-size'].forEach(property => toast.style.removeProperty(property));
         toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');
+        if (inline && menu.closest('dialog[open]')) menu.closest('dialog').append(toast);
     };
     const buttons = [];
     for (const action of ['download', 'copy']) {
@@ -6217,24 +6218,25 @@ function createRecordImageActions(doc, getContent) {
             } finally {
                 menu.removeAttribute('aria-busy'); buttons.forEach(item => item.disabled = false);
                 if (restoreFocus && menu.isConnected && (doc.activeElement === doc.body || menu.contains(doc.activeElement))) {
-                    (compact.matches && !menu.open ? summary : button).focus({ preventScroll: true });
+                    (!inline && compact.matches && !menu.open ? summary : button).focus({ preventScroll: true });
                 }
             }
         };
+        if (inline) button.prepend(createSettingsIcon(action));
         buttons.push(button); actions.append(button);
     }
     menu.append(summary, actions);
-    const closeOutside = event => { if (compact.matches && !menu.contains(event.target)) menu.open = false; };
+    const closeOutside = event => { if (!inline && compact.matches && !menu.contains(event.target)) menu.open = false; };
     const cleanup = () => doc.removeEventListener('pointerdown', closeOutside, true);
-    const updateLayout = () => { cleanup(); menu.open = !compact.matches; };
+    const updateLayout = () => { cleanup(); menu.open = inline || !compact.matches; };
     compact.addEventListener('change', updateLayout);
     updateLayout();
     menu.addEventListener('toggle', () => {
         cleanup();
-        if (menu.isConnected && compact.matches && menu.open) doc.addEventListener('pointerdown', closeOutside, true);
+        if (menu.isConnected && !inline && compact.matches && menu.open) doc.addEventListener('pointerdown', closeOutside, true);
     });
     menu.dispose = () => { cleanup(); compact.removeEventListener('change', updateLayout); };
-    menu.addEventListener('keydown', event => { if (compact.matches && event.key === 'Escape') { menu.open = false; summary.focus(); event.stopPropagation(); } });
+    menu.addEventListener('keydown', event => { if (!inline && compact.matches && event.key === 'Escape') { menu.open = false; summary.focus(); event.stopPropagation(); } });
     return menu;
 }
 
@@ -6538,13 +6540,18 @@ function openJpxRecordsCleanup(targetWindow = window, initial = {}) {
 function createStatsColumnControls(doc, onChange) {
     const root = doc.createElement('section'); root.className = 'jpx-records-columns';
     root.setAttribute('aria-label', t('sP.displayColumns'));
-    const bar = doc.createElement('div'); bar.className = 'jpx-records-column-groups';
-    const title = doc.createElement('strong'); title.textContent = t('sP.displayGroups'); bar.append(title);
-    const details = doc.createElement('details'); details.className = 'jpx-records-column-details';
-    const summary = doc.createElement('summary'); summary.textContent = t('sP.displayColumns'); details.append(summary);
-    const help = doc.createElement('p'); help.textContent = t('sP.displayHelp'); details.append(help);
-    const editor = doc.createElement('div'); editor.className = 'jpx-records-column-editor'; details.append(editor);
+    const editor = doc.createElement('div'); editor.className = 'jpx-records-column-groups';
     const status = doc.createElement('p'); status.className = 'jpx-records-column-status'; status.setAttribute('role', 'status'); status.setAttribute('aria-atomic','true');
+    let saveToast, toastTimer;
+    const dismissToast = () => { doc.defaultView.clearTimeout(toastTimer); saveToast?.remove(); saveToast = null; };
+    const notifySaved = () => {
+        dismissToast();
+        saveToast = doc.createElement('div'); saveToast.className = 'jpx-records-save-toast';
+        saveToast.setAttribute('role','status'); saveToast.setAttribute('aria-live','polite'); saveToast.setAttribute('aria-atomic','true');
+        (root.closest('dialog') || doc.body).append(saveToast);
+        saveToast.textContent = t('sP.displaySaved');
+        toastTimer = doc.defaultView.setTimeout(dismissToast,2000);
+    };
     const groupInputs = new Map(), fieldInputs = new Map(), counts = new Map();
     const getColumns = () => { const copy = { statsColumns: jpxConfigClone(cfgStats.statsColumns || []) }; normalizeStatsConfig(copy); return copy.statsColumns; };
     function update() {
@@ -6574,31 +6581,40 @@ function createStatsColumnControls(doc, onChange) {
             normalizeStatsConfig(cfgStats);
             if (id) cfgStats.statsColumns.find(column => column.id === id).disabled = !checked;
             else cfgStats.columnGroups = { ...cfgStats.columnGroups, [group]: checked };
-            status.setAttribute('role','status'); status.textContent = t('sP.displaySaved');
+            status.setAttribute('role','status'); status.textContent = ''; notifySaved();
             update(); onChange();
         } catch (error) {
-            update(); status.setAttribute('role','alert'); status.textContent = t('cM.storageError');
+            dismissToast(); update(); status.setAttribute('role','alert'); status.textContent = t('cM.storageError');
             console.error('Could not save column preferences:', error);
         }
     }
     for (const group of STATS_COLUMN_GROUPS) {
+        const section = doc.createElement('section'); section.className = 'jpx-records-column-group';
+        const header = doc.createElement('div'); header.className = 'jpx-records-column-heading';
         const label = doc.createElement('label'), toggle = doc.createElement('input');
         toggle.type = 'checkbox'; toggle.dataset.columnGroup = group.id; groupInputs.set(group.id, toggle);
-        label.append(toggle, doc.createTextNode(t('sP.group_' + group.id))); bar.append(label);
+        const caption = doc.createElement('span'), name = doc.createElement('strong'), count = doc.createElement('small');
+        name.textContent = t('sP.group_' + group.id); count.className = 'jpx-records-column-count'; counts.set(group.id,count);
+        caption.append(name,count); label.append(toggle,caption); header.append(label);
         toggle.addEventListener('change', () => change(group.id, null, toggle.checked));
-        const fields = doc.createElement('fieldset'), legend = doc.createElement('legend');
-        legend.textContent = t('sP.group_' + group.id); fields.append(legend);
-        const count = doc.createElement('p'); count.className = 'jpx-records-column-count'; counts.set(group.id,count); fields.append(count);
+        const fields = doc.createElement('div'); fields.className = 'jpx-records-column-fields'; fields.id = 'jpx-records-fields-' + group.id; fields.hidden = true;
+        fields.setAttribute('role','group'); fields.setAttribute('aria-label',name.textContent);
+        const expand = doc.createElement('button'); expand.type = 'button'; expand.className = 'jpx-records-icon jpx-records-column-expand';
+        expand.dataset.expandGroup = group.id; expand.append(createSettingsIcon('chevronDown'));
+        expand.title = t('sP.displayColumns') + ' · ' + name.textContent; expand.setAttribute('aria-label',expand.title);
+        expand.setAttribute('aria-controls',fields.id); expand.setAttribute('aria-expanded','false');
+        expand.onclick = () => { fields.hidden = !fields.hidden; expand.setAttribute('aria-expanded',String(!fields.hidden)); };
+        header.append(expand);
         for (const id of group.fields) {
             const label = doc.createElement('label'), input = doc.createElement('input');
             input.type = 'checkbox'; input.dataset.columnField = id; fieldInputs.set(id,input);
             label.append(input, doc.createTextNode('')); fields.append(label);
             input.addEventListener('change', () => change(group.id,id,input.checked));
         }
-        editor.append(fields);
+        section.append(header,fields); editor.append(section);
     }
-    root.append(bar,details,status); update();
-    return { node:root, update };
+    root.append(editor,status); update();
+    return { node:root, update, dismissToast };
 }
 
 function renderBattleRecordsPage(targetWindow = window) {
@@ -6619,7 +6635,7 @@ function renderBattleRecordsPage(targetWindow = window) {
     doc.getElementById('jpx-records-cleanup-dialog')?.close();
     const previousImageActions = doc.querySelector('.jpx-record-image-actions');
     previousImageActions?.dispose?.(); previousImageActions?.remove();
-    const filterState = targetWindow._jpxRecordsFilterState ||= { open: false, inputs: null };
+    const filterState = targetWindow._jpxRecordsFilterState ||= { panel: null, inputs: null };
     const previousFilters = doc.getElementById('filtersDiv');
     if (previousFilters) filterState.inputs = [...previousFilters.querySelectorAll('input')].map(input => ({ value: input.value, checked: input.checked }));
     filterState.cleanup?.();
@@ -6641,22 +6657,35 @@ function renderBattleRecordsPage(targetWindow = window) {
         button, input[type=checkbox] { cursor: pointer; }
         input { accent-color: #5c0d11; }
         :focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
-        .jpx-records-page { display: flex; flex-direction: column; gap: 8px; height: 100vh; height: 100dvh; min-height: 480px; padding: 10px; }
-        .jpx-records-filter-toggle { display: none; flex: none; align-self: flex-start; min-height: 40px; padding: 6px 10px; border: 1px solid #c8b49b; background: #f9f6ec; color: #5c0d11; }
-        .jpx-records-filter-popup { position: fixed; inset: auto; margin: 0; padding: 0; width: min(420px, calc(100vw - 16px)); max-width: calc(100vw - 16px); border: 1px solid #c8b49b; background: #f9f6ec; color: #392d25; overflow: auto; overscroll-behavior: contain; box-shadow: 0 3px 10px rgb(36 18 15 / 16%); }
-        .jpx-records-filter-popup::backdrop { background: transparent; pointer-events: none; }
-        #filtersDiv { flex: none; display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content max-content; align-items: center; gap: 8px 16px; border: 1px solid #c8b49b; padding: 8px 12px; background: #f9f6ec; }
-        #filtersDiv > .jpx-record-image-actions { align-self: center; justify-self: end; padding-left: 16px; border-left: 1px solid #ddd0bd; }
-        #filtersDiv > .jpx-record-image-actions > div { grid-auto-rows: 32px; align-items: center; }
+        body { overflow:hidden; }
+        .jpx-records-page { display:flex; flex-direction:column; gap:10px; height:100vh; height:100dvh; padding:12px; }
+        .jpx-records-toolbar { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; min-width:0; }
+        .jpx-records-heading { min-width:0; }
+        .jpx-records-heading h1 { margin:0; font-size:17px; line-height:1.3; color:#5c0d11; }
+        .jpx-records-count { margin:3px 0 0; color:#71634f; font-size:12px; }
+        .jpx-records-actions { display:flex; flex:none; gap:8px; }
+        .jpx-records-icon { display:inline-flex; flex:none; align-items:center; justify-content:center; width:44px; height:44px; padding:10px; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#5c0d11; touch-action:manipulation; transition:background-color 140ms; }
+        .jpx-records-icon svg { width:22px; height:22px; pointer-events:none; }
+        .jpx-records-icon:active { background:#ead9b8; }
+        .jpx-records-icon[aria-expanded=true] { background:#ead9b8; border-color:#b49369; }
+        @media(hover:hover) { .jpx-records-icon:hover { background:#eee2c9; } }
+        .jpx-records-sheet { inset:0; width:min(600px,calc(100% - 32px)); max-width:none; max-height:calc(100dvh - 48px); margin:auto; padding:0; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#392d25; box-shadow:0 3px 10px #0002; overflow:hidden; }
+        .jpx-records-sheet[open] { display:flex; flex-direction:column; }
+        .jpx-records-sheet::backdrop { background:rgb(16 13 10 / 42%); }
+        .jpx-records-sheet-header { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid #ddd0bd; }
+        .jpx-records-sheet-header h2 { margin:0; font-size:18px; color:#5c0d11; }
+        .jpx-records-sheet-close { border-color:transparent; background:transparent; }
+        .jpx-records-sheet-body { min-height:0; overflow:auto; overscroll-behavior:contain; padding:16px; scroll-padding:12px; }
+        .jpx-records-sheet [hidden] { display:none!important; }
+        .jpx-records-sheet :focus-visible { outline:2px solid #9b4e03; outline-offset:2px; }
+        #filtersDiv { display:grid; gap:16px; min-width:0; }
         .jpx-records-filter-scope, .jpx-records-filter-match, .jpx-records-filter-tools { display: grid; gap: 4px; min-width: 0; }
-        .jpx-records-filter-match, .jpx-records-filter-tools { padding-left: 16px; border-left: 1px solid #ddd0bd; }
-        .jpx-records-filter { display: flex; align-items: center; gap: 8px; min-height: 32px; min-width: 0; max-width: 100%; }
-        .jpx-records-filter-label { flex: none; color: #5c0d11; font-weight: 700; line-height: 28px; }
-        .jpx-records-filter-scope .jpx-records-filter-label { flex-basis: 40px; }
-        .jpx-records-filter-match .jpx-records-filter-label { flex-basis: 68px; }
-        .jpx-records-filter-options { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
-        .jpx-records-filter-options label { --option-bg: #fffdf7; --option-border: #d3c5b2; position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; min-height: 32px; padding: 4px 6px; border: 1px solid transparent; border-radius: 8px; cursor: pointer; user-select: none; touch-action: manipulation; }
-        .jpx-records-filter-options label::before { content: ''; position: absolute; inset: 2px 0; z-index: -1; border: 1px solid var(--option-border); border-radius: 8px; background: var(--option-bg); pointer-events: none; }
+        .jpx-records-filter-match, .jpx-records-filter-tools { padding:16px 0 0; border-top:1px solid #ddd0bd; }
+        .jpx-records-filter { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; max-width:100%; }
+        .jpx-records-filter-label { color:#5c0d11; font-weight:700; line-height:1.5; }
+        .jpx-records-filter-options { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-width:0; }
+        .jpx-records-filter-options label { --option-bg: #fffdf7; --option-border: #d3c5b2; position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 12px; border: 1px solid transparent; border-radius: 2px; cursor: pointer; user-select: none; touch-action: manipulation; }
+        .jpx-records-filter-options label::before { content: ''; position: absolute; inset: 2px 0; z-index: -1; border: 1px solid var(--option-border); border-radius: 2px; background: var(--option-bg); pointer-events: none; }
         .jpx-records-filter-options label:has(input:checked) { --option-bg: #ead9b8; --option-border: #b49369; color: #5c0d11; }
         @media (hover: hover) { .jpx-records-filter-options label:not(:has(input:checked)):hover { --option-bg: #f0eadf; --option-border: #c1ab8c; } }
         .jpx-records-filter-options label:has(input:focus-visible)::before { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
@@ -6665,8 +6694,8 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-tools-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; min-width: 0; }
         .jpx-records-filter-tools .jpx-records-filter { flex-wrap: wrap; gap: 0 8px; }
         .jpx-records-range { display: inline-flex; align-items: center; gap: 6px; }
-        #filtersDiv input[type=number] { width: 68px; min-width: 0; height: 28px; padding: 2px 5px; border: 1px solid #bda68e; border-radius: 2px; background: #fffdf7; }
-        #filtersDiv .jpx-records-clear { display:inline-flex; align-items:center; justify-content:center; width:32px; min-height:32px; padding:4px; border:1px solid #c8b49b; border-radius:2px; background:#fffdf7; color:#5c0d11; }
+        #filtersDiv input[type=number] { width: 80px; min-width: 0; height: 44px; padding: 2px 5px; border: 1px solid #bda68e; border-radius: 2px; background: #fffdf7; }
+        #filtersDiv .jpx-records-clear { display:inline-flex; align-items:center; justify-content:center; width:44px; min-height:44px; padding:10px; border:1px solid #c8b49b; border-radius:2px; background:#fffdf7; color:#5c0d11; }
         #filtersDiv .jpx-records-clear svg { width:16px; height:16px; }
         #filtersDiv .jpx-records-clear:hover { background:#f1e2c5; }
         @media(max-width:650px),(pointer:coarse) { #filtersDiv .jpx-records-clear { width:44px; min-height:44px; } }
@@ -6677,19 +6706,26 @@ function renderBattleRecordsPage(targetWindow = window) {
         #battleStatsTable th { background: #e9d5ae; color: #5c0d11; font-weight: 700; }
         #battleStatsTable .jpx-records-group-header th { background: color-mix(in srgb, var(--jpx-theme-header,#e9d5ae) 78%, var(--jpx-theme-border,#bda68e)); border-bottom-color:var(--jpx-theme-border,#bda68e); }
         #battleStatsTable .jpx-records-group-header span { position:sticky; left:10px; display:inline-block; }
-        .jpx-records-columns { flex:none; padding:8px 12px; border:1px solid #bda68e; background:#f9f6ec; max-height:45%; overflow:auto; }
-        .jpx-records-column-groups { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:center; }
-        .jpx-records-columns label { display:flex; gap:6px; align-items:center; min-height:28px; cursor:pointer; min-width:0; overflow-wrap:anywhere; }
-        .jpx-records-columns input { flex:none; margin:0; accent-color:var(--jpx-theme-accent,#5c0d11); }
-        .jpx-records-columns :focus-visible { outline:2px solid var(--jpx-theme-accent,#5c0d11); outline-offset:2px; }
-        .jpx-records-column-details summary { cursor:pointer; width:max-content; max-width:100%; padding:6px 0; }
-        .jpx-records-column-details p { margin:4px 0 8px; color:#71634f; }
-        .jpx-records-column-editor { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr)); gap:12px; }
-        .jpx-records-column-editor fieldset { min-width:0; margin:0; padding:8px 12px; border:1px solid #c8b49b; }
-        .jpx-records-column-editor legend { font-weight:bold; padding:0 4px; }
-        .jpx-records-column-status { margin:4px 0 0; }
+        .jpx-records-column-groups { display:grid; border-top:1px solid #c8b49b; }
+        .jpx-records-column-group { border-bottom:1px solid #c8b49b; overflow:hidden; }
+        .jpx-records-column-heading { display:flex; align-items:center; gap:8px; padding:8px 0; }
+        .jpx-records-column-heading label { flex:1; }
+        .jpx-records-columns label { display:flex; gap:12px; align-items:center; min-height:44px; cursor:pointer; min-width:0; overflow-wrap:anywhere; }
+        .jpx-records-columns input { width:18px; height:18px; flex:none; margin:0; accent-color:var(--jpx-theme-accent,#5c0d11); }
+        .jpx-records-column-heading strong { display:block; font-size:14px; }
+        .jpx-records-column-count { display:block; color:#71634f; font-size:12px; margin-top:2px; }
+        .jpx-records-column-expand { border:0; background:transparent; }
+        .jpx-records-column-expand[aria-expanded=true] svg { transform:rotate(180deg); }
+        .jpx-records-column-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; border-top:1px solid #ddd0bd; padding:12px; }
+        .jpx-records-column-fields label { padding:0 4px; font-size:13px; }
+        .jpx-records-column-status { position:sticky; bottom:0; margin:12px 0 0; padding:10px 12px; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#5c0d11; }
         .jpx-records-column-status:empty { display:none; }
-        @media(max-width:650px),(pointer:coarse) { .jpx-records-columns label,.jpx-records-column-details summary { min-height:44px; } .jpx-records-columns { padding:6px 8px; } }
+        .jpx-records-save-toast, .jpx-records-sheet > .jpx-record-image-toast { position:absolute; top:auto; left:50%; bottom:max(16px,env(safe-area-inset-bottom,0px)); transform:translateX(-50%); width:max-content; max-width:calc(100% - 32px); padding:10px 14px; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#5c0d11; box-shadow:0 2px 6px #0002; font-size:13px; text-align:center; pointer-events:none; }
+        .jpx-records-sheet .jpx-record-image-inline { position:static; }
+        .jpx-records-sheet .jpx-record-image-inline > summary { display:none; }
+        .jpx-records-sheet .jpx-record-image-inline > div { position:static; display:grid; width:auto; max-width:none; padding:0; gap:12px; border:0; background:none; box-shadow:none; }
+        .jpx-records-sheet .jpx-record-image-inline button { display:flex; align-items:center; gap:14px; min-height:56px; padding:12px 16px; border:1px solid #c8b49b; border-radius:2px; text-align:left; white-space:normal; }
+        .jpx-records-sheet .jpx-record-image-inline button svg { width:24px; height:24px; flex:none; }
         #battleStatsTable tr { --record-row-bg: #fffdf7; background: var(--record-row-bg); }
         #battleStatsTable tbody tr:nth-child(even) { --record-row-bg: #f5f1e7; }
         #battleStatsTable tbody tr[data-summary] { --record-row-bg: #ece6d8; font-weight: 700; }
@@ -6704,44 +6740,19 @@ function renderBattleRecordsPage(targetWindow = window) {
         #battleStatsTable td.tooltip:is(:hover, :focus-visible)::after { content: attr(content); position: absolute; z-index: 4; right: 0; bottom: calc(100% + 4px); width: max-content; max-width: min(420px, calc(100vw - 32px)); padding: 6px 8px; border: 1px solid #bda68e; border-radius: 2px; background: #f9f6ec; color: #5c0d11; box-shadow: 0 2px 4px #0002; font: 12px/1.5 Arial, Helvetica, sans-serif; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; pointer-events: none; }
         #battleStatsTable tr:nth-child(-n+2) td.tooltip::after { bottom: auto; top: calc(100% + 4px); }
         .jpx-records-message { margin: 0; padding: 28px 16px; text-align: center; color: #71634f; }
-        @media (max-width: 1199px) {
-            #filtersDiv { grid-template-columns: max-content minmax(0, 1fr) max-content; }
-            .jpx-records-filter-match { grid-column: 2 / -1; }
-            .jpx-records-filter-tools { grid-column: 1 / 3; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; border-left: 0; border-top: 1px solid #ddd0bd; padding: 8px 0 0; }
-            #filtersDiv > .jpx-record-image-actions { grid-column: 3; grid-row: 2; }
-            .jpx-records-tools-row { gap: 6px 24px; }
+        @media(max-width:650px),(pointer:coarse) and (orientation:landscape) and (max-height:600px) {
+            .jpx-records-page { gap:10px; padding:max(8px,env(safe-area-inset-top,0px)) max(8px,env(safe-area-inset-right,0px)) max(8px,env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px)); }
+            .jpx-records-heading h1 { font-size:15px; }
+            .jpx-records-sheet { inset:auto 0 0; width:100%; max-height:88dvh; margin:0; border-radius:0; border-bottom:0; }
+            .jpx-records-sheet-header { padding:12px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px)); }
+            .jpx-records-sheet-body { padding:16px max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px)); }
+            #filtersDiv { font-size:14px; }
+            #filtersDiv input[type=number] { font-size:16px; }
+            #battleStatsTable th,#battleStatsTable td { padding:6px 8px; }
+            .jpx-records-table-scroll { min-height:0; border-radius:2px; }
         }
-        @media (min-width: 651px) and (pointer: coarse) { #filtersDiv > .jpx-record-image-actions > div { grid-auto-rows: minmax(40px, auto); } }
-        @media (max-width: 650px) {
-            .jpx-records-page { padding: 6px; }
-            #filtersDiv { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 8px; }
-            .jpx-records-filter-match { grid-column: auto; border-left: 0; padding-left: 0; }
-            .jpx-records-filter-tools { grid-column: 1 / -1; }
-            .jpx-records-filter-scope .jpx-records-filter-label, .jpx-records-filter-match .jpx-records-filter-label { flex-basis: 76px; }
-            .jpx-records-filter-tools, .jpx-records-tools-row { gap: 6px 12px; }
-            #battleStatsTable th, #battleStatsTable td { padding: 5px 8px; }
-        }
-        @media (max-width: 650px), (pointer: coarse) and (orientation: landscape) and (max-height: 600px) {
-            .jpx-records-page { min-height: 0; padding: 6px; }
-            .jpx-record-image-actions { right: 108px; }
-            .jpx-record-image-actions > div { right: -94px; }
-            .jpx-records-filter-toggle { display: flex; align-items: center; justify-content: center; min-width: 80px; position: fixed; right: 14px; bottom: max(14px, env(safe-area-inset-bottom, 0px)); z-index: 4; border-radius: 4px; box-shadow: 0 2px 6px #0002; }
-            .jpx-records-filter-options label, #filter-aggregate label { min-height: 40px; }
-            .jpx-records-filter-options label::before { inset-block: 4px; }
-            #filtersDiv input[type=number] { height: 40px; }
-            .jpx-records-table-scroll { min-height: min(140px, 35dvh); }
-            .jpx-records-table-scroll::after { content: ''; display: block; height: 52px; }
-        }
-        .jpx-records-filter-popup #filtersDiv { min-height: 0; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 6px; padding: 8px; border: 0; }
-        .jpx-records-filter-popup .jpx-records-filter-match { grid-column: auto; border-left: 0; padding-left: 0; }
-        .jpx-records-filter-popup .jpx-records-filter-tools { grid-column: 1 / -1; }
-        .jpx-records-filter-popup .jpx-records-filter-scope .jpx-records-filter-label, .jpx-records-filter-popup .jpx-records-filter-match .jpx-records-filter-label { flex-basis: 70px; }
-        .jpx-records-filter-popup .jpx-records-filter-tools, .jpx-records-filter-popup .jpx-records-tools-row { gap: 6px 12px; }
-        @media (min-width: 651px) {
-            .jpx-records-filter-popup { width: min(640px, calc(100vw - 16px)); }
-            .jpx-records-filter-popup #filtersDiv { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
-            .jpx-records-filter-popup .jpx-records-filter-match { border-left: 1px solid #ddd0bd; padding-left: 12px; }
-        }
+        @media(max-height:500px) { .jpx-records-sheet { max-height:calc(100dvh - 12px); } }
+        @media(prefers-reduced-motion:reduce) { .jpx-records-icon { transition:none; } }
     `);
     applyJpxTheme(doc);
     const page = doc.createElement('main');
@@ -6766,11 +6777,12 @@ function renderBattleRecordsPage(targetWindow = window) {
             const records = await getBattleRecordsRender(filters, pendingRead.signal);
             if (targetWindow.closed || request !== revision) return;
             cachedRecords = records;
+            count.textContent = t(filters.aggregate ? 'sP.dayCount' : 'sP.recordCount', {count:Math.max(0,records.length - 2)});
             columnControls.update();
             renderDynamicTable(records, cfgStats.statsColumns, tableRegion);
         } catch (error) {
             if (targetWindow.closed || request !== revision || error.name === 'AbortError') return;
-            cachedRecords = null;
+            cachedRecords = null; count.textContent = t('sP.recordsError');
             const notice = doc.createElement('p');
             notice.className = 'jpx-records-message'; notice.textContent = t('sP.recordsError');
             tableRegion.replaceChildren(notice);
@@ -6807,7 +6819,6 @@ function renderBattleRecordsPage(targetWindow = window) {
         });
         if (field.type === 'rangeNumber') ['min', 'max'].forEach((part, index) => group.querySelector('.range-' + part).setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin')));
     }
-    const filterButton = doc.createElement('button');
     let clearRecords = filters.querySelector('.jpx-records-clear');
     if (!clearRecords) {
         clearRecords = doc.createElement('button'); clearRecords.type = 'button'; clearRecords.className = 'jpx-records-clear';
@@ -6819,68 +6830,71 @@ function renderBattleRecordsPage(targetWindow = window) {
     }
     clearRecords.replaceChildren(createSettingsIcon('delete'));
     clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',t('cS.clearRecords'));
-    filterButton.type = 'button'; filterButton.className = 'jpx-records-filter-toggle';
-    filterButton.textContent = t('sP.filters') + ' ▴';
-    filterButton.setAttribute('aria-label', t('sP.filters'));
-    filterButton.setAttribute('aria-controls', 'jpx-records-filter-popup');
-    const popup = doc.createElement('div');
-    popup.id = 'jpx-records-filter-popup'; popup.className = 'jpx-records-filter-popup';
-    popup.popover = 'auto'; popup.setAttribute('role', 'region'); popup.setAttribute('aria-label', t('sP.filters'));
-    filterButton.popoverTargetElement = popup;
-    const imageActions = createRecordImageActions(doc, () => tableRegion.querySelector('#battleStatsTable'));
-    const compactFilters = targetWindow.matchMedia('(max-width: 650px), (pointer: coarse) and (orientation: landscape) and (max-height: 600px)');
-    let disposed = false, changingLayout = false;
-    const positionFilters = () => {
-        if (disposed || !compactFilters.matches) return;
-        const rect = filterButton.getBoundingClientRect(), view = targetWindow.visualViewport;
-        const left = view?.offsetLeft || 0, top = view?.offsetTop || 0;
-        const width = view?.width || targetWindow.innerWidth, height = view?.height || targetWindow.innerHeight;
-        const popupWidth = Math.min(width > 650 ? 640 : 420, width - 16);
-        const popupBottom = Math.min(top + height - 8, rect.top - 6);
-        Object.assign(popup.style, { left: `${Math.max(left + 8, Math.min(rect.right - popupWidth, left + width - popupWidth - 8))}px`,
-            top: 'auto', bottom: `${targetWindow.innerHeight - popupBottom}px`, width: `${popupWidth}px`, maxHeight: `${Math.max(0, popupBottom - top - 8)}px` });
-    };
-    const updateFilterLayout = () => {
+    const toolbar = doc.createElement('header'); toolbar.className = 'jpx-records-toolbar';
+    const heading = doc.createElement('div'); heading.className = 'jpx-records-heading';
+    const title = doc.createElement('h1'); title.textContent = t('sP.jpxStats');
+    const count = doc.createElement('p'); count.className = 'jpx-records-count'; count.textContent = t('sP.loadingRecords'); count.setAttribute('role','status');
+    heading.append(title,count);
+    const actions = doc.createElement('nav'); actions.className = 'jpx-records-actions'; actions.setAttribute('aria-label',t('sP.jpxStats'));
+    toolbar.append(heading,actions);
+    const sheet = doc.createElement('dialog'); sheet.id = 'jpx-records-sheet'; sheet.className = 'jpx-records-sheet';
+    sheet.setAttribute('aria-labelledby','jpx-records-sheet-title');
+    const sheetHeader = doc.createElement('header'); sheetHeader.className = 'jpx-records-sheet-header';
+    const sheetTitle = doc.createElement('h2'); sheetTitle.id = 'jpx-records-sheet-title';
+    const close = doc.createElement('button'); close.type = 'button'; close.className = 'jpx-records-icon jpx-records-sheet-close';
+    close.title = t('cM.close'); close.setAttribute('aria-label',close.title); close.append(createSettingsIcon('close')); close.autofocus = true;
+    sheetHeader.append(sheetTitle,close);
+    const sheetBody = doc.createElement('div'); sheetBody.className = 'jpx-records-sheet-body';
+    const imageActions = createRecordImageActions(doc, () => tableRegion.querySelector('#battleStatsTable'), true);
+    const panels = { filters, columns:columnControls.node, image:imageActions };
+    const triggers = new Map();
+    let disposed = false, opener;
+    const setExpanded = name => triggers.forEach((button,key) => button.setAttribute('aria-expanded',String(name === key)));
+    const openPanel = name => {
         if (disposed) return;
-        changingLayout = true;
-        if (compactFilters.matches) {
-            if (imageActions.parentNode !== doc.body) { imageActions.open = false; doc.body.append(imageActions); }
-            if (filters.parentNode !== popup) popup.append(filters);
-            positionFilters();
-            if (filterState.open && !popup.matches(':popover-open')) popup.showPopover();
-            else if (!filterState.open && popup.matches(':popover-open')) popup.hidePopover();
-        } else {
-            if (popup.matches(':popover-open')) popup.hidePopover();
-            if (filters.parentNode !== page) page.prepend(filters);
-            if (imageActions.parentNode !== filters) { imageActions.open = true; filters.append(imageActions); }
-        }
-        changingLayout = false;
-        filterButton.setAttribute('aria-expanded', String(popup.matches(':popover-open')));
+        filterState.panel = name;
+        for (const [key,node] of Object.entries(panels)) node.hidden = key !== name;
+        opener = triggers.get(name); sheetTitle.textContent = opener.title; sheet.dataset.panel = name;
+        setExpanded(name); sheetBody.scrollTop = 0;
+        if (!sheet.open) sheet.showModal();
+        close.focus({preventScroll:true});
     };
-    popup.addEventListener('beforetoggle', event => {
-        if (disposed) return;
-        const open = event.newState === 'open';
-        if (!changingLayout) filterState.open = open;
-        filterButton.setAttribute('aria-expanded', String(open));
-        if (open) positionFilters();
+    for (const [name,icon,key] of [['filters','filter','sP.filters'],['columns','columns','sP.displayColumns'],['image','image','sP.image']]) {
+        const button = doc.createElement('button'); button.type = 'button'; button.className = 'jpx-records-icon';
+        button.dataset.recordsPanel = name; button.title = t(key); button.setAttribute('aria-label',button.title);
+        button.setAttribute('aria-controls',sheet.id); button.setAttribute('aria-haspopup','dialog'); button.setAttribute('aria-expanded','false');
+        button.append(createSettingsIcon(icon)); button.onclick = () => openPanel(name); triggers.set(name,button); actions.append(button);
+        panels[name].hidden = true; sheetBody.append(panels[name]);
+    }
+    close.onclick = () => sheet.close();
+    sheet.addEventListener('keydown',event => {
+        if (event.key !== 'Tab') return;
+        const controls = [...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"]')].filter(node => node.getClientRects().length);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && doc.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && doc.activeElement === last) { event.preventDefault(); first.focus(); }
     });
-    compactFilters.addEventListener('change', updateFilterLayout);
-    targetWindow.addEventListener('resize', positionFilters);
-    targetWindow.visualViewport?.addEventListener('resize', positionFilters);
-    targetWindow.visualViewport?.addEventListener('scroll', positionFilters);
+    sheet.addEventListener('close',() => {
+        if (disposed) return;
+        columnControls.dismissToast(); sheet.querySelectorAll('.jpx-record-image-toast').forEach(toast => toast.remove());
+        filterState.panel = null; setExpanded(null); opener?.focus({preventScroll:true});
+    });
+    // Require both press and release outside: dragging from inside the sheet
+    // must not dismiss it when the pointer finishes on the backdrop.
+    const outside = event => { const r = sheet.getBoundingClientRect(); return event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom; };
+    let pressedOutside = false;
+    sheet.addEventListener('pointerdown',event => { pressedOutside = event.target === sheet && outside(event); });
+    sheet.addEventListener('click',event => { if (pressedOutside && event.target === sheet && outside(event)) sheet.close(); pressedOutside = false; });
+    sheet.append(sheetHeader,sheetBody);
     filterState.cleanup = () => {
-        revision++; pendingRead?.abort();
+        disposed = true; revision++; pendingRead?.abort();
         targetWindow.removeEventListener('storage',recordsChanged);
         targetWindow.removeEventListener('jpx:records-changed',recordsChanged);
-        disposed = true; compactFilters.removeEventListener('change', updateFilterLayout);
-        targetWindow.removeEventListener('resize', positionFilters);
-        targetWindow.visualViewport?.removeEventListener('resize', positionFilters);
-        targetWindow.visualViewport?.removeEventListener('scroll', positionFilters);
-        if (popup.matches(':popover-open')) popup.hidePopover();
+        columnControls.dismissToast(); imageActions.dispose(); if (sheet.open) sheet.close();
     };
-    page.append(filterButton, columnControls.node, tableRegion);
-    doc.body.append(page, popup);
-    updateFilterLayout();
+    page.append(toolbar,tableRegion); doc.body.append(page,sheet);
+    if (panels[filterState.panel]) openPanel(filterState.panel);
+
     refresh();
 }
 
@@ -8047,6 +8061,13 @@ function bindSettingsNativePickers(container) {
 
 function createSettingsIcon(name) {
     const paths = {
+        filter: 'M4 7h16M7 12h10M10 17h4',
+        columns: 'M3 4h18v16H3V4M9 4v16M15 4v16',
+        image: 'M3 3h18v18H3V3M3 16l6-6 5 5 3-3 4 4M16 7h.01',
+        close: 'M6 6l12 12M6 18 18 6',
+        chevronDown: 'm6 9 6 6 6-6',
+        download: 'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
+        copy: 'M8 8h13v13H8V8M16 8V3H3v13h5',
         configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
         more: 'M5 12h.01M12 12h.01M19 12h.01',
         battle: 'M4 21v-7m0-4V3m8 18v-4m0-4V3m8 18V10m0-4V3M1 14h6m2-1h6m2-3h6',

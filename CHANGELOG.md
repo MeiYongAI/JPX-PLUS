@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026.11.08.16
+
+- **Table-first records layout.** The permanent filter/category blocks and floating text controls are replaced by a compact title/count and three named icon buttons: filters, columns and image actions. Data starts immediately below the toolbar, including at 320px.
+- **On-demand panels.** A shared modal opens as a bottom sheet on phones and a compact dialog on desktop. Category rows expand individually without a permanent help paragraph; visibility changes keep their auto-save, primary/alt sharing and cached redraw behavior.
+- **Transient save feedback.** Column changes show one two-second toast instead of a permanent saved bar. Repeated edits replace/reset it, closing the panel clears it, and storage errors remain visible until a successful retry.
+- **HV visual style.** Square corners, thin dividers and the existing light/dark palette replace rounded cards. Toolbar and close buttons retain 44px touch targets, accessible labels, keyboard focus cycling, Escape/backdrop dismissal and focus restoration. The scrollable body accommodates small portrait and landscape screens.
+- **Verification.** The full offline suite passes 535/535 tests, and the final category/shared-browser suite passes 35/35 after the last visual changes. Build/language checks and 96 documentation-preview scenarios pass. Responsive, focus, PNG-download, clipboard-error, transient-toast and nested-cleanup flows use isolated Chrome fixtures. No live account or installed userscript was exercised; cross-host transport is mocked.
+
+### 简体中文
+
+- **统计表格优先**：移除常驻筛选与分类大块设置，以及悬浮文字按钮。顶部仅显示标题、记录数与三个图标入口：筛选、显示项目、图片；320px 窄屏也直接看到数据。
+- **按需设置**：手机使用底部抽屉，桌面使用紧凑对话框；分类右侧箭头单独展开具体项目，移除常驻说明段落。保留自动保存、主站/alt 共享和修改显示时不重新读取历史的行为。
+- **短暂保存提示**：显示设置保存成功改为两秒 toast，连续修改合并提示，关闭面板清理；保存失败仍保留错误说明，重试成功后清除。
+- **沿用 HV 风格**：直角、细分隔线和现有明暗配色，去掉大圆角与卡片装饰。图标和关闭按钮保持 44px 点击区域，支持键盘循环、Escape、遮罩关闭与焦点返回；抽屉内容独立滚动，适配窄屏和横屏。
+- **验证范围**：全量离线回归 535/535 通过，最终视觉调整后分类/共享专项 35/35 通过；构建、语言检查及文档预览 96 个场景通过。响应式、焦点、PNG 下载、剪贴板失败、短暂 toast 及嵌套清理使用隔离 Chrome 页面验证。未操作真实账号或已安装脚本，跨站传输使用模拟 GM。
+
 ## 2026.11.08.15
 
 - **Grouped statistics columns (issue #5).** The records page offers eight category switches: Basic, Earnings, Drops, Potions, Scrolls, Special consumables, Skill use and Combat. Expand “Choose columns” to select individual existing metrics. Hiding a category retains its item selections.
