@@ -27,8 +27,8 @@ function expose(){
   validate(value){validateStatsConfig(value);const memory=new Map();const lib=createJpxConfigLibrary({storage:{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v)},key:'fixture',modes:BATTLE_MODES,battleVersion:defaultCfgBattle.battleVersion,statsVersion:defaultCfgStats.statsVersion});return lib.save({schemaVersion:1,kind:'stats',title:'Groups',world:'Any',config:value}).envelope.config;},
  };
 }
-async function fixture(t,{width=1440,dark=false,language=''}={}){
- const context=await browser.newContext({viewport:{width,height:900},isMobile:width<600,hasTouch:width<600,reducedMotion:'reduce'});t.after(()=>context.close());
+async function fixture(t,{width=1440,dark=false,language='',instance=browser}={}){
+ const context=await instance.newContext({viewport:{width,height:900},isMobile:width<600,hasTouch:width<600,reducedMotion:'reduce'});t.after(()=>context.close());
  await context.route('**/*',route=>route.request().isNavigationRequest()?route.fulfill({contentType:'text/html',body:'<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><body><div id="csp"><div id="navbar"></div></div></body></html>'}):route.abort());
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(()=>assert.deepEqual(errors,[]));
  await page.goto('https://hentaiverse.org/');if(language)await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-'+language+'.user.js'),'utf8')});
@@ -229,4 +229,56 @@ for(const width of [390,1440])for(const dark of [false,true])test('scrollbar app
  assert.equal(result.gutter,'stable');if(width>=600)assert.ok(result.before.gutter>0,'desktop reserves a classic scrollbar gutter');else assert.ok(result.before.gutter>=0,'overlay scrollbars need no gutter');assert.ok(result.before.scroll<=result.before.bodyHeight+1,'collapsed content initially fits');assert.ok(result.samples.at(-1).scroll>result.before.bodyHeight,'expanded content overflows');
  for(const sample of [...result.samples,result.after])for(const key of ['buttonX','labelX','labelWidth','client','gutter','sheet'])assert.deepEqual(sample[key],result.before[key],key);
  const output=path.join(root,'.test-output/stats-toolbar');fs.mkdirSync(output,{recursive:true});await page.locator('[data-expand-group=potions]').click();await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-columns.png')});await page.keyboard.press('Escape');await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-toolbar.png')});
+});
+
+
+async function tooltipFixture(t,options={}){
+ const page=await fixture(t,{width:1000,...options});await page.evaluate(()=>{__groups.use([{id:'date'},{id:'credit'},{id:'hp'}]);__groups.render();});await ready(page);
+ const cell=page.locator('#battleStatsTable tbody tr:not([data-summary]) td.tooltip').first();
+ if(!await cell.count())throw Error('Fixture must include a real consumable tooltip');
+ return {page,cell};
+}
+const tooltipShown=cell=>cell.evaluate(n=>!['none','normal','""'].includes(getComputedStyle(n,'::after').content));
+test('record tooltips stay hidden while dragging into cells and recover after release',async t=>{
+ const {page,cell}=await tooltipFixture(t),box=await cell.boundingBox();await page.mouse.move(5,5);await page.mouse.down();await page.mouse.move(box.x+box.width/2,box.y+box.height/2);
+ assert.equal(await tooltipShown(cell),false);await page.mouse.up();await page.mouse.move(box.x+box.width/2+2,box.y+box.height/2);assert.equal(await tooltipShown(cell),true);
+});
+test('pressing a hovered record dismisses its tooltip without breaking keyboard focus',async t=>{
+ const {page,cell}=await tooltipFixture(t);await cell.hover();assert.equal(await tooltipShown(cell),true);await page.mouse.down();assert.equal(await tooltipShown(cell),false);await page.mouse.up();
+ await page.mouse.move(5,5);await page.keyboard.press('Tab');await cell.focus();assert.equal(await tooltipShown(cell),true);const last=page.locator('#battleStatsTable tbody tr:not([data-summary]) td.tooltip').last();await last.focus();await page.waitForTimeout(50);assert.equal(await tooltipShown(last),true);assert.ok(await page.locator('.jpx-records-table-scroll').evaluate(n=>n.scrollTop)>0,'focused tooltip remains available after keyboard scrolling');
+});
+
+for(const axis of ['vertical','horizontal'])test('native '+axis+' scrollbar drag never activates record tooltips',async t=>{
+ const native=await chromium.launch({headless:true,channel:process.env.PLAYWRIGHT_CHANNEL||'chrome',ignoreDefaultArgs:['--hide-scrollbars']});t.after(()=>native.close());const {page,cell}=await tooltipFixture(t,{instance:native});await page.setViewportSize({width:1000,height:460});
+ await page.evaluate(()=>{__groups.use([{id:'hp'}]);__groups.render();});await ready(page);await page.locator('#battleStatsTable').evaluate(n=>n.style.minWidth='1800px');
+ const region=page.locator('.jpx-records-table-scroll');
+ const before=await region.evaluate(n=>{const r=n.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,clientWidth:n.clientWidth,clientHeight:n.clientHeight,scrollWidth:n.scrollWidth,scrollHeight:n.scrollHeight,left:n.scrollLeft,top:n.scrollTop};});
+ assert.ok(before.scrollWidth>before.clientWidth&&before.scrollHeight>before.clientHeight);assert.ok(before.width-before.clientWidth>5&&before.height-before.clientHeight>5,'native scrollbars are present: '+JSON.stringify(before));
+ await page.mouse.move(5,5);await page.keyboard.press('Tab');await cell.focus();assert.equal(await tooltipShown(cell),true);const x=axis==='vertical'?before.x+before.width-6:before.x+45,y=axis==='vertical'?before.y+45:before.y+before.height-6;
+ await page.mouse.move(x,y);await page.mouse.down();await page.mouse.move(axis==='vertical'?x:x+140,axis==='vertical'?y+100:y,{steps:8});
+ const dragged=await region.evaluate(n=>({top:n.scrollTop,left:n.scrollLeft}));assert.ok(axis==='vertical'?dragged.top>before.top:dragged.left>before.left,JSON.stringify({axis,before,dragged}));
+ const over={x:before.x+before.clientWidth-35,y:before.y+before.clientHeight/2};await page.mouse.move(over.x,over.y,{steps:8});assert.equal(await page.evaluate(({x,y})=>!!document.elementFromPoint(x,y)?.closest('td.tooltip'),over),true,'drag crosses a real tooltip cell');
+ const shown=await page.locator('#battleStatsTable td.tooltip').evaluateAll(nodes=>nodes.filter(n=>!['none','normal','""'].includes(getComputedStyle(n,'::after').content)).length);assert.equal(shown,0);
+ await page.mouse.up();await region.evaluate(n=>{n.scrollTop=0;n.scrollLeft=0;});await cell.scrollIntoViewIfNeeded();await cell.hover();assert.equal(await tooltipShown(cell),true);
+});
+test('missing press and release events cannot leave record hover armed or stuck',async t=>{
+ const {page,cell}=await tooltipFixture(t);await cell.hover();assert.equal(await tooltipShown(cell),true);
+ for(const buttons of [1,2,4]){await cell.dispatchEvent('pointermove',{buttons,pointerType:'mouse'});assert.equal(await tooltipShown(cell),false);await cell.dispatchEvent('pointermove',{buttons:0,pointerType:'mouse'});assert.equal(await tooltipShown(cell),true);}
+ await cell.dispatchEvent('pointercancel',{pointerType:'mouse'});assert.equal(await tooltipShown(cell),false);await cell.dispatchEvent('pointermove',{buttons:0,pointerType:'mouse'});assert.equal(await tooltipShown(cell),true);
+ await page.evaluate(()=>window.dispatchEvent(new Event('blur')));assert.equal(await tooltipShown(cell),false);await cell.dispatchEvent('pointerover',{buttons:0,pointerType:'mouse'});assert.equal(await tooltipShown(cell),true);
+});
+test('record scrolling clears hover without refetching history and redraw removes old listeners',async t=>{
+ const {page,cell}=await tooltipFixture(t);await cell.hover();const reads=await page.evaluate(()=>__groups.reads());
+ const region=page.locator('.jpx-records-table-scroll');await region.evaluate(n=>n.scrollTop=40);await page.waitForTimeout(50);assert.equal(await tooltipShown(cell),false);assert.equal(await page.evaluate(()=>__groups.reads()),reads);
+ await cell.hover();assert.equal(await tooltipShown(cell),true);const old=await region.elementHandle();await page.evaluate(()=>__groups.render());await ready(page);
+ assert.equal(await old.evaluate(n=>n.hasAttribute('data-tooltip-suspended')),false);await page.mouse.move(5,5);await page.mouse.down();assert.equal(await old.evaluate(n=>n.hasAttribute('data-tooltip-suspended')),false);await page.mouse.up();
+ const current=page.locator('#battleStatsTable tbody tr:not([data-summary]) td.tooltip').first();await current.hover();assert.equal(await tooltipShown(current),true);
+});
+
+test('touch taps retain record details while a touch drag stays silent',async t=>{
+ const {page,cell}=await tooltipFixture(t,{width:390});await cell.tap();assert.equal(await tooltipShown(cell),true);
+ const box=await cell.boundingBox(),session=await page.context().newCDPSession(page),x=box.x+box.width/2,y=box.y+box.height/2;
+ await session.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x,y}]});assert.equal(await tooltipShown(cell),false);
+ await session.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x,y:y-60}]});await session.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await tooltipShown(cell),false);
+ await session.detach();await cell.tap();assert.equal(await tooltipShown(cell),true);
 });

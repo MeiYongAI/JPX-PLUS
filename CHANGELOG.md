@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.08.19
+
+- **Suppress statistics tooltips during dragging.** Record previews now require a released pointer instead of CSS hover alone. Pressing a button or scrolling dismisses the preview; dragging a native scrollbar over a cell cannot activate it. Released movement restores normal hover, including after a missing release event or window blur.
+- **Preserve input behavior.** Keyboard focus can still show details while scrolling into view. Touch taps retain previews, while touch scrolling dismisses them. Passive delegated listeners do not capture the pointer, cancel scrolling or reread archives, and are removed on page rebuild.
+- **Verification.** Full offline regression: 569/569. Final statistics/shared-browser checks: 69/69. Real horizontal/vertical scrollbar drags, held-button entry, keyboard focus, touch scrolling, interrupted pointer sequences and listener disposal pass in isolated Chrome fixtures. Build and language consistency pass; no live account or installed userscript was exercised.
+
+### 简体中文
+
+- **拖动时不触发统计悬停**：提示不再仅依赖 CSS 悬停。按下鼠标或滚动时收起详情，按住原生滚动条移入单元格不会触发；松键后正常移动恢复悬停，也处理窗口外松键、窗口失焦等情况。
+- **保留键盘与触摸操作**：键盘聚焦并滚动到对应数据时仍可查看详情；手机点按保留提示，滑动时隐藏。事件采用被动委托，不捕获指针、不阻止滚动、不重新读取历史，页面重建时移除旧监听。
+- **验证范围**：全量离线回归 569/569、最终统计/共享专项 69/69 通过，构建及语言一致性通过。隔离 Chrome 内验证真实横纵滚动条拖动、按住移入、键盘、触摸、事件中断及监听清理；未操作真实账号或已安装脚本。
+
 ## 2026.11.08.18
 
 - **Cleaner records toolbar.** Aggregate by Day uses centered text with a selected background and underline, without a checkmark or empty indicator space. Clear records moves beside the other toolbar icons and retains its range preview, current world/battle scope and confirmation.
