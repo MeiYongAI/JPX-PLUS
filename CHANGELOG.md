@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.17
+
+- **Checkbox filters.** World, result, battle type and difficulty return to visible native checkboxes with touch-sized labels. The toolbar exposes Aggregate by Day as a compact text toggle with a check indicator; it retains the original filter input, keyboard behavior and redraw state.
+- **Stable column window.** Expanding a category no longer increases or repositions the Choose columns dialog. Its viewport-limited height stays fixed while the contents scroll; close controls remain in place on desktop, small phones and landscape screens.
+- **Reused disclosure motion.** The statistics categories and existing rule editor share the same native-details transition, timing and easing. Rapid reversal is supported, collapsed fields are inert, and reduced-motion preferences disable the transition. Opening a category does not rescan history.
+- **Verification.** Full offline regression: 548/548. Focused statistics/shared-browser checks: 48/48. Build, language consistency and 96 preview scenarios pass. Light/dark layouts, small-phone languages, portrait/landscape, aggregation state and stationary-window animation were checked in isolated Chrome fixtures, not a live account or installed userscript.
+
+### 简体中文
+
+- **筛选恢复勾选框**：世界、结果、战斗类型和难度改回可见的原生勾选框，保留方便触摸的整行标签；“按天汇总”移到顶栏，保持文字切换样式，启用时带对勾。沿用原筛选输入，重绘和切换屏幕尺寸后状态不丢失。
+- **显示项目窗口不再拉长**：窗口保持受屏幕高度限制的固定尺寸，展开分类只增加内部滚动内容，标题与关闭按钮不移动，兼容手机横竖屏。
+- **复用原有展开动画**：与规则编辑器共用 native details 动画、时长和缓动，支持快速反向操作与减少动画偏好；收起内容不可获焦，展开不重新读取历史。
+- **验证**：全量离线回归 548/548、统计与共享专项 48/48 通过；构建、语言一致性和 96 个预览场景通过。明暗主题、多语言窄屏、横竖屏、汇总状态与窗口固定动画均使用隔离 Chrome 页面验证，未操作真实账号或已安装脚本。
+
 ## 2026.11.08.16
 
 - **Table-first records layout.** The permanent filter/category blocks and floating text controls are replaced by a compact title/count and three named icon buttons: filters, columns and image actions. Data starts immediately below the toolbar, including at 320px.

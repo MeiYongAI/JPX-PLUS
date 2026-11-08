@@ -155,3 +155,46 @@ test('display save toast is transient, coalesces edits and does not shift the sh
  await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('.jpx-records-save-toast'));await openColumns(page);assert.equal(await page.locator('.jpx-records-save-toast').count(),0);
  await toggle(page,'drops').uncheck();await page.evaluate(()=>__groups.render());await ready(page);assert.equal(await page.locator('.jpx-records-save-toast').count(),0);
 });
+
+test('filters show native checkboxes with keyboard and label selection',async t=>{
+ const page=await fixture(t,{width:390,language:'ZhTrans'});await page.locator('[data-records-panel=filters]').click();
+ const state=await page.locator('#filtersDiv input[type=checkbox]').evaluateAll(nodes=>nodes.map(n=>{const c=getComputedStyle(n),label=n.closest('label').getBoundingClientRect();return {position:c.position,opacity:c.opacity,width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height,labelHeight:label.height,before:getComputedStyle(n.closest('label'),'::before').content};}));
+ assert.equal(state.length,18);for(const n of state){assert.equal(n.position,'static');assert.equal(n.opacity,'1');assert.ok(n.width>=16&&n.height>=16);assert.ok(n.labelHeight>=44);assert.equal(n.before,'none');}
+ const world=page.locator('#filter-world input[value=Isekai]');assert.equal(await world.isChecked(),false);await world.locator('..').click();await ready(page);assert.equal(await world.isChecked(),true);
+ await world.focus();await page.keyboard.press('Space');await ready(page);assert.equal(await world.isChecked(),false);
+ assert.equal(await page.locator('#filtersDiv #filter-aggregate').count(),0);
+});
+test('toolbar daily aggregation uses one live input and survives redraw and resize',async t=>{
+ const page=await fixture(t,{width:390,language:'ZhTrans'}),day=page.locator('#filter-aggregate input');
+ assert.equal(await day.count(),1);assert.equal(await day.evaluate(n=>!!n.closest('.jpx-records-toolbar')),true);assert.equal(await day.isChecked(),false);
+ const reads=await page.evaluate(()=>__groups.reads());await day.check();await ready(page);assert.equal(await page.evaluate(()=>__groups.reads()),reads+1);
+ assert.equal(await page.locator('.jpx-records-count').textContent(),'1 天');assert.equal(await page.locator('#battleStatsTable tbody tr:not([data-summary])').count(),1);
+ await page.locator('[data-records-panel=filters]').click();await page.locator('#filter-rows input').fill('12');await page.locator('#filter-rows input').dispatchEvent('change');await ready(page);
+ await page.evaluate(()=>__groups.render());await ready(page);assert.equal(await day.isChecked(),true);assert.equal(await page.locator('#filter-rows input').inputValue(),'12');assert.equal(await page.locator('#filter-world input[value=Persistent]').isChecked(),true);
+ await page.keyboard.press('Escape');await page.setViewportSize({width:1440,height:900});assert.equal(await day.count(),1);assert.equal(await day.isChecked(),true);
+ const last=await page.evaluate(()=>__groups.reads());await day.focus();await page.keyboard.press('Space');await ready(page);assert.equal(await page.evaluate(()=>__groups.reads()),last+1);assert.equal(await page.locator('.jpx-records-count').textContent(),'12 条记录');
+});
+for(const [width,height] of [[320,568],[390,844],[844,390],[1440,900]])test('column disclosure never resizes its window at '+width+'x'+height,async t=>{
+ const page=await fixture(t,{width:width<600?width:390,language:'ZhTrans'});await page.setViewportSize({width,height});await openColumns(page);
+ const before=await page.locator('#jpx-records-sheet').boundingBox(),close=await page.locator('.jpx-records-sheet-close').boundingBox(),reads=await page.evaluate(()=>__groups.reads());
+ for(const group of ['basic','drops','combat']){await page.locator('[data-expand-group='+group+']').click();assert.deepEqual(await page.locator('#jpx-records-sheet').boundingBox(),before);assert.deepEqual(await page.locator('.jpx-records-sheet-close').boundingBox(),close);}
+ const geometry=await page.locator('.jpx-records-sheet-body').evaluate(n=>({height:n.clientHeight,scroll:n.scrollHeight,width:n.clientWidth,scrollWidth:n.scrollWidth}));assert.ok(geometry.scroll>geometry.height);assert.ok(geometry.scrollWidth<=geometry.width+1);
+ assert.equal(await page.evaluate(()=>__groups.reads()),reads);assert.equal(await page.evaluate(()=>scrollY),0);
+ const last=page.locator('#jpx-records-fields-combat input').last();await last.scrollIntoViewIfNeeded();await last.check();assert.deepEqual(await page.locator('#jpx-records-sheet').boundingBox(),before);
+ if(width===320||width===1440){const output=path.join(root,'.test-output/stats-refinements');fs.mkdirSync(output,{recursive:true});await page.screenshot({path:path.join(output,width+'-expanded.png')});}
+});
+test('reused disclosure motion animates content, supports reversal and reduced motion',async t=>{
+ const page=await fixture(t,{width:1440});await openColumns(page);await page.emulateMedia({reducedMotion:'no-preference'});
+ const frames=await page.locator('.jpx-records-column-group').first().evaluate(async group=>{
+  const expand=group.querySelector('[data-expand-group]'),sheet=group.closest('dialog'),header=sheet.querySelector('header');const before=sheet.getBoundingClientRect().toJSON(),headerTop=header.getBoundingClientRect().top,samples=[];
+  expand.click();const start=performance.now();do{await new Promise(requestAnimationFrame);samples.push({height:group.getBoundingClientRect().height,sheet:sheet.getBoundingClientRect().toJSON(),header:header.getBoundingClientRect().top});}while(performance.now()-start<240);return{samples,before,headerTop};
+ });
+ assert.ok(frames.samples.some(f=>f.height>70&&f.height<frames.samples.at(-1).height-3));for(const f of frames.samples){assert.deepEqual(f.sheet,frames.before);assert.equal(f.header,frames.headerTop);}
+ await page.locator('[data-expand-group=basic]').evaluate(async b=>{for(let i=0;i<5;i++){b.click();await new Promise(requestAnimationFrame);}});assert.equal(await page.locator('[data-expand-group=basic]').getAttribute('aria-expanded'),'false');assert.equal(await page.locator('#jpx-records-fields-basic').evaluate(n=>n.inert),true);
+ await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-expand-group=basic]').click();assert.equal(await page.locator('#jpx-records-fields-basic').evaluate(n=>n.inert),false);assert.equal(await page.locator('#jpx-records-sheet').evaluate(n=>getComputedStyle(n).getPropertyValue('--jpx-motion')),'0ms');
+ const handle=await page.locator('#jpx-records-fields-basic input').first().elementHandle();await page.locator('[data-expand-group=basic]').click();await page.locator('[data-expand-group=basic]').click();assert.equal(await handle.evaluate(n=>n.isConnected),true);
+});
+for(const language of ['', 'ZhTrans','ZhTW','ZhHK','Ja','Ko'])test('toolbar aggregation fits 320px without truncation: '+(language||'English'),async t=>{
+ const page=await fixture(t,{width:320,language});const data=await page.locator('.jpx-records-toolbar').evaluate(n=>({scroll:document.documentElement.scrollWidth,width:innerWidth,top:document.querySelector('.jpx-records-table-scroll').getBoundingClientRect().top,controls:[...n.querySelectorAll('button,#filter-aggregate label')].map(b=>{const r=b.getBoundingClientRect();return{left:r.left,right:r.right,height:r.height,client:b.clientWidth,scroll:b.scrollWidth};})}));
+ assert.ok(data.scroll<=data.width+1,JSON.stringify(data));assert.ok(data.top<110);for(const c of data.controls){assert.ok(c.left>=0&&c.right<=321,JSON.stringify(c));assert.ok(c.height>=44);assert.ok(c.scroll<=c.client+1);}
+});

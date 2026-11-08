@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.16
+// @version      2026.11.08.17
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -270,7 +270,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.16',
+    version: '2026.11.08.17',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1448,13 +1448,8 @@ let cfg = {
         #settings-container .jpx-rule-item > summary > .jpx-array-item-actions { grid-column: 4; grid-row: 1; }
         #settings-container .jpx-rule-summary-heading { display: flex; min-width: 0; align-items: center; gap: 8px; }
         /* Keep the summary and actions stationary throughout disclosure. */
+        ${jpxDisclosureCSS('#settings-container .jpx-rule-item')}
         @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
-            #settings-container .jpx-rule-item::details-content {
-                interpolate-size: allow-keywords;
-                block-size: 0; overflow: clip;
-                transition: block-size var(--jpx-motion) ease-out, content-visibility var(--jpx-motion) allow-discrete;
-            }
-            #settings-container .jpx-rule-item[open]::details-content { block-size: auto; }
             #settings-container .jpx-rule-item:has(.multiSelect-summary[aria-expanded=true])::details-content { overflow: visible; }
             #settings-container .jpx-rule-bulk-toggle .jpx-rule-item::details-content { transition: none; }
         }
@@ -6537,6 +6532,21 @@ function openJpxRecordsCleanup(targetWindow = window, initial = {}) {
     doc.body.append(dialog); dialog.showModal(); update();
 }
 
+// Shared with the settings rule editor: native disclosure supports reversal
+// without measuring heights or scheduling per-frame JavaScript work.
+function jpxDisclosureCSS(selector) {
+    return `
+        @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+            ${selector}::details-content {
+                interpolate-size: allow-keywords;
+                block-size: 0; overflow: clip;
+                transition: block-size var(--jpx-motion) ease-out, content-visibility var(--jpx-motion) allow-discrete;
+            }
+            ${selector}[open]::details-content { block-size: auto; }
+        }
+    `;
+}
+
 function createStatsColumnControls(doc, onChange) {
     const root = doc.createElement('section'); root.className = 'jpx-records-columns';
     root.setAttribute('aria-label', t('sP.displayColumns'));
@@ -6597,13 +6607,15 @@ function createStatsColumnControls(doc, onChange) {
         name.textContent = t('sP.group_' + group.id); count.className = 'jpx-records-column-count'; counts.set(group.id,count);
         caption.append(name,count); label.append(toggle,caption); header.append(label);
         toggle.addEventListener('change', () => change(group.id, null, toggle.checked));
-        const fields = doc.createElement('div'); fields.className = 'jpx-records-column-fields'; fields.id = 'jpx-records-fields-' + group.id; fields.hidden = true;
+        const fields = doc.createElement('div'); fields.className = 'jpx-records-column-fields'; fields.id = 'jpx-records-fields-' + group.id; fields.inert = true;
         fields.setAttribute('role','group'); fields.setAttribute('aria-label',name.textContent);
         const expand = doc.createElement('button'); expand.type = 'button'; expand.className = 'jpx-records-icon jpx-records-column-expand';
         expand.dataset.expandGroup = group.id; expand.append(createSettingsIcon('chevronDown'));
         expand.title = t('sP.displayColumns') + ' · ' + name.textContent; expand.setAttribute('aria-label',expand.title);
         expand.setAttribute('aria-controls',fields.id); expand.setAttribute('aria-expanded','false');
-        expand.onclick = () => { fields.hidden = !fields.hidden; expand.setAttribute('aria-expanded',String(!fields.hidden)); };
+        const disclosure = doc.createElement('details'); disclosure.className = 'jpx-records-column-disclosure';
+        const summary = doc.createElement('summary'); summary.hidden = true; disclosure.append(summary,fields);
+        expand.onclick = () => { disclosure.open = !disclosure.open; fields.inert = !disclosure.open; expand.setAttribute('aria-expanded',String(disclosure.open)); };
         header.append(expand);
         for (const id of group.fields) {
             const label = doc.createElement('label'), input = doc.createElement('input');
@@ -6611,7 +6623,7 @@ function createStatsColumnControls(doc, onChange) {
             label.append(input, doc.createTextNode('')); fields.append(label);
             input.addEventListener('change', () => change(group.id,id,input.checked));
         }
-        section.append(header,fields); editor.append(section);
+        section.append(header,disclosure); editor.append(section);
     }
     root.append(editor,status); update();
     return { node:root, update, dismissToast };
@@ -6637,7 +6649,11 @@ function renderBattleRecordsPage(targetWindow = window) {
     previousImageActions?.dispose?.(); previousImageActions?.remove();
     const filterState = targetWindow._jpxRecordsFilterState ||= { panel: null, inputs: null };
     const previousFilters = doc.getElementById('filtersDiv');
-    if (previousFilters) filterState.inputs = [...previousFilters.querySelectorAll('input')].map(input => ({ value: input.value, checked: input.checked }));
+    if (previousFilters) {
+        const aggregate = doc.getElementById('filter-aggregate');
+        if (aggregate) previousFilters.querySelector('.jpx-records-tools-row').append(aggregate);
+        filterState.inputs = [...previousFilters.querySelectorAll('input')].map(input => ({ value: input.value, checked: input.checked }));
+    }
     filterState.cleanup?.();
     doc.head.replaceChildren();
     doc.body.replaceChildren();
@@ -6670,7 +6686,10 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-icon[aria-expanded=true] { background:#ead9b8; border-color:#b49369; }
         @media(hover:hover) { .jpx-records-icon:hover { background:#eee2c9; } }
         .jpx-records-sheet { inset:0; width:min(600px,calc(100% - 32px)); max-width:none; max-height:calc(100dvh - 48px); margin:auto; padding:0; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#392d25; box-shadow:0 3px 10px #0002; overflow:hidden; }
+        .jpx-records-sheet { --jpx-motion:160ms; --jpx-motion-fast:120ms; }
+        .jpx-records-sheet[data-panel=columns] { height:min(620px,calc(100dvh - 48px)); }
         .jpx-records-sheet[open] { display:flex; flex-direction:column; }
+        .jpx-records-sheet[data-panel=columns] .jpx-records-sheet-body { flex:1; }
         .jpx-records-sheet::backdrop { background:rgb(16 13 10 / 42%); }
         .jpx-records-sheet-header { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid #ddd0bd; }
         .jpx-records-sheet-header h2 { margin:0; font-size:18px; color:#5c0d11; }
@@ -6684,12 +6703,15 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-filter { display:flex; flex-direction:column; align-items:flex-start; gap:6px; min-width:0; max-width:100%; }
         .jpx-records-filter-label { color:#5c0d11; font-weight:700; line-height:1.5; }
         .jpx-records-filter-options { display:flex; flex-wrap:wrap; align-items:center; gap:8px; min-width:0; }
-        .jpx-records-filter-options label { --option-bg: #fffdf7; --option-border: #d3c5b2; position: relative; isolation: isolate; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 12px; border: 1px solid transparent; border-radius: 2px; cursor: pointer; user-select: none; touch-action: manipulation; }
-        .jpx-records-filter-options label::before { content: ''; position: absolute; inset: 2px 0; z-index: -1; border: 1px solid var(--option-border); border-radius: 2px; background: var(--option-bg); pointer-events: none; }
-        .jpx-records-filter-options label:has(input:checked) { --option-bg: #ead9b8; --option-border: #b49369; color: #5c0d11; }
-        @media (hover: hover) { .jpx-records-filter-options label:not(:has(input:checked)):hover { --option-bg: #f0eadf; --option-border: #c1ab8c; } }
-        .jpx-records-filter-options label:has(input:focus-visible)::before { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
-        #filtersDiv input[type=checkbox] { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+        #filtersDiv .jpx-records-filter-options label { display:inline-flex; align-items:center; gap:8px; min-height:44px; min-width:44px; padding:4px 2px; cursor:pointer; user-select:none; touch-action:manipulation; }
+        #filtersDiv input[type=checkbox] { position:static; width:16px; height:16px; flex:none; margin:0; opacity:1; }
+        #filter-aggregate { flex:none; margin-right:8px; }
+        #filter-aggregate label { position:relative; display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:8px 10px; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#5c0d11; cursor:pointer; white-space:nowrap; user-select:none; touch-action:manipulation; }
+        #filter-aggregate label:has(input:checked) { background:#ead9b8; border-color:#b49369; }
+        #filter-aggregate label::before { content:'✓'; width:12px; visibility:hidden; }
+        #filter-aggregate label:has(input:checked)::before { visibility:visible; }
+        #filter-aggregate label:has(input:focus-visible) { outline:2px solid #9b4e03; outline-offset:2px; }
+        #filter-aggregate input { position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer; }
         .jpx-records-filter-tools .jpx-records-filter-label { flex: none; font-weight: normal; }
         .jpx-records-tools-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; min-width: 0; }
         .jpx-records-filter-tools .jpx-records-filter { flex-wrap: wrap; gap: 0 8px; }
@@ -6715,6 +6737,8 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-column-heading strong { display:block; font-size:14px; }
         .jpx-records-column-count { display:block; color:#71634f; font-size:12px; margin-top:2px; }
         .jpx-records-column-expand { border:0; background:transparent; }
+        .jpx-records-column-expand svg { transition:transform var(--jpx-motion) ease-out; }
+        ${jpxDisclosureCSS('.jpx-records-column-disclosure')}
         .jpx-records-column-expand[aria-expanded=true] svg { transform:rotate(180deg); }
         .jpx-records-column-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; border-top:1px solid #ddd0bd; padding:12px; }
         .jpx-records-column-fields label { padding:0 4px; font-size:13px; }
@@ -6742,7 +6766,13 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-message { margin: 0; padding: 28px 16px; text-align: center; color: #71634f; }
         @media(max-width:650px),(pointer:coarse) and (orientation:landscape) and (max-height:600px) {
             .jpx-records-page { gap:10px; padding:max(8px,env(safe-area-inset-top,0px)) max(8px,env(safe-area-inset-right,0px)) max(8px,env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px)); }
+            .jpx-records-toolbar { display:grid; grid-template-columns:minmax(0,1fr); gap:8px; }
+            .jpx-records-heading { display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
             .jpx-records-heading h1 { font-size:15px; }
+            .jpx-records-count { margin:0; }
+            .jpx-records-actions { min-width:0; }
+            #filter-aggregate { margin-right:auto; }
+            .jpx-records-sheet[data-panel=columns] { height:min(620px,88dvh); }
             .jpx-records-sheet { inset:auto 0 0; width:100%; max-height:88dvh; margin:0; border-radius:0; border-bottom:0; }
             .jpx-records-sheet-header { padding:12px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px)); }
             .jpx-records-sheet-body { padding:16px max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px)); }
@@ -6752,7 +6782,7 @@ function renderBattleRecordsPage(targetWindow = window) {
             .jpx-records-table-scroll { min-height:0; border-radius:2px; }
         }
         @media(max-height:500px) { .jpx-records-sheet { max-height:calc(100dvh - 12px); } }
-        @media(prefers-reduced-motion:reduce) { .jpx-records-icon { transition:none; } }
+        @media(prefers-reduced-motion:reduce) { .jpx-records-icon { transition:none; } .jpx-records-sheet { --jpx-motion:0ms; --jpx-motion-fast:0ms; } }
     `);
     applyJpxTheme(doc);
     const page = doc.createElement('main');
@@ -6836,7 +6866,9 @@ function renderBattleRecordsPage(targetWindow = window) {
     const count = doc.createElement('p'); count.className = 'jpx-records-count'; count.textContent = t('sP.loadingRecords'); count.setAttribute('role','status');
     heading.append(title,count);
     const actions = doc.createElement('nav'); actions.className = 'jpx-records-actions'; actions.setAttribute('aria-label',t('sP.jpxStats'));
-    toolbar.append(heading,actions);
+    const aggregate = filters.querySelector('#filter-aggregate');
+    aggregate.onchange = () => filterState.refresh?.();
+    actions.append(aggregate); toolbar.append(heading,actions);
     const sheet = doc.createElement('dialog'); sheet.id = 'jpx-records-sheet'; sheet.className = 'jpx-records-sheet';
     sheet.setAttribute('aria-labelledby','jpx-records-sheet-title');
     const sheetHeader = doc.createElement('header'); sheetHeader.className = 'jpx-records-sheet-header';
@@ -6869,7 +6901,7 @@ function renderBattleRecordsPage(targetWindow = window) {
     close.onclick = () => sheet.close();
     sheet.addEventListener('keydown',event => {
         if (event.key !== 'Tab') return;
-        const controls = [...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"]')].filter(node => node.getClientRects().length);
+        const controls = [...sheet.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"]')].filter(node => node.getClientRects().length && !node.closest('[inert]'));
         const first = controls[0], last = controls[controls.length - 1];
         if (event.shiftKey && doc.activeElement === first) { event.preventDefault(); last.focus(); }
         else if (!event.shiftKey && doc.activeElement === last) { event.preventDefault(); first.focus(); }
