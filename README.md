@@ -96,6 +96,7 @@ On mobile, filters fold beside search, row actions stay compact, and settings us
 ## Battle stats and controls
 
 - Filter records, inspect an individual battle, and copy or download stats as an image.
+- Use the eight category switches and **Choose columns** above the records table to control visibility. Changes save automatically and are shared between primary and alt; hiding a category keeps its item selections. Group headers organize the table while preserving names, colors and order within each category.
 - Clear stored records by a selected range.
 - Customize the draggable panel and statistics colors with live previews; choose light or dark UI.
 - Edit battle rules, conditions and shortcuts with undo and redo.

@@ -10,10 +10,12 @@ before(async()=>{browser=await chromium.launch({headless:true,...(process.env.PL
 after(async()=>browser?.close());
 function expose(){
  initDoI18n();loadBattleConfig();ensureJpxStyle();jpxMarket.getMarketPrice=async()=>({'Energy Drink':1000});
+ let recordReads=0;const originalRead=getBattleRecordsRender;getBattleRecordsRender=(...args)=>{recordReads++;return originalRead(...args);};
  window.__share={enabled:jpxShared.enabled,get:key=>localStorage.getItem(key),set:(key,value)=>localStorage.setItem(key,value),
  cfg:()=>JSON.parse(JSON.stringify(cfgBattle)),active:()=>isActiveBattle,activate:()=>{log=document.createElement('table');log.id='textlog';document.getElementById('csp').append(log);isActiveBattle=true;},migrate:ensureJpxSharedRecords,
  export:exportIndexedDB,import:importIndexedDB,store:storeBattleRecords,preview:previewJpxRecordsCleanup,remove:deleteJpxRecordsCleanup,
  usage:world=>jpxShared.usage(world),open:()=>renderStatsDataActions(document.body),backups:()=>jpxShared.backups(),render:()=>renderBattleRecordsPage(window),
+ recordReads:()=>recordReads,
  seedLibrary:seedJpxConfigLibrary,renameLibrary(){const library=getJpxConfigLibrary(),entry=library.readState().entries[0];library.rename(entry.id,'Renamed',entry.revision);},
  async finish(timestamp){
  cfgStats=JSON.parse(JSON.stringify(defaultCfgStats));log=document.createElement('table');log.id='textlog';log.innerHTML='<tbody><tr><td>You are Victorious!</td></tr></tbody>';
@@ -73,4 +75,16 @@ test('shared archive viewer and narrow recovery controls render without errors',
  await a.setViewportSize({width:390,height:844});await a.evaluate(()=>{document.body.replaceChildren();__share.open();});
  const dimensions=await a.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth}));assert.ok(dimensions.scroll<=dimensions.width+1,JSON.stringify(dimensions));
  const dir=path.join(__dirname,'../.test-output/alt-shared');fs.mkdirSync(dir,{recursive:true});await a.screenshot({path:path.join(dir,'recovery-mobile.png'),fullPage:true});assert.deepEqual(f.errors,[]);
+});
+
+test('record category preferences are shared across primary and alt without rereading archives',async t=>{
+ const f=await fixture(t),a=await f.page('hentaiverse.org'),b=await f.page('alt.hentaiverse.org');
+ await f.flush();await a.evaluate(()=>__share.render());await b.evaluate(()=>__share.render());
+ for(const page of [a,b])await page.waitForFunction(()=>document.querySelector('.jpx-records-table-scroll')?.getAttribute('aria-busy')==='false');
+ await f.flush();const reads=await b.evaluate(()=>__share.recordReads());
+ await a.locator('input[data-column-group=drops]').uncheck();await f.flush();
+ assert.equal(await b.locator('input[data-column-group=drops]').isChecked(),false);
+ assert.equal(await b.locator('th[data-column=eqL]').count(),0);
+ assert.equal(await b.evaluate(()=>__share.recordReads()),reads);
+ assert.equal(JSON.parse(await b.evaluate(()=>__share.get('jpx_cfgStats'))).columnGroups.drops,false);assert.deepEqual(f.errors,[]);
 });

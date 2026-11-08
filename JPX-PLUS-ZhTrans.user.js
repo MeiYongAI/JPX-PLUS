@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.14
+// @version      2026.11.08.15
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -821,6 +821,20 @@
 			"Crystal of Corruption": "黑暗水晶"
 		},
 		"sP": {
+		    "displayGroups": "显示分类",
+		    "displayColumns": "选择显示项目",
+		    "displayHelp": "修改后自动保存。隐藏分类会保留已选项目。列表按分类排列，名称、颜色和分类内顺序沿用统计设置。",
+		    "displaySaved": "显示设置已保存。",
+		    "columnsSelected": "已选 ${count} / ${total} 项",
+		    "groupHidden": "分类已隐藏 · 已选 ${count} / ${total} 项",
+		    "group_basic": "基础",
+		    "group_earnings": "收益",
+		    "group_drops": "掉落",
+		    "group_potions": "药水",
+		    "group_scrolls": "卷轴",
+		    "group_special": "特殊消耗品",
+		    "group_skills": "技能使用",
+		    "group_combat": "战斗",
 			"filters": "筛选",
 			"difficulties": "难度",
 			"result": "结果",

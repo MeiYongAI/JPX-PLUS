@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.14
+// @version      2026.11.08.15
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -830,6 +830,20 @@
             "Crystal of Corruption": "Crystal of Corruption"
         },
         "sP": {
+            "displayGroups": "表示する分類",
+            "displayColumns": "表示項目を選択",
+            "displayHelp": "変更は自動保存されます。分類を非表示にしても選択は保持されます。表は分類別に並び、名前・色・分類内の列順は統計設定に従います。",
+            "displaySaved": "表示設定を保存しました。",
+            "columnsSelected": "${total} 項目中 ${count} 項目を選択",
+            "groupHidden": "分類は非表示 · ${total} 項目中 ${count} 項目を選択",
+            "group_basic": "基本",
+            "group_earnings": "収益",
+            "group_drops": "ドロップ",
+            "group_potions": "ポーション",
+            "group_scrolls": "巻物",
+            "group_special": "特殊消耗品",
+            "group_skills": "スキル使用",
+            "group_combat": "戦闘",
             "filters": "絞り込み",
             "difficulties": "難易度",
             "result": "結果",

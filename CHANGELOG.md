@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026.11.08.15
+
+- **Grouped statistics columns (issue #5).** The records page offers eight category switches: Basic, Earnings, Drops, Potions, Scrolls, Special consumables, Skill use and Combat. Expand “Choose columns” to select individual existing metrics. Hiding a category retains its item selections.
+- **Two-level table headers.** A darker category row sits above individual column labels; both stay visible while scrolling, and category names remain readable on narrow screens. The rendered table groups columns by category while retaining custom names, colors and ordering within each category. Saved column order is not rewritten.
+- **Saved display preferences.** Changes save automatically, survive reload, travel with stats configuration import/export and use the existing primary/alt shared configuration. Save failures leave the previous selection intact and show a retryable error.
+- **No history rescan for display changes.** Local and other-tab category/column changes redraw the already-loaded records. Record filtering and refresh still read current history. Totals, averages, balances, detail links and image export retain their existing calculations.
+- **Verification.** 529/529 offline regression tests pass, including 29 category/shared-browser checks. Five language packs and 320/768/1024/1440-pixel light/dark layouts were checked. Cross-host tests use mocked GM transport; no live account or installed userscript was exercised.
+
+### 简体中文
+
+- **统计列表增加八类开关**：基础、收益、掉落、药水、卷轴、特殊消耗品、技能使用、战斗。展开“选择显示项目”可勾选分类下的具体项目；关闭分类不会清空原有勾选。
+- **两层表头**：上层分类使用更深底色，下层显示字段名，纵向滚动时一起固定；窄屏下分类名称保持可读。列表按分类排列，保留自定义名称、颜色与分类内顺序，不改写已保存的列顺序。
+- **自动保存和共享**：显示修改自动保存，刷新后保留，随统计配置导入导出，并由主站和 alt 共享；保存失败会恢复原选择并显示错误。
+- **保持统计性能和数值**：本页及其他标签页的显示修改仅重绘已加载记录，不重新扫描历史；总计、平均值、消耗品余额、详情和图片导出保持原有计算。
+- **验证**：全量离线回归 529 项通过，其中分类及跨站浏览器专项 29 项；五种语言和明暗主题窄屏均已检查。未操作真实账号，跨站共享使用模拟 GM 传输验证。
+
 ## 2026.11.08.14
 
 - **Visible configuration-import feedback.** Battle and stats settings show a persistent, dismissible result above the footer: reading, imported but not saved, or failure with a reason. Saving updates the result only after the write succeeds. Later edits, undo/redo and navigation clear stale confirmations.

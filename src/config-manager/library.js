@@ -119,6 +119,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!['number', 'string'].includes(typeof config[versionKey]) || String(config[versionKey]).trim() === '' ||
             !Number.isFinite(Number(config[versionKey])) || config[versionKey] < minimum) fail('unsupportedVersion');
         if (envelope.kind === 'stats') {
+            if ('columnGroups' in config && (!object(config.columnGroups) || Object.values(config.columnGroups).some(value => typeof value !== 'boolean'))) fail('invalidConfig');
             for (const field of ['combatRows', 'revenueRows', 'statsColumns']) {
                 if (field in config && (!Array.isArray(config[field]) || config[field].some(row => !object(row) || typeof row.id !== 'string'))) fail('invalidConfig');
             }

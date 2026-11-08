@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.14
+// @version      2026.11.08.15
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -270,7 +270,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.14',
+    version: '2026.11.08.15',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -537,6 +537,7 @@ let defaultCfgBattle = {
 let cfgStats = {};
 let defaultCfgStats = {
     "statsVersion": 20260109,
+    "columnGroups": {},
     "combatRows": [
         {"id":"fire"},
         {"id":"cold"},
@@ -2343,6 +2344,19 @@ const STATS_THRESHOLD_FIELDS = new Set([
     'food', 'fig', 'arti', 'crys', 't2', 't36', 'lCharm', 'gCharm', 'caff', 'ed',
 ]);
 
+const STATS_COLUMN_GROUPS = [
+    { id: 'basic', fields: ['date','world','level','persona','battleType','round','deltaTime','turns','tps'] },
+    { id: 'earnings', fields: ['finalProfit','credit','staminaCost','totalProfit'] },
+    { id: 'drops', fields: ['eqP','eqL','eqM','cha','blo','food','fig','arti','crys','t2','t36','lCharm','gCharm'] },
+    { id: 'potions', fields: ['hd','md','sd','hp','mp','sp','he','me','se','le'] },
+    { id: 'scrolls', fields: ['swif','prot','avat','abso','shad','life','gods'] },
+    { id: 'special', fields: ['seed','vase','gum','caff','ed'] },
+    { id: 'skills', fields: ['uCure','uFullCure','uCloakOfTheFallen','uImperil'] },
+    { id: 'combat', fields: ['pDGlance','pDHit','pDCrit','mDGlance','mDHit','mDCrit','mDRes','mDRes50','mDRes75','mDRes90','mDResP','mDDRes0','mDDRes12','mDDRes3'] },
+];
+const STATS_COLUMN_GROUP_BY_ID = new Map(STATS_COLUMN_GROUPS.flatMap(group => group.fields.map(id => [id, group.id])));
+const statsColumnGroupVisible = (groups, id) => groups?.[id] !== false;
+
 const KEYBINDS = {
     openBattleRecords: { key: 'z', ctrl: false, alt: false, shift: false },
     toggleActive: { key: 'm', ctrl: false, alt: false, shift: false },
@@ -2773,6 +2787,20 @@ const I18N = {
         'staff': 'staff',
     },
     sP: {
+        "displayGroups": "Show categories",
+        "displayColumns": "Choose columns",
+        "displayHelp": "Changes are saved automatically. Hiding a category keeps its selected columns. The table is grouped by category; names, colors and order within each category follow Stats settings.",
+        "displaySaved": "Display preferences saved.",
+        "columnsSelected": "${count} / ${total} selected",
+        "groupHidden": "Category hidden · ${count} / ${total} selected",
+        "group_basic": "Basic",
+        "group_earnings": "Earnings",
+        "group_drops": "Drops",
+        "group_potions": "Potions",
+        "group_scrolls": "Scrolls",
+        "group_special": "Special consumables",
+        "group_skills": "Skill use",
+        "group_combat": "Combat",
         image: 'Image', downloadImage: 'Download image', copyImage: 'Copy image',
         imageWorking: 'Creating image…', imageCopied: 'Image copied', imageDownloaded: 'Image downloaded',
         imageUnavailable: 'Records are still loading.',
@@ -6507,6 +6535,72 @@ function openJpxRecordsCleanup(targetWindow = window, initial = {}) {
     doc.body.append(dialog); dialog.showModal(); update();
 }
 
+function createStatsColumnControls(doc, onChange) {
+    const root = doc.createElement('section'); root.className = 'jpx-records-columns';
+    root.setAttribute('aria-label', t('sP.displayColumns'));
+    const bar = doc.createElement('div'); bar.className = 'jpx-records-column-groups';
+    const title = doc.createElement('strong'); title.textContent = t('sP.displayGroups'); bar.append(title);
+    const details = doc.createElement('details'); details.className = 'jpx-records-column-details';
+    const summary = doc.createElement('summary'); summary.textContent = t('sP.displayColumns'); details.append(summary);
+    const help = doc.createElement('p'); help.textContent = t('sP.displayHelp'); details.append(help);
+    const editor = doc.createElement('div'); editor.className = 'jpx-records-column-editor'; details.append(editor);
+    const status = doc.createElement('p'); status.className = 'jpx-records-column-status'; status.setAttribute('role', 'status'); status.setAttribute('aria-atomic','true');
+    const groupInputs = new Map(), fieldInputs = new Map(), counts = new Map();
+    const getColumns = () => { const copy = { statsColumns: jpxConfigClone(cfgStats.statsColumns || []) }; normalizeStatsConfig(copy); return copy.statsColumns; };
+    function update() {
+        const columns = new Map(getColumns().map(column => [column.id, column]));
+        for (const group of STATS_COLUMN_GROUPS) {
+            const visible = statsColumnGroupVisible(cfgStats.columnGroups, group.id);
+            groupInputs.get(group.id).checked = visible;
+            let count = 0;
+            for (const id of group.fields) {
+                const column = columns.get(id), input = fieldInputs.get(id);
+                input.checked = column?.disabled !== true; if (input.checked) count++;
+                input.parentElement.lastChild.textContent = column?.customName || t(STATS_FIELDS.find(field => field.id === id).label);
+            }
+            counts.get(group.id).textContent = t(visible ? 'sP.columnsSelected' : 'sP.groupHidden', { count, total: group.fields.length });
+        }
+    }
+    function change(group, id, checked) {
+        try {
+            // Merge this display edit into the latest saved settings; never save
+            // unrelated unsaved edits or overwrite another tab's colors/order.
+            const raw = localStorage.getItem(prefix + 'cfgStats');
+            const saved = raw ? JSON.parse(raw) : jpxConfigClone(defaultCfgStats);
+            validateStatsConfig(saved); normalizeStatsConfig(saved);
+            if (id) saved.statsColumns.find(column => column.id === id).disabled = !checked;
+            else saved.columnGroups = { ...saved.columnGroups, [group]: checked };
+            localStorage.setItem(prefix + 'cfgStats', JSON.stringify(saved));
+            normalizeStatsConfig(cfgStats);
+            if (id) cfgStats.statsColumns.find(column => column.id === id).disabled = !checked;
+            else cfgStats.columnGroups = { ...cfgStats.columnGroups, [group]: checked };
+            status.setAttribute('role','status'); status.textContent = t('sP.displaySaved');
+            update(); onChange();
+        } catch (error) {
+            update(); status.setAttribute('role','alert'); status.textContent = t('cM.storageError');
+            console.error('Could not save column preferences:', error);
+        }
+    }
+    for (const group of STATS_COLUMN_GROUPS) {
+        const label = doc.createElement('label'), toggle = doc.createElement('input');
+        toggle.type = 'checkbox'; toggle.dataset.columnGroup = group.id; groupInputs.set(group.id, toggle);
+        label.append(toggle, doc.createTextNode(t('sP.group_' + group.id))); bar.append(label);
+        toggle.addEventListener('change', () => change(group.id, null, toggle.checked));
+        const fields = doc.createElement('fieldset'), legend = doc.createElement('legend');
+        legend.textContent = t('sP.group_' + group.id); fields.append(legend);
+        const count = doc.createElement('p'); count.className = 'jpx-records-column-count'; counts.set(group.id,count); fields.append(count);
+        for (const id of group.fields) {
+            const label = doc.createElement('label'), input = doc.createElement('input');
+            input.type = 'checkbox'; input.dataset.columnField = id; fieldInputs.set(id,input);
+            label.append(input, doc.createTextNode('')); fields.append(label);
+            input.addEventListener('change', () => change(group.id,id,input.checked));
+        }
+        editor.append(fields);
+    }
+    root.append(bar,details,status); update();
+    return { node:root, update };
+}
+
 function renderBattleRecordsPage(targetWindow = window) {
     if (Object.keys(cfgStats).length < 1) {
         let storedCfgStats = {};
@@ -6579,7 +6673,23 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-table-scroll { --jpx-scrollbar-width: auto; flex: 1; min-height: 140px; min-width: 0; overflow: auto; border: 1px solid #bda68e; background: #fffdf7; overscroll-behavior: contain; }
         #battleStatsTable { border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; }
         #battleStatsTable th, #battleStatsTable td { padding: 5px 10px; height: 30px; border-right: 1px solid #e1d7c7; border-bottom: 1px solid #e1d7c7; white-space: nowrap; text-align: left; }
-        #battleStatsTable th { position: sticky; top: 0; z-index: 2; background: #e9d5ae; color: #5c0d11; font-weight: 700; }
+        #battleStatsTable thead { position: sticky; top: 0; z-index: 2; }
+        #battleStatsTable th { background: #e9d5ae; color: #5c0d11; font-weight: 700; }
+        #battleStatsTable .jpx-records-group-header th { background: color-mix(in srgb, var(--jpx-theme-header,#e9d5ae) 78%, var(--jpx-theme-border,#bda68e)); border-bottom-color:var(--jpx-theme-border,#bda68e); }
+        #battleStatsTable .jpx-records-group-header span { position:sticky; left:10px; display:inline-block; }
+        .jpx-records-columns { flex:none; padding:8px 12px; border:1px solid #bda68e; background:#f9f6ec; max-height:45%; overflow:auto; }
+        .jpx-records-column-groups { display:flex; flex-wrap:wrap; gap:4px 12px; align-items:center; }
+        .jpx-records-columns label { display:flex; gap:6px; align-items:center; min-height:28px; cursor:pointer; min-width:0; overflow-wrap:anywhere; }
+        .jpx-records-columns input { flex:none; margin:0; accent-color:var(--jpx-theme-accent,#5c0d11); }
+        .jpx-records-columns :focus-visible { outline:2px solid var(--jpx-theme-accent,#5c0d11); outline-offset:2px; }
+        .jpx-records-column-details summary { cursor:pointer; width:max-content; max-width:100%; padding:6px 0; }
+        .jpx-records-column-details p { margin:4px 0 8px; color:#71634f; }
+        .jpx-records-column-editor { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr)); gap:12px; }
+        .jpx-records-column-editor fieldset { min-width:0; margin:0; padding:8px 12px; border:1px solid #c8b49b; }
+        .jpx-records-column-editor legend { font-weight:bold; padding:0 4px; }
+        .jpx-records-column-status { margin:4px 0 0; }
+        .jpx-records-column-status:empty { display:none; }
+        @media(max-width:650px),(pointer:coarse) { .jpx-records-columns label,.jpx-records-column-details summary { min-height:44px; } .jpx-records-columns { padding:6px 8px; } }
         #battleStatsTable tr { --record-row-bg: #fffdf7; background: var(--record-row-bg); }
         #battleStatsTable tbody tr:nth-child(even) { --record-row-bg: #f5f1e7; }
         #battleStatsTable tbody tr[data-summary] { --record-row-bg: #ece6d8; font-weight: 700; }
@@ -6644,7 +6754,10 @@ function renderBattleRecordsPage(targetWindow = window) {
     const message = doc.createElement('p');
     message.className = 'jpx-records-message'; message.textContent = t('sP.loadingRecords');
     tableRegion.append(message);
-    let revision = 0, pendingRead;
+    let revision = 0, pendingRead, cachedRecords = null;
+    const columnControls = createStatsColumnControls(doc, () => {
+        if (cachedRecords) renderDynamicTable(cachedRecords, cfgStats.statsColumns, tableRegion);
+    });
     const refresh = async () => {
         pendingRead?.abort(); pendingRead = new AbortController();
         const request = ++revision, filters = getFilters(targetWindow);
@@ -6652,9 +6765,12 @@ function renderBattleRecordsPage(targetWindow = window) {
         try {
             const records = await getBattleRecordsRender(filters, pendingRead.signal);
             if (targetWindow.closed || request !== revision) return;
+            cachedRecords = records;
+            columnControls.update();
             renderDynamicTable(records, cfgStats.statsColumns, tableRegion);
         } catch (error) {
             if (targetWindow.closed || request !== revision || error.name === 'AbortError') return;
+            cachedRecords = null;
             const notice = doc.createElement('p');
             notice.className = 'jpx-records-message'; notice.textContent = t('sP.recordsError');
             tableRegion.replaceChildren(notice);
@@ -6664,7 +6780,12 @@ function renderBattleRecordsPage(targetWindow = window) {
         }
     };
     filterState.refresh = refresh;
-    const recordsChanged = event => { if (event.type !== 'storage' || event.key === prefix+'recordsChanged') refresh(); };
+    const recordsChanged = event => {
+        if (event.type === 'storage' && event.key === prefix + 'cfgStats') {
+            loadStatsSettingsConfig(); columnControls.update();
+            if (cachedRecords) renderDynamicTable(cachedRecords, cfgStats.statsColumns, tableRegion);
+        } else if (event.type !== 'storage' || event.key === prefix+'recordsChanged') refresh();
+    };
     targetWindow.addEventListener('storage',recordsChanged);
     targetWindow.addEventListener('jpx:records-changed',recordsChanged);
     const filters = filterState.filters || createFilter(targetWindow, () => filterState.refresh?.());
@@ -6757,7 +6878,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         targetWindow.visualViewport?.removeEventListener('scroll', positionFilters);
         if (popup.matches(':popover-open')) popup.hidePopover();
     };
-    page.append(filterButton, tableRegion);
+    page.append(filterButton, columnControls.node, tableRegion);
     doc.body.append(page, popup);
     updateFilterLayout();
     refresh();
@@ -7146,10 +7267,15 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     parent.querySelector('#battleStatsTable')?.remove();
     parent.querySelectorAll(':scope > .jpx-records-message').forEach(node => node.remove());
 
-    let activeFields = displayedColumns.filter(column => column.disabled !== true).map(column => {
+    let activeFields = displayedColumns.filter(column => column.disabled !== true &&
+        statsColumnGroupVisible(cfgStats.columnGroups, STATS_COLUMN_GROUP_BY_ID.get(column.id))).map(column => {
         let baseField = STATS_FIELDS.find(f => f.id === column.id);
         return baseField ? { ...baseField, ...column } : null;
     }).filter(f => f);
+
+    // Group only the rendered view. Preserve saved metadata and ordering inside
+    // each category, without rewriting the user's column configuration.
+    activeFields = STATS_COLUMN_GROUPS.flatMap(group => activeFields.filter(field => STATS_COLUMN_GROUP_BY_ID.get(field.id) === group.id));
 
     const records = battleRecords.filter(record => record && typeof record === 'object');
     if (!activeFields.length) {
@@ -7165,6 +7291,19 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     table.setAttribute('aria-label', t('sP.jpxStats'));
 
     let thead = doc.createElement('thead');
+    const groupRow = doc.createElement('tr'); groupRow.className = 'jpx-records-group-header';
+    let lastGroup, groupHeader, groupColumns, groupCount = 0;
+    for (const field of activeFields) {
+        const group = STATS_COLUMN_GROUP_BY_ID.get(field.id);
+        if (group !== lastGroup || !groupHeader) {
+            groupColumns = doc.createElement('colgroup'); table.append(groupColumns); groupCount = 0;
+            groupHeader = doc.createElement('th'); groupHeader.scope = 'colgroup';
+            groupHeader.dataset.columnGroup = group;
+            const label = doc.createElement('span'); label.textContent = t('sP.group_' + group); groupHeader.append(label);
+            groupRow.append(groupHeader); lastGroup = group;
+        }
+        groupHeader.colSpan = ++groupCount; groupColumns.span = groupCount;
+    }
     const headerRow = doc.createElement('tr');
     for (const field of activeFields) {
         const th = doc.createElement('th');
@@ -7174,7 +7313,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
         if (STATS_THRESHOLD_FIELDS.has(field.id)) th.classList.add('jpx-records-number');
         headerRow.append(th);
     }
-    thead.append(headerRow);
+    thead.append(groupRow, headerRow);
     table.appendChild(thead);
 
     let tbody = doc.createElement('tbody');
@@ -10579,6 +10718,8 @@ function validateStatsConfig(data) {
     const invalid = () => { throw new Error(t('cS.invalidConfig')); };
     if (!data || Array.isArray(data) || typeof data !== 'object' ||
         !['statsVersion', 'combatRows', 'revenueRows', 'statsColumns'].some(key => key in data)) invalid();
+    if ('columnGroups' in data && (!data.columnGroups || Array.isArray(data.columnGroups) || typeof data.columnGroups !== 'object' ||
+        Object.values(data.columnGroups).some(value => typeof value !== 'boolean'))) invalid();
     for (const field of cfgStatsSchema.properties.filter(field => field.statsEditor)) {
         if (!(field.key in data)) continue;
         const seen = new Set();
@@ -12566,6 +12707,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!['number', 'string'].includes(typeof config[versionKey]) || String(config[versionKey]).trim() === '' ||
             !Number.isFinite(Number(config[versionKey])) || config[versionKey] < minimum) fail('unsupportedVersion');
         if (envelope.kind === 'stats') {
+            if ('columnGroups' in config && (!object(config.columnGroups) || Object.values(config.columnGroups).some(value => typeof value !== 'boolean'))) fail('invalidConfig');
             for (const field of ['combatRows', 'revenueRows', 'statsColumns']) {
                 if (field in config && (!Array.isArray(config[field]) || config[field].some(row => !object(row) || typeof row.id !== 'string'))) fail('invalidConfig');
             }
@@ -12928,6 +13070,7 @@ const jpxConfigStore = (() => {
         if (Object.keys(value).some(key => !['schemaVersion', 'kind', 'title', 'description', 'world', 'mode', 'scriptVersion', 'config'].includes(key))) fail('invalidConfig');
         const config = value.config;
         if (value.kind === 'stats') {
+            if ('columnGroups' in config && (!object(config.columnGroups) || Object.values(config.columnGroups).some(value => typeof value !== 'boolean'))) fail('invalidConfig');
             if (!integer(config.statsVersion) || config.statsVersion < 20260109 || value.mode !== undefined) fail('invalidConfig');
             let count = 0;
             for (const name of ['combatRows', 'revenueRows', 'statsColumns']) if (name in config) {
@@ -15154,7 +15297,7 @@ function onJpxSharedChange(change) {
         jpxPanelManager.refreshAppearance?.();
         document.getElementById('settings-container')?.jpxConfigApplied?.(key.includes('userKeybinds') ? { shortcuts: userKeybinds } : cfgBattle, 'battle');
     }
-    if (key === prefix + 'cfgStats') { loadStatsSettingsConfig(); document.getElementById('settings-container')?.jpxConfigApplied?.(cfgStats, 'stats'); window.dispatchEvent(new Event('jpx:records-changed')); }
+    if (key === prefix + 'cfgStats') { loadStatsSettingsConfig(); document.getElementById('settings-container')?.jpxConfigApplied?.(cfgStats, 'stats'); }
     // Existing theme, apply-signal and cleanup listeners can consume the same
     // invalidation path; no native storage or third-party prototype is changed.
     window.dispatchEvent(new StorageEvent('storage', { key, oldValue: change.oldValue ?? null,

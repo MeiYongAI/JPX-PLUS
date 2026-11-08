@@ -51,7 +51,7 @@ function onJpxSharedChange(change) {
         jpxPanelManager.refreshAppearance?.();
         document.getElementById('settings-container')?.jpxConfigApplied?.(key.includes('userKeybinds') ? { shortcuts: userKeybinds } : cfgBattle, 'battle');
     }
-    if (key === prefix + 'cfgStats') { loadStatsSettingsConfig(); document.getElementById('settings-container')?.jpxConfigApplied?.(cfgStats, 'stats'); window.dispatchEvent(new Event('jpx:records-changed')); }
+    if (key === prefix + 'cfgStats') { loadStatsSettingsConfig(); document.getElementById('settings-container')?.jpxConfigApplied?.(cfgStats, 'stats'); }
     // Existing theme, apply-signal and cleanup listeners can consume the same
     // invalidation path; no native storage or third-party prototype is changed.
     window.dispatchEvent(new StorageEvent('storage', { key, oldValue: change.oldValue ?? null,

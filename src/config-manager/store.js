@@ -67,6 +67,7 @@ const jpxConfigStore = (() => {
         if (Object.keys(value).some(key => !['schemaVersion', 'kind', 'title', 'description', 'world', 'mode', 'scriptVersion', 'config'].includes(key))) fail('invalidConfig');
         const config = value.config;
         if (value.kind === 'stats') {
+            if ('columnGroups' in config && (!object(config.columnGroups) || Object.values(config.columnGroups).some(value => typeof value !== 'boolean'))) fail('invalidConfig');
             if (!integer(config.statsVersion) || config.statsVersion < 20260109 || value.mode !== undefined) fail('invalidConfig');
             let count = 0;
             for (const name of ['combatRows', 'revenueRows', 'statsColumns']) if (name in config) {
