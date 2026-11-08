@@ -54,7 +54,31 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
     }
     function parse(raw) {
         if (typeof raw !== 'string' || raw.length > MAX_JSON) fail('storageCorrupt');
-        try { return clone(JSON.parse(raw)); }
+        try {
+            // JSON.parse already creates an owned tree with no accessors, cycles,
+            // sparse arrays or custom prototypes. Keep the data limits and unsafe
+            // key checks without the generic-object descriptor walk or a clone.
+            const value = JSON.parse(raw);
+            let nodes = 0;
+            function visit(item, depth) {
+                if (++nodes > 250000 || depth > 80) fail('tooLarge');
+                if (typeof item === 'number' && !Number.isFinite(item)) fail('invalidConfig');
+                if (item === null || typeof item !== 'object') return;
+                if (Array.isArray(item)) {
+                    if (item.length > 100000) fail('tooLarge');
+                    for (const child of item) visit(child, depth + 1);
+                } else {
+                    for (const name of Object.keys(item)) {
+                        if (blockedKeys.has(name)) fail('invalidConfig');
+                        visit(item[name], depth + 1);
+                    }
+                }
+            }
+            visit(value, 0);
+            // Numeric JSON spellings can expand when serialized (e.g. 1e10).
+            if (JSON.stringify(value).length > MAX_JSON) fail('tooLarge');
+            return value;
+        }
         catch { return fail('storageCorrupt'); }
     }
     function validId(id) {
@@ -76,7 +100,11 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         }
     }
     function envelopeCopy(input) {
-        const envelope = clone(input, MAX_ENVELOPE);
+        return normalizeEnvelope(clone(input, MAX_ENVELOPE));
+    }
+    // Only call with a detached, structurally validated JSON tree. The save and
+    // migration boundaries still use envelopeCopy for arbitrary caller objects.
+    function normalizeEnvelope(envelope) {
         if (!object(envelope) || envelope.schemaVersion !== 1 ||
             !['battle', 'battle-mode', 'stats'].includes(envelope.kind) || !object(envelope.config) ||
             typeof envelope.title !== 'string' || (envelope.description !== undefined && typeof envelope.description !== 'string') ||
@@ -130,28 +158,29 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
     const validTime = value => typeof value === 'string' && Number.isFinite(Date.parse(value));
     const validRecordMode = record => !Object.hasOwn(record, 'mode') ||
         typeof record.mode === 'string' && modeSet.has(record.mode) && record.scopes.includes(record.mode) && Object.hasOwn(record.config, record.mode);
-    let validatedRaw, validatedState;
-    function readState() {
+    let validatedRaw, validatedState, validatedJSON;
+    function readValidatedState() {
         const raw = getRaw(key);
         if (raw === null || raw === undefined) return emptyState();
-        // Revalidate only when storage changes; callers still receive independent
-        // copies, including after another tab replaces or corrupts the archive.
-        if (raw === validatedRaw) return JSON.parse(validatedState);
+        // This tree stays private. Public reads copy only the requested portion;
+        // every changed raw value still receives complete validation.
+        if (raw === validatedRaw) return validatedState;
         const state = parse(raw);
         try {
             if (!object(state) || state.schemaVersion !== 1 || !Array.isArray(state.entries) || state.entries.length > MAX_ENTRIES ||
                 !object(state.applied) || !Array.isArray(state.migrations) || state.migrations.some(marker => typeof marker !== 'string' || !marker)) fail('storageCorrupt');
-            const ids = new Set();
+            const entries = new Map();
             for (const entry of state.entries) {
-                if (!object(entry) || !validId(entry.id) || ids.has(entry.id) || !Number.isSafeInteger(entry.revision) || entry.revision < 1 ||
+                if (!object(entry) || !validId(entry.id) || entries.has(entry.id) || !Number.isSafeInteger(entry.revision) || entry.revision < 1 ||
                     !validTime(entry.createdAt) || !validTime(entry.updatedAt) || ('execution' in entry && !object(entry.execution))) fail('storageCorrupt');
-                ids.add(entry.id);
-                entry.envelope = envelopeCopy(entry.envelope);
+                entries.set(entry.id, entry);
+                if (JSON.stringify(entry.envelope)?.length > MAX_ENVELOPE) fail('storageCorrupt');
+                entry.envelope = normalizeEnvelope(entry.envelope);
             }
             for (const [world, records] of Object.entries(state.applied)) {
                 if (!worlds.has(world) || !object(records)) fail('storageCorrupt');
                 for (const [id, record] of Object.entries(records)) {
-                    const entry = state.entries.find(item => item.id === id);
+                    const entry = entries.get(id);
                     if (!entry || !object(record) || record.id !== id || !Number.isSafeInteger(record.revision) || record.revision < 1 ||
                         record.revision > entry.revision || !Array.isArray(record.scopes) || !record.scopes.length ||
                         record.scopes.some(scope => typeof scope !== 'string' || !scope) || !object(record.config) ||
@@ -168,7 +197,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                 if (!Array.isArray(state.bindings) || state.bindings.length > 2000) fail('storageCorrupt');
                 const slots = new Set();
                 for (const binding of state.bindings) {
-                    const entry = state.entries.find(item => item.id === binding?.id);
+                    const entry = entries.get(binding?.id);
                     const slot = JSON.stringify([binding?.world, binding?.personaId, binding?.setId]);
                     if (!validBinding(binding) || !entry || entry.envelope.kind === 'stats' || slots.has(slot) ||
                         !Number.isSafeInteger(binding.trustedRevision) || binding.trustedRevision < 1 || binding.trustedRevision > entry.revision) fail('storageCorrupt');
@@ -177,8 +206,20 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
             }
         } catch { return fail('storageCorrupt'); }
         validatedRaw = raw;
-        validatedState = JSON.stringify(state);
+        validatedState = state;
+        validatedJSON = undefined;
         return state;
+    }
+    const copyValidated = value => JSON.parse(JSON.stringify(value));
+    function readState() {
+        const state = readValidatedState();
+        if (state !== validatedState) return copyValidated(state);
+        return JSON.parse(validatedJSON ??= JSON.stringify(state));
+    }
+    function readSelection(world) {
+        if (!worlds.has(world)) fail('invalidConfig');
+        const state = readValidatedState(), id = state.active?.[world];
+        return id ? copyValidated(state.applied[world][id]) : null;
     }
     function write(state) { putRaw(key, encode(state)); }
     function newId(state) {
@@ -365,8 +406,8 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         return true;
     }
     return Object.freeze({
-        list: () => readState().entries,
-        get: id => readState().entries.find(entry => entry.id === id) || null,
-        save, rename, reorder, remove, migrate, backup, readState, setApplied, clearApplied, setBinding, removeBinding
+        list: () => copyValidated(readValidatedState().entries),
+        get: id => copyValidated(readValidatedState().entries.find(entry => entry.id === id) || null),
+        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding
     });
 }

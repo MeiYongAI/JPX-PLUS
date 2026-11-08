@@ -10,6 +10,7 @@
     "profile:battle": "node scripts/profile-battle.cjs",
     "profile:import": "node scripts/profile-config-import.cjs",
     "profile:reload": "node scripts/profile-reload.cjs",
+    "profile:config-read": "node scripts/profile-config-read.cjs",
     "screenshots": "node scripts/screenshots/capture.cjs",
     "check:docs": "node scripts/check-preview.cjs"
   },

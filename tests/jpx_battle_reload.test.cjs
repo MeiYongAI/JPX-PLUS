@@ -3,6 +3,7 @@ const { test, before, after } = require('node:test');
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fixture } = require('./fixtures/battle-reload.cjs');
+const { configArchive } = require('./fixtures/config-archive.cjs');
 let browser;
 before(async()=>{browser=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome',headless:true});});
 after(async()=>browser?.close());
@@ -155,4 +156,35 @@ test('final-result page does not invoke next-round navigation while auto-next is
     const f=await setup(t,{pageOptions:{finished:true}});
     const clicks=await f.page.evaluate(()=>{document.querySelector('#btcp').remove();__reload.endRound(null,false);document.querySelector('#btcp').innerHTML='<img src="/y/finishbattle.png">';__reload.options({advanceToNextRound:true});__reload.goNext();return window.__nextClicks||0;});
     assert.equal(clicks,0);assert.equal((await snapshot(f.page)).attacks,0);
+});
+
+for(const isekai of [false,true]) test('large selected archive survives reload and stays outside repeated turn reads, Isekai '+isekai,async t=>{
+    const data=configArchive({world:isekai?'Isekai':'Persistent'}),f=await setup(t,{isekai,storage:data.storage});
+    assert.equal((await snapshot(f.page)).mode,data.mode);
+    const before=await f.page.evaluate(()=>__reload.metrics());
+    await f.page.evaluate(()=>{for(let i=0;i<20;i++){__reload.stats();__reload.snapshot();}__reload.reinit();});
+    await f.page.evaluate(()=>__reload.append());
+    await f.page.waitForFunction(()=>__reload.metrics().processed>0);
+    const after=await f.page.evaluate(()=>__reload.metrics());
+    assert.equal(after.gets.jpx_configLibrary_v1,before.gets.jpx_configLibrary_v1);
+    assert.equal(after.stages.refreshJpxSelectedConfig.calls,1);
+    await f.navigate({round:2,floor:10},true);
+    const state=await snapshot(f.page);assert.equal(state.mode,data.mode);assert.equal(state.active,false);
+    assert.equal(state.attacks,0);assert.equal(state.casts,0);
+    assert.equal(await f.page.evaluate(()=>localStorage.getItem('jpx_configLibrary_v1')),data.raw);
+});
+
+test('replacing native rules invalidates selection without trusting the saved library snapshot',async t=>{
+    const data=configArchive(),f=await setup(t,{isekai:true,storage:data.storage});
+    assert.equal((await snapshot(f.page)).mode,data.mode);
+    await f.page.evaluate(mode=>__reload.options({[mode]:{supports:[{type:'stop',customMessage:'changed',conditions:[]}],attacks:[]}}),data.mode);
+    assert.equal((await snapshot(f.page)).mode,'TwoHanded_General');
+    assert.equal(await f.page.evaluate(()=>localStorage.getItem('jpx_configLibrary_v1')),data.raw);
+});
+
+test('corrupt unrelated saved rules cannot activate a selected mode on fresh battle startup',async t=>{
+    const data=configArchive(),state=JSON.parse(data.raw);state.entries.at(-1).envelope.config[data.mode].supports='broken';
+    const raw=JSON.stringify(state),f=await setup(t,{isekai:true,storage:{...data.storage,jpx_configLibrary_v1:raw}});
+    const current=await snapshot(f.page);assert.equal(current.mode,'TwoHanded_General');assert.equal(current.active,false);
+    assert.equal(current.attacks,0);assert.equal(await f.page.evaluate(()=>localStorage.getItem('jpx_configLibrary_v1')),raw);
 });

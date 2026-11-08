@@ -71,8 +71,7 @@ function seedJpxConfigLibrary() {
 function refreshJpxSelectedConfig() {
     jpxSelectedConfig = null;
     try {
-        const state = getJpxConfigLibrary().readState(), world = jpxConfigWorld();
-        const id = state.active?.[world], record = state.applied[world]?.[id];
+        const record = getJpxConfigLibrary().readSelection(jpxConfigWorld());
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };

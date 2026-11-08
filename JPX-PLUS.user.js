@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.9
+// @version      2026.11.08.10
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.9',
+    version: '2026.11.08.10',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -12140,7 +12140,31 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
     }
     function parse(raw) {
         if (typeof raw !== 'string' || raw.length > MAX_JSON) fail('storageCorrupt');
-        try { return clone(JSON.parse(raw)); }
+        try {
+            // JSON.parse already creates an owned tree with no accessors, cycles,
+            // sparse arrays or custom prototypes. Keep the data limits and unsafe
+            // key checks without the generic-object descriptor walk or a clone.
+            const value = JSON.parse(raw);
+            let nodes = 0;
+            function visit(item, depth) {
+                if (++nodes > 250000 || depth > 80) fail('tooLarge');
+                if (typeof item === 'number' && !Number.isFinite(item)) fail('invalidConfig');
+                if (item === null || typeof item !== 'object') return;
+                if (Array.isArray(item)) {
+                    if (item.length > 100000) fail('tooLarge');
+                    for (const child of item) visit(child, depth + 1);
+                } else {
+                    for (const name of Object.keys(item)) {
+                        if (blockedKeys.has(name)) fail('invalidConfig');
+                        visit(item[name], depth + 1);
+                    }
+                }
+            }
+            visit(value, 0);
+            // Numeric JSON spellings can expand when serialized (e.g. 1e10).
+            if (JSON.stringify(value).length > MAX_JSON) fail('tooLarge');
+            return value;
+        }
         catch { return fail('storageCorrupt'); }
     }
     function validId(id) {
@@ -12162,7 +12186,11 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         }
     }
     function envelopeCopy(input) {
-        const envelope = clone(input, MAX_ENVELOPE);
+        return normalizeEnvelope(clone(input, MAX_ENVELOPE));
+    }
+    // Only call with a detached, structurally validated JSON tree. The save and
+    // migration boundaries still use envelopeCopy for arbitrary caller objects.
+    function normalizeEnvelope(envelope) {
         if (!object(envelope) || envelope.schemaVersion !== 1 ||
             !['battle', 'battle-mode', 'stats'].includes(envelope.kind) || !object(envelope.config) ||
             typeof envelope.title !== 'string' || (envelope.description !== undefined && typeof envelope.description !== 'string') ||
@@ -12216,28 +12244,29 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
     const validTime = value => typeof value === 'string' && Number.isFinite(Date.parse(value));
     const validRecordMode = record => !Object.hasOwn(record, 'mode') ||
         typeof record.mode === 'string' && modeSet.has(record.mode) && record.scopes.includes(record.mode) && Object.hasOwn(record.config, record.mode);
-    let validatedRaw, validatedState;
-    function readState() {
+    let validatedRaw, validatedState, validatedJSON;
+    function readValidatedState() {
         const raw = getRaw(key);
         if (raw === null || raw === undefined) return emptyState();
-        // Revalidate only when storage changes; callers still receive independent
-        // copies, including after another tab replaces or corrupts the archive.
-        if (raw === validatedRaw) return JSON.parse(validatedState);
+        // This tree stays private. Public reads copy only the requested portion;
+        // every changed raw value still receives complete validation.
+        if (raw === validatedRaw) return validatedState;
         const state = parse(raw);
         try {
             if (!object(state) || state.schemaVersion !== 1 || !Array.isArray(state.entries) || state.entries.length > MAX_ENTRIES ||
                 !object(state.applied) || !Array.isArray(state.migrations) || state.migrations.some(marker => typeof marker !== 'string' || !marker)) fail('storageCorrupt');
-            const ids = new Set();
+            const entries = new Map();
             for (const entry of state.entries) {
-                if (!object(entry) || !validId(entry.id) || ids.has(entry.id) || !Number.isSafeInteger(entry.revision) || entry.revision < 1 ||
+                if (!object(entry) || !validId(entry.id) || entries.has(entry.id) || !Number.isSafeInteger(entry.revision) || entry.revision < 1 ||
                     !validTime(entry.createdAt) || !validTime(entry.updatedAt) || ('execution' in entry && !object(entry.execution))) fail('storageCorrupt');
-                ids.add(entry.id);
-                entry.envelope = envelopeCopy(entry.envelope);
+                entries.set(entry.id, entry);
+                if (JSON.stringify(entry.envelope)?.length > MAX_ENVELOPE) fail('storageCorrupt');
+                entry.envelope = normalizeEnvelope(entry.envelope);
             }
             for (const [world, records] of Object.entries(state.applied)) {
                 if (!worlds.has(world) || !object(records)) fail('storageCorrupt');
                 for (const [id, record] of Object.entries(records)) {
-                    const entry = state.entries.find(item => item.id === id);
+                    const entry = entries.get(id);
                     if (!entry || !object(record) || record.id !== id || !Number.isSafeInteger(record.revision) || record.revision < 1 ||
                         record.revision > entry.revision || !Array.isArray(record.scopes) || !record.scopes.length ||
                         record.scopes.some(scope => typeof scope !== 'string' || !scope) || !object(record.config) ||
@@ -12254,7 +12283,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                 if (!Array.isArray(state.bindings) || state.bindings.length > 2000) fail('storageCorrupt');
                 const slots = new Set();
                 for (const binding of state.bindings) {
-                    const entry = state.entries.find(item => item.id === binding?.id);
+                    const entry = entries.get(binding?.id);
                     const slot = JSON.stringify([binding?.world, binding?.personaId, binding?.setId]);
                     if (!validBinding(binding) || !entry || entry.envelope.kind === 'stats' || slots.has(slot) ||
                         !Number.isSafeInteger(binding.trustedRevision) || binding.trustedRevision < 1 || binding.trustedRevision > entry.revision) fail('storageCorrupt');
@@ -12263,8 +12292,20 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
             }
         } catch { return fail('storageCorrupt'); }
         validatedRaw = raw;
-        validatedState = JSON.stringify(state);
+        validatedState = state;
+        validatedJSON = undefined;
         return state;
+    }
+    const copyValidated = value => JSON.parse(JSON.stringify(value));
+    function readState() {
+        const state = readValidatedState();
+        if (state !== validatedState) return copyValidated(state);
+        return JSON.parse(validatedJSON ??= JSON.stringify(state));
+    }
+    function readSelection(world) {
+        if (!worlds.has(world)) fail('invalidConfig');
+        const state = readValidatedState(), id = state.active?.[world];
+        return id ? copyValidated(state.applied[world][id]) : null;
     }
     function write(state) { putRaw(key, encode(state)); }
     function newId(state) {
@@ -12451,9 +12492,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         return true;
     }
     return Object.freeze({
-        list: () => readState().entries,
-        get: id => readState().entries.find(entry => entry.id === id) || null,
-        save, rename, reorder, remove, migrate, backup, readState, setApplied, clearApplied, setBinding, removeBinding
+        list: () => copyValidated(readValidatedState().entries),
+        get: id => copyValidated(readValidatedState().entries.find(entry => entry.id === id) || null),
+        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding
     });
 }
 
@@ -13490,8 +13531,7 @@ function seedJpxConfigLibrary() {
 function refreshJpxSelectedConfig() {
     jpxSelectedConfig = null;
     try {
-        const state = getJpxConfigLibrary().readState(), world = jpxConfigWorld();
-        const id = state.active?.[world], record = state.applied[world]?.[id];
+        const record = getJpxConfigLibrary().readSelection(jpxConfigWorld());
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.10
+
+- **Reduce configuration-library startup cost.** Validate parsed JSON without redundant generic-object descriptor walks or per-entry deep copies, and index applied/binding references by ID.
+- **Copy only the selected record.** Battle selection no longer copies the whole archive; validated cache objects remain private and mutable callers receive independent copies. Full-library callers keep a lazy serialized cache.
+- **Preserve validation and behavior.** Retain all structural/size limits, migrations, corrupt-store checks, current-rule equality, world isolation and failed-write rollback. No storage schema change or extra selection key.
+- **Measured offline.** Against .9 in isolated Chrome, first selection reads fall from 27.1 to 7.2 ms for a synthetic 992 KiB conditional-rule archive, and 52.8 to 14.5 ms for 2 MiB with 2,000 bindings. These are not live-game TPS or a reproduction of the reported 400 ms stall. See [verification and measurements](docs/config-read-2026-11-08.md).
+
+### 简体中文
+
+- **降低配置库首次读取开销**：JSON 解析后保留完整数据校验，去掉重复的通用对象检查和逐条深拷贝；应用记录与装备绑定改用 ID 索引。
+- **战斗选择只复制所需记录**：内部缓存不暴露给调用者，完整库读取保留惰性序列化缓存，不改变存档格式或添加可能失配的选择键。
+- **保留正确性检查**：继续检查损坏数据、大小/深度限制、迁移、规则一致性、世界隔离和失败回滚。
+- **离线结果**：复杂 992 KiB 合成库首次选择读取 27.1 → 7.2 ms，2 MiB / 2,000 绑定 52.8 → 14.5 ms；不代表真实 TPS，也未复现报告中的 400 ms。
+
 ## 2026.11.08.6
 
 - **Reduce battle update work.** Read plain vital counters without forcing rendered-text layout, share one normalized log snapshot within an update, and leave existing log separators untouched. Addon-decorated vital counters retain rendered-text parsing.
