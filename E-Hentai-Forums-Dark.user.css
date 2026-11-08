@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         E-Hentai Forums Dark
 @namespace    meiyongai.eh-forums-dark
-@version      1.0.1
+@version      1.1.0
 @description  A quiet dark theme for E-Hentai Forums, matching HentaiVerse Dark.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -20,6 +20,11 @@
       --ehf-muted: #b4afa7;
       --ehf-link: #e2bc8c;
       --ehf-border: #5a534c;
+      --ehf-divider: #41464e;
+      --ehf-control-border: #858b94;
+      --ehf-heading: #30353d;
+      --ehf-row-hover: #2d3239;
+      --ehf-link-hover: #f5d4ac;
       --ehf-hover: #3d3933;
       --ehf-code: #1b1e22;
       --ehf-red: #ff9295;
@@ -31,7 +36,7 @@
     html:root body { background: var(--ehf-bg) !important; color: var(--ehf-text); }
     html:root :is(table, tr, td, th) { color: var(--ehf-text); border-color: var(--ehf-border); }
     html:root :is(a:link, a:visited, a:active) { color: var(--ehf-link); }
-    html:root a:hover { color: #f5d4ac; }
+    html:root a:hover { color: var(--ehf-link-hover); }
     html:root ::selection { background: #65503b; color: #fff4e5; }
     html:root :is(hr, fieldset) { border-color: var(--ehf-border); }
 
@@ -71,9 +76,72 @@
       .lastaction, .edit, .copyright, .signature, .toplinks, .normalname,
       .newslink span, .bar p, .barb p, .barc p) { color: var(--ehf-muted); }
     html:root :is(#navstrip, #submenu, #gfooter, #pmnotewrap,
-      .maintitle, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:any-link { color: var(--ehf-link); }
+      .maintitle, .maintitle2, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:any-link { color: var(--ehf-link); }
     html:root :is(#navstrip, #submenu, #gfooter, #pmnotewrap,
-      .maintitle, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:hover { color: #f5d4ac; }
+      .maintitle, .maintitle2, .maintitlecollapse, .subtitle, .subtitlediv, .borderwrap th) a:hover { color: var(--ehf-link-hover); }
+
+    /* Cellspacing is the native grid: give its one-pixel gaps a visible tone. */
+    html:root #ipbwrapper .borderwrap:has(> table):not(:where(.postcolor *, .signature *)) {
+      background: var(--ehf-divider);
+      border-color: var(--ehf-divider);
+    }
+    html:root #ipbwrapper :is(.mainhead, .maintitle, .maintitlecollapse) {
+      background: var(--ehf-heading);
+      color: var(--ehf-text);
+    }
+    html:root #ipbwrapper .mainhead .maintitle2 { background: transparent; }
+    html:root :is(.forumdesc, .desc) a:any-link { color: var(--ehf-link); }
+    html:root :is(.forumdesc, .desc) a:hover { color: var(--ehf-link-hover); }
+    html:root .borderwrap > table > tbody > tr:has(> td > .forumdesc):is(:hover, :focus-within) > :is(.row1, .row2) {
+      background: var(--ehf-row-hover);
+    }
+
+    /* Ambience index headers: replace wide empty image caps with a title bar.
+       Scope to real category containers; do not reshape post or editor tables. */
+    html:root #ipbwrapper div[id^=fo_] > table > tbody > tr > .mainhead {
+      height: 34px;
+      background: var(--ehf-heading);
+      box-shadow: inset 0 1px var(--ehf-divider);
+    }
+    html:root div[id^=fo_] > table > tbody > tr > .mainhead:is(:first-child, :last-child) { width: 12px; }
+    html:root div[id^=fo_] > table > tbody > tr > .mainhead:first-child { border-radius: 6px 0 0 0; }
+    html:root div[id^=fo_] > table > tbody > tr > .mainhead:last-child { border-radius: 0 6px 0 0; }
+    html:root div[id^=fo_] > table .mainhead img:is([src$="/cat_top_ls.gif"], [src$="/cat_top_rs.gif"]) {
+      width: 12px;
+      height: 1px;
+    }
+    html:root div[id^=fo_] > table .maintitle2 { text-align: left; }
+    html:root div[id^=fo_] > table .mainhead a:has(> img:is([src$="/exp_plus.gif"], [src$="/exp_minus.gif"])) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      min-height: 24px;
+      border-radius: 4px;
+    }
+    html:root div[id^=fo_] > table .mainhead a:has(> img:is([src$="/exp_plus.gif"], [src$="/exp_minus.gif"])):hover { background: var(--ehf-hover); }
+    html:root #ipbwrapper div[id^=fo_] + table .mainfoot {
+      height: 8px;
+      line-height: 0;
+      background: var(--ehf-panel);
+    }
+    html:root div[id^=fo_] + table .mainfoot img { height: 8px; }
+    /* Keep homepage search usable and scroll only the wide forum grid on phones. */
+    @media (max-width: 700px) {
+      html:root .newslink:has(input[type=image][src$="/login-button.gif"]) > tbody > tr,
+      html:root .newslink:has(input[type=image][src$="/login-button.gif"]) > tbody > tr > td {
+        display: block;
+        text-align: left;
+      }
+      html:root .newslink form:has(input[type=image][src$="/login-button.gif"]) { display: flex; align-items: center; gap: 8px; }
+      html:root .newslink form:has(input[type=image][src$="/login-button.gif"]) input[type=text] { flex: 1; min-width: 0; margin: 0; }
+      html:root .newslink input[type=image][src$="/login-button.gif"] { flex: none; margin: 0; }
+      html:root #ipbwrapper div[id^=fo_] > .borderwrap:has(.forumdesc) {
+        max-width: calc(100vw - 32px);
+        overflow-x: auto;
+      }
+      html:root #ipbwrapper div[id^=fo_] > .borderwrap:has(.forumdesc) > table { min-width: 700px; }
+    }
     html:root :is(.formbuttonrow, .formbuttonrow1, .thumbwrap p, .thumbwrapp p, .thumbwrap p.alt, .thumbwrapp p.alt) {
       background: var(--ehf-field) !important;
       color: var(--ehf-text);
@@ -113,6 +181,20 @@
       caret-color: var(--ehf-link);
     }
     html:root :where(.newslink) input.button { color: var(--ehf-text); }
+    html:root :is(input:not(:where([type=hidden], [type=image], [type=checkbox], [type=radio])), textarea, select, button,
+      .textarea, .searchinput, .button, .gobutton, .codebuttons, .helpbox, .dny-edit-title) {
+      border-color: var(--ehf-control-border);
+    }
+    /* This submit control contains a light GIF, not text. Filter only that asset.
+       Keep the pre-filter surface light, otherwise inversion creates a white box. */
+    html:root input[type=image][src$="style_images/ambience/login-button.gif"] {
+      background: #dce0e5;
+      border-color: #78736b;
+      filter: invert(1) hue-rotate(180deg) brightness(1.5) saturate(.55);
+      cursor: pointer;
+    }
+    html:root input[type=image][src$="style_images/ambience/login-button.gif"]:enabled:hover { background: #c9c4bd; }
+    html:root input[type=image][src$="style_images/ambience/login-button.gif"]:focus-visible { outline-color: #725330; }
     html:root :is(input, textarea)::placeholder { color: var(--ehf-muted); opacity: 1; }
     html:root :is(button, input[type=button], input[type=submit], input[type=reset], .button, .gobutton):enabled:hover {
       background: var(--ehf-hover);
@@ -180,6 +262,34 @@
       [src$="/menu_item.gif"], [src$="/to_post_off.gif"], [src$="/loading.gif"], [src$="/warn0.gif"],
       [src*="/folder_rte_images/"]) {
       filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.55);
+    }
+    /* Transparent navy status glyphs need their own treatment. Preserve the
+       source silhouettes and the difference between read/new/locked states. */
+    html:root img[src*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)):is(
+      [src*="/bf_"], [src*="/bc_"]) {
+      filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.55);
+    }
+    html:root img[src*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)):is(
+      [src$="/bf_readonly.gif"], [src*="/f_"],
+      [src$="/exp_plus.gif"], [src$="/exp_minus.gif"],
+      [src$="/attachicon.gif"], [src$="/pages_icon.gif"],
+      [src$="/folder_post_icons/icon1.gif"], [src$="/folder_post_icons/icon6.gif"],
+      [src$="/folder_post_icons/icon10.gif"]) {
+      filter: invert(1) hue-rotate(180deg) brightness(1.4) saturate(.65);
+    }
+    /* These colorful status images are already light. Preserve their colors. */
+    html:root img[src*="style_images/ambience/"]:not(:where(.postcolor *, .signature *)):is(
+      [src$="/user.gif"], [src$="/stats.gif"], [src$="/newpost.gif"]) {
+      filter: brightness(.9) saturate(.85);
+    }
+    html:root img[src$="style_images/ambience/lastpost.gif"]:not(:where(.postcolor *, .signature *)) {
+      filter: brightness(1.3);
+    }
+    /* Native quote-return and file-type controls live inside posts. Match their
+       functional wrappers, not all images in user-written content. */
+    html:root .quotetop a[href*="act=findpost"] > img[src$="style_images/ambience/post_snapback.gif"],
+    html:root a[href*="act=attach"] > img[src*="style_images/ambience/folder_mime_types/"] {
+      filter: invert(1) hue-rotate(180deg) brightness(1.4) saturate(.65);
     }
 
     html:root * { scrollbar-color: var(--ehf-border) var(--ehf-bg); }

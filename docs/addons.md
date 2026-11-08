@@ -12,7 +12,9 @@ HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a usersc
 
 **HentaiVerse Dark 1.0.6** makes JPX quickbar cooldown numbers readable with light text and a subtle dark outline, including extended skill slots. It also supports HV Paper Doll equipment windows, menus and battle portrait controls, plus the My Little Pony helper panel and sliders. Character artwork, custom backgrounds, color previews and puzzle-image effects are preserved.
 
-**E-Hentai Forums Dark** is a separate Stylus theme for `forums.e-hentai.org`, using the same palette. It covers forum lists, threads, quotes, code blocks, reply editors, menus and native image buttons, while preserving avatars, emoji, posted images and author-selected text colors. Install it from the link above; it includes a GitHub update URL. Checked against the Ambience skin, including the full reply editor; Fusion has not been specifically tested. The forum's existing narrow-screen layout is preserved.
+**E-Hentai Forums Dark 1.1.0** is a separate Stylus theme for `forums.e-hentai.org`, using the same palette. It covers forum lists, threads, quotes, code blocks, reply editors, menus and native image buttons, while preserving avatars, emoji, posted images and author-selected text colors. Install it from the link above; it includes a GitHub update URL.
+
+Version 1.1.0 fixes the image-based search button, improves category headings and separators, and adapts dark status, attachment and quote-return icons while retaining their distinct states. On screens up to 700px wide, homepage search stacks vertically and category grids scroll within their panels. Thread and editor layouts are preserved. Offline verification passes 32 page cases plus 28 native image variants in both stylesheet orders, including checks that 56 posted/signature image copies remain unchanged. These checks use captured Ambience assets and synthetic content; they do not establish live Stylus installation behavior. Fusion has not been specifically tested.
 
 <details>
 <summary>Dark theme previews: game and forum</summary>
@@ -24,6 +26,10 @@ HentaiVerse Dark is a separate UserCSS theme for the game and HVUT, not a usersc
 **E-Hentai Forums Dark — posts, quotes and code blocks**
 
 ![E-Hentai Forums Dark: posts, quotes and code blocks](images/forum-dark.png)
+
+**E-Hentai Forums Dark 1.1.0 — homepage, search and readable status icons**
+
+![E-Hentai Forums Dark 1.1.0: homepage categories, search and status icons](images/forum-home-dark.png)
 
 Offline previews using the sites' native styles and sample content.
 
