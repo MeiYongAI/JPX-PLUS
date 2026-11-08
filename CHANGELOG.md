@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.08.5
+
+- **Resume inside the panel after AJAX.** With hover-to-toggle enabled, the first deliberate mouse movement in the status area can resume a newly loaded round without leaving and reentering the floating panel. Supports both battle-only replacement and full-body fallback.
+- **Keep manual controls predictable.** Recovery is consumed once per round. Later motion does not toggle repeatedly or undo a manual pause; clicks, keyboard toggles and dragging cancel pending recovery. Stationary/synthetic input, held buttons, puzzles and final results do not trigger movement recovery.
+- **Offline regression coverage.** Reproduce the old failure and verify repeated rounds in Persistent and Isekai using isolated Chromium with intercepted requests. Live-account combat has not been exercised by these tests.
+
+### 简体中文
+
+- **修复 AJAX 换轮后面板内移动失效**：开启悬停切换时，在状态区域内主动移动鼠标即可恢复新一轮自动战斗，无需先移出面板再进入；兼容仅替换战斗区域和整页内容替换。
+- **保留手动控制**：每轮只恢复一次，后续移动不会反复开关或撤销手动暂停；点击、键盘切换和拖动会取消待恢复状态。静止／脚本合成事件、按住鼠标按钮、谜题及最终结算不会触发移动恢复。
+- **离线回归验证**：在拦截全部请求的隔离 Chromium 中复现旧版问题，覆盖主世界、异世界及连续换轮；这些测试不代表真实账号实战验证。
+
 ## 2026.11.08.4
 
 - **Quickbar fallback.** When character elemental data is unavailable, use the quickbar only if its attack spells belong to one element. Read native tooltip metadata, including unavailable/cooling-down spells, so translated labels do not affect the result. Mixed elements remain unknown.

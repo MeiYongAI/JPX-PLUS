@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.4
+// @version      2026.11.08.5
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.4',
+    version: '2026.11.08.5',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -3287,6 +3287,10 @@ function reDoBattle(e) {
 
     isActiveBattle = false;
     if (cfgBattle.ctrlWidgetMouseEnter) jpxPanelManager.ready = false;
+    // AJAX keeps the floating panel under the cursor, so no new mouseenter fires.
+    // Require a fresh mouse movement, and consume this only for this round reset.
+    jpxPanelManager.roundHoverResume = cfgBattle.ctrlWidgetMouseEnter
+        ? { pointer: jpxPanelManager.lastPointer } : null;
     monsterData = [];
     localStorage.removeItem(prefix + 'monsterData' + isekaiSuffix);
     allMonsterInfo = {};
@@ -3651,6 +3655,7 @@ function onKeyDown(e, throttledActionManager) {
 
 function toggleActive() {
     if (!log) return;
+    jpxPanelManager.roundHoverResume = null;
     isActiveBattle = !isActiveBattle;
     if (isActiveBattle) readyNext = 0;
     jpxPanelManager.updateContent('battle');
@@ -10995,6 +11000,7 @@ function bindControlWidgetPosition(widget, handle, owner) {
     }
     handle.addEventListener('pointerdown', event => {
         if (event.button !== 0 || event.isPrimary === false || drag) return;
+        owner.roundHoverResume = null;
         event.preventDefault();
         event.stopPropagation();
         if (frame) { cancelAnimationFrame(frame); frame = 0; }
@@ -11021,10 +11027,11 @@ function bindControlWidgetPosition(widget, handle, owner) {
     handle.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); });
     handle.addEventListener('keydown', event => {
         if (event.key === 'Escape' && drag) { event.preventDefault(); event.stopPropagation(); finish(true); return; }
-        if (event.key === 'Home') { event.preventDefault(); owner.suppressHover = true; save(null); constrain(); return; }
+        if (event.key === 'Home') { event.preventDefault(); owner.roundHoverResume = null; owner.suppressHover = true; save(null); constrain(); return; }
         const direction = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
         if (!direction || event.ctrlKey || event.metaKey || event.altKey || drag) return;
         event.preventDefault();
+        owner.roundHoverResume = null;
         owner.suppressHover = true;
         const rect = widget.getBoundingClientRect(), step = event.shiftKey ? 10 : 1;
         save(place({ left: rect.left + direction[0] * step, top: rect.top + direction[1] * step }));
@@ -11073,12 +11080,14 @@ function jpxPanelManager(panelType) {
                 ns.infoDiv.addEventListener('pointerdown', (e) => {
                     if (e.pointerType === 'mouse' && e.button !== 0) return;
                     if (ns.dragging) return;
+                    ns.roundHoverResume = null;
                     e.stopPropagation();
                     throttledToggleBattle();
                 });
                 ns.infoDiv.addEventListener('keydown', event => {
                     if (event.key !== 'Enter' && event.key !== ' ') return;
                     event.preventDefault(); event.stopPropagation();
+                    ns.roundHoverResume = null;
                     if (!event.repeat && !ns.dragging) throttledToggleBattle();
                 });
                 ns.infoDiv.addEventListener('mouseenter', event => {
@@ -11088,6 +11097,19 @@ function jpxPanelManager(panelType) {
                         const pointer = ns.lastPointer;
                         if (pointer && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) < 1) return;
                     }
+                    throttledToggleBattle();
+                });
+                ns.infoDiv.addEventListener('pointermove', event => {
+                    const pending = ns.roundHoverResume;
+                    if (!pending || !cfgBattle.ctrlWidgetMouseEnter || isActiveBattle ||
+                        !event.isTrusted || event.pointerType !== 'mouse' || event.buttons ||
+                        ns.dragging || !log?.isConnected ||
+                        document.querySelector('#riddlemaster, #btcp img[src$="finishbattle.png"]')) return;
+                    const pointer = pending.pointer;
+                    if (pointer && Math.hypot(event.clientX - pointer.x, event.clientY - pointer.y) < 1) return;
+                    ns.suppressHover = false;
+                    // The window mousemove listener runs after this panel handler.
+                    ns.ready = true;
                     throttledToggleBattle();
                 });
                 parts.stats.addEventListener('click', event => {
