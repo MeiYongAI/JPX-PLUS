@@ -8,6 +8,7 @@
     "check": "node --check JPX-PLUS.user.js && node scripts/build-config-manager.cjs --check && node scripts/check-language-packs.cjs",
     "test": "node --test --test-concurrency=2 tests/*.test.cjs",
     "profile:battle": "node scripts/profile-battle.cjs",
+    "profile:battle-log": "node scripts/profile-battle-log.cjs",
     "profile:import": "node scripts/profile-config-import.cjs",
     "profile:reload": "node scripts/profile-reload.cjs",
     "profile:config-read": "node scripts/profile-config-read.cjs",

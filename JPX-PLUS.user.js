@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.10
+// @version      2026.11.08.11
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.10',
+    version: '2026.11.08.11',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1735,6 +1735,9 @@ let monstersEffects = {};
 let actionCounts = { history: [] };
 let battleLogRecord = [];
 let battleLogRecordCurrent = [];
+// Private append-only history: retain one serialized prefix for same-format saves.
+// Array replacement or truncation invalidates the prefix; nothing is discarded.
+let battleLogCheckpoint = null;
 let timeRecords = {};
 let combatRecords = {};
 let revenueRecords = {};
@@ -3257,7 +3260,11 @@ function initDoBattle() {
     document.addEventListener('DOMContentLoaded', reDoBattle);
 
     if (cfgBattle.recordBattleLog) {
-        battleLogRecord = JSON.parse(localStorage.getItem(prefix + 'battleLogRecord' + isekaiSuffix) || '[]');
+        const rawBattleLog = localStorage.getItem(prefix + 'battleLogRecord' + isekaiSuffix) || '[]';
+        battleLogRecord = JSON.parse(rawBattleLog);
+        battleLogCheckpoint = Array.isArray(battleLogRecord)
+            ? { record: battleLogRecord, length: battleLogRecord.length, json: rawBattleLog.trimEnd() }
+            : null;
     }
     timeRecords = JSON.parse(localStorage.getItem(prefix + 'timeRecords' + isekaiSuffix) || '{}');
     if (jpxUtils.isEmpty(timeRecords)) timeRecords = jpxUtils.createTimeRecords();
@@ -4945,8 +4952,34 @@ function battleLogRecorder() {
     if (btcp) {
         battleLogRecordCurrent.push('++++++++++++++++++++++++++++++++++++++++++++++++++');
     }
-    battleLogRecord = battleLogRecord.concat(battleLogRecordCurrent);
+    // A loop avoids both copying all prior rounds and argument-count limits on
+    // unusually large batches. The history is private and otherwise append-only.
+    for (const line of battleLogRecordCurrent) battleLogRecord.push(line);
     battleLogRecordCurrent = [];
+}
+
+function storeBattleLogRecord() {
+    const key = prefix + 'battleLogRecord' + isekaiSuffix;
+    if (!Array.isArray(battleLogRecord)) {
+        localStorage.removeItem(key);
+        battleLogCheckpoint = null;
+        return;
+    }
+    const previous = battleLogCheckpoint;
+    let json;
+    if (previous?.record === battleLogRecord && previous.length <= battleLogRecord.length) {
+        json = previous.json;
+        if (previous.length < battleLogRecord.length) {
+            const added = JSON.stringify(battleLogRecord.slice(previous.length));
+            json = json.slice(0, -1) + (previous.length ? ',' : '') + added.slice(1);
+        }
+    } else {
+        json = JSON.stringify(battleLogRecord);
+    }
+    // Read the actual key so an external clear/replacement never causes a false
+    // clean skip. Only acknowledge a checkpoint after a successful storage write.
+    if (localStorage.getItem(key) !== json) localStorage.setItem(key, json);
+    battleLogCheckpoint = { record: battleLogRecord, length: battleLogRecord.length, json };
 }
 
 function timeRecorder(turnLog, action, use) {
@@ -11080,9 +11113,7 @@ function storeTmp() {
                 battleRecorder();
             }
             if (cfgBattle.recordBattleLog) {
-                if (Array.isArray(battleLogRecord)) localStorage.setItem(prefix + 'battleLogRecord' + isekaiSuffix, JSON.stringify(battleLogRecord));
-                /*patch*/
-                else localStorage.removeItem(prefix + 'battleLogRecord' + isekaiSuffix);
+                storeBattleLogRecord();
             }
             localStorage.setItem(prefix + 'timeRecords' + isekaiSuffix, JSON.stringify(timeRecords));
             localStorage.setItem(prefix + 'combatRecords' + isekaiSuffix, JSON.stringify(combatRecords));

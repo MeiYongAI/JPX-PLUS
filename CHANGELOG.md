@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.11
+
+- **Append long battle logs without copying all history.** Full-log recording appends each batch in place, preserving initialization lines, repeated actions, Scan output and round markers.
+- **Serialize only new log entries when saving.** Reuse the last saved JSON prefix, keep the existing complete-array storage format, and skip unchanged writes after checking the actual storage key. Failed writes do not advance the saved position.
+- **Preserve transitions and complete export.** Keep the final pending-action flush, Persistent/Isekai isolation, native reloads, AJAX resets and final-result cleanup; do not truncate logs or alter combat decisions.
+- **Measured offline.** With 100,000 prior entries, 200 recorded actions fall from 28.6 to 1.5 ms; first save after restoring a document falls from 23.5 to 11.8 ms. Full-string storage writes still remain. This applies when full-log recording is enabled, not live TPS. See [verification and limits](docs/battle-log-2026-11-08.md).
+
+### 简体中文
+
+- **减少长日志追加复制**：每次行动只追加当前批次，不再复制全部历史；相同内容的新行动、初始化行、Scan 和轮末标记保持原顺序。
+- **保存只序列化新增后缀**：复用上次成功保存的 JSON 前缀，保持完整数组格式；无变化时检查实际存储后跳过重复写入，失败不推进保存位置。
+- **保留刷新与导出**：保留最后一条待处理行动、双世界隔离、非 AJAX 刷新、AJAX 换轮、结算清理和完整导出，不裁剪历史。
+- **离线对照**：十万条历史下，200 次追加 28.6 → 1.5 ms；恢复后首次保存 23.5 → 11.8 ms。仅启用完整日志时受益，仍需写完整字符串，不等于真实 TPS 提升。
+
 ## 2026.11.08.10
 
 - **Reduce configuration-library startup cost.** Validate parsed JSON without redundant generic-object descriptor walks or per-entry deep copies, and index applied/binding references by ID.
