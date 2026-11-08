@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.6
+@version      1.0.16
 @description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -27,6 +27,16 @@
         --hvd-blue: #93baff;
         --hvd-green: #8cd6a3;
         --hvd-purple: #c9a5ed;
+
+        /* Exact sRGB glyph colors from the palette above (including disabled text).
+           Keep lighter source outlines subdued and preserve source alpha / geometry.
+           Keep these filter colors in sync when editing the corresponding palette tokens. */
+        --hvd-image-text: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22t%22%20color-interpolation-filters%3D%22sRGB%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncG%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncB%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20values%3D%220.77254902%200%200%200%200.12549020%200%200.74509804%200%200%200.13333333%200%200%200.69803922%200%200.14901961%200%200%200%201%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#t");
+        --hvd-image-accent: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22t%22%20color-interpolation-filters%3D%22sRGB%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncG%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncB%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20values%3D%220.76078431%200%200%200%200.12549020%200%200.60392157%200%200%200.13333333%200%200%200.40000000%200%200.14901961%200%200%200%201%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#t");
+        --hvd-image-disabled: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22t%22%20color-interpolation-filters%3D%22sRGB%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeColorMatrix%20values%3D%220%200%200%200%200.58823529%200%200%200%200%200.56862745%200%200%200%200%200.54509804%200%200%200%201%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#t");
+        --hvd-image-blue: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22t%22%20color-interpolation-filters%3D%22sRGB%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncG%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3CfeFuncB%20type%3D%22table%22%20tableValues%3D%221%201%20.65%20.15%200%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20values%3D%220.45098039%200%200%200%200.12549020%200%200.59607843%200%200%200.13333333%200%200%200.85098039%200%200.14901961%200%200%200%201%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#t");
+        /* Activated labels have black glyphs and a red edge; suppress that edge separately. */
+        --hvd-image-active: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cfilter%20id%3D%22t%22%20color-interpolation-filters%3D%22sRGB%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3CfeComponentTransfer%3E%3CfeFuncR%20type%3D%22table%22%20tableValues%3D%221%200%200%200%200%22%2F%3E%3CfeFuncG%20type%3D%22table%22%20tableValues%3D%221%200%200%200%200%22%2F%3E%3CfeFuncB%20type%3D%22table%22%20tableValues%3D%221%200%200%200%200%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeColorMatrix%20values%3D%220.87450980%200%200%200%200.12549020%200%200.43921569%200%200%200.13333333%200%200%200.43529412%200%200.14901961%200%200%200%201%200%22%2F%3E%3C%2Ffilter%3E%3C%2Fsvg%3E#t");
 
         /* HVUT's existing palette also covers menus and panels created later. */
         --color-font-default: var(--hvd-text);
@@ -69,8 +79,8 @@
         --color-ab-cap: #2d4d72;
         --color-ab-up: #70404a;
         --color-ab-font: #fff;
-        /* Unlock cost text sits on an unchanged, light native image. */
-        --color-ab-slot: #333;
+        /* Unfilled native tiers are transparent over the dark panel. */
+        --color-ab-slot: var(--hvd-accent);
         --color-mm-equip: var(--hvd-red);
         --color-mm-item: var(--hvd-green);
         --color-mm-credits: var(--hvd-blue);
@@ -185,6 +195,8 @@
     html:root :is(.ability_slotbar, .ability_slotbox) > div > div[style*="/y/t/0.png"] {
         filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.6);
     }
+    /* Preserve HVUT's existing badge shapes and fills; only improve foreground contrast. */
+    html:root .hvut-ab-warn::before { color: var(--hvd-bg); }
 
     /* Battle uses a separate stylesheet, including two different player-bar layouts. */
     html:root #btcp { opacity: 1; border-color: var(--hvd-border); }
@@ -255,10 +267,54 @@
         [src*="/y/battle/sbsel_"], [src*="/y/battle/skills_"], [src*="/y/battle/magic_"],
         [src$="/finishbattle.png"], [src$="/arenacontinue.png"], [src$="/grindfestcontinue.png"],
         [src$="/itemworldcontinue.png"], [src$="/answer.png"], [src$="/ponychartbutton.png"]) {
-        filter: invert(1) hue-rotate(180deg) brightness(.9) saturate(.6) opacity(var(--hvd-button-opacity, 1));
+        /* Preserve image alpha, lettering and geometry; only adjust the original image colors. */
+        filter: var(--hvd-control-filter, invert(1) hue-rotate(180deg) brightness(1.08) saturate(.65));
     }
-    /* Only the filtered controls consume this value; unselected tabs remain fully readable. */
-    html:root #csp img[src$="_d.png"] { --hvd-button-opacity: .5; }
+    /* Available actions and current tabs keep the original warm emphasis. */
+    html:root #csp img:is([src*="/y/character/"], [src*="/y/training/"],
+        [src*="/y/equip/"], [src*="/y/shops/"], [src*="/y/mmail/"],
+        [src*="/y/ab/ta"], [src*="/y/ab/reset"], [src*="/y/arena/startchallenge"], [src$="/rename.png"],
+        [src$="/startgrindfest.png"], [src$="/userestorative.png"]):where([src$=".png"]) {
+        --hvd-control-filter: var(--hvd-image-accent);
+    }
+    /* Battle action lettering uses the same palette as out-of-battle controls.
+       Native n / s / a images retain normal / selected / activated distinctions. */
+    html:root #csp img:is(
+        [src*="/y/battle/attack_"], [src*="/y/battle/skill_"], [src*="/y/battle/items_"],
+        [src*="/y/battle/spirit_"], [src*="/y/battle/defend_"], [src*="/y/battle/focus_"],
+        [src*="/y/battle/sbsel_"], [src$="/finishbattle.png"], [src$="/arenacontinue.png"],
+        [src$="/grindfestcontinue.png"], [src$="/itemworldcontinue.png"],
+        [src$="/answer.png"], [src$="/ponychartbutton.png"]) {
+        --hvd-control-filter: var(--hvd-image-accent);
+    }
+    html:root #csp img:is(
+        [src*="/y/battle/attack_"], [src*="/y/battle/skill_"], [src*="/y/battle/items_"],
+        [src*="/y/battle/spirit_"], [src*="/y/battle/defend_"], [src*="/y/battle/focus_"],
+        [src*="/y/battle/sbsel_"]):where([src$="_s.png"]) {
+        --hvd-control-filter: var(--hvd-image-blue);
+    }
+    html:root #csp img:is(
+        [src*="/y/battle/attack_"], [src*="/y/battle/skill_"], [src*="/y/battle/items_"],
+        [src*="/y/battle/spirit_"], [src*="/y/battle/defend_"], [src*="/y/battle/focus_"]):where([src$="_a.png"]) {
+        --hvd-control-filter: var(--hvd-image-active);
+    }
+    html:root #csp img:is([src*="/y/battle/skills_"], [src*="/y/battle/magic_"]) {
+        --hvd-control-filter: var(--hvd-image-text);
+    }
+    /* Other selectable tabs are neutral; disabled actions remain legible but dimmer. */
+    html:root #csp img:is([src$="_off.png"], [src*="/y/ab/td"]) {
+        --hvd-control-filter: var(--hvd-image-text);
+    }
+    html:root #csp img[src$="_d.png"] {
+        --hvd-control-filter: var(--hvd-image-disabled);
+    }
+    /* HVUT marks categories from equipped, upgradeable abilities before opening a tree.
+       Replace its brightness(250%) directly: upgrade blue takes priority over the
+       current-tab gold, without adding decoration or inferring unloaded abilities. */
+    html:root #csp #ability_treelist > .hvut-ab-tree > img:is([src*="/y/ab/ta"], [src*="/y/ab/td"]) {
+        --hvd-control-filter: var(--hvd-image-blue);
+        filter: var(--hvd-image-blue) !important;
+    }
     /* Font sprites only; spell artwork, puzzle images and gauge fills keep their original colors. */
     html:root :is(.f2b, .f4b) > div { filter: brightness(0) invert(.88) sepia(.12); }
     html:root :is(.f2r, .f4r, .f2a, .f4a) > div { filter: brightness(1.8); }
