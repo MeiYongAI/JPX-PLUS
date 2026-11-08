@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.8
+// @version      2026.11.08.9
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.8',
+    version: '2026.11.08.9',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1728,6 +1728,7 @@ let prevMonsterInfoSignature = '';
 let battleUpdateGeneration = 0;
 let battleLogObserver = null;
 let battleLogUpdate = null;
+let battleLogPending = false;
 let monsterInfoRequest = null;
 let battleDecisionTimer = null;
 let monstersEffects = {};
@@ -2952,6 +2953,18 @@ function getJpxBattleSkillFamily(actions) {
     return families.length === 1 ? families[0] : '';
 }
 
+function getJpxBattleSkillFamilyFromPage() {
+    // Recognition needs native skill names, not cooldowns or restored statistics.
+    // In particular, mode detection runs before timeRecords is loaded on navigation.
+    const actions = {};
+    for (const slot of document.querySelectorAll('.bts > div[onmouseover]')) {
+        const name = slot.getAttribute('onmouseover')?.match(regExp.spellInfo)?.[1] ||
+            slot.textContent?.trim() || jpxUtils.parseHVClasses(slot.querySelector('div'), true);
+        if (name) actions[name] = true;
+    }
+    return getJpxBattleSkillFamily(actions);
+}
+
 function getJpxEquippedStyleFamily(root = document, metadata = window.dynjs_equip) {
     // Only read equipped slot metadata. Inventory names and translated labels
     // cannot establish which weapons are currently equipped.
@@ -2992,7 +3005,7 @@ function getDetectedJpxBattleStyle() {
     try {
         const battle = log || document.querySelector('#textlog');
         const equipped = !jpxDetectionSourceIgnored && document.querySelector('#eqsb');
-        const family = battle ? getJpxBattleSkillFamily(getActionCooldowns().spellCooldowns) :
+        const family = battle ? getJpxBattleSkillFamilyFromPage() :
             equipped ? getJpxEquippedStyleFamily() : readJpxDetectedFamily();
         if (battle || equipped) {
             if (family) rememberJpxDetectedFamily(family);
@@ -3254,11 +3267,12 @@ function initDoBattle() {
     if (jpxUtils.isEmpty(revenueRecords)) revenueRecords = jpxUtils.createRevenueRecords();
 
     //Battle Style
-    const skillFamily = getJpxBattleSkillFamily(getActionCooldowns().spellCooldowns);
+    const skillFamily = getJpxBattleSkillFamilyFromPage();
     battleStyle = getJpxStyleFromFamily(skillFamily, spellDamageBonus) || 'Unarmed';
 
     //Battle Type
-    let battleTypeLog = getBattleLogHTML().match(regExp.battleTypeLog);
+    const initialLog = getBattleLogHTML();
+    let battleTypeLog = initialLog.match(regExp.battleTypeLog);
     if (battleTypeLog) {
         if (battleTypeLog[1].includes('arena challenge') && !battleTypeLog[1].includes('Round 1 / 1)')) {
             battleType = 'Arena';
@@ -3297,7 +3311,7 @@ function initDoBattle() {
         localStorage.setItem(prefix + 'difficulty' + isekaiSuffix, difficulty);
     }
 
-    preDoBattle();
+    preDoBattle(initialLog);
 
     if (battleType === 'Arena' && roundInfo.total >= 90) {
         localStorage.setItem(prefix + 'difficulty' + isekaiSuffix, 'PFUDOR');
@@ -3311,6 +3325,7 @@ function stopBattleUpdates() {
     battleLogObserver = null;
     battleLogUpdate?.cancel();
     battleLogUpdate = null;
+    battleLogPending = false;
     monsterInfoRequest?.cancel();
     monsterInfoRequest = null;
 }
@@ -3351,13 +3366,22 @@ function reDoBattle(e) {
     jpxPanelManager.dispatchState();
 }
 
-function preDoBattle() {
+function preDoBattle(initialLog) {
     // Reinitialization can target the same DOM, not just a newly fetched round.
     stopBattleUpdates();
     if (!log?.isConnected || document.getElementById('riddlemaster')) return;
     //Round
-    let round = getBattleLogHTML().match(regExp.round);
+    // One synchronous snapshot serves all initial parsing. Never retain it for
+    // later updates, another document, or an AJAX round replacement.
+    const initialLogHTML = typeof initialLog === 'string' ? initialLog : getBattleLogHTML();
+    let round = initialLogHTML.match(regExp.round);
     let storedRoundInfo = JSON.parse(localStorage.getItem(prefix + 'roundInfo' + isekaiSuffix) || '{}');
+    const changedRound = round && storedRoundInfo.current &&
+        (+round[1] !== +storedRoundInfo.current || +round[2] !== +storedRoundInfo.total);
+    if (changedRound) {
+        monsterData = [];
+        localStorage.removeItem(prefix + 'monsterData' + isekaiSuffix);
+    }
     if (battleType !== 'Encounter') {
         if (round) {
             roundInfo.current = +round[1];
@@ -3393,9 +3417,10 @@ function preDoBattle() {
 
     //Monster Data
     let matches;
-    const monsterLogHTML = getBattleLogHTML();
+    const monsterLogHTML = initialLogHTML;
+    const parsedMonsters = [];
     while ((matches = regExp.monster.exec(monsterLogHTML)) !== null) {
-        monsterData.unshift({
+        parsedMonsters.unshift({
             id: +matches[1],
             name: matches[2],
             level: +matches[3],
@@ -3403,6 +3428,9 @@ function preDoBattle() {
         });
     }
     let storedMonsterData = JSON.parse(localStorage[prefix + 'monsterData' + isekaiSuffix] || '[]');
+    if (parsedMonsters.length) {
+        monsterData = parsedMonsters;
+    }
     if (monsterData.length) {
         localStorage.setItem(prefix + 'monsterData' + isekaiSuffix, JSON.stringify(monsterData));
     } else if (storedMonsterData.length) {
@@ -3431,13 +3459,18 @@ function preDoBattle() {
 
     const generation = battleUpdateGeneration, battleLog = log;
     battleLogUpdate = jpxUtils.throttle(() => {
+        battleLogPending = false;
         if (isCurrentBattleUpdate(generation, battleLog)) preProcessLog();
     }, 200, true);
-    battleLogObserver = new MutationObserver(battleLogUpdate);
+    battleLogObserver = new MutationObserver(() => {
+        if (!isCurrentBattleUpdate(generation, battleLog)) return;
+        battleLogPending = true;
+        battleLogUpdate();
+    });
     battleLogObserver.observe(log.firstElementChild || (log.prepend(document.createElement('tbody')), log.firstElementChild), { childList: true });
 
     if (cfgBattle.autoFinishBattle === true && document.querySelector('#btcp img[src$="finishbattle.png"]')) preProcessLog();
-    else preRender();
+    else preRender(initialLogHTML.match(regExp.turnLog)?.[0]);
 }
 
 // A final log may be observed more than once; share the same recording operation.
@@ -3642,7 +3675,7 @@ function goNext() {
                     }
                 }
 
-                if (cfgBattle.advanceToNextRound) {
+                if (cfgBattle.advanceToNextRound && btcp.style.visibility !== 'hidden') {
                     btcp.click();
                     btcp.style.visibility = 'hidden';
                 }
@@ -11032,8 +11065,20 @@ function storeTmp() {
 
         if (!btcp) {
             localStorage.setItem(prefix + 'monsterData' + isekaiSuffix, JSON.stringify(monsterData));
+        } else {
+            // Native navigation can precede the throttled final log callback.
+            // Never carry this round's IDs/HP into a document for the next one.
+            localStorage.removeItem(prefix + 'monsterData' + isekaiSuffix);
         }
         if (!finishBattle) {
+            // Navigation can beat either the observer microtask or its trailing
+            // throttle. Record the outstanding turn without rendering or acting.
+            const unobserved = battleLogObserver?.takeRecords().length;
+            if ((battleLogPending || unobserved) && log.isConnected && !document.querySelector('#riddlemaster')) {
+                battleLogUpdate?.cancel();
+                battleLogPending = false;
+                battleRecorder();
+            }
             if (cfgBattle.recordBattleLog) {
                 if (Array.isArray(battleLogRecord)) localStorage.setItem(prefix + 'battleLogRecord' + isekaiSuffix, JSON.stringify(battleLogRecord));
                 /*patch*/

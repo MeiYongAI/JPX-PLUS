@@ -28,7 +28,8 @@ function fixture(options = {}) {
     const metadata = {};
     const document = {
         querySelector: selector => selector === '#persona_form select' ? select : selector === '#textlog' && battle ? {} : selector === '#eqsb' && slots.length ? {} : null,
-        querySelectorAll: selector => selector === '.spc' ? labels : selector === '#eqsb > .eqb' ? slots : [],
+        querySelectorAll: selector => selector === '.spc' ? labels : selector === '#eqsb > .eqb' ? slots :
+            selector === '.bts > div[onmouseover]' ? Object.keys(actions).map(name => ({getAttribute:()=>"set_infopane_spell('"+name+"', 'Fixture', '1001', 10, 0, 5)"})) : [],
         addEventListener: (name, callback) => { (listeners.document[name] ||= []).push(callback); }
     };
     const window = {
@@ -39,7 +40,8 @@ function fixture(options = {}) {
     const context = vm.createContext({ document, window, localStorage: storage,
         prefix: 'jpx_', isekaiSuffix: suffix, log: null, battleStyle: 'TwoHanded', jpxLoadoutBusy: false,
         spellDamageBonus: { maxType: 'fire', maxValue: 0 }, Event: class { constructor(type) { this.type = type; } },
-        getActionCooldowns: () => ({ spellCooldowns: actions }),
+        regExp: { spellInfo: /\('([\w\s-]+)'.*, '(\w+)', (\d+), (\d+), (\d+)\)/ },
+        getActionCooldowns: () => { throw Error('Recognition must not depend on loaded cooldown statistics'); },
         fetch: () => { throw new Error('Battle detection must not fetch character pages'); },
         jpxUtils: { parseHVClasses: node => node?.nativeLabel || '' }
     });
@@ -255,6 +257,7 @@ test('cross-tab current-world cache updates refresh lobby memory but ignore unre
 test('the production boot refreshes detection before battle initialization without replacing configuration selection', () => {
     assert.ok(source.includes('let spellDamageBonus = readJpxSpellDamageBonus();'));
     assert.match(source, /loadBattleConfig\(\);\s+initJpxModeDetection\(\);\s+initJpxLoadoutBindings\(\);\s+\/\/Battle/);
-    assert.match(source, /const skillFamily = getJpxBattleSkillFamily\(getActionCooldowns\(\)\.spellCooldowns\);\s+battleStyle = getJpxStyleFromFamily\(skillFamily, spellDamageBonus\) \|\| 'Unarmed';/);
+    assert.ok(source.includes('const skillFamily = getJpxBattleSkillFamilyFromPage();'));
+    assert.ok(source.includes("battleStyle = getJpxStyleFromFamily(skillFamily, spellDamageBonus) || 'Unarmed';"));
     assert.equal(helpers.includes('cfgBattle'), false);
 });

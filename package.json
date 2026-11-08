@@ -9,6 +9,7 @@
     "test": "node --test --test-concurrency=2 tests/*.test.cjs",
     "profile:battle": "node scripts/profile-battle.cjs",
     "profile:import": "node scripts/profile-config-import.cjs",
+    "profile:reload": "node scripts/profile-reload.cjs",
     "screenshots": "node scripts/screenshots/capture.cjs",
     "check:docs": "node scripts/check-preview.cjs"
   },
