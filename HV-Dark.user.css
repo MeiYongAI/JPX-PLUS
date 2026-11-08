@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.16
+@version      1.0.17
 @description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -57,12 +57,13 @@
         --color-bg-invert: #514434;
         --color-bg-h1: #453b30;
         --color-bg-h2: var(--hvd-surface);
-        --color-equip-Ultimate: #45334f;
-        --color-equip-Peerless: #513136;
-        --color-equip-Legendary: #4c402b;
-        --color-equip-Magnificent: #2d4053;
-        --color-equip-Exquisite: #33452e;
-        --color-equip-Superior: #393b3f;
+        /* Subtle quality tints keep row fills behind equipment names and affix labels. */
+        --color-equip-Ultimate: #302b35;
+        --color-equip-Peerless: #34292d;
+        --color-equip-Legendary: #322e27;
+        --color-equip-Magnificent: #283039;
+        --color-equip-Exquisite: #2b3229;
+        --color-equip-Superior: #2c2e32;
         --color-item-Consumable: var(--hvd-green);
         --color-item-Artifact: var(--hvd-blue);
         --color-item-Trophy: var(--hvd-purple);
