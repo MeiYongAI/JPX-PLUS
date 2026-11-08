@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.12
+
+- **Share data between primary and alt.** Settings, shortcuts, config archives, completed battle history and daily stamina use the same userscript-owned store, with Persistent and Isekai kept separate.
+- **Preserve existing copies.** Both hosts keep recoverable pre-sharing settings; old battle archives merge by world and timestamp. Recovery and a clearly explained legacy-stamina correction are available under Stats → Data.
+- **Record each completion once.** Shared per-battle receipts avoid duplicate charges and whole-history rewrites. Deleting history does not refund consumed stamina. Changes to executing settings pause other battle tabs.
+- **Scope and verification.** Ongoing raw logs and transient battle state remain local. Cross-origin Chrome fixtures use mocked GM transport, not the installed extension or a live account. See [migration, tests and limits](docs/alt-shared-data-2026-11-08.md).
+
+### 简体中文
+
+- **主站与 alt 共享数据**：配置、快捷键、配置库、已结算历史和当日体力账本使用同一份油猴存储，主世界与异世界仍分开。
+- **保留迁移前副本**：两站旧配置均可下载或恢复，历史按世界和时间戳合并。统计设置的数据页提供旧体力基数修正说明和入口。
+- **逐场记账**：重复结算不重复扣体力，删除历史不返还消耗；另一站修改当前执行配置会暂停自动战斗。
+- **明确边界**：战斗中原始日志及临时状态仍为站点本地；已做隔离双域名测试，尚未在用户安装的油猴或真实战斗中验证。
+
 ## 2026.11.08.11
 
 - **Append long battle logs without copying all history.** Full-log recording appends each batch in place, preserving initialization lines, repeated actions, Scan output and round markers.

@@ -1,5 +1,7 @@
 # Upgrading
 
+Primary and alt share settings, completed battle records and daily stamina from 2026.11.08.12. Close older running tabs, then visit both hosts outside combat once. Both previous settings copies remain recoverable under **Stats → Data → Primary / alt shared data**. See [migration rules and limitations](alt-shared-data-2026-11-08.md).
+
 [English README](../README.md) · [简体中文](#简体中文)
 
 ## From original JPX

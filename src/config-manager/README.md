@@ -1,5 +1,7 @@
 # Configuration management
 
+From 2026.11.08.12 the native-format settings and config library use the JPX-only shared storage facade backed by GM values. Primary and alt access one authoritative store; world suffixes retain their meaning. Native site storage remains a migration backup. See [sharing design and limitations](../../docs/alt-shared-data-2026-11-08.md). Edit src/shared-data.js and src/shared-ui.js, then use the existing build command.
+
 The distributed userscript remains `JPX-PLUS.user.js`. These sources are embedded into its marked section by:
 
 ```powershell

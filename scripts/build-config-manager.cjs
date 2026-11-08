@@ -7,9 +7,15 @@ const start = '// BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)';
 const end = '// END JPX CONFIG MANAGEMENT';
 const target = path.join(root, 'JPX-PLUS.user.js');
 let source = fs.readFileSync(target, 'utf8');
+const sharedStart = '// BEGIN JPX SHARED DATA';
+const sharedEnd = '// END JPX SHARED DATA';
+const shared = [sharedStart, fs.readFileSync(path.join(root, 'src/shared-data.js'), 'utf8'), sharedEnd].join('\n');
+if (source.includes(sharedStart)) source = source.slice(0, source.indexOf(sharedStart)) + shared + source.slice(source.indexOf(sharedEnd) + sharedEnd.length);
+else source = source.replace('// Keep the existing Battle API', shared + '\n\n// Keep the existing Battle API');
 const block = [start, 'I18N.cM = ' + JSON.stringify(JSON.parse(read('en.json'))) + ';',
     'const JPX_CONFIG_MANAGER_CSS = ' + JSON.stringify(read('manager.css')) + ';',
-    read('library.js'), read('store.js'), read('manager.js'), read('bindings.js'), end].join('\n');
+    read('library.js'), read('store.js'), read('manager.js'), read('bindings.js'),
+    fs.readFileSync(path.join(root, 'src/shared-ui.js'), 'utf8'), end].join('\n');
 if (source.includes(start)) source = source.slice(0, source.indexOf(start)) + block + source.slice(source.indexOf(end) + end.length);
 else {
     const anchor = "window.addEventListener('storage', event => {\n    if (event.key !== cleanupKey";

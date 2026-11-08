@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.11
+// @version      2026.11.08.12
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -14,6 +14,8 @@
 // @grant        GM_getValue
 // @grant        GM_setValue
 // @grant        GM_deleteValue
+// @grant        GM_listValues
+// @grant        GM_addValueChangeListener
 // @connect      github.com
 // @connect      api.github.com
 // @connect      raw.githubusercontent.com
@@ -23,15 +25,252 @@
 // @downloadURL  https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js
 // ==/UserScript==
 
+// BEGIN JPX SHARED DATA
+// One userscript-owned data store for the primary and alt hosts. Native storage
+// remains untouched as a migration backup; transient battle logs stay local.
+function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.now, uuid = () => crypto.randomUUID() }) {
+    const root = 'jpx_shared_v1:', settingPrefix = root + 'setting:';
+    const enabled = !!gm && ['get', 'set', 'list', 'listen'].every(key => typeof gm[key] === 'function');
+    const setting = key => /^jpx_(cfgBattle(?:_isekai)?|cfgStats|userKeybinds(?:_isekai)?|configLibrary_v1|configApplySignal_v1|theme|stamina(?:_isekai)?|cleanupRequest)(?::.*)?$/.test(key);
+    const config = key => /^jpx_(cfgBattle|cfgStats|userKeybinds|configLibrary_v1)/.test(key);
+    const clone = value => JSON.parse(JSON.stringify(value));
+    const day = value => new Date(value).toISOString().slice(0, 10);
+    const worldOf = record => record.world === 'Isekai' ? 'Isekai' : 'Persistent';
+    const idOf = record => JSON.stringify([worldOf(record), record.timestamp]);
+    const encode = value => encodeURIComponent(value);
+    const resultKey = record => root + 'result:' + encode(idOf(record));
+    let lastStamp = 0;
+    const stamp = () => {
+        const observed = enabled ? Number(String(get(root + 'change')?.nonce || '').split(':')[0]) || 0 : 0;
+        lastStamp = Math.max(now(), lastStamp + 1, observed + 1);
+        return String(lastStamp).padStart(16, '0') + ':' + uuid();
+    };
+    const get = (key, fallback = null) => { const value = gm.get(key, fallback); if (value?.then) throw new Error('JPX shared data requires synchronous GM storage'); return value; };
+    const set = (key, value) => { const result = gm.set(key, value); if (result?.then) throw new Error('JPX shared data requires synchronous GM storage'); };
+    const keys = () => { const value = gm.list(); if (!Array.isArray(value)) throw new Error('JPX shared data cannot enumerate storage'); return value; };
+    const notify = key => { try { const nonce = stamp(); if (['records', 'migration'].includes(key)) set(root + 'recordsRevision', nonce); set(root + 'change', { key, nonce }); } catch (error) { console.warn('JPX shared data was saved; notification failed.', error); } };
+    const legacyKey = root + 'legacy:' + encode(origin);
+    const markerKey = root + 'settingsMigrated:' + encode(origin);
+    const recordMarker = root + 'recordsMigrated:' + encode(origin);
+    let migration = null, recordCache = null, recordsMigrated = false, archiveRevision = null;
+    const cache = new Map();
+    function baseline(world, date) {
+        const override = get(root + 'staminaBase:' + world + ':' + date);
+        if (override !== null) return override;
+        let value = 0;
+        for (const key of keys()) if (key.startsWith(root + 'legacyStamina:' + world + ':' + date + ':')) value = Math.max(value, get(key, 0));
+        return value;
+    }
+    function migrateSettings() {
+        if (get(markerKey)) return;
+        let snapshot = get(legacyKey);
+        if (!snapshot) {
+            snapshot = { origin, capturedAt: now(), values: {} };
+            for (let i = 0; i < native.length; i++) { const key = native.key(i); if (setting(key) || /^jpx_staminaRecords(?:_isekai)?$/.test(key)) snapshot.values[key] = native.getItem(key); }
+            set(legacyKey, snapshot);
+        }
+        for (const [key, raw] of Object.entries(get(root + 'reset') ? {} : snapshot.values)) {
+            if (key.startsWith('jpx_staminaRecords')) {
+                let value;
+                try {
+                    value = JSON.parse(raw);
+                } catch { /* Keep the original snapshot, including malformed legacy data. */ }
+                if (Number.isFinite(value?.lastUpdate) && Number.isFinite(value.staminaCost) && value.staminaCost >= 0)
+                    set(root + 'legacyStamina:' + (key.endsWith('_isekai') ? 'Isekai' : 'Persistent') + ':' + day(value.lastUpdate) + ':' + encode(origin), value.staminaCost);
+            } else if (key !== 'jpx_cleanupRequest' && get(settingPrefix + key) === null) set(settingPrefix + key, { value: raw, source: origin });
+        }
+        set(markerKey, true);
+        notify('migration');
+    }
+    function readSetting(key) {
+        if (!cache.has(key)) cache.set(key, get(settingPrefix + key)?.value ?? null);
+        return cache.get(key);
+    }
+    function writeSetting(key, value) {
+        const oldValue = readSetting(key);
+        if (oldValue === value) return;
+        // Retain concurrent/previous configuration revisions independently of the
+        // authoritative value. Never overwrite the other host's legacy snapshot.
+        if (config(key)) {
+            // Save the proposed value too: simultaneous edits from different
+            // domains cannot erase either user's version even without GM CAS.
+            const current = get(settingPrefix + key)?.value ?? null;
+            const revisionKey = root + 'revision:' + encode(key) + ':' + encode(origin);
+            if (current !== null) set(revisionKey + ':previous', { key, value: current, at: now(), source: origin });
+            set(revisionKey + ':proposed', { key, value, at: now(), source: origin });
+        }
+        set(settingPrefix + key, { value, source: origin });
+        cache.set(key, value);
+        notify(key);
+    }
+    const facade = {
+        getItem(key) { key = String(key); return enabled && setting(key) ? readSetting(key) : native.getItem(key); },
+        setItem(key, value) { key = String(key); value = String(value); if (enabled && setting(key)) writeSetting(key, value); else native.setItem(key, value); },
+        removeItem(key) { key = String(key); if (enabled && setting(key)) writeSetting(key, null); else native.removeItem(key); },
+        key(index) { return storageKeys()[index] ?? null; },
+        get length() { return storageKeys().length; }
+    };
+    function storageKeys() {
+        const all = new Set(Array.from({ length: native.length }, (_, i) => native.key(i)));
+        if (enabled) for (const key of keys()) if (key.startsWith(settingPrefix)) all.add(key.slice(settingPrefix.length));
+        return [...all].filter(key => facade.getItem(key) !== null);
+    }
+    const storage = enabled ? new Proxy(facade, {
+        get(target, key) { return key in target || typeof key !== 'string' ? Reflect.get(target, key) : target.getItem(key); },
+        ownKeys: storageKeys,
+        getOwnPropertyDescriptor(target, key) { return typeof key === 'string' && facade.getItem(key) !== null ? { configurable: true, enumerable: true, value: facade.getItem(key) } : undefined; }
+    }) : native;
+    let lastChange = null;
+    function refresh(change) {
+            if (!enabled || !change || lastChange === change.nonce) return;
+            lastChange = change.nonce;
+            lastStamp = Math.max(lastStamp, Number(String(change.nonce || '').split(':')[0]) || 0);
+            const nextRevision = get(root + 'recordsRevision');
+            const recordsChanged = nextRevision !== archiveRevision;
+            archiveRevision = nextRevision;
+            if (recordsChanged) recordCache = null;
+            // A notification is an invalidation, never the source of truth.
+            // Refresh every cached setting so concurrent notifications coalesce.
+            for (const [key, oldValue] of cache) {
+                const newValue = get(settingPrefix + key)?.value ?? null;
+                cache.set(key, newValue);
+                if (newValue !== oldValue) emit({ key, oldValue, newValue });
+            }
+            if (setting(change.key) && !cache.has(change.key)) {
+                const newValue = get(settingPrefix + change.key)?.value ?? null;
+                cache.set(change.key, newValue); emit({ key: change.key, oldValue: null, newValue });
+            }
+            if (recordsChanged) emit({ key: 'jpx_recordsChanged' });
+    }
+    if (enabled) {
+        migrateSettings();
+        archiveRevision = get(root + 'recordsRevision');
+        gm.listen(root + 'change', (_key, _old, change, remote) => { if (remote) refresh(change); });
+    }
+    async function ensureRecords(readLegacy) {
+        if (!enabled || recordsMigrated) return;
+        if (get(recordMarker)) { recordsMigrated = true; return; }
+        if (migration) return migration;
+        migration = (async () => {
+            const records = get(root + 'reset') ? [] : await readLegacy();
+            // A single committed value makes migration atomic and retryable.
+            set(root + 'legacyRecords:' + encode(origin), { origin, records });
+            set(recordMarker, true);
+            recordsMigrated = true;
+            recordCache = null; notify('records');
+        })();
+        try { await migration; } finally { migration = null; }
+    }
+    function operations() {
+        const currentRevision = get(root + 'recordsRevision');
+        if (currentRevision !== archiveRevision) { archiveRevision = currentRevision; recordCache = null; }
+        if (recordCache) return recordCache;
+        const result = { legacy: [], results: [], batches: [], baselines: new Map(), overrides: new Map() };
+        for (const key of keys()) {
+            if (key.startsWith(root + 'legacyRecords:')) result.legacy.push(get(key));
+            else if (key.startsWith(root + 'result:')) result.results.push(get(key));
+            else if (key.startsWith(root + 'batch:')) result.batches.push(get(key));
+            else if (key.startsWith(root + 'legacyStamina:')) {
+                const id = key.slice((root + 'legacyStamina:').length).split(':').slice(0, 2).join(':');
+                result.baselines.set(id, Math.max(result.baselines.get(id) || 0, get(key, 0)));
+            } else if (key.startsWith(root + 'staminaBase:')) result.overrides.set(key.slice((root + 'staminaBase:').length), get(key, 0));
+        }
+        result.legacy.sort((a, b) => a.origin.localeCompare(b.origin));
+        recordCache = result; return result;
+    }
+    function stamina(world, date, exclude) {
+        let used = baseline(world, date);
+        // Load only today's receipts, never all historical battle payloads.
+        for (const key of keys()) if (key.startsWith(root + 'day:' + world + ':' + date + ':')) {
+            const item = get(get(key));
+            if (item?.stamina?.date === date && item.id !== exclude) used += item.stamina.used;
+        }
+        return Math.round(used * 100) / 100;
+    }
+    function allRecords() {
+        const ops = operations(), map = new Map();
+        for (const batch of ops.legacy) for (const record of batch.records) { const id = idOf(record); if (!map.has(id)) map.set(id, clone(record)); }
+        const events = [...ops.results, ...ops.batches].sort((a, b) => a.order.localeCompare(b.order));
+        for (const event of events) {
+            if (event.record) map.set(event.id, clone(event.record));
+            else if (event.type === 'import') {
+                if (!event.merge) map.clear();
+                for (const record of event.records) { const id = idOf(record); if (!event.merge || !map.has(id)) map.set(id, clone(record)); }
+            } else if (event.type === 'delete') for (const id of event.ids) map.delete(id);
+        }
+        // Allocate daily free stamina once in deterministic completion order,
+        // including concurrent results. Archive deletion never erases usage.
+        const totals = new Map();
+        for (const event of [...ops.results].sort((a, b) => a.order.localeCompare(b.order))) {
+            const cost = event.stamina; if (!cost) continue;
+            const key = cost.world + ':' + cost.date;
+            const before = totals.has(key) ? totals.get(key) : ops.overrides.get(key) ?? ops.baselines.get(key) ?? 0;
+            const charged = Math.round(Math.max(0, cost.used - Math.max(0, cost.quota - before)) * 10) / 10;
+            totals.set(key, before + cost.used);
+            const record = map.get(event.id);
+            if (record && record.sharedResult === event.order) {
+                record.revenueRecords.staminaCost = charged;
+                record.revenueRecords.finalProfit = Math.round((record.revenueRecords.totalProfit - charged * cost.unitPrice) * 10) / 10;
+            }
+        }
+        return [...map.values()];
+    }
+    function saveResult(record, cost) {
+        const key = resultKey(record);
+        if (get(key)) return;
+        const order = stamp(), saved = clone(record); saved.sharedResult = order;
+        const event = { order, id: idOf(record), record: saved };
+        if (cost) event.stamina = clone(cost);
+        // Write the small lookup before the atomic receipt. An interrupted write
+        // leaves an inert pointer, never an unrecorded charge. Stable receipt IDs
+        // also deduplicate two hosts settling the same battle around midnight.
+        if (cost) set(root + 'day:' + cost.world + ':' + cost.date + ':' + encode(event.id), key);
+        set(key, event); recordCache = null; notify('records');
+    }
+    function batch(value) { const order = stamp(); set(root + 'batch:' + order, { ...value, order }); recordCache = null; notify('records'); }
+    function reset() {
+        // Retain migration markers so another host's old native database cannot
+        // resurrect data after the user explicitly resets the shared store.
+        for (const key of keys()) if (key.startsWith(root) && !key.includes('Migrated:') && key !== settingPrefix + 'jpx_cleanupRequest') gm.remove(key);
+        set(root + 'reset', stamp());
+        cache.clear(); recordCache = null; notify('records');
+    }
+    return { enabled, storage, idOf, ensureRecords, allRecords, saveResult, stamina,
+        refresh() { if (enabled) refresh(get(root + 'change')); },
+        importRecords: (records, merge) => batch({ type: 'import', records: clone(records), merge }),
+        deleteRecords: ids => batch({ type: 'delete', ids }), reset,
+        usage: world => ({ lastUpdate: now(), staminaCost: stamina(world, day(now())) }),
+        backups: () => enabled ? keys().filter(key => key.startsWith(root + 'legacy:')).map(key => get(key)) : [],
+        revisions: () => enabled ? keys().filter(key => key.startsWith(root + 'revision:')).map(key => get(key)) : [],
+        baseline, setBaseline(world, date, value) {
+            if (!Number.isFinite(value) || value < 0) throw new Error('Invalid stamina baseline');
+            set(root + 'staminaBase:' + world + ':' + date, value); recordCache = null; notify('records');
+        },
+        restore(snapshot) { for (const [key, value] of Object.entries(snapshot.values)) if (config(key)) { if (value === null) storage.removeItem(key); else storage.setItem(key, value); } }
+    };
+}
+
+// END JPX SHARED DATA
+
 // Keep the existing Battle API, confirmation handler and language pack in the page window.
 (function jpxMain(window) {
+const jpxShared = createJpxSharedData({ native: window.localStorage, origin: location.origin,
+    gm: typeof GM_getValue === 'function' && typeof GM_listValues === 'function' && typeof GM_addValueChangeListener === 'function'
+        ? { get: GM_getValue, set: GM_setValue, remove: GM_deleteValue, list: GM_listValues, listen: GM_addValueChangeListener } : null,
+    emit: change => queueMicrotask(() => onJpxSharedChange(change)) });
+// Only JPX accesses this facade. HVUT and translation retain their own storage.
+const localStorage = jpxShared.storage;
+if (jpxShared.enabled) {
+    window.addEventListener('focus', () => jpxShared.refresh());
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') jpxShared.refresh(); });
+}
 
 let cfgBattle = {};
 const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.11',
+    version: '2026.11.08.12',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -2734,7 +2973,7 @@ function toggleJpxTheme() {
 
 function requestJpxCleanup() {
     if (document.querySelector('#textlog, #riddlemaster')) { window.alert(t('cS.cleanupBattle')); return; }
-    if (!window.confirm(t('cS.cleanupScope') + '\n\n' + t('cS.cleanupConfirm'))) return;
+    if (!window.confirm(t('cS.cleanupScope') + (jpxShared.enabled ? '\n\n' + sharedText('resetScope') : '') + '\n\n' + t('cS.cleanupConfirm'))) return;
     const token = crypto.randomUUID();
     sessionStorage.setItem(cleanupOwnerKey, token);
     localStorage.setItem(cleanupKey, token);
@@ -2785,7 +3024,8 @@ function renderJpxCleanup(owner) {
         request.onerror = () => fail(request.error);
         request.onsuccess = () => {
             try {
-                for (const storage of [localStorage, sessionStorage]) {
+                if (jpxShared.enabled) jpxShared.reset();
+                for (const storage of [window.localStorage, localStorage, sessionStorage]) {
                     const keys = Array.from({ length: storage.length }, (_, index) => storage.key(index));
                     keys.filter(key => key?.startsWith(prefix) && key !== cleanupKey && key !== cleanupOwnerKey)
                         .forEach(key => storage.removeItem(key));
@@ -3142,6 +3382,14 @@ function initDo() {
     if (cleanupRequest || sessionStorage.getItem(cleanupHoldKey) || sessionStorage.getItem(cleanupOwnerKey)) {
         renderJpxCleanup(!!cleanupRequest && sessionStorage.getItem(cleanupOwnerKey) === cleanupRequest);
         return;
+    }
+    if (jpxShared.enabled && !document.querySelector('#textlog, #riddlemaster')) {
+        const migrate = () => ensureJpxSharedRecords().catch(error => {
+            console.error('JPX shared archive migration failed:', error);
+            jpxUtils.createToast(sharedText('fail'), 8000);
+        });
+        if (window.requestIdleCallback) window.requestIdleCallback(migrate, { timeout: 3000 });
+        else setTimeout(migrate, 0);
     }
     if (location.hash === '#jpx-records') {
         initDoI18n(() => renderBattleRecordsPage(window));
@@ -5386,7 +5634,11 @@ async function battleRecordPlayer(doFinal = true) {
     let staminaCost = getStaminaCost();
 
     //    Daily 24 and LongGoneBeforeDaylight 20
-    let staminaRecords = JSON.parse(localStorage.getItem(prefix + 'staminaRecords' + isekaiSuffix) || '{}');
+    const staminaWorld = isekaiSuffix ? 'Isekai' : 'Persistent';
+    const staminaId = jpxShared.idOf({ world: staminaWorld, timestamp });
+    let staminaRecords = jpxShared.enabled
+        ? { lastUpdate: Date.now(), staminaCost: jpxShared.stamina(staminaWorld, new Date().toISOString().slice(0, 10), staminaId) }
+        : JSON.parse(localStorage.getItem(prefix + 'staminaRecords' + isekaiSuffix) || '{}');
     let currentDate = new Date().toISOString().slice(0, 10);
     if (
         !staminaRecords?.lastUpdate ||
@@ -5402,7 +5654,7 @@ async function battleRecordPlayer(doFinal = true) {
         revenueSnapshot['staminaCost'] = 0;
     }
 
-    if (doFinal) {
+    if (doFinal && !jpxShared.enabled) {
         staminaRecords.staminaCost = Math.round((staminaRecords.staminaCost + staminaCost) * 10) / 10;
         localStorage.setItem(prefix + 'staminaRecords' + isekaiSuffix, JSON.stringify(staminaRecords));
     }
@@ -5432,6 +5684,8 @@ async function battleRecordPlayer(doFinal = true) {
         combatRecords: combatRecords,
         revenueRecords: revenueSnapshot,
     }
+    if (jpxShared.enabled && doFinal) battleRecords.sharedStamina = { world: staminaWorld, date: currentDate,
+        used: staminaCost, quota: 24 + (!isekaiSuffix ? cfgBattle.dailyStaminaQuotaPlus : 0), unitPrice: staminaUnitPrice };
 
     const renderRecords = () => {
         let battleLogEl = cfgBattle.recordBattleLog ? battleLogPlayer() : null;
@@ -5466,15 +5720,15 @@ async function battleRecordPlayer(doFinal = true) {
     };
 
     const skipResult = doFinal && cfgBattle.autoFinishBattle === true;
-    if (!skipResult) renderRecords();
+    if (!skipResult && (!jpxShared.enabled || !doFinal)) renderRecords();
     if (doFinal) {
         try {
             console.log(await storeBattleRecords(battleRecords));
         } catch (error) {
-            if (skipResult) renderRecords();
+            if (skipResult || jpxShared.enabled) renderRecords();
             throw error;
         }
-        if (skipResult && cfgBattle.autoFinishBattle !== true) renderRecords();
+        if (jpxShared.enabled && !skipResult || skipResult && cfgBattle.autoFinishBattle !== true) renderRecords();
     }
 
     cfgBattle.recordBattleLog && console.log(battleLogRecord);
@@ -5784,7 +6038,8 @@ function revenueRecordPlayer(revenueRecords, priceData) {
                 break;
             }
             case 'stamina': {
-                let staminaRecords = JSON.parse(localStorage.getItem(prefix + 'staminaRecords' + isekaiSuffix) || '{}');
+                let staminaRecords = jpxShared.enabled ? jpxShared.usage(isekaiSuffix ? 'Isekai' : 'Persistent')
+                    : JSON.parse(localStorage.getItem(prefix + 'staminaRecords' + isekaiSuffix) || '{}');
                 let staminaCost = staminaRecords?.staminaCost ?? 0;
                 let staminaQuotaTotal = 24 + (cfgBattle.dailyStaminaQuotaPlus && !isekaiSuffix ? cfgBattle.dailyStaminaQuotaPlus : 0);
                 let unitPrice = priceData['Energy Drink'] / 10;
@@ -6042,6 +6297,12 @@ function openDB() {
 }
 
 async function storeBattleRecords(battleRecords) {
+    if (jpxShared.enabled) {
+        await ensureJpxSharedRecords();
+        jpxShared.saveResult(battleRecords, battleRecords.sharedStamina);
+        window.dispatchEvent(new Event('jpx:records-changed'));
+        return 'Saved successfully';
+    }
     const db = await openDB();
     try {
         return await new Promise((resolve, reject) => {
@@ -6084,6 +6345,11 @@ function matchesJpxRecordsScope(record, scope) {
 
 async function previewJpxRecordsCleanup(value, signal) {
     const scope = normalizeJpxRecordsScope(value), keys = [];
+    if (jpxShared.enabled) {
+        await ensureJpxSharedRecords();
+        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+        return Object.freeze({ scope, keys: Object.freeze(jpxShared.allRecords().filter(record => matchesJpxRecordsScope(record, scope)).map(jpxShared.idOf)) });
+    }
     const db = await openDB();
     try {
         if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
@@ -6111,6 +6377,14 @@ async function deleteJpxRecordsCleanup(plan) {
     const scope = normalizeJpxRecordsScope(plan?.scope);
     if (!Array.isArray(plan?.keys)) throw new Error(t('cS.recordsRangeInvalid'));
     if (!plan.keys.length) return 0;
+    if (jpxShared.enabled) {
+        await ensureJpxSharedRecords();
+        const confirmed = new Set(plan.keys);
+        const ids = jpxShared.allRecords().filter(record => confirmed.has(jpxShared.idOf(record)) && matchesJpxRecordsScope(record, scope)).map(jpxShared.idOf);
+        if (ids.length) jpxShared.deleteRecords(ids);
+        window.dispatchEvent(new Event('jpx:records-changed'));
+        return ids.length;
+    }
     const db = await openDB();
     try {
         return await new Promise((resolve, reject) => {
@@ -6487,6 +6761,20 @@ function renderBattleRecordsPage(targetWindow = window) {
 
 async function getBattleRecordsRender(filters = getFilters(), signal) {
     if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+    if (jpxShared.enabled) {
+        await ensureJpxSharedRecords();
+        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+        let records = jpxShared.allRecords().filter(record => filterData(record, filters));
+        records.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
+        if (filters.aggregate) {
+            const days = new Map();
+            for (const record of records) { if (!days.has(record.date)) days.set(record.date, []); days.get(record.date).push(record); }
+            records = [...days].sort(([a], [b]) => b.localeCompare(a)).map(([date, rows]) => generateAggregate(rows, 'Total', date));
+        }
+        records = records.slice(0, filters.rows);
+        records.unshift(generateAggregate(records, 'Total'), generateAggregate(records, 'Average'));
+        return records;
+    }
     const db = await openDB();
     try {
         if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
@@ -6536,6 +6824,7 @@ async function getBattleRecordsRender(filters = getFilters(), signal) {
 }
 
 async function exportIndexedDB() {
+    if (jpxShared.enabled) { await ensureJpxSharedRecords(); return { dbName: 'jpx', version: 1, stores: { battleRecords: jpxShared.allRecords() } }; }
     const db = await openDB();
     const exportData = {
         dbName: db.name,
@@ -6558,6 +6847,11 @@ async function exportIndexedDB() {
 }
 
 async function importIndexedDB(jsonData, merge = true) {
+    if (jpxShared.enabled) {
+        validateStatsBackup(jsonData); await ensureJpxSharedRecords();
+        jpxShared.importRecords(jsonData.stores.battleRecords, merge);
+        window.dispatchEvent(new Event('jpx:records-changed')); return;
+    }
     const db = await openDB();
 
     for (const storeName in jsonData.stores) {
@@ -10271,7 +10565,8 @@ function validateStatsBackup(data) {
     if (!data || typeof data !== 'object' || Array.isArray(data) || !data.stores || typeof data.stores !== 'object' ||
         !Array.isArray(data.stores.battleRecords)) throw new Error(t('cS.invalidBackup'));
     for (const record of data.stores.battleRecords) {
-        if (!record || typeof record !== 'object' || !Number.isFinite(Number(record.timestamp))) throw new Error(t('cS.invalidBackup'));
+        if (!record || typeof record !== 'object' ||
+            !(typeof record.timestamp === 'number' && Number.isFinite(record.timestamp) || typeof record.timestamp === 'string' && record.timestamp.trim() && (Number.isFinite(Number(record.timestamp)) || /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(record.timestamp) && Number.isFinite(Date.parse(record.timestamp.replace(' ', 'T') + 'Z'))))) throw new Error(t('cS.invalidBackup'));
     }
 }
 
@@ -11015,6 +11310,7 @@ function renderStatsTab(parent) {
 }
 
 function renderStatsDataActions(parent) {
+    renderJpxSharedDataActions(parent);
     let buttonsUI = document.createElement('div');
     buttonsUI.className = 'jpx-stats-toolbar';
 
@@ -11083,7 +11379,7 @@ function renderStatsDataActions(parent) {
     cleanup.className = 'jpx-stats-cleanup';
     const title = document.createElement('strong'), description = document.createElement('p');
     title.textContent = t('cS.cleanup');
-    description.className = 'jpx-stats-help'; description.textContent = t('cS.cleanupScope');
+    description.className = 'jpx-stats-help'; description.textContent = t('cS.cleanupScope') + (jpxShared.enabled ? ' ' + sharedText('resetScope') : '');
     cleanup.append(title, description);
     jpxUtils.createButton(cleanup, { id: 'cleanup-data-button', text: t('cS.cleanupRun'), history: false, onClick: requestJpxCleanup });
     parent.append(cleanup);
@@ -14730,6 +15026,114 @@ function initJpxLoadoutBindings() {
         rememberJpxLoadout();
         if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().readState().bindings?.some(item => item.world === jpxConfigWorld())) ensureJpxModeDetection(true);
     } catch (error) { console.warn('JPX-PLUS loadout binding could not be read.', error); }
+}
+
+function sharedText(key) {
+    const zh = /导出|匯出|汇出/.test(t('cS.exportDB'));
+    const labels = {
+        title: ['Primary / alt shared data', '主站 / alt 共享数据'],
+        scope: ['The same userscript installation shares settings, archives and daily stamina between hosts. Persistent and Isekai remain separate. The first visited host supplies the initial settings; both old copies remain available below.', '同一份油猴脚本在主站和 alt 共用配置、战斗记录和当日体力账本；主世界与异世界分开。首次访问的站点提供初始配置，两站旧配置均保留在下方。'],
+        backup: ['Download pre-sharing settings', '下载共享前的配置备份'],
+        restore: ['Use this host’s old settings', '使用此站点的旧配置'],
+        confirm: ['Replace shared settings with this saved copy? Current settings are retained as recoverable revisions. Battle automation will pause.', '将此备份设为两站共用配置？现用配置会保留为可恢复版本，自动战斗会暂停。'],
+        history: ['Download previous shared settings', '下载共享配置历史版本'],
+        restoreRevision: ['Restore previous shared setting', '恢复共享配置历史项'],
+        quota: ['Stamina spent before sharing today (UTC)', '今天启用共享前已消耗体力（UTC）'],
+        quotaHelp: ['Old per-host totals cannot prove whether battles overlap. Migration uses the larger total, never blindly adds both. Correct the pre-sharing total here if necessary; new shared battles are added separately. Visit each host once to discover its old data.', '旧版两站只有体力汇总，无法判断是否包含重复战斗；迁移暂取较大值，不直接相加。可在这里修正启用共享前的总消耗，新版战斗另行逐场累计。两站各打开一次，才能发现各自的旧数据。'],
+        save: ['Save', '保存'], saved: ['Saved', '已保存'],
+        resetScope: ['This also deletes shared settings and battle records for BOTH primary and alt, in both worlds.', '此操作也会删除主站与 alt 共用的配置和战斗记录，覆盖两个世界。'],
+        fail: ['Shared data could not be saved. Original data was retained.', '共享数据保存失败，原数据已保留。']
+    };
+    return labels[key]?.[zh ? 1 : 0] || key;
+}
+
+async function ensureJpxSharedRecords() {
+    return jpxShared.ensureRecords(async () => {
+        const db = await openDB();
+        try {
+            return await new Promise((resolve, reject) => {
+                const tx = db.transaction('battleRecords', 'readonly');
+                const request = tx.objectStore('battleRecords').getAll();
+                tx.oncomplete = () => resolve(request.result);
+                tx.onabort = () => reject(tx.error || new Error('Legacy archive read failed'));
+            });
+        } finally { db.close(); }
+    });
+}
+
+function onJpxSharedChange(change) {
+    const key = change.key;
+    if (key === 'jpx_recordsChanged') { window.dispatchEvent(new Event('jpx:records-changed')); return; }
+    // Shared settings are authoritative, but never resume a running battle.
+    if (key === 'jpx_configLibrary_v1') {
+        // Saving/renaming an unused archive is not an instruction to apply it.
+        // A changed active selection is relevant even if the native rules match.
+        const before = jpxSelectedConfig?.mode || '';
+        refreshJpxSelectedConfig();
+        if (before !== (jpxSelectedConfig?.mode || '')) pauseForJpxConfigApplication();
+        window.dispatchEvent(new Event('jpx:config-library'));
+    }
+    if ([prefix + 'cfgBattle' + isekaiSuffix, prefix + 'userKeybinds' + isekaiSuffix].includes(key)) {
+        pauseForJpxConfigApplication();
+        if (key === prefix + 'cfgBattle' + isekaiSuffix) loadBattleConfig();
+        else userKeybinds = JSON.parse(localStorage.getItem(prefix + 'userKeybinds' + isekaiSuffix) || 'null') || { ...KEYBINDS };
+        refreshJpxSelectedConfig();
+        jpxPanelManager.refreshAppearance?.();
+        document.getElementById('settings-container')?.jpxConfigApplied?.(key.includes('userKeybinds') ? { shortcuts: userKeybinds } : cfgBattle, 'battle');
+    }
+    if (key === prefix + 'cfgStats') { loadStatsSettingsConfig(); document.getElementById('settings-container')?.jpxConfigApplied?.(cfgStats, 'stats'); window.dispatchEvent(new Event('jpx:records-changed')); }
+    // Existing theme, apply-signal and cleanup listeners can consume the same
+    // invalidation path; no native storage or third-party prototype is changed.
+    window.dispatchEvent(new StorageEvent('storage', { key, oldValue: change.oldValue ?? null,
+        newValue: change.newValue ?? null, storageArea: window.localStorage, url: location.href }));
+}
+
+function renderJpxSharedDataActions(parent) {
+    if (!jpxShared.enabled) return;
+    const section = document.createElement('section'); section.className = 'jpx-shared-data';
+    const style = document.createElement('style');
+    style.textContent = '.jpx-shared-data{max-width:100%;overflow-wrap:anywhere}.jpx-shared-data .jpx-stats-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}.jpx-shared-data label{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.jpx-shared-data select{max-width:100%;min-width:0}.jpx-shared-data input{width:100px;max-width:100%}';
+    const title = document.createElement('h3'); title.textContent = sharedText('title');
+    const help = document.createElement('p'); help.className = 'jpx-stats-help'; help.textContent = sharedText('scope');
+    section.append(style, title, help); parent.append(section);
+    const download = (name, value) => {
+        const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
+        const link = document.createElement('a'); link.href = url; link.download = name; link.click(); URL.revokeObjectURL(url);
+    };
+    const restore = snapshot => {
+        if (!window.confirm(sharedText('confirm'))) return;
+        pauseForJpxConfigApplication(); jpxShared.restore(snapshot);
+        onJpxSharedChange({ key: prefix + 'cfgBattle' + isekaiSuffix });
+        loadStatsSettingsConfig();
+        jpxUtils.createToast(sharedText('saved'));
+    };
+    for (const snapshot of jpxShared.backups()) {
+        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
+        const label = document.createElement('span'); label.textContent = snapshot.origin; row.append(label);
+        jpxUtils.createButton(row, { text: sharedText('backup'), history: false, onClick: () => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) });
+        jpxUtils.createButton(row, { text: sharedText('restore'), history: false, onClick: () => restore(snapshot) }); section.append(row);
+    }
+    const revisions = jpxShared.revisions();
+    if (revisions.length) {
+        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
+        const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
+        revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
+        row.append(select);
+        jpxUtils.createButton(row, { text: sharedText('history'), history: false, onClick: () => download('jpx-shared-settings-history.json', revisions) });
+        jpxUtils.createButton(row, { text: sharedText('restoreRevision'), history: false, onClick: () => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({ values: { [revision.key]: revision.value } }); } }); section.append(row);
+    }
+    const note = document.createElement('p'); note.className = 'jpx-stats-help'; note.textContent = sharedText('quotaHelp'); section.append(note);
+    const date = new Date().toISOString().slice(0, 10);
+    for (const world of ['Persistent', 'Isekai']) {
+        const row = document.createElement('div'); row.className = 'jpx-stats-toolbar';
+        const label = document.createElement('label'); label.textContent = t('sP.' + world) + ' · ' + sharedText('quota');
+        const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.step = '0.01'; input.value = jpxShared.baseline(world, date);
+        input.dataset.sharedStamina = world; label.append(input); row.append(label);
+        jpxUtils.createButton(row, { text: sharedText('save'), history: false, onClick: () => {
+            if (!input.value.trim() || !input.reportValidity()) return;
+            jpxShared.setBaseline(world, date, Number(input.value)); window.dispatchEvent(new Event('jpx:records-changed')); return sharedText('saved');
+        } }); section.append(row);
+    }
 }
 
 // END JPX CONFIG MANAGEMENT

@@ -21,6 +21,8 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 **Configs and Store are included in the main script.** No separate store installation is needed. Coming from JPX? See the short [upgrade guide](docs/upgrading.md).
 
+**Primary / alt shared data:** the same userscript installation shares settings, completed battle history and daily stamina across both hosts. Visit each host once outside combat after updating. Old copies and stamina migration controls are under **Stats → Data**. [Scope and migration details](docs/alt-shared-data-2026-11-08.md).
+
 ## Configs
 
 Keep several setups for the same style, battle and world. **My configs** handles saving, renaming, filtering and sorting; **Edit** opens a separate rule editor.
