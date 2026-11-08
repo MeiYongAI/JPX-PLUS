@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.19
+// @version      2026.11.08.20
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -270,7 +270,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.19',
+    version: '2026.11.08.20',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -6630,59 +6630,6 @@ function createStatsColumnControls(doc, onChange) {
     return { node:root, update, dismissToast };
 }
 
-// Hover must be armed by a released pointer, never by CSS hit testing alone.
-// Native scrollbar drags may skip DOM pointerdown; moves and scroll still
-// disarm the tooltip without capturing the pointer or changing scroll behavior.
-function bindJpxRecordsTooltips(region) {
-    const view = region.ownerDocument.defaultView, listeners = [];
-    let hovered = null, held = false, touch = null, suspended = false, keyboard = false;
-    const mark = cell => {
-        if (hovered === cell) return;
-        hovered?.removeAttribute('data-record-hover');
-        hovered = cell;
-        hovered?.setAttribute('data-record-hover', '');
-    };
-    const cellAt = target => {
-        const cell = target?.closest?.('td.tooltip');
-        return cell && region.contains(cell) ? cell : null;
-    };
-    const suspend = () => { mark(null); if (!suspended) { suspended = true; region.setAttribute('data-tooltip-suspended', ''); } };
-    const resume = () => { if (suspended) { suspended = false; region.removeAttribute('data-tooltip-suspended'); } };
-    const down = event => {
-        keyboard = false; held = event.buttons !== 0; suspend();
-        touch = event.pointerType === 'touch' ? { cell:cellAt(event.target), x:event.clientX, y:event.clientY, id:event.pointerId } : null;
-    };
-    const move = event => {
-        keyboard = false; held = event.buttons !== 0;
-        if (touch && Math.hypot(event.clientX-touch.x, event.clientY-touch.y) > 6) touch = null;
-        if (held || event.pointerType === 'touch') { suspend(); return; }
-        resume(); mark(cellAt(event.target));
-    };
-    const up = event => {
-        held = event.buttons !== 0;
-        if (!held) {
-            resume();
-            if (touch?.id === event.pointerId && touch.cell === cellAt(event.target)) mark(touch.cell);
-        }
-        touch = null;
-    };
-    const cancel = () => { keyboard = false; held = false; touch = null; suspend(); };
-    const listen = (target, name, handler, capture = false) => {
-        target.addEventListener(name, handler, { capture, passive:true });
-        listeners.push(() => target.removeEventListener(name, handler, capture));
-    };
-    listen(view, 'pointerdown', down, true);
-    listen(view, 'pointerup', up, true);
-    listen(view, 'pointercancel', cancel, true);
-    listen(view, 'blur', cancel);
-    listen(region, 'pointerover', move);
-    listen(region, 'pointermove', move);
-    listen(region, 'pointerout', event => { if (event.pointerType !== 'touch' && cellAt(event.relatedTarget) !== hovered) mark(null); });
-    listen(region, 'scroll', () => { touch = null; mark(null); if (!keyboard) suspend(); });
-    listen(region, 'keydown', () => { if (!held) { keyboard = true; mark(null); resume(); } });
-    return () => { listeners.forEach(remove => remove()); touch = null; mark(null); };
-}
-
 function renderBattleRecordsPage(targetWindow = window) {
     if (Object.keys(cfgStats).length < 1) {
         let storedCfgStats = {};
@@ -6810,7 +6757,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         #battleStatsTable th[data-column=date] { top: 0; z-index: 3; background: #e9d5ae; }
         .jpx-records-detail { display: block; border: 0; padding: 0; background: none; color: inherit; font: inherit; text-align: left; text-decoration: underline; text-decoration-color: #bda68e; text-underline-offset: 3px; }
         .jpx-records-detail:hover { color: #5c0d11; text-decoration-color: currentColor; }
-        .jpx-records-table-scroll:not([data-tooltip-suspended]) #battleStatsTable td.tooltip:is([data-record-hover], :focus-visible)::after { content: attr(content); position: absolute; z-index: 4; right: 0; bottom: calc(100% + 4px); width: max-content; max-width: min(420px, calc(100vw - 32px)); padding: 6px 8px; border: 1px solid #bda68e; border-radius: 2px; background: #f9f6ec; color: #5c0d11; box-shadow: 0 2px 4px #0002; font: 12px/1.5 Arial, Helvetica, sans-serif; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; pointer-events: none; }
+        #battleStatsTable td.tooltip:is(:hover, :focus-visible)::after { content: attr(content); position: absolute; z-index: 4; right: 0; bottom: calc(100% + 4px); width: max-content; max-width: min(420px, calc(100vw - 32px)); padding: 6px 8px; border: 1px solid #bda68e; border-radius: 2px; background: #f9f6ec; color: #5c0d11; box-shadow: 0 2px 4px #0002; font: 12px/1.5 Arial, Helvetica, sans-serif; white-space: pre-wrap; overflow-wrap: anywhere; text-align: left; pointer-events: none; }
         #battleStatsTable tr:nth-child(-n+2) td.tooltip::after { bottom: auto; top: calc(100% + 4px); }
         .jpx-records-message { margin: 0; padding: 28px 16px; text-align: center; color: #71634f; }
         @media(max-width:650px),(pointer:coarse) and (orientation:landscape) and (max-height:600px) {
@@ -6843,7 +6790,6 @@ function renderBattleRecordsPage(targetWindow = window) {
     tableRegion.tabIndex = 0;
     tableRegion.setAttribute('role', 'region');
     tableRegion.setAttribute('aria-label', t('sP.jpxStats'));
-    const disposeTooltips = bindJpxRecordsTooltips(tableRegion);
     const message = doc.createElement('p');
     message.className = 'jpx-records-message'; message.textContent = t('sP.loadingRecords');
     tableRegion.append(message);
@@ -6971,7 +6917,6 @@ function renderBattleRecordsPage(targetWindow = window) {
     sheet.append(sheetHeader,sheetBody);
     filterState.cleanup = () => {
         disposed = true; revision++; pendingRead?.abort();
-        disposeTooltips();
         targetWindow.removeEventListener('storage',recordsChanged);
         targetWindow.removeEventListener('jpx:records-changed',recordsChanged);
         columnControls.dismissToast(); imageActions.dispose(); if (sheet.open) sheet.close();
