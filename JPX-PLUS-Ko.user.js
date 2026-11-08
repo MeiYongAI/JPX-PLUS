@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.13
+// @version      2026.11.08.14
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1179,6 +1179,14 @@
         "reset": "규칙 초기화",
         "resetConfirm": "이 그룹의 규칙을 기본값으로 되돌릴까요?",
         "imported": "내 설정에 추가했어요.",
+        "importReading": "“${name}” 읽는 중…",
+        "importReady": "파일 검증을 마쳤어요. 이름과 월드를 확인한 뒤 저장을 눌러 내 설정에 추가하세요. 아직 저장하거나 적용하지 않았어요.",
+        "importDraft": "“${name}”을 현재 설정으로 불러왔어요. 아직 저장하지 않았어요. 변경 내용을 확인한 뒤 저장을 눌러 주세요.",
+        "importPaused": "자동 전투가 일시 정지되었어요.",
+        "importAdded": "“${name}”을 내 설정에 추가했어요. 아직 적용하지 않았어요. 사용하려면 해당 설정의 적용을 눌러 주세요.",
+        "importFailed": "가져오기를 완료하지 못했어요: “${name}”. ${reason}",
+        "importReadError": "파일을 읽지 못했어요. 파일을 다시 선택하고 재시도해 주세요.",
+        "importCancelled": "사용자 지정 코드를 허용하지 않아 가져오기를 취소했어요.",
         "savedFromStore": "내 설정에 저장했어요.",
         "sourceExists": "이미 저장한 설정이에요.",
         "updateCopy": "저장한 설정 업데이트",

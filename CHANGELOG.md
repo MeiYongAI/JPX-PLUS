@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026.11.08.14
+
+- **Visible configuration-import feedback.** Battle and stats settings show a persistent, dismissible result above the footer: reading, imported but not saved, or failure with a reason. Saving updates the result only after the write succeeds. Later edits, undo/redo and navigation clear stale confirmations.
+- **Separate reading, saving and applying.** My configs explains that a validated file still needs Save; after saving it confirms the named archive was added and still needs Apply. Importing never silently saves or applies a config.
+- **Recoverable errors and safe async results.** File-read, validation, size, unsupported-version, custom-code cancellation and storage errors are visible. Retrying is supported; obsolete reads and cancelled replacement selections cannot leave a misleading result.
+- **Accessible, themed layout.** Inline status/alert text and a keyboard-operable close button fit light/dark layouts from 320 to 1440 pixels. Long names are abbreviated with the full name in a tooltip. All five language packs are updated.
+- **Verification.** The full offline regression run passed 504/504 checks. After the final cancelled-picker cleanup, the import-feedback suite passed 16/16 checks. Build, embedded-source and language checks pass. Tests use isolated browser fixtures; installed userscript/live-account validation was not performed.
+
+### 简体中文
+
+- **导入结果持续可见**：战斗与统计设置导入后，在底部按钮上方显示读取中、导入成功但待保存、失败及原因；提示可手动关闭，不再只靠按钮短暂变字。保存成功后才显示“已保存”，后续编辑、撤销重做或切换页面会清除过期提示。
+- **明确下一步操作**：配置管理导入先提示校验通过、待保存；保存后明确“已成功导入我的配置，尚未应用”，需要使用时再点击“应用”。
+- **失败可重试**：覆盖读取失败、文件格式/版本/大小问题、自定义代码取消和存储失败；修正重新选文件又取消时的旧读取中提示。
+- **适配现有界面**：适配明暗主题、窄屏、键盘关闭及五种语言，超长文件名不会挤掉结果说明。全量离线回归 504 项通过，最终导入反馈专项 16 项通过；未操作真实账号或已安装脚本。
+
 ## 2026.11.08.13
 
 - **Hover starts auto battle without pausing it on re-entry.** When panel hover activation is enabled, leaving and entering again keeps an already-running battle automatic by default. An ignored hover does not consume the click toggle's throttle.

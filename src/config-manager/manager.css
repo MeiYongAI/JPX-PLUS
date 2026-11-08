@@ -92,6 +92,13 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}
 #settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}
 #settings-container .jpx-config-notice:empty{display:none}
+#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}
+#settings-container .jpx-import-feedback[hidden]{display:none}
+#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}
+#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}
+#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}
+#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}
+#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}
 #settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}
 #settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
 #settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}

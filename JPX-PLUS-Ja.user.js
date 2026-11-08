@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.13
+// @version      2026.11.08.14
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1179,6 +1179,14 @@
         "reset": "ルールをリセット",
         "resetConfirm": "このグループのルールを初期状態に戻しますか？",
         "imported": "マイ設定に追加しました。",
+        "importReading": "「${name}」を読み込み中…",
+        "importReady": "ファイルを検証しました。名前とワールドを確認し、「保存」でマイ設定に追加してください。まだ保存・適用されていません。",
+        "importDraft": "「${name}」を現在の設定に読み込みました。まだ保存されていません。変更を確認して「保存」を押してください。",
+        "importPaused": "自動戦闘を一時停止しました。",
+        "importAdded": "「${name}」をマイ設定に追加しました。まだ適用されていません。使用するには、その設定の「適用」を押してください。",
+        "importFailed": "インポートは完了していません：「${name}」。${reason}",
+        "importReadError": "ファイルを読み込めませんでした。選び直して再試行してください。",
+        "importCancelled": "カスタムコードが許可されなかったため、インポートをキャンセルしました。",
         "savedFromStore": "マイ設定に保存しました。",
         "sourceExists": "この設定は保存済みです。",
         "updateCopy": "保存済みの設定を更新",

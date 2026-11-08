@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.13
+// @version      2026.11.08.14
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1178,6 +1178,14 @@
         "reset": "重設規則",
         "resetConfirm": "將這組規則還原為預設規則？",
         "imported": "已加入我的設定。",
+        "importReading": "正在讀取「${name}」…",
+        "importReady": "檔案驗證通過。請確認名稱與世界，再按「儲存」加入我的設定；目前尚未儲存，也未套用。",
+        "importDraft": "「${name}」已匯入目前設定，尚未儲存。請檢查修改後按「儲存」。",
+        "importPaused": "自動戰鬥已暫停。",
+        "importAdded": "「${name}」已成功匯入我的設定，尚未套用。需要使用時，請按該設定的「套用」。",
+        "importFailed": "尚未完成匯入：「${name}」。${reason}",
+        "importReadError": "檔案讀取失敗，請重新選擇檔案後再試。",
+        "importCancelled": "已取消匯入，未授權使用自訂程式碼。",
         "savedFromStore": "已儲存到我的設定。",
         "sourceExists": "你已經儲存過這份設定。",
         "updateCopy": "更新已儲存的設定",

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.13
+// @version      2026.11.08.14
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1170,6 +1170,14 @@
         "reset": "重置规则",
         "resetConfirm": "将这组规则恢复为默认规则？",
         "imported": "已添加到我的配置。",
+        "importReading": "正在读取“${name}”…",
+        "importReady": "文件校验通过。请确认名称和世界，再点击“保存”加入我的配置；目前尚未保存，也未应用。",
+        "importDraft": "“${name}”已导入当前设置，尚未保存。请检查修改后点击“保存”。",
+        "importPaused": "自动战斗已暂停。",
+        "importAdded": "“${name}”已成功导入我的配置，尚未应用。需要使用时，请点击该配置的“应用”。",
+        "importFailed": "未完成导入：“${name}”。${reason}",
+        "importReadError": "文件读取失败，请重新选择文件后重试。",
+        "importCancelled": "已取消导入，未授权使用自定义代码。",
         "savedFromStore": "已保存到我的配置。",
         "sourceExists": "你已经保存过这份配置。",
         "updateCopy": "更新已保存的配置",

@@ -23,6 +23,7 @@ for (const isekai of [false, true]) for (const status of ['lobby', 'running', 'p
         const value = envelope('Import case', world);
         await choose(page, value);
         await page.locator('.jpx-config-form').waitFor();
+        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /File validated.*Nothing has been saved or applied yet/s);
         assert.deepEqual(await snapshot(page), before, 'reading and validating file makes no persistent or running changes');
         await save(page);
         const after = await snapshot(page);
@@ -30,6 +31,7 @@ for (const isekai of [false, true]) for (const status of ['lobby', 'running', 'p
         const saved = await page.evaluate(() => __imports.library().entries.find(entry => entry.envelope.title === 'Import case'));
         assert.deepEqual(saved.envelope.config, value.config);
         assert.equal(saved.envelope.world, world);
+        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /Imported.*Import case.*My configs.*Not applied yet/s);
     });
 }
 
@@ -42,7 +44,7 @@ for (const [name, value] of [
     const { page } = await fixture(browser, t, { status: 'running' });
     const before = await snapshot(page);
     await choose(page, value);
-    await page.waitForFunction(() => document.querySelector('.jpx-config-notice')?.textContent);
+    await page.locator('.jpx-config-manager .jpx-import-feedback[data-stage=error]').waitFor();
     assert.equal(await page.locator('.jpx-config-form').count(), 0);
     assert.deepEqual(await snapshot(page), before);
     assert.equal(await page.evaluate(() => ({}).polluted), undefined);
@@ -75,7 +77,7 @@ test('saving after a quota failure can retry without duplicate entries', async t
     const before = await snapshot(page);
     await choose(page, envelope());
     await page.evaluate(() => __imports.deny('jpx_configLibrary_v1'));
-    await save(page); await page.waitForFunction(() => document.querySelector('.jpx-config-notice')?.textContent);
+    await save(page); await page.locator('.jpx-config-manager .jpx-import-feedback[data-stage=error]').waitFor();
     assert.deepEqual(await snapshot(page), before);
     assert.equal(await page.locator('.jpx-config-form').count(), 1);
     await save(page);

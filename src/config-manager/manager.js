@@ -273,6 +273,29 @@ function chooseJpxBattleExport(parent, config) {
     });
 }
 
+// Import results stay visible until dismissed or the user leaves this view.
+// Keep them in the layout so long file names never cover actions or fields.
+function jpxImportDisplayName(name) {
+    const chars = Array.from(String(name));
+    return chars.length > 64 ? chars.slice(0, 40).join('') + '…' + chars.slice(-16).join('') : String(name);
+}
+
+function createJpxImportFeedback() {
+    ensureJpxConfigManagerStyle();
+    const node = document.createElement('div'); node.className = 'jpx-import-feedback'; node.hidden = true;
+    const message = document.createElement('p'); message.setAttribute('role', 'status'); message.setAttribute('aria-atomic', 'true');
+    const close = document.createElement('button'); close.type = 'button'; close.textContent = '×';
+    close.setAttribute('aria-label', t('cM.close')); close.title = t('cM.close');
+    const clear = () => { node.hidden = true; message.textContent = ''; delete node.dataset.stage; };
+    close.addEventListener('click', clear); node.append(message, close);
+    return { node, clear, show(text, stage = 'success', fullName = '') {
+        node.dataset.stage = stage; node.hidden = false;
+        message.title = fullName;
+        message.setAttribute('role', stage === 'error' ? 'alert' : 'status');
+        message.textContent = text;
+    } };
+}
+
 function renderJpxConfigManager(parent, hooks = {}) {
     ensureJpxConfigManagerStyle();
     const el = (tag, text, className) => {
@@ -287,6 +310,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         scroll: 0, editor: null, page: 'mine', storeDispose: null, history: null, disposed: false, dialog: null };
     const library = getJpxConfigLibrary();
     const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
+    const importFeedback = createJpxImportFeedback();
     let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
     let importGeneration = 0;
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
@@ -411,7 +435,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         cancelListDrag?.(); cancelListDrag = null;
         state.storeDispose?.(); state.storeDispose = null;
         root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
-        state.page = page; state.back = null; clearNotice(); root.replaceChildren();
+        state.page = page; state.back = null; clearNotice(); importFeedback.clear(); root.replaceChildren();
     }
     async function confirmAction(title, options, content, { validate, focus } = {}) {
         if (state.dialog) return null;
@@ -507,7 +531,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         actions.append(button(tr('new'), () => { captureList(); showSettings(); }, 'jpx-config-primary'), button(tr('import'), () => importFile()));
         toolbar.append(nav, queryBar, actions);
         body = el('div', undefined, 'jpx-config-body'); list = el('div', undefined, 'jpx-config-list'); body.append(list);
-        root.append(toolbar, header, notice, body); updateFilters(); renderList(); body.scrollTop = state.scroll;
+        root.append(toolbar, header, importFeedback.node, notice, body); updateFilters(); renderList(); body.scrollTop = state.scroll;
         cancelListDrag = bindStatsListDrag(list, moveEntry, { row: '.jpx-config-row', handle: '.jpx-config-grip', idKey: 'configId', scroller: body, previewClass: 'jpx-config-drag-preview',
             preview: row => [createSettingsIcon('grip'), el('strong', row.querySelector('.jpx-config-title strong').textContent)], afterMove: () => {} });
     }
@@ -719,20 +743,34 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     next.mode = nextMode; next.config[nextMode] = rules;
                 }
                 const saved = library.save(next, entry ? { id:entry.id, source:entry.source } : {});
-                if (!entry && !imported) chooseEditor(saved); else { showMine(); notify(tr(imported ? 'imported' : 'saved')); }
-            } catch (cause) { error(cause); }
+                if (!entry && !imported) chooseEditor(saved); else {
+                    showMine();
+                    if (imported) importFeedback.show(tr('importAdded', { name: jpxImportDisplayName(saved.envelope.title) }), 'success', saved.envelope.title);
+                    else notify(tr('saved'));
+                }
+            } catch (cause) {
+                if (imported) importFeedback.show(tr(cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'storageError'), 'error');
+                else error(cause);
+            }
         });
-        body.append(form); root.append(header,notice,body); title.focus();
+        body.append(form); root.append(header,importFeedback.node,notice,body);
+        if (imported) importFeedback.show(tr('importReady'), 'draft');
+        title.focus();
     }
     function importFile() {
         const generation = ++importGeneration;
+        if (importFeedback.node.dataset.stage === 'reading') importFeedback.clear();
         const current = () => generation === importGeneration && !state.disposed && root.isConnected && state.page === 'mine';
         const input = el('input'); input.type = 'file'; input.accept = '.txt,.json';
         input.addEventListener('change', async () => {
             const file = input.files[0]; if (!file || !current()) return;
+            clearNotice(); importFeedback.show(tr('importReading', { name: jpxImportDisplayName(file.name) }), 'reading', file.name);
+            let reading = false;
             try {
                 if (file.size > 2 * 1024 * 1024) throw Object.assign(new Error(), { code:'tooLarge' });
+                reading = true;
                 const fileText = await file.text();
+                reading = false;
                 // A newer selection, closed dialog or navigation owns the UI now.
                 if (!current()) return;
                 const value = JSON.parse(fileText, (key,value) => { if (['__proto__','prototype','constructor'].includes(key)) throw new Error('Invalid key'); return value; });
@@ -751,7 +789,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 const validator = createJpxConfigLibrary({ storage:{getItem:key=>temporary.get(key)||null,setItem:(key,value)=>temporary.set(key,value)}, key:'check', modes:BATTLE_MODES,battleVersion:defaultCfgBattle.battleVersion,statsVersion:defaultCfgStats.statsVersion });
                 envelope = validator.save(envelope).envelope;
                 captureList(); showSettings(null,envelope);
-            } catch(cause) { if (current()) error(cause.code?cause:Object.assign(cause,{code:'invalidConfig'})); }
+            } catch(cause) { if (current()) importFeedback.show(tr('importFailed', { name: jpxImportDisplayName(file.name),
+                reason: tr(reading ? 'importReadError' : cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'invalidConfig') }), 'error', file.name); }
         }); input.click();
     }
     function bindingLabel(binding, catalog = getJpxLoadoutCatalog(binding.world)) {
@@ -985,7 +1024,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             if(!state.back)return false;
             Promise.resolve().then(state.back).catch(error);return true;
         },
-        onHidden(){importGeneration++;cancelListDrag?.();clearNotice();state.dialog?.(null);state.storeDispose?.suspend?.();},
+        onHidden(){importGeneration++;cancelListDrag?.();clearNotice();importFeedback.clear();state.dialog?.(null);state.storeDispose?.suspend?.();},
         onShown(){state.storeDispose?.resume?.();changed();},
         dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();window.removeEventListener('beforeunload',beforeUnload);window.removeEventListener('storage',onStorage);window.removeEventListener('jpx:config-library',changed);window.removeEventListener('jpx:mode-detected',changed);window.removeEventListener('jpx:loadout-detected',changed);window.removeEventListener('jpx:legacy-config-error',migrationError);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
     };
