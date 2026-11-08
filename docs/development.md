@@ -30,6 +30,12 @@ npm test
 
 To use an installed Chrome instead of the downloaded test browser, set `PLAYWRIGHT_CHANNEL=chrome`. The optional `JPX_CONFIG_REPRO` environment variable lets the battle-import regression inspect a local reporter file without committing it.
 
+## Battle performance
+
+Run `npm run profile:battle` for isolated browser timings and DOM operation counts. Set `JPX_PERF_BASELINE` to an older local userscript to compare outputs and timing, and `JPX_PERF_OUTPUT` to save the JSON report. `JPX_PERF_SAMPLES` and `JPX_PERF_REPEATS` default to 80 and 3. The profiler defaults to installed Chrome; set `PLAYWRIGHT_CHANNEL` if needed.
+
+All requests are intercepted. Fixtures exercise both whole battle-DOM replacement and repeated updates to retained nodes, with 100-row and 2,000-row logs. Fixture construction is outside the measured update; browser layout counters also include construction and final rendering. Timing is diagnostic and never a pass/fail threshold. The deterministic regression suite checks node counts, freshness and output semantics. See [the audit and evidence boundaries](performance-2026-11-08.md).
+
 ## Screenshots and Pages
 
 ```sh

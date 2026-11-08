@@ -1,0 +1,730 @@
+{
+  "scope": "offline synthetic browser; fixture reset excluded from update timing; layout metrics include fixture reset",
+  "samples": 80,
+  "repeats": 3,
+  "currentSha256": "ca52631a4a0fbbde7f19f6047cd98bd28ac4d1a15b89c3d04d6df17ee87794ff",
+  "baselineSha256": "e741717200a54b2f83761499ad5ea431c9a8662112429ee5a9d9d38c6030984e",
+  "firstUpdateEquivalent": true,
+  "results": [
+    {
+      "repeat": 0,
+      "variant": "baseline",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.6000000238418579,
+      "p95Ms": 0.9000000953674316,
+      "meanMs": 0.6762500047683716,
+      "stagesMs": {
+        "battleRecorder": 0.07374999970197678,
+        "getActionCooldowns": 0.06624999791383743,
+        "getVitals": 0.1837500035762787,
+        "getMonsters": 0.09000000208616257,
+        "updateMonsterEffects": 0.04000000059604645,
+        "getEffectDuration": 0.013750000298023224,
+        "preRender": 0.4725000008940697
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 286,
+        "RecalcStyleCount": 286,
+        "LayoutDuration": 0.152954,
+        "RecalcStyleDuration": 0.101493
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "current",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.3999999761581421,
+      "p95Ms": 0.6000000238418579,
+      "meanMs": 0.4462499976158142,
+      "stagesMs": {
+        "battleRecorder": 0.04750000089406967,
+        "getActionCooldowns": 0.08625000715255737,
+        "getVitals": 0.016249999403953552,
+        "getMonsters": 0.09249999821186065,
+        "updateMonsterEffects": 0.017500001192092895,
+        "getEffectDuration": 0.02250000089406967,
+        "preRender": 0.3037500023841858
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 214,
+        "RecalcStyleCount": 214,
+        "LayoutDuration": 0.14037999999999998,
+        "RecalcStyleDuration": 0.097622
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "baseline",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1.3000000715255737,
+      "p95Ms": 3.200000047683716,
+      "meanMs": 1.4825000032782554,
+      "stagesMs": {
+        "battleRecorder": 0.05625,
+        "getActionCooldowns": 0.2725000038743019,
+        "getVitals": 0.32124999463558196,
+        "getMonsters": 0.1962500035762787,
+        "updateMonsterEffects": 0.057499998807907106,
+        "getEffectDuration": 0.14999999552965165,
+        "preRender": 1.2712500035762786
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 327,
+        "RecalcStyleCount": 327,
+        "LayoutDuration": 0.229407,
+        "RecalcStyleDuration": 0.140926
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "current",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1,
+      "p95Ms": 1.600000023841858,
+      "meanMs": 1.1275000005960465,
+      "stagesMs": {
+        "battleRecorder": 0.03375000059604645,
+        "getActionCooldowns": 0.2837500050663948,
+        "getVitals": 0.028749999403953553,
+        "getMonsters": 0.1924999937415123,
+        "updateMonsterEffects": 0.021250002086162567,
+        "getEffectDuration": 0.11875000447034836,
+        "preRender": 0.9237500041723251
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 226,
+        "RecalcStyleCount": 226,
+        "LayoutDuration": 0.22036899999999998,
+        "RecalcStyleDuration": 0.129686
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "baseline",
+      "scenario": "retained-with-overlays",
+      "medianMs": 3,
+      "p95Ms": 4.5,
+      "meanMs": 2.998749998211861,
+      "stagesMs": {
+        "battleRecorder": 0.08375000506639481,
+        "getActionCooldowns": 0.3574999988079071,
+        "getVitals": 0.9337499976158142,
+        "getMonsters": 0.6150000065565109,
+        "updateMonsterEffects": 0.05125000327825546,
+        "getEffectDuration": 0.24499999582767487,
+        "preRender": 2.4974999964237212
+      },
+      "nodes": 16436,
+      "operations": {
+        "created": 168,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 98
+      },
+      "metrics": {
+        "LayoutCount": 270,
+        "RecalcStyleCount": 270,
+        "LayoutDuration": 0.637792,
+        "RecalcStyleDuration": 0.103645
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "current",
+      "scenario": "retained-with-overlays",
+      "medianMs": 0.5,
+      "p95Ms": 0.7999999523162842,
+      "meanMs": 0.5150000005960464,
+      "stagesMs": {
+        "battleRecorder": 0.02499999850988388,
+        "getActionCooldowns": 0.07249999642372132,
+        "getVitals": 0.01625000238418579,
+        "getMonsters": 0.08000000566244125,
+        "updateMonsterEffects": 0.02124999761581421,
+        "getEffectDuration": 0.03250000476837158,
+        "preRender": 0.4312500014901161
+      },
+      "nodes": 639,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 54,
+        "RecalcStyleCount": 54,
+        "LayoutDuration": 0.006238,
+        "RecalcStyleDuration": 0.003068
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "baseline",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 3.3000000715255737,
+      "p95Ms": 7.200000047683716,
+      "meanMs": 3.836249993741512,
+      "stagesMs": {
+        "battleRecorder": 0.5299999997019768,
+        "getActionCooldowns": 0.28250000029802325,
+        "getVitals": 1.1687500044703483,
+        "getMonsters": 0.2124999925494194,
+        "updateMonsterEffects": 0.44624999910593033,
+        "getEffectDuration": 0.13625000268220902,
+        "preRender": 2.5087499991059303
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 287,
+        "RecalcStyleCount": 287,
+        "LayoutDuration": 1.288657,
+        "RecalcStyleDuration": 0.590623
+      }
+    },
+    {
+      "repeat": 0,
+      "variant": "current",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 1.899999976158142,
+      "p95Ms": 5.600000023841858,
+      "meanMs": 2.4174999982118606,
+      "stagesMs": {
+        "battleRecorder": 0.04125000387430191,
+        "getActionCooldowns": 0.3087499961256981,
+        "getVitals": 0.040000003576278684,
+        "getMonsters": 0.22374999821186065,
+        "updateMonsterEffects": 0.02750000059604645,
+        "getEffectDuration": 0.12249999940395355,
+        "preRender": 0.9949999943375587
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 190,
+        "RecalcStyleCount": 190,
+        "LayoutDuration": 1.291085,
+        "RecalcStyleDuration": 0.595949
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "current",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.40000009536743164,
+      "p95Ms": 0.6000000238418579,
+      "meanMs": 0.46499999761581423,
+      "stagesMs": {
+        "battleRecorder": 0.04374999850988388,
+        "getActionCooldowns": 0.08500000983476638,
+        "getVitals": 0.02124999761581421,
+        "getMonsters": 0.08125000447034836,
+        "updateMonsterEffects": 0.02750000059604645,
+        "getEffectDuration": 0.02124999612569809,
+        "preRender": 0.31250001192092897
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 208,
+        "RecalcStyleCount": 208,
+        "LayoutDuration": 0.145934,
+        "RecalcStyleDuration": 0.100123
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "baseline",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.6000000238418579,
+      "p95Ms": 0.7999999523162842,
+      "meanMs": 0.5974999994039536,
+      "stagesMs": {
+        "battleRecorder": 0.06875000298023223,
+        "getActionCooldowns": 0.09375000149011611,
+        "getVitals": 0.155000002682209,
+        "getMonsters": 0.08749999701976777,
+        "updateMonsterEffects": 0.05250000357627869,
+        "getEffectDuration": 0.014999999105930329,
+        "preRender": 0.4649999961256981
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 282,
+        "RecalcStyleCount": 282,
+        "LayoutDuration": 0.14016099999999998,
+        "RecalcStyleDuration": 0.09655999999999999
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "current",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1.0999999046325684,
+      "p95Ms": 3.100000023841858,
+      "meanMs": 1.2512499958276748,
+      "stagesMs": {
+        "battleRecorder": 0.033750002086162564,
+        "getActionCooldowns": 0.39124999940395355,
+        "getVitals": 0.02124999910593033,
+        "getMonsters": 0.19124999940395354,
+        "updateMonsterEffects": 0.07125000506639481,
+        "getEffectDuration": 0.12750000655651092,
+        "preRender": 1.0837499916553497
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 216,
+        "RecalcStyleCount": 216,
+        "LayoutDuration": 0.22434700000000002,
+        "RecalcStyleDuration": 0.137819
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "baseline",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1.3000000715255737,
+      "p95Ms": 3.299999952316284,
+      "meanMs": 1.5099999830126762,
+      "stagesMs": {
+        "battleRecorder": 0.07500000298023224,
+        "getActionCooldowns": 0.34374997913837435,
+        "getVitals": 0.3075000151991844,
+        "getMonsters": 0.20124998837709426,
+        "updateMonsterEffects": 0.05375000536441803,
+        "getEffectDuration": 0.12125001102685928,
+        "preRender": 1.304999977350235
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 318,
+        "RecalcStyleCount": 318,
+        "LayoutDuration": 0.22985,
+        "RecalcStyleDuration": 0.143087
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "current",
+      "scenario": "retained-with-overlays",
+      "medianMs": 0.5,
+      "p95Ms": 0.8999999761581421,
+      "meanMs": 0.5374999985098838,
+      "stagesMs": {
+        "battleRecorder": 0.03874999731779098,
+        "getActionCooldowns": 0.07125000357627868,
+        "getVitals": 0.01624999791383743,
+        "getMonsters": 0.08875000476837158,
+        "updateMonsterEffects": 0.01624999791383743,
+        "getEffectDuration": 0.021250002086162567,
+        "preRender": 0.4350000023841858
+      },
+      "nodes": 639,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 64,
+        "RecalcStyleCount": 64,
+        "LayoutDuration": 0.007266000000000001,
+        "RecalcStyleDuration": 0.003103
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "baseline",
+      "scenario": "retained-with-overlays",
+      "medianMs": 3,
+      "p95Ms": 4.399999976158142,
+      "meanMs": 2.9874999970197678,
+      "stagesMs": {
+        "battleRecorder": 0.07375000268220902,
+        "getActionCooldowns": 0.3287499964237213,
+        "getVitals": 0.9412500068545342,
+        "getMonsters": 0.6087499916553497,
+        "updateMonsterEffects": 0.052500000596046446,
+        "getEffectDuration": 0.2512500032782555,
+        "preRender": 2.4874999940395357
+      },
+      "nodes": 16436,
+      "operations": {
+        "created": 168,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 98
+      },
+      "metrics": {
+        "LayoutCount": 271,
+        "RecalcStyleCount": 271,
+        "LayoutDuration": 0.633547,
+        "RecalcStyleDuration": 0.107311
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "current",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 1.899999976158142,
+      "p95Ms": 5.899999976158142,
+      "meanMs": 2.485000003874302,
+      "stagesMs": {
+        "battleRecorder": 0.04375,
+        "getActionCooldowns": 0.3162500083446503,
+        "getVitals": 0.05,
+        "getMonsters": 0.21749999076128007,
+        "updateMonsterEffects": 0.02500000149011612,
+        "getEffectDuration": 0.13250000327825545,
+        "preRender": 1.0225000023841857
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 191,
+        "RecalcStyleCount": 191,
+        "LayoutDuration": 1.3473339999999998,
+        "RecalcStyleDuration": 0.616993
+      }
+    },
+    {
+      "repeat": 1,
+      "variant": "baseline",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 3.5,
+      "p95Ms": 7.300000071525574,
+      "meanMs": 4.067499995231628,
+      "stagesMs": {
+        "battleRecorder": 0.5375000059604644,
+        "getActionCooldowns": 0.2862499922513962,
+        "getVitals": 1.2462499991059304,
+        "getMonsters": 0.20750000476837158,
+        "updateMonsterEffects": 0.4774999931454659,
+        "getEffectDuration": 0.1287500098347664,
+        "preRender": 2.6299999922513964
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 287,
+        "RecalcStyleCount": 287,
+        "LayoutDuration": 1.329905,
+        "RecalcStyleDuration": 0.608273
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "baseline",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.6000000238418579,
+      "p95Ms": 0.7999999523162842,
+      "meanMs": 0.5912499979138375,
+      "stagesMs": {
+        "battleRecorder": 0.05750000178813934,
+        "getActionCooldowns": 0.08375000357627868,
+        "getVitals": 0.15375000834465027,
+        "getMonsters": 0.07999999523162842,
+        "updateMonsterEffects": 0.057499994337558744,
+        "getEffectDuration": 0.009999999403953552,
+        "preRender": 0.4649999991059303
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 291,
+        "RecalcStyleCount": 291,
+        "LayoutDuration": 0.147814,
+        "RecalcStyleDuration": 0.10039200000000001
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "current",
+      "scenario": "replace-no-overlays",
+      "medianMs": 0.40000009536743164,
+      "p95Ms": 0.7000000476837158,
+      "meanMs": 0.4675000041723251,
+      "stagesMs": {
+        "battleRecorder": 0.04124999791383743,
+        "getActionCooldowns": 0.0899999976158142,
+        "getVitals": 0.026250000298023223,
+        "getMonsters": 0.08874999433755874,
+        "updateMonsterEffects": 0.026250000298023223,
+        "getEffectDuration": 0.01875,
+        "preRender": 0.32124999910593033
+      },
+      "nodes": 471,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 207,
+        "RecalcStyleCount": 207,
+        "LayoutDuration": 0.15401,
+        "RecalcStyleDuration": 0.104733
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "baseline",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1.5,
+      "p95Ms": 2,
+      "meanMs": 1.5662499904632567,
+      "stagesMs": {
+        "battleRecorder": 0.08124999850988388,
+        "getActionCooldowns": 0.30249999910593034,
+        "getVitals": 0.34499999433755874,
+        "getMonsters": 0.22375000715255738,
+        "updateMonsterEffects": 0.05375000089406967,
+        "getEffectDuration": 0.17374999672174454,
+        "preRender": 1.3887499958276748
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 312,
+        "RecalcStyleCount": 312,
+        "LayoutDuration": 0.257118,
+        "RecalcStyleDuration": 0.161231
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "current",
+      "scenario": "replace-with-overlays",
+      "medianMs": 1.100000023841858,
+      "p95Ms": 3.799999952316284,
+      "meanMs": 1.3412500023841858,
+      "stagesMs": {
+        "battleRecorder": 0.041250000894069674,
+        "getActionCooldowns": 0.36250000149011613,
+        "getVitals": 0.018750004470348358,
+        "getMonsters": 0.21874999403953552,
+        "updateMonsterEffects": 0.07250000238418579,
+        "getEffectDuration": 0.1275000035762787,
+        "preRender": 1.0887500002980233
+      },
+      "nodes": 641,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 218,
+        "RecalcStyleCount": 218,
+        "LayoutDuration": 0.244856,
+        "RecalcStyleDuration": 0.145722
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "baseline",
+      "scenario": "retained-with-overlays",
+      "medianMs": 3.100000023841858,
+      "p95Ms": 4.100000023841858,
+      "meanMs": 3.046250011026859,
+      "stagesMs": {
+        "battleRecorder": 0.07875000089406967,
+        "getActionCooldowns": 0.35375000685453417,
+        "getVitals": 0.9599999964237214,
+        "getMonsters": 0.6312499985098838,
+        "updateMonsterEffects": 0.04750000089406967,
+        "getEffectDuration": 0.24875000417232512,
+        "preRender": 2.57000000923872
+      },
+      "nodes": 16436,
+      "operations": {
+        "created": 168,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 98
+      },
+      "metrics": {
+        "LayoutCount": 269,
+        "RecalcStyleCount": 269,
+        "LayoutDuration": 0.6340049999999999,
+        "RecalcStyleDuration": 0.104256
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "current",
+      "scenario": "retained-with-overlays",
+      "medianMs": 0.5,
+      "p95Ms": 0.7000000476837158,
+      "meanMs": 0.5349999994039536,
+      "stagesMs": {
+        "battleRecorder": 0.03750000298023224,
+        "getActionCooldowns": 0.07624999582767486,
+        "getVitals": 0.017499999701976778,
+        "getMonsters": 0.08500000834465027,
+        "updateMonsterEffects": 0.017499996721744536,
+        "getEffectDuration": 0.02749999314546585,
+        "preRender": 0.4424999997019768
+      },
+      "nodes": 639,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 53,
+        "RecalcStyleCount": 53,
+        "LayoutDuration": 0.006561,
+        "RecalcStyleDuration": 0.003001
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "baseline",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 3.5,
+      "p95Ms": 7.300000071525574,
+      "meanMs": 4.108750008046627,
+      "stagesMs": {
+        "battleRecorder": 0.5437499985098839,
+        "getActionCooldowns": 0.32499999850988387,
+        "getVitals": 1.2374999970197678,
+        "getMonsters": 0.22625000178813934,
+        "updateMonsterEffects": 0.4800000056624413,
+        "getEffectDuration": 0.14124999195337296,
+        "preRender": 2.691250003874302
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 171,
+        "layoutReads": 3,
+        "logReads": 1,
+        "mutations": 101
+      },
+      "metrics": {
+        "LayoutCount": 287,
+        "RecalcStyleCount": 287,
+        "LayoutDuration": 1.350645,
+        "RecalcStyleDuration": 0.626812
+      }
+    },
+    {
+      "repeat": 2,
+      "variant": "current",
+      "scenario": "long-log-with-overlays",
+      "medianMs": 1.899999976158142,
+      "p95Ms": 6.100000023841858,
+      "meanMs": 2.6825000032782556,
+      "stagesMs": {
+        "battleRecorder": 0.03750000149011612,
+        "getActionCooldowns": 0.31499999910593035,
+        "getVitals": 0.0362499937415123,
+        "getMonsters": 0.21000001430511475,
+        "updateMonsterEffects": 0.03249999582767486,
+        "getEffectDuration": 0.126249997317791,
+        "preRender": 1.0062500044703484
+      },
+      "nodes": 4441,
+      "operations": {
+        "created": 0,
+        "layoutReads": 0,
+        "logReads": 1,
+        "mutations": 0
+      },
+      "metrics": {
+        "LayoutCount": 191,
+        "RecalcStyleCount": 191,
+        "LayoutDuration": 1.382665,
+        "RecalcStyleDuration": 0.618243
+      }
+    }
+  ]
+}

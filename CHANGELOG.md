@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.08.6
+
+- **Reduce battle update work.** Read plain vital counters without forcing rendered-text layout, share one normalized log snapshot within an update, and leave existing log separators untouched. Addon-decorated vital counters retain rendered-text parsing.
+- **Reuse battle decorations.** Extended quickbar slots, cooldowns, effect durations, monster metadata and HP labels update existing nodes. Repeated renders no longer accumulate copies. New AJAX elements receive fresh state; missing/available actions and changed settings refresh their current handlers and appearance.
+- **Preserve combat inputs.** Exclude JPX metadata from monster names and its synthetic hidden-effect icons from native effect counting. Verify countdown changes, expiry, translation load order and the prior AJAX-hover fix with offline regression tests.
+- **Reproducible profiling.** Add an isolated browser profiler and operation-count tests. Measurements and limitations are documented in [the performance audit](docs/performance-2026-11-08.md); they are not live-game throughput claims.
+
+### 简体中文
+
+- **减少战斗更新开销**：纯数字血量／魔力／灵力采用不触发布局的读取方式；同一次更新复用日志快照，已有分隔线不再重写；其他脚本加入子元素的数值仍按可见文本读取。
+- **复用战斗提示节点**：扩展快捷栏、冷却、状态倒计时、怪物信息与血量标签改为就地更新，避免重复渲染不断追加。AJAX 新节点重新建立状态，技能可用性、点击处理和设置变更仍实时更新。
+- **保持战斗判断准确**：读取名称时排除 JPX 添加的怪物信息，原生状态计数排除补出的隐藏效果；覆盖倒计时、失效清理、汉化加载顺序与上一版 AJAX 悬停回归。
+- **可复跑性能记录**：新增隔离浏览器诊断及确定性操作次数检查，结果与边界见[性能排查记录](docs/performance-2026-11-08.md)，不将离线数据当作真实游戏 TPS。
+
 ## 2026.11.08.5
 
 - **Resume inside the panel after AJAX.** With hover-to-toggle enabled, the first deliberate mouse movement in the status area can resume a newly loaded round without leaving and reentering the floating panel. Supports both battle-only replacement and full-body fallback.

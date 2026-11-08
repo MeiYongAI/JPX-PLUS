@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.5
+// @version      2026.11.08.6
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -31,7 +31,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.5',
+    version: '2026.11.08.6',
     features: Object.freeze({ configManagement: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
@@ -1604,6 +1604,26 @@ jpxUtils();
 
 let doInitDoBattle = false;
 let isActiveBattle = false;
+// Weak keys release decorations when the game replaces an element on AJAX updates.
+const jpxBattleDecorations = new WeakMap();
+const jpxHiddenEffectImages = new WeakSet();
+
+function getBattleDecoration(owner, key, create) {
+    let parts = jpxBattleDecorations.get(owner);
+    if (!parts) jpxBattleDecorations.set(owner, parts = {});
+    return parts[key] ??= create();
+}
+
+function setBattleText(node, value) {
+    const text = String(value);
+    if (node.textContent !== text) node.textContent = text;
+}
+
+function setBattleAttribute(node, name, value) {
+    if (value == null) {
+        if (node.hasAttribute(name)) node.removeAttribute(name);
+    } else if (node.getAttribute(name) !== String(value)) node.setAttribute(name, String(value));
+}
 
 let readyNext = 0;
 let lastActionTimestamp = Date.now();
@@ -3415,10 +3435,13 @@ function preProcessLog() {
 
     let td = Array.from(log.getElementsByTagName('td'));
     for (let i = 0; i < td.length; i++) {
-        if (td[i].className == 'tls') td[i].innerHTML = '<hr>';
+        if (td[i].className == 'tls' && td[i].innerHTML !== '<hr>') td[i].innerHTML = '<hr>';
     }
 
-    battleRecorder();
+    // Share this update's snapshot only within this synchronous pass; AJAX and
+    // later log mutations must always be read again on the next update.
+    const turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+    battleRecorder(turnLog);
 
     let btcp = document.querySelector('#btcp');
     let finishBattle = document.querySelector('img[src$="finishbattle.png"]');
@@ -3434,10 +3457,10 @@ function preProcessLog() {
         }
     }
 
-    preRender();
+    preRender(turnLog);
 }
 
-function preRender() {
+function preRender(turnLog) {
     ({ spellCooldowns, itemCooldowns } = getActionCooldowns(true));
     vitals = getVitals();
     spiritStatus = getSpiritStatus();
@@ -3447,7 +3470,8 @@ function preRender() {
     let { monsters, activeMonsters } = monstersObj;
 
     //Monster Effects
-    updateMonsterEffects();
+    if (arguments.length) updateMonsterEffects(turnLog);
+    else updateMonsterEffects();
 
     //Player Effects and Render All
     playerEffectsObj = getEffectDuration(cfgBattle.showDurations);
@@ -3458,12 +3482,18 @@ function preRender() {
             if (!monsterData[i]) break;
             if (monsters[i].hpPercentage) {
                 let maxHP = monsterData[i].maxHP;
-                let hpDiv = document.createElement('div');
-                hpDiv.className = 'monster-hp';
-                hpDiv.innerText = 'HP: ' + Math.round(maxHP * monsters[i].hpPercentage).toLocaleString() + ' / ' + maxHP.toLocaleString();
-                monsters[i].monster_btm1.appendChild(hpDiv);
+                const owner = monsters[i].monster_btm1;
+                const hpDiv = getBattleDecoration(owner, 'hp', () => {
+                    const node = document.createElement('div'); node.className = 'monster-hp'; return node;
+                });
+                setBattleText(hpDiv, 'HP: ' + Math.round(maxHP * monsters[i].hpPercentage).toLocaleString() + ' / ' + maxHP.toLocaleString());
+                if (hpDiv.parentNode !== owner) owner.appendChild(hpDiv);
+            } else {
+                jpxBattleDecorations.get(monsters[i].monster_btm1)?.hp?.remove();
             }
         }
+    } else {
+        for (const monster of monsters) jpxBattleDecorations.get(monster.monster_btm1)?.hp?.remove();
     }
 
     jpxPanelManager.updateContent('battle');
@@ -3888,60 +3918,70 @@ function getActionCooldowns(render = false) {
 
     function renderQuickbar() {
         let quickbar = document.querySelector('#quickbar');
+        if (!quickbar) return;
+        const state = getBattleDecoration(quickbar, 'extensions', () => ({ slots: [] }));
 
-        for (const name of cfgBattle.quickbarExtend) {
-            let quickDiv = document.createElement('div');
-            quickDiv.id = `extend_${name}`;
-            quickDiv.className = 'btqs extend';
+        cfgBattle.quickbarExtend.forEach((name, index) => {
+            let slot = state.slots[index];
+            if (!slot || slot.name !== name) {
+                slot?.root.remove();
+                const root = document.createElement('div'), inner = document.createElement('img'), outer = document.createElement('img');
+                root.id = 'extend_' + name; root.className = 'btqs extend';
+                inner.className = 'btqi'; outer.className = 'btqb'; outer.src = '/y/ab/b.png';
+                root.appendChild(outer);
+                state.slots[index] = slot = { name, root, inner, outer };
+            }
+            const quickDiv = slot.root, innerImg = slot.inner;
 
             if (quickbarObj[name]) {
-                let innerImg = document.createElement('img');
-
                 let tooltip = quickbarObj[name].tooltip;
-                quickDiv.setAttribute('onmouseover', tooltip ? tooltip : '');
+                setBattleAttribute(quickDiv, 'onmouseover', tooltip || '');
 
                 let onClick = quickbarObj[name].onClick;
-                if (onClick) quickDiv.setAttribute('onclick', onClick);
-                else innerImg.style.opacity = 0.5;
+                setBattleAttribute(quickDiv, 'onclick', onClick || null);
+                const opacity = onClick ? '' : '0.5';
+                if (innerImg.style.opacity !== opacity) innerImg.style.opacity = opacity;
 
                 let spellIconID = tooltip?.match(regExp.spellInfo)?.[2];
-                if (spellIconID) {
-                    innerImg.src = '/y/a/' + spellIconID + '.png';
-                } else {
-                    innerImg.src = itemSrc.find(rule => rule.keys.some(key => {
+                const src = spellIconID ? '/y/a/' + spellIconID + '.png'
+                    : itemSrc.find(rule => rule.keys.some(key => {
                         if (name === 'ikey_p') return quickbarObj[name].name.includes(key);
                         return name.includes(key);
                     }))?.src ?? '/y/e/channeling.png';
-                }
-
-                innerImg.className = 'btqi';
-                quickDiv.appendChild(innerImg);
+                setBattleAttribute(innerImg, 'src', src);
+                if (innerImg.parentNode !== quickDiv) quickDiv.insertBefore(innerImg, slot.outer);
+            } else {
+                setBattleAttribute(quickDiv, 'onmouseover', null);
+                setBattleAttribute(quickDiv, 'onclick', null);
+                innerImg.remove();
             }
-
-            let outerImg = document.createElement('img');
-            outerImg.src = '/y/ab/b.png';
-            outerImg.className = 'btqb';
-            quickDiv.appendChild(outerImg);
-            quickbar.appendChild(quickDiv);
+        });
+        for (const slot of state.slots.splice(cfgBattle.quickbarExtend.length)) slot.root.remove();
+        // Keep configured order and native slots; unchanged DOM needs no moves.
+        let next = null;
+        for (let i = state.slots.length - 1; i >= 0; i--) {
+            const root = state.slots[i].root;
+            if (root.parentNode !== quickbar || root.nextSibling !== next) quickbar.insertBefore(root, next);
+            next = root;
         }
 
         showCooldowns(quickbar);
     }
 
     function showCooldowns(quickbar) {
-        if (!cfgBattle.showCooldowns) return;
-
-        for (const quick of quickbar.querySelectorAll('.btqs[onmouseover]:not([onclick])')) {
+        for (const quick of quickbar.querySelectorAll('.btqs')) {
             let name = getQuickName(quick);
-            if (!name) continue;
+            let cooldown = quickbarObj[name]?.cooldown;
+            if (!cfgBattle.showCooldowns || quick.hasAttribute('onclick') || !(cooldown > 0)) {
+                jpxBattleDecorations.get(quick)?.cooldown?.remove();
+                continue;
+            }
 
-            let cooldown = quickbarObj[name].cooldown;
-            if (!(cooldown > 0)) continue;
-
-            let cooldownDiv = document.createElement('div');
-            cooldownDiv.className = 'cooldown';
-            cooldownDiv.textContent = cooldown;
-            quick.appendChild(cooldownDiv);
+            const cooldownDiv = getBattleDecoration(quick, 'cooldown', () => {
+                const node = document.createElement('div'); node.className = 'cooldown'; return node;
+            });
+            setBattleText(cooldownDiv, cooldown);
+            if (cooldownDiv.parentNode !== quick) quick.appendChild(cooldownDiv);
         }
     }
 
@@ -3998,10 +4038,16 @@ function getVitals() {
     let mpPercentage = Math.round(parseInt(document.querySelector('img[src$="bar_blue.png"]').style.width, 10) / vitalCfg.widthMP * 1000) / 1000;
     let spPercentage = Math.round(parseInt(document.querySelector('img[src$="bar_red.png"]').style.width, 10) / vitalCfg.widthSP * 1000) / 1000;
 
-    let hpCurrentText = vitalCfg.idHP.map(id => document.querySelector(id)?.innerText).find(Boolean) || "0";
+    // Native counters are plain text. Avoid forcing layout after quickbar writes;
+    // retain rendered-text semantics when another script adds child elements.
+    const readVital = id => {
+        const node = document.querySelector(id);
+        return node?.childElementCount === 0 ? node.textContent : node?.innerText;
+    };
+    let hpCurrentText = vitalCfg.idHP.map(readVital).find(Boolean) || "0";
     let hpCurrent = parseInt(hpCurrentText, 10) || 0;
-    let mpCurrent = parseInt(document.querySelector(vitalCfg.idMP).innerText, 10);
-    let spCurrent = parseInt(document.querySelector(vitalCfg.idSP).innerText, 10);
+    let mpCurrent = parseInt(readVital(vitalCfg.idMP), 10);
+    let spCurrent = parseInt(readVital(vitalCfg.idSP), 10);
 
     let hpMax = Math.round(hpCurrent / hpPercentage * 10) / 10;
     let mpMax = Math.round(mpCurrent / mpPercentage * 10) / 10;
@@ -4027,25 +4073,30 @@ function getEffectDuration(render = false) {
     let effects = Array.from(effectsPane.getElementsByTagName('img'));
     let playerEffectsLength = effects.length;
 
-    if (render) effects.push(...document.querySelectorAll('.btm6 > img[onmouseover]'));
+    effects.push(...document.querySelectorAll('.btm6 > img[onmouseover]'));
 
     effects.forEach((effect, index) => {
         let tooltip = effect.getAttribute('onmouseover');
-        if (!tooltip) return;
+        if (index >= playerEffectsLength && !render) { jpxBattleDecorations.get(effect)?.duration?.root.remove(); return; }
+        if (!tooltip) { jpxBattleDecorations.get(effect)?.duration?.root.remove(); return; }
 
         let matches = tooltip.match(regExp.spellMatch);
-        if (!matches?.groups) return;
+        if (!matches?.groups) { jpxBattleDecorations.get(effect)?.duration?.root.remove(); return; }
 
         let { name, stack, description, turns } = matches.groups;
         if (index < playerEffectsLength && name) playerEffectObj[name] = { turns, stack: stack ?? 1 };
 
         if (render) {
             let displayTurns = turns;
-            let durationContainer = document.createElement('div');
-            durationContainer.className = 'effect-duration';
-            let durationDiv = document.createElement('div');
+            const duration = getBattleDecoration(effect, 'duration', () => {
+                const root = document.createElement('div'), value = document.createElement('div');
+                root.className = 'effect-duration'; root.appendChild(value);
+                return { root, value, background: '' };
+            });
+            const durationContainer = duration.root, durationDiv = duration.value;
+            let background = '';
             if (turns < 9) {
-                durationDiv.style.background = turns < 4 ? 'aquamarine' : 'lavender';
+                background = turns < 4 ? 'aquamarine' : 'lavender';
             } else if (turns === 'autocast') {
                 displayTurns = 'auto';
             } else if (turns === 'permanent') {
@@ -4056,11 +4107,11 @@ function getEffectDuration(render = false) {
                 displayTurns = '-';
             }
 
-            durationDiv.innerHTML = displayTurns;
-            if (stack) durationDiv.innerHTML += `${turns !== 'decaying' ? '&nbsp;' : ''}x${stack}`;
-
-            durationContainer.appendChild(durationDiv);
-            effect.parentNode.insertBefore(durationContainer, effect);
+            if (duration.background !== background) { durationDiv.style.background = background; duration.background = background; }
+            setBattleText(durationDiv, displayTurns + (stack ? (turns !== 'decaying' ? '\u00a0' : '') + 'x' + stack : ''));
+            if (durationContainer.nextSibling !== effect || durationContainer.parentNode !== effect.parentNode) effect.before(durationContainer);
+        } else {
+            jpxBattleDecorations.get(effect)?.duration?.root.remove();
         }
     });
 
@@ -4093,29 +4144,44 @@ function getMonsters(render = false) {
 
         //level
         let monster_btm2 = monster_btm1.querySelector('.btm2');
-        let levelContainer = monster_btm2.querySelector('div:last-child');
+        let levelContainer = monster_btm2.querySelector(':scope > div:last-child');
         monster.level = parseInt(levelContainer.textContent.trim() || jpxUtils.parseHVClasses(levelContainer));
+        const indexContainer = monster_btm2.querySelector('div');
         //index
         if (render && (cfgBattle.showMonsterIndex || cfgBattle.showMonsterInfo)) {
-            monster_btm2.querySelector('img').style.display = 'none';
-            let monIndex = document.createElement('div');
-            monIndex.textContent = index + 1;
-            monIndex.style.cssText = `font-size: ${cfgBattle.showMonsterInfo ? 17 : 28}px; font-weight: bold`;
-            monster_btm2.querySelector('div').appendChild(monIndex);
+            const image = monster_btm2.querySelector('img');
+            if (image.style.display !== 'none') image.style.display = 'none';
+            const monIndex = getBattleDecoration(indexContainer, 'index', () => {
+                const node = document.createElement('div'); node.style.fontWeight = 'bold'; return node;
+            });
+            setBattleText(monIndex, index + 1);
+            const size = cfgBattle.showMonsterInfo ? '17px' : '28px';
+            if (monIndex.style.fontSize !== size) monIndex.style.fontSize = size;
+            if (monIndex.parentNode !== indexContainer) indexContainer.appendChild(monIndex);
+        } else if (render) {
+            const monIndex = jpxBattleDecorations.get(indexContainer)?.index;
+            if (monIndex?.parentNode === indexContainer) { monIndex.remove(); monster_btm2.querySelector('img').style.display = ''; }
         }
         //info: monsterClass
         if (render && cfgBattle.showMonsterInfo) {
-            let monClass = document.createElement('div');
-            monClass.textContent = monsterInfo?.monsterClass ?? '?';
-            monClass.dataset.field = 'monClass';
-            monClass.style.cssText = 'font-size: 10px; font-weight: bold; overflow: hidden;';
-            monster_btm2.querySelector('div').prepend(monClass);
+            const monClass = getBattleDecoration(indexContainer, 'monsterClass', () => {
+                const node = document.createElement('div'); node.dataset.field = 'monClass';
+                node.style.cssText = 'font-size: 10px; font-weight: bold; overflow: hidden;'; return node;
+            });
+            setBattleText(monClass, monsterInfo?.monsterClass ?? '?');
+            if (monClass.parentNode !== indexContainer) indexContainer.prepend(monClass);
+        } else if (render) {
+            jpxBattleDecorations.get(indexContainer)?.monsterClass?.remove();
         }
 
         //name
         let monster_btm3 = monster_btm1.querySelector('.btm3');
         let nameContainer = monster_btm3.querySelector('div');
-        monster.name = nameContainer.textContent.trim() || jpxUtils.parseHVClasses(nameContainer);
+        const previousInfo = jpxBattleDecorations.get(nameContainer)?.info;
+        const nameText = previousInfo?.parentNode === nameContainer
+            ? Array.from(nameContainer.childNodes, node => node === previousInfo ? '' : node.textContent).join('')
+            : nameContainer.textContent;
+        monster.name = nameText.trim() || jpxUtils.parseHVClasses(nameContainer);
         //type
         for (const [type, names] of Object.entries(bossTypes)) {
             if (names.has(monster.name)) {
@@ -4127,12 +4193,16 @@ function getMonsters(render = false) {
         }
         //info: attackType, powerLevel, trainer
         if (render && cfgBattle.showMonsterInfo) {
-            monster_btm3.querySelector(':scope > div > div').style.display = 'inline';
-            let monTrAtkPl = document.createElement('span');
-            if (!jpxUtils.isEmpty(monsterInfo)) monTrAtkPl.textContent = `${monsterInfo?.attack ?? '?'}, ${monsterInfo?.plvl ?? '?'}`;
-            monTrAtkPl.dataset.field = 'monTrAtkPl';
-            monTrAtkPl.style.cssText = 'font-weight: bold; position: absolute; right: 2px;';
-            monster_btm3.querySelector('div').appendChild(monTrAtkPl);
+            const name = monster_btm3.querySelector(':scope > div > div');
+            if (name.style.display !== 'inline') name.style.display = 'inline';
+            const monTrAtkPl = getBattleDecoration(nameContainer, 'info', () => {
+                const node = document.createElement('span'); node.dataset.field = 'monTrAtkPl';
+                node.style.cssText = 'font-weight: bold; position: absolute; right: 2px;'; return node;
+            });
+            setBattleText(monTrAtkPl, jpxUtils.isEmpty(monsterInfo) ? '' : `${monsterInfo?.attack ?? '?'}, ${monsterInfo?.plvl ?? '?'}`);
+            if (monTrAtkPl.parentNode !== nameContainer) nameContainer.appendChild(monTrAtkPl);
+        } else if (render) {
+            previousInfo?.remove();
         }
 
         //hpPercentage, mpPercentage, spPercentage
@@ -4147,6 +4217,7 @@ function getMonsters(render = false) {
         //status
         let monster_btm6 = monster_btm1.querySelector('.btm6');
         monster_btm6.querySelectorAll('img').forEach((effect) => {
+            if (jpxHiddenEffectImages.has(effect)) return;
             let tooltip = effect.getAttribute('onmouseover');
             if (!tooltip) return;
 
@@ -4167,7 +4238,7 @@ function getMonsters(render = false) {
     }
 }
 
-function updateMonsterEffects() {
+function updateMonsterEffects(turnLog) {
     let { monsters, activeMonsters } = monstersObj;
 
     function getEffectChanges(turnLog) {
@@ -4233,7 +4304,7 @@ function updateMonsterEffects() {
         }
     }
 
-    let turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+    if (!arguments.length) turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
     let effectChanges = turnLog ? getEffectChanges(turnLog) : {};
 
     for (const activeMonster of activeMonsters) {
@@ -4242,6 +4313,8 @@ function updateMonsterEffects() {
 
         let effectObj = activeMonster.effectObj;
         let effects = Object.keys(effectObj);
+        const hiddenNames = new Set();
+        const monster_btm6 = activeMonster.monster_btm1.querySelector('.btm6');
 
         if (effects.length < 5) {
             for (const effect in savedEffects) delete savedEffects[effect];
@@ -4259,23 +4332,32 @@ function updateMonsterEffects() {
 
             applyHiddenDelta(name, effectObj, delta);
 
-            let monster_btm6 = activeMonster.monster_btm1.querySelector('.btm6');
-            monster_btm6.style.width = 'max-content';
+            if (monster_btm6.style.width !== 'max-content') monster_btm6.style.width = 'max-content';
+            const hidden = getBattleDecoration(monster_btm6, 'hiddenEffects', () => new Map());
 
             for (const effect in savedEffects) {
                 if (!(effect in effectObj)) {
+                    hiddenNames.add(effect);
                     let { turns, stack } = savedEffects[effect];
                     effectObj[effect] = { turns, stack };
                     if (isNaN(+turns)) turns = `'${String(turns).replace(/'/g, "\\'")}'`;
 
-                    let img = document.createElement('img');
-                    img.src = (isekaiSuffix ? '/isekai' : '') + (effectSrc[effect]?.scr || '/y/e/channeling.png');
-                    img.setAttribute('onmouseover', `battle.set_infopane_effect('${effect}', 'jpx Hidden Effects', ${turns})`);
-                    img.setAttribute('onmouseout', 'battle.clear_infopane()');
-
-                    monster_btm6.appendChild(img);
+                    let img = hidden.get(effect);
+                    if (!img) {
+                        img = document.createElement('img'); hidden.set(effect, img); jpxHiddenEffectImages.add(img);
+                        img.src = (isekaiSuffix ? '/isekai' : '') + (effectSrc[effect]?.scr || '/y/e/channeling.png');
+                        img.setAttribute('onmouseout', 'battle.clear_infopane()');
+                    }
+                    setBattleAttribute(img, 'onmouseover', `battle.set_infopane_effect('${effect}', 'jpx Hidden Effects', ${turns})`);
+                    if (img.parentNode !== monster_btm6) monster_btm6.appendChild(img);
                 }
             }
+        }
+        const hidden = jpxBattleDecorations.get(monster_btm6)?.hiddenEffects;
+        if (hidden) for (const [effect, img] of hidden) {
+            if (hiddenNames.has(effect)) continue;
+            jpxBattleDecorations.get(img)?.duration?.root.remove();
+            img.remove(); hidden.delete(effect);
         }
     }
 }
@@ -4711,8 +4793,8 @@ function actionManager(actions) {
 }
 
 //Battle Record
-function battleRecorder() {
-    let turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+function battleRecorder(turnLog) {
+    if (!arguments.length) turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
     if (!turnLog) return;
 
     let action = turnLog.match(regExp.action)?.[1];
@@ -5153,11 +5235,12 @@ async function battleRecordPlayer(doFinal = true) {
     let timestamp = new Date(timeRecords['startTime']).toISOString().slice(0, 19).replace('T', ' ');
     let date = timestamp.slice(0, 10);
     let result = 'inProgress';
-    if (getBattleLogHTML().includes('You are Victorious!') && roundInfo.current === roundInfo.total) {
+    const battleLogHTML = getBattleLogHTML();
+    if (battleLogHTML.includes('You are Victorious!') && roundInfo.current === roundInfo.total) {
         result = 'Victory';
-    } else if (getBattleLogHTML().includes('You have been defeated.')) {
+    } else if (battleLogHTML.includes('You have been defeated.')) {
         result = 'Defeat';
-    } else if (getBattleLogHTML().includes('You have escaped from the battle.')) {
+    } else if (battleLogHTML.includes('You have escaped from the battle.')) {
         result = 'Flee';
     }
     let deltaSeconds = (Date.now() - startTime) / 1000;
