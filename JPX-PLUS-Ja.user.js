@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.20
+// @version      2026.11.08.21
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -214,7 +214,7 @@
             "ctrlWidgetStyleText": "パネルのスタイル（CSS）",
             "ctrlWidgetMouseEnter": "パネルにマウスを重ねると自動戦闘を開始",
             "ctrlWidgetMouseEnterPause": "再びパネルに入ると手動に切り替え",
-            "ctrlWidgetMouseEnterPauseHelp": "マウスを重ねて自動戦闘を開始する設定が有効な場合のみ適用。オフでは再び入っても自動戦闘を継続し、オンでは手動に切り替えます。パネルのクリックやショートカットでは引き続き一時停止できます。",
+            "ctrlWidgetMouseEnterPauseHelp": "マウスを重ねて自動戦闘を開始する設定が有効な場合のみ適用。",
             "battleModeSettings": "ルールセット",
             "battleRules": "戦闘ルール",
             "modes": "モード",

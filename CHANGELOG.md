@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026.11.08.21
+
+- Shorten the mouse-enter pause setting help to its prerequisite sentence in English and all five language packs. Battle behavior is unchanged.
+- 精简鼠标再次移入切换手动的说明：英文及五个语言包均仅保留生效前提，战斗行为不变。
+
 ## 2026.11.08.20
 
 - **Revert ineffective hover fix.** Withdraws the changes from 2026.11.08.19 after user feedback confirmed that they did not resolve the reported scrollbar/hover conflict. Statistics behavior returns to 2026.11.08.18; its toolbar and data-management layout improvements remain.

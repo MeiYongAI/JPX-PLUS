@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.20
+// @version      2026.11.08.21
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -214,7 +214,7 @@
         "ctrlWidgetStyleText": "패널 스타일 (CSS)",
         "ctrlWidgetMouseEnter": "제어 패널에 마우스를 올리면 자동 전투 시작",
         "ctrlWidgetMouseEnterPause": "패널에 다시 들어오면 수동으로 전환",
-        "ctrlWidgetMouseEnterPauseHelp": "마우스를 올려 자동 전투를 시작하는 설정이 켜져 있을 때만 적용됩니다. 끄면 다시 들어와도 자동 전투를 유지하고, 켜면 수동으로 전환합니다. 패널 클릭이나 단축키로는 계속 일시 정지할 수 있습니다.",
+        "ctrlWidgetMouseEnterPauseHelp": "마우스를 올려 자동 전투를 시작하는 설정이 켜져 있을 때만 적용됩니다.",
         "battleModeSettings": "규칙 세트",
         "battleRules": "전투 규칙",
         "modes": "모드",

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.20
+// @version      2026.11.08.21
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -213,7 +213,7 @@
             "ctrlWidgetStyleText": "控制面板樣式（CSS）",
             "ctrlWidgetMouseEnter": "滑鼠移入控制面板時啟用自動戰鬥",
             "ctrlWidgetMouseEnterPause": "再次移入面板時切換為手動",
-            "ctrlWidgetMouseEnterPauseHelp": "僅在啟用滑鼠移入自動戰鬥時生效。關閉：移入只啟用自動戰鬥，自動中再次移入不暫停；開啟：再次移入切換為手動。點擊面板或使用快捷鍵仍可暫停。",
+            "ctrlWidgetMouseEnterPauseHelp": "僅在啟用滑鼠移入自動戰鬥時生效。",
             "battleModeSettings": "戰鬥模式設定",
             "battleRules": "戰鬥規則",
             "modes": "模式",
