@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.3
+// @version     2026.11.09.4
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7407,7 +7407,7 @@
         }
     }
 
-    function translateCompletePhrase(text, element, scopedGroups = null) {
+    function findCompletePhrase(text, element, scopedGroups = null) {
         const candidates = completePhraseIndex.get(text.trim());
         if (!candidates) return null;
         for (const { group, key, value } of candidates) {
@@ -7417,11 +7417,16 @@
                 if (group.selector && element && !element.closest(group.selector)) continue;
                 if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
             }
-            // 样式词条继续交给原有渲染路径处理，避免把 HTML 或样式当作纯文本。
-            if (typeof value !== 'string' || /<[^>]+>/.test(value)) return null;
-            return text.replace(text.includes(key) ? key : text.trim(), () => value);
+            return { key, value };
         }
         return null;
+    }
+
+    function translateCompletePhrase(text, element, scopedGroups = null) {
+        const match = findCompletePhrase(text, element, scopedGroups);
+        // 样式词条继续交给原有渲染路径处理，避免把 HTML 或样式当作纯文本。
+        if (!match || typeof match.value !== 'string' || /<[^>]+>/.test(match.value)) return null;
+        return text.replace(text.includes(match.key) ? match.key : text.trim(), () => match.value);
     }
 
     // 拍卖站会保留 Text 节点引用：原位翻译，用 Highlight Range 染色，不插入 mark。
@@ -7643,7 +7648,17 @@
             }
         }
 
-        const complete = translateCompletePhrase(text, scope);
+        // 论坛可写成「Helmet <b>of the Shadowdancer</b>」：分隔空格在
+        // b 外，词典键却以空格开头。完整样式词组也须支持独立文本节点，
+        // 只替换本节点中的词组，保留外层元素、监听及已有的空白。
+        const phrase = findCompletePhrase(text, scope, scopedGroups);
+        if (phrase && phrase.value?.style && typeof phrase.value.replace === 'string'
+            && !text.includes(phrase.key)) {
+            const trimmed = text.trim();
+            if (applyStyleToNode(node, text.indexOf(trimmed), trimmed.length,
+                phrase.value.replace.trim(), phrase.value.style)) return;
+        }
+        const complete = translateCompletePhrase(text, scope, scopedGroups);
         if (complete !== null) {
             node.nodeValue = complete;
             translationCache.set(node, complete);
