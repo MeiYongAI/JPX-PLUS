@@ -122,5 +122,22 @@
   "importAdded": "Imported “${name}” into My configs. Not applied yet; use Apply on its row when ready.",
   "importFailed": "Import not completed: “${name}”. ${reason}",
   "importReadError": "Could not read the file. Select it again and retry.",
-  "importCancelled": "Import cancelled. Custom code was not approved."
+  "importCancelled": "Import cancelled. Custom code was not approved.",
+  "fixedMode": "Fixed rules",
+  "automaticMode": "Automatic by scene",
+  "restoreAutomatic": "Restore automatic selection",
+  "detach": "Detach references",
+  "detachDelete": "Detach and delete",
+  "detached": "References detached.",
+  "detachHint": "Remove selection, application records, scene assignments and loadout bindings. Current native settings are kept.",
+  "sceneAssignments": "Scene strategies",
+  "inheritGeneral": "Inherit General",
+  "unassigned": "No assignment",
+  "noSceneRules": "Paused: no scene or General strategy is available.",
+  "assign": "Assign",
+  "assigned": "Assigned",
+  "executing": "Current strategy",
+  "assignmentOlder": "Saved changes are not assigned yet.",
+  "grindfest": "Grindfest",
+  "fixedHint": "Fixed rules apply across scenes in this world and remain selected after reload."
 }

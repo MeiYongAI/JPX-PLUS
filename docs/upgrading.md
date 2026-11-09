@@ -8,7 +8,7 @@ Primary and alt share settings, completed battle records and daily stamina from 
 
 Export the settings and records you want to keep, then disable the old main script and its language pack. Install JPX-PLUS and, if needed, one matching language pack.
 
-Import battle configs under **Configs → My configs → Import**. Imported rules are saved first; choose **Apply** when ready to use them. A complete JPX config stays one item and keeps its rule groups. Applying a complete config uses the original automatic routing; applying one mode explicitly selects that ruleset.
+Import battle configs under **Configs → My configs → Import**. Imported rules are saved first. **Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Apply** on one mode fixes that ruleset across scenes and reloads; **Restore automatic selection** exits fixed mode. A complete file stays one item and updates native settings; explicit scene assignments remain in place. See [selection behavior](scene-strategies.md).
 
 Statistics and historical records retain their own import/export controls. The local library is separate from the native battle settings. Original JPX files remain supported; PLUS-specific options are not a promise of lossless export back to original JPX.
 
@@ -36,7 +36,7 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 
 先导出需要保留的配置与记录，再停用旧主脚本及其语言包，安装 JPX-PLUS 和一个所需语言包。
 
-在**配置管理 → 我的配置 → 导入**添加战斗配置，导入后先保存为副本，需要使用时再点击**应用**。完整 JPX 配置保留为一个条目，内部规则组不拆散；应用完整配置仍按原版方式自动选组，应用单组配置则直接使用所选规则。
+在**配置管理 → 我的配置 → 导入**添加战斗配置，导入后先保存为副本。**场景策略**按世界、流派、场景分配规则，未单独分配时继承通用。单组**应用**会跨场景固定使用，刷新后仍保留；点击**恢复自动选择**退出。完整配置保留为一个条目并更新原生设置，独立的场景分配仍然保留。详见[选择规则](scene-strategies.md#简体中文)。
 
 统计设置与历史记录仍使用各自的导入导出入口。本地配置库和原生战斗设置分别保存；支持导入原版 JPX 文件，但 PLUS 特有选项不保证降级到原版后完全保留。
 

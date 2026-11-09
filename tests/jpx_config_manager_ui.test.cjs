@@ -655,7 +655,7 @@ for (const mobile of [false, true]) test(`more menu toggles and dismisses withou
     }
     await activate(first); await second.focus(); await second.press('Enter'); await menu.waitFor();
     assert.equal(await menu.count(), 1, 'switching rows leaves one menu');
-    await manager(f).locator('.jpx-config-nav').first().click(); await settle(f.page);
+    await manager(f).locator('.jpx-config-selection').click(); await settle(f.page);
     assert.equal(await menu.count(), 0, 'outside click dismisses the menu');
     await first.focus(); await first.press('Enter'); await menu.waitFor();
     await f.page.keyboard.press('Escape'); await settle(f.page);

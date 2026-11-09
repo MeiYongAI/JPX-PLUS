@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.09.1
+// @version      2026.11.09.2
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAGdklEQVR4AeyZW2wUVRjHvxkqiBAFqSigQuoFEiAhEa2GbAUCmijSlIv4oJFwFQn6YqvR6IOJRlpeFBEplGDCA4hAimiiICBL1SomJEACKg2IgJZyMyCCZY7nN2E2ZZjZnZndtrvbbvr1zLl98//958zZzYwpAT/xj+b1ji+bOTVePXvhzuqZn+2qnvVNvHrW9mwItKAprrXZGrXWgFiS0gCddBzJpeC/02IYn1rWlfJzjedLjzc0jT3+28nRWRFaC5rQJlojWtGM9lRG+BoQXzmjiCQiasulC5dL92w7KLWLd8jy8o3G2oVfF2xa8q18vnRnVgRa0IQ2NKIVzWiHARY/IzwNYBmpy8ZeZalJ9Zv3yidvbS6o/2Kf/Hn4lF+erGlHI1ptzVo7DLDA5CXyOgPiy2fNYRnpRDetq9pi7Nn+i9e8nGhDOwywwGSzuZRfY4DtkpJlh/ceE5bV2cbzruG5V4UBFphEs9mMLTASBnCfKCWrTjQ0yVerfmgxJD8OYYINRlgdqoQBqtmoVKK671z3s9OXdyVsMMLqwNkG8HVhiDH5py/3GywZpzPfSthghBVm+GwDlFgv/HvhUjObBo35HDDCCjOcJr/wcORA/eECGjpCwAoz7KZ0uTwO6CP7T1B0iEiwanZTDHOkZVlKf1d2CHggYbUsS8Fu6nvhnr+bLlyhI9eiaNhAqVg23w6Ow+iHGXZTL4HeF89fysn7f+y0mPTq28uOKQsmhOEXmGHXK0BM/Xs51GRn8MRXFkjl7u1S89evGQlykbPPXXc6p0hatrzqGJF08NVOp4BZiegF4LSELBFaWv6SBBUbJD25yDlqWlmQ4RkZY0bNgtCoc1PNa83c7nNHNuDU0T/cuVq1znJnw3t34xvihPuETjslY5njHuOuRzZg15oN7lytWnc2vKAnYU8IsjFGNmDTosVSt2a9tPVKCGoA4043nqNIGpENIOvKl1+TipFjZObt90UO8gSJbWvj0rDvSJCh9pizjWeFOXYlyb+0DEiSN+NdwK94c7W8XvZOItwnadlXOXdJIMNyxgA3bKbqnQZkysn2yMNt4Zy35bHTFqTM6RXAJgd40A3Py5CcNgB4NsagG17eGeAFFLYtp1dAWFiv8Z0GeLmST22pWDpXQCqH8r2/cwXk+xVOxRdpBfA8kAeYBMc8y0t1omztD20AwDyzA5rgOOpDTOa3tzGhDQDYLdqrzT0mTL0tnzKFNsBPXJSrWXj3gDC+tMrY0Ab4qYgCM/iRhzzTHair92xvjcbQBpz8/ZinDj8Yz8FXG/1unaaj3ue4Oi2jRWgDDn7nfXWAGTyqOLA4NlO/wXVrN/p1Zbw9vAHf/+gromLDahn1zOSUr8uAxzCvROwxhFdfa7SFN0Dfn7wP8BMz4/33hMAIVoSzOVInyrVJfvDkrF30IUWbRWgDUIbIZFdpiL4VMIEVwY8l3h5TJ+gjh1ew+SUz12tOum2RDAA+lQlhhZGzatKzYaelPT6SAZyVK7VLvx9EOPV0ghw1+i1TOjmcuWHLyAZwok36/eDCsueEpUs9SjCX12sH9d4SZX66c0xDxDL4HzETV4+lW6mXL8dh0vBukblh5mRqLMywm5aoM917dmtONzFXkCuJEbVVHwjB1XVMoaRep98oM4YXqhyne96o82GGXV9789DNhT26RE3knocR3BoEVxdTgKWkzlVnjHteW9dhNsQ8ZIqydpumadwxqI90lA+sMNvscqXrVsAHDu1H0SEiwarZzdiLS88oUeuHFA9Kex/IFfdghRl2+2vQEPPjG3t0Kxgx5n7J9w+MsBqaWfTHNiA2Z/lWHHnwiaGqV9+eujk//2CDEVaYobQN4MAoUBWGGBdLpj5ANS8DNhhhdQATBsRmrGwwDJner6hQHp/+sNOfNyVMsMEIqwOWMICG2NyadWLI3EHDB8jE+Y8KS4b2XA4YYIEJNpuxBdA1BtAem72iWpR6Wn9X/jO1fLxi06A9FwPtMMACk83mArnOAPpxyeiqhuvfyxuKJwyX59+e0Fz85DDRiejO6kAjWm3NWjsMsMDkJdz0aqSN+6RkTs0UEWN8tx5da0eMHSylC0bL7KoyNe3Vx5pZVk/NK5FsCLSgCW1oRCuaRWuHARbx+fga4IyP6a/IEoxovuFWlpFpdqm6pW/P2v5Fhdv633vbjvYO+/xaC5rQhkbRWtEc09odDr/yfwAAAP//nlygdwAAAAZJREFUAwCEBED17v6rSAAAAABJRU5ErkJggg==
 // @run-at       document-end
@@ -271,8 +271,9 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.09.1',
+    version: '2026.11.09.2',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
+    getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
         if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
@@ -1865,6 +1866,8 @@ function setBattleAttribute(node, name, value) {
 let readyNext = 0;
 let lastActionTimestamp = Date.now();
 let lastLogTimestamp = Date.now();
+let battleLogObservedAt = null;
+let jpxBattleTiming = { samples: 0, intervalMs: null, queueMs: null, processingMs: null, visibility: null };
 
 let prefix = 'jpx_';
 let themeMode = readJpxTheme();
@@ -2647,7 +2650,7 @@ const I18N = {
         toggleBattle: 'Toggle automatic battle', waiting: 'Waiting',
         elementUnknown: 'Spell element unavailable. Open Character outside battle to refresh.',
         ctrlWidgetRows: 'Panel items', openStats: 'Stats', openSettings: 'Settings',
-        isActiveBattle: 'Status', readyNext: 'Ready', networkDelay: 'Latency', battleStyle: 'Style', battleType: 'Battle', battleMode: 'Ruleset',
+        isActiveBattle: 'Status', readyNext: 'Ready', networkDelay: 'Turn interval', battleStyle: 'Style', battleType: 'Battle', battleMode: 'Ruleset',
         OneHanded: 'One-handed', '1H_Mage': '1H Mage', TwoHanded: 'Two-handed', '2H_Mage': '2H Mage',
         DualWielding: 'Dual wield', DW_Mage: 'DW Mage', NitenIchiryu: 'Niten Ichiryu', NI_Mage: 'NI Mage',
     },
@@ -3532,8 +3535,18 @@ function loadBattleConfig() {
 // The translator keeps English in light DOM and renders Chinese in closed shadow roots.
 // Remove only its transparent wrappers from a read-only snapshot: jpx's log patterns
 // depend on native td/strong boundaries. Leave both the live DOM and game markup intact.
-function getBattleLogHTML(element = log) {
-    return (element?.innerHTML || '').replace(/<\/?hv-battle-text\b[^>]*>/gi, '');
+function getBattleLogHTML(element = log, currentTurnOnly = false) {
+    let html = '';
+    if (currentTurnOnly) {
+        // Native logs prepend the latest action. Stop at its separator instead
+        // of serializing the whole round; keep nested Scan markup unchanged.
+        const body = element?.tBodies?.[0] || element;
+        for (let row = body?.firstElementChild; row; row = row.nextElementSibling) {
+            html += row.outerHTML;
+            if (row.firstElementChild?.className === 'tls') break;
+        }
+    } else html = element?.innerHTML || '';
+    return html.replace(/<\/?hv-battle-text\b[^>]*>/gi, '');
 }
 
 function initDoBattle() {
@@ -3617,6 +3630,7 @@ function stopBattleUpdates() {
     battleLogUpdate?.cancel();
     battleLogUpdate = null;
     battleLogPending = false;
+    battleLogObservedAt = null;
     monsterInfoRequest?.cancel();
     monsterInfoRequest = null;
 }
@@ -3755,6 +3769,7 @@ function preDoBattle(initialLog) {
     }, 200, true);
     battleLogObserver = new MutationObserver(() => {
         if (!isCurrentBattleUpdate(generation, battleLog)) return;
+        battleLogObservedAt = performance.now();
         battleLogPending = true;
         battleLogUpdate();
     });
@@ -3788,17 +3803,30 @@ function recordFinalBattle() {
 }
 
 function preProcessLog() {
+    const started = performance.now();
+    const queueMs = battleLogObservedAt === null ? null : Math.max(0, started - battleLogObservedAt);
+    battleLogObservedAt = null;
     lastActionTimestamp = lastLogTimestamp;
     lastLogTimestamp = Date.now();
-
-    let td = Array.from(log.getElementsByTagName('td'));
-    for (let i = 0; i < td.length; i++) {
-        if (td[i].className == 'tls' && td[i].innerHTML !== '<hr>') td[i].innerHTML = '<hr>';
+    try {
+        processBattleLog();
+    } finally {
+        // Last sample only: no polling, network hooks, persistent log or upload.
+        // Queue time starts at the MutationObserver callback, not response arrival.
+        jpxBattleTiming = { samples: jpxBattleTiming.samples + 1,
+            intervalMs: lastLogTimestamp - lastActionTimestamp, queueMs,
+            processingMs: performance.now() - started, visibility: document.visibilityState };
     }
+}
+
+function processBattleLog() {
+
+    const separator = log.querySelector('td[class="tls"]');
+    if (separator && separator.innerHTML !== '<hr>') separator.innerHTML = '<hr>';
 
     // Share this update's snapshot only within this synchronous pass; AJAX and
     // later log mutations must always be read again on the next update.
-    const turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+    const turnLog = getBattleLogHTML(log, true).match(regExp.turnLog)?.[0];
     battleRecorder(turnLog);
 
     let btcp = document.querySelector('#btcp');
@@ -4037,7 +4065,7 @@ function onKeyDown(e, throttledActionManager) {
     }
 
     if (!log || isActiveBattle || !monstersObj.activeMonsters[0]) return;
-    let actions = cfgBattle[getBattleMode()][currentKB];
+    let actions = getJpxBattleRules()?.[currentKB];
     if (actions) {
         e.preventDefault();
         (e.repeat ? throttledActionManager : actionManager)(actions);
@@ -4058,7 +4086,13 @@ function toggleActive() {
 
 //Battle Smart
 function smartBattle() {
-    let { supports, attacks } = cfgBattle[getBattleMode()];
+    const rules = getJpxBattleRules();
+    if (!jpxConfigHasContent(rules)) {
+        isActiveBattle = false; readyNext = '\n' + t('cM.noSceneRules');
+        jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#ff5');
+        return true;
+    }
+    let { supports, attacks } = rules;
     if (supports.length < 1) {
         isActiveBattle = false;
         readyNext = '\nWith so few conditions, you might die in auto-battle.';
@@ -4666,7 +4700,7 @@ function updateMonsterEffects(turnLog) {
         }
     }
 
-    if (!arguments.length) turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+    if (!arguments.length) turnLog = getBattleLogHTML(log, true).match(regExp.turnLog)?.[0];
     let effectChanges = turnLog ? getEffectChanges(turnLog) : {};
 
     for (const activeMonster of activeMonsters) {
@@ -4733,7 +4767,7 @@ function needsJpxMonsterDatabase() {
         if (!item || typeof item !== 'object' || item.disabled) return false;
         return keys.has(item.key) || Object.values(item).some(uses);
     };
-    return uses(cfgBattle[getBattleMode()]);
+    return uses(getJpxBattleRules());
 }
 
 function getJpxMonsterDatabase() {
@@ -5427,7 +5461,7 @@ function actionManager(actions) {
 
 //Battle Record
 function battleRecorder(turnLog) {
-    if (!arguments.length) turnLog = getBattleLogHTML().match(regExp.turnLog)?.[0];
+    if (!arguments.length) turnLog = getBattleLogHTML(log, true).match(regExp.turnLog)?.[0];
     if (!turnLog) return;
 
     let action = turnLog.match(regExp.action)?.[1];
@@ -5449,18 +5483,29 @@ function battleRecorder(turnLog) {
 }
 
 function battleLogRecorder() {
-    let tdArray = Array.from(log.querySelectorAll('td'));
-    let tlsArray = Array.from(log.querySelectorAll('.tls'));
-    if (regExp.battleTypeLog.test(getBattleLogHTML(tdArray.at(-1))) & tlsArray.length === 1) {
-        for (let i = tdArray.length - 1; i > -1; i--) {
-            if (!tdArray[i].textContent.trim() || tdArray[i].innerHTML.includes('<hr>')) {
-                break;
+    const cells = () => document.createTreeWalker(log, NodeFilter.SHOW_ELEMENT, {
+        acceptNode: node => node.tagName === 'TD' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
+    });
+    const lastRow = (log.tBodies?.[0] || log).lastElementChild;
+    const tail = lastRow?.getElementsByTagName('td');
+    const lastCell = tail?.[tail.length - 1];
+    if (lastCell && regExp.battleTypeLog.test(getBattleLogHTML(lastCell))) {
+        // Only the first action includes initialization rows. Stop looking for
+        // separators after the second one, independent of round history size.
+        const separators = document.createTreeWalker(log, NodeFilter.SHOW_ELEMENT, {
+            acceptNode: node => node.classList.contains('tls') ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
+        });
+        if (separators.nextNode() && !separators.nextNode()) {
+            const backwards = cells(); backwards.currentNode = lastCell;
+            for (let td = lastCell; td; td = backwards.previousNode()) {
+                if (!td.textContent.trim() || td.innerHTML.includes('<hr>')) break;
+                battleLogRecordCurrent.unshift(td.textContent);
             }
-            battleLogRecordCurrent.unshift(tdArray[i].textContent);
         }
     }
     battleLogRecordCurrent.push('--------------------------------------------------');
-    for (const td of tdArray) {
+    const current = cells();
+    for (let td = current.nextNode(); td; td = current.nextNode()) {
         if (!td.textContent.trim() || td.innerHTML.includes('<hr>')) {
             break;
         }
@@ -8130,19 +8175,7 @@ function getBattleMode(defaultBattleStyle = 'Unarmed') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return selected;
     const effectiveStyle = getManagedBattleStyle(battleStyle || defaultBattleStyle);
-    let modeKey = `${effectiveStyle}_${battleType}`;
-
-    if (!jpxUtils.isEmpty(cfgBattle[modeKey])) {
-        const isValid = value => Array.isArray(value) && value.length > 0;
-        if (
-            isValid(cfgBattle[modeKey].supports) || isValid(cfgBattle[modeKey].attacks) ||
-            Object.entries(cfgBattle[modeKey]).some(([key, value]) => key.startsWith('kb_') && isValid(value))
-        ) {
-            return modeKey;
-        }
-    }
-
-    return `${effectiveStyle}_General`;
+    return resolveJpxScene(effectiveStyle, battleType).mode;
 }
 
 function renderSchema(container, schema, data) {
@@ -12458,12 +12491,16 @@ function jpxUtils() {
 
         const throttled = (...args) => {
             if (Date.now() - lastRan > cooldownMillis) {
+                // A background/split tab can delay the pending trailing timer
+                // beyond the cooldown. This fresh call supersedes that timer.
+                clearTimeout(timeoutId);
+                timeoutId = trailingThis = trailingArgs = null;
                 lastRan = Date.now();
                 func.call(this, ...args);
             } else if (trailing) {
                 trailingThis = this;
                 trailingArgs = args;
-                if (!timeoutId) {
+                if (timeoutId === null) {
                     timeoutId = setTimeout(() => {
                         lastRan = Date.now();
                         timeoutId = null;
@@ -12887,8 +12924,8 @@ function jpxUtils() {
 }
 
 // BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)
-I18N.cM = {"name":"Configs","mine":"My configs","store":"Store","new":"New","import":"Import","search":"Search configs","apply":"Apply","edit":"Edit","more":"More","inUse":"In use","updateApply":"Update & apply","settings":"Config settings","duplicate":"Duplicate","export":"Export","share":"Share","delete":"Delete","title":"Name","style":"Style","element":"Element","world":"World","scenario":"Battle","auto":"Auto","anyWorld":"Both worlds","create":"Create","cancel":"Cancel","back":"Back","save":"Save","undo":"Undo","redo":"Redo","saveChanges":"Save changes?","keepEditing":"Keep editing","discard":"Discard","deleteConfirm":"Delete this config?","empty":"No configs yet.","noMatches":"No matching configs.","copySuffix":"copy","chooseGroup":"Choose rules to edit","allBattle":"All battle settings","stats":"Stats","applyScope":"Apply this config?","applyAll":"This updates the battle settings and rule groups included in this file.","applyWorld":"Apply in","applyPaused":"Applied. Auto-battle is paused.","applied":"Applied.","saved":"Saved.","reset":"Reset rules","resetConfirm":"Replace this group's rules with the defaults?","imported":"Added to My configs.","savedFromStore":"Saved to My configs.","sourceExists":"You already saved this config.","updateCopy":"Update saved copy","keepCopy":"Save another copy","invalidConfig":"This config cannot be read.","unsupportedVersion":"This config version is not supported.","storageCorrupt":"Saved configs could not be read. The original data is untouched.","storageError":"Could not save. Check browser storage and try again.","tooLarge":"This config is too large.","notFound":"This config no longer exists.","appliedConfig":"Apply another config before deleting this one.","migrationConflict":"This config conflicts with saved data.","error":"Could not complete this action.","groupCount":"${count} rule groups","rename":"Rename","current":"Current settings","close":"Close","fire":"Fire","cold":"Cold","wind":"Wind","elec":"Lightning","holy":"Holy","dark":"Dark","restore":"Undo delete","deleted":"Config deleted.","refresh":"Refresh","worldMismatch":"This config is for another world.","description":"Description","editor":"Rule editor","customCode":"This config contains custom code. Apply it only if you trust its source.","recovery":"Import backup","importWorld":"Save config","statsEdit":"Edit stats","preserveModes":"Rules","applyCurrent":"Apply here","libraryChanged":"This config was changed in another tab. Reopen it before saving.","unsupportedRule":"Unsupported rule (kept unchanged)","currentStyle":"Current style","filters":"Filters","allWorlds":"All worlds","allStyles":"All styles","allBattles":"All battles","allTypes":"All types","type":"Type","singleMode":"Battle mode","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","typeSort":"By type","manualSort":"Manual","multiStyle":"Mixed styles","multiBattle":"Multiple battles","resultCount":"${count} found","exportCurrent":"In use","exportAll":"Full config","exportChoose":"Choose rules","exportUnknown":"Current rules are not known yet.","bind":"Bind loadout","unbind":"Unbind","persona":"Persona","equipSet":"Equipment set","personaNumber":"Persona ${id}","setNumber":"Set ${id}","replaceBinding":"Replace the binding to “${name}”?","bound":"Loadout bound.","bindingUnknown":"Persona and set details are unavailable. Refresh the game outside battle, then try again.","bindingUnavailable":"No saved persona/set details. Try again outside battle.","importReading":"Reading “${name}”…","importReady":"File validated. Check the name and world, then click Save to add it to My configs. Nothing has been saved or applied yet.","importDraft":"Imported “${name}” into the current settings. Not saved yet; review the changes and click Save to keep them.","importPaused":"Auto-battle is paused.","importAdded":"Imported “${name}” into My configs. Not applied yet; use Apply on its row when ready.","importFailed":"Import not completed: “${name}”. ${reason}","importReadError":"Could not read the file. Select it again and retry.","importCancelled":"Import cancelled. Custom code was not approved."};
-const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:16px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:44px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-meta{margin:3px 0 0;color:var(--jpx-theme-muted, #756753);font-size:12px;overflow-wrap:anywhere}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 3;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:4px;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button),#settings-container.jpx-settings-mobile .jpx-config-rename input{height:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n";
+I18N.cM = {"name":"Configs","mine":"My configs","store":"Store","new":"New","import":"Import","search":"Search configs","apply":"Apply","edit":"Edit","more":"More","inUse":"In use","updateApply":"Update & apply","settings":"Config settings","duplicate":"Duplicate","export":"Export","share":"Share","delete":"Delete","title":"Name","style":"Style","element":"Element","world":"World","scenario":"Battle","auto":"Auto","anyWorld":"Both worlds","create":"Create","cancel":"Cancel","back":"Back","save":"Save","undo":"Undo","redo":"Redo","saveChanges":"Save changes?","keepEditing":"Keep editing","discard":"Discard","deleteConfirm":"Delete this config?","empty":"No configs yet.","noMatches":"No matching configs.","copySuffix":"copy","chooseGroup":"Choose rules to edit","allBattle":"All battle settings","stats":"Stats","applyScope":"Apply this config?","applyAll":"This updates the battle settings and rule groups included in this file.","applyWorld":"Apply in","applyPaused":"Applied. Auto-battle is paused.","applied":"Applied.","saved":"Saved.","reset":"Reset rules","resetConfirm":"Replace this group's rules with the defaults?","imported":"Added to My configs.","savedFromStore":"Saved to My configs.","sourceExists":"You already saved this config.","updateCopy":"Update saved copy","keepCopy":"Save another copy","invalidConfig":"This config cannot be read.","unsupportedVersion":"This config version is not supported.","storageCorrupt":"Saved configs could not be read. The original data is untouched.","storageError":"Could not save. Check browser storage and try again.","tooLarge":"This config is too large.","notFound":"This config no longer exists.","appliedConfig":"Apply another config before deleting this one.","migrationConflict":"This config conflicts with saved data.","error":"Could not complete this action.","groupCount":"${count} rule groups","rename":"Rename","current":"Current settings","close":"Close","fire":"Fire","cold":"Cold","wind":"Wind","elec":"Lightning","holy":"Holy","dark":"Dark","restore":"Undo delete","deleted":"Config deleted.","refresh":"Refresh","worldMismatch":"This config is for another world.","description":"Description","editor":"Rule editor","customCode":"This config contains custom code. Apply it only if you trust its source.","recovery":"Import backup","importWorld":"Save config","statsEdit":"Edit stats","preserveModes":"Rules","applyCurrent":"Apply here","libraryChanged":"This config was changed in another tab. Reopen it before saving.","unsupportedRule":"Unsupported rule (kept unchanged)","currentStyle":"Current style","filters":"Filters","allWorlds":"All worlds","allStyles":"All styles","allBattles":"All battles","allTypes":"All types","type":"Type","singleMode":"Battle mode","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","typeSort":"By type","manualSort":"Manual","multiStyle":"Mixed styles","multiBattle":"Multiple battles","resultCount":"${count} found","exportCurrent":"In use","exportAll":"Full config","exportChoose":"Choose rules","exportUnknown":"Current rules are not known yet.","bind":"Bind loadout","unbind":"Unbind","persona":"Persona","equipSet":"Equipment set","personaNumber":"Persona ${id}","setNumber":"Set ${id}","replaceBinding":"Replace the binding to “${name}”?","bound":"Loadout bound.","bindingUnknown":"Persona and set details are unavailable. Refresh the game outside battle, then try again.","bindingUnavailable":"No saved persona/set details. Try again outside battle.","importReading":"Reading “${name}”…","importReady":"File validated. Check the name and world, then click Save to add it to My configs. Nothing has been saved or applied yet.","importDraft":"Imported “${name}” into the current settings. Not saved yet; review the changes and click Save to keep them.","importPaused":"Auto-battle is paused.","importAdded":"Imported “${name}” into My configs. Not applied yet; use Apply on its row when ready.","importFailed":"Import not completed: “${name}”. ${reason}","importReadError":"Could not read the file. Select it again and retry.","importCancelled":"Import cancelled. Custom code was not approved.","fixedMode":"Fixed rules","automaticMode":"Automatic by scene","restoreAutomatic":"Restore automatic selection","detach":"Detach references","detachDelete":"Detach and delete","detached":"References detached.","detachHint":"Remove selection, application records, scene assignments and loadout bindings. Current native settings are kept.","sceneAssignments":"Scene strategies","inheritGeneral":"Inherit General","unassigned":"No assignment","noSceneRules":"Paused: no scene or General strategy is available.","assign":"Assign","assigned":"Assigned","executing":"Current strategy","assignmentOlder":"Saved changes are not assigned yet.","grindfest":"Grindfest","fixedHint":"Fixed rules apply across scenes in this world and remain selected after reload."};
+const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:16px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:44px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-meta{margin:3px 0 0;color:var(--jpx-theme-muted, #756753);font-size:12px;overflow-wrap:anywhere}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 3;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button),#settings-container.jpx-settings-mobile .jpx-config-rename input{height:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:14px}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:12px;margin-bottom:16px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:16px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n";
 // The local library is deliberately independent of the editor and battle runtime.
 // Keep PLUS metadata outside native JPX configuration objects.
 function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersion }) {
@@ -13096,6 +13133,21 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                     slots.add(slot);
                 }
             }
+            if (state.scenes !== undefined) {
+                if (!object(state.scenes)) fail('storageCorrupt');
+                for (const [world, routes] of Object.entries(state.scenes)) {
+                    if (!['Persistent', 'Isekai'].includes(world) || !object(routes)) fail('storageCorrupt');
+                    for (const [target, route] of Object.entries(routes)) {
+                        if (!validScene(world, target)) fail('storageCorrupt');
+                        if (route === null) continue;
+                        const entry = entries.get(route?.id);
+                        if (!object(route) || !entry || !modeSet.has(route.mode) ||
+                            !Number.isSafeInteger(route.revision) || route.revision < 1 || route.revision > entry.revision) fail('storageCorrupt');
+                        if (route.mode.slice(0, route.mode.lastIndexOf('_')) !== target.slice(0, target.lastIndexOf('_'))) fail('storageCorrupt');
+                        validateRules(route.rules);
+                    }
+                }
+            }
         } catch { return fail('storageCorrupt'); }
         validatedRaw = raw;
         validatedState = state;
@@ -13112,6 +13164,33 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!worlds.has(world)) fail('invalidConfig');
         const state = readValidatedState(), id = state.active?.[world];
         return id ? copyValidated(state.applied[world][id]) : null;
+    }
+    function readRuntime(world) {
+        if (!['Persistent', 'Isekai'].includes(world)) fail('invalidConfig');
+        const state = readValidatedState(), id = state.active?.[world];
+        return copyValidated({ selection: id ? state.applied[world][id] : null, scenes: state.scenes?.[world] || {} });
+    }
+    function validScene(world, mode) {
+        const scene = mode.slice(mode.lastIndexOf('_') + 1);
+        return ['Persistent', 'Isekai'].includes(world) && modeSet.has(mode) &&
+            ['General', 'Arena', 'Item', 'Battle1000', world === 'Isekai' ? 'Tower' : 'Encounter'].includes(scene);
+    }
+    function assignScene(world, target, id, mode, expectedRevision, previous = null) {
+        if (typeof target !== 'string' || !validScene(world, target)) fail('invalidConfig');
+        const state = readState(), routes = (state.scenes ||= {})[world] ||= {};
+        if (JSON.stringify(routes[target] || null) !== JSON.stringify(previous)) fail('libraryChanged');
+        if (id === null) routes[target] = null;
+        else {
+            const entry = state.entries.find(item => item.id === id);
+            if (!entry) fail('notFound');
+            if (entry.revision !== expectedRevision) fail('libraryChanged');
+            if (!['Any', world].includes(entry.envelope.world) || entry.envelope.kind === 'stats' || !modeSet.has(mode) ||
+                mode.slice(0, mode.lastIndexOf('_')) !== target.slice(0, target.lastIndexOf('_')) ||
+                !object(entry.envelope.config[mode])) fail('invalidConfig');
+            validateRules(entry.envelope.config[mode]);
+            routes[target] = { id, revision: entry.revision, mode, rules: clone(entry.envelope.config[mode]) };
+        }
+        write(state); return clone(routes[target]);
     }
     function write(state) { putRaw(key, encode(state)); }
     function newId(state) {
@@ -13159,6 +13238,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         for (const binding of state.bindings || []) {
             if (binding.id === id && binding.trustedRevision === previousRevision) binding.trustedRevision = entry.revision;
         }
+        for (const routes of Object.values(state.scenes || {})) for (const route of Object.values(routes)) {
+            if (route?.id === id && route.revision === previousRevision) route.revision = entry.revision;
+        }
         write(state);
         return clone(entry);
     }
@@ -13179,6 +13261,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         const state = readState();
         if (!state.entries.some(entry => entry.id === id)) fail('notFound');
         if (Object.values(state.applied).some(records => Object.hasOwn(records, id))) fail('appliedConfig');
+        if (Object.values(state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === id))) fail('appliedConfig');
         state.entries = state.entries.filter(entry => entry.id !== id);
         if (state.bindings) state.bindings = state.bindings.filter(binding => binding.id !== id);
         write(state);
@@ -13297,10 +13380,41 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         write(state);
         return true;
     }
+    function clearSelection(world) {
+        if (!worlds.has(world)) fail('invalidConfig');
+        const state = readState();
+        if (!state.active?.[world]) return false;
+        delete state.active[world];
+        pruneActive(state); write(state); return true;
+    }
+    function references(id) {
+        const state = readState();
+        return { applied: Object.entries(state.applied).flatMap(([world, records]) => records[id] ?
+            [{ world, scopes: records[id].scopes, selected: state.active?.[world] === id }] : []),
+            bindings: (state.bindings || []).filter(binding => binding.id === id),
+            scenes: Object.entries(state.scenes || {}).flatMap(([world, routes]) => Object.entries(routes)
+                .filter(([, route]) => route?.id === id).map(([mode]) => ({ world, mode }))) };
+    }
+    function detach(id, expectedRevision, removeEntry = false, expectedReferences) {
+        const state = readState(), entry = state.entries.find(item => item.id === id);
+        if (!entry) fail('notFound');
+        if (entry.revision !== expectedRevision) fail('libraryChanged');
+        if (expectedReferences !== undefined && JSON.stringify(references(id)) !== JSON.stringify(expectedReferences)) fail('libraryChanged');
+        for (const [world, records] of Object.entries(state.applied)) {
+            delete records[id]; if (!Object.keys(records).length) delete state.applied[world];
+        }
+        if (state.bindings) state.bindings = state.bindings.filter(binding => binding.id !== id);
+        for (const routes of Object.values(state.scenes || {})) for (const [mode, route] of Object.entries(routes)) {
+            if (route?.id === id) routes[mode] = null;
+        }
+        pruneActive(state);
+        if (removeEntry) state.entries = state.entries.filter(item => item.id !== id);
+        write(state); return true;
+    }
     return Object.freeze({
         list: () => copyValidated(readValidatedState().entries),
         get: id => copyValidated(readValidatedState().entries.find(entry => entry.id === id) || null),
-        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding
+        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding, clearSelection, references, detach, readRuntime, assignScene
     });
 }
 
@@ -13332,7 +13446,7 @@ const jpxConfigStore = (() => {
     const ruleTypes = { supports: ['spellSupport', 'item', 'toggle', 'stop'], attacks: ['target', 'toggle', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'], keys: ['target', 'spellSupport', 'item', 'toggle', 'stop', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'] };
     const conditionKeys = new Set('world pLevel pMaxSpellType battleTypes difficulty roundCurrent roundLeft roundTotal floor pActionCooldown pActionHistory pActionCounts pTotalActionCounts pHP pMP pSP pOC pSpiritStatus pEffects pIgnoredEffects pEffectStacks monsters activeMonsters defeatedMonsters bosses activeBosses defeatedBosses mLevel mWithoutEffects tName tTypes tClasses tPowerLevel tIndex tHP tMP tSP tEffects tIgnoredEffects tEffectStacks tDaysSinceUpdate'.split(' '));
     const encode = value => new TextEncoder().encode(value), clone = value => JSON.parse(JSON.stringify(value));
-    let cache, loginPending, sessionGeneration = 0;
+    let cache, loginPending, refreshing, sessionGeneration = 0;
     const pendingSubmissions = new Map();
     const error = code => Object.assign(new Error(code), { code });
     const fail = code => { throw error(code); };
@@ -13463,28 +13577,124 @@ const jpxConfigStore = (() => {
             } catch { end(reject, error('managerUnavailable')); }
         });
     }
-    async function storedToken() {
+    const validIdentity = value => object(value) && integer(value.id) && typeof value.login === 'string' && /^[a-z\d](?:[a-z\d-]{0,38})$/i.test(value.login);
+    const sameAuth = (left, right) => !!left && !!right && left.token === right.token && left.refreshToken === right.refreshToken;
+    function readAuth() {
         if (typeof GM_getValue !== 'function') fail('managerUnavailable');
-        const auth = await GM_getValue(tokenKey, null);
-        if (!object(auth) || !validToken(auth.token) || !Number.isFinite(auth.expiresAt) || auth.expiresAt <= Date.now() + 30000) {
-            if (auth) await logout();
-            return null;
-        }
-        return auth.token;
+        return GM_getValue(tokenKey, null);
     }
-    async function authenticated(path, options = {}) {
-        const token = await storedToken();
-        if (!token) fail('loginRequired');
-        try { return parse(await request(api + path, { ...options, token }), options.limit || 6000000); }
-        catch (err) { if (err.code === 'loginRequired') await logout(); throw err; }
+    function authFromResponse(result) {
+        if (!validToken(result.access_token) || result.token_type?.toLowerCase() !== 'bearer' ||
+            result.expires_in !== undefined && !integer(result.expires_in)) fail('invalidResponse');
+        const auth = { token: result.access_token, expiresAt: result.expires_in === undefined ? null : Date.now() + result.expires_in * 1000 };
+        if (result.refresh_token !== undefined) {
+            if (!validToken(result.refresh_token) || !integer(result.refresh_token_expires_in)) fail('invalidResponse');
+            auth.refreshToken = result.refresh_token; auth.refreshExpiresAt = Date.now() + result.refresh_token_expires_in * 1000;
+        }
+        return auth;
+    }
+    function forgetAuth(expected) {
+        // A late 401 from an old tab/request must not erase a renewed login.
+        if (!sameAuth(readAuth(), expected)) return;
+        if (typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        sessionGeneration++; pendingSubmissions.clear(); GM_deleteValue(tokenKey);
+    }
+    async function withAuthLock(action) {
+        if (typeof GM_listValues !== 'function' || typeof GM_setValue !== 'function' || typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        // Bakery tickets in userscript storage also coordinate primary/alt hosts.
+        // Each contender owns one key; a crashed tab's ticket expires.
+        const prefix = tokenKey + ':lock:', key = prefix + crypto.randomUUID();
+        const expiresAt = Date.now() + 60000;
+        const tickets = () => GM_listValues().filter(name => name.startsWith(prefix)).map(name => [name, GM_getValue(name, null)])
+            .filter(([, value]) => object(value) && Number.isFinite(value.expiresAt) && value.expiresAt > Date.now() && Number.isSafeInteger(value.ticket) && value.ticket >= 0);
+        GM_setValue(key, { ticket: 0, expiresAt });
+        try {
+            const ticket = Math.max(0, ...tickets().map(([, value]) => value.ticket)) + 1;
+            GM_setValue(key, { ticket, expiresAt });
+            while (tickets().some(([name, value]) => name !== key && (value.ticket === 0 || value.ticket < ticket || value.ticket === ticket && name < key))) {
+                if (Date.now() >= expiresAt - 26000) fail('networkError');
+                await pause(100);
+            }
+            if (Date.now() >= expiresAt - 26000) fail('networkError');
+            return await action(() => Date.now() < expiresAt);
+        } finally { GM_deleteValue(key); }
+    }
+    async function renewAuth(expected) {
+        if (refreshing) return refreshing;
+        const generation = sessionGeneration;
+        refreshing = withAuthLock(async leaseAlive => {
+            let auth = readAuth();
+            if (generation !== sessionGeneration || !sameAuth(auth, expected)) return auth;
+            if (!validToken(auth.refreshToken) || !Number.isFinite(auth.refreshExpiresAt) || auth.refreshExpiresAt <= Date.now()) return auth;
+            // GitHub device-flow refresh does not require a client secret.
+            // Never copy these credentials into page storage, exports or logs.
+            const result = parse(await request('https://github.com/login/oauth/access_token', { method: 'POST', data: {
+                client_id: JPX_CONFIG_STORE.clientId, grant_type: 'refresh_token', refresh_token: auth.refreshToken
+            } }));
+            if (generation !== sessionGeneration || !sameAuth(readAuth(), auth)) return readAuth();
+            if (result.error) {
+                // Retain the record: another process may have just rotated it,
+                // and network/server errors are never a reason to sign out.
+                if (['bad_refresh_token', 'expired_token', 'invalid_grant'].includes(result.error)) fail('loginRequired');
+                fail('networkError');
+            }
+            const renewed = authFromResponse(result);
+            if (renewed.expiresAt !== null && !renewed.refreshToken) fail('invalidResponse');
+            if (!leaseAlive()) fail('networkError');
+            if (validIdentity(auth.user)) renewed.user = auth.user;
+            GM_setValue(tokenKey, renewed);
+            return renewed;
+        }).finally(() => { refreshing = null; });
+        return refreshing;
+    }
+    async function storedAuth() {
+        let auth = await readAuth();
+        if (!object(auth) || !validToken(auth.token)) return null;
+        if (Number.isFinite(auth.expiresAt) && auth.expiresAt <= Date.now() + 30000 && validToken(auth.refreshToken)) auth = await renewAuth(auth);
+        // Older versions invented an eight-hour deadline even for permanent
+        // tokens. Without a refresh token, let GitHub decide validity via 401.
+        return object(auth) && validToken(auth.token) ? auth : null;
+    }
+    async function authenticated(path, options = {}, onSuccess) {
+        let auth = await storedAuth();
+        if (!auth) fail('loginRequired');
+        for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+                const value = parse(await request(api + path, { ...options, token: auth.token }), options.limit || 6000000);
+                onSuccess?.(value, auth); return value;
+            }
+            catch (err) {
+                if (err.code !== 'loginRequired') throw err;
+                const current = readAuth();
+                if (!sameAuth(current, auth)) {
+                    if (options.method && options.method !== 'GET' && (!validIdentity(auth.user) || !validIdentity(current?.user) || auth.user.id !== current.user.id)) throw err;
+                    if (!attempt && current && validToken(current.token)) { auth = await storedAuth(); if (auth) continue; }
+                    throw err;
+                }
+                if (!attempt && validToken(auth.refreshToken) && auth.refreshExpiresAt > Date.now()) {
+                    auth = await renewAuth(auth); if (auth) continue;
+                } else forgetAuth(auth);
+                throw err;
+            }
+        }
     }
     async function user() {
-        if (!await storedToken()) return null;
         try {
-            const identity = await authenticated('/user');
-            if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+            const identity = await authenticated('/user', {}, (value, auth) => {
+                if (!validIdentity(value)) fail('invalidResponse');
+                const current = readAuth();
+                if (!sameAuth(current, auth)) fail('loginRequired');
+                if (sameAuth(current, auth) && (current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
+                    GM_setValue(tokenKey, { ...current, user: { id: value.id, login: value.login } });
+                }
+            });
             return { id: identity.id, login: identity.login };
-        } catch (err) { if (err.code === 'loginRequired') return null; throw err; }
+        } catch (err) {
+            if (err.code === 'loginRequired') return null;
+            const auth = readAuth();
+            if (['networkError', 'rateLimited'].includes(err.code) && validToken(auth?.token) && validIdentity(auth?.user)) return { id: auth.user.id, login: auth.user.login };
+            throw err;
+        }
     }
     async function logout() { sessionGeneration++; pendingSubmissions.clear(); if (typeof GM_deleteValue !== 'function') fail('managerUnavailable'); await GM_deleteValue(tokenKey); }
     function pause(milliseconds, signal) {
@@ -13513,13 +13723,13 @@ const jpxConfigStore = (() => {
                 if (result.error === 'authorization_pending') continue;
                 if (result.error === 'slow_down') { interval += 5; continue; }
                 if (result.error) fail(result.error === 'access_denied' ? 'accessDenied' : result.error === 'expired_token' ? 'loginExpired' : result.error === 'device_flow_disabled' ? 'notConfigured' : 'loginFailed');
-                if (!validToken(result.access_token) || result.token_type?.toLowerCase() !== 'bearer') fail('invalidResponse');
+                const auth = authFromResponse(result);
                 const identity = parse(await request(api + '/user', { token: result.access_token, signal }));
-                if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+                if (!validIdentity(identity)) fail('invalidResponse');
                 if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
-                const lifetime = integer(result.expires_in) ? Math.min(result.expires_in, 28800) : 28800;
-                await GM_setValue(tokenKey, { token: result.access_token, expiresAt: Date.now() + lifetime * 1000 });
-                if (generation !== sessionGeneration || signal?.aborted) { await logout(); fail('cancelled'); }
+                auth.user = { id: identity.id, login: identity.login };
+                await GM_setValue(tokenKey, auth);
+                if (generation !== sessionGeneration || signal?.aborted) { forgetAuth(auth); fail('cancelled'); }
                 return { id: identity.id, login: identity.login };
             }
             fail('loginExpired');
@@ -13710,7 +13920,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         return node;
     }
     const confirmShare = (title, description, action) => hooks.confirm
-        ? hooks.confirm(title, description, action) : Promise.resolve(confirm(description));
+        ? hooks.confirm(title, description, action) : Promise.resolve(confirm([title, description].filter(Boolean).join('\n')));
     function field(text, input) {
         const label = el('label', undefined, 'jpx-store-field');
         input.setAttribute('aria-label', text);
@@ -13761,13 +13971,18 @@ function renderConfigStore(parent, hooks, options = {}) {
     function accountControls() {
         account.replaceChildren();
         if (state.user) {
-            const logout = button('@' + state.user.login, async () => {
+            const logout = button('@' + state.user.login, async node => {
+                const user = state.user, previousGeneration = state.authGeneration;
+                const confirmed = await confirmShare(tr('signOut') + '?', '@' + user.login, tr('signOut'));
+                if (!alive() || state.user !== user || state.authGeneration !== previousGeneration) return;
+                if (!confirmed) { node.disabled = false; node.focus({ preventScroll: true }); return; }
                 const generation = ++state.authGeneration;
                 await jpxConfigStore.logout();
                 if (!alive() || generation !== state.authGeneration) return;
                 state.user = null; accountControls();
                 if (state.view === 'mine') await mine();
                 message(tr('signedOut'));
+                account.querySelector('button')?.focus({ preventScroll: true });
             });
             logout.title = tr('signOut');
             logout.setAttribute('aria-label', tr('signOut') + ' · ' + state.user.login);
@@ -14230,7 +14445,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         if (!state.disposed && authGeneration === state.authGeneration) {
             state.user = user; if (alive()) accountControls();
         }
-    }).catch(() => {});
+    }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
     if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
     else browse();
     const dispose = () => { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
@@ -14277,9 +14492,11 @@ const jpxConfigHasRules = value => value && Array.isArray(value.supports) && Arr
 const jpxConfigHasContent = value => jpxConfigHasRules(value) && Object.entries(value).some(([key, rules]) =>
     (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
 let jpxSelectedConfig;
+let jpxSceneRuntime = { scenes: {} };
+const jpxConfigSceneLabel = scene => scene === 'Battle1000' ? t('cM.grindfest') : t('cB.' + scene);
 const jpxConfigModeLabel = mode => {
     const split = mode.lastIndexOf('_');
-    return t('cB.' + mode.slice(0, split)) + ' · ' + t('cB.' + mode.slice(split + 1));
+    return t('cB.' + mode.slice(0, split)) + ' · ' + jpxConfigSceneLabel(mode.slice(split + 1));
 };
 
 function getJpxConfigLibrary() {
@@ -14337,18 +14554,44 @@ function seedJpxConfigLibrary() {
 // snapshot belongs to the library; native exports still contain only JPX rules.
 function refreshJpxSelectedConfig() {
     jpxSelectedConfig = null;
+    jpxSceneRuntime = { scenes: {} };
     try {
-        const record = getJpxConfigLibrary().readSelection(jpxConfigWorld());
+        const runtime = getJpxConfigLibrary().readRuntime(jpxConfigWorld()), record = runtime.selection;
+        jpxSceneRuntime = runtime;
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };
         }
-    } catch (error) { console.warn('JPX-PLUS selected configuration could not be loaded.', error); }
+    } catch (error) { jpxSceneRuntime.failed = true; console.warn('JPX-PLUS selected configuration could not be loaded.', error); }
 }
 
 function getJpxSelectedBattleMode() {
     if (jpxSelectedConfig === undefined || jpxSelectedConfig && cfgBattle[jpxSelectedConfig.mode] !== jpxSelectedConfig.rules) refreshJpxSelectedConfig();
     return jpxSelectedConfig?.mode || '';
+}
+
+function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
+    const direct = style + '_' + scene, general = style + '_General';
+    for (const mode of [...new Set([direct, general])]) {
+        const assigned = Object.hasOwn(routes, mode), route = routes[mode];
+        const rules = assigned ? route?.rules : config[mode];
+        if (jpxConfigHasContent(rules)) return { mode, rules, id: route?.id || '', inherited: mode !== direct, assigned };
+    }
+    return { mode: general, rules: null, id: '', inherited: scene !== 'General', assigned: false };
+}
+
+function getJpxBattleRules(defaultStyle = 'Unarmed') {
+    const selected = getJpxSelectedBattleMode();
+    if (selected) return cfgBattle[selected];
+    if (jpxSceneRuntime.failed) return null;
+    return resolveJpxScene(getManagedBattleStyle(battleStyle || defaultStyle), battleType).rules;
+}
+
+function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
+    getJpxConfigLibrary().clearSelection(world);
+    if (world === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+    localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+    window.dispatchEvent(new Event('jpx:config-library'));
 }
 
 // Explicit PLUS choices live with their rules, never in the detected magic-damage cache.
@@ -14359,7 +14602,8 @@ function getManagedBattleStyle(detected) {
     for (const type of [battleType, 'General']) {
         const choices = BATTLE_STYLES.filter(style => family(style) === family(detected));
         for (const style of choices) {
-            const data = cfgBattle[style + '_' + type], execution = data?.jpxPlusExecution;
+            const slot = style + '_' + type;
+            const data = Object.hasOwn(jpxSceneRuntime.scenes, slot) ? jpxSceneRuntime.scenes[slot]?.rules : cfgBattle[slot], execution = data?.jpxPlusExecution;
             if (execution?.style === style && jpxConfigHasRules(data) &&
                 (data.supports.length || data.attacks.length || Object.entries(data).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length))) return style;
         }
@@ -14368,7 +14612,10 @@ function getManagedBattleStyle(detected) {
 }
 
 function getManagedSpellType() {
-    const element = cfgBattle[getBattleMode()]?.jpxPlusExecution?.element;
+    const mode = getBattleMode(), rules = getJpxBattleRules();
+    // Empty native groups can still provide an explicit element for manual spells.
+    const metadata = rules || (!jpxSceneRuntime.failed && !Object.hasOwn(jpxSceneRuntime.scenes, mode) ? cfgBattle[mode] : null);
+    const element = metadata?.jpxPlusExecution?.element;
     return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element :
         spellDamageBonus.maxType || jpxQuickbarSpellType;
 }
@@ -14385,6 +14632,12 @@ function pauseForJpxConfigApplication() {
 
 // Applying from a second tab must also stop the battle tab before its next action.
 window.addEventListener('storage', event => {
+    if (event.key === jpxConfigLibraryKey) {
+        const before = JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed]);
+        refreshJpxSelectedConfig();
+        if (before !== JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed])) pauseForJpxConfigApplication();
+        return;
+    }
     if (event.key !== jpxConfigApplyKey || !event.newValue) return;
     try {
         const signal = JSON.parse(event.newValue), stats = signal.world === 'Any';
@@ -14407,6 +14660,7 @@ window.addEventListener('storage', event => {
             document.getElementById('settings-container')?.jpxConfigApplied?.(patch,'battle');
             jpxPanelManager.refreshAppearance?.();
         }
+        window.dispatchEvent(new Event('jpx:config-library'));
     } catch (error) { console.warn('JPX-PLUS configuration update could not be loaded.', error); }
 });
 
@@ -14473,8 +14727,11 @@ function chooseJpxBattleExport(parent, config) {
     const activeMode = getJpxSelectedBattleMode();
     const detected = activeMode ? '' : log ? battleStyle : getDetectedJpxBattleStyle();
     const mode = activeMode || (detected ? getBattleMode(detected) : '');
-    const current = jpxConfigHasRules(data[mode]) ? mode : '';
-    const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current);
+    const assignedRules = !activeMode && detected ? resolveJpxScene(getManagedBattleStyle(detected), battleType) : null;
+    const hasSceneRoute = assignedRules && [getManagedBattleStyle(detected) + '_' + battleType, getManagedBattleStyle(detected) + '_General'].some(key => Object.hasOwn(jpxSceneRuntime.scenes, key));
+    const currentRules = assignedRules?.assigned || hasSceneRoute && !assignedRules.rules ? assignedRules.rules : data[mode];
+    const current = jpxConfigHasRules(currentRules) ? mode : '';
+    const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current && jpxConfigHasRules(data[key]));
     let scope = current ? 'current' : 'all', update = () => {};
     const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text) node.textContent = text; return node; };
     const dialog = el('dialog', 'jpx-export-dialog'); dialog.id = 'jpx-battle-export';
@@ -14491,7 +14748,7 @@ function chooseJpxBattleExport(parent, config) {
     const style = el('select'), scene = el('select'); style.dataset.exportStyle = ''; scene.dataset.exportScene = '';
     const addOption = (select, value) => { const option = el('option', '', t('cB.' + value)); option.value = value; select.append(option); };
     [...new Set(modes.map(key => key.slice(0, key.lastIndexOf('_'))))].forEach(value => addOption(style, value));
-    if (current) style.value = current.slice(0, current.lastIndexOf('_'));
+    if (current && [...style.options].some(option => option.value === current.slice(0, current.lastIndexOf('_')))) style.value = current.slice(0, current.lastIndexOf('_'));
     function updateScenes() {
         const previous = scene.value || current.slice(current.lastIndexOf('_') + 1);
         scene.replaceChildren();
@@ -14516,7 +14773,7 @@ function chooseJpxBattleExport(parent, config) {
         button(footer, tr('cancel'), () => finish(null));
         const submit = button(footer, tr('export'), () => {
             const key = scope === 'current' ? current : style.value + '_' + scene.value;
-            const output = scope === 'all' ? data : { battleVersion: data.battleVersion, [key]: data[key] };
+            const output = scope === 'all' ? data : { battleVersion: data.battleVersion, [key]: scope === 'current' ? currentRules : data[key] };
             const suffix = scope === 'all' ? '' : '_' + key;
             finish({ data: output, fileName: `cfgBattle_${jpxConfigWorld()}${suffix}.txt`, depth: 3 });
         });
@@ -14742,6 +14999,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const mine = button(tr('mine'), () => {}); mine.setAttribute('aria-pressed', 'true');
         const store = button(tr('store'), () => { captureList(); showStore(); }); store.setAttribute('aria-pressed', 'false');
         nav.append(mine, store);
+        const selection = el('div', undefined, 'jpx-config-selection');
+        renderSelection(selection);
+        root.append(selection);
         const search = el('input'); search.type = 'search'; search.placeholder = tr('search'); search.setAttribute('aria-label', tr('search')); search.value = state.query;
         search.addEventListener('input', () => { state.query = search.value; refresh(); });
         const queryBar = el('div', undefined, 'jpx-store-querybar');
@@ -14802,9 +15062,111 @@ function renderJpxConfigManager(parent, hooks = {}) {
         cancelListDrag = bindStatsListDrag(list, moveEntry, { row: '.jpx-config-row', handle: '.jpx-config-grip', idKey: 'configId', scroller: body, previewClass: 'jpx-config-drag-preview',
             preview: row => [createSettingsIcon('grip'), el('strong', row.querySelector('.jpx-config-title strong').textContent)], afterMove: () => {} });
     }
+    function renderSelection(selection) {
+        selection.replaceChildren();
+        const selected = getJpxSelectedBattleMode();
+        const summary = el('div', undefined, 'jpx-selection-summary');
+        const mode = el('span', tr(selected ? 'fixedMode' : 'automaticMode'), 'jpx-selection-mode');
+        mode.dataset.fixed = String(!!selected); if (selected) mode.title = tr('fixedHint');
+        summary.append(mode);
+        if (selected) summary.append(el('span', jpxConfigModeLabel(selected), 'jpx-selection-name'));
+        else summary.append(el('span', t('cB.' + jpxConfigWorld()), 'jpx-selection-world'));
+        const actions = el('div', undefined, 'jpx-selection-actions');
+        if (state.page !== 'scenes') actions.append(button(tr('sceneAssignments'), () => { captureList(); showScenes(); }, 'jpx-scene-open'));
+        if (selected) actions.append(button(tr('restoreAutomatic'), () => { restoreJpxAutomaticSelection(); state.page === 'scenes' ? showScenes() : showMine(); }));
+        selection.append(summary, actions);
+    }
+    function showScenes() {
+        resetPage('scenes'); state.back = showMine;
+        state.sceneWorld ||= jpxConfigWorld();
+        state.sceneStyle ||= getDetectedJpxBattleStyle() || BATTLE_STYLES[0];
+        const top = el('div', undefined, 'jpx-config-toolbar');
+        top.append(backButton(showMine), el('strong', tr('sceneAssignments')));
+        const selectedMode = getJpxSelectedBattleMode();
+        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection);
+        const controls = el('div', undefined, 'jpx-config-form jpx-scene-context');
+        const world = select(worlds.slice(0, 2), state.sceneWorld), style = select(BATTLE_STYLES.map(value => [value, t('cB.' + value)]), state.sceneStyle);
+        world.dataset.sceneWorld = ''; style.dataset.sceneStyle = '';
+        controls.append(field(tr('world'), world), field(tr('style'), style));
+        world.addEventListener('change', () => { state.sceneWorld = world.value; showScenes(); });
+        style.addEventListener('change', () => { state.sceneStyle = style.value; showScenes(); });
+        const content = el('div', undefined, 'jpx-config-body jpx-scenes-body');
+        root.append(top); if (selectedMode) root.append(selection);
+        content.append(controls); root.append(notice, content);
+        const application = appliedContext(), routes = application.state.scenes?.[state.sceneWorld] || {}, native = application.native[state.sceneWorld] || {};
+        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle() || 'Unarmed');
+        const execution = selectedMode ? { mode: selectedMode, id: application.state.active?.[jpxConfigWorld()] } : resolveJpxScene(detected, battleType);
+        const strategyName = (resolved, world, config) => application.state.entries.find(entry => entry.id === resolved.id)?.envelope.title ||
+            application.state.entries.find(entry => application.state.applied[world]?.[entry.id]?.scopes.includes(resolved.mode) &&
+                matchesApplied(application.state.applied[world][entry.id], config))?.envelope.title || tr('current');
+        const viewingCurrent = state.sceneWorld === jpxConfigWorld() && state.sceneStyle === detected;
+        if (selectedMode || !viewingCurrent) {
+            const executingName = execution.rules || selectedMode ? strategyName(execution, jpxConfigWorld(), application.native[jpxConfigWorld()]) : tr('unassigned');
+            const current = el('div', undefined, 'jpx-scene-executing');
+            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', jpxConfigModeLabel(detected + '_' + battleType)), el('strong', executingName));
+            content.append(current);
+        }
+        const table = el('div', undefined, 'jpx-scenes-table'); content.append(table);
+        const candidates = application.state.entries.filter(entry => entry.envelope.kind !== 'stats' && ['Any', state.sceneWorld].includes(entry.envelope.world) && visibleSavedEntry(entry, application));
+        const options = candidates.flatMap(entry => BATTLE_MODES.filter(mode => mode.slice(0, mode.lastIndexOf('_')) === state.sceneStyle && jpxConfigHasContent(entry.envelope.config[mode])).map(mode => ({ entry, mode })));
+        for (const scene of ['General', 'Arena', 'Item', state.sceneWorld === 'Isekai' ? 'Tower' : 'Encounter', 'Battle1000']) {
+            const target = state.sceneStyle + '_' + scene, route = routes[target];
+            const resolved = resolveJpxScene(state.sceneStyle, scene, routes, native);
+            const row = el('article', undefined, 'jpx-scene-row'); row.dataset.scene = scene;
+            const info = el('label', undefined, 'jpx-scene-label'), heading = el('strong', jpxConfigSceneLabel(scene));
+            const name = strategyName(resolved, state.sceneWorld, native);
+            info.append(heading);
+            row.dataset.general = String(scene === 'General');
+            row.dataset.inherited = String(resolved.inherited);
+            if (!selectedMode && viewingCurrent && scene === battleType && resolved.rules) {
+                row.dataset.executing = 'true'; info.append(el('span', tr('inUse'), 'jpx-scene-badge'));
+            }
+            const general = resolveJpxScene(state.sceneStyle, 'General', routes, native);
+            const inheritLabel = tr('inheritGeneral') + (general.rules ? ' · ' + strategyName(general, state.sceneWorld, native) : '');
+            const choices = [['', tr(scene === 'General' ? 'unassigned' : 'inheritGeneral')]];
+            if (scene !== 'General') choices[0][1] = inheritLabel;
+            if (!Object.hasOwn(routes, target) && jpxConfigHasContent(native[target])) choices.push(['native', name]);
+            for (const {entry, mode} of options) choices.push([JSON.stringify([entry.id, mode]), entry.envelope.title +
+                (entry.envelope.kind === 'battle' ? ' · ' + jpxConfigSceneLabel(mode.slice(mode.lastIndexOf('_') + 1)) : '')]);
+            const selected = route ? JSON.stringify([route.id, route.mode]) : choices.some(([value]) => value === 'native') ? 'native' : '';
+            if (route && !choices.some(([value]) => value === selected)) choices.push([selected, name]);
+            const picker = select(choices, selected); picker.id = getUniqueId('scene-strategy'); info.htmlFor = picker.id;
+            if (CSS.supports('appearance', 'base-select')) {
+                const face = el('button'); face.type = 'button';
+                face.append(el('selectedcontent')); picker.prepend(face);
+            }
+            picker.setAttribute('aria-label', jpxConfigSceneLabel(scene));
+            const outdated = route && application.state.entries.find(entry => entry.id === route.id)?.revision !== route.revision;
+            if (outdated) { const badge = el('span', tr('assignmentOlder'), 'jpx-scene-update'); info.append(badge); }
+            const save = button(tr('assign'), async () => {
+                if (picker.value === 'native') return;
+                const pair = picker.value ? JSON.parse(picker.value) : null;
+                const candidate = pair && candidates.find(entry => entry.id === pair[0]);
+                if (pair && !candidate) throw Object.assign(new Error(), { code: 'worldMismatch' });
+                if (candidate && jpxConfigContainsCode(candidate.envelope) && await confirmAction(tr('customCode'), [['cancel', tr('cancel')], ['confirm', tr('assign'), true]]) !== 'confirm') return;
+                library.assignScene(state.sceneWorld, target, candidate?.id || null, pair?.[1], candidate?.revision, route || null);
+                if (state.sceneWorld === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+                localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world: state.sceneWorld, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+                const scrollTop = content.scrollTop;
+                window.dispatchEvent(new Event('jpx:config-library')); showScenes(); notify(tr('assigned'));
+                const body = root.querySelector('.jpx-scenes-body'); body.scrollTop = scrollTop;
+                root.querySelector('[data-scene="' + scene + '"] select')?.focus({ preventScroll: true });
+            }, 'jpx-config-primary');
+            const cancel = button(tr('cancel'), () => { picker.value = selected; updatePending(); picker.focus({ preventScroll: true }); });
+            const pending = el('div', undefined, 'jpx-scene-pending'); pending.append(cancel, save);
+            function updatePending() {
+                const changed = picker.value !== selected || !!outdated && picker.value !== 'native';
+                pending.hidden = !changed; row.dataset.pending = String(changed);
+                picker.title = picker.selectedOptions[0]?.textContent || '';
+            }
+            picker.addEventListener('change', updatePending); updatePending();
+            const actions = el('div', undefined, 'jpx-scene-controls'); actions.append(picker, pending); row.append(info, actions); table.append(row);
+        }
+    }
     function visibleSavedEntry(entry, application = appliedContext()) {
         // Hide only untouched placeholders from older migrations, in every picker.
-        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id)) {
+        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id) &&
+            !Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) {
             const mode = entry.envelope.mode, saved = application.saved[entry.envelope.world];
             const rules = saved?.[mode] || (mode === '1H_Mage_General' ? saved?.Battlecaster_General : null);
             return !!(jpxConfigHasContent(entry.envelope.config[mode]) && jpxConfigHasContent(rules));
@@ -14816,9 +15178,10 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const normalize = value => String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/[_·/\-]+/g, ' ').replace(/\s+/g, ' ').trim();
         const query = normalize(state.query), words = query.split(' ').filter(Boolean);
         const application = appliedContext();
+        const selection = root.querySelector('.jpx-config-selection'); if (selection) renderSelection(selection);
         const detectedStyle = getDetectedJpxBattleStyle();
         const detectedMode = detectedStyle ? getBattleMode(detectedStyle) : '';
-        const version = [application, query, detectedStyle, detectedMode, state.world, state.style, state.scenario, state.kind, state.sort,
+        const version = [application, query, detectedStyle, detectedMode, getJpxSelectedBattleMode(), state.world, state.style, state.scenario, state.kind, state.sort,
             localStorage.getItem(jpxLoadoutKey('Persistent')), localStorage.getItem(jpxLoadoutKey('Isekai'))];
         if (listVersion?.every((value, index) => value === version[index])) { ensureJpxModeDetection(); return; }
         const fragment = document.createDocumentFragment();
@@ -14844,11 +15207,15 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
                 words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
         });
+        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed'), battleType);
+        const fixedMode = getJpxSelectedBattleMode();
+        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed');
+        const hasSceneRoute = [routedStyle + '_' + battleType, routedStyle + '_General'].some(mode => Object.hasOwn(jpxSceneRuntime.scenes, mode));
         for (const entry of entries) {
             const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;
-            const applied = currentApplied(entry, application), current = applied.some(item => {
+            const applied = currentApplied(entry, application), current = entry.envelope.kind !== 'stats' && !fixedMode && hasSceneRoute && (sceneSelection.id || !sceneSelection.rules) ? sceneSelection.id === entry.id : applied.some(item => {
                 if (item.world !== 'Any' && item.world !== jpxConfigWorld()) return false;
-                const selected = application.active[item.world];
+                const selected = item.world === 'Any' || fixedMode || !hasSceneRoute ? application.active[item.world] : null;
                 return selected ? selected === entry.id : item.world === 'Any' || !!detectedMode && item.scopes.includes(detectedMode);
             }),
                 outdated = applied.some(item => item.revision !== entry.revision);
@@ -14867,6 +15234,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             }
             title.append(el('strong', entry.envelope.title));
             if (current) title.append(el('span', tr('inUse'), 'jpx-config-status'));
+            if (Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) title.append(el('span', tr('assigned'), 'jpx-config-assigned'));
             if (detectedStyle && classify(entry.envelope).styles.includes(detectedStyle) &&
                 ['Any', jpxConfigWorld()].includes(entry.envelope.world)) title.append(el('span', tr('currentStyle'), 'jpx-config-detected'));
             info.append(title, tags(entry.envelope));
@@ -14877,7 +15245,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 bound.title = tr('bind') + ': ' + label; info.append(bound);
             }
             const actions = el('div', undefined, 'jpx-config-actions');
-            if (!current || outdated) actions.append(button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary'));
+            if (!current || outdated || entry.envelope.kind === 'battle-mode' && !fixedMode && sceneSelection.id === entry.id) {
+                const apply = button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary');
+                if (entry.envelope.kind === 'battle-mode') apply.title = tr('fixedHint');
+                actions.append(apply);
+            }
             actions.append(button(tr('edit'), () => { captureList(); chooseEditor(entry); }));
             const more = button(tr('more'), () => showMore(more, entry), 'jpx-config-more');
             more.replaceChildren(createSettingsIcon('more')); more.setAttribute('aria-label', tr('more') + ': ' + entry.envelope.title); more.title = tr('more');
@@ -14927,12 +15299,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
             });
         });
         add('share', () => { captureList(); showStore(entry.envelope); });
-        add('delete', async () => {
-            if (await confirmAction(tr('deleteConfirm'), [['cancel', tr('cancel')], ['delete', tr('delete'), true]]) !== 'delete') return;
-            if (currentApplied(entry).length) { notify(tr('appliedConfig')); return; }
-            for (const world of ['Persistent', 'Isekai', 'Any']) library.clearApplied(world, entry.id);
-            library.remove(entry.id); refreshJpxSelectedConfig(); showMine(); notify(tr('deleted'));
-        }, currentApplied(entry).length > 0);
+        const refs = library.references(entry.id);
+        if (refs.applied.length || refs.bindings.length || refs.scenes.length) add('detach', () => detachEntry(entry, false));
+        add('delete', () => detachEntry(entry, true));
         // Keep the opener linked so native light-dismiss and a second click agree.
         menu.style.visibility = 'hidden';
         root.append(menu); anchor.popoverTargetElement = menu;
@@ -14944,6 +15313,25 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 menu.remove(); if (anchor.popoverTargetElement === menu) anchor.popoverTargetElement = null;
             }
         });
+    }
+    async function detachEntry(entry, removeEntry) {
+        const refs = library.references(entry.id), content = el('div');
+        const used = refs.applied.length || refs.bindings.length || refs.scenes.length;
+        content.append(el('p', tr('detachHint')));
+        const locations = el('ul');
+        for (const ref of refs.applied) locations.append(el('li', t('cB.' + ref.world) + ' · ' +
+            (ref.selected ? tr('fixedMode') + ' · ' : '') + ref.scopes.map(scope => BATTLE_MODES.includes(scope) ? jpxConfigModeLabel(scope) : scope).join(', ')));
+        for (const ref of refs.bindings) locations.append(el('li', bindingLabel(ref)));
+        for (const ref of refs.scenes) locations.append(el('li', tr('sceneAssignments') + ' · ' + t('cB.' + ref.world) + ' · ' + jpxConfigModeLabel(ref.mode)));
+        content.append(locations);
+        const label = removeEntry ? used ? 'detachDelete' : 'delete' : 'detach';
+        if (await confirmAction(tr(removeEntry ? 'deleteConfirm' : 'detach'), [['cancel', tr('cancel')], ['confirm', tr(label), true]], content) !== 'confirm') return;
+        library.detach(entry.id, entry.revision, removeEntry, refs);
+        refreshJpxSelectedConfig();
+        if ([...refs.applied, ...refs.scenes].some(ref => ref.world === jpxConfigWorld())) pauseForJpxConfigApplication();
+        for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+        window.dispatchEvent(new Event('jpx:config-library'));
+        showMine(); notify(tr(removeEntry ? 'deleted' : 'detached'));
     }
     async function renameEntry(entry, anchor) {
         captureList(); anchor.focus({ preventScroll: true });
@@ -15248,6 +15636,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     function showStore(share){
         resetPage('store');
+        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection); root.append(selection);
         const top=el('div',undefined,'jpx-config-toolbar jpx-config-store-header'),nav=el('div',undefined,'jpx-config-nav');
         const mine=button(tr('mine'),showMine),store=button(tr('store'),()=>showStore());
         mine.setAttribute('aria-pressed','false');store.setAttribute('aria-pressed','true');nav.append(mine,store);top.append(nav);root.append(top,notice);
@@ -15276,7 +15665,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         },{...(share?{share:jpxConfigClone(share)}:{}),onBack:showMine,toolbarHost:top});
     }
     const beforeUnload=event=>{if(dirty()){event.preventDefault();event.returnValue='';}};
-    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}};
+    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}else if(state.page==='scenes'&&!state.dialog){try{showScenes();}catch(cause){error(cause);}}};
     const onStorage=event=>{if(event.key===jpxConfigLibraryKey)changed();};
     const migrationError=()=>notify(tr('storageError'));
     window.addEventListener('beforeunload',beforeUnload);window.addEventListener('storage',onStorage);

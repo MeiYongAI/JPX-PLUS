@@ -1,5 +1,9 @@
 # Configuration management
 
+From 2026.11.09.2, optional `scenes[world][style_scene]` records hold an entry ID, source mode, revision and detached rules snapshot. Missing keys preserve native routing; null explicitly clears a slot and permits General fallback. Assignments are validated and cached outside the action loop. Saving or changing metadata on the library copy does not mutate its assigned snapshot. Native exports omit these records; In use exports the effective rules. See [scene behavior](../../docs/scene-strategies.md).
+
+`clearSelection` exits fixed mode without clearing applied records. `references` identifies application records, scene routes and loadout bindings; `detach` removes them in one write after revision/reference checks. The manager lists these references before deletion.
+
 From 2026.11.08.12 the native-format settings and config library use the JPX-only shared storage facade backed by GM values. Primary and alt access one authoritative store; world suffixes retain their meaning. Native site storage remains a migration backup. See [sharing design and limitations](../../docs/alt-shared-data-2026-11-08.md). Edit src/shared-data.js and src/shared-ui.js, then use the existing build command.
 
 The distributed userscript remains `JPX-PLUS.user.js`. These sources are embedded into its marked section by:
@@ -33,7 +37,7 @@ Native migration preserves an absent `smartDebuff.targetCount`: the battle runne
 
 The standalone Config Store is retired. The configuration-only migration bridge remains compatible with previously installed copies; it does not transfer tokens or delete source data. The integrated store signs in separately. Local configurations remain usable when game lookups are unavailable.
 
-Local archive reads and writes belong to `library.js`; the embedded store no longer includes the retired backpack CRUD service or needs `GM_listValues`. Catalog ordering is reused across search/filter edits and recomputed only when the ordering changes or a fresh catalog is loaded.
+Local archive reads and writes belong to `library.js`; the embedded store no longer includes the retired backpack CRUD service. Authentication renewal uses shared userscript-storage tickets to coordinate tabs. Catalog ordering is reused across search/filter edits and recomputed only when the ordering changes or a fresh catalog is loaded.
 
 Native storage is backed up to `<native-key>:configManagerBackup` before the first managed application. Library migration snapshots the previous raw library to `jpx_configLibrary_v1:backup`. Malformed data is not overwritten. Apply signals pause and update the relevant running battle tab; the user explicitly resumes battle.
 

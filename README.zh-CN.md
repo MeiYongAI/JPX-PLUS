@@ -29,6 +29,8 @@
 
 同一流派、场景、世界可以保存多套方案。**我的配置**负责保存、重命名、筛选和排序，点击**编辑**后进入独立的规则编辑页。
 
+**场景策略**按世界、流派和场景分配规则，未单独分配时继承通用。固定单组模式可点击**恢复自动选择**退出。[选择规则说明](docs/scene-strategies.md#简体中文)。
+
 <table>
 <tr><th width="50%">我的配置</th><th width="50%">规则编辑</th></tr>
 <tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=configs&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-configs-dark.png"><img src="docs/images/desktop-configs.png" width="100%" alt="我的配置"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&amp;page=rules&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-rules-dark.png"><img src="docs/images/desktop-rules.png" width="100%" alt="规则编辑"></picture></a></td></tr>

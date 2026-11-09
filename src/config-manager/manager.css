@@ -166,7 +166,7 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}
 #settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}
 #settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}
-#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:4px;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}
+#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}
 #settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}
 #settings-container .jpx-config-confirm p{margin:0 0 16px}
 #settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}
@@ -217,3 +217,41 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}
 @media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}
+#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}
+#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}
+#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}
+#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}
+#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}
+#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}
+#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}
+#settings-container .jpx-scene-context label{margin:0}
+#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}
+#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}
+#settings-container .jpx-scene-row:last-child{border-bottom:0}
+#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}
+#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}
+#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}
+#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}
+#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}
+#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}
+#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}
+#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}
+#settings-container .jpx-scene-controls select>button{display:contents}
+#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#settings-container .jpx-scene-controls select::picker-icon{flex:none}
+#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}
+#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}
+#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}
+#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}
+#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}
+#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}
+#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}
+#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}
+#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:14px}
+#settings-container.jpx-settings-mobile .jpx-scene-context{gap:12px;margin-bottom:16px}
+#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:16px;min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 12px}
+#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}
+#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}
+#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}

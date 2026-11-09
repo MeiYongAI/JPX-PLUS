@@ -49,7 +49,7 @@ function inSandbox(source, id, initial = []) {
 let browser;
 before(async () => { browser = await chromium.launch({ ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}), headless: true }); });
 after(async () => { await browser?.close(); });
-async function fixture(t, { mobile = false, count = 1, records, language = 'en', signedIn = false, shareOverrides = {} } = {}) {
+async function fixture(t, { mobile = false, count = 1, records, language = 'en', signedIn = false, auth, shareOverrides = {} } = {}) {
     const context = await browser.newContext({ viewport: mobile ? { width: 375, height: 812 } : { width: 1440, height: 960 }, isMobile: mobile, hasTouch: mobile, reducedMotion: 'reduce' });
     t.after(() => context.close());
     const page = await context.newPage(), errors = [], unexpected = [];
@@ -85,7 +85,11 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
                     if (aborted) return;
                     const pathname = options.url.split('/main/')[1];
                     let response = /\/catalog\/index\.json(?:\?|$)/.test(options.url) ? JSON.stringify(catalog) : files[pathname];
-                    if (signedIn && options.url.endsWith('/user')) response = JSON.stringify({ id: 42, login: 'fixtureowner' });
+                    if (signedIn && options.url.endsWith('/user')) {
+                        if (this.failUser) { options.onload({status:503,finalUrl:options.url,responseText:'{}'}); return; }
+                        response = JSON.stringify({ id: 42, login: 'fixtureowner' });
+                    }
+                    if (signedIn && options.url.endsWith('/login/oauth/access_token')) response = JSON.stringify({access_token:'fixture_renewed',token_type:'bearer',expires_in:28800,refresh_token:'fixture_next_refresh',refresh_token_expires_in:15897600});
                     if (signedIn && options.url.includes('/issues?')) response = JSON.stringify(Object.values(this.issues));
                     const commentId = options.url.match(/\/issues\/(\d+)\/comments\?/)?.[1];
                     if (signedIn && commentId) response = JSON.stringify(this.comments[commentId] || []);
@@ -107,7 +111,7 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
         };
     }, { files, catalog, signedIn, shareOverrides });
     if (language !== 'en') await page.addScriptTag({ content: fs.readFileSync(path.join(root, 'JPX-PLUS-' + language + '.user.js'), 'utf8') });
-    await page.addScriptTag({ content: inSandbox(harness, 'main', signedIn ? [['jpx-config-store-auth-v1', { token: 'fixture_only', expiresAt: Date.now() + 3600000 }]] : []) });
+    await page.addScriptTag({ content: inSandbox(harness, 'main', signedIn ? [['jpx-config-store-auth-v1', auth || { token: 'fixture_only', expiresAt: Date.now() + 3600000 }]] : []) });
     await page.evaluate(config => { __fullStore.seed(config); __fullStore.open(); }, config);
     await tab(page, 'configManager');
     await page.locator('.jpx-config-row').first().waitFor();
@@ -117,6 +121,59 @@ async function tab(page, name) {
     if (!await page.locator('#tab_' + name).isVisible()) await page.locator('#jpx-settings-menu-button').click();
     await page.locator('#tab_' + name).click();
 }
+for (const mobile of [false,true]) test('sign out requires confirmation and cancellation preserves the session, '+(mobile?'mobile':'desktop'),async t=>{
+    const f=await fixture(t,{mobile,signedIn:true,language:'en'}),{page}=f;
+    await enterStore(page);
+    const account=page.getByRole('button',{name:'Sign out · fixtureowner',exact:true});
+    const stored=()=>page.evaluate(()=>__transport.snapshots.main());
+    const original=await stored(),native=await page.evaluate(()=>__fullStore.native());
+    const activate=async()=>mobile?account.tap():account.click();
+    for(const cancel of ['Escape','Cancel','Enter']){
+        await activate();const dialog=page.locator('.jpx-config-confirm');await dialog.waitFor();
+        assert.equal(await dialog.getByRole('heading').textContent(),'Sign out?');
+        assert.equal(await dialog.getByRole('button',{name:'Cancel',exact:true}).evaluate(node=>node===document.activeElement),true);
+        assert.deepEqual(await stored(),original,'opening confirmation never deletes credentials');
+        if(cancel==='Escape') {
+            await page.keyboard.press('Shift+Tab');
+            assert.equal(await dialog.getByRole('button',{name:'Sign out',exact:true}).evaluate(node=>node===document.activeElement),true);
+            await page.keyboard.press('Tab');
+            assert.equal(await dialog.getByRole('button',{name:'Cancel',exact:true}).evaluate(node=>node===document.activeElement),true);
+            await page.keyboard.press('Escape');
+        } else if(cancel==='Enter') await page.keyboard.press('Enter');
+        else await dialog.getByRole('button',{name:'Cancel',exact:true}).click();
+        await dialog.waitFor({state:'detached'});
+        assert.deepEqual(await stored(),original);
+        assert.equal(await account.evaluate(node=>node===document.activeElement),true);
+    }
+    await activate();
+    await page.locator('#settings-container').screenshot({path:path.join(root,'.test-output','uiux-sign-out-'+(mobile?'mobile':'desktop')+'.png')});
+    await page.locator('.jpx-config-confirm').getByRole('button',{name:'Sign out',exact:true}).click();
+    await page.getByRole('button',{name:'Sign in',exact:true}).waitFor();
+    assert.equal((await stored()).some(([key])=>key==='jpx-config-store-auth-v1'),false);
+    assert.deepEqual(await page.evaluate(()=>__fullStore.native()),native);
+    await assertClean(f);
+});
+
+for(const mobile of [false,true]) test('store renews an expired login and keeps the account during a transient lookup failure, '+(mobile?'mobile':'desktop'),async t=>{
+    const f=await fixture(t,{mobile,signedIn:true,auth:{token:'fixture_expired',expiresAt:Date.now()-1000,refreshToken:'fixture_refresh',refreshExpiresAt:Date.now()+86400000}}),{page}=f;
+    const native=await page.evaluate(()=>__fullStore.native());
+    await enterStore(page);
+    const account=page.getByRole('button',{name:'Sign out · fixtureowner',exact:true});await account.waitFor();
+    let state=await page.evaluate(()=>({auth:__transport.snapshots.main().find(([key])=>key==='jpx-config-store-auth-v1')[1],calls:__transport.calls}));
+    assert.equal(state.auth.token,'fixture_renewed');assert.equal(state.auth.refreshToken,'fixture_next_refresh');
+    assert.equal(state.calls.filter(call=>call.url.endsWith('/login/oauth/access_token')).length,1);
+    const mine=await page.evaluate(()=>__fullStore.label('mine'));
+    await page.locator('.jpx-config-nav').getByRole('button',{name:mine,exact:true}).click();
+    await page.evaluate(()=>{__transport.failUser=true;});
+    await enterStore(page);await account.waitFor();
+    assert.equal(await page.getByRole('button',{name:'Sign in',exact:true}).count(),0);
+    state=await page.evaluate(()=>({auth:__transport.snapshots.main().find(([key])=>key==='jpx-config-store-auth-v1')[1],calls:__transport.calls}));
+    assert.equal(state.auth.token,'fixture_renewed');
+    assert.equal(state.calls.some(call=>call.url.endsWith('/login/device/code')),false,'no new authorization prompt');
+    assert.deepEqual(await page.evaluate(()=>__fullStore.native()),native);
+    await assertClean(f);
+});
+
 async function enterStore(page) {
     const name = await page.evaluate(() => __fullStore.label('store'));
     await page.locator('.jpx-config-manager > .jpx-config-toolbar .jpx-config-nav').getByRole('button', { name, exact: true }).click();

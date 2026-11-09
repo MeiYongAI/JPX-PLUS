@@ -26,7 +26,7 @@ const jpxConfigStore = (() => {
     const ruleTypes = { supports: ['spellSupport', 'item', 'toggle', 'stop'], attacks: ['target', 'toggle', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'], keys: ['target', 'spellSupport', 'item', 'toggle', 'stop', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'] };
     const conditionKeys = new Set('world pLevel pMaxSpellType battleTypes difficulty roundCurrent roundLeft roundTotal floor pActionCooldown pActionHistory pActionCounts pTotalActionCounts pHP pMP pSP pOC pSpiritStatus pEffects pIgnoredEffects pEffectStacks monsters activeMonsters defeatedMonsters bosses activeBosses defeatedBosses mLevel mWithoutEffects tName tTypes tClasses tPowerLevel tIndex tHP tMP tSP tEffects tIgnoredEffects tEffectStacks tDaysSinceUpdate'.split(' '));
     const encode = value => new TextEncoder().encode(value), clone = value => JSON.parse(JSON.stringify(value));
-    let cache, loginPending, sessionGeneration = 0;
+    let cache, loginPending, refreshing, sessionGeneration = 0;
     const pendingSubmissions = new Map();
     const error = code => Object.assign(new Error(code), { code });
     const fail = code => { throw error(code); };
@@ -157,28 +157,124 @@ const jpxConfigStore = (() => {
             } catch { end(reject, error('managerUnavailable')); }
         });
     }
-    async function storedToken() {
+    const validIdentity = value => object(value) && integer(value.id) && typeof value.login === 'string' && /^[a-z\d](?:[a-z\d-]{0,38})$/i.test(value.login);
+    const sameAuth = (left, right) => !!left && !!right && left.token === right.token && left.refreshToken === right.refreshToken;
+    function readAuth() {
         if (typeof GM_getValue !== 'function') fail('managerUnavailable');
-        const auth = await GM_getValue(tokenKey, null);
-        if (!object(auth) || !validToken(auth.token) || !Number.isFinite(auth.expiresAt) || auth.expiresAt <= Date.now() + 30000) {
-            if (auth) await logout();
-            return null;
-        }
-        return auth.token;
+        return GM_getValue(tokenKey, null);
     }
-    async function authenticated(path, options = {}) {
-        const token = await storedToken();
-        if (!token) fail('loginRequired');
-        try { return parse(await request(api + path, { ...options, token }), options.limit || 6000000); }
-        catch (err) { if (err.code === 'loginRequired') await logout(); throw err; }
+    function authFromResponse(result) {
+        if (!validToken(result.access_token) || result.token_type?.toLowerCase() !== 'bearer' ||
+            result.expires_in !== undefined && !integer(result.expires_in)) fail('invalidResponse');
+        const auth = { token: result.access_token, expiresAt: result.expires_in === undefined ? null : Date.now() + result.expires_in * 1000 };
+        if (result.refresh_token !== undefined) {
+            if (!validToken(result.refresh_token) || !integer(result.refresh_token_expires_in)) fail('invalidResponse');
+            auth.refreshToken = result.refresh_token; auth.refreshExpiresAt = Date.now() + result.refresh_token_expires_in * 1000;
+        }
+        return auth;
+    }
+    function forgetAuth(expected) {
+        // A late 401 from an old tab/request must not erase a renewed login.
+        if (!sameAuth(readAuth(), expected)) return;
+        if (typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        sessionGeneration++; pendingSubmissions.clear(); GM_deleteValue(tokenKey);
+    }
+    async function withAuthLock(action) {
+        if (typeof GM_listValues !== 'function' || typeof GM_setValue !== 'function' || typeof GM_deleteValue !== 'function') fail('managerUnavailable');
+        // Bakery tickets in userscript storage also coordinate primary/alt hosts.
+        // Each contender owns one key; a crashed tab's ticket expires.
+        const prefix = tokenKey + ':lock:', key = prefix + crypto.randomUUID();
+        const expiresAt = Date.now() + 60000;
+        const tickets = () => GM_listValues().filter(name => name.startsWith(prefix)).map(name => [name, GM_getValue(name, null)])
+            .filter(([, value]) => object(value) && Number.isFinite(value.expiresAt) && value.expiresAt > Date.now() && Number.isSafeInteger(value.ticket) && value.ticket >= 0);
+        GM_setValue(key, { ticket: 0, expiresAt });
+        try {
+            const ticket = Math.max(0, ...tickets().map(([, value]) => value.ticket)) + 1;
+            GM_setValue(key, { ticket, expiresAt });
+            while (tickets().some(([name, value]) => name !== key && (value.ticket === 0 || value.ticket < ticket || value.ticket === ticket && name < key))) {
+                if (Date.now() >= expiresAt - 26000) fail('networkError');
+                await pause(100);
+            }
+            if (Date.now() >= expiresAt - 26000) fail('networkError');
+            return await action(() => Date.now() < expiresAt);
+        } finally { GM_deleteValue(key); }
+    }
+    async function renewAuth(expected) {
+        if (refreshing) return refreshing;
+        const generation = sessionGeneration;
+        refreshing = withAuthLock(async leaseAlive => {
+            let auth = readAuth();
+            if (generation !== sessionGeneration || !sameAuth(auth, expected)) return auth;
+            if (!validToken(auth.refreshToken) || !Number.isFinite(auth.refreshExpiresAt) || auth.refreshExpiresAt <= Date.now()) return auth;
+            // GitHub device-flow refresh does not require a client secret.
+            // Never copy these credentials into page storage, exports or logs.
+            const result = parse(await request('https://github.com/login/oauth/access_token', { method: 'POST', data: {
+                client_id: JPX_CONFIG_STORE.clientId, grant_type: 'refresh_token', refresh_token: auth.refreshToken
+            } }));
+            if (generation !== sessionGeneration || !sameAuth(readAuth(), auth)) return readAuth();
+            if (result.error) {
+                // Retain the record: another process may have just rotated it,
+                // and network/server errors are never a reason to sign out.
+                if (['bad_refresh_token', 'expired_token', 'invalid_grant'].includes(result.error)) fail('loginRequired');
+                fail('networkError');
+            }
+            const renewed = authFromResponse(result);
+            if (renewed.expiresAt !== null && !renewed.refreshToken) fail('invalidResponse');
+            if (!leaseAlive()) fail('networkError');
+            if (validIdentity(auth.user)) renewed.user = auth.user;
+            GM_setValue(tokenKey, renewed);
+            return renewed;
+        }).finally(() => { refreshing = null; });
+        return refreshing;
+    }
+    async function storedAuth() {
+        let auth = await readAuth();
+        if (!object(auth) || !validToken(auth.token)) return null;
+        if (Number.isFinite(auth.expiresAt) && auth.expiresAt <= Date.now() + 30000 && validToken(auth.refreshToken)) auth = await renewAuth(auth);
+        // Older versions invented an eight-hour deadline even for permanent
+        // tokens. Without a refresh token, let GitHub decide validity via 401.
+        return object(auth) && validToken(auth.token) ? auth : null;
+    }
+    async function authenticated(path, options = {}, onSuccess) {
+        let auth = await storedAuth();
+        if (!auth) fail('loginRequired');
+        for (let attempt = 0; attempt < 2; attempt++) {
+            try {
+                const value = parse(await request(api + path, { ...options, token: auth.token }), options.limit || 6000000);
+                onSuccess?.(value, auth); return value;
+            }
+            catch (err) {
+                if (err.code !== 'loginRequired') throw err;
+                const current = readAuth();
+                if (!sameAuth(current, auth)) {
+                    if (options.method && options.method !== 'GET' && (!validIdentity(auth.user) || !validIdentity(current?.user) || auth.user.id !== current.user.id)) throw err;
+                    if (!attempt && current && validToken(current.token)) { auth = await storedAuth(); if (auth) continue; }
+                    throw err;
+                }
+                if (!attempt && validToken(auth.refreshToken) && auth.refreshExpiresAt > Date.now()) {
+                    auth = await renewAuth(auth); if (auth) continue;
+                } else forgetAuth(auth);
+                throw err;
+            }
+        }
     }
     async function user() {
-        if (!await storedToken()) return null;
         try {
-            const identity = await authenticated('/user');
-            if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+            const identity = await authenticated('/user', {}, (value, auth) => {
+                if (!validIdentity(value)) fail('invalidResponse');
+                const current = readAuth();
+                if (!sameAuth(current, auth)) fail('loginRequired');
+                if (sameAuth(current, auth) && (current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
+                    GM_setValue(tokenKey, { ...current, user: { id: value.id, login: value.login } });
+                }
+            });
             return { id: identity.id, login: identity.login };
-        } catch (err) { if (err.code === 'loginRequired') return null; throw err; }
+        } catch (err) {
+            if (err.code === 'loginRequired') return null;
+            const auth = readAuth();
+            if (['networkError', 'rateLimited'].includes(err.code) && validToken(auth?.token) && validIdentity(auth?.user)) return { id: auth.user.id, login: auth.user.login };
+            throw err;
+        }
     }
     async function logout() { sessionGeneration++; pendingSubmissions.clear(); if (typeof GM_deleteValue !== 'function') fail('managerUnavailable'); await GM_deleteValue(tokenKey); }
     function pause(milliseconds, signal) {
@@ -207,13 +303,13 @@ const jpxConfigStore = (() => {
                 if (result.error === 'authorization_pending') continue;
                 if (result.error === 'slow_down') { interval += 5; continue; }
                 if (result.error) fail(result.error === 'access_denied' ? 'accessDenied' : result.error === 'expired_token' ? 'loginExpired' : result.error === 'device_flow_disabled' ? 'notConfigured' : 'loginFailed');
-                if (!validToken(result.access_token) || result.token_type?.toLowerCase() !== 'bearer') fail('invalidResponse');
+                const auth = authFromResponse(result);
                 const identity = parse(await request(api + '/user', { token: result.access_token, signal }));
-                if (!integer(identity.id) || !/^[a-z\d](?:[a-z\d-]{0,38})$/i.test(identity.login)) fail('invalidResponse');
+                if (!validIdentity(identity)) fail('invalidResponse');
                 if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
-                const lifetime = integer(result.expires_in) ? Math.min(result.expires_in, 28800) : 28800;
-                await GM_setValue(tokenKey, { token: result.access_token, expiresAt: Date.now() + lifetime * 1000 });
-                if (generation !== sessionGeneration || signal?.aborted) { await logout(); fail('cancelled'); }
+                auth.user = { id: identity.id, login: identity.login };
+                await GM_setValue(tokenKey, auth);
+                if (generation !== sessionGeneration || signal?.aborted) { forgetAuth(auth); fail('cancelled'); }
                 return { id: identity.id, login: identity.login };
             }
             fail('loginExpired');
@@ -404,7 +500,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         return node;
     }
     const confirmShare = (title, description, action) => hooks.confirm
-        ? hooks.confirm(title, description, action) : Promise.resolve(confirm(description));
+        ? hooks.confirm(title, description, action) : Promise.resolve(confirm([title, description].filter(Boolean).join('\n')));
     function field(text, input) {
         const label = el('label', undefined, 'jpx-store-field');
         input.setAttribute('aria-label', text);
@@ -455,13 +551,18 @@ function renderConfigStore(parent, hooks, options = {}) {
     function accountControls() {
         account.replaceChildren();
         if (state.user) {
-            const logout = button('@' + state.user.login, async () => {
+            const logout = button('@' + state.user.login, async node => {
+                const user = state.user, previousGeneration = state.authGeneration;
+                const confirmed = await confirmShare(tr('signOut') + '?', '@' + user.login, tr('signOut'));
+                if (!alive() || state.user !== user || state.authGeneration !== previousGeneration) return;
+                if (!confirmed) { node.disabled = false; node.focus({ preventScroll: true }); return; }
                 const generation = ++state.authGeneration;
                 await jpxConfigStore.logout();
                 if (!alive() || generation !== state.authGeneration) return;
                 state.user = null; accountControls();
                 if (state.view === 'mine') await mine();
                 message(tr('signedOut'));
+                account.querySelector('button')?.focus({ preventScroll: true });
             });
             logout.title = tr('signOut');
             logout.setAttribute('aria-label', tr('signOut') + ' · ' + state.user.login);
@@ -924,7 +1025,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         if (!state.disposed && authGeneration === state.authGeneration) {
             state.user = user; if (alive()) accountControls();
         }
-    }).catch(() => {});
+    }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
     if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
     else browse();
     const dispose = () => { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };

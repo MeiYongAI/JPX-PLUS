@@ -24,12 +24,13 @@ function setup({ clientId = 'Iv1.public-client-id', stored = true, sharedStorage
             if (expected.method) assert.equal(options.method, expected.method);
             if (expected.check) expected.check(options);
             let aborted = false;
-            queueMicrotask(() => { if (!aborted) options.onload({ status: expected.status || 200, finalUrl: expected.finalUrl || options.url, responseText: typeof expected.result === 'string' ? expected.result : JSON.stringify(expected.result) }); });
+            const respond = () => { if (!aborted) options.onload({ status: expected.status || 200, responseHeaders: expected.headers || '', finalUrl: expected.finalUrl || options.url, responseText: typeof expected.result === 'string' ? expected.result : JSON.stringify(expected.result) }); };
+            if (expected.hold) expected.hold(respond); else queueMicrotask(respond);
             return { abort() { aborted = true; options.onabort(); } };
         } };
     vm.createContext(sandbox);
     vm.runInContext(source.replace(/clientId: '[^']*'/, 'clientId: ' + JSON.stringify(clientId)) + '\nglobalThis.service = createJpxIntegratedStore({}, key => key).service;', sandbox);
-    return { service: sandbox.service, storage, calls, waits, routes, globals: sandbox, done() { assert.equal(routes.length, 0); } };
+    return { service: sandbox.service, storage, calls, waits, routes, globals: sandbox, advance(ms) { now += ms; }, now: () => now, done() { assert.equal(routes.length, 0); } };
 }
 const code = value => err => err.code === value;
 const plain = value => JSON.parse(JSON.stringify(value));
@@ -156,3 +157,144 @@ async function run() {
     }
 }
 test('integrated store service validates configs, login, publishing and catalog integrity', run);
+
+const authKey = 'jpx-config-store-auth-v1';
+const refreshed = { access_token: 'ghu_renewed', token_type: 'bearer', expires_in: 28800, refresh_token: 'ghr_rotated', refresh_token_expires_in: 15897600 };
+function expiring(env) {
+    const auth = { token: 'ghu_old', expiresAt: env.now() - 1, refreshToken: 'ghr_old', refreshExpiresAt: env.now() + 86400000, user: identity };
+    env.storage.set(authKey, auth); return plain(auth);
+}
+function queueLogin(env, result) {
+    env.routes.push({ path: '/login/device/code', result: { device_code: 'device', user_code: 'ABCD-EFGH', verification_uri: 'https://github.com/login/device', expires_in: 900, interval: 5 } },
+        { path: '/login/oauth/access_token', result }, { path: '/user', result: identity });
+}
+test('login keeps refresh credentials and follows the server lifetime without an eight-hour cap', async () => {
+    const env = setup({ stored: false }); queueLogin(env, { ...refreshed, expires_in: 86400 });
+    await env.service.login(); const auth = env.storage.get(authKey);
+    assert.equal(auth.expiresAt, env.now() + 86400000);
+    assert.equal(auth.refreshToken, refreshed.refresh_token);
+    assert.equal(auth.refreshExpiresAt, env.now() + refreshed.refresh_token_expires_in * 1000);
+    assert.deepEqual(plain(auth.user), identity); env.done();
+});
+test('non-expiring tokens remain usable after eight hours and a service reload', async () => {
+    const env = setup({ stored: false }); queueLogin(env, { access_token: 'ghu_permanent', token_type: 'bearer' });
+    await env.service.login(); assert.equal(env.storage.get(authKey).expiresAt, null);
+    const reloaded = setup({ sharedStorage: env.storage }); reloaded.advance(3 * 86400000);
+    reloaded.routes.push({ path: '/user', result: identity });
+    assert.deepEqual(plain(await reloaded.service.user()), identity); reloaded.done(); env.done();
+});
+test('legacy artificial expiry is checked with GitHub instead of deleting a valid login', async () => {
+    const env = setup(); env.advance(86400000);
+    env.routes.push({ path: '/user', result: identity });
+    assert.deepEqual(plain(await env.service.user()), identity);
+    assert.equal(env.storage.get(authKey).token, 'ghu_private_test_token'); env.done();
+});
+test('expired sessions renew once for concurrent requests and rotate both credentials', async () => {
+    const env = setup(); expiring(env);
+    env.routes.push({ path: '/login/oauth/access_token', result: refreshed, check: options => {
+        assert.deepEqual(JSON.parse(options.data), { client_id: 'Iv1.public-client-id', grant_type: 'refresh_token', refresh_token: 'ghr_old' });
+        assert.equal(options.headers.Authorization, undefined);
+    } }, ...Array.from({ length: 3 }, () => ({ path: '/user', result: identity, check: options => assert.equal(options.headers.Authorization, 'Bearer ghu_renewed') })));
+    assert.deepEqual(plain(await Promise.all([env.service.user(), env.service.user(), env.service.user()])), [identity, identity, identity]);
+    assert.equal(env.storage.get(authKey).refreshToken, 'ghr_rotated');
+    assert.deepEqual([...env.storage.keys()], [authKey], 'refresh tickets are removed'); env.done();
+});
+test('two isolated service instances serialize refresh with shared userscript storage', async () => {
+    const first = setup(), original = expiring(first), second = setup({ sharedStorage: first.storage });
+    let release, started; const startedPromise = new Promise(resolve => { started = resolve; });
+    first.routes.push({ path: '/login/oauth/access_token', result: refreshed, hold(respond) { release = respond; started(); } }, { path: '/user', result: identity });
+    second.routes.push({ path: '/user', result: identity, check: options => assert.equal(options.headers.Authorization, 'Bearer ghu_renewed') });
+    const one = first.service.user(); await startedPromise;
+    const two = second.service.user(); queueMicrotask(() => queueMicrotask(release));
+    assert.deepEqual(plain(await Promise.all([one, two])), [identity, identity]);
+    assert.notEqual(first.storage.get(authKey).refreshToken, original.refreshToken);
+    assert.equal(second.calls.some(call => call.url.includes('/oauth/')), false); first.done(); second.done();
+});
+for (const response of [{ status: 503 }, { status: 429 }, { status: 403, headers: 'x-ratelimit-remaining: 0' }, { result: { error: 'temporarily_unavailable' } }]) {
+    test('temporary refresh failure preserves credentials and cached identity ' + JSON.stringify(response), async () => {
+        const env = setup(), original = expiring(env);
+        env.routes.push({ path: '/login/oauth/access_token', result: {}, ...response });
+        assert.deepEqual(plain(await env.service.user()), identity);
+        assert.deepEqual(plain(env.storage.get(authKey)), original);
+        env.routes.push({ path: '/login/oauth/access_token', result: refreshed }, { path: '/user', result: identity });
+        assert.deepEqual(plain(await env.service.user()), identity); env.done();
+    });
+}
+test('an expired refresh credential falls back to GitHub validation without sending it', async () => {
+    const env = setup(); expiring(env); env.storage.get(authKey).refreshExpiresAt = env.now() - 1;
+    env.routes.push({ path: '/user', status: 401, result: {} });
+    assert.equal(await env.service.user(), null); assert.equal(env.storage.has(authKey), false); env.done();
+});
+test('an early 401 refreshes once and retries the authenticated request', async () => {
+    const env = setup(); expiring(env); env.storage.get(authKey).expiresAt = env.now() + 3600000;
+    env.routes.push({ path: '/user', status: 401, result: {} }, { path: '/login/oauth/access_token', result: refreshed }, { path: '/user', result: identity });
+    assert.deepEqual(plain(await env.service.user()), identity); env.done();
+});
+test('a late 401 does not delete credentials installed by another tab', async () => {
+    const env = setup(); let release;
+    env.routes.push({ path: '/user', status: 401, result: {}, hold: respond => { release = respond; } }, { path: '/user', result: identity, check: options => assert.equal(options.headers.Authorization, 'Bearer ghu_new_login') });
+    const pending = env.service.user(); while (!release) await Promise.resolve();
+    env.storage.set(authKey, { token: 'ghu_new_login', expiresAt: env.now() + 3600000 }); release();
+    assert.deepEqual(plain(await pending), identity); assert.equal(env.storage.get(authKey).token, 'ghu_new_login'); env.done();
+});
+for (const change of ['logout', 'new login']) test('pending renewal cannot undo ' + change, async () => {
+    const env = setup(); expiring(env); let release;
+    env.routes.push({ path: '/login/oauth/access_token', result: refreshed, hold: respond => { release = respond; } });
+    const pending = env.service.user(); while (!release) await Promise.resolve();
+    if (change === 'logout') await env.service.logout();
+    else {
+        env.storage.set(authKey, { token: 'ghu_other_login', expiresAt: env.now() + 3600000 });
+        env.routes.push({ path: '/user', result: identity, check: options => assert.equal(options.headers.Authorization, 'Bearer ghu_other_login') });
+    }
+    release(); const user = await pending;
+    if (change === 'logout') { assert.equal(user, null); assert.equal(env.storage.has(authKey), false); }
+    else assert.equal(env.storage.get(authKey).token, 'ghu_other_login');
+    assert.deepEqual([...env.storage.keys()], change === 'logout' ? [] : [authKey]); env.done();
+});
+test('invalid refresh responses leave credentials intact without accepting malformed tokens', async () => {
+    const env = setup(), original = expiring(env);
+    env.routes.push({ path: '/login/oauth/access_token', result: { ...refreshed, refresh_token: 'bad token' } });
+    await assert.rejects(env.service.user(), code('invalidResponse')); assert.deepEqual(plain(env.storage.get(authKey)), original); env.done();
+});
+test('a verified legacy identity survives transient lookup failures without storing API profile details', async () => {
+    const env=setup();env.routes.push({path:'/user',result:{...identity,email:'unused@example.test',private_gists:5}});
+    assert.deepEqual(plain(await env.service.user()),identity);
+    assert.deepEqual(plain(env.storage.get(authKey).user),identity);
+    env.routes.push({path:'/user',status:503,result:{}});
+    assert.deepEqual(plain(await env.service.user()),identity);env.done();
+});
+test('rejected refresh credentials ask for sign-in without destroying the saved record',async()=>{
+    const env=setup(),original=expiring(env);env.routes.push({path:'/login/oauth/access_token',result:{error:'bad_refresh_token'}});
+    assert.equal(await env.service.user(),null);assert.deepEqual(plain(env.storage.get(authKey)),original);env.done();
+});
+test('a temporary API failure cannot replay a publishing request',async()=>{
+    const env=setup();env.routes.push({path:'/issues',method:'POST',status:503,result:{}});
+    await assert.rejects(env.service.submit(envelope),code('networkError'));
+    assert.equal(env.calls.length,1);assert.ok(env.storage.has(authKey));env.done();
+});
+test('a late successful identity lookup cannot restore a logged-out account',async()=>{
+    const env=setup();let release;env.routes.push({path:'/user',result:identity,hold:respond=>{release=respond;}});
+    const pending=env.service.user();while(!release)await Promise.resolve();await env.service.logout();release();
+    assert.equal(await pending,null);assert.equal(env.storage.has(authKey),false);env.done();
+});
+test('a rejected write is never retried under a different account',async()=>{
+    const env=setup();env.storage.get(authKey).user=identity;let release;
+    env.routes.push({path:'/issues',method:'POST',status:401,result:{},hold:respond=>{release=respond;}});
+    const pending=env.service.submit(envelope);while(!release)await Promise.resolve();
+    env.storage.set(authKey,{token:'ghu_other_user',expiresAt:env.now()+3600000,user:{id:8,login:'other'}});release();
+    await assert.rejects(pending,code('loginRequired'));assert.equal(env.calls.length,1);assert.equal(env.storage.get(authKey).token,'ghu_other_user');env.done();
+});
+test('a crashed-tab refresh ticket delays renewal without erasing credentials',async()=>{
+    const env=setup(),original=expiring(env),key=authKey+':lock:crashed';
+    env.storage.set(key,{ticket:1,expiresAt:env.now()+60000});
+    assert.deepEqual(plain(await env.service.user()),identity);
+    assert.equal(env.calls.length,0);assert.deepEqual(plain(env.storage.get(authKey)),original);
+    env.advance(60001);env.routes.push({path:'/login/oauth/access_token',result:refreshed},{path:'/user',result:identity});
+    assert.deepEqual(plain(await env.service.user()),identity);env.done();
+});
+test('a response arriving after its refresh lease expires cannot overwrite credentials',async()=>{
+    const env=setup(),original=expiring(env);
+    env.routes.push({path:'/login/oauth/access_token',result:refreshed,check:()=>env.advance(60001)});
+    assert.deepEqual(plain(await env.service.user()),identity);
+    assert.deepEqual(plain(env.storage.get(authKey)),original);env.done();
+});

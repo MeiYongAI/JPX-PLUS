@@ -10,9 +10,11 @@ const jpxConfigHasRules = value => value && Array.isArray(value.supports) && Arr
 const jpxConfigHasContent = value => jpxConfigHasRules(value) && Object.entries(value).some(([key, rules]) =>
     (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
 let jpxSelectedConfig;
+let jpxSceneRuntime = { scenes: {} };
+const jpxConfigSceneLabel = scene => scene === 'Battle1000' ? t('cM.grindfest') : t('cB.' + scene);
 const jpxConfigModeLabel = mode => {
     const split = mode.lastIndexOf('_');
-    return t('cB.' + mode.slice(0, split)) + ' · ' + t('cB.' + mode.slice(split + 1));
+    return t('cB.' + mode.slice(0, split)) + ' · ' + jpxConfigSceneLabel(mode.slice(split + 1));
 };
 
 function getJpxConfigLibrary() {
@@ -70,18 +72,44 @@ function seedJpxConfigLibrary() {
 // snapshot belongs to the library; native exports still contain only JPX rules.
 function refreshJpxSelectedConfig() {
     jpxSelectedConfig = null;
+    jpxSceneRuntime = { scenes: {} };
     try {
-        const record = getJpxConfigLibrary().readSelection(jpxConfigWorld());
+        const runtime = getJpxConfigLibrary().readRuntime(jpxConfigWorld()), record = runtime.selection;
+        jpxSceneRuntime = runtime;
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };
         }
-    } catch (error) { console.warn('JPX-PLUS selected configuration could not be loaded.', error); }
+    } catch (error) { jpxSceneRuntime.failed = true; console.warn('JPX-PLUS selected configuration could not be loaded.', error); }
 }
 
 function getJpxSelectedBattleMode() {
     if (jpxSelectedConfig === undefined || jpxSelectedConfig && cfgBattle[jpxSelectedConfig.mode] !== jpxSelectedConfig.rules) refreshJpxSelectedConfig();
     return jpxSelectedConfig?.mode || '';
+}
+
+function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
+    const direct = style + '_' + scene, general = style + '_General';
+    for (const mode of [...new Set([direct, general])]) {
+        const assigned = Object.hasOwn(routes, mode), route = routes[mode];
+        const rules = assigned ? route?.rules : config[mode];
+        if (jpxConfigHasContent(rules)) return { mode, rules, id: route?.id || '', inherited: mode !== direct, assigned };
+    }
+    return { mode: general, rules: null, id: '', inherited: scene !== 'General', assigned: false };
+}
+
+function getJpxBattleRules(defaultStyle = 'Unarmed') {
+    const selected = getJpxSelectedBattleMode();
+    if (selected) return cfgBattle[selected];
+    if (jpxSceneRuntime.failed) return null;
+    return resolveJpxScene(getManagedBattleStyle(battleStyle || defaultStyle), battleType).rules;
+}
+
+function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
+    getJpxConfigLibrary().clearSelection(world);
+    if (world === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+    localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+    window.dispatchEvent(new Event('jpx:config-library'));
 }
 
 // Explicit PLUS choices live with their rules, never in the detected magic-damage cache.
@@ -92,7 +120,8 @@ function getManagedBattleStyle(detected) {
     for (const type of [battleType, 'General']) {
         const choices = BATTLE_STYLES.filter(style => family(style) === family(detected));
         for (const style of choices) {
-            const data = cfgBattle[style + '_' + type], execution = data?.jpxPlusExecution;
+            const slot = style + '_' + type;
+            const data = Object.hasOwn(jpxSceneRuntime.scenes, slot) ? jpxSceneRuntime.scenes[slot]?.rules : cfgBattle[slot], execution = data?.jpxPlusExecution;
             if (execution?.style === style && jpxConfigHasRules(data) &&
                 (data.supports.length || data.attacks.length || Object.entries(data).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length))) return style;
         }
@@ -101,7 +130,10 @@ function getManagedBattleStyle(detected) {
 }
 
 function getManagedSpellType() {
-    const element = cfgBattle[getBattleMode()]?.jpxPlusExecution?.element;
+    const mode = getBattleMode(), rules = getJpxBattleRules();
+    // Empty native groups can still provide an explicit element for manual spells.
+    const metadata = rules || (!jpxSceneRuntime.failed && !Object.hasOwn(jpxSceneRuntime.scenes, mode) ? cfgBattle[mode] : null);
+    const element = metadata?.jpxPlusExecution?.element;
     return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element :
         spellDamageBonus.maxType || jpxQuickbarSpellType;
 }
@@ -118,6 +150,12 @@ function pauseForJpxConfigApplication() {
 
 // Applying from a second tab must also stop the battle tab before its next action.
 window.addEventListener('storage', event => {
+    if (event.key === jpxConfigLibraryKey) {
+        const before = JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed]);
+        refreshJpxSelectedConfig();
+        if (before !== JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed])) pauseForJpxConfigApplication();
+        return;
+    }
     if (event.key !== jpxConfigApplyKey || !event.newValue) return;
     try {
         const signal = JSON.parse(event.newValue), stats = signal.world === 'Any';
@@ -140,6 +178,7 @@ window.addEventListener('storage', event => {
             document.getElementById('settings-container')?.jpxConfigApplied?.(patch,'battle');
             jpxPanelManager.refreshAppearance?.();
         }
+        window.dispatchEvent(new Event('jpx:config-library'));
     } catch (error) { console.warn('JPX-PLUS configuration update could not be loaded.', error); }
 });
 
@@ -206,8 +245,11 @@ function chooseJpxBattleExport(parent, config) {
     const activeMode = getJpxSelectedBattleMode();
     const detected = activeMode ? '' : log ? battleStyle : getDetectedJpxBattleStyle();
     const mode = activeMode || (detected ? getBattleMode(detected) : '');
-    const current = jpxConfigHasRules(data[mode]) ? mode : '';
-    const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current);
+    const assignedRules = !activeMode && detected ? resolveJpxScene(getManagedBattleStyle(detected), battleType) : null;
+    const hasSceneRoute = assignedRules && [getManagedBattleStyle(detected) + '_' + battleType, getManagedBattleStyle(detected) + '_General'].some(key => Object.hasOwn(jpxSceneRuntime.scenes, key));
+    const currentRules = assignedRules?.assigned || hasSceneRoute && !assignedRules.rules ? assignedRules.rules : data[mode];
+    const current = jpxConfigHasRules(currentRules) ? mode : '';
+    const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current && jpxConfigHasRules(data[key]));
     let scope = current ? 'current' : 'all', update = () => {};
     const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text) node.textContent = text; return node; };
     const dialog = el('dialog', 'jpx-export-dialog'); dialog.id = 'jpx-battle-export';
@@ -224,7 +266,7 @@ function chooseJpxBattleExport(parent, config) {
     const style = el('select'), scene = el('select'); style.dataset.exportStyle = ''; scene.dataset.exportScene = '';
     const addOption = (select, value) => { const option = el('option', '', t('cB.' + value)); option.value = value; select.append(option); };
     [...new Set(modes.map(key => key.slice(0, key.lastIndexOf('_'))))].forEach(value => addOption(style, value));
-    if (current) style.value = current.slice(0, current.lastIndexOf('_'));
+    if (current && [...style.options].some(option => option.value === current.slice(0, current.lastIndexOf('_')))) style.value = current.slice(0, current.lastIndexOf('_'));
     function updateScenes() {
         const previous = scene.value || current.slice(current.lastIndexOf('_') + 1);
         scene.replaceChildren();
@@ -249,7 +291,7 @@ function chooseJpxBattleExport(parent, config) {
         button(footer, tr('cancel'), () => finish(null));
         const submit = button(footer, tr('export'), () => {
             const key = scope === 'current' ? current : style.value + '_' + scene.value;
-            const output = scope === 'all' ? data : { battleVersion: data.battleVersion, [key]: data[key] };
+            const output = scope === 'all' ? data : { battleVersion: data.battleVersion, [key]: scope === 'current' ? currentRules : data[key] };
             const suffix = scope === 'all' ? '' : '_' + key;
             finish({ data: output, fileName: `cfgBattle_${jpxConfigWorld()}${suffix}.txt`, depth: 3 });
         });
@@ -475,6 +517,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const mine = button(tr('mine'), () => {}); mine.setAttribute('aria-pressed', 'true');
         const store = button(tr('store'), () => { captureList(); showStore(); }); store.setAttribute('aria-pressed', 'false');
         nav.append(mine, store);
+        const selection = el('div', undefined, 'jpx-config-selection');
+        renderSelection(selection);
+        root.append(selection);
         const search = el('input'); search.type = 'search'; search.placeholder = tr('search'); search.setAttribute('aria-label', tr('search')); search.value = state.query;
         search.addEventListener('input', () => { state.query = search.value; refresh(); });
         const queryBar = el('div', undefined, 'jpx-store-querybar');
@@ -535,9 +580,111 @@ function renderJpxConfigManager(parent, hooks = {}) {
         cancelListDrag = bindStatsListDrag(list, moveEntry, { row: '.jpx-config-row', handle: '.jpx-config-grip', idKey: 'configId', scroller: body, previewClass: 'jpx-config-drag-preview',
             preview: row => [createSettingsIcon('grip'), el('strong', row.querySelector('.jpx-config-title strong').textContent)], afterMove: () => {} });
     }
+    function renderSelection(selection) {
+        selection.replaceChildren();
+        const selected = getJpxSelectedBattleMode();
+        const summary = el('div', undefined, 'jpx-selection-summary');
+        const mode = el('span', tr(selected ? 'fixedMode' : 'automaticMode'), 'jpx-selection-mode');
+        mode.dataset.fixed = String(!!selected); if (selected) mode.title = tr('fixedHint');
+        summary.append(mode);
+        if (selected) summary.append(el('span', jpxConfigModeLabel(selected), 'jpx-selection-name'));
+        else summary.append(el('span', t('cB.' + jpxConfigWorld()), 'jpx-selection-world'));
+        const actions = el('div', undefined, 'jpx-selection-actions');
+        if (state.page !== 'scenes') actions.append(button(tr('sceneAssignments'), () => { captureList(); showScenes(); }, 'jpx-scene-open'));
+        if (selected) actions.append(button(tr('restoreAutomatic'), () => { restoreJpxAutomaticSelection(); state.page === 'scenes' ? showScenes() : showMine(); }));
+        selection.append(summary, actions);
+    }
+    function showScenes() {
+        resetPage('scenes'); state.back = showMine;
+        state.sceneWorld ||= jpxConfigWorld();
+        state.sceneStyle ||= getDetectedJpxBattleStyle() || BATTLE_STYLES[0];
+        const top = el('div', undefined, 'jpx-config-toolbar');
+        top.append(backButton(showMine), el('strong', tr('sceneAssignments')));
+        const selectedMode = getJpxSelectedBattleMode();
+        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection);
+        const controls = el('div', undefined, 'jpx-config-form jpx-scene-context');
+        const world = select(worlds.slice(0, 2), state.sceneWorld), style = select(BATTLE_STYLES.map(value => [value, t('cB.' + value)]), state.sceneStyle);
+        world.dataset.sceneWorld = ''; style.dataset.sceneStyle = '';
+        controls.append(field(tr('world'), world), field(tr('style'), style));
+        world.addEventListener('change', () => { state.sceneWorld = world.value; showScenes(); });
+        style.addEventListener('change', () => { state.sceneStyle = style.value; showScenes(); });
+        const content = el('div', undefined, 'jpx-config-body jpx-scenes-body');
+        root.append(top); if (selectedMode) root.append(selection);
+        content.append(controls); root.append(notice, content);
+        const application = appliedContext(), routes = application.state.scenes?.[state.sceneWorld] || {}, native = application.native[state.sceneWorld] || {};
+        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle() || 'Unarmed');
+        const execution = selectedMode ? { mode: selectedMode, id: application.state.active?.[jpxConfigWorld()] } : resolveJpxScene(detected, battleType);
+        const strategyName = (resolved, world, config) => application.state.entries.find(entry => entry.id === resolved.id)?.envelope.title ||
+            application.state.entries.find(entry => application.state.applied[world]?.[entry.id]?.scopes.includes(resolved.mode) &&
+                matchesApplied(application.state.applied[world][entry.id], config))?.envelope.title || tr('current');
+        const viewingCurrent = state.sceneWorld === jpxConfigWorld() && state.sceneStyle === detected;
+        if (selectedMode || !viewingCurrent) {
+            const executingName = execution.rules || selectedMode ? strategyName(execution, jpxConfigWorld(), application.native[jpxConfigWorld()]) : tr('unassigned');
+            const current = el('div', undefined, 'jpx-scene-executing');
+            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', jpxConfigModeLabel(detected + '_' + battleType)), el('strong', executingName));
+            content.append(current);
+        }
+        const table = el('div', undefined, 'jpx-scenes-table'); content.append(table);
+        const candidates = application.state.entries.filter(entry => entry.envelope.kind !== 'stats' && ['Any', state.sceneWorld].includes(entry.envelope.world) && visibleSavedEntry(entry, application));
+        const options = candidates.flatMap(entry => BATTLE_MODES.filter(mode => mode.slice(0, mode.lastIndexOf('_')) === state.sceneStyle && jpxConfigHasContent(entry.envelope.config[mode])).map(mode => ({ entry, mode })));
+        for (const scene of ['General', 'Arena', 'Item', state.sceneWorld === 'Isekai' ? 'Tower' : 'Encounter', 'Battle1000']) {
+            const target = state.sceneStyle + '_' + scene, route = routes[target];
+            const resolved = resolveJpxScene(state.sceneStyle, scene, routes, native);
+            const row = el('article', undefined, 'jpx-scene-row'); row.dataset.scene = scene;
+            const info = el('label', undefined, 'jpx-scene-label'), heading = el('strong', jpxConfigSceneLabel(scene));
+            const name = strategyName(resolved, state.sceneWorld, native);
+            info.append(heading);
+            row.dataset.general = String(scene === 'General');
+            row.dataset.inherited = String(resolved.inherited);
+            if (!selectedMode && viewingCurrent && scene === battleType && resolved.rules) {
+                row.dataset.executing = 'true'; info.append(el('span', tr('inUse'), 'jpx-scene-badge'));
+            }
+            const general = resolveJpxScene(state.sceneStyle, 'General', routes, native);
+            const inheritLabel = tr('inheritGeneral') + (general.rules ? ' · ' + strategyName(general, state.sceneWorld, native) : '');
+            const choices = [['', tr(scene === 'General' ? 'unassigned' : 'inheritGeneral')]];
+            if (scene !== 'General') choices[0][1] = inheritLabel;
+            if (!Object.hasOwn(routes, target) && jpxConfigHasContent(native[target])) choices.push(['native', name]);
+            for (const {entry, mode} of options) choices.push([JSON.stringify([entry.id, mode]), entry.envelope.title +
+                (entry.envelope.kind === 'battle' ? ' · ' + jpxConfigSceneLabel(mode.slice(mode.lastIndexOf('_') + 1)) : '')]);
+            const selected = route ? JSON.stringify([route.id, route.mode]) : choices.some(([value]) => value === 'native') ? 'native' : '';
+            if (route && !choices.some(([value]) => value === selected)) choices.push([selected, name]);
+            const picker = select(choices, selected); picker.id = getUniqueId('scene-strategy'); info.htmlFor = picker.id;
+            if (CSS.supports('appearance', 'base-select')) {
+                const face = el('button'); face.type = 'button';
+                face.append(el('selectedcontent')); picker.prepend(face);
+            }
+            picker.setAttribute('aria-label', jpxConfigSceneLabel(scene));
+            const outdated = route && application.state.entries.find(entry => entry.id === route.id)?.revision !== route.revision;
+            if (outdated) { const badge = el('span', tr('assignmentOlder'), 'jpx-scene-update'); info.append(badge); }
+            const save = button(tr('assign'), async () => {
+                if (picker.value === 'native') return;
+                const pair = picker.value ? JSON.parse(picker.value) : null;
+                const candidate = pair && candidates.find(entry => entry.id === pair[0]);
+                if (pair && !candidate) throw Object.assign(new Error(), { code: 'worldMismatch' });
+                if (candidate && jpxConfigContainsCode(candidate.envelope) && await confirmAction(tr('customCode'), [['cancel', tr('cancel')], ['confirm', tr('assign'), true]]) !== 'confirm') return;
+                library.assignScene(state.sceneWorld, target, candidate?.id || null, pair?.[1], candidate?.revision, route || null);
+                if (state.sceneWorld === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+                localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world: state.sceneWorld, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+                const scrollTop = content.scrollTop;
+                window.dispatchEvent(new Event('jpx:config-library')); showScenes(); notify(tr('assigned'));
+                const body = root.querySelector('.jpx-scenes-body'); body.scrollTop = scrollTop;
+                root.querySelector('[data-scene="' + scene + '"] select')?.focus({ preventScroll: true });
+            }, 'jpx-config-primary');
+            const cancel = button(tr('cancel'), () => { picker.value = selected; updatePending(); picker.focus({ preventScroll: true }); });
+            const pending = el('div', undefined, 'jpx-scene-pending'); pending.append(cancel, save);
+            function updatePending() {
+                const changed = picker.value !== selected || !!outdated && picker.value !== 'native';
+                pending.hidden = !changed; row.dataset.pending = String(changed);
+                picker.title = picker.selectedOptions[0]?.textContent || '';
+            }
+            picker.addEventListener('change', updatePending); updatePending();
+            const actions = el('div', undefined, 'jpx-scene-controls'); actions.append(picker, pending); row.append(info, actions); table.append(row);
+        }
+    }
     function visibleSavedEntry(entry, application = appliedContext()) {
         // Hide only untouched placeholders from older migrations, in every picker.
-        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id)) {
+        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id) &&
+            !Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) {
             const mode = entry.envelope.mode, saved = application.saved[entry.envelope.world];
             const rules = saved?.[mode] || (mode === '1H_Mage_General' ? saved?.Battlecaster_General : null);
             return !!(jpxConfigHasContent(entry.envelope.config[mode]) && jpxConfigHasContent(rules));
@@ -549,9 +696,10 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const normalize = value => String(value || '').normalize('NFKC').toLocaleLowerCase().replace(/[_·/\-]+/g, ' ').replace(/\s+/g, ' ').trim();
         const query = normalize(state.query), words = query.split(' ').filter(Boolean);
         const application = appliedContext();
+        const selection = root.querySelector('.jpx-config-selection'); if (selection) renderSelection(selection);
         const detectedStyle = getDetectedJpxBattleStyle();
         const detectedMode = detectedStyle ? getBattleMode(detectedStyle) : '';
-        const version = [application, query, detectedStyle, detectedMode, state.world, state.style, state.scenario, state.kind, state.sort,
+        const version = [application, query, detectedStyle, detectedMode, getJpxSelectedBattleMode(), state.world, state.style, state.scenario, state.kind, state.sort,
             localStorage.getItem(jpxLoadoutKey('Persistent')), localStorage.getItem(jpxLoadoutKey('Isekai'))];
         if (listVersion?.every((value, index) => value === version[index])) { ensureJpxModeDetection(); return; }
         const fragment = document.createDocumentFragment();
@@ -577,11 +725,15 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
                 words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
         });
+        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed'), battleType);
+        const fixedMode = getJpxSelectedBattleMode();
+        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed');
+        const hasSceneRoute = [routedStyle + '_' + battleType, routedStyle + '_General'].some(mode => Object.hasOwn(jpxSceneRuntime.scenes, mode));
         for (const entry of entries) {
             const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;
-            const applied = currentApplied(entry, application), current = applied.some(item => {
+            const applied = currentApplied(entry, application), current = entry.envelope.kind !== 'stats' && !fixedMode && hasSceneRoute && (sceneSelection.id || !sceneSelection.rules) ? sceneSelection.id === entry.id : applied.some(item => {
                 if (item.world !== 'Any' && item.world !== jpxConfigWorld()) return false;
-                const selected = application.active[item.world];
+                const selected = item.world === 'Any' || fixedMode || !hasSceneRoute ? application.active[item.world] : null;
                 return selected ? selected === entry.id : item.world === 'Any' || !!detectedMode && item.scopes.includes(detectedMode);
             }),
                 outdated = applied.some(item => item.revision !== entry.revision);
@@ -600,6 +752,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             }
             title.append(el('strong', entry.envelope.title));
             if (current) title.append(el('span', tr('inUse'), 'jpx-config-status'));
+            if (Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) title.append(el('span', tr('assigned'), 'jpx-config-assigned'));
             if (detectedStyle && classify(entry.envelope).styles.includes(detectedStyle) &&
                 ['Any', jpxConfigWorld()].includes(entry.envelope.world)) title.append(el('span', tr('currentStyle'), 'jpx-config-detected'));
             info.append(title, tags(entry.envelope));
@@ -610,7 +763,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 bound.title = tr('bind') + ': ' + label; info.append(bound);
             }
             const actions = el('div', undefined, 'jpx-config-actions');
-            if (!current || outdated) actions.append(button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary'));
+            if (!current || outdated || entry.envelope.kind === 'battle-mode' && !fixedMode && sceneSelection.id === entry.id) {
+                const apply = button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary');
+                if (entry.envelope.kind === 'battle-mode') apply.title = tr('fixedHint');
+                actions.append(apply);
+            }
             actions.append(button(tr('edit'), () => { captureList(); chooseEditor(entry); }));
             const more = button(tr('more'), () => showMore(more, entry), 'jpx-config-more');
             more.replaceChildren(createSettingsIcon('more')); more.setAttribute('aria-label', tr('more') + ': ' + entry.envelope.title); more.title = tr('more');
@@ -660,12 +817,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
             });
         });
         add('share', () => { captureList(); showStore(entry.envelope); });
-        add('delete', async () => {
-            if (await confirmAction(tr('deleteConfirm'), [['cancel', tr('cancel')], ['delete', tr('delete'), true]]) !== 'delete') return;
-            if (currentApplied(entry).length) { notify(tr('appliedConfig')); return; }
-            for (const world of ['Persistent', 'Isekai', 'Any']) library.clearApplied(world, entry.id);
-            library.remove(entry.id); refreshJpxSelectedConfig(); showMine(); notify(tr('deleted'));
-        }, currentApplied(entry).length > 0);
+        const refs = library.references(entry.id);
+        if (refs.applied.length || refs.bindings.length || refs.scenes.length) add('detach', () => detachEntry(entry, false));
+        add('delete', () => detachEntry(entry, true));
         // Keep the opener linked so native light-dismiss and a second click agree.
         menu.style.visibility = 'hidden';
         root.append(menu); anchor.popoverTargetElement = menu;
@@ -677,6 +831,25 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 menu.remove(); if (anchor.popoverTargetElement === menu) anchor.popoverTargetElement = null;
             }
         });
+    }
+    async function detachEntry(entry, removeEntry) {
+        const refs = library.references(entry.id), content = el('div');
+        const used = refs.applied.length || refs.bindings.length || refs.scenes.length;
+        content.append(el('p', tr('detachHint')));
+        const locations = el('ul');
+        for (const ref of refs.applied) locations.append(el('li', t('cB.' + ref.world) + ' · ' +
+            (ref.selected ? tr('fixedMode') + ' · ' : '') + ref.scopes.map(scope => BATTLE_MODES.includes(scope) ? jpxConfigModeLabel(scope) : scope).join(', ')));
+        for (const ref of refs.bindings) locations.append(el('li', bindingLabel(ref)));
+        for (const ref of refs.scenes) locations.append(el('li', tr('sceneAssignments') + ' · ' + t('cB.' + ref.world) + ' · ' + jpxConfigModeLabel(ref.mode)));
+        content.append(locations);
+        const label = removeEntry ? used ? 'detachDelete' : 'delete' : 'detach';
+        if (await confirmAction(tr(removeEntry ? 'deleteConfirm' : 'detach'), [['cancel', tr('cancel')], ['confirm', tr(label), true]], content) !== 'confirm') return;
+        library.detach(entry.id, entry.revision, removeEntry, refs);
+        refreshJpxSelectedConfig();
+        if ([...refs.applied, ...refs.scenes].some(ref => ref.world === jpxConfigWorld())) pauseForJpxConfigApplication();
+        for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+        window.dispatchEvent(new Event('jpx:config-library'));
+        showMine(); notify(tr(removeEntry ? 'deleted' : 'detached'));
     }
     async function renameEntry(entry, anchor) {
         captureList(); anchor.focus({ preventScroll: true });
@@ -981,6 +1154,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     function showStore(share){
         resetPage('store');
+        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection); root.append(selection);
         const top=el('div',undefined,'jpx-config-toolbar jpx-config-store-header'),nav=el('div',undefined,'jpx-config-nav');
         const mine=button(tr('mine'),showMine),store=button(tr('store'),()=>showStore());
         mine.setAttribute('aria-pressed','false');store.setAttribute('aria-pressed','true');nav.append(mine,store);top.append(nav);root.append(top,notice);
@@ -1009,7 +1183,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         },{...(share?{share:jpxConfigClone(share)}:{}),onBack:showMine,toolbarHost:top});
     }
     const beforeUnload=event=>{if(dirty()){event.preventDefault();event.returnValue='';}};
-    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}};
+    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}else if(state.page==='scenes'&&!state.dialog){try{showScenes();}catch(cause){error(cause);}}};
     const onStorage=event=>{if(event.key===jpxConfigLibraryKey)changed();};
     const migrationError=()=>notify(tr('storageError'));
     window.addEventListener('beforeunload',beforeUnload);window.addEventListener('storage',onStorage);

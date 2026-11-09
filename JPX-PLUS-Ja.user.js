@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.1
+// @version      2026.11.09.2
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -30,7 +30,7 @@
             "auto": "自動",
             "manual": "手動",
             "readyNext": "準備状況",
-            "networkDelay": "通信遅延",
+            "networkDelay": "ターン間隔",
             "battleStyle": "戦闘スタイル",
             "OneHanded": "片手武器",
             "1H_Mage": "片手魔法型",
@@ -1202,6 +1202,23 @@
         "importFailed": "インポートは完了していません：「${name}」。${reason}",
         "importReadError": "ファイルを読み込めませんでした。選び直して再試行してください。",
         "importCancelled": "カスタムコードが許可されなかったため、インポートをキャンセルしました。",
+        "fixedHint": "固定ルールはこの世界の全戦闘に適用され、再読み込み後も保持されます。",
+        "grindfest": "グラインドフェスト",
+        "sceneAssignments": "戦闘別の戦略",
+        "inheritGeneral": "共通を継承",
+        "unassigned": "未割り当て",
+        "noSceneRules": "停止中：戦闘別または共通の戦略がありません。",
+        "assign": "割り当て",
+        "assigned": "割り当て済み",
+        "executing": "現在の戦略",
+        "assignmentOlder": "保存した変更は未適用です。",
+        "fixedMode": "ルールを固定",
+        "automaticMode": "戦闘別に自動選択",
+        "restoreAutomatic": "自動選択に戻す",
+        "detach": "参照を解除",
+        "detachDelete": "参照を解除して削除",
+        "detached": "参照を解除しました。",
+        "detachHint": "固定選択、適用記録、戦闘別の割り当て、装備との関連付けを解除します。現在の設定は保持されます。",
         "savedFromStore": "マイ設定に保存しました。",
         "sourceExists": "この設定は保存済みです。",
         "updateCopy": "保存済みの設定を更新",

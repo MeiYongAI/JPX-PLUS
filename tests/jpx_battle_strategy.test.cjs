@@ -26,13 +26,20 @@ function instrument() {
     window.__strategy = {
         open: renderSettings, toggle: toggleActive,
         state: () => ({ active: isActiveBattle, pendingHover: !!jpxPanelManager.roundHoverResume, mode: getBattleMode(),
-            ready: readyNext, processed, decisions, targets: [...targets], config: JSON.parse(JSON.stringify(cfgBattle[getBattleMode()])) }),
+            ready: readyNext, processed, decisions, targets: [...targets], config: JSON.parse(JSON.stringify(getJpxBattleRules())) }),
         add(mode, data, title = mode) {
             const entry = getJpxConfigLibrary().save({ schemaVersion: 1, kind: 'battle-mode', title, description: '', world: 'Persistent',
                 mode, config: { battleVersion: defaultCfgBattle.battleVersion, [mode]: data } });
             window.dispatchEvent(new Event('jpx:config-library')); return entry;
         },
         commit(id) { return commitJpxConfigEntry(getJpxConfigLibrary().get(id), 'Persistent'); },
+        assign(id, target) {
+            const library=getJpxConfigLibrary(),entry=library.get(id);
+            library.assignScene('Persistent',target,id,entry.envelope.mode,entry.revision,library.readRuntime('Persistent').scenes[target]||null);
+            refreshJpxSelectedConfig();pauseForJpxConfigApplication();
+        },
+        scene(value) { battleType=value; },
+        resolved: () => JSON.parse(JSON.stringify(getJpxBattleRules())),
         append() { const row = log.insertRow(0); row.insertCell().textContent = 'Fixture strategy update'; },
         round(main) { document.getElementById('battle_main').innerHTML = main; reDoBattle(); },
         hover(value) { cfgBattle.ctrlWidgetMouseEnter = value; },
@@ -71,6 +78,20 @@ async function add(page, mode, data) { return page.evaluate(({ mode, data }) => 
 async function apply(page, entry, label) { await row(page, entry.id).getByRole('button', { name: label, exact: true }).click(); }
 async function close(page) { await page.evaluate(() => document.getElementById('settings-container').close()); await page.locator('#settings-container').waitFor({ state: 'detached' }); }
 async function settle(page) { await page.waitForTimeout(280); }
+
+test('assigned scene rules drive battle actions and manual keys without changing native slots', async t => {
+    const {page}=await fixture(t), data=rules('Assigned bottom-up',true);
+    data.kb_Q=[{type:'target',priorityRule:'Bottom Up',conditions:[]},{type:'normalAttack',conditions:[]}];
+    const entry=await add(page,'TwoHanded_General',data);
+    await page.evaluate(id=>{__strategy.scene('Arena');__strategy.assign(id,'TwoHanded_Arena');},entry.id);
+    assert.equal((await state(page)).active,false);
+    assert.deepEqual(await page.evaluate(()=>__strategy.resolved()),data);
+    await page.evaluate(()=>__strategy.toggle());await settle(page);
+    assert.deepEqual((await state(page)).targets,['mkey_0']);
+    await page.evaluate(()=>__strategy.toggle());
+    await page.keyboard.press('q');await settle(page);
+    assert.deepEqual((await state(page)).targets,['mkey_0','mkey_0']);
+});
 
 test('applying a strategy in a running battle pauses and resumes with the new target exactly once', async t => {
     const { page, labels } = await fixture(t);

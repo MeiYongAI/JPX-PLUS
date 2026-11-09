@@ -22,6 +22,7 @@ function expose() {
     const copy = value => JSON.parse(JSON.stringify(value));
     window.__selection = {
         open: renderSettings,
+        theme: toggleJpxTheme,
         label: key => t('cM.' + key),
         library: () => getJpxConfigLibrary().readState(),
         get: id => getJpxConfigLibrary().get(id),
@@ -44,6 +45,8 @@ function expose() {
             refreshJpxSelectedConfig();
         },
         running: () => isActiveBattle,
+        runtime: () => copy({rules:getJpxBattleRules(),mode:getBattleMode(),active:isActiveBattle,reason:readyNext}),
+        smart: () => smartBattle(),
         resetLobby() {
             log = null; battleStyle = ''; battleType = 'General';
             window.dispatchEvent(new Event('jpx:mode-detected'));
@@ -70,7 +73,8 @@ let browser;
 before(async () => { browser = await chromium.launch({ ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}), headless: true }); });
 after(async () => { await browser?.close(); });
 
-async function initialize(page, { seed = false, equipment = true } = {}) {
+async function initialize(page, { seed = false, equipment = true, language = '' } = {}) {
+    if(language) await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-'+language+'.user.js'),'utf8')});
     if (equipment) await page.evaluate(() => { window.dynjs_equip = { '123': { n: '', t: 'Legendary Willow Staff of Destruction' } }; });
     await page.addScriptTag({ content: harness });
     if (seed) await page.evaluate(config => __selection.seed(config), { battleVersion: 20251216,
@@ -81,7 +85,7 @@ async function initialize(page, { seed = false, equipment = true } = {}) {
     await page.locator('.jpx-config-list').waitFor();
 }
 
-async function fixture(t, { equipment = true } = {}) {
+async function fixture(t, { equipment = true, language = '' } = {}) {
     const context = await browser.newContext({ viewport: { width: 1440, height: 960 }, reducedMotion: 'reduce' });
     t.after(() => context.close());
     const errors = [], requests = [];
@@ -93,7 +97,7 @@ async function fixture(t, { equipment = true } = {}) {
     });
     const page = await context.newPage();
     await page.goto('https://hentaiverse.org/?s=Character');
-    await initialize(page, { seed: true, equipment });
+    await initialize(page, { seed: true, equipment, language });
     const labels = await page.evaluate(() => Object.fromEntries(['apply', 'edit', 'save', 'updateApply', 'applied', 'currentStyle'].map(key => [key, __selection.label(key)])));
     return { page, context, errors, requests, labels, equipment };
 }
@@ -145,6 +149,170 @@ test('explicit selection wins across detected weapons and scenes, with one curre
     assert.equal(state.applied.Persistent[second.id].mode, 'TwoHanded_General');
     await assertCurrentBattle(page, second.id);
     assert.equal(await row(page, first.id).locator('.jpx-config-status').count(), 0);
+    assertClean(f);
+});
+
+test('fixed rules return to automatic selection and referenced configs can be deleted', { timeout: 45000 }, async t => {
+    const f=await fixture(t), {page,labels}=f;
+    const entry=await addMode(page,'Pinned Item','OneHanded_Item');
+    await apply(page,entry,labels);
+    assert.match(await page.locator('.jpx-config-selection').textContent(),/Fixed rules/);
+    await page.getByRole('button',{name:'Restore automatic selection',exact:true}).click();
+    assert.equal((await snapshot(page)).selected,'');
+    assert.equal((await snapshot(page)).mode,'Staff_Arena');
+    assert.ok((await library(page)).applied.Persistent[entry.id]);
+    await page.reload();await initialize(page);
+    assert.equal((await snapshot(page)).selected,'');
+    const native=(await snapshot(page)).native;
+    await row(page,entry.id).locator('.jpx-config-more').click();
+    await page.locator('.jpx-config-menu').getByRole('button',{name:'Delete',exact:true}).click();
+    await page.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
+    assert.equal(await row(page,entry.id).count(),0);
+    assert.equal((await snapshot(page)).native,native);
+    assert.equal((await library(page)).applied.Persistent?.[entry.id],undefined);
+    assertClean(f);
+});
+
+test('scene panel assigns snapshots, inherits General, isolates worlds and pauses without rules', { timeout: 45000 }, async t => {
+    const f=await fixture(t),{page,labels}=f;
+    const general=await addMode(page,'My Staff General','Staff_General');
+    const arena=await addMode(page,'My Staff Arena','Staff_Arena');
+    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    assert.equal(await page.locator('[data-scene-style] option').count(),10);
+    assert.deepEqual(await page.locator('[data-scene]').evaluateAll(rows=>rows.map(row=>row.dataset.scene)),['General','Arena','Item','Encounter','Battle1000']);
+    const assign=async(scene,entry)=>{
+        const area=page.locator('[data-scene="'+scene+'"]');
+        await area.locator('select').selectOption(entry?JSON.stringify([entry.id,entry.envelope.mode]):'');
+        await area.getByRole('button',{name:'Assign',exact:true}).click();
+    };
+    const original=(await snapshot(page)).native;
+    await assign('General',general);await assign('Arena',arena);
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    assert.equal((await snapshot(page)).native,original,'assignments do not overwrite native settings');
+    await page.locator('[data-scene-style]').selectOption('OneHanded');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    await page.locator('[data-scene-style]').selectOption('Staff');
+    await page.locator('[data-scene-world]').selectOption('Isekai');
+    assert.deepEqual(await page.locator('[data-scene]').evaluateAll(rows=>rows.map(row=>row.dataset.scene)),['General','Arena','Item','Tower','Battle1000']);
+    assert.equal((await library(page)).scenes.Isekai,undefined);
+    await page.locator('[data-scene-world]').selectOption('Persistent');
+    await assign('Arena',null);
+    assert.match(await page.locator('[data-scene="Arena"] select').evaluate(node=>node.selectedOptions[0].textContent),/Inherit General.*My Staff General/);
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff General');
+    await page.reload();await initialize(page);
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff General');
+    await apply(page,arena,labels);
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    await page.getByRole('button',{name:'Restore automatic selection',exact:true}).click();
+    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await page.evaluate(()=>__selection.beginBattle());
+    await assign('General',null);
+    await page.evaluate(()=>__selection.smart());
+    const missing=await page.evaluate(()=>__selection.runtime());
+    assert.equal(missing.rules,null);assert.equal(missing.active,false);assert.match(missing.reason,/no scene or General/);
+    assertClean(f);
+});
+
+test('another tab assigns scene snapshots without switching on save, and detach restores inheritance', {timeout:45000},async t=>{
+    const f=await fixture(t), {page,context}=f;
+    const settings=await context.newPage();await settings.goto('https://hentaiverse.org/?s=Character');await initialize(settings);
+    const entry=await addMode(settings,'Assigned from another tab','Staff_Arena');
+    await page.evaluate(()=>__selection.beginBattle());
+    await settings.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    const area=settings.locator('[data-scene="Arena"]');
+    await area.locator('select').selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
+    await area.getByRole('button',{name:'Assign',exact:true}).click();
+    await page.waitForFunction(()=>__selection.runtime().rules.supports[0].customMessage==='Assigned from another tab'&&!__selection.running());
+    await page.evaluate(()=>__selection.beginBattle());
+    await addMode(settings,'Unused saved copy','Staff_General');
+    await page.waitForFunction(()=>__selection.library().entries.some(entry=>entry.envelope.title==='Unused saved copy'));
+    assert.equal(await page.evaluate(()=>__selection.running()),true);
+    await settings.evaluate(()=>{const cfg=document.querySelector('.jpx-config-back');cfg.click();});
+    await row(settings,entry.id).locator('.jpx-config-more').click();
+    await settings.locator('.jpx-config-menu').getByRole('button',{name:'Delete',exact:true}).click();
+    assert.match(await settings.locator('.jpx-config-confirm').textContent(),/Scene strategies/);
+    await settings.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
+    await page.waitForFunction(()=>!__selection.running()&&__selection.runtime().mode==='Staff_General');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'native staff');
+    assertClean(f);
+});
+
+for(const width of [1440,390,320]) test('scene strategies fit viewport '+width, async t=>{
+    const f=await fixture(t),{page}=f;
+    await page.setViewportSize({width,height:900});
+    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    const geometry=await page.locator('#settings-container').evaluate(node=>{
+        const rect=node.getBoundingClientRect();
+        return {left:rect.left,right:rect.right,width:innerWidth,body:[...node.querySelectorAll('.jpx-config-body')].map(el=>({client:el.clientWidth,scroll:el.scrollWidth})),
+            controls:[...node.querySelectorAll('.jpx-scene-controls select,.jpx-scene-controls button')].filter(el=>el.getClientRects().length).map(el=>{const r=el.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width};})};
+    });
+    assert.ok(geometry.left>=-1&&geometry.right<=width+1,JSON.stringify(geometry));
+    assert.ok(geometry.body.every(x=>x.scroll<=x.client+1),JSON.stringify(geometry));
+    assert.ok(geometry.controls.every(x=>x.left>=geometry.left&&x.right<=geometry.right+1&&x.width>30),JSON.stringify(geometry));
+    await page.locator('#settings-container').screenshot({path:path.join(root,'.test-output','scene-strategies-'+width+'.png')});
+    assertClean(f);
+});
+
+test('scene edits reveal only pending actions, cancel without writes and restore focus after assign',async t=>{
+    const f=await fixture(t),{page}=f;
+    const entry=await addMode(page,'Arena alternative','Staff_Arena');
+    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    assert.equal(await page.locator('.jpx-scene-pending:visible').count(),0);
+    assert.equal(await page.locator('.jpx-scene-resolved,.jpx-scene-executing').count(),0);
+    const original=await library(page),area=page.locator('[data-scene=Arena]'),picker=area.locator('select');
+    const initial=await picker.inputValue();
+    await picker.selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
+    assert.equal(await page.locator('.jpx-scene-pending:visible').count(),1);
+    assert.deepEqual(await library(page),original,'selecting a draft does not apply it');
+    await area.getByRole('button',{name:'Cancel',exact:true}).click();
+    assert.equal(await picker.inputValue(),initial);
+    assert.equal(await picker.evaluate(node=>node===document.activeElement),true);
+    assert.deepEqual(await library(page),original);
+    await picker.selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
+    await area.getByRole('button',{name:'Assign',exact:true}).click();
+    assert.equal(await area.locator('select').evaluate(node=>node===document.activeElement),true);
+    assert.equal(await page.locator('.jpx-scene-pending:visible').count(),0);
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'Arena alternative');
+    assertClean(f);
+});
+
+for(const options of [
+    {width:1440,height:960,language:'ZhTrans',dark:false},
+    {width:1440,height:960,language:'',dark:true},
+    {width:375,height:812,language:'ZhTrans',dark:false},
+    {width:375,height:812,language:'ZhTrans',dark:true},
+    {width:812,height:375,language:'',dark:true},
+    {width:320,height:568,language:'Ja',dark:false},
+    {width:390,height:844,language:'Ko',dark:true}
+]) test('compact scenes support themes, touch and text scaling '+JSON.stringify(options),async t=>{
+    const f=await fixture(t,options),{page}=f;
+    await page.setViewportSize({width:options.width,height:options.height});
+    if(options.dark)await page.evaluate(()=>__selection.theme());
+    const sceneLabel=await page.evaluate(()=>__selection.label('sceneAssignments'));
+    const entry=await addMode(page,'用于长配置名称的策略 Long strategy name that must remain selectable','Staff_Arena');
+    await page.getByRole('button',{name:sceneLabel,exact:true}).click();
+    const area=page.locator('[data-scene=Arena]');
+    await area.locator('select').selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
+    const buttons=area.locator('.jpx-scene-pending button');await buttons.first().scrollIntoViewIfNeeded();
+    const geometry=await page.locator('#settings-container').evaluate(node=>{
+        const bounds=node.getBoundingClientRect();
+        return {left:bounds.left,right:bounds.right,scroll:[...node.querySelectorAll('.jpx-scenes-body,.jpx-scenes-table')].map(x=>[x.clientWidth,x.scrollWidth]),
+            controls:[...node.querySelectorAll('.jpx-scenes-body button,.jpx-scenes-body select')].filter(x=>x.getClientRects().length).map(x=>{const r=x.getBoundingClientRect();return {left:r.left,right:r.right,height:r.height};})};
+    });
+    assert.ok(geometry.scroll.every(([client,scroll])=>scroll<=client+1),JSON.stringify(geometry));
+    assert.ok(geometry.controls.every(x=>x.left>=geometry.left&&x.right<=geometry.right+1),JSON.stringify(geometry));
+    if(options.width<600)assert.ok(geometry.controls.every(x=>x.height>=43.9),JSON.stringify(geometry));
+    const file='uiux-scenes-'+options.width+'-'+(options.language||'en')+'-'+(options.dark?'dark':'light')+'.png';
+    await page.locator('#settings-container').screenshot({path:path.join(root,'.test-output',file)});
+    await area.locator('select').click();
+    const choice=area.locator('option').filter({hasText:entry.envelope.title});
+    assert.equal(await choice.textContent(),entry.envelope.title);
+    const choiceBounds=await choice.evaluate(node=>({left:node.getBoundingClientRect().left,right:node.getBoundingClientRect().right,client:node.clientWidth,scroll:node.scrollWidth}));
+    assert.ok(choiceBounds.left>=0&&choiceBounds.right<=options.width+1&&choiceBounds.scroll<=choiceBounds.client+1,JSON.stringify(choiceBounds));
+    await choice.click();
+    assert.deepEqual((await library(page)).scenes?.Persistent?.Staff_Arena,undefined,'opening a picker never assigns its draft');
+    await page.addStyleTag({content:'#settings-container .jpx-scenes-body{font-size:20px}#settings-container .jpx-scene-context select,#settings-container .jpx-scene-controls select,#settings-container .jpx-scene-pending button{font-size:20px}'});
+    assert.equal(await page.locator('.jpx-scenes-body,.jpx-scenes-table').evaluateAll(nodes=>nodes.every(node=>node.scrollWidth<=node.clientWidth+1)),true);
     assertClean(f);
 });
 

@@ -21,6 +21,45 @@ const isCode = code => error => error.code === code;
 const snapshot = (entry, extra = {}) => ({ id: entry.id, revision: entry.revision,
     scopes: [entry.envelope.mode], config: entry.envelope.config, ...extra });
 
+test('automatic selection keeps applied rules, and detach removes all references atomically', () => {
+    const {library,values}=setup(), entry=library.save(envelope()), slot={world:'Persistent',personaId:'1',setId:'1'};
+    library.setApplied('Persistent',snapshot(entry,{mode:entry.envelope.mode}),{activate:true});
+    library.setBinding(slot,entry.id,entry.revision);
+    assert.equal(library.references(entry.id).applied[0].selected,true);
+    library.clearSelection('Persistent');
+    assert.equal(library.readSelection('Persistent'),null);
+    assert.ok(library.readState().applied.Persistent[entry.id]);
+    const original=values.get('library');
+    assert.throws(()=>library.detach(entry.id,999,true),isCode('libraryChanged'));
+    assert.equal(values.get('library'),original);
+    library.detach(entry.id,entry.revision,true);
+    assert.equal(library.get(entry.id),null);
+    assert.deepEqual(library.references(entry.id),{applied:[],bindings:[],scenes:[]});
+});
+
+test('scene assignments isolate worlds, snapshot revisions and validate references', () => {
+    const {library,values}=setup();
+    const entry=library.save(envelope({world:'Any'}));
+    const route=library.assignScene('Persistent','OneHanded_Item',entry.id,entry.envelope.mode,entry.revision);
+    assert.deepEqual(library.readRuntime('Persistent').scenes.OneHanded_Item,route);
+    assert.deepEqual(library.readRuntime('Isekai').scenes,{});
+    assert.throws(()=>library.remove(entry.id),isCode('appliedConfig'));
+    assert.throws(()=>library.assignScene('Persistent','TwoHanded_Arena',entry.id,entry.envelope.mode,entry.revision),isCode('invalidConfig'));
+    assert.throws(()=>library.assignScene('Persistent','OneHanded_Item',null,null,null,null),isCode('libraryChanged'));
+    const edited=library.save(envelope({world:'Isekai',title:'Edited',config:{...entry.envelope.config,OneHanded_General:{supports:[],attacks:[]}}}),{id:entry.id});
+    assert.deepEqual(library.readRuntime('Persistent').scenes.OneHanded_Item.rules,route.rules);
+    assert.equal(library.readRuntime('Persistent').scenes.OneHanded_Item.revision,1);
+    library.assignScene('Persistent','OneHanded_Item',null,null,null,route);
+    assert.equal(library.readRuntime('Persistent').scenes.OneHanded_Item,null);
+    const general=library.assignScene('Isekai','OneHanded_General',edited.id,edited.envelope.mode,edited.revision);
+    library.rename(edited.id,'Renamed',edited.revision);
+    assert.equal(library.readRuntime('Isekai').scenes.OneHanded_General.revision,general.revision+1);
+    const before=values.get('library'),corrupt=JSON.parse(before);corrupt.scenes.Isekai.OneHanded_General.id='missing';
+    values.set('library',JSON.stringify(corrupt));assert.throws(()=>library.readRuntime('Isekai'),isCode('storageCorrupt'));
+    values.set('library',before);library.detach(edited.id,edited.revision+1,true);
+    assert.equal(library.readRuntime('Isekai').scenes.OneHanded_General,null);
+});
+
 test('bindings isolate world, persona and set without touching native exports or rule revisions', () => {
     const { library } = setup(), entry = library.save(envelope()), before = library.get(entry.id);
     const slots = [

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.1
+// @version      2026.11.09.2
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -30,7 +30,7 @@
         "auto": "자동",
         "manual": "수동",
         "readyNext": "준비 상태",
-        "networkDelay": "지연 시간",
+        "networkDelay": "턴 간격",
         "battleStyle": "전투 빌드",
         "OneHanded": "한손",
         "1H_Mage": "한손 마법",
@@ -1202,6 +1202,23 @@
         "importFailed": "가져오기를 완료하지 못했어요: “${name}”. ${reason}",
         "importReadError": "파일을 읽지 못했어요. 파일을 다시 선택하고 재시도해 주세요.",
         "importCancelled": "사용자 지정 코드를 허용하지 않아 가져오기를 취소했어요.",
+        "fixedHint": "고정 규칙은 이 세계의 모든 전투에 적용되며 새로고침 후에도 유지됩니다.",
+        "grindfest": "그라인드페스트",
+        "sceneAssignments": "전투별 전략",
+        "inheritGeneral": "공통 상속",
+        "unassigned": "미할당",
+        "noSceneRules": "일시 중지: 전투별 또는 공통 전략이 없습니다.",
+        "assign": "할당",
+        "assigned": "할당됨",
+        "executing": "현재 전략",
+        "assignmentOlder": "저장한 변경 사항이 아직 할당되지 않았습니다.",
+        "fixedMode": "규칙 고정",
+        "automaticMode": "전투별 자동 선택",
+        "restoreAutomatic": "자동 선택 복원",
+        "detach": "참조 해제",
+        "detachDelete": "참조 해제 후 삭제",
+        "detached": "참조를 해제했습니다.",
+        "detachHint": "고정 선택, 적용 기록, 전투별 할당과 장비 연결을 해제합니다. 현재 설정은 유지됩니다.",
         "savedFromStore": "내 설정에 저장했어요.",
         "sourceExists": "이미 저장한 설정이에요.",
         "updateCopy": "저장한 설정 업데이트",

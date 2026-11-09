@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026.11.09.2
+
+- #7: bound ordinary log reads to the current action, cancel stale trailing callbacks, and label callback intervals accurately. Add `JPXPlus.getBattleTiming()` diagnostics. The reported Chrome split-view slowdown still needs live reproduction; see [evidence and limits](docs/issue-7-battle-timing.md).
+- #8: show fixed versus automatic selection, add **Restore automatic selection**, and list references before detaching or deleting saved configs. Migration records no longer make deletion inaccessible.
+- #9: add **Scene strategies** for all ten styles in both worlds. Assign saved rules per scene, inherit General, keep fixed mode explicit, and pause when no strategy is available. Saving a copy does not update its assigned snapshot.
+- Keep scene assignments separate from native JPX exports. Applying or detaching assignments pauses affected battle tabs. See [selection behavior](docs/scene-strategies.md).
+- Simplify scene assignments into aligned desktop rows and stacked mobile controls. Show Assign/Cancel only for pending changes, preserve readable long options, and require confirmation before signing out of the config store.
+- Renew GitHub device-flow sessions instead of imposing an eight-hour logout. Preserve credentials on temporary failures and protect newer logins from stale responses. Older installations may need one new authorization; see [authentication behavior](docs/store-authentication.md).
+- Verification: all 637 tests included in this release passed. Documentation previews passed 96 scenarios; source consistency, syntax and language packs passed. Live split-view gameplay and long-running real-account renewal were not exercised.
+
+### 简体中文
+
+- #7：限制每次日志读取范围，取消过期回调，并将延迟标注为回合间隔；新增耗时诊断。Chrome 分屏持续变慢仍待实战复测。
+- #8：明确固定／自动模式，增加恢复自动选择、查看引用及解除引用后删除。
+- #9：新增场景策略面板，支持双世界、十种流派、继承通用和无策略暂停。保存副本不会自动更新已分配的规则。
+- 精简场景策略界面，桌面横向对齐、手机纵向排列，修改后才显示操作按钮；长名称可展开查看，退出配置仓库登录须再次确认。
+- 修复八小时后掉登录：保存续期凭据并自动更新，临时失败保留登录，防止旧请求误删新登录。旧版更新后可能需要重新授权一次。
+
 ## 2026.11.09.1
 
 - Built in Sukka monster database reads: class, attack and power no longer require a companion script. Persistent/Isekai caches use IndexedDB and refresh daily on demand, with offline fallback, retry backoff and per-origin tab coordination.

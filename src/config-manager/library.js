@@ -205,6 +205,21 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                     slots.add(slot);
                 }
             }
+            if (state.scenes !== undefined) {
+                if (!object(state.scenes)) fail('storageCorrupt');
+                for (const [world, routes] of Object.entries(state.scenes)) {
+                    if (!['Persistent', 'Isekai'].includes(world) || !object(routes)) fail('storageCorrupt');
+                    for (const [target, route] of Object.entries(routes)) {
+                        if (!validScene(world, target)) fail('storageCorrupt');
+                        if (route === null) continue;
+                        const entry = entries.get(route?.id);
+                        if (!object(route) || !entry || !modeSet.has(route.mode) ||
+                            !Number.isSafeInteger(route.revision) || route.revision < 1 || route.revision > entry.revision) fail('storageCorrupt');
+                        if (route.mode.slice(0, route.mode.lastIndexOf('_')) !== target.slice(0, target.lastIndexOf('_'))) fail('storageCorrupt');
+                        validateRules(route.rules);
+                    }
+                }
+            }
         } catch { return fail('storageCorrupt'); }
         validatedRaw = raw;
         validatedState = state;
@@ -221,6 +236,33 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!worlds.has(world)) fail('invalidConfig');
         const state = readValidatedState(), id = state.active?.[world];
         return id ? copyValidated(state.applied[world][id]) : null;
+    }
+    function readRuntime(world) {
+        if (!['Persistent', 'Isekai'].includes(world)) fail('invalidConfig');
+        const state = readValidatedState(), id = state.active?.[world];
+        return copyValidated({ selection: id ? state.applied[world][id] : null, scenes: state.scenes?.[world] || {} });
+    }
+    function validScene(world, mode) {
+        const scene = mode.slice(mode.lastIndexOf('_') + 1);
+        return ['Persistent', 'Isekai'].includes(world) && modeSet.has(mode) &&
+            ['General', 'Arena', 'Item', 'Battle1000', world === 'Isekai' ? 'Tower' : 'Encounter'].includes(scene);
+    }
+    function assignScene(world, target, id, mode, expectedRevision, previous = null) {
+        if (typeof target !== 'string' || !validScene(world, target)) fail('invalidConfig');
+        const state = readState(), routes = (state.scenes ||= {})[world] ||= {};
+        if (JSON.stringify(routes[target] || null) !== JSON.stringify(previous)) fail('libraryChanged');
+        if (id === null) routes[target] = null;
+        else {
+            const entry = state.entries.find(item => item.id === id);
+            if (!entry) fail('notFound');
+            if (entry.revision !== expectedRevision) fail('libraryChanged');
+            if (!['Any', world].includes(entry.envelope.world) || entry.envelope.kind === 'stats' || !modeSet.has(mode) ||
+                mode.slice(0, mode.lastIndexOf('_')) !== target.slice(0, target.lastIndexOf('_')) ||
+                !object(entry.envelope.config[mode])) fail('invalidConfig');
+            validateRules(entry.envelope.config[mode]);
+            routes[target] = { id, revision: entry.revision, mode, rules: clone(entry.envelope.config[mode]) };
+        }
+        write(state); return clone(routes[target]);
     }
     function write(state) { putRaw(key, encode(state)); }
     function newId(state) {
@@ -268,6 +310,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         for (const binding of state.bindings || []) {
             if (binding.id === id && binding.trustedRevision === previousRevision) binding.trustedRevision = entry.revision;
         }
+        for (const routes of Object.values(state.scenes || {})) for (const route of Object.values(routes)) {
+            if (route?.id === id && route.revision === previousRevision) route.revision = entry.revision;
+        }
         write(state);
         return clone(entry);
     }
@@ -288,6 +333,7 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         const state = readState();
         if (!state.entries.some(entry => entry.id === id)) fail('notFound');
         if (Object.values(state.applied).some(records => Object.hasOwn(records, id))) fail('appliedConfig');
+        if (Object.values(state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === id))) fail('appliedConfig');
         state.entries = state.entries.filter(entry => entry.id !== id);
         if (state.bindings) state.bindings = state.bindings.filter(binding => binding.id !== id);
         write(state);
@@ -406,9 +452,40 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         write(state);
         return true;
     }
+    function clearSelection(world) {
+        if (!worlds.has(world)) fail('invalidConfig');
+        const state = readState();
+        if (!state.active?.[world]) return false;
+        delete state.active[world];
+        pruneActive(state); write(state); return true;
+    }
+    function references(id) {
+        const state = readState();
+        return { applied: Object.entries(state.applied).flatMap(([world, records]) => records[id] ?
+            [{ world, scopes: records[id].scopes, selected: state.active?.[world] === id }] : []),
+            bindings: (state.bindings || []).filter(binding => binding.id === id),
+            scenes: Object.entries(state.scenes || {}).flatMap(([world, routes]) => Object.entries(routes)
+                .filter(([, route]) => route?.id === id).map(([mode]) => ({ world, mode }))) };
+    }
+    function detach(id, expectedRevision, removeEntry = false, expectedReferences) {
+        const state = readState(), entry = state.entries.find(item => item.id === id);
+        if (!entry) fail('notFound');
+        if (entry.revision !== expectedRevision) fail('libraryChanged');
+        if (expectedReferences !== undefined && JSON.stringify(references(id)) !== JSON.stringify(expectedReferences)) fail('libraryChanged');
+        for (const [world, records] of Object.entries(state.applied)) {
+            delete records[id]; if (!Object.keys(records).length) delete state.applied[world];
+        }
+        if (state.bindings) state.bindings = state.bindings.filter(binding => binding.id !== id);
+        for (const routes of Object.values(state.scenes || {})) for (const [mode, route] of Object.entries(routes)) {
+            if (route?.id === id) routes[mode] = null;
+        }
+        pruneActive(state);
+        if (removeEntry) state.entries = state.entries.filter(item => item.id !== id);
+        write(state); return true;
+    }
     return Object.freeze({
         list: () => copyValidated(readValidatedState().entries),
         get: id => copyValidated(readValidatedState().entries.find(entry => entry.id === id) || null),
-        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding
+        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding, clearSelection, references, detach, readRuntime, assignScene
     });
 }

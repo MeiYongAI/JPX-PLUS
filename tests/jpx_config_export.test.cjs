@@ -20,6 +20,14 @@ function expose() {
             library.setApplied(jpxConfigWorld(), { id: entry.id, revision: entry.revision, mode, scopes: [mode], config: entry.envelope.config }, { activate: true });
             refreshJpxSelectedConfig();
         },
+        assign(withoutNative = false) {
+            const library=getJpxConfigLibrary(),mode='TwoHanded_General';
+            const entry=library.save({schemaVersion:1,kind:'battle-mode',title:'Assigned export',world:jpxConfigWorld(),mode,
+                config:{battleVersion:cfgBattle.battleVersion,[mode]:rules('Assigned export')}});
+            library.assignScene(jpxConfigWorld(),'TwoHanded_Tower',entry.id,mode,entry.revision);
+            if (withoutNative) delete cfgBattle.TwoHanded_Tower;
+            refreshJpxSelectedConfig();
+        },
         manyRules() { for (const mode of BATTLE_MODES) cfgBattle[mode] = rules(mode); }
     };
 }
@@ -81,6 +89,22 @@ test('full config stays lossless and unknown lobby style never pretends to be cu
     assert.equal(await f.page.locator('[data-export-scope=all]').getAttribute('aria-pressed'), 'true');
     const result = await download(f); assert.equal(result.name, 'cfgBattle_Persistent.txt');
     assert.deepEqual(result.data, f.original.config); await clean(f);
+});
+
+for(const withoutNative of [false,true]) test('current export uses the assigned snapshot while full export keeps native settings; no native slot '+withoutNative, async t=>{
+    const f=await fixture(t,{isekai:true});
+    await f.page.keyboard.press('Escape');await f.page.evaluate(value=>__exportTest.assign(value),withoutNative);
+    const expected=await f.page.evaluate(()=>__exportTest.snapshot());
+    await f.page.locator('#export-button').click();
+    const current=await download(f);
+    assert.equal(current.data.TwoHanded_Tower.supports[0].customMessage,'Assigned export');
+    await f.page.locator('#export-button').click();await f.page.locator('[data-export-scope=all]').click();
+    const full=await download(f);assert.deepEqual(full.data,expected.config);
+    await f.page.locator('#export-button').click();await f.page.locator('[data-export-scope=choose]').click();
+    assert.equal(await f.page.locator('[data-export-scene] option[value=Tower]').count(),withoutNative?0:1);
+    await f.page.keyboard.press('Escape');
+    assert.deepEqual(await f.page.evaluate(()=>__exportTest.snapshot()),expected);
+    assert.deepEqual(f.errors,[]);assert.deepEqual(f.requests,[]);
 });
 
 test('custom export links style and scene and exports only the chosen group', async t => {

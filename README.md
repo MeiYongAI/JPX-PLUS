@@ -29,6 +29,8 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 Keep several setups for the same style, battle and world. **My configs** handles saving, renaming, filtering and sorting; **Edit** opens a separate rule editor.
 
+**Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Restore automatic selection** exits fixed single-group mode. [How selection works](docs/scene-strategies.md).
+
 <table>
 <tr><th width="50%">My configs</th><th width="50%">Rule editor</th></tr>
 <tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=configs&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-configs-dark-en.png"><img src="docs/images/desktop-configs-en.png" width="100%" alt="My configs"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=rules&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-rules-dark-en.png"><img src="docs/images/desktop-rules-en.png" width="100%" alt="Rule editor"></picture></a></td></tr>

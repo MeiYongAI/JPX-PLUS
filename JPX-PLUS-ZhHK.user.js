@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.1
+// @version      2026.11.09.2
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -29,7 +29,7 @@
             "auto": "自動",
             "manual": "手動",
             "readyNext": "準備狀態",
-            "networkDelay": "網絡延遲",
+            "networkDelay": "回合間隔",
             "battleStyle": "戰鬥流派",
             "OneHanded": "單手",
             "1H_Mage": "單手戰法師",
@@ -1201,6 +1201,23 @@
         "importFailed": "尚未完成匯入：「${name}」。${reason}",
         "importReadError": "檔案讀取失敗，請重新選擇檔案後再試。",
         "importCancelled": "已取消匯入，未授權使用自訂程式碼。",
+        "fixedHint": "固定規則在目前世界跨場景生效，重新整理後仍然保留。",
+        "grindfest": "壓榨界",
+        "sceneAssignments": "場景策略",
+        "inheritGeneral": "繼承通用",
+        "unassigned": "未分配",
+        "noSceneRules": "已暫停：沒有可用的場景或通用策略。",
+        "assign": "分配",
+        "assigned": "已分配",
+        "executing": "目前策略",
+        "assignmentOlder": "已儲存的修改尚未分配。",
+        "fixedMode": "固定單組",
+        "automaticMode": "按場景自動選擇",
+        "restoreAutomatic": "恢復自動選擇",
+        "detach": "解除引用",
+        "detachDelete": "解除引用並刪除",
+        "detached": "已解除引用。",
+        "detachHint": "解除固定選擇、套用記錄、場景分配和裝備綁定，保留目前設定。",
         "savedFromStore": "已儲存到我的設定。",
         "sourceExists": "你已經儲存過這份設定。",
         "updateCopy": "更新已儲存的設定",

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.1
+// @version      2026.11.09.2
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -29,7 +29,7 @@
 			"auto": "自动",
 			"manual": "手动",
 			"readyNext": "就绪状态",
-			"networkDelay": "网络延迟",
+			"networkDelay": "回合间隔",
 			"battleStyle": "战斗流派",
 			"OneHanded": "单手",
 			"1H_Mage": "单手战法师",
@@ -1193,6 +1193,23 @@
         "importFailed": "未完成导入：“${name}”。${reason}",
         "importReadError": "文件读取失败，请重新选择文件后重试。",
         "importCancelled": "已取消导入，未授权使用自定义代码。",
+        "fixedHint": "固定规则在当前世界跨场景生效，刷新后仍然保留。",
+        "grindfest": "压榨界",
+        "sceneAssignments": "场景策略",
+        "inheritGeneral": "继承通用",
+        "unassigned": "未分配",
+        "noSceneRules": "已暂停：没有可用的场景或通用策略。",
+        "assign": "分配",
+        "assigned": "已分配",
+        "executing": "当前策略",
+        "assignmentOlder": "已保存的修改尚未分配。",
+        "fixedMode": "固定单组",
+        "automaticMode": "按场景自动选择",
+        "restoreAutomatic": "恢复自动选择",
+        "detach": "解除引用",
+        "detachDelete": "解除引用并删除",
+        "detached": "已解除引用。",
+        "detachHint": "解除固定选择、应用记录、场景分配和装备绑定，保留当前设置。",
         "savedFromStore": "已保存到我的配置。",
         "sourceExists": "你已经保存过这份配置。",
         "updateCopy": "更新已保存的配置",
