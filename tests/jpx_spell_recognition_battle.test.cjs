@@ -106,6 +106,74 @@ for (const isekai of [false, true]) test('lobby startup records equipment and bo
     assert.equal((await f.page.evaluate(()=>__spellBattle.run())).clicks.at(-1),'Smite');
     assert.deepEqual(f.combatRequests,[]); assert.deepEqual(f.errors,[]);
 });
+
+async function recognitionLobby(t, isekai, school = 'holy') {
+    const options = { family: 'DualWielding', school, bonus: 200, isekai };
+    const f = await fixture(browser, t, { source: input, isekai, storage: storage(isekai), transform: markup, observedEquipment: false,
+        pageOptions: { ...options, page: 'lobby' }, respond: url => url.searchParams.get('s') === 'Character' ?
+            markup('', { ...options, page: url.searchParams.get('ss') === 'ch' ? 'character' : 'equipment' }) : undefined });
+    await f.page.waitForFunction(() => __spellBattle.info().detected === 'DW_Mage');
+    return { ...f, options };
+}
+
+async function submitLobbyForm(page, query, id = 'equipform') {
+    await page.evaluate(({ query, id }) => {
+        history.replaceState(null, '', location.pathname + query);
+        const form = document.getElementById(id) || document.body.appendChild(document.createElement('form'));
+        form.id = id;
+        // Keep native submit propagation, but replace navigation with the next fixture document.
+        form.addEventListener('submit', event => event.preventDefault());
+        const button = form.appendChild(document.createElement('button'));
+        button.type = 'submit'; button.id = 'fixture-submit'; button.textContent = 'Submit';
+    }, { query, id });
+    await page.locator('#fixture-submit').click();
+}
+
+const recognitionCache = (page, isekai) => page.evaluate(suffix => Object.fromEntries([
+    'jpx_persona' + suffix, 'jpx_personaId' + suffix, 'jpx_equipmentFamily_v1' + suffix,
+    'jpx_spellDamageBonus' + suffix, 'jpx_spellDamageBonus' + suffix + ':context',
+    'jpx_loadouts_v1' + suffix, 'jpx_cfgBattle' + suffix
+].map(key => [key, localStorage.getItem(key)])), isekai ? '_isekai' : '');
+
+for (const isekai of [false, true]) for (const school of Object.keys(schools)) {
+    test('Item World form preserves recognition into combat: ' + school + ' / Isekai ' + isekai, async t => {
+        const f = await recognitionLobby(t, isekai, school);
+        const before = await recognitionCache(f.page, isekai), count = f.requests.length;
+        await submitLobbyForm(f.page, '?s=Battle&ss=iw');
+        assert.deepEqual(await recognitionCache(f.page, isekai), before, 'entering Item World does not change equipped items');
+        assert.equal(f.requests.length, count, 'entry does not start another character lookup');
+        await f.navigate({ ...f.options, quickbar: [], noWeaponSkill: true });
+        const info = await f.page.evaluate(() => __spellBattle.info());
+        assert.equal(info.style, 'DW_Mage'); assert.equal(info.element, school);
+        const result = await f.page.evaluate(() => __spellBattle.run());
+        assert.equal(result.active, true); assert.equal(result.clicks.at(-1), schools[school][0]);
+        await f.navigate({ ...f.options, round: 2, quickbar: [], noWeaponSkill: true });
+        assert.equal((await f.page.evaluate(() => __spellBattle.info())).element, school);
+        assert.deepEqual(f.combatRequests, []); assert.deepEqual(f.errors, []);
+    });
+}
+
+for (const isekai of [false, true]) test('Item World exception retains other loadout invalidation: Isekai ' + isekai, async t => {
+    for (const [query, id, invalidates] of [
+        ['?s=Bazaar&ss=am&screen=modify', 'equipform', true],
+        ['?s=Character&ss=eq', 'equipform', true],
+        ['?s=Character&ss=ch', 'persona_form', true],
+        ['?s=Character&ss=eq', 'unrelated-form', false]
+    ]) {
+        const f = await recognitionLobby(t, isekai);
+        const before = await recognitionCache(f.page, isekai);
+        await submitLobbyForm(f.page, query, id);
+        const after = await recognitionCache(f.page, isekai), suffix = isekai ? '_isekai' : '';
+        if (invalidates) {
+            assert.equal(after['jpx_equipmentFamily_v1' + suffix], null);
+            assert.equal(after['jpx_spellDamageBonus' + suffix], null);
+            assert.equal(after['jpx_spellDamageBonus' + suffix + ':context'], null);
+            assert.equal((await f.page.evaluate(() => __spellBattle.info())).element, '');
+        } else assert.deepEqual(after, before);
+        assert.deepEqual(f.errors, []);
+    }
+});
+
 for (const school of Object.keys(schools)) for (const [family, spec] of Object.entries(families)) for (const isekai of [false, true]) {
     test('character to equipment to battle: ' + school + ' / ' + family + ' / Isekai ' + isekai, async t => {
         const options = { school, family, isekai, bonus: 200, locked: true, quickbar: [school === 'wind' ? 'Smite' : 'Gale'] };

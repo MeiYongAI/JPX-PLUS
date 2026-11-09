@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Keep recognized spell attributes and weapon style when entering Item World. Its entry form shares the equipment form's ID and was incorrectly clearing both observations on submission.
+
+### 简体中文
+
+- 修复进入道具世界时误清空法术属性和武器类型的问题。入场表单与装备表单同名，之前被误判为更换装备。
+
 ## 2026.11.10.3
 
 - Detect weapon style from equipped main/offhand items and keep JPX's original spell-damage bonus thresholds for physical/mage classification. Armor and weapon elemental affixes do not decide the style. Record observations before combat and retain them through rounds and refreshes.

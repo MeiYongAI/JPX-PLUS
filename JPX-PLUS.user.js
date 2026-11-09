@@ -3208,6 +3208,15 @@ function refreshJpxModeDetection() {
     if (before !== snapshot()) window.dispatchEvent(new Event('jpx:mode-detected'));
 }
 
+function isJpxLoadoutSubmission(form) {
+    if (form.matches?.('#persona_form')) return true;
+    if (!form.matches?.('#equipform')) return false;
+    // Item World reuses equipform for battle entry, not an equipment change.
+    // Keep the existing invalidation for equipment and forge submissions.
+    const query = new URLSearchParams(location.search);
+    return query.get('s') !== 'Battle' || query.get('ss') !== 'iw';
+}
+
 function initJpxModeDetection() {
     refreshJpxModeDetection();
     const key = prefix + 'spellDamageBonus' + isekaiSuffix;
@@ -3225,7 +3234,7 @@ function initJpxModeDetection() {
         if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
     }, true);
     document.addEventListener('submit', event => {
-        if (event.target.matches?.('#persona_form, #equipform')) invalidate();
+        if (isJpxLoadoutSubmission(event.target)) invalidate();
     }, true);
     document.addEventListener('click', event => {
         if (event.target.closest?.('#eqsl')) invalidate();
@@ -15888,7 +15897,7 @@ function initJpxLoadoutBindings() {
         if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
     }, true);
     document.addEventListener('submit', event => {
-        if (event.target.matches?.('#persona_form, #equipform')) invalidate();
+        if (isJpxLoadoutSubmission(event.target)) invalidate();
     }, true);
     document.addEventListener('click', event => { if (event.target.closest?.('#eqsl')) invalidate(); }, true);
     // Native navigation is handled on the next page. AJAX replacements need a
