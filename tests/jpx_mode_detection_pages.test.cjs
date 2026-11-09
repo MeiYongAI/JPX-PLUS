@@ -16,6 +16,7 @@ const character = (name = 'Fixture Persona', id = '17', magic = 20) => base +
     `<form id="persona_form"><select><option value="${id}" selected>${name}</option></select></form>` +
     `<div class="spc">Spell Damage Bonus</div><div><table><tr><td>${magic}%</td><td>Wind</td></tr></table></div>`;
 const equipment = (weapon = 'Legendary Willow Staff of Destruction') => base +
+    '<form id="persona_form"><select><option value="17" selected>Fixture Persona</option></select></form><div id="eqsl"><img src="/y/set1_on.png"></div>' +
     '<div id="eqsb"><div class="eqb" onclick="location.href=\'/?s=Character&ss=eq&equip_slot=1\'">' +
     '<div>Main hand</div><div onmouseover="equips.set(101,\'slot_pane\',250,130)">Translated equipment label</div></div>' +
     '<div class="eqb eqdisabled"><div>Offhand</div><div class="eqempty">Unavailable</div></div></div>' +
@@ -38,7 +39,6 @@ function expose() {
         context: getJpxDetectionContext,
         magic: () => ({ memory: spellDamageBonus, verified: readJpxSpellDamageBonus(true), element: getManagedSpellType() }),
         parseMagic: getJpxSpellDamageFromPage,
-        parseQuickbar: getJpxSpellTypeFromQuickbar,
         refresh: refreshJpxModeDetection,
         nextRound() {
             const prepare = preDoBattle, background = jpxPanelManager.setBackground, dispatch = jpxPanelManager.dispatchState;
@@ -157,36 +157,12 @@ test('missing element is not fire, tier actions pause, and explicit choices rema
     assert.deepEqual(f.requests, []); clean(f);
 });
 
-for (const isekai of [false, true]) test('quickbar supplies a missing element without altering stats in ' + (isekai ? 'Isekai' : 'Persistent'), async t => {
-    const f = await fixture(t, { isekai, initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale', 'Downburst', 'Cure', 'Imperil']) });
-    const magic = await f.page.evaluate(() => __pages.magic());
-    assert.deepEqual(magic.memory, { maxType: '', maxValue: 0 });
-    assert.equal(magic.verified, null); assert.equal(magic.element, 'wind');
+for (const names of [['Gale'], ['Smite'], ['Corruption'], ['Gale', 'Smite'], ['Cure']]) test('quickbar never determines an unknown attribute: ' + names.join(', '), async t => {
+    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(names) });
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, '');
     const action = await f.page.evaluate(() => __pages.simulateSpell());
-    assert.deepEqual(action.casts, ['Gale']); assert.equal(action.active, true); assert.match(action.panel, /Wind/);
-    const explicit = await f.page.evaluate(() => __pages.simulateSpell('T1', 'fire'));
-    assert.deepEqual(explicit.casts, ['Fiery Blast']);
-    for (const suffix of ['', '_isekai']) assert.equal(await f.page.evaluate(s => localStorage.getItem('jpx_spellDamageBonus' + s), suffix), null);
-    assert.equal(await f.page.evaluate(() => __pages.native()), f.original);
+    assert.deepEqual(action.casts, []); assert.equal(action.active, false); assert.match(action.status, /Spell element unavailable/);
     assert.deepEqual(f.requests, []); clean(f);
-});
-
-test('quickbar requires one unambiguous attack element and ignores visible labels and full spell lists', async t => {
-    const f = await fixture(t);
-    const cases = [
-        [quickbar(['Gale', 'Gale', 'Downburst', 'Fiery Blast']), ''],
-        [quickbar(['Cure', 'Imperil', 'Arcane Focus']), ''],
-        ['<div id="quickbar"><div class="btqs">Gale</div><div class="btqs" onmouseover="void(0)">Downburst</div></div>', ''],
-        [quickbar(['Storms of Njord', 'Cure']) + quickbar(['Fiery Blast']).replace('id="quickbar"', 'id="pane_magic"'), 'wind'],
-        [quickbar(['Fiery Blast']), 'fire'], [quickbar(['Freeze']), 'cold'],
-        [quickbar(['Shockblast']), 'elec'], [quickbar(['Smite']), 'holy'], [quickbar(['Ragnarok']), 'dark'],
-        ['<div id="quickbar"><div class="btqs" onmouseover="set_infopane_spell(&quot;Gale&quot;, &quot;Fixture&quot;)">烈风</div></div>', 'wind']
-    ];
-    for (const [html, expected] of cases) {
-        const actual = await f.page.evaluate(html => __pages.parseQuickbar(new DOMParser().parseFromString(html, 'text/html')), html);
-        assert.equal(actual, expected, html);
-    }
-    clean(f);
 });
 
 test('character attributes take priority over quickbar hints', async t => {
@@ -196,25 +172,8 @@ test('character attributes take priority over quickbar hints', async t => {
     clean(f);
 });
 
-test('recognized fallback survives quickbar edits and stays out of repeated action reads', async t => {
-    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale']) });
-    const queries = await f.page.evaluate(() => {
-        const original = document.querySelectorAll; let scans = 0;
-        document.querySelectorAll = function(selector) { if (selector.includes('#quickbar')) scans++; return original.call(this, selector); };
-        try { for (let i = 0; i < 100; i++) __pages.magic(); } finally { document.querySelectorAll = original; }
-        return scans;
-    });
-    assert.equal(queries, 0);
-    await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze']));
-    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'wind');
-    await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze', 'Gale']));
-    const action = await f.page.evaluate(() => __pages.simulateSpell());
-    assert.deepEqual(action.casts, ['Gale']); assert.equal(action.active, true);
-    assert.deepEqual(f.requests, []); clean(f);
-});
-
-for (const order of ['translation-first', 'translation-last']) test('quickbar metadata survives the published game translation: ' + order, async t => {
-    const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale', 'Downburst', 'Cure']) });
+for (const order of ['translation-first', 'translation-last']) test('character attributes survive the published game translation: ' + order, async t => {
+    const f = await fixture(t, { initialHtml: character() + quickbar(['Smite', 'Corruption', 'Cure']) });
     if (order === 'translation-first') {
         // Navigate to a clean fixture, then load the real translator before JPX.
         await f.page.goto(f.url); await f.page.addScriptTag({ content: translation }); await f.start();
@@ -225,7 +184,7 @@ for (const order of ['translation-first', 'translation-last']) test('quickbar me
     assert.deepEqual(f.requests, []); clean(f);
 });
 
-test('a cached staff family without spell stats still refreshes outside combat', async t => {
+test('an old skill-derived family cache is ignored and refreshed outside combat', async t => {
     const f = await fixture(t);
     await f.page.evaluate(() => {
         __pages.setPersona('Fixture Persona', '17');
@@ -281,7 +240,7 @@ for (const isekai of [false, true]) test(`external equipment data detects zero-b
     const observation = JSON.parse(await f.page.evaluate(() => __pages.cache()));
     assert.equal(observation.world, world); assert.equal(observation.personaId, '17');
     const otherSuffix = isekai ? '' : '_isekai';
-    assert.equal(await f.page.evaluate(suffix => localStorage.getItem('jpx_detectedWeaponFamily_v1' + suffix), otherSuffix), null);
+    assert.equal(await f.page.evaluate(suffix => localStorage.getItem('jpx_equipmentFamily_v1' + suffix), otherSuffix), null);
     await f.page.reload(); await f.start(); await f.open();
     assert.equal(await f.page.evaluate(() => __pages.detect()), 'TwoHanded');
     assert.equal(f.requests.length, 3, 'cached detection survives reload without more requests');

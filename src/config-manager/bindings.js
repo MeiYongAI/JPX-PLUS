@@ -97,11 +97,14 @@ function confirmJpxLoadout(current, catalog, livePage = false) {
         if (!jpxLoadoutSame(previous, current)) applied = applyJpxLoadoutBinding(current, false, false);
     } catch (error) { jpxLoadoutPending = pending; throw error; }
     const persona = catalog.personas.find(item => item.id === current.personaId);
-    if (!jpxLoadoutSame(previous, current)) clearJpxQuickbarSpellType();
     if (!livePage && !jpxLoadoutSame(previous, current)) {
         localStorage.removeItem(jpxDetectedFamilyKey());
-        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
         jpxDetectionSourceIgnored = true;
+    }
+    if (!jpxLoadoutSame(previous, current) && (!livePage || previous && !getJpxSpellDamageFromPage())) {
+        const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+        localStorage.removeItem(key); localStorage.removeItem(key + ':context');
+        spellDamageBonus = { maxType: '', maxValue: 0 };
     }
     localStorage.setItem(prefix + 'personaId' + isekaiSuffix, current.personaId);
     if (persona?.name) localStorage.setItem(prefix + 'persona' + isekaiSuffix, persona.name);
@@ -155,8 +158,9 @@ function initJpxLoadoutBindings() {
         jpxDetectionGeneration++; jpxDetectionRetryAt = 0;
         jpxDetectionSourceIgnored = true;
         localStorage.removeItem(jpxDetectedFamilyKey());
-        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
-        clearJpxQuickbarSpellType();
+        const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+        localStorage.removeItem(key); localStorage.removeItem(key + ':context');
+        spellDamageBonus = { maxType: '', maxValue: 0 };
     };
     let refreshTimer;
     const refresh = () => {

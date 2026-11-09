@@ -89,6 +89,7 @@ function getJpxSelectedBattleMode() {
 }
 
 function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
+    if (!style) return { mode: '', rules: null, id: '', inherited: false, assigned: false };
     const direct = style + '_' + scene, general = style + '_General';
     for (const mode of [...new Set([direct, general])]) {
         const assigned = Object.hasOwn(routes, mode), route = routes[mode];
@@ -98,7 +99,7 @@ function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config =
     return { mode: general, rules: null, id: '', inherited: scene !== 'General', assigned: false };
 }
 
-function getJpxBattleRules(defaultStyle = 'Unarmed') {
+function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
@@ -135,7 +136,7 @@ function getManagedSpellType() {
     const metadata = rules || (!jpxSceneRuntime.failed && !Object.hasOwn(jpxSceneRuntime.scenes, mode) ? cfgBattle[mode] : null);
     const element = metadata?.jpxPlusExecution?.element;
     return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element :
-        spellDamageBonus.maxType || jpxQuickbarSpellType;
+        spellDamageBonus.maxType;
 }
 
 function pauseForJpxConfigApplication() {
@@ -612,7 +613,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         root.append(top); if (selectedMode) root.append(selection);
         content.append(controls); root.append(notice, content);
         const application = appliedContext(), routes = application.state.scenes?.[state.sceneWorld] || {}, native = application.native[state.sceneWorld] || {};
-        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle() || 'Unarmed');
+        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle());
         const execution = selectedMode ? { mode: selectedMode, id: application.state.active?.[jpxConfigWorld()] } : resolveJpxScene(detected, battleType);
         const strategyName = (resolved, world, config) => application.state.entries.find(entry => entry.id === resolved.id)?.envelope.title ||
             application.state.entries.find(entry => application.state.applied[world]?.[entry.id]?.scopes.includes(resolved.mode) &&
@@ -621,7 +622,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if (selectedMode || !viewingCurrent) {
             const executingName = execution.rules || selectedMode ? strategyName(execution, jpxConfigWorld(), application.native[jpxConfigWorld()]) : tr('unassigned');
             const current = el('div', undefined, 'jpx-scene-executing');
-            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', jpxConfigModeLabel(detected + '_' + battleType)), el('strong', executingName));
+            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', detected ? jpxConfigModeLabel(detected + '_' + battleType) : '—'), el('strong', executingName));
             content.append(current);
         }
         const table = el('div', undefined, 'jpx-scenes-table'); content.append(table);
@@ -725,9 +726,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
                 words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
         });
-        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed'), battleType);
+        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle), battleType);
         const fixedMode = getJpxSelectedBattleMode();
-        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed');
+        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle);
         const hasSceneRoute = [routedStyle + '_' + battleType, routedStyle + '_General'].some(mode => Object.hasOwn(jpxSceneRuntime.scenes, mode));
         for (const entry of entries) {
             const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;

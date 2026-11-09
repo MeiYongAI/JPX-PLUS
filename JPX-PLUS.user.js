@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.10.2
+// @version      2026.11.10.3
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-start
@@ -286,7 +286,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.10.2',
+    version: '2026.11.10.3',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -1997,8 +1997,6 @@ let timeRecords = {};
 let combatRecords = {};
 let revenueRecords = {};
 let spellDamageBonus = readJpxSpellDamageBonus();
-let jpxQuickbarSpellType = '';
-let jpxQuickbarSpellContext = null;
 
 let dummy = document.createElement('div');
 let newWindow;
@@ -2114,7 +2112,7 @@ const CTRLWIDGET_FIELDS = [
     { id: 'networkDelay', get: () => (lastLogTimestamp > lastActionTimestamp ? lastLogTimestamp - lastActionTimestamp : '-') },
     { id: 'battleStyle', get: () => {
         const style = getManagedBattleStyle(battleStyle), element = getManagedSpellType();
-        return t('cW.' + style) + (/Staff|Mage/.test(style) && element ? ' (' + t('cW.' + element) + ')' : '');
+        return style ? t('cW.' + style) + (/Staff|Mage/.test(style) && element ? ' (' + t('cW.' + element) + ')' : '') : '—';
     } },
     { id: 'battleType', get: () => t(`cW.${battleType}`) + (worldLevel ? ` (WL${worldLevel})` : '') + (towerFloor ? ` (${towerFloor}F)` : '') },
     { id: 'battleMode', get: () => getBattleMode() },
@@ -3110,28 +3108,39 @@ let jpxDetectionRequest = null;
 let jpxDetectionController = null, jpxDetectionRequestGeneration = -1;
 let jpxDetectionReadLoadout = false, jpxDetectionReadMode = false;
 let jpxDetectionRetryAt = 0;
-const jpxDetectedFamilyKey = () => prefix + 'detectedWeaponFamily_v1' + isekaiSuffix;
-const jpxDetectedFamilyValid = family => ['OneHanded', 'TwoHanded', 'DualWielding', 'NitenIchiryu', 'Staff'].includes(family);
+let jpxBattleDetectedStyle;
+// This key contains equipment observations only. Old skill-derived caches are ignored.
+const jpxDetectedFamilyKey = () => prefix + 'equipmentFamily_v1' + isekaiSuffix;
+const jpxDetectedFamilyValid = family => ['OneHanded', 'TwoHanded', 'DualWielding', 'NitenIchiryu', 'Staff', 'Unarmed'].includes(family);
 
-function readJpxDetectedFamily() {
+function getJpxEquipmentContext(root = document) {
+    const context = getJpxDetectionContext(root);
+    const active = root === document && jpxDetectionSourceIgnored ? null : root.querySelector('#eqsl img[src*="_on.png"]');
+    const observedSet = active?.getAttribute('src')?.match(/(?:^|\/)set(\d+)_on\.png(?:[?#]|$)/)?.[1];
+    const confirmed = readJpxLoadoutCatalog().current;
+    return { ...context, setId: observedSet || (confirmed?.world === context.world && confirmed.personaId === context.personaId ? confirmed.setId : '') };
+}
+
+function readJpxDetectedFamily(fresh = false) {
     try {
-        const saved = JSON.parse(localStorage.getItem(jpxDetectedFamilyKey())), current = getJpxDetectionContext();
+        const saved = JSON.parse(localStorage.getItem(jpxDetectedFamilyKey())), current = getJpxEquipmentContext();
         if (saved?.version === 1 && jpxDetectedFamilyValid(saved.family) &&
-            saved.world === current.world && saved.persona === current.persona && saved.personaId === current.personaId &&
-            Number.isFinite(saved.verifiedAt) && Date.now() >= saved.verifiedAt && Date.now() - saved.verifiedAt < 60000) return saved.family;
+            current.personaId && current.setId && saved.world === current.world && saved.personaId === current.personaId && saved.setId === current.setId &&
+            Number.isFinite(saved.verifiedAt) && Date.now() >= saved.verifiedAt && (!fresh || Date.now() - saved.verifiedAt < 60000)) return saved.family;
     } catch { /* A missing or corrupt observation is not a detected style. */ }
     return '';
 }
 
-function rememberJpxDetectedFamily(family, context = getJpxDetectionContext()) {
-    if (!jpxDetectedFamilyValid(family)) return;
+function rememberJpxDetectedFamily(family, context = getJpxEquipmentContext(), weapons = getJpxEquippedWeapons()) {
+    if (!jpxDetectedFamilyValid(family) || !context.personaId || !context.setId) return;
     try {
         const key = jpxDetectedFamilyKey();
         let saved;
         try { saved = JSON.parse(localStorage.getItem(key)); } catch { /* Replace corrupt cached evidence with the live observation. */ }
-        if (saved?.family === family && saved.world === context.world && saved.persona === context.persona &&
-            saved.personaId === context.personaId && Date.now() - saved.verifiedAt < 30000) return;
-        localStorage.setItem(key, JSON.stringify({ version: 1, ...context, family, verifiedAt: Date.now() }));
+        const weaponKey = JSON.stringify(weapons);
+        if (saved?.family === family && saved.weapons === weaponKey && saved.world === context.world && saved.persona === context.persona &&
+            saved.personaId === context.personaId && saved.setId === context.setId && Date.now() >= saved.verifiedAt && Date.now() - saved.verifiedAt < 30000) return;
+        localStorage.setItem(key, JSON.stringify({ version: 1, ...context, family, weapons: weaponKey, verifiedAt: Date.now() }));
     } catch { /* Live evidence remains usable even when browser storage is full. */ }
 }
 
@@ -3149,59 +3158,11 @@ function getJpxSpellDamageFromPage(root = document) {
         // Display-only translations may append Chinese to the native element.
         // Match its leading English token, never another stat table or tooltip.
         const maxType = cells[1].textContent.trim().match(/^(fire|cold|wind|elec|holy|dark)(?![a-z])/i)?.[1].toLowerCase();
-        if (Number.isFinite(maxValue) && maxValue >= 0 && ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(maxType) &&
-            (!maximum || maxValue > maximum.maxValue)) maximum = { maxType, maxValue };
+        if (!Number.isFinite(maxValue) || maxValue < 0 || !maxType) continue;
+        if (!maximum || maxValue > maximum.maxValue) maximum = { maxType: maxValue > 0 ? maxType : '', maxValue };
+        else if (maxValue === maximum.maxValue && maxType !== maximum.maxType) maximum.maxType = '';
     }
     return maximum;
-}
-
-function getJpxSpellTypeFromQuickbar(root = document) {
-    const elements = new Set();
-    for (const slot of root.querySelectorAll('#quickbar .btqs[onmouseover]')) {
-        // Native tooltip metadata survives translated labels and disabled slots.
-        const name = slot.getAttribute('onmouseover').match(/\bset_infopane_spell\(\s*(['"])(.*?)\1/)?.[2];
-        const element = Object.keys(spellsDamageObj).find(type => spellsDamageObj[type].includes(name));
-        if (element) elements.add(element);
-    }
-    // A mixed bar is not evidence of a preferred element; never count duplicates.
-    return elements.size === 1 ? elements.values().next().value : '';
-}
-
-function jpxQuickbarSpellKey() { return prefix + 'spellQuickbar_v1' + isekaiSuffix; }
-
-function readJpxQuickbarSpellType(context = getJpxDetectionContext()) {
-    try {
-        const saved = JSON.parse(localStorage.getItem(jpxQuickbarSpellKey()));
-        return saved?.version === 1 && saved.world === context.world && saved.persona === context.persona &&
-            saved.personaId === context.personaId && ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(saved.element)
-            ? saved.element : '';
-    } catch { return ''; }
-}
-
-function clearJpxQuickbarSpellType() {
-    jpxQuickbarSpellType = ''; jpxQuickbarSpellContext = null;
-    localStorage.removeItem(jpxQuickbarSpellKey());
-}
-
-function refreshJpxQuickbarSpellType() {
-    // Pre-battle recognition is authoritative. The quickbar only fills an
-    // unknown school; after recognition it is not a continuing requirement.
-    if (spellDamageBonus.maxType) {
-        jpxQuickbarSpellType = ''; jpxQuickbarSpellContext = null;
-        return;
-    }
-    if (log && jpxQuickbarSpellContext && jpxQuickbarSpellType) return;
-    const context = log && jpxQuickbarSpellContext || getJpxDetectionContext();
-    const previous = log && jpxQuickbarSpellContext ? jpxQuickbarSpellType : readJpxQuickbarSpellType(context);
-    const detected = jpxDetectionSourceIgnored ? '' : getJpxSpellTypeFromQuickbar();
-    jpxQuickbarSpellType = detected || previous;
-    jpxQuickbarSpellContext = context;
-    // Never save a manual config choice,
-    // or let a battle tab overwrite another tab's changed persona/equipment.
-    if (!detected) return;
-    try {
-        localStorage.setItem(jpxQuickbarSpellKey(), JSON.stringify({ version: 1, ...context, element: detected }));
-    } catch { /* The current battle can retain its in-memory observation. */ }
 }
 
 function readJpxSpellDamageBonus(verifiedOnly = false) {
@@ -3209,20 +3170,21 @@ function readJpxSpellDamageBonus(verifiedOnly = false) {
     try {
         const key = prefix + 'spellDamageBonus' + isekaiSuffix;
         const value = JSON.parse(localStorage.getItem(key));
-        if (!value || !['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(value.maxType) ||
+        if (!value || !['', 'fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(value.maxType) ||
             !Number.isFinite(value.maxValue) || value.maxValue < 0) return fallback();
+        const result = { maxType: value.maxValue > 0 ? value.maxType : '', maxValue: value.maxValue };
         const saved = JSON.parse(localStorage.getItem(key + ':context'));
-        if (!saved) return verifiedOnly ? null : { maxType: value.maxType, maxValue: value.maxValue };
+        if (!saved) return verifiedOnly ? null : result;
         const current = getJpxDetectionContext();
         if (saved.version !== 1 || saved.world !== current.world || saved.persona !== current.persona || saved.personaId !== current.personaId ||
             !current.persona) return fallback();
-        return { maxType: value.maxType, maxValue: value.maxValue };
+        return result;
     } catch { return fallback(); }
 }
 
 function refreshJpxModeDetection() {
     const key = prefix + 'spellDamageBonus' + isekaiSuffix;
-    const snapshot = () => localStorage.getItem(key) + localStorage.getItem(key + ':context') + localStorage.getItem(jpxDetectedFamilyKey()) + localStorage.getItem(jpxQuickbarSpellKey());
+    const snapshot = () => localStorage.getItem(key) + localStorage.getItem(key + ':context') + localStorage.getItem(jpxDetectedFamilyKey());
     const before = snapshot();
     const context = getJpxDetectionContext();
     const previous = localStorage.getItem(prefix + 'persona' + isekaiSuffix) || '';
@@ -3231,19 +3193,17 @@ function refreshJpxModeDetection() {
         localStorage.removeItem(key);
         localStorage.removeItem(key + ':context');
         localStorage.removeItem(jpxDetectedFamilyKey());
-        clearJpxQuickbarSpellType();
     }
     if (context.persona) {
         localStorage.setItem(prefix + 'persona' + isekaiSuffix, context.persona);
         if (context.personaId) localStorage.setItem(prefix + 'personaId' + isekaiSuffix, context.personaId);
     }
-    const maximum = getJpxSpellDamageFromPage();
+    const maximum = !jpxDetectionSourceIgnored ? getJpxSpellDamageFromPage() : null;
     if (maximum && context.persona) {
         localStorage.setItem(key, JSON.stringify(maximum));
         localStorage.setItem(key + ':context', JSON.stringify({ version: 1, ...context }));
     }
     spellDamageBonus = maximum || readJpxSpellDamageBonus();
-    refreshJpxQuickbarSpellType();
     getDetectedJpxBattleStyle();
     if (before !== snapshot()) window.dispatchEvent(new Event('jpx:mode-detected'));
 }
@@ -3258,7 +3218,6 @@ function initJpxModeDetection() {
         localStorage.removeItem(key);
         localStorage.removeItem(key + ':context');
         localStorage.removeItem(jpxDetectedFamilyKey());
-        clearJpxQuickbarSpellType();
         spellDamageBonus = readJpxSpellDamageBonus();
         window.dispatchEvent(new Event('jpx:mode-detected'));
     };
@@ -3272,38 +3231,17 @@ function initJpxModeDetection() {
         if (event.target.closest?.('#eqsl')) invalidate();
     }, true);
     window.addEventListener('storage', event => {
-        if (![key, key + ':context', jpxQuickbarSpellKey(), jpxDetectedFamilyKey(), prefix + 'persona' + isekaiSuffix, prefix + 'personaId' + isekaiSuffix].includes(event.key)) return;
+        if (![key, key + ':context', jpxDetectedFamilyKey(), prefix + 'persona' + isekaiSuffix, prefix + 'personaId' + isekaiSuffix].includes(event.key)) return;
         jpxDetectionGeneration++;
         if (event.key === jpxDetectedFamilyKey() || event.key.startsWith(prefix + 'persona')) jpxDetectionSourceIgnored = true;
-        if (!log) {
-            spellDamageBonus = readJpxSpellDamageBonus();
-            jpxQuickbarSpellContext = getJpxDetectionContext();
-            jpxQuickbarSpellType = readJpxQuickbarSpellType(jpxQuickbarSpellContext);
-        }
+        if (!log) spellDamageBonus = readJpxSpellDamageBonus();
         window.dispatchEvent(new Event('jpx:mode-detected'));
     });
+    // A confirmed AJAX loadout switch needs new equipment/stat observations.
+    window.addEventListener('jpx:loadout-detected', () => queueMicrotask(() => ensureJpxModeDetection()));
 }
 
-function getJpxBattleSkillFamily(actions) {
-    const families = Object.entries({ 'Shield Bash': 'OneHanded', 'Great Cleave': 'TwoHanded',
-        'Iris Strike': 'DualWielding', 'Skyward Sword': 'NitenIchiryu', 'Concussive Strike': 'Staff' })
-        .filter(([skill]) => actions && Object.hasOwn(actions, skill)).map(([, family]) => family);
-    return families.length === 1 ? families[0] : '';
-}
-
-function getJpxBattleSkillFamilyFromPage() {
-    // Recognition needs native skill names, not cooldowns or restored statistics.
-    // In particular, mode detection runs before timeRecords is loaded on navigation.
-    const actions = {};
-    for (const slot of document.querySelectorAll('.bts > div[onmouseover]')) {
-        const name = slot.getAttribute('onmouseover')?.match(regExp.spellInfo)?.[1] ||
-            slot.textContent?.trim() || jpxUtils.parseHVClasses(slot.querySelector('div'), true);
-        if (name) actions[name] = true;
-    }
-    return getJpxBattleSkillFamily(actions);
-}
-
-function getJpxEquippedStyleFamily(root = document, metadata = window.dynjs_equip) {
+function getJpxEquippedWeapons(root = document, metadata = window.dynjs_equip) {
     // Only read equipped slot metadata. Inventory names and translated labels
     // cannot establish which weapons are currently equipped.
     const slots = Array.from(root.querySelectorAll('#eqsb > .eqb'));
@@ -3311,29 +3249,38 @@ function getJpxEquippedStyleFamily(root = document, metadata = window.dynjs_equi
     const read = node => {
         const item = node?.children?.[1];
         if (!item) return null;
+        if (item.matches('.eqempty')) return { id: '', name: '' };
         const id = item.dataset?.eid || item.getAttribute('onmouseover')?.match(/(?:hover_equip|equips\.set)\((\d+)/)?.[1];
-        if (!id) return '';
+        if (!id) return null;
         const data = metadata?.[id];
-        return typeof data?.n === 'string' && data.n.trim() ? data.n : typeof data?.t === 'string' ? data.t : null;
+        const name = typeof data?.n === 'string' && data.n.trim() ? data.n : typeof data?.t === 'string' ? data.t : '';
+        return name.trim() ? { id, name } : null;
     };
     const mainSlot = slot(1), next = mainSlot?.nextElementSibling;
     // Staff/two-handed equipment disables the adjacent offhand slot and removes
     // its navigation handler. This is explicit emptiness, not missing evidence.
     const offSlot = slot(2) || (next?.matches('.eqb.eqdisabled') && next.children[1]?.matches('.eqempty') ? next : null);
     const main = read(mainSlot), off = read(offSlot);
-    if (main === null || off === null || !main) return '';
+    return main && off ? [main, off] : null;
+}
+
+function getJpxEquippedStyleFamily(root = document, metadata = window.dynjs_equip) {
+    const weapons = getJpxEquippedWeapons(root, metadata);
+    if (!weapons) return '';
+    const [main, off] = weapons.map(item => item.name);
+    if (!main && !off) return 'Unarmed';
     const has = (name, types) => new RegExp('\\b(?:' + types.join('|') + ')\\b').test(name);
     const oneHanded = ['Axe', 'Club', 'Rapier', 'Shortsword', 'Wakizashi', 'Dagger'];
     if (has(main, ['Katana']) && has(off, ['Wakizashi'])) return 'NitenIchiryu';
     if (has(main, oneHanded) && has(off, oneHanded)) return 'DualWielding';
-    if (has(main, oneHanded) && has(off, ['Buckler', 'Kite Shield', 'Tower Shield', 'Force Shield'])) return 'OneHanded';
+    if (has(main, oneHanded) && (!off || has(off, ['Buckler', 'Kite Shield', 'Tower Shield', 'Force Shield']))) return 'OneHanded';
     if (!off && has(main, ['Longsword', 'Estoc', 'Mace', 'Katana', 'Scythe', 'Swordchucks'])) return 'TwoHanded';
     if (!off && has(main, ['Staff'])) return 'Staff';
     return '';
 }
 
 function getJpxStyleFromFamily(family, magic) {
-    if (family === 'Staff') return family;
+    if (family === 'Staff' || family === 'Unarmed') return family;
     const mages = { OneHanded: '1H_Mage', TwoHanded: '2H_Mage', DualWielding: 'DW_Mage', NitenIchiryu: 'NI_Mage' };
     if (!mages[family] || !magic) return '';
     return magic.maxValue > (family === 'OneHanded' ? 70 : 100) ? mages[family] : family;
@@ -3341,12 +3288,25 @@ function getJpxStyleFromFamily(family, magic) {
 
 function getDetectedJpxBattleStyle() {
     try {
-        const battle = log || document.querySelector('#textlog');
+        const battle = log || document.querySelector('#textlog, #battle_main');
+        // Freeze the pre-battle observation for this document, including AJAX rounds.
+        // Refreshes can reuse it without an expiry that would interrupt long battles.
+        if (battle) return jpxBattleDetectedStyle ??= getJpxStyleFromFamily(readJpxDetectedFamily(), readJpxSpellDamageBonus(true));
         const equipped = !jpxDetectionSourceIgnored && document.querySelector('#eqsb');
-        const family = battle ? getJpxBattleSkillFamilyFromPage() :
-            equipped ? getJpxEquippedStyleFamily() : readJpxDetectedFamily();
-        if (battle || equipped) {
-            if (family) rememberJpxDetectedFamily(family);
+        const family = equipped ? getJpxEquippedStyleFamily() : readJpxDetectedFamily();
+        if (equipped) {
+            if (family) {
+                const weapons = getJpxEquippedWeapons();
+                let previous;
+                try { previous = JSON.parse(localStorage.getItem(jpxDetectedFamilyKey())); } catch { /* Replace corrupt evidence below. */ }
+                if (previous?.weapons && previous.weapons !== JSON.stringify(weapons)) {
+                    // Replacing a weapon within the same set also changes its stats.
+                    const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+                    localStorage.removeItem(key); localStorage.removeItem(key + ':context');
+                    spellDamageBonus = { maxType: '', maxValue: 0 };
+                }
+                rememberJpxDetectedFamily(family, getJpxEquipmentContext(), weapons);
+            }
             else localStorage.removeItem(jpxDetectedFamilyKey());
         }
         return getJpxStyleFromFamily(family, readJpxSpellDamageBonus(true));
@@ -3394,8 +3354,9 @@ async function readJpxEquipmentMetadata(root, base, signal) {
 function ensureJpxModeDetection(loadout = false) {
     // Character pages are unavailable during battle. Never probe them in combat,
     // and never mistake a battle/verification response for a character snapshot.
-    if (jpxLoadoutBusy || !loadout && getDetectedJpxBattleStyle() && readJpxSpellDamageBonus(true) || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
+    if (jpxLoadoutBusy || log || document.querySelector('#textlog, #battle_main, #riddlemaster') ||
         !/(^|\.)hentaiverse\.org$/.test(location.hostname)) return Promise.resolve();
+    if (!loadout && getDetectedJpxBattleStyle() && readJpxDetectedFamily(true) && readJpxSpellDamageBonus(true)) return Promise.resolve();
     if (jpxDetectionRequest) {
         if (jpxDetectionRequestGeneration === jpxDetectionGeneration) {
             jpxDetectionReadLoadout ||= loadout;
@@ -3447,9 +3408,9 @@ function ensureJpxModeDetection(loadout = false) {
             if (!character.querySelector('#persona_form select') || !equipment.querySelector('#eqsb')) return;
             const metadata = await readJpxEquipmentMetadata(equipment, base, controller.signal);
             if (!isCurrent()) return;
-            const context = getJpxDetectionContext(character), family = getJpxEquippedStyleFamily(equipment, metadata);
+            const context = getJpxEquipmentContext(equipment), family = getJpxEquippedStyleFamily(equipment, metadata);
             const magic = getJpxSpellDamageFromPage(character);
-            if (!context.persona || !family || (family !== 'Staff' && !magic)) return;
+            if (!context.persona || !context.personaId || !context.setId) return;
             localStorage.setItem(prefix + 'persona' + isekaiSuffix, context.persona);
             localStorage.setItem(prefix + 'personaId' + isekaiSuffix, context.personaId);
             const key = prefix + 'spellDamageBonus' + isekaiSuffix;
@@ -3458,10 +3419,10 @@ function ensureJpxModeDetection(loadout = false) {
                 localStorage.setItem(key + ':context', JSON.stringify({ version: 1, ...context }));
                 spellDamageBonus = magic;
             }
-            rememberJpxDetectedFamily(family, context);
+            if (family) rememberJpxDetectedFamily(family, context, getJpxEquippedWeapons(equipment, metadata));
+            else localStorage.removeItem(jpxDetectedFamilyKey());
             jpxDetectionSourceIgnored = true;
-            refreshJpxQuickbarSpellType();
-            jpxDetectionRetryAt = 0;
+            if (family) jpxDetectionRetryAt = 0;
             window.dispatchEvent(new Event('jpx:mode-detected'));
         } catch { /* Retry on a later visit; no modal or false detection on failure. */ }
         finally {
@@ -3532,6 +3493,7 @@ function initDo() {
 
     //Lobby
     if (!log) {
+        ensureJpxModeDetection();
         if (needsJpxMonsterDatabase()) {
             const refresh = () => getJpxMonsterDatabase().refresh(jpxMonsterWorld()).catch(error => console.warn('JPX monster database update failed.', error));
             if (window.requestIdleCallback) window.requestIdleCallback(refresh, { timeout: 5000 });
@@ -3632,8 +3594,7 @@ function initDoBattle() {
     if (jpxUtils.isEmpty(revenueRecords)) revenueRecords = jpxUtils.createRevenueRecords();
 
     //Battle Style
-    const skillFamily = getJpxBattleSkillFamilyFromPage();
-    battleStyle = getJpxStyleFromFamily(skillFamily, spellDamageBonus) || 'Unarmed';
+    battleStyle = getDetectedJpxBattleStyle();
 
     //Battle Type
     const initialLog = getBattleLogHTML();
@@ -3726,7 +3687,6 @@ function reDoBattle(e) {
     actionCounts = { history: [] };
     monstersEffects = {};
     log = document.querySelector('#textlog');
-    refreshJpxQuickbarSpellType();
     log && preDoBattle();
     jpxPanelManager.setBackground('#fef');
     jpxPanelManager.dispatchState();
@@ -8232,7 +8192,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
     };
 }
 
-function getBattleMode(defaultBattleStyle = 'Unarmed') {
+function getBattleMode(defaultBattleStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return selected;
     const effectiveStyle = getManagedBattleStyle(battleStyle || defaultBattleStyle);
@@ -14633,6 +14593,7 @@ function getJpxSelectedBattleMode() {
 }
 
 function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
+    if (!style) return { mode: '', rules: null, id: '', inherited: false, assigned: false };
     const direct = style + '_' + scene, general = style + '_General';
     for (const mode of [...new Set([direct, general])]) {
         const assigned = Object.hasOwn(routes, mode), route = routes[mode];
@@ -14642,7 +14603,7 @@ function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config =
     return { mode: general, rules: null, id: '', inherited: scene !== 'General', assigned: false };
 }
 
-function getJpxBattleRules(defaultStyle = 'Unarmed') {
+function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
@@ -14679,7 +14640,7 @@ function getManagedSpellType() {
     const metadata = rules || (!jpxSceneRuntime.failed && !Object.hasOwn(jpxSceneRuntime.scenes, mode) ? cfgBattle[mode] : null);
     const element = metadata?.jpxPlusExecution?.element;
     return ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(element) ? element :
-        spellDamageBonus.maxType || jpxQuickbarSpellType;
+        spellDamageBonus.maxType;
 }
 
 function pauseForJpxConfigApplication() {
@@ -15156,7 +15117,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         root.append(top); if (selectedMode) root.append(selection);
         content.append(controls); root.append(notice, content);
         const application = appliedContext(), routes = application.state.scenes?.[state.sceneWorld] || {}, native = application.native[state.sceneWorld] || {};
-        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle() || 'Unarmed');
+        const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle());
         const execution = selectedMode ? { mode: selectedMode, id: application.state.active?.[jpxConfigWorld()] } : resolveJpxScene(detected, battleType);
         const strategyName = (resolved, world, config) => application.state.entries.find(entry => entry.id === resolved.id)?.envelope.title ||
             application.state.entries.find(entry => application.state.applied[world]?.[entry.id]?.scopes.includes(resolved.mode) &&
@@ -15165,7 +15126,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if (selectedMode || !viewingCurrent) {
             const executingName = execution.rules || selectedMode ? strategyName(execution, jpxConfigWorld(), application.native[jpxConfigWorld()]) : tr('unassigned');
             const current = el('div', undefined, 'jpx-scene-executing');
-            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', jpxConfigModeLabel(detected + '_' + battleType)), el('strong', executingName));
+            current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', detected ? jpxConfigModeLabel(detected + '_' + battleType) : '—'), el('strong', executingName));
             content.append(current);
         }
         const table = el('div', undefined, 'jpx-scenes-table'); content.append(table);
@@ -15269,9 +15230,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
                 words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
         });
-        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed'), battleType);
+        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle), battleType);
         const fixedMode = getJpxSelectedBattleMode();
-        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle || 'Unarmed');
+        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle);
         const hasSceneRoute = [routedStyle + '_' + battleType, routedStyle + '_General'].some(mode => Object.hasOwn(jpxSceneRuntime.scenes, mode));
         for (const entry of entries) {
             const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;
@@ -15851,11 +15812,14 @@ function confirmJpxLoadout(current, catalog, livePage = false) {
         if (!jpxLoadoutSame(previous, current)) applied = applyJpxLoadoutBinding(current, false, false);
     } catch (error) { jpxLoadoutPending = pending; throw error; }
     const persona = catalog.personas.find(item => item.id === current.personaId);
-    if (!jpxLoadoutSame(previous, current)) clearJpxQuickbarSpellType();
     if (!livePage && !jpxLoadoutSame(previous, current)) {
         localStorage.removeItem(jpxDetectedFamilyKey());
-        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
         jpxDetectionSourceIgnored = true;
+    }
+    if (!jpxLoadoutSame(previous, current) && (!livePage || previous && !getJpxSpellDamageFromPage())) {
+        const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+        localStorage.removeItem(key); localStorage.removeItem(key + ':context');
+        spellDamageBonus = { maxType: '', maxValue: 0 };
     }
     localStorage.setItem(prefix + 'personaId' + isekaiSuffix, current.personaId);
     if (persona?.name) localStorage.setItem(prefix + 'persona' + isekaiSuffix, persona.name);
@@ -15909,8 +15873,9 @@ function initJpxLoadoutBindings() {
         jpxDetectionGeneration++; jpxDetectionRetryAt = 0;
         jpxDetectionSourceIgnored = true;
         localStorage.removeItem(jpxDetectedFamilyKey());
-        localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
-        clearJpxQuickbarSpellType();
+        const key = prefix + 'spellDamageBonus' + isekaiSuffix;
+        localStorage.removeItem(key); localStorage.removeItem(key + ':context');
+        spellDamageBonus = { maxType: '', maxValue: 0 };
     };
     let refreshTimer;
     const refresh = () => {

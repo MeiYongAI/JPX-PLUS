@@ -273,19 +273,6 @@ test('binding startup preserves magic stats freshly read from the live page',asy
     assert.equal(value.personaId,'1');assert.deepEqual(f.errors,[]);
 });
 
-test('confirmed and live equipment-set changes invalidate only the old quickbar recognition',async t=>{
-    const f=await fixture(t),{page}=f,key='jpx_spellQuickbar_v1';
-    await page.evaluate(()=>__binding.init());
-    await page.evaluate(key=>localStorage.setItem(key,'remembered'),key);
-    await remember(page,'1','1');
-    assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),'remembered');
-    await remember(page,'1','2');
-    assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),null);
-    await page.evaluate(key=>localStorage.setItem(key,'remembered'),key);
-    f.setGame('1','3');await page.reload();await f.boot();await page.evaluate(()=>__binding.init());
-    assert.equal(await page.evaluate(key=>localStorage.getItem(key),key),null);assert.deepEqual(f.errors,[]);
-});
-
 test('binding picker remembers each persona set and lists only its observed slots',async t=>{
     const f=await fixture(t),{page}=f,a=await add(page,'A');
     await remember(page,'2','3');await remember(page,'1','1');

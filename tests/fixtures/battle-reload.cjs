@@ -53,23 +53,38 @@ function instrumentation() {
         }
     };
 }
-async function fixture(browser, t, { source: input = source, isekai = false, pageOptions = {}, storage = {}, transform = value => value } = {}) {
+async function fixture(browser, t, { source: input = source, isekai = false, pageOptions = {}, storage = {}, transform = value => value, observedEquipment = true, respond } = {}) {
     const context = await browser.newContext({ viewport:{width:1440,height:1100}, reducedMotion:'reduce' });
     if (t) t.after(()=>context.close());
-    const page = await context.newPage(), errors=[], requests=[];
+    const page = await context.newPage(), errors=[], requests=[], combatRequests=[];
     page.setDefaultTimeout(8000);page.on('pageerror',error=>errors.push(error.message));
     let next = pageOptions;
     await context.route('**/*', route => {
         if (route.request().isNavigationRequest()) return route.fulfill({contentType:'text/html',body:transform(html(next), next)});
-        requests.push(route.request().url());return route.fulfill({status:204,body:''});
+        requests.push(route.request().url());
+        if (!next.page && route.request().url().includes('s=Character')) combatRequests.push(route.request().url());
+        const response=respond?.(new URL(route.request().url()), next);
+        if (response !== undefined) return route.fulfill({contentType:'text/html',body:response});
+        return route.fulfill({status:204,body:''});
     });
     const base='https://hentaiverse.org/'+(isekai?'isekai/':'');
     await page.goto(base);
-    await page.evaluate(values=>{for(const [key,value] of Object.entries(values))localStorage.setItem(key,value);},storage);
+    // Battle-only fixtures start with a confirmed pre-battle two-handed loadout.
+    // Recognition journeys disable this seed and acquire their own observations.
+    const suffix=isekai?'_isekai':'', world=isekai?'Isekai':'Persistent';
+    const observed={world,persona:'Fixture Persona',personaId:'17',setId:'1'};
+    const seed=observedEquipment?{
+        ['jpx_persona'+suffix]:observed.persona,['jpx_personaId'+suffix]:observed.personaId,
+        ['jpx_loadouts_v1'+suffix]:JSON.stringify({version:1,personas:[],sets:['1'],current:observed}),
+        ['jpx_equipmentFamily_v1'+suffix]:JSON.stringify({version:1,...observed,family:'TwoHanded',verifiedAt:Date.now()}),
+        ['jpx_spellDamageBonus'+suffix]:JSON.stringify({maxType:'',maxValue:0}),
+        ['jpx_spellDamageBonus'+suffix+':context']:JSON.stringify({version:1,...observed})
+    }:{};
+    await page.evaluate(values=>{for(const [key,value] of Object.entries(values))localStorage.setItem(key,value);},{...seed,...storage});
     const harness=input.replace('\ninitDo();','\n('+instrumentation.toString()+')();\ninitDo();');
     async function inject() { await page.addScriptTag({content:harness}); await page.waitForTimeout(30); }
     await inject();
-    return {page,context,errors,requests,base,
+    return {page,context,errors,requests,combatRequests,base,
         async navigate(options={},viaButton=false) {next=options;const url=base+'?fixtureRound='+(options.round||1)+'&floor='+(options.floor||1);
             if(viaButton) {await Promise.all([page.waitForURL(url),page.evaluate(url=>__reload.endRound(url),url)]);} else await page.goto(url);
             await inject();

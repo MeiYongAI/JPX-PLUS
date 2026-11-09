@@ -72,7 +72,7 @@ tests/jpx_config_change_tracker.test.cjs 新增 **9 项变更追踪确定性回�
 
 测量不计文件选择器等待、文件读取 I/O、自动化等待；阶段包括脚本同步操作与相关界面更新，浏览器长任务记录可能包含该阶段之外的同一任务开销（包括之后的 MutationObserver）。旧入口不必要的选文件前历史快照已去掉；选文件前的独立任务未计入表中。计时包装本身也存在少量开销。它们不是实战 TPS，也不是每回合增加的固定耗时。
 
-原始数据：[import-2026-11-08.json](performance/import-2026-11-08.json)，包含源码 SHA-256、每次阶段数据与长任务。复跑：
+原始数据 `docs/performance/import-2026-11-08.json` 仅保存在本地，不再随仓库发布；其中包含源码 SHA-256、每次阶段数据与长任务。复跑：
 
     $env:PLAYWRIGHT_CHANNEL = 'chrome'
     $env:JPX_PERF_BASELINE = 'C:/path/to/2026.11.08.7.user.js'

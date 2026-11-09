@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.10.3
+
+- Detect weapon style from equipped main/offhand items and keep JPX's original spell-damage bonus thresholds for physical/mage classification. Armor and weapon elemental affixes do not decide the style. Record observations before combat and retain them through rounds and refreshes.
+- Remove quickbar-based spell-school detection and its cache. Automatic spell attributes use character statistics recorded before battle; battle pages never request character or equipment pages.
+- Keep all-zero or tied highest bonuses unclassified. Discard outdated attribute observations after persona or equipment-set changes, while leaving unavailable-spell handling unchanged.
+- Remove historical raw performance reports from the repository and ignore local test experiments and generated output. Keep maintained regression tests used by CI.
+
+### 简体中文
+
+- 用主副手装备识别武器类型，沿用 JPX 原有法术伤害加成判断物理或法系，不参考防具和武器元素词条。战前保存结果，战斗换轮和刷新时继续使用。
+- 移除快捷栏属性识别及缓存。自动属性识别使用战前记录的人物属性，战斗中不请求人物页或装备页。
+- 加成全为零或最高值并列时不猜属性；切换人格、装备套装后清除过期属性。“法术当前不可用”的处理保持原样。
+- 历史性能原始报告改为仅保存在本地，忽略临时测试和测试产物；保留自动检查需要的正式回归测试。
+
 ## 2026.11.10.2
 
 - Keep recognized spell schools across battle reloads and AJAX rounds. Pre-battle recognition takes priority; the quickbar is only a fallback for an unknown school. Removing a spell from the quickbar no longer discards that recognition.

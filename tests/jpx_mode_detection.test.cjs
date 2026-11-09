@@ -17,6 +17,7 @@ function fixture(options = {}) {
     if (!options.data) {
         data.set('jpx_persona' + suffix, 'Persona One');
         data.set('jpx_personaId' + suffix, '1');
+        data.set('jpx_loadouts_v1' + suffix, JSON.stringify({current:{world:suffix?'Isekai':'Persistent',personaId:'1',setId:'1'}}));
     }
     const storage = {
         getItem: key => data.get(key) ?? null,
@@ -27,7 +28,7 @@ function fixture(options = {}) {
     let select = null, labels = [], slots = [], actions = {}, battle = false;
     const metadata = {};
     const document = {
-        querySelector: selector => selector === '#persona_form select' ? select : selector === '#textlog' && battle ? {} : selector === '#eqsb' && slots.length ? {} : null,
+        querySelector: selector => selector === '#persona_form select' ? select : selector.includes('#textlog') && battle ? {} : selector === '#eqsb' && slots.length ? {} : null,
         querySelectorAll: selector => selector === '.spc' ? labels : selector === '#eqsb > .eqb' ? slots :
             selector === '.bts > div[onmouseover]' ? Object.keys(actions).map(name => ({getAttribute:()=>"set_infopane_spell('"+name+"', 'Fixture', '1001', 10, 0, 5)"})) : [],
         addEventListener: (name, callback) => { (listeners.document[name] ||= []).push(callback); }
@@ -39,14 +40,15 @@ function fixture(options = {}) {
     };
     const context = vm.createContext({ document, window, localStorage: storage,
         prefix: 'jpx_', isekaiSuffix: suffix, log: null, battleStyle: 'TwoHanded', jpxLoadoutBusy: false,
-        spellDamageBonus: { maxType: 'fire', maxValue: 0 }, jpxQuickbarSpellType: '', jpxQuickbarSpellContext: null,
+        readJpxLoadoutCatalog: () => JSON.parse(data.get('jpx_loadouts_v1' + suffix) || '{}'), queueMicrotask,
+        spellDamageBonus: { maxType: 'fire', maxValue: 0 },
         Event: class { constructor(type) { this.type = type; } },
         regExp: { spellInfo: /\('([\w\s-]+)'.*, '(\w+)', (\d+), (\d+), (\d+)\)/ },
         getActionCooldowns: () => { throw Error('Recognition must not depend on loaded cooldown statistics'); },
         fetch: () => { throw new Error('Battle detection must not fetch character pages'); },
         jpxUtils: { parseHVClasses: node => node?.nativeLabel || '' }
     });
-    vm.runInContext(helpers + '\nglobalThis.api={context:getJpxDetectionContext,read:readJpxSpellDamageBonus,refresh:refreshJpxModeDetection,init:initJpxModeDetection,detect:getDetectedJpxBattleStyle,ensure:ensureJpxModeDetection,family:getJpxBattleSkillFamily,gear:getJpxEquippedStyleFamily};', context);
+    vm.runInContext(helpers + '\nglobalThis.api={context:getJpxDetectionContext,read:readJpxSpellDamageBonus,refresh:refreshJpxModeDetection,init:initJpxModeDetection,detect:getDetectedJpxBattleStyle,ensure:ensureJpxModeDetection,family:readJpxDetectedFamily,gear:getJpxEquippedStyleFamily};', context);
     const key = 'jpx_spellDamageBonus' + suffix;
     const plain = value => value === null ? null : JSON.parse(JSON.stringify(value));
     return {
@@ -75,7 +77,7 @@ function fixture(options = {}) {
                 const id = name === '' ? '' : String(100 + number);
                 if (name !== null && name !== '') metadata[id] = { n: name };
                 return { getAttribute: attr => attr === 'onclick' ? 'location.href="?s=Character&ss=eq&equip_slot=' + number + '"' : null,
-                    children: [{}, { dataset: id ? { eid: id } : {}, getAttribute: () => null }] };
+                    children: [{}, { dataset: id ? { eid: id } : {}, getAttribute: () => null, matches: selector => name === '' && selector === '.eqempty' }] };
             };
             slots = [slot(1, main), slot(2, off)];
         },
@@ -155,27 +157,28 @@ test('verified stats are isolated by world and persona without changing battle c
     assert.equal(h.data.get('jpx_cfgBattle'), originalConfig);
 });
 
-test('zero magic bonus is valid and the original melee and battlemage thresholds are preserved', () => {
-    const h = fixture(); h.persona('Persona One'); h.stats([[0, 'Fire']]); h.api.refresh();
-    assert.deepEqual(h.read(true), { maxType: 'fire', maxValue: 0 });
-    for (const [skill, melee, mage, limit] of [['Shield Bash', 'OneHanded', '1H_Mage', 70], ['Great Cleave', 'TwoHanded', '2H_Mage', 100],
-        ['Iris Strike', 'DualWielding', 'DW_Mage', 100], ['Skyward Sword', 'NitenIchiryu', 'NI_Mage', 100]]) {
-        h.battle({ [skill]: 0 });
+test('main/offhand equipment combines with the original spell-bonus thresholds', () => {
+    for (const [main, off, melee, mage, limit] of [['Rapier', 'Force Shield', 'OneHanded', '1H_Mage', 70], ['Mace', '', 'TwoHanded', '2H_Mage', 100],
+        ['Rapier', 'Wakizashi', 'DualWielding', 'DW_Mage', 100], ['Katana', 'Wakizashi', 'NitenIchiryu', 'NI_Mage', 100]]) {
+        const h = fixture(); h.equipment('Legendary Shocking ' + main, off);
+        h.cache({ maxType: '', maxValue: 0 }); assert.equal(h.api.detect(), melee);
         h.cache({ maxType: 'fire', maxValue: limit }); assert.equal(h.api.detect(), melee);
         h.cache({ maxType: 'fire', maxValue: limit + 0.1 }); assert.equal(h.api.detect(), mage);
     }
 });
 
-test('actual battle skills identify staff independently of cache or selected rules', () => {
+test('battle skills never invent or override pre-battle equipment recognition', () => {
     const h = fixture();
+    h.equipment('Legendary Willow Staff', ''); h.api.refresh();
     h.battle({ 'Concussive Strike': '-' });
     assert.equal(h.api.detect(), 'Staff');
     h.context.battleStyle = 'OneHanded';
     assert.equal(h.api.detect(), 'Staff', 'applied or mocked runtime style cannot change actual recognition');
     h.battle({ 'Concussive Strike': 9 }, false);
-    assert.equal(h.api.detect(), 'Staff', 'textlog DOM is sufficient when log has not been assigned');
+    assert.equal(h.api.detect(), 'Staff', 'battle detection also works before log is assigned');
     for (const actions of [{}, { Fireball: 0 }, { 'Shield Bash': 0, 'Great Cleave': 0 }]) {
-        h.battle(actions); assert.equal(h.api.detect(), '', 'missing or conflicting skills stay unknown');
+        h.battle(actions); assert.equal(h.api.detect(), 'Staff', 'missing or conflicting skills do not change the equipment observation');
+        const unknown = fixture(); unknown.battle(actions); assert.equal(unknown.api.detect(), '');
     }
 });
 
@@ -220,13 +223,15 @@ test('native persona/equipment changes invalidate cache and publish a recognitio
     }
 });
 
-test('verified equipment and battle observations survive navigation to pages without equipment DOM', () => {
+test('only verified equipment observations survive navigation and long battles', () => {
     const equip = fixture(); equip.equipment('Legendary Willow Staff', ''); equip.disableOffhand(); equip.api.refresh();
     assert.equal(fixture({ data: equip.data }).api.detect(), 'Staff', 'another page reads the verified equipment observation');
-    const battle = fixture(); battle.battle({ 'Concussive Strike': 0 }); battle.api.refresh();
-    assert.equal(fixture({ data: battle.data }).api.detect(), 'Staff', 'a battle observation is also available after leaving combat');
-    assert.equal(fixture({ data: battle.data, suffix: '_isekai' }).api.detect(), '', 'the other world never borrows the observation');
-    const otherPersona = fixture({ data: battle.data }); otherPersona.persona('Different Persona', '2');
+    const key = 'jpx_equipmentFamily_v1', saved = JSON.parse(equip.data.get(key)); saved.verifiedAt -= 86400000;
+    equip.data.set(key, JSON.stringify(saved));
+    const battle = fixture({data:equip.data}); battle.battle({});
+    assert.equal(battle.api.detect(), 'Staff'); assert.equal(battle.api.family(true), '', 'stale evidence is refreshed outside combat');
+    assert.equal(fixture({ data: equip.data, suffix: '_isekai' }).api.detect(), '', 'the other world never borrows the observation');
+    const otherPersona = fixture({ data: equip.data }); otherPersona.persona('Different Persona', '2');
     assert.equal(otherPersona.api.detect(), '', 'a different persona never borrows the observation');
 });
 
@@ -238,28 +243,40 @@ test('equipment invalidation cannot immediately cache the old DOM again', () => 
     assert.equal(fixture({ data: h.data }).api.detect(), '');
 });
 
-test('remembered quickbar recognition is isolated by world and persona and rejects malformed data', () => {
-    const key = 'jpx_spellQuickbar_v1', saved = { version: 1, world: 'Persistent', persona: 'Persona One', personaId: '1', element: 'holy' };
-    const h = fixture(); h.data.set(key, JSON.stringify(saved)); h.api.refresh();
-    assert.equal(h.context.jpxQuickbarSpellType, 'holy');
-    const other = fixture({ data: new Map(h.data), suffix: '_isekai' }); other.api.refresh();
-    assert.equal(other.context.jpxQuickbarSpellType, '');
-    h.persona('Other Persona', '2'); h.api.refresh();
-    assert.equal(h.context.jpxQuickbarSpellType, ''); assert.equal(h.data.has(key), false);
-    for (const raw of ['{', JSON.stringify({ ...saved, element: 'unknown' }), JSON.stringify({ ...saved, personaId: '2' })]) {
-        const broken = fixture(); broken.data.set(key, raw); broken.api.refresh();
-        assert.equal(broken.context.jpxQuickbarSpellType, '');
+test('empty hands are distinct from missing or unrecognizable weapon data', () => {
+    for (const [main, off, expected] of [['', '', 'Unarmed'], ['Legendary Rapier', '', 'OneHanded'],
+        ['Legendary Fiery Rapier of Slaughter', 'Legendary Force Shield', 'OneHanded'],
+        ['', 'Legendary Force Shield', ''], ['Legendary Staff', 'Legendary Rapier', '']]) {
+        const h = fixture(); h.equipment(main, off); h.cache({maxType:'fire',maxValue:10});
+        assert.equal(h.api.detect(), expected);
     }
+    const h = fixture(); h.equipment('Legendary Staff', ''); h.metadata['101'] = {n:'',t:''};
+    assert.equal(h.api.detect(), '', 'an unnamed item is not an empty mainhand');
 });
 
-test('changing equipment clears remembered fallback while another tab cannot change the active battle', () => {
-    const key = 'jpx_spellQuickbar_v1', h = fixture();
-    h.data.set(key, JSON.stringify({ version: 1, world: 'Persistent', persona: 'Persona One', personaId: '1', element: 'dark' }));
-    h.battle({ 'Concussive Strike': 0 }); h.api.init();
-    h.data.delete(key); h.emit('window', 'storage', { key });
-    h.api.refresh(); assert.equal(h.context.jpxQuickbarSpellType, 'dark');
-    h.emit('document', 'click', { target: { closest: () => true } }); h.api.refresh();
-    assert.equal(h.context.jpxQuickbarSpellType, ''); assert.equal(h.data.has(key), false);
+test('weapon changes in the same set invalidate old spell bonuses', () => {
+    const h = fixture(); h.equipment('Legendary Fiery Rapier', 'Legendary Force Shield'); h.cache({maxType:'fire',maxValue:170});
+    assert.equal(h.api.detect(), '1H_Mage');
+    h.equipment('Legendary Arctic Rapier', 'Legendary Force Shield');
+    assert.equal(h.api.detect(), ''); assert.equal(h.read(true), null);
+    h.cache({maxType:'cold',maxValue:25}); assert.equal(h.api.detect(), 'OneHanded');
+});
+
+test('equipment caches cannot cross sets or revive old battle-skill evidence', () => {
+    const h = fixture(); h.equipment('Legendary Staff', ''); h.api.refresh();
+    h.data.set('jpx_loadouts_v1', JSON.stringify({current:{world:'Persistent',personaId:'1',setId:'2'}}));
+    assert.equal(fixture({data:h.data}).api.detect(), '');
+    h.data.delete('jpx_equipmentFamily_v1');
+    h.data.set('jpx_detectedWeaponFamily_v1', JSON.stringify({version:1,world:'Persistent',persona:'Persona One',personaId:'1',family:'Staff',verifiedAt:Date.now()}));
+    const battle = fixture({data:h.data}); battle.battle({'Concussive Strike':0});
+    assert.equal(battle.api.detect(), '');
+});
+
+test('old displayed attributes cannot revive after a persona or equipment change', () => {
+    const h = fixture(); h.stats([[200, 'Wind']]); h.api.init();
+    assert.equal(h.memory().maxType, 'wind');
+    h.emit('document', 'submit', { target: { matches: () => true } }); h.api.refresh();
+    assert.deepEqual(h.memory(), { maxType: '', maxValue: 0 }); assert.equal(h.read(true), null);
 });
 
 test('battle detection never attempts inaccessible character pages, including unknown skills', async () => {
@@ -282,7 +299,7 @@ test('cross-tab current-world cache updates refresh lobby memory but ignore unre
 test('the production boot refreshes detection before battle initialization without replacing configuration selection', () => {
     assert.ok(source.includes('let spellDamageBonus = readJpxSpellDamageBonus();'));
     assert.match(source, /loadBattleConfig\(\);\s+initJpxModeDetection\(\);\s+initJpxLoadoutBindings\(\);\s+\/\/Battle/);
-    assert.ok(source.includes('const skillFamily = getJpxBattleSkillFamilyFromPage();'));
-    assert.ok(source.includes("battleStyle = getJpxStyleFromFamily(skillFamily, spellDamageBonus) || 'Unarmed';"));
+    assert.ok(source.includes('battleStyle = getDetectedJpxBattleStyle();'));
+    assert.equal(source.includes('getJpxBattleSkillFamily'), false);
     assert.equal(helpers.includes('cfgBattle'), false);
 });

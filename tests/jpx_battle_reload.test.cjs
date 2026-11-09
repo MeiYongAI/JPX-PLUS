@@ -102,7 +102,7 @@ test('restored cooldowns are calculated only after previous-round counters load'
     const f=await setup(t);await f.page.evaluate(()=>__reload.setRecords());
     await f.navigate({round:2},true);
     const state=await f.page.evaluate(()=>__reload.stats());assert.equal(state.spellCooldowns.Cure,4);
-    const cache=await f.page.evaluate(()=>JSON.parse(localStorage.getItem('jpx_detectedWeaponFamily_v1')));
+    const cache=await f.page.evaluate(()=>JSON.parse(localStorage.getItem('jpx_equipmentFamily_v1')));
     assert.equal(cache.family,'TwoHanded');
 });
 

@@ -11,3 +11,18 @@ Thumbs.db
 .DS_Store
 .test-output/
 *.pem
+
+# Local measurements and test-run output, not release files.
+/docs/performance/
+/test-results/
+/playwright-report/
+/coverage/
+/tests/local/
+
+# Local translation experiments kept outside the regression suite.
+/tests/fixtures/hv-equipment-display.cjs
+/tests/hv_translation_auction_helper.test.cjs
+/tests/hv_translation_equipment_performance.cjs
+/tests/hv_translation_equipment_runs.test.cjs
+/tests/hv_translation_forum_split.test.cjs
+/tests/hv_translation_forum_suffix.test.cjs
