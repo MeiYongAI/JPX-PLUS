@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.2
+// @version      2026.11.09.3
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1156,7 +1156,7 @@
         "edit": "편집",
         "more": "더 보기",
         "inUse": "사용 중",
-        "updateApply": "업데이트 적용",
+        "updateApply": "수정 후 적용",
         "settings": "설정 정보",
         "duplicate": "복제",
         "export": "내보내기",
@@ -1195,30 +1195,30 @@
         "resetConfirm": "이 그룹의 규칙을 기본값으로 되돌릴까요?",
         "imported": "내 설정에 추가했어요.",
         "importReading": "“${name}” 읽는 중…",
-        "importReady": "파일 검증을 마쳤어요. 이름과 월드를 확인한 뒤 저장을 눌러 내 설정에 추가하세요. 아직 저장하거나 적용하지 않았어요.",
+        "importReady": "이름과 월드를 확인한 뒤 저장을 눌러 주세요. 아직 저장하거나 적용하지 않았어요.",
         "importDraft": "“${name}”을 현재 설정으로 불러왔어요. 아직 저장하지 않았어요. 변경 내용을 확인한 뒤 저장을 눌러 주세요.",
         "importPaused": "자동 전투가 일시 정지되었어요.",
-        "importAdded": "“${name}”을 내 설정에 추가했어요. 아직 적용하지 않았어요. 사용하려면 해당 설정의 적용을 눌러 주세요.",
+        "importAdded": "“${name}”을 내 설정에 추가했어요. 적용을 누르면 사용할 수 있어요.",
         "importFailed": "가져오기를 완료하지 못했어요: “${name}”. ${reason}",
         "importReadError": "파일을 읽지 못했어요. 파일을 다시 선택하고 재시도해 주세요.",
         "importCancelled": "사용자 지정 코드를 허용하지 않아 가져오기를 취소했어요.",
-        "fixedHint": "고정 규칙은 이 세계의 모든 전투에 적용되며 새로고침 후에도 유지됩니다.",
-        "grindfest": "그라인드페스트",
+        "fixedHint": "이 월드의 모든 전투에서 같은 규칙을 써요. 새로고침해도 바뀌지 않아요.",
+        "grindfest": "GrindFest",
         "sceneAssignments": "전투별 전략",
-        "inheritGeneral": "공통 상속",
-        "unassigned": "미할당",
-        "noSceneRules": "일시 중지: 전투별 또는 공통 전략이 없습니다.",
-        "assign": "할당",
-        "assigned": "할당됨",
+        "inheritGeneral": "공통 규칙 사용",
+        "unassigned": "지정 안 됨",
+        "noSceneRules": "일시 정지: 이 전투에 쓸 규칙과 공통 규칙이 없어요.",
+        "assign": "지정",
+        "assigned": "지정됨",
         "executing": "현재 전략",
-        "assignmentOlder": "저장한 변경 사항이 아직 할당되지 않았습니다.",
+        "assignmentOlder": "저장한 변경 사항을 쓰려면 다시 지정해 주세요.",
         "fixedMode": "규칙 고정",
         "automaticMode": "전투별 자동 선택",
-        "restoreAutomatic": "자동 선택 복원",
-        "detach": "참조 해제",
-        "detachDelete": "참조 해제 후 삭제",
-        "detached": "참조를 해제했습니다.",
-        "detachHint": "고정 선택, 적용 기록, 전투별 할당과 장비 연결을 해제합니다. 현재 설정은 유지됩니다.",
+        "restoreAutomatic": "자동 선택으로 돌아가기",
+        "detach": "연결 해제",
+        "detachDelete": "연결 해제 후 삭제",
+        "detached": "연결을 해제했어요.",
+        "detachHint": "규칙 고정, 적용 기록, 전투별 지정과 장비 연결을 해제해요. 현재 설정은 그대로 남겨 둬요.",
         "savedFromStore": "내 설정에 저장했어요.",
         "sourceExists": "이미 저장한 설정이에요.",
         "updateCopy": "저장한 설정 업데이트",
@@ -1255,6 +1255,25 @@
         "preserveModes": "규칙",
         "applyCurrent": "현재 월드에 적용",
         "libraryChanged": "다른 탭에서 이 설정이 바뀌었어요. 다시 연 뒤 저장해 주세요."
+    };
+    i18n.cShared = {
+        "title": "메인 / alt 데이터 공유",
+        "backupSection": "공유 전 설정",
+        "historySection": "이전 공유 설정",
+        "quotaShort": "공유 전에 쓴 스태미나",
+        "restoreAction": "복원",
+        "scope": "같은 스크립트를 쓰는 메인 사이트와 alt에서 설정, 전투 기록, 하루 스태미나를 공유해요. 월드별로 따로 저장해요. 먼저 연 사이트의 설정으로 시작하며, 두 사이트의 예전 설정은 아래에 남겨 둬요.",
+        "backup": "공유 전 설정 다운로드",
+        "restore": "이 사이트의 예전 설정으로 복원",
+        "confirm": "두 사이트에서 이 백업을 쓸까요? 현재 설정은 나중에 복원할 수 있도록 남겨 둬요. 자동 전투는 일시 정지돼요.",
+        "history": "이전 공유 설정 다운로드",
+        "restoreRevision": "이전 공유 설정 선택",
+        "quota": "오늘 공유 전에 쓴 스태미나 (UTC)",
+        "quotaHelp": "예전 기록에는 같은 전투가 중복될 수 있어 두 사이트의 사용량을 더하지 않고 더 큰 값을 사용해요. 두 사이트를 한 번씩 열고, 필요하면 오늘 공유 전에 쓴 양을 수정해 주세요. 이후 전투는 따로 더해져요.",
+        "save": "저장",
+        "saved": "저장했어요",
+        "resetScope": "두 월드에서 메인 사이트와 alt가 공유하는 설정과 전투 기록도 삭제해요.",
+        "fail": "공유 데이터를 저장하지 못했어요. 원래 데이터는 남겨 두었어요."
     };
     window.jpxI18N = { ...window.jpxI18N, ...i18n };
 })();

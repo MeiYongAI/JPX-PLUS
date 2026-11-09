@@ -117,7 +117,7 @@ for (const locale of ['ZhTrans','ZhTW','ZhHK','Ja','Ko']) test('localized import
         await (await chooser).setFiles({name:'测试配置.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(envelope('测试配置')))});
         await page.locator('.jpx-config-form').waitFor(); await page.screenshot({path:path.join(output,'library-ready-mobile-dark.png')});
         await page.locator('.jpx-config-form button[type=submit]').click();
-        assert.match(await libraryNotice(page).textContent(),/已成功导入.*尚未应用/);
+        assert.match(await libraryNotice(page).textContent(),/加入我的配置.*点击.*应用.*后使用/);
         await page.screenshot({path:path.join(output,'library-saved-mobile-dark.png')});
     }
 });

@@ -1,0 +1,19 @@
+{
+  "title": "Primary / alt shared data",
+  "backupSection": "Settings before sharing",
+  "historySection": "Previous shared settings",
+  "quotaShort": "Stamina used before sharing",
+  "restoreAction": "Restore",
+  "scope": "Primary and alt share settings, battle records and daily stamina in the same userscript installation. The two worlds stay separate. The first site you open supplies the starting settings. Both sites' old settings are kept below.",
+  "backup": "Download settings from before sharing",
+  "restore": "Restore this site's old settings",
+  "confirm": "Use this backup on both sites? You can restore the current settings later. Auto-battle will pause.",
+  "history": "Download previous shared settings",
+  "restoreRevision": "Choose an earlier version of shared settings",
+  "quota": "Stamina used today before sharing (UTC)",
+  "quotaHelp": "The old totals may include the same battles, so we use the larger total instead of adding them. Open both sites once, then correct today's earlier stamina use here if needed. New battles are counted separately.",
+  "save": "Save",
+  "saved": "Saved",
+  "resetScope": "This also deletes shared settings and battle records on primary and alt, for both worlds.",
+  "fail": "Could not save shared data. Your original data is kept."
+}

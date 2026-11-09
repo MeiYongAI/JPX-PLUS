@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.09.3
+
+- Complete all five language packs for primary/alt shared-data controls, recovery prompts and cleanup warnings. These controls now use the selected language instead of choosing only English or Simplified Chinese.
+- Simplify scene selection, linked-config deletion and import messages. Align export labels and battle names across screens.
+- Validate language packs against the main English dictionary as well as the config-manager, store and shared-data dictionaries.
+- Verification: 1,233 entries per pack, 645 offline tests and 112 preview checks passed. Screenshots and localized guides now match the updated labels.
+
+### 简体中文
+
+- 补齐主站／alt 共享数据面板的五种语言，包括恢复提示和清理提醒，不再让繁体显示简体、日韩显示英文。
+- 简化场景选择、清除关联和导入提示，统一导出按钮及战斗名称。
+- 语言包直接对照主脚本检查，同时校验配置管理、商店和共享数据文案。
+- 验证：每包 1,233 项，645 项离线测试、112 项预览检查通过；截图与各语言说明同步更新。
+
 ## 2026.11.09.2
 
 - #7: bound ordinary log reads to the current action, cancel stale trailing callbacks, and label callback intervals accurately. Add `JPXPlus.getBattleTiming()` diagnostics. The reported Chrome split-view slowdown still needs live reproduction; see [evidence and limits](docs/issue-7-battle-timing.md).

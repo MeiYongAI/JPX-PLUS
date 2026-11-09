@@ -283,6 +283,8 @@ for(const options of [
     {width:375,height:812,language:'ZhTrans',dark:true},
     {width:812,height:375,language:'',dark:true},
     {width:320,height:568,language:'Ja',dark:false},
+    {width:320,height:568,language:'ZhTW',dark:false},
+    {width:320,height:568,language:'ZhHK',dark:true},
     {width:390,height:844,language:'Ko',dark:true}
 ]) test('compact scenes support themes, touch and text scaling '+JSON.stringify(options),async t=>{
     const f=await fixture(t,options),{page}=f;

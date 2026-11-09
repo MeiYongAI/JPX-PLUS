@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.2
+// @version      2026.11.09.3
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1195,30 +1195,30 @@
         "resetConfirm": "このグループのルールを初期状態に戻しますか？",
         "imported": "マイ設定に追加しました。",
         "importReading": "「${name}」を読み込み中…",
-        "importReady": "ファイルを検証しました。名前とワールドを確認し、「保存」でマイ設定に追加してください。まだ保存・適用されていません。",
+        "importReady": "名前とワールドを確認して「保存」を押してください。まだ保存・適用されていません。",
         "importDraft": "「${name}」を現在の設定に読み込みました。まだ保存されていません。変更を確認して「保存」を押してください。",
         "importPaused": "自動戦闘を一時停止しました。",
-        "importAdded": "「${name}」をマイ設定に追加しました。まだ適用されていません。使用するには、その設定の「適用」を押してください。",
+        "importAdded": "「${name}」をマイ設定に追加しました。「適用」を押すと使えます。",
         "importFailed": "インポートは完了していません：「${name}」。${reason}",
         "importReadError": "ファイルを読み込めませんでした。選び直して再試行してください。",
         "importCancelled": "カスタムコードが許可されなかったため、インポートをキャンセルしました。",
-        "fixedHint": "固定ルールはこの世界の全戦闘に適用され、再読み込み後も保持されます。",
-        "grindfest": "グラインドフェスト",
+        "fixedHint": "このワールドのすべての戦闘で同じルールを使います。再読み込みしても変わりません。",
+        "grindfest": "Grindfest",
         "sceneAssignments": "戦闘別の戦略",
-        "inheritGeneral": "共通を継承",
+        "inheritGeneral": "共通ルールを使う",
         "unassigned": "未割り当て",
-        "noSceneRules": "停止中：戦闘別または共通の戦略がありません。",
+        "noSceneRules": "一時停止：この戦闘で使えるルールも共通ルールもありません。",
         "assign": "割り当て",
         "assigned": "割り当て済み",
         "executing": "現在の戦略",
-        "assignmentOlder": "保存した変更は未適用です。",
+        "assignmentOlder": "保存した変更を使うには、もう一度割り当ててください。",
         "fixedMode": "ルールを固定",
         "automaticMode": "戦闘別に自動選択",
         "restoreAutomatic": "自動選択に戻す",
-        "detach": "参照を解除",
-        "detachDelete": "参照を解除して削除",
-        "detached": "参照を解除しました。",
-        "detachHint": "固定選択、適用記録、戦闘別の割り当て、装備との関連付けを解除します。現在の設定は保持されます。",
+        "detach": "連携を解除",
+        "detachDelete": "連携を解除して削除",
+        "detached": "連携を解除しました。",
+        "detachHint": "ルールの固定、適用履歴、戦闘ごとの割り当て、装備セットとの連携を解除します。現在の設定は残ります。",
         "savedFromStore": "マイ設定に保存しました。",
         "sourceExists": "この設定は保存済みです。",
         "updateCopy": "保存済みの設定を更新",
@@ -1255,6 +1255,25 @@
         "preserveModes": "ルール",
         "applyCurrent": "現在のワールドに適用",
         "libraryChanged": "別のタブでこの設定が変更されました。開き直してから保存してください。"
+    };
+    i18n.cShared = {
+        "title": "メイン / alt のデータ共有",
+        "backupSection": "共有前の設定",
+        "historySection": "以前の共有設定",
+        "quotaShort": "共有前に使ったスタミナ",
+        "restoreAction": "元に戻す",
+        "scope": "同じスクリプトを使うメインサイトと alt で、設定・戦闘記録・毎日のスタミナを共有します。ワールドごとに保存されます。最初に開いたサイトの設定から始まり、両サイトの古い設定は下に残ります。",
+        "backup": "共有前の設定をダウンロード",
+        "restore": "このサイトの古い設定に戻す",
+        "confirm": "両サイトでこのバックアップを使いますか？今の設定は残るので、後から戻せます。自動戦闘は一時停止します。",
+        "history": "以前の共有設定をダウンロード",
+        "restoreRevision": "以前の共有設定を選ぶ",
+        "quota": "今日、共有前に使ったスタミナ（UTC）",
+        "quotaHelp": "古い記録には同じ戦闘が重複している可能性があるため、合計せず、多いほうの使用量を使います。両サイトを一度ずつ開き、必要なら今日の共有前の使用量を修正してください。その後の戦闘は別に加算されます。",
+        "save": "保存",
+        "saved": "保存しました",
+        "resetScope": "両ワールドについて、メインサイトと alt で共有する設定と戦闘記録も削除します。",
+        "fail": "共有データを保存できませんでした。元のデータは残っています。"
     };
     window.jpxI18N = { ...window.jpxI18N, ...i18n };
 })();

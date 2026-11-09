@@ -40,26 +40,7 @@ const JPX_STATS_DATA_CSS = `
 `;
 
 function sharedText(key) {
-    const zh = /导出|匯出|汇出/.test(t('cS.exportDB'));
-    const labels = {
-        title: ['Primary / alt shared data', '主站 / alt 共享数据'],
-        backupSection: ['Pre-sharing settings', '共享前配置'],
-        historySection: ['Shared history', '共享历史'],
-        quotaShort: ['Pre-sharing stamina', '共享前体力'],
-        restoreAction: ['Restore', '恢复'],
-        scope: ['The same userscript installation shares settings, archives and daily stamina between hosts. Persistent and Isekai remain separate. The first visited host supplies the initial settings; both old copies remain available below.', '同一份油猴脚本在主站和 alt 共用配置、战斗记录和当日体力账本；主世界与异世界分开。首次访问的站点提供初始配置，两站旧配置均保留在下方。'],
-        backup: ['Download pre-sharing settings', '下载共享前的配置备份'],
-        restore: ['Use this host’s old settings', '使用此站点的旧配置'],
-        confirm: ['Replace shared settings with this saved copy? Current settings are retained as recoverable revisions. Battle automation will pause.', '将此备份设为两站共用配置？现用配置会保留为可恢复版本，自动战斗会暂停。'],
-        history: ['Download previous shared settings', '下载共享配置历史版本'],
-        restoreRevision: ['Restore previous shared setting', '恢复共享配置历史项'],
-        quota: ['Stamina spent before sharing today (UTC)', '今天启用共享前已消耗体力（UTC）'],
-        quotaHelp: ['Old per-host totals cannot prove whether battles overlap. Migration uses the larger total, never blindly adds both. Correct the pre-sharing total here if necessary; new shared battles are added separately. Visit each host once to discover its old data.', '旧版两站只有体力汇总，无法判断是否包含重复战斗；迁移暂取较大值，不直接相加。可在这里修正启用共享前的总消耗，新版战斗另行逐场累计。两站各打开一次，才能发现各自的旧数据。'],
-        save: ['Save', '保存'], saved: ['Saved', '已保存'],
-        resetScope: ['This also deletes shared settings and battle records for BOTH primary and alt, in both worlds.', '此操作也会删除主站与 alt 共用的配置和战斗记录，覆盖两个世界。'],
-        fail: ['Shared data could not be saved. Original data was retained.', '共享数据保存失败，原数据已保留。']
-    };
-    return labels[key]?.[zh ? 1 : 0] || key;
+    return t('cShared.' + key);
 }
 
 async function ensureJpxSharedRecords() {

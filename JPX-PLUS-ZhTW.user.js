@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.2
+// @version      2026.11.09.3
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -1194,30 +1194,30 @@
         "resetConfirm": "將這組規則還原為預設規則？",
         "imported": "已加入我的設定。",
         "importReading": "正在讀取「${name}」…",
-        "importReady": "檔案驗證通過。請確認名稱與世界，再按「儲存」加入我的設定；目前尚未儲存，也未套用。",
+        "importReady": "請確認名稱與世界，再按「儲存」。目前尚未儲存或套用。",
         "importDraft": "「${name}」已匯入目前設定，尚未儲存。請檢查修改後按「儲存」。",
         "importPaused": "自動戰鬥已暫停。",
-        "importAdded": "「${name}」已成功匯入我的設定，尚未套用。需要使用時，請按該設定的「套用」。",
+        "importAdded": "已將「${name}」加入我的設定，按「套用」後使用。",
         "importFailed": "尚未完成匯入：「${name}」。${reason}",
         "importReadError": "檔案讀取失敗，請重新選擇檔案後再試。",
         "importCancelled": "已取消匯入，未授權使用自訂程式碼。",
-        "fixedHint": "固定規則在目前世界跨場景生效，重新整理後仍然保留。",
+        "fixedHint": "目前世界的所有場景都使用這組規則，重新整理後也不變。",
         "grindfest": "壓榨界",
         "sceneAssignments": "場景策略",
-        "inheritGeneral": "繼承通用",
+        "inheritGeneral": "使用通用規則",
         "unassigned": "未分配",
-        "noSceneRules": "已暫停：沒有可用的場景或通用策略。",
+        "noSceneRules": "已暫停：目前場景和通用規則都無法使用。",
         "assign": "分配",
         "assigned": "已分配",
         "executing": "目前策略",
-        "assignmentOlder": "已儲存的修改尚未分配。",
-        "fixedMode": "固定單組",
+        "assignmentOlder": "副本已更新，請重新分配到場景。",
+        "fixedMode": "固定規則",
         "automaticMode": "依場景自動選擇",
         "restoreAutomatic": "恢復自動選擇",
-        "detach": "解除引用",
-        "detachDelete": "解除引用並刪除",
-        "detached": "已解除引用。",
-        "detachHint": "解除固定選擇、套用記錄、場景分配和裝備綁定，保留目前設定。",
+        "detach": "清除關聯",
+        "detachDelete": "清除關聯並刪除",
+        "detached": "已清除關聯。",
+        "detachHint": "清除固定使用、套用記錄、場景分配及套裝綁定，保留目前設定。",
         "savedFromStore": "已儲存到我的設定。",
         "sourceExists": "你已經儲存過這份設定。",
         "updateCopy": "更新已儲存的設定",
@@ -1254,6 +1254,25 @@
         "preserveModes": "規則",
         "applyCurrent": "套用至目前世界",
         "libraryChanged": "這份設定已在其他分頁修改，請重新開啟後再儲存。"
+    };
+    i18n.cShared = {
+        "title": "主站 / alt 共用資料",
+        "backupSection": "共用前的設定",
+        "historySection": "之前的共用設定",
+        "quotaShort": "共用前已用體力",
+        "restoreAction": "還原",
+        "scope": "同一份腳本在主站與 alt 共用設定、戰鬥記錄及每日體力，兩個世界分開儲存。首次開啟的站點提供初始設定，兩站的舊設定都保留在下方。",
+        "backup": "下載共用前的設定",
+        "restore": "還原此站點的舊設定",
+        "confirm": "將這份備份用於兩個站點？目前設定會保留，之後可以還原。自動戰鬥將暫停。",
+        "history": "下載之前的共用設定",
+        "restoreRevision": "選擇之前的共用設定",
+        "quota": "今天共用前已消耗的體力（UTC）",
+        "quotaHelp": "舊資料可能包含重複戰鬥，所以先取兩站中較大的體力消耗，不直接相加。請先各開啟一次兩站，需要時在這裡修正今天共用前的消耗。之後的戰鬥另外累計。",
+        "save": "儲存",
+        "saved": "已儲存",
+        "resetScope": "這也會刪除主站與 alt 共用的設定及戰鬥記錄，包括兩個世界。",
+        "fail": "共用資料儲存失敗，原資料已保留。"
     };
     window.jpxI18N = { ...window.jpxI18N, ...i18n };
 })();

@@ -16,6 +16,8 @@ Edit the manager modules, then rebuild. Do not hand-edit the generated section i
 
 The generated main script also embeds the shared-data, shared-UI and monster-database modules from the source directory. Changes to these modules require the same rebuild and consistency check.
 
+Shared-data text lives in the shared-UI English JSON dictionary and each language pack's cShared section. Use the normal translation lookup; do not infer a locale from a translated label. Language checks compare every main-script English key and all module dictionaries, including placeholders, with all five packs.
+
 ## Build and test
 
 Requires Node.js 22 or newer. From the repository root:

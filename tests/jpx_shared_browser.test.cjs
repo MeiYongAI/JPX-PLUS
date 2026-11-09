@@ -111,6 +111,37 @@ test('data manager imports only after preview confirmation and exports the curre
  const download=page.waitForEvent('download');await page.locator('#export-db-button').click();const file=await download;assert.equal(await file.failure(),null);assert.equal(JSON.parse(fs.readFileSync(await file.path(),'utf8')).stores.battleRecords.length,2);
  assert.deepEqual(f.errors,[]);
 });
+
+for (const locale of ['', 'ZhTrans', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) test('shared data uses the selected language on desktop and phone: '+(locale||'English'), async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});
+ await f.flush();
+ if(locale) await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'../JPX-PLUS-'+locale+'.user.js'),'utf8')});
+ const expected=locale ? await page.evaluate(()=>window.jpxI18N.cShared) : JSON.parse(fs.readFileSync(path.join(__dirname,'../src/shared-ui-en.json'),'utf8'));
+ await page.evaluate(()=>__share.set('jpx_cfgBattle',JSON.stringify({...__share.cfg(),dailyStaminaQuotaPlus:8})));await f.flush();
+ await dataSettings(page);const panel=page.locator('.jpx-shared-data');
+ assert.equal(await panel.locator('summary').innerText(),expected.title);
+ await panel.locator('summary').click();
+ assert.deepEqual(await panel.locator('h4').allTextContents(),[expected.backupSection,expected.historySection,expected.quotaShort+' · '+new Date().toISOString().slice(0,10)+' UTC']);
+ assert.equal(await panel.locator('.jpx-shared-data-stamina button').first().textContent(),expected.save);
+ const before=await page.evaluate(()=>__share.cfg());let restoreMessage;
+ page.once('dialog',async dialog=>{restoreMessage=dialog.message();await dialog.dismiss();});
+ await panel.locator('.jpx-shared-data-row').first().getByRole('button',{name:expected.restoreAction,exact:true}).click();
+ assert.equal(restoreMessage,expected.confirm);assert.deepEqual(await page.evaluate(()=>__share.cfg()),before);
+ let cleanupMessage;page.once('dialog',async dialog=>{cleanupMessage=dialog.message();await dialog.dismiss();});
+ await page.locator('#cleanup-data-button').click();assert.ok(cleanupMessage.includes(expected.resetScope));
+ for(const width of [320,1440]){
+  await page.setViewportSize({width,height:900});
+  if(width===320)await page.locator('.jpx-settings-sidebar').waitFor({state:'hidden'});
+  for(const dark of [false,true]){
+   if(dark)await page.evaluate(()=>__share.theme());
+   const geometry=await panel.evaluate(node=>({width:node.clientWidth,scroll:node.scrollWidth,viewport:innerWidth,right:node.getBoundingClientRect().right}));
+   assert.ok(geometry.scroll<=geometry.width+1&&geometry.right<=geometry.viewport+1,JSON.stringify({locale,width,dark,geometry}));
+   if(width===320&&dark){const out=path.join(__dirname,'../.test-output/language-audit');fs.mkdirSync(out,{recursive:true});await page.locator('#settings-container').screenshot({path:path.join(out,'shared-'+(locale||'en')+'.png')});}
+  }
+  await page.evaluate(()=>__share.theme());
+ }
+ assert.deepEqual(f.errors,[]);
+});
 test('compact shared recovery preserves confirmation and stamina correction',async t=>{
  const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});await f.flush();await dataSettings(page);await page.locator('.jpx-shared-data > summary').click();
  const first=page.locator('.jpx-shared-data-row').filter({has:page.locator('.jpx-shared-data-source')}).first(),before=await page.evaluate(()=>__share.cfg());

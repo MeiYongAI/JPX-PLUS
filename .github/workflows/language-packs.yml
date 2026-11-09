@@ -1,9 +1,9 @@
 name: Check language packs
 on:
   push:
-    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'scripts/check-language-packs.cjs', '.github/workflows/language-packs.yml']
+    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'src/shared-ui*', 'scripts/check-language-packs.cjs', '.github/workflows/language-packs.yml']
   pull_request:
-    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'scripts/check-language-packs.cjs', '.github/workflows/language-packs.yml']
+    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'src/shared-ui*', 'scripts/check-language-packs.cjs', '.github/workflows/language-packs.yml']
   workflow_dispatch:
 permissions:
   contents: read

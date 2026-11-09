@@ -17,6 +17,7 @@ const monster = [monsterStart, fs.readFileSync(path.join(root, 'src/monster-data
 if (source.includes(monsterStart)) source = source.slice(0, source.indexOf(monsterStart)) + monster + source.slice(source.indexOf(monsterEnd) + monsterEnd.length);
 else source = source.replace('function getMonsterInfoSignature(info) {', monster + '\n\nfunction getMonsterInfoSignature(info) {');
 const block = [start, 'I18N.cM = ' + JSON.stringify(JSON.parse(read('en.json'))) + ';',
+    'I18N.cShared = ' + JSON.stringify(JSON.parse(fs.readFileSync(path.join(root, 'src/shared-ui-en.json'), 'utf8'))) + ';',
     'const JPX_CONFIG_MANAGER_CSS = ' + JSON.stringify(read('manager.css')) + ';',
     read('library.js'), read('store.js'), read('manager.js'), read('bindings.js'),
     fs.readFileSync(path.join(root, 'src/shared-ui.js'), 'utf8'), end].join('\n');
