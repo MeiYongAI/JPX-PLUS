@@ -139,7 +139,7 @@ async function assertPreviewPalette(page, theme) {
         await settings.locator('#jpx-settings-menu-button').tap(); await settle(settings);
         assert.equal(await settings.locator('#settings-container').evaluate(node => node.classList.contains('jpx-settings-mobile')), true);
 
-        const records = await open('https://hentaiverse.org/#jpx-records');
+        const records = await open('https://meiyongai.github.io/JPX-PLUS/records.html');
         await records.evaluate(() => __readme.seed()); await records.evaluate(() => __readme.records());
         await records.waitForFunction(() => document.querySelector('.jpx-records-table-scroll')?.getAttribute('aria-busy') === 'false');
         await settle(records);

@@ -1,6 +1,6 @@
 // One userscript-owned data store for the primary and alt hosts. Native storage
 // remains untouched as a migration backup; transient battle logs stay local.
-function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.now, uuid = () => crypto.randomUUID() }) {
+function createJpxSharedData({ native, gm, origin, migrateNative = true, emit = () => {}, now = Date.now, uuid = () => crypto.randomUUID() }) {
     const root = 'jpx_shared_v1:', settingPrefix = root + 'setting:';
     const enabled = !!gm && ['get', 'set', 'list', 'listen'].every(key => typeof gm[key] === 'function');
     const setting = key => /^jpx_(cfgBattle(?:_isekai)?|cfgStats|userKeybinds(?:_isekai)?|configLibrary_v1|configApplySignal_v1|theme|stamina(?:_isekai)?|cleanupRequest)(?::.*)?$/.test(key);
@@ -115,12 +115,12 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
             if (recordsChanged) emit({ key: 'jpx_recordsChanged' });
     }
     if (enabled) {
-        migrateSettings();
+        if (migrateNative) migrateSettings();
         archiveRevision = get(root + 'recordsRevision');
         gm.listen(root + 'change', (_key, _old, change, remote) => { if (remote) refresh(change); });
     }
     async function ensureRecords(readLegacy) {
-        if (!enabled || recordsMigrated) return;
+        if (!enabled || !migrateNative || recordsMigrated) return;
         if (get(recordMarker)) { recordsMigrated = true; return; }
         if (migration) return migration;
         migration = (async () => {

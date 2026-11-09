@@ -19,6 +19,8 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 Update the main script and your language pack together. GitHub update URLs are included; automatic checks follow your userscript-manager settings.
 
+**Battle statistics:** Press Z to open the independent statistics page. Opening and refreshing it no longer load HV. Records stay in your browser's userscript storage.
+
 **Configs and Store are included in the main script.** No separate store installation is needed. Coming from JPX? See the short [upgrade guide](docs/upgrading.md).
 
 **Monster information is built in.** Enable **Basic settings → Monster class, attack & power** and save; no Monster DB userscript is required. Data is supplied by [Sukka's Monster Database](https://hv-monster.skk.moe/), cached separately for Persistent and Isekai, and refreshed at most once per UTC day when needed. [Cache, Scan and compatibility details](docs/monster-database.md).

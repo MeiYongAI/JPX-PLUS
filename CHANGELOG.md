@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.09.5
+
+- #10 follow-up: statistics now use an independent project page. Opening, refreshing, and using statistics after closing the game tab no longer navigate through HV.
+- Keep records and display settings in the existing local script storage. Finish legacy record migration before opening; old statistics bookmarks redirect to the new page. Update the main script and language pack together.
+- Verification: 667 offline tests and 112 preview checks passed, with no skipped tests. Script and language-pack consistency checks passed.
+
+### 简体中文
+
+- #10 后续修正：统计页改用独立入口。打开、刷新，以及关闭游戏页后继续使用，都不再经过 HV。
+- 记录和显示设置继续保存在脚本本地存储中。打开前迁移旧记录，旧统计页地址会跳转至新入口。请同步更新主脚本和语言包。
+- 验证：667 项离线测试和 112 项预览检查通过，无跳过；脚本与语言包一致性检查通过。
+
 ## 2026.11.09.4
 
 - Rename the Simplified Chinese pack to ZhCN to match ZhTW and ZhHK. Update installation links and tooling, keeping the former ZhTrans URL as a generated compatibility copy that updates from ZhCN.

@@ -22,11 +22,13 @@ Edit the Simplified Chinese pack in JPX-PLUS-ZhCN.user.js. The build copies it t
 
 ## Records-page startup
 
-The main script and language packs run at document start. The main script waits for DOMContentLoaded on ordinary game pages. On the #jpx-records route, it stops the native document load and creates the statistics document immediately. It keeps the HV origin and world path, so the page can read its existing records and reload independently after the game tab closes. No cover or hidden homepage is used. Navigation still contacts the HV origin; a userscript does not intercept the initial document request.
+Statistics use [their own entry page](records.html) on the project's GitHub Pages site. The installed main script and language packs match this exact path and render the interface after DOMContentLoaded. Both opening and refreshing statistics request only that page, never an HV document. Closing or navigating the original game tab requires no transfer or reload.
 
-Language packs only register dictionaries and can run before or after the main script. Keeping them at document start avoids depending on the native page's stopped load events.
+The blank window is reserved synchronously during the Z-key or click gesture to avoid popup blocking. Before navigating it, the game script finishes any legacy IndexedDB migration into its existing GM archive. The statistics page reads this same local script-owned archive and receives shared storage notifications. It does not import GitHub Pages localStorage or IndexedDB into the archive. The static entry contains no JavaScript, analytics, remote data endpoint, or battle records. World selection uses the URL fragment. Main script and language packs must be updated together so the script manager allows their new matching path.
 
-The records-startup browser test covers both hosts and worlds, reload, Z-key popup navigation, persisted records, both translation load orders and ordinary-page startup. It uses isolated HTML and simulated userscript injection, not a real HV account or installed script manager.
+Old HV #jpx-records bookmarks migrate their legacy archive and redirect to the independent page. Visiting such an old bookmark still makes its initial HV request, but subsequent refreshes use the independent address. No cover or hidden homepage is used. Language packs only register dictionaries and can run before or after the main script.
+
+The records-startup browser tests assert no HV requests when opening or refreshing statistics from both game hosts and worlds. They cover source-tab close/navigation, persistent data, blocked popups, both translation load orders, legacy bookmarks, and shared archive/settings notifications. These use isolated HTML and simulated userscript injection, not a real HV account or installed script manager.
 
 ## Build and test
 

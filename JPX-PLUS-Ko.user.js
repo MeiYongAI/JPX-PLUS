@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.4
+// @version      2026.11.09.5
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
+// @match        https://meiyongai.github.io/JPX-PLUS/records.html*
 // @exclude      *hentaiverse.org/equip/*
 // @exclude      *hentaiverse.org/isekai/equip/*
 // @grant none

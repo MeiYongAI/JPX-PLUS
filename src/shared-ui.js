@@ -44,6 +44,7 @@ function sharedText(key) {
 }
 
 async function ensureJpxSharedRecords() {
+    if (jpxRecordsPage) return;
     return jpxShared.ensureRecords(async () => {
         const db = await openDB();
         try {
