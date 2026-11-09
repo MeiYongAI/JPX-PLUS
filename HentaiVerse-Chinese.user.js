@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.08.4
+// @version     2026.11.09.1
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7216,15 +7216,19 @@
             flex-shrink: 0 !important;      /* 禁止flex收缩，防止被左侧长装备名挤压 */
         }
 
-        /* 4. 保护armory_left不被挤压 */
+        /* 4. 中文菜单只有两个字，内容宽度会缩到约 40px；即使没有
+           HVUT 的附加按钮，也保留接近英文菜单的 85px 最小宽度。 */
         #armory_left {
             flex-shrink: 0 !important;
+            min-width: 85px !important;
         }
 
-        /* HVUT 的侧栏按钮为绝对定位，不能撑开父栏。中文菜单较短时，
-           为按钮区保留其原有的 85px 宽度；仅在此侧栏确实存在时生效。 */
-        #armory_left:has(> div > .hvut-am-side) {
-            min-width: 85px !important;
+        /* 护符卡原本固定为 52px 内容高度，中文回退字体的 normal 行高
+           会把第三行推到边框外。限定本区行高，并允许长译名换行后撑高。 */
+        #charmslots > .eqcharm {
+            height: auto;
+            min-height: 52px;
+            line-height: 1.15;
         }
 
         /* HVUT 批量升级：底部浮动统计区须计入高度，列表使用剩余空间滚动。 */
