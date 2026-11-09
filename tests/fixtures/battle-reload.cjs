@@ -53,14 +53,14 @@ function instrumentation() {
         }
     };
 }
-async function fixture(browser, t, { source: input = source, isekai = false, pageOptions = {}, storage = {} } = {}) {
+async function fixture(browser, t, { source: input = source, isekai = false, pageOptions = {}, storage = {}, transform = value => value } = {}) {
     const context = await browser.newContext({ viewport:{width:1440,height:1100}, reducedMotion:'reduce' });
     if (t) t.after(()=>context.close());
     const page = await context.newPage(), errors=[], requests=[];
     page.setDefaultTimeout(8000);page.on('pageerror',error=>errors.push(error.message));
     let next = pageOptions;
     await context.route('**/*', route => {
-        if (route.request().isNavigationRequest()) return route.fulfill({contentType:'text/html',body:html(next)});
+        if (route.request().isNavigationRequest()) return route.fulfill({contentType:'text/html',body:transform(html(next), next)});
         requests.push(route.request().url());return route.fulfill({status:204,body:''});
     });
     const base='https://hentaiverse.org/'+(isekai?'isekai/':'');

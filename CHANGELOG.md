@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026.11.10.2
+
+- Keep recognized spell schools across battle reloads and AJAX rounds. Pre-battle recognition takes priority; the quickbar is only a fallback for an unknown school. Removing a spell from the quickbar no longer discards that recognition.
+
+### 简体中文
+
+- 进入战斗、刷新和换轮时保留已识别属性。优先使用战前识别结果，未识别时才参考快捷栏；快捷栏没有对应技能不再清空识别结果。覆盖火、冰、风、雷、圣、暗。
+
 ## 2026.11.10.1
 
 - Restore the HV statistics address and remove the independent project page. Opening and refreshing statistics can briefly show HV while the userscript starts; this is an expected loading transition, not a statistics failure.

@@ -39,7 +39,8 @@ function fixture(options = {}) {
     };
     const context = vm.createContext({ document, window, localStorage: storage,
         prefix: 'jpx_', isekaiSuffix: suffix, log: null, battleStyle: 'TwoHanded', jpxLoadoutBusy: false,
-        spellDamageBonus: { maxType: 'fire', maxValue: 0 }, Event: class { constructor(type) { this.type = type; } },
+        spellDamageBonus: { maxType: 'fire', maxValue: 0 }, jpxQuickbarSpellType: '', jpxQuickbarSpellContext: null,
+        Event: class { constructor(type) { this.type = type; } },
         regExp: { spellInfo: /\('([\w\s-]+)'.*, '(\w+)', (\d+), (\d+), (\d+)\)/ },
         getActionCooldowns: () => { throw Error('Recognition must not depend on loaded cooldown statistics'); },
         fetch: () => { throw new Error('Battle detection must not fetch character pages'); },
@@ -235,6 +236,30 @@ test('equipment invalidation cannot immediately cache the old DOM again', () => 
     h.emit('document', 'submit', { target: { matches: () => true } });
     assert.equal(h.api.detect(), '');
     assert.equal(fixture({ data: h.data }).api.detect(), '');
+});
+
+test('remembered quickbar recognition is isolated by world and persona and rejects malformed data', () => {
+    const key = 'jpx_spellQuickbar_v1', saved = { version: 1, world: 'Persistent', persona: 'Persona One', personaId: '1', element: 'holy' };
+    const h = fixture(); h.data.set(key, JSON.stringify(saved)); h.api.refresh();
+    assert.equal(h.context.jpxQuickbarSpellType, 'holy');
+    const other = fixture({ data: new Map(h.data), suffix: '_isekai' }); other.api.refresh();
+    assert.equal(other.context.jpxQuickbarSpellType, '');
+    h.persona('Other Persona', '2'); h.api.refresh();
+    assert.equal(h.context.jpxQuickbarSpellType, ''); assert.equal(h.data.has(key), false);
+    for (const raw of ['{', JSON.stringify({ ...saved, element: 'unknown' }), JSON.stringify({ ...saved, personaId: '2' })]) {
+        const broken = fixture(); broken.data.set(key, raw); broken.api.refresh();
+        assert.equal(broken.context.jpxQuickbarSpellType, '');
+    }
+});
+
+test('changing equipment clears remembered fallback while another tab cannot change the active battle', () => {
+    const key = 'jpx_spellQuickbar_v1', h = fixture();
+    h.data.set(key, JSON.stringify({ version: 1, world: 'Persistent', persona: 'Persona One', personaId: '1', element: 'dark' }));
+    h.battle({ 'Concussive Strike': 0 }); h.api.init();
+    h.data.delete(key); h.emit('window', 'storage', { key });
+    h.api.refresh(); assert.equal(h.context.jpxQuickbarSpellType, 'dark');
+    h.emit('document', 'click', { target: { closest: () => true } }); h.api.refresh();
+    assert.equal(h.context.jpxQuickbarSpellType, ''); assert.equal(h.data.has(key), false);
 });
 
 test('battle detection never attempts inaccessible character pages, including unknown skills', async () => {

@@ -196,7 +196,7 @@ test('character attributes take priority over quickbar hints', async t => {
     clean(f);
 });
 
-test('quickbar fallback refreshes on AJAX rounds and stays out of repeated action reads', async t => {
+test('recognized fallback survives quickbar edits and stays out of repeated action reads', async t => {
     const f = await fixture(t, { initialHtml: base + '<table id="textlog"></table>' + quickbar(['Gale']) });
     const queries = await f.page.evaluate(() => {
         const original = document.querySelectorAll; let scans = 0;
@@ -206,10 +206,10 @@ test('quickbar fallback refreshes on AJAX rounds and stays out of repeated actio
     });
     assert.equal(queries, 0);
     await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze']));
-    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'cold');
+    assert.equal((await f.page.evaluate(() => __pages.magic())).element, 'wind');
     await f.page.evaluate(html => { document.querySelector('#quickbar').outerHTML = html; __pages.nextRound(); }, quickbar(['Freeze', 'Gale']));
     const action = await f.page.evaluate(() => __pages.simulateSpell());
-    assert.deepEqual(action.casts, []); assert.equal(action.active, false);
+    assert.deepEqual(action.casts, ['Gale']); assert.equal(action.active, true);
     assert.deepEqual(f.requests, []); clean(f);
 });
 

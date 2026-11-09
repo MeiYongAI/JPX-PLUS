@@ -97,6 +97,7 @@ function confirmJpxLoadout(current, catalog, livePage = false) {
         if (!jpxLoadoutSame(previous, current)) applied = applyJpxLoadoutBinding(current, false, false);
     } catch (error) { jpxLoadoutPending = pending; throw error; }
     const persona = catalog.personas.find(item => item.id === current.personaId);
+    if (!jpxLoadoutSame(previous, current)) clearJpxQuickbarSpellType();
     if (!livePage && !jpxLoadoutSame(previous, current)) {
         localStorage.removeItem(jpxDetectedFamilyKey());
         localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
@@ -155,6 +156,7 @@ function initJpxLoadoutBindings() {
         jpxDetectionSourceIgnored = true;
         localStorage.removeItem(jpxDetectedFamilyKey());
         localStorage.removeItem(prefix + 'spellDamageBonus' + isekaiSuffix + ':context');
+        clearJpxQuickbarSpellType();
     };
     let refreshTimer;
     const refresh = () => {

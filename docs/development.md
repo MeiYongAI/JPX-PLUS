@@ -50,6 +50,8 @@ Release checks cover all six READMEs, matching main-script/language-pack version
 
 ## Battle performance
 
+Spell selection follows the battle rules and the full skill list. Pre-battle spell recognition takes priority; the quickbar only supplies a missing school. Once recognized, a battle keeps that observation even if its quickbar changes. Fallback observations survive reloads within the same world/persona and are cleared on observed persona or equipment changes. Manual element choices and damage-bonus statistics remain separate. Tests cover all six schools through production startup, AJAX rounds and full reloads with local fixtures; real HV and installed userscript-manager behavior are not measured.
+
 Run `npm run profile:battle` for isolated browser timings and DOM operation counts. Set `JPX_PERF_BASELINE` to an older local userscript to compare outputs and timing, and `JPX_PERF_OUTPUT` to save the JSON report. `JPX_PERF_SAMPLES` and `JPX_PERF_REPEATS` default to 80 and 3. The profiler defaults to installed Chrome; set `PLAYWRIGHT_CHANNEL` if needed.
 
 All requests are intercepted. Fixtures exercise both whole battle-DOM replacement and repeated updates to retained nodes, with 100-row and 2,000-row logs. Fixture construction is outside the measured update; browser layout counters also include construction and final rendering. Timing is diagnostic and never a pass/fail threshold. The deterministic regression suite checks node counts, freshness and output semantics. See [the audit and evidence boundaries](performance-2026-11-08.md).
