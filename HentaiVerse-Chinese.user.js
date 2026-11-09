@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.2
+// @version     2026.11.09.3
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7164,22 +7164,6 @@
         return true;
     }
 
-    // ================= 1. 论坛结构保护逻辑 =================
-    function normalizeStyledTextInPostcolor() {
-        const posts = document.getElementsByClassName('postcolor');
-        for (let i = 0; i < posts.length; i++) {
-            let el = posts[i];
-            el.innerHTML = el.innerHTML
-                .replace(/<span[^>]*>/gi, "")
-                .replace(/<\/span>/gi, "")
-                .replace(/<!--.*?-->/g, "")
-                .replace(/<mark[^>]*>/gi, "")
-                .replace(/<\/mark>/gi, "")
-                .replace(/<b>/gi, "")
-                .replace(/<\/b>/gi, "");
-        }
-    }
-
     // ==========================================
     // 样式修正 (修复汉化后的排版错位)
     // ==========================================
@@ -7950,7 +7934,8 @@
     }
 
     // 启动
-    normalizeStyledTextInPostcolor();
+    // 论坛帖子沿用原 DOM，交给文本遍历器逐节点汉化。不能剥离 span/b/mark
+    // 或重写整帖 innerHTML：这会删除拍卖助手的 NAE_lot 控件及其点击监听。
     applyAll(document.body);
     initLogToggleButton(); // <--- 添加这一行
 
