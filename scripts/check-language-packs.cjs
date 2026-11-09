@@ -53,11 +53,13 @@ function metadata(source, file) {
     assert.equal(fields.require, undefined, file + ': standalone without dependencies');
     return fields;
 }
-const baseFile = 'JPX-PLUS-ZhTrans.user.js';
+const baseFile = 'JPX-PLUS-ZhCN.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
+assert.equal(read('JPX-PLUS-ZhTrans.user.js'), baseSource, 'Legacy Simplified Chinese URL serves the canonical ZhCN pack');
 const mainSource = read('JPX-PLUS.user.js');
 const mainVersion = mainSource.match(/^\/\/\s+@version\s+(\S+)/m)?.[1];
 assert.ok(mainVersion, 'Main userscript version');
+assert.equal(mainSource.match(/window\.JPXPlus = Object\.freeze\(\{\s*apiVersion: \d+,\s*version: '([^']+)'/)?.[1], mainVersion, 'Public API version matches main userscript');
 assert.equal(baseMetadata.version[0], mainVersion, baseFile + ': version matches main userscript');
 const { cStore: baseStore, cM: baseManager, cShared: baseShared, ...baseUI } = base;
 const baseEntries = flatten(baseUI);

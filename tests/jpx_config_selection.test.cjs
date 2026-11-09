@@ -277,10 +277,10 @@ test('scene edits reveal only pending actions, cancel without writes and restore
 });
 
 for(const options of [
-    {width:1440,height:960,language:'ZhTrans',dark:false},
+    {width:1440,height:960,language:'ZhCN',dark:false},
     {width:1440,height:960,language:'',dark:true},
-    {width:375,height:812,language:'ZhTrans',dark:false},
-    {width:375,height:812,language:'ZhTrans',dark:true},
+    {width:375,height:812,language:'ZhCN',dark:false},
+    {width:375,height:812,language:'ZhCN',dark:true},
     {width:812,height:375,language:'',dark:true},
     {width:320,height:568,language:'Ja',dark:false},
     {width:320,height:568,language:'ZhTW',dark:false},

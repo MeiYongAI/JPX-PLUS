@@ -93,7 +93,7 @@ test('record category preferences are shared across primary and alt without rere
 async function dataSettings(page){await page.evaluate(()=>__share.settings());if(!await page.locator('#tab_stats').isVisible())await page.locator('#jpx-settings-menu-button').click();await page.locator('#tab_stats').click();await page.locator('[data-stats-section=data]').click();}
 for(const width of [320,390,1440])for(const dark of [false,true])test('data manager uses compact task groups at '+width+' '+dark,async t=>{
  const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});await f.flush();await page.setViewportSize({width,height:900});
- if(width!==320)await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'../JPX-PLUS-ZhTrans.user.js'),'utf8')});await page.evaluate(()=>__share.set('jpx_cfgBattle',JSON.stringify({...__share.cfg(),dailyStaminaQuotaPlus:8})));await f.flush();await dataSettings(page);if(dark)await page.evaluate(()=>__share.theme());
+ if(width!==320)await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'../JPX-PLUS-ZhCN.user.js'),'utf8')});await page.evaluate(()=>__share.set('jpx_cfgBattle',JSON.stringify({...__share.cfg(),dailyStaminaQuotaPlus:8})));await f.flush();await dataSettings(page);if(dark)await page.evaluate(()=>__share.theme());
  const panel=page.locator('#jpx-stats-data');assert.equal(await panel.locator('.jpx-shared-data').evaluate(n=>n.open),false);assert.equal(await panel.locator('p').count(),0);
  assert.deepEqual(await panel.locator('.jpx-stats-data-section > .jpx-stats-toolbar > button').evaluateAll(n=>n.map(b=>b.id)),['export-db-button','import-db-button','clear-records-button']);
  assert.equal(await panel.locator('.jpx-stats-data-maintenance #cleanup-data-button').count(),1);assert.equal(await panel.locator('.jpx-stats-data-maintenance #reset-cfgStats-button').count(),1);
@@ -112,7 +112,7 @@ test('data manager imports only after preview confirmation and exports the curre
  assert.deepEqual(f.errors,[]);
 });
 
-for (const locale of ['', 'ZhTrans', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) test('shared data uses the selected language on desktop and phone: '+(locale||'English'), async t=>{
+for (const locale of ['', 'ZhCN', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) test('shared data uses the selected language on desktop and phone: '+(locale||'English'), async t=>{
  const f=await fixture(t),page=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});
  await f.flush();
  if(locale) await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'../JPX-PLUS-'+locale+'.user.js'),'utf8')});

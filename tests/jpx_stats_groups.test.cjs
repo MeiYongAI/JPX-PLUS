@@ -83,7 +83,7 @@ for(const language of ['ZhTW','ZhHK','Ja','Ko'])test('localized category control
 });
 test('sticky headers stay aligned and image export succeeds',async t=>{const page=await fixture(t);await page.locator('.jpx-records-table-scroll').evaluate(node=>{node.scrollTop=250;node.scrollLeft=350;});await page.waitForTimeout(30);const pos=await page.locator('#battleStatsTable').evaluate(table=>{const parent=table.parentElement.getBoundingClientRect(),rows=table.tHead.rows;return {parent:parent.top,group:rows[0].getBoundingClientRect().top,field:rows[1].getBoundingClientRect().top,groupBottom:rows[0].getBoundingClientRect().bottom};});assert.ok(Math.abs(pos.group-pos.parent)<3,JSON.stringify(pos));assert.ok(pos.field>=pos.groupBottom-1);const image=await page.evaluate(()=>__groups.image());assert.equal(image.type,'image/png');assert.ok(image.size>1000);});
 for(const width of [320,768,1024,1440])for(const dark of [false,true])test('group controls fit '+width+' '+(dark?'dark':'light'),async t=>{
- const page=await fixture(t,{width,dark,language:'ZhTrans'});await openColumns(page);
+ const page=await fixture(t,{width,dark,language:'ZhCN'});await openColumns(page);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
  await toggle(page,'earnings').focus();await page.keyboard.press('Space');assert.equal(await toggle(page,'earnings').isChecked(),false);await page.keyboard.press('Space');
  const geometry=await page.locator('.jpx-records-sheet-body').evaluate(node=>({client:node.clientWidth,scroll:node.scrollWidth,height:node.clientHeight,viewport:innerHeight}));assert.ok(geometry.scroll<=geometry.client+1);assert.ok(geometry.height<geometry.viewport*.9,JSON.stringify(geometry));
@@ -92,7 +92,7 @@ for(const width of [320,768,1024,1440])for(const dark of [false,true])test('grou
 
 test('toolbar stays compact, exposes named icon targets and leaves data in the first viewport',async t=>{
  for(const width of [320,390,768,1440]){
-  const page=await fixture(t,{width,language:'ZhTrans'});
+  const page=await fixture(t,{width,language:'ZhCN'});
   const data=await page.evaluate(()=>({top:document.querySelector('.jpx-records-table-scroll').getBoundingClientRect().top,open:document.querySelector('dialog').open,buttons:[...document.querySelectorAll('.jpx-records-actions button')].map(b=>({text:b.textContent,label:b.getAttribute('aria-label'),width:b.getBoundingClientRect().width,height:b.getBoundingClientRect().height,svg:!!b.querySelector('svg'),radius:parseFloat(getComputedStyle(b).borderRadius)}))}));
   assert.ok(data.top<100,JSON.stringify(data));assert.equal(data.open,false);assert.equal(data.buttons.length,4);
   for(const button of data.buttons){assert.equal(button.text,'');assert.ok(button.label);assert.ok(button.svg);assert.ok(button.width>=44&&button.height>=44);assert.ok(button.radius<=2);}
@@ -120,7 +120,7 @@ test('filter sheet survives redraw and resizing without resetting filters',async
 });
 
 test('image actions download PNG and surface clipboard failures inside the sheet',async t=>{
- const page=await fixture(t,{width:390,language:'ZhTrans'});await page.locator('[data-records-panel=image]').click();
+ const page=await fixture(t,{width:390,language:'ZhCN'});await page.locator('[data-records-panel=image]').click();
  const download=page.waitForEvent('download');await page.locator('[data-image-action=download]').click();const file=await download;assert.match(file.suggestedFilename(),/\.png$/);assert.equal(await file.failure(),null);
  await page.waitForFunction(()=>document.querySelector('.jpx-record-image-toast')?.textContent.includes('图片已下载'));
  assert.equal(await page.locator('#jpx-records-sheet .jpx-record-image-toast').isVisible(),true);assert.equal(await page.locator('[data-image-action=download]').isDisabled(),false);
@@ -132,7 +132,7 @@ test('image actions download PNG and surface clipboard failures inside the sheet
 test('filter sheets fit small portrait and landscape without page scrolling',async t=>{
  const output=path.join(root,'.test-output/stats-groups');fs.mkdirSync(output,{recursive:true});
  for(const [width,height] of [[320,568],[390,844],[844,390]])for(const dark of [false,true]){
-  const page=await fixture(t,{width:390,dark,language:'ZhTrans'});await page.setViewportSize({width,height});await page.locator('[data-records-panel=filters]').click();
+  const page=await fixture(t,{width:390,dark,language:'ZhCN'});await page.setViewportSize({width,height});await page.locator('[data-records-panel=filters]').click();
   const g=await page.locator('#jpx-records-sheet').evaluate(n=>{const r=n.getBoundingClientRect(),b=n.querySelector('.jpx-records-sheet-body');return{x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:innerWidth,height:innerHeight,scroll:b.scrollWidth,client:b.clientWidth};});
   assert.ok(g.x>=0&&g.y>=0&&g.right<=g.width+1&&g.bottom<=g.height+1,JSON.stringify(g));assert.ok(g.scroll<=g.client+1,JSON.stringify(g));
   await page.screenshot({path:path.join(output,width+'-'+(dark?'dark':'light')+'-filters.png')});
@@ -159,7 +159,7 @@ test('display save toast is transient, coalesces edits and does not shift the sh
 });
 
 test('filters show native checkboxes with keyboard and label selection',async t=>{
- const page=await fixture(t,{width:390,language:'ZhTrans'});await page.locator('[data-records-panel=filters]').click();
+ const page=await fixture(t,{width:390,language:'ZhCN'});await page.locator('[data-records-panel=filters]').click();
  const state=await page.locator('#filtersDiv input[type=checkbox]').evaluateAll(nodes=>nodes.map(n=>{const c=getComputedStyle(n),label=n.closest('label').getBoundingClientRect();return {position:c.position,opacity:c.opacity,width:n.getBoundingClientRect().width,height:n.getBoundingClientRect().height,labelHeight:label.height,before:getComputedStyle(n.closest('label'),'::before').content};}));
  assert.equal(state.length,18);for(const n of state){assert.equal(n.position,'static');assert.equal(n.opacity,'1');assert.ok(n.width>=16&&n.height>=16);assert.ok(n.labelHeight>=44);assert.equal(n.before,'none');}
  const world=page.locator('#filter-world input[value=Isekai]');assert.equal(await world.isChecked(),false);await world.locator('..').click();await ready(page);assert.equal(await world.isChecked(),true);
@@ -167,7 +167,7 @@ test('filters show native checkboxes with keyboard and label selection',async t=
  assert.equal(await page.locator('#filtersDiv #filter-aggregate').count(),0);
 });
 test('toolbar daily aggregation uses one live input and survives redraw and resize',async t=>{
- const page=await fixture(t,{width:390,language:'ZhTrans'}),day=page.locator('#filter-aggregate input');
+ const page=await fixture(t,{width:390,language:'ZhCN'}),day=page.locator('#filter-aggregate input');
  assert.equal(await day.count(),1);assert.equal(await day.evaluate(n=>!!n.closest('.jpx-records-toolbar')),true);assert.equal(await day.isChecked(),false);
  const reads=await page.evaluate(()=>__groups.reads());await day.check();await ready(page);assert.equal(await page.evaluate(()=>__groups.reads()),reads+1);
  assert.equal(await page.locator('.jpx-records-count').textContent(),'1 天');assert.equal(await page.locator('#battleStatsTable tbody tr:not([data-summary])').count(),1);
@@ -177,7 +177,7 @@ test('toolbar daily aggregation uses one live input and survives redraw and resi
  const last=await page.evaluate(()=>__groups.reads());await day.focus();await page.keyboard.press('Space');await ready(page);assert.equal(await page.evaluate(()=>__groups.reads()),last+1);assert.equal(await page.locator('.jpx-records-count').textContent(),'12 条记录');
 });
 for(const [width,height] of [[320,568],[390,844],[844,390],[1440,900]])test('column disclosure never resizes its window at '+width+'x'+height,async t=>{
- const page=await fixture(t,{width:width<600?width:390,language:'ZhTrans'});await page.setViewportSize({width,height});await openColumns(page);
+ const page=await fixture(t,{width:width<600?width:390,language:'ZhCN'});await page.setViewportSize({width,height});await openColumns(page);
  const before=await page.locator('#jpx-records-sheet').boundingBox(),close=await page.locator('.jpx-records-sheet-close').boundingBox(),reads=await page.evaluate(()=>__groups.reads());
  for(const group of ['basic','drops','combat']){await page.locator('[data-expand-group='+group+']').click();assert.deepEqual(await page.locator('#jpx-records-sheet').boundingBox(),before);assert.deepEqual(await page.locator('.jpx-records-sheet-close').boundingBox(),close);}
  const geometry=await page.locator('.jpx-records-sheet-body').evaluate(n=>({height:n.clientHeight,scroll:n.scrollHeight,width:n.clientWidth,scrollWidth:n.scrollWidth}));assert.ok(geometry.scroll>geometry.height);assert.ok(geometry.scrollWidth<=geometry.width+1);
@@ -196,13 +196,13 @@ test('reused disclosure motion animates content, supports reversal and reduced m
  await page.emulateMedia({reducedMotion:'reduce'});await page.locator('[data-expand-group=basic]').click();assert.equal(await page.locator('#jpx-records-fields-basic').evaluate(n=>n.inert),false);assert.equal(await page.locator('#jpx-records-sheet').evaluate(n=>getComputedStyle(n).getPropertyValue('--jpx-motion')),'0ms');
  const handle=await page.locator('#jpx-records-fields-basic input').first().elementHandle();await page.locator('[data-expand-group=basic]').click();await page.locator('[data-expand-group=basic]').click();assert.equal(await handle.evaluate(n=>n.isConnected),true);
 });
-for(const language of ['', 'ZhTrans','ZhTW','ZhHK','Ja','Ko'])test('toolbar aggregation fits 320px without truncation: '+(language||'English'),async t=>{
+for(const language of ['', 'ZhCN','ZhTW','ZhHK','Ja','Ko'])test('toolbar aggregation fits 320px without truncation: '+(language||'English'),async t=>{
  const page=await fixture(t,{width:320,language});const data=await page.locator('.jpx-records-toolbar').evaluate(n=>({scroll:document.documentElement.scrollWidth,width:innerWidth,top:document.querySelector('.jpx-records-table-scroll').getBoundingClientRect().top,controls:[...n.querySelectorAll('button,#filter-aggregate label')].map(b=>{const r=b.getBoundingClientRect();return{left:r.left,right:r.right,height:r.height,client:b.clientWidth,scroll:b.scrollWidth};})}));
  assert.ok(data.scroll<=data.width+1,JSON.stringify(data));assert.ok(data.top<110);for(const c of data.controls){assert.ok(c.left>=0&&c.right<=321,JSON.stringify(c));assert.ok(c.height>=44);assert.ok(c.scroll<=c.client+1);}
 });
 
 test('daily toggle has centered text without checkmark space and stable selected geometry',async t=>{
- const page=await fixture(t,{width:390,language:'ZhTrans'}),input=page.locator('#filter-aggregate input');
+ const page=await fixture(t,{width:390,language:'ZhCN'}),input=page.locator('#filter-aggregate input');
  const state=()=>page.locator('#filter-aggregate label').evaluate(label=>{const r=document.createRange();r.selectNodeContents(label.lastChild);const text=r.getBoundingClientRect(),box=label.getBoundingClientRect(),css=getComputedStyle(label);return{box:box.toJSON(),textCenter:(text.left+text.right)/2,center:(box.left+box.right)/2,before:getComputedStyle(label,'::before').content,shadow:css.boxShadow};});
  const off=await state();assert.equal(off.before,'none');assert.ok(Math.abs(off.textCenter-off.center)<1);await input.check();await ready(page);
  const on=await state();assert.deepEqual(on.box,off.box);assert.equal(on.before,'none');assert.ok(Math.abs(on.textCenter-on.center)<1);assert.notEqual(on.shadow,off.shadow);
@@ -219,7 +219,7 @@ test('toolbar cleanup retains current filter scope and cancellation preserves re
  await page.evaluate(()=>__groups.render());await ready(page);assert.equal(await page.locator('.jpx-records-clear').count(),1);await page.locator('.jpx-records-clear').click();assert.equal(await page.locator('#jpx-records-cleanup-dialog select[name=battleType]').inputValue(),'Arena');
 });
 for(const width of [390,1440])for(const dark of [false,true])test('scrollbar appearance never shifts category labels and arrows at '+width+' '+dark,async t=>{
- const page=await fixture(t,{width,dark,language:'ZhTrans'});await openColumns(page);await page.emulateMedia({reducedMotion:'no-preference'});
+ const page=await fixture(t,{width,dark,language:'ZhCN'});await openColumns(page);await page.emulateMedia({reducedMotion:'no-preference'});
  const result=await page.locator('.jpx-records-sheet-body').evaluate(async body=>{
   const button=body.querySelector('[data-expand-group=basic]'),label=body.querySelector('.jpx-records-column-heading label'),sheet=body.closest('dialog');
   const snapshot=()=>({buttonX:button.getBoundingClientRect().x,labelX:label.getBoundingClientRect().x,labelWidth:label.getBoundingClientRect().width,client:body.clientWidth,gutter:body.offsetWidth-body.clientWidth,scroll:body.scrollHeight,bodyHeight:body.clientHeight,sheet:sheet.getBoundingClientRect().toJSON()});

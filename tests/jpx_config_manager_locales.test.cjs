@@ -10,7 +10,7 @@ const root = path.resolve(__dirname, '..');
 const english = JSON.parse(fs.readFileSync(path.join(root, 'src/config-manager/en.json'), 'utf8'));
 const placeholders = value => (value.match(/\$\{[^}]+\}/g) || []).sort();
 
-for (const locale of ['ZhTrans', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) {
+for (const locale of ['ZhCN', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) {
     test(`${locale}: configuration manager strings are complete and preserve placeholders`, () => {
         const source = fs.readFileSync(path.join(root, `JPX-PLUS-${locale}.user.js`), 'utf8');
         const context = { window: {} };

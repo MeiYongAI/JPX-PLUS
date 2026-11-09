@@ -91,7 +91,7 @@ test('auto finish does not enable next round',async t=>{
  const {page,errors}=await fixture(t);await page.evaluate(()=>{__finish.prepare({enabled:true,final:false});__finish.round(false);});assert.equal((await page.evaluate(()=>__finish.state())).clicks,0);
  await page.evaluate(()=>__finish.round(true));assert.equal((await page.evaluate(()=>__finish.state())).clicks,1);assert.equal((await page.evaluate(()=>__finish.state())).stores,0);assert.deepEqual(errors,[]);
 });
-for(const [language,label,width,dark]of [['','Auto finish battle',1440,false],['ZhTrans','自动结束战斗',320,true],['ZhTW','自動結束戰鬥',768,false],['ZhHK','自動結束戰鬥',1024,true],['Ja','戦闘後に自動で戻る',320,false],['Ko','전투 종료 후 자동으로 나가기',320,true]])test('general battle control saves and exports: '+(language||'English'),async t=>{
+for(const [language,label,width,dark]of [['','Auto finish battle',1440,false],['ZhCN','自动结束战斗',320,true],['ZhTW','自動結束戰鬥',768,false],['ZhHK','自動結束戰鬥',1024,true],['Ja','戦闘後に自動で戻る',320,false],['Ko','전투 종료 후 자동으로 나가기',320,true]])test('general battle control saves and exports: '+(language||'English'),async t=>{
  const {page,errors}=await fixture(t,{language,width,dark});await page.evaluate(()=>__finish.open());
  assert.equal(await page.getByRole('checkbox',{name:label,exact:true}).isChecked(),false);
  const control=page.locator('[data-field-key="autoFinishBattle"] input[type="checkbox"]');
@@ -101,5 +101,5 @@ for(const [language,label,width,dark]of [['','Auto finish battle',1440,false],['
  const bounds=await control.locator('..').evaluate(el=>{const r=el.getBoundingClientRect();return{left:r.left,right:r.right,viewport:innerWidth};});assert.ok(bounds.left>=0&&bounds.right<=bounds.viewport);
  await page.locator('#export-button').click();await page.locator('[data-export-scope=all]').click();const downloading=page.waitForEvent('download');await page.locator('.jpx-export-submit').click();const download=await downloading;
  assert.equal(JSON.parse(fs.readFileSync(await download.path(),'utf8')).autoFinishBattle,true);assert.deepEqual(errors,[]);
- if(language==='ZhTrans'){fs.mkdirSync(path.join(root,'.test-output/auto-finish'),{recursive:true});await page.locator('#settings-container').screenshot({path:path.join(root,'.test-output/auto-finish/mobile-settings.png')});}
+ if(language==='ZhCN'){fs.mkdirSync(path.join(root,'.test-output/auto-finish'),{recursive:true});await page.locator('#settings-container').screenshot({path:path.join(root,'.test-output/auto-finish/mobile-settings.png')});}
 });

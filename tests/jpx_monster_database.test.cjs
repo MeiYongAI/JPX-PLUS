@@ -280,7 +280,7 @@ test('real startup, reload, settings activation and scan callback work standalon
 test('monster checkbox fits all language packs in both themes', async t => {
     const context = await browser.newContext(); t.after(() => context.close());
     const output = path.join(__dirname, '../.test-output/monster-database'); fs.mkdirSync(output, { recursive: true });
-    for (const language of ['', 'ZhTrans', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) {
+    for (const language of ['', 'ZhCN', 'ZhTW', 'ZhHK', 'Ja', 'Ko']) {
         const input = source.replace('\ninitDo();', '\ninitDo();\n(' + instrument.toString() + ')();');
         const { page, errors } = await open(context, { source: input });
         if (language) await page.addScriptTag({ content: fs.readFileSync(path.join(__dirname, '../JPX-PLUS-' + language + '.user.js'), 'utf8') });
@@ -297,7 +297,7 @@ test('monster checkbox fits all language packs in both themes', async t => {
                 });
                 assert.ok(bounds.left >= 0 && bounds.right <= bounds.width, JSON.stringify(bounds));
                 assert.ok(!bounds.text.includes('requires Monster DB')); await checkbox.focus();
-                if (language === 'ZhTrans') await page.locator('#settings-container').screenshot({ path: path.join(output, width + '-' + theme + '.png') });
+                if (language === 'ZhCN') await page.locator('#settings-container').screenshot({ path: path.join(output, width + '-' + theme + '.png') });
             }
             await page.evaluate(() => __monster.theme());
         }

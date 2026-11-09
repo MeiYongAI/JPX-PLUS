@@ -47,7 +47,7 @@ async function fixture(t,{world='Persistent',width=1360,zh=false}={}){
     const page=await context.newPage();page.setDefaultTimeout(6000);page.on('pageerror',error=>errors.push(error.message));
     const boot=async()=>{
         await page.evaluate('window.__fixture = '+html.toString());
-        if(zh)await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-ZhTrans.user.js'),'utf8')});
+        if(zh)await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-ZhCN.user.js'),'utf8')});
         await page.addScriptTag({content:harness});
     };
     await page.goto('https://hentaiverse.org/'+(world==='Isekai'?'isekai/':''));await boot();

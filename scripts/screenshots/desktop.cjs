@@ -11,7 +11,7 @@ const language=process.env.JPX_SCREENSHOT_LANGUAGE==='en'?'en':'zh-CN';
 const statsOnly=process.argv.includes('--stats-only');
 const names=name=>language==='en'?name.replace('.png','-en.png'):name;
 const source = fs.readFileSync(path.join(root, 'JPX-PLUS.user.js'), 'utf8');
-const pack = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhTrans.user.js'), 'utf8');
+const pack = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhCN.user.js'), 'utf8');
 const expose = [
   'initDoI18n();loadBattleConfig();',
   'battleStyle="OneHanded";battleType="General";',

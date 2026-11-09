@@ -6,7 +6,7 @@ const {createHash}=require('node:crypto');
 const {chromium}=require('playwright');
 const root=path.resolve(__dirname,'../..'),output=path.join(root,'docs/images');
 const source=fs.readFileSync(path.join(root,'JPX-PLUS.user.js'),'utf8');
-const pack=fs.readFileSync(path.join(root,'JPX-PLUS-ZhTrans.user.js'),'utf8');
+const pack=fs.readFileSync(path.join(root,'JPX-PLUS-ZhCN.user.js'),'utf8');
 const html='<!doctype html><html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:8px;background:#edebdf;color:#5c0d11;font:12px Verdana}#csp{width:1240px;height:704px}</style><body><div id="csp"><div id="navbar"></div></div><div hidden><form id="persona_form"><select><option value="1" selected>Demo</option></select></form><div class="spc">Spell Damage Bonus</div><div><table><tr><td>20%</td><td>Fire</td></tr></table></div><div id="eqsb"><div class="eqb" onclick="location.href=\'/?equip_slot=1\'"><span>Main</span><span data-eid="101"></span></div><div class="eqb" onclick="location.href=\'/?equip_slot=2\'"><span>Off</span><span data-eid="102"></span></div></div></div></body></html>';
 function boot(){
   initDoI18n();loadBattleConfig();applyJpxTheme();initJpxModeDetection();battleStyle=getDetectedJpxBattleStyle();battleType='General';

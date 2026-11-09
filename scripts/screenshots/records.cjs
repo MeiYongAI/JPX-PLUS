@@ -8,7 +8,7 @@ const output = path.join(repo, 'docs/images');
 const english = process.env.JPX_DOC_LANGUAGE === 'en';
 const fileName = name => name + (english ? '-en' : '') + '.png';
 const source = fs.readFileSync(path.join(repo, 'JPX-PLUS.user.js'), 'utf8');
-const pack = fs.readFileSync(path.join(repo, 'JPX-PLUS-ZhTrans.user.js'), 'utf8');
+const pack = fs.readFileSync(path.join(repo, 'JPX-PLUS-ZhCN.user.js'), 'utf8');
 function expose() {
     initDoI18n(); loadBattleConfig(); applyJpxTheme();
     cfgStats = JSON.parse(JSON.stringify(defaultCfgStats));

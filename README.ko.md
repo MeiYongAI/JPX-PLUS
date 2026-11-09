@@ -15,7 +15,7 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 1. 유저스크립트 관리 확장 프로그램에서 JPX-PLUS를 설치한 뒤 HentaiVerse를 새로고침합니다.
 2. 기본 언어는 영어입니다. 다른 언어를 사용하려면 본체와 함께 언어 팩을 **하나만** 켜 주세요.
 
-[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
+[简体中文](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhCN.user.js) · [繁體中文（台灣）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTW.user.js) · [繁體中文（香港）](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhHK.user.js) · [日本語](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ja.user.js) · [한국어](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-Ko.user.js)
 
 본체와 사용 중인 언어 팩을 함께 업데이트해 주세요. GitHub 업데이트 주소가 포함되어 있으며, 자동 확인은 유저스크립트 관리 확장 프로그램의 설정을 따릅니다.
 

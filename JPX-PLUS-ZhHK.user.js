@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.3
+// @version      2026.11.09.4
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
-// @run-at       document-end
+// @run-at       document-start
 // @match        *://*.hentaiverse.org/*
 // @exclude      *hentaiverse.org/equip/*
 // @exclude      *hentaiverse.org/isekai/equip/*

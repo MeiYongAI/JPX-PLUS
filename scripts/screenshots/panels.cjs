@@ -11,7 +11,7 @@ const sharp = require('sharp');
 const backdrop = require('./backdrop.cjs');
 const repo = path.resolve(__dirname, '../..');
 const mainPath = path.join(repo, 'JPX-PLUS.user.js');
-const packPath = path.join(repo, 'JPX-PLUS-ZhTrans.user.js');
+const packPath = path.join(repo, 'JPX-PLUS-ZhCN.user.js');
 const main = fs.readFileSync(mainPath, 'utf8');
 const pack = fs.readFileSync(packPath, 'utf8');
 assert.equal(main.split('\ninitDo();').length, 2);

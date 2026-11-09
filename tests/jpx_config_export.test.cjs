@@ -135,9 +135,9 @@ test('cancel, focus trapping and parent close clean up without downloading or al
 });
 
 for (const options of [
-    { language: 'ZhTrans', dark: false, width: 1440, height: 960 },
+    { language: 'ZhCN', dark: false, width: 1440, height: 960 },
     { language: '', dark: true, width: 1440, height: 960 },
-    { language: 'ZhTrans', dark: true, width: 375, height: 812 },
+    { language: 'ZhCN', dark: true, width: 375, height: 812 },
     { language: 'ZhTW', dark: false, width: 375, height: 812 },
     { language: 'ZhHK', dark: true, width: 375, height: 812 },
     { language: 'Ja', dark: true, width: 375, height: 812 },
@@ -146,7 +146,7 @@ for (const options of [
 ]) test(`export chooser fits ${options.language || 'English'} ${options.width}x${options.height} ${options.dark ? 'dark' : 'light'}`, async t => {
     const f = await fixture(t, { ...options, many: true });
     const tag = `export-${options.language || 'en'}-${options.width}-${options.dark ? 'dark' : 'light'}`;
-    if (['ZhTrans', ''].includes(options.language)) await f.page.screenshot({ path: path.join(output, tag + '-current.png') });
+    if (['ZhCN', ''].includes(options.language)) await f.page.screenshot({ path: path.join(output, tag + '-current.png') });
     await f.page.locator('[data-export-scope=choose]').click();
     if (options.width === 375) await f.page.addStyleTag({ content: '#settings-container .jpx-export-dialog{font-size:16px}' });
     const sizes = await f.page.locator('#jpx-battle-export').evaluate(node => {

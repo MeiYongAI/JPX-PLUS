@@ -274,7 +274,7 @@ test('catalog search reuses ordering until the sort selection changes', async t 
 });
 
 test('store search combines localized metadata, authors and normalized words without network requests', async t => {
-    const f = await fixture(t, { records: discoveryRecords(), language: 'ZhTrans' }); await enterStore(f.page);
+    const f = await fixture(t, { records: discoveryRecords(), language: 'ZhCN' }); await enterStore(f.page);
     const search = f.page.locator('.jpx-store-querybar input'), calls = await f.page.evaluate(() => __transport.calls.length);
     for (const [query, ids] of [['@LINA ｉｔｅｍ', [1]], ['异世界 双手战法', [2]], ['２Ｈ mage', [2]], ['lina shared', [3]]]) {
         await search.fill(query); assert.deepEqual(await visibleStoreIds(f.page), ids, query);
@@ -360,7 +360,7 @@ async function assertTabLines(page, mobile) {
 }
 
 for (const mobile of [false, true]) for (const signedIn of [false, true]) test(`management navigation and filter bands do not jump between views, ${mobile ? 'mobile' : 'desktop'} ${signedIn ? 'signed in' : 'signed out'}`, async t => {
-    const f = await fixture(t, { mobile, records: discoveryRecords(), language: 'ZhTrans', signedIn });
+    const f = await fixture(t, { mobile, records: discoveryRecords(), language: 'ZhCN', signedIn });
     const layout = () => f.page.locator('.jpx-config-manager').evaluate(root => {
         const box = selector => { const node = root.querySelector(selector); if (!node) return null;
             const { x, y, width, height } = node.getBoundingClientRect(); return { x, y, width, height }; };
@@ -440,7 +440,7 @@ for (const mobile of [false, true]) test(`catalog loading and refreshing keep fi
 });
 
 for (const mobile of [false, true]) for (const dark of [false, true]) test(`store discovery keeps fixed controls and fits ${mobile ? 'mobile' : 'desktop'} ${dark ? 'dark' : 'light'}`, async t => {
-    const f = await fixture(t, { mobile, records: discoveryRecords(), language: mobile || dark ? 'ZhTrans' : 'en' });
+    const f = await fixture(t, { mobile, records: discoveryRecords(), language: mobile || dark ? 'ZhCN' : 'en' });
     if (dark) await f.page.evaluate(() => __fullStore.theme());
     const navigation = f.page.locator('.jpx-config-manager > .jpx-config-toolbar .jpx-config-nav button');
     const bounds = () => navigation.evaluateAll(buttons => buttons.map(button => {
@@ -761,7 +761,7 @@ test('archived records stay absent in a fresh browser and script storage', async
 });
 
 test('shared management controls fit narrow and wide layouts without new styles', async t => {
-    const f = await fixture(t, { signedIn: true, shareOverrides: { 1: { state: 'closed' } }, language: 'ZhTrans' }); await enterShared(f);
+    const f = await fixture(t, { signedIn: true, shareOverrides: { 1: { state: 'closed' } }, language: 'ZhCN' }); await enterShared(f);
     for (const width of [320, 768, 1024, 1440]) {
         await f.page.setViewportSize({ width, height: 900 });
         const row = sharedRow(f.page, 1); await row.waitFor();
@@ -948,7 +948,7 @@ test('review feedback cannot relabel a hidden share as published', async t => {
 });
 
 test('the translated update form fits phone, tablet and desktop widths in both themes', async t => {
-    const f = await fixture(t, { signedIn: true, language: 'ZhTrans' });
+    const f = await fixture(t, { signedIn: true, language: 'ZhCN' });
     const saved = await saveLocal(f.page); await enterShared(f);
     await sharedRow(f.page, 1).getByRole('button', { name: '更新配置', exact: true }).click();
     const form = f.page.locator('[data-store-editor="share"]'); await form.waitFor();
@@ -976,7 +976,7 @@ for(const mobile of [false,true])test(`store and shared tags filter full configs
     full.config.TwoHanded_Tower=clone(full.config.TwoHanded_General);full.config.Staff_General={supports:[],attacks:[]};
     const cross=clone(full);cross.title='Mixed file';cross.world='Persistent';
     cross.config.OneHanded_Item=cross.config.TwoHanded_General;delete cross.config.TwoHanded_General;
-    const f=await fixture(t,{signedIn:true,mobile,language:'ZhTrans',records:[
+    const f=await fixture(t,{signedIn:true,mobile,language:'ZhCN',records:[
         {envelope:full,catalogModes:['TwoHanded_General','TwoHanded_Tower']},
         {envelope:cross,catalogModes:['OneHanded_Item','TwoHanded_Tower']},
         {envelope:envelope('Legacy single','Persistent')}

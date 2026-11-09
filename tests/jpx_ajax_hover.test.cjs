@@ -222,7 +222,7 @@ for (const isekai of [false, true]) test('legacy config without re-entry option 
 });
 
 for (const [language, label, width, dark] of [
-    ['', 'Re-enter panel to switch to manual', 1024, false], ['ZhTrans', '再次移入面板时切换为手动', 390, true],
+    ['', 'Re-enter panel to switch to manual', 1024, false], ['ZhCN', '再次移入面板时切换为手动', 390, true],
     ['ZhTW', '再次移入面板時切換為手動', 768, false], ['ZhHK', '再次移入面板時切換為手動', 1024, true],
     ['Ja', '再びパネルに入ると手動に切り替え', 390, false], ['Ko', '패널에 다시 들어오면 수동으로 전환', 390, true]
 ]) test('re-entry setting saves and exports with translated label: ' + (language || 'English'), async t => {
@@ -234,7 +234,7 @@ for (const [language, label, width, dark] of [
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('jpx_cfgBattle')).ctrlWidgetMouseEnterPause), true);
     await page.evaluate(() => { __hover.reentry(false); __hover.reload(); }); assert.equal(await page.evaluate(() => __hover.config().ctrlWidgetMouseEnterPause), true);
     const bounds = await control.locator('..').evaluate(el => { const r = el.getBoundingClientRect(); return { left: r.left, right: r.right, viewport: innerWidth }; }); assert.ok(bounds.left >= 0 && bounds.right <= bounds.viewport);
-    if (language === 'ZhTrans') { const dir = path.join(__dirname, '../.test-output/hover-reentry'); fs.mkdirSync(dir, { recursive: true }); await page.locator('#settings-container').screenshot({ path: path.join(dir, 'settings-mobile-dark.png') }); }
+    if (language === 'ZhCN') { const dir = path.join(__dirname, '../.test-output/hover-reentry'); fs.mkdirSync(dir, { recursive: true }); await page.locator('#settings-container').screenshot({ path: path.join(dir, 'settings-mobile-dark.png') }); }
     await page.locator('#export-button').click(); await page.locator('[data-export-scope=all]').click(); const downloading = page.waitForEvent('download'); await page.locator('.jpx-export-submit').click();
     const download = await downloading; assert.equal(JSON.parse(fs.readFileSync(await download.path(), 'utf8')).ctrlWidgetMouseEnterPause, true);
 });

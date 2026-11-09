@@ -18,6 +18,16 @@ The generated main script also embeds the shared-data, shared-UI and monster-dat
 
 Shared-data text lives in the shared-UI English JSON dictionary and each language pack's cShared section. Use the normal translation lookup; do not infer a locale from a translated label. Language checks compare every main-script English key and all module dictionaries, including placeholders, with all five packs.
 
+Edit the Simplified Chinese pack in JPX-PLUS-ZhCN.user.js. The build copies it to the former ZhTrans filename for existing installations and external links; both files point updates to ZhCN and keep the same script name and namespace. New links, tests and screenshot scripts use ZhCN. Do not edit the compatibility copy separately.
+
+## Records-page startup
+
+The main script and language packs run at document start. The main script waits for DOMContentLoaded on ordinary game pages. On the #jpx-records route, it stops the native document load and creates the statistics document immediately. It keeps the HV origin and world path, so the page can read its existing records and reload independently after the game tab closes. No cover or hidden homepage is used. Navigation still contacts the HV origin; a userscript does not intercept the initial document request.
+
+Language packs only register dictionaries and can run before or after the main script. Keeping them at document start avoids depending on the native page's stopped load events.
+
+The records-startup browser test covers both hosts and worlds, reload, Z-key popup navigation, persisted records, both translation load orders and ordinary-page startup. It uses isolated HTML and simulated userscript injection, not a real HV account or installed script manager.
+
 ## Build and test
 
 Requires Node.js 22 or newer. From the repository root:

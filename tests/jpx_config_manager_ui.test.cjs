@@ -11,7 +11,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, '.test-output/config-management');
 const source = fs.readFileSync(path.join(root, 'JPX-PLUS.user.js'), 'utf8');
-const zh = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhTrans.user.js'), 'utf8');
+const zh = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhCN.user.js'), 'utf8');
 const clone = value => JSON.parse(JSON.stringify(value));
 const html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:8px;background:#edebdf;color:#5c0d11;font:12px Verdana}#csp{width:1240px;height:704px}</style></head><body><div id="csp"><div id="navbar"></div></div></body></html>';
 const makeRules = marker => ({

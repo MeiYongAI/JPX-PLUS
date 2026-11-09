@@ -93,7 +93,7 @@ test('invalid input with HTML in its name is rendered as text and can be retried
     await choose(page,envelope()); await save(page); assert.match(await libraryNotice(page).textContent(),/Not applied yet/);
 });
 
-for (const locale of ['ZhTrans','ZhTW','ZhHK','Ja','Ko']) test('localized import feedback survives narrow dark layout: '+locale, async t => {
+for (const locale of ['ZhCN','ZhTW','ZhHK','Ja','Ko']) test('localized import feedback survives narrow dark layout: '+locale, async t => {
     const {page}=await fixture(browser,t,{mobile:true});
     await page.addScriptTag({content:fs.readFileSync(path.join(__dirname,'..','JPX-PLUS-'+locale+'.user.js'),'utf8')});
     await page.evaluate(()=>document.getElementById('settings-container').close());
@@ -108,7 +108,7 @@ for (const locale of ['ZhTrans','ZhTW','ZhHK','Ja','Ko']) test('localized import
     const layout=await directNotice(page).evaluate(node=>({width:node.clientWidth,scrollWidth:node.scrollWidth,bottom:node.getBoundingClientRect().bottom,saveTop:document.getElementById('save-button').getBoundingClientRect().top}));
     assert.ok(layout.scrollWidth<=layout.width+1,JSON.stringify(layout)); assert.ok(layout.bottom<=layout.saveTop,JSON.stringify(layout));
     assert.equal(await directNotice(page).locator('p').getAttribute('title'),'很长的文件名LongConfigurationName'.repeat(8)+'.json');
-    if(locale==='ZhTrans'){
+    if(locale==='ZhCN'){
         const output=path.join(__dirname,'../.test-output/import-feedback'); fs.mkdirSync(output,{recursive:true});
         await page.screenshot({path:path.join(output,'direct-mobile-dark.png')});
         await directNotice(page).getByRole('button').click();

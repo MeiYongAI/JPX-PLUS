@@ -1,19 +1,19 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.09.3
+// @version      2026.11.09.4
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
-// @run-at       document-end
+// @run-at       document-start
 // @match        *://*.hentaiverse.org/*
 // @exclude      *hentaiverse.org/equip/*
 // @exclude      *hentaiverse.org/isekai/equip/*
 // @grant none
 // @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
 // @supportURL   https://github.com/MeiYongAI/JPX-PLUS/issues
-// @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js
-// @downloadURL  https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhTrans.user.js
+// @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhCN.user.js
+// @downloadURL  https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS-ZhCN.user.js
 // ==/UserScript==
-	
+
 (function() {
 	const i18n = {
 		"add": "添加",

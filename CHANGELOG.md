@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.09.4
+
+- Rename the Simplified Chinese pack to ZhCN to match ZhTW and ZhHK. Update installation links and tooling, keeping the former ZhTrans URL as a generated compatibility copy that updates from ZhCN.
+- #10: initialize the statistics document at document start on the records route, stopping the native homepage load. Keep the HV address so refreshing the page and closing the original game tab still work. Ordinary game startup continues to wait for the DOM.
+- Start language packs early as well, so translations work regardless of which script runs first.
+- Verification: 661 offline tests passed, including 16 startup cases covering both HV hosts, both worlds, translations, refresh and the Z-key popup. Real HV and installed userscript-manager timing still need live confirmation.
+
+### 简体中文
+
+- 简体语言包统一命名为 ZhCN，与 ZhTW、ZhHK 对齐；安装链接和工具同步更新，旧 ZhTrans 地址保留兼容，更新指向 ZhCN。
+- #10：打开统计页时直接初始化统计页面，停止原主页加载。保留 HV 地址，刷新或关闭原游戏标签页后仍可使用；普通游戏页保持原来的启动时机。
+- 语言包同步提前加载，主脚本与语言包先后顺序均可正常显示翻译。
+- 验证：661 项离线测试通过，其中 16 项覆盖双站点、双世界、翻译、刷新和 Z 键新标签页。真实 HV 与已安装脚本管理器的加载时机仍待实测。
+
 ## 2026.11.09.3
 
 - Complete all five language packs for primary/alt shared-data controls, recovery prompts and cleanup warnings. These controls now use the selected language instead of choosing only English or Simplified Chinese.

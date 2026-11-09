@@ -14,7 +14,7 @@ const language = process.argv.includes('--language=en') ? 'en' : 'zh';
 const locale = language === 'en' ? 'en-US' : 'zh-CN';
 const imageSuffix = language === 'en' ? '-en' : '';
 const source = fs.readFileSync(path.join(root, 'JPX-PLUS.user.js'), 'utf8');
-const pack = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhTrans.user.js'), 'utf8');
+const pack = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhCN.user.js'), 'utf8');
 for (const file of [source, pack]) assert.equal(file.includes('\ufffd'), false, 'valid Chinese source without replacement characters');
 
 function exposePreview() {

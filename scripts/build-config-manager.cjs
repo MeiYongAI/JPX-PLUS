@@ -34,3 +34,14 @@ if (process.argv.includes('--check')) {
         process.exitCode = 1;
     } else console.log('Config manager matches its sources.');
 } else { fs.writeFileSync(target, source, 'utf8'); console.log('Updated embedded config-management modules.'); }
+
+// Retain the former download path for installed packs and existing external links.
+// ZhCN is the only editable Simplified Chinese source; both URLs update to ZhCN.
+const zhCN = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhCN.user.js'));
+const legacyZh = path.join(root, 'JPX-PLUS-ZhTrans.user.js');
+if (process.argv.includes('--check')) {
+    if (!fs.existsSync(legacyZh) || !fs.readFileSync(legacyZh).equals(zhCN)) {
+        console.error('Simplified Chinese compatibility copy is stale. Run: npm run build');
+        process.exitCode = 1;
+    }
+} else fs.writeFileSync(legacyZh, zhCN);
