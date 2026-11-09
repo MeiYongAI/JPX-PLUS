@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.19
+@version      1.0.20
 @description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -284,6 +284,14 @@
         [src$="/feedmonster.png"], [src$="/drugmonster.png"], [src$="/createmonster.png"],
         [src$="/saveskills.png"], [src$="/delete.png"], [src$="/prev.png"], [src$="/next.png"]) {
         --hvd-control-filter: var(--hvd-image-accent);
+    }
+    /* Creation choices use warm action text; the selected class uses selection blue.
+       Attack-type _a images are create actions, not the selected class state. */
+    html:root #csp :is(#monstercreate_left, #monstercreate_patk) img:where([src*="/y/monster/"]):not([src$="_d.png"]) {
+        --hvd-control-filter: var(--hvd-image-accent);
+    }
+    html:root #csp #monstercreate_left img:where([src*="/y/monster/"])[src$="_a.png"] {
+        --hvd-control-filter: var(--hvd-image-blue);
     }
     /* Hunger/morale labels share a background bitmap with the bar frame.
        Recolor only the label before x=60; keep the frame, fill and HVUT values intact.
