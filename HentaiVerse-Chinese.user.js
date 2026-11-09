@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.5
+// @version     2026.11.09.6
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -7479,14 +7479,39 @@
     const IS_FORUM_EQUIPMENT = mlUrl.hostname === 'forums.e-hentai.org'
         && matchedRules.some(rule => rule.id === 'equipment-name');
     const EQUIPMENT_DISPLAY_TAG = 'hv-equipment-text';
+    const EQUIPMENT_EMPTY_ATTRIBUTE = 'data-hv-equipment-empty';
     const EQUIPMENT_DISPLAY_SKIP = 'script, style, textarea, input, select, button, mark.trans-styled, .NAE_lot, .signature, [role="button"], [hidden], [aria-hidden="true"], [contenteditable]:not([contenteditable="false"])';
     const equipmentHostViews = new WeakMap();
     const equipmentDisplays = new WeakMap();
     const equipmentSourceNodes = new WeakSet();
+    const equipmentLinks = new WeakSet();
+    const equipmentOwnMutations = new WeakMap();
+
+    // 只跳过已记录的三次包装操作；不暂停 observer，也不丢弃其他脚本的更新。
+    function expectEquipmentMutation(target, added, removed) {
+        let expected = equipmentOwnMutations.get(target);
+        if (!expected) equipmentOwnMutations.set(target, expected = []);
+        expected.push({ added, removed });
+    }
+    function consumeEquipmentMutation(mutation) {
+        if (!IS_FORUM_EQUIPMENT || mutation.type !== 'childList') return false;
+        const expected = equipmentOwnMutations.get(mutation.target);
+        if (!expected) return false;
+        const index = expected.findIndex(item =>
+            mutation.addedNodes.length === (item.added ? 1 : 0)
+            && mutation.removedNodes.length === (item.removed ? 1 : 0)
+            && (!item.added || mutation.addedNodes[0] === item.added)
+            && (!item.removed || mutation.removedNodes[0] === item.removed));
+        if (index < 0) return false;
+        expected.splice(index, 1);
+        if (!expected.length) equipmentOwnMutations.delete(mutation.target);
+        return true;
+    }
 
     function getForumEquipmentRoot(node) {
         if (!IS_FORUM_EQUIPMENT) return null;
-        const element = node.nodeType === 1 ? node : node.parentElement;
+        let element = node.nodeType === 1 ? node : node.parentElement;
+        if (element?.localName === EQUIPMENT_DISPLAY_TAG) element = element.parentElement;
         if (!element || element.closest(EQUIPMENT_DISPLAY_SKIP) || isTranslationExcluded(element)) return null;
         const root = element.closest('a[href], .showequip, #showequip');
         if (!root || root.closest(EQUIPMENT_DISPLAY_SKIP)) return null;
@@ -7508,9 +7533,9 @@
         function visit(node) {
             if (node.nodeType === 3) { if (node.data || equipmentDisplays.has(node)) run.push(node); return; }
             if (node.nodeType === 8) return;
+            if (node.nodeType === 1 && node.localName === EQUIPMENT_DISPLAY_TAG) { node.childNodes.forEach(visit); return; }
             if (node.nodeType !== 1 || node.matches(EQUIPMENT_DISPLAY_SKIP + ', a, br, hr, img, svg, canvas, iframe')
                 || isTranslationExcluded(node)) { flush(); return; }
-            if (node.localName === EQUIPMENT_DISPLAY_TAG) { node.childNodes.forEach(visit); return; }
             if (!styles.has(node)) styles.set(node, getComputedStyle(node));
             const display = styles.get(node).display;
             if (display === 'none') { flush(); return; }
@@ -7564,6 +7589,7 @@
         if (!IS_FORUM_EQUIPMENT) return;
         const styles = new Map(), plans = [], emptiedViews = [];
         for (const root of roots) {
+            if (root.tagName === 'A') equipmentLinks.add(root);
             root.querySelectorAll(EQUIPMENT_DISPLAY_TAG).forEach(host => {
                 const view = equipmentHostViews.get(host);
                 if (!host.hasChildNodes() && view?.hasChildNodes()) emptiedViews.push(view);
@@ -7594,9 +7620,34 @@
             const previous = equipmentDisplays.get(node);
             if (previous?.host === existing && previous.signature === signature) continue;
             const host = existing || document.createElement(EQUIPMENT_DISPLAY_TAG);
-            if (!existing) { parent.insertBefore(host, node); host.appendChild(node); }
+            if (!existing) {
+                expectEquipmentMutation(parent, host, null);
+                expectEquipmentMutation(parent, null, node);
+                expectEquipmentMutation(host, node, null);
+                parent.insertBefore(host, node);
+                host.appendChild(node);
+            }
             // 拍卖助手可能序列化并重建帖子；克隆宿主需重新建立 shadow 显示。
-            const view = equipmentHostViews.get(host) || createEquipmentView(host);
+            let view = equipmentHostViews.get(host);
+            // 跨标签词条的后续字母只需保留零字号原文，不必各建一个空 shadow。
+            // 原文发生变化、再次需要显示时，才按需建立显示层。
+            if (!fragments.length && !view) {
+                host.setAttribute(EQUIPMENT_EMPTY_ATTRIBUTE, '');
+                host.setAttribute('aria-hidden', 'true');
+                host.style.fontSize = '0';
+                host.style.lineHeight = '0';
+                host.style.userSelect = 'none';
+                equipmentDisplays.set(node, { host, signature });
+                continue;
+            }
+            if (host.hasAttribute(EQUIPMENT_EMPTY_ATTRIBUTE)) {
+                host.removeAttribute(EQUIPMENT_EMPTY_ATTRIBUTE);
+                host.removeAttribute('aria-hidden');
+                host.style.removeProperty('font-size');
+                host.style.removeProperty('line-height');
+                host.style.removeProperty('user-select');
+            }
+            view = view || createEquipmentView(host);
             host.style.setProperty('--hv-equipment-font-size', fontSize);
             host.style.setProperty('--hv-equipment-line-height', lineHeight);
             view.replaceChildren(...fragments.map(fragment => {
@@ -7993,11 +8044,14 @@
             : document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
                 acceptNode(node) {
                     if (node.nodeType === 3) return NodeFilter.FILTER_ACCEPT;
+                    if (equipmentLinks.has(node)) return NodeFilter.FILTER_REJECT;
                     return node.matches(SKIP_TRANSLATION_SELECTOR) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_SKIP;
                 }
             });
         let node;
-        while (node = walker.nextNode()) translateTextNode(node, displayContext, scopedGroups);
+        if (displayContext || !equipmentLinks.has(root)) {
+            while (node = walker.nextNode()) translateTextNode(node, displayContext, scopedGroups);
+        }
 
         if (root.matches && root.matches(UI_SELECTORS)) translateUIElement(root);
         if (root.querySelectorAll) {
@@ -8028,6 +8082,7 @@
         const forumLinksToProcess = new Set();
 
         mutations.forEach(m => {
+            if (consumeEquipmentMutation(m)) return;
             // 尤其是关闭日志汉化时，在收集行/遍历新增后代之前退出。
             if (isTranslationExcluded(m.target)) return;
             if (m.type === 'childList' || m.type === 'characterData') {
