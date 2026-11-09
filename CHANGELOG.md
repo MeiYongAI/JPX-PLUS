@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2026.11.10.4
 
 - Keep recognized spell attributes and weapon style when entering Item World. Its entry form shares the equipment form's ID and was incorrectly clearing both observations on submission.
 
