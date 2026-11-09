@@ -8,7 +8,7 @@ Primary and alt share settings, completed battle records and daily stamina from 
 
 When updating an existing installation, update the main script and language pack together. Monster information is built in; the companion database script is optional. GitHub sessions now renew automatically, but an older login may require one new authorization because previous versions did not save refresh credentials. Signing out requires confirmation. [Authentication details](store-authentication.md).
 
-The Simplified Chinese pack is now named JPX-PLUS-ZhCN.user.js. The old ZhTrans download remains available for existing installations; its update address now points to ZhCN. Keep only one Simplified Chinese pack enabled.
+The Simplified Chinese pack is named JPX-PLUS-ZhCN.user.js. The old ZhTrans file is no longer provided. If your installation still updates from the old ZhTrans address, install ZhCN using the link in the README. Keep only one Simplified Chinese pack enabled.
 
 ## From original JPX
 
@@ -43,7 +43,7 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 
 ### 更新 JPX-PLUS
 
-简体语言包文件名统一为 JPX-PLUS-ZhCN.user.js。旧 ZhTrans 下载地址继续兼容，更新地址指向 ZhCN。只需启用一个简体语言包。
+简体语言包统一使用 JPX-PLUS-ZhCN.user.js，不再提供旧 ZhTrans 文件。仍使用旧 ZhTrans 地址更新的用户，请通过 README 中的链接安装 ZhCN。只需启用一个简体语言包。
 
 已有安装请同步更新主脚本和语言包。怪物资料已内置，数据库配套脚本不再必需。GitHub 登录支持自动续期；旧版没有保存续期凭据，更新后可能需要重新授权一次。退出登录须确认。[登录说明](store-authentication.md#简体中文)。
 

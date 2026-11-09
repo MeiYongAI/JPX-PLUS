@@ -55,7 +55,6 @@ function metadata(source, file) {
 }
 const baseFile = 'JPX-PLUS-ZhCN.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
-assert.equal(read('JPX-PLUS-ZhTrans.user.js'), baseSource, 'Legacy Simplified Chinese URL serves the canonical ZhCN pack');
 const mainSource = read('JPX-PLUS.user.js');
 const mainVersion = mainSource.match(/^\/\/\s+@version\s+(\S+)/m)?.[1];
 assert.ok(mainVersion, 'Main userscript version');

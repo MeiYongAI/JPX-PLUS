@@ -6,6 +6,7 @@
 - Remove quickbar-based spell-school detection and its cache. Automatic spell attributes use character statistics recorded before battle; battle pages never request character or equipment pages.
 - Keep all-zero or tied highest bonuses unclassified. Discard outdated attribute observations after persona or equipment-set changes, while leaving unavailable-spell handling unchanged.
 - Remove historical raw performance reports from the repository and ignore local test experiments and generated output. Keep maintained regression tests used by CI.
+- Remove the former ZhTrans compatibility file and its build/check requirements. Use the ZhCN Simplified Chinese pack.
 
 ### 简体中文
 
@@ -13,6 +14,7 @@
 - 移除快捷栏属性识别及缓存。自动属性识别使用战前记录的人物属性，战斗中不请求人物页或装备页。
 - 加成全为零或最高值并列时不猜属性；切换人格、装备套装后清除过期属性。“法术当前不可用”的处理保持原样。
 - 历史性能原始报告改为仅保存在本地，忽略临时测试和测试产物；保留自动检查需要的正式回归测试。
+- 删除旧 ZhTrans 兼容文件及其构建、检查逻辑，简体语言包统一使用 ZhCN。
 
 ## 2026.11.10.2
 

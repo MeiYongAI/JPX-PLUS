@@ -18,7 +18,7 @@ The generated main script also embeds the shared-data, shared-UI and monster-dat
 
 Shared-data text lives in the shared-UI English JSON dictionary and each language pack's cShared section. Use the normal translation lookup; do not infer a locale from a translated label. Language checks compare every main-script English key and all module dictionaries, including placeholders, with all five packs.
 
-Edit the Simplified Chinese pack in JPX-PLUS-ZhCN.user.js. The build copies it to the former ZhTrans filename for existing installations and external links; both files point updates to ZhCN and keep the same script name and namespace. New links, tests and screenshot scripts use ZhCN. Do not edit the compatibility copy separately.
+Edit the Simplified Chinese pack in JPX-PLUS-ZhCN.user.js. Installation links, updates, tests and screenshot scripts use ZhCN. The former ZhTrans compatibility file has been removed and is no longer generated or required by the checks.
 
 ## Records-page startup
 
