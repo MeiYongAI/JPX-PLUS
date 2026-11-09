@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.08.21
+// @version      2026.11.09.1
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-end
@@ -19,6 +19,7 @@
 // @connect      github.com
 // @connect      api.github.com
 // @connect      raw.githubusercontent.com
+// @connect      hv-monsterdb-data.skk.moe
 // @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
 // @supportURL   https://github.com/MeiYongAI/JPX-PLUS/issues
 // @updateURL    https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js
@@ -270,8 +271,8 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.08.20',
-    features: Object.freeze({ configManagement: true }),
+    version: '2026.11.09.1',
+    features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
     registerSettingsTab(plugin) {
         if (!plugin || !/^[a-z][a-zA-Z0-9-]{0,39}$/.test(plugin.id) ||
@@ -2671,7 +2672,7 @@ const I18N = {
         showDurations: 'Effect turns left',
         showRealTimeProficiency: 'Live proficiency gains',
         showMonsterIndex: 'Monster numbers',
-        showMonsterInfo: 'Monster class, attack & power (requires Monster DB)',
+        showMonsterInfo: 'Monster class, attack & power',
         showMonsterHP: 'Monster HP (current / max)',
         recordBattleLog: 'Record full battle log',
         dailyStaminaQuotaPlus: 'Extra daily stamina',
@@ -3047,10 +3048,13 @@ function renderJpxCleanup(owner) {
     if (!owner) return;
     const fail = error => { console.error('JPX cleanup failed:', error); message = 'cleanupFailed'; update(); };
     try {
-        const request = indexedDB.deleteDatabase('jpx');
-        request.onblocked = () => { message = 'cleanupBlocked'; update(); };
-        request.onerror = () => fail(request.error);
-        request.onsuccess = () => {
+        const removeDatabase = name => new Promise((resolve, reject) => {
+            const request = indexedDB.deleteDatabase(name);
+            request.onblocked = () => { message = 'cleanupBlocked'; update(); };
+            request.onerror = () => reject(request.error);
+            request.onsuccess = resolve;
+        });
+        Promise.all(['jpx', 'jpx-monster-database-v1'].map(removeDatabase)).then(() => {
             try {
                 if (jpxShared.enabled) jpxShared.reset();
                 for (const storage of [window.localStorage, localStorage, sessionStorage]) {
@@ -3061,7 +3065,7 @@ function renderJpxCleanup(owner) {
                 localStorage.removeItem(cleanupKey); sessionStorage.removeItem(cleanupOwnerKey);
                 finished = true; message = 'cleanupDone'; update();
             } catch (error) { fail(error); }
-        };
+        }).catch(fail);
     } catch (error) { fail(error); }
 }
 
@@ -3450,7 +3454,6 @@ function initDo() {
     loadBattleConfig();
     initJpxModeDetection();
     initJpxLoadoutBindings();
-
     //Battle
     if (log && !doInitDoBattle) {
         initDoBattle();
@@ -3465,6 +3468,11 @@ function initDo() {
 
     //Lobby
     if (!log) {
+        if (needsJpxMonsterDatabase()) {
+            const refresh = () => getJpxMonsterDatabase().refresh(jpxMonsterWorld()).catch(error => console.warn('JPX monster database update failed.', error));
+            if (window.requestIdleCallback) window.requestIdleCallback(refresh, { timeout: 5000 });
+            else setTimeout(refresh, 0);
+        }
         if (
             (queriesObj.s === 'Bazaar' && queriesObj.ss === 'am' && queriesObj.screen === 'modify') ||
             (queriesObj.s === 'Battle' && queriesObj.ss === 'iw')
@@ -4716,6 +4724,247 @@ function updateMonsterEffects(turnLog) {
     }
 }
 
+let jpxMonsterDatabase;
+const jpxMonsterWorld = () => isekaiSuffix ? 'isekai' : 'persistent';
+function needsJpxMonsterDatabase() {
+    if (cfgBattle.showMonsterInfo) return true;
+    const keys = new Set(['tClasses', 'tPowerLevel', 'tDaysSinceUpdate']);
+    const uses = item => {
+        if (!item || typeof item !== 'object' || item.disabled) return false;
+        return keys.has(item.key) || Object.values(item).some(uses);
+    };
+    return uses(cfgBattle[getBattleMode()]);
+}
+
+function getJpxMonsterDatabase() {
+    return jpxMonsterDatabase ||= createJpxMonsterDatabase({
+        indexedDB: window.indexedDB,
+        request: world => new Promise((resolve, reject) => {
+            if (typeof GM_xmlhttpRequest !== 'function') { reject(new Error('Userscript HTTP API unavailable')); return; }
+            GM_xmlhttpRequest({ method: 'GET', url: 'https://hv-monsterdb-data.skk.moe/' + world + '.json',
+                anonymous: true, timeout: 30000,
+                onload: response => {
+                    if (response.status !== 200) { reject(new Error('Monster database HTTP ' + response.status)); return; }
+                    try { resolve(JSON.parse(response.responseText)); } catch (error) { reject(error); }
+                },
+                onerror: () => reject(new Error('Monster database network error')),
+                ontimeout: () => reject(new Error('Monster database request timed out')),
+                onabort: () => reject(new Error('Monster database request aborted'))
+            });
+        }),
+        changed: () => { if (log?.isConnected) updateJpxBuiltinMonsterInfo(false); }
+    });
+}
+
+function getJpxMonsterTargets() {
+    const decoder = document.createElement('textarea');
+    const spawned = new Map(monsterData.filter(row => row.id > 0).map(row => {
+        decoder.innerHTML = row.name;
+        return [decoder.value, row.id];
+    }));
+    return Array.from(document.querySelectorAll('#battle_right .btm1'), node => {
+        const nameNode = node.querySelector('.btm3 > div') || node.querySelector('.btm3');
+        const text = nameNode ? Array.from(nameNode.childNodes, child => child.dataset?.field === 'monTrAtkPl' ? '' : child.textContent).join('').trim() : '';
+        const name = text || (nameNode ? jpxUtils.parseHVClasses(nameNode) : '');
+        return { key: node.id, name, id: spawned.get(name) || 0 };
+    }).filter(row => row.key && row.name);
+}
+
+function renderJpxMonsterInfo() {
+    if (!cfgBattle.showMonsterInfo) return;
+    for (const monster of monstersObj.monsters) {
+        if (!monster.monster_btm1.isConnected) continue;
+        const info = allMonsterInfo?.[monster.monster_btm1.id];
+        const monClass = monster.monster_btm1.querySelector('[data-field="monClass"]');
+        if (monClass) setBattleText(monClass, info?.monsterClass ?? '?');
+        const details = monster.monster_btm1.querySelector('[data-field="monTrAtkPl"]');
+        if (details) setBattleText(details, info ? `${info.attack ?? '?'}, ${info.plvl ?? '?'}` : '');
+    }
+}
+
+async function updateJpxBuiltinMonsterInfo(download = true) {
+    if (!needsJpxMonsterDatabase()) return;
+    const generation = battleUpdateGeneration, battleLog = log, targets = getJpxMonsterTargets();
+    if (!targets.length || !isCurrentBattleUpdate(generation, battleLog)) return;
+    try {
+        const info = await getJpxMonsterDatabase().lookup(jpxMonsterWorld(), targets, download);
+        if (!isCurrentBattleUpdate(generation, battleLog)) return;
+        for (const [key, row] of Object.entries(info)) {
+            const current = allMonsterInfo[key];
+            if (!current || current.monsterId !== row.monsterId ||
+                !(Date.parse(current.lastUpdate) > Date.parse(row.lastUpdate))) allMonsterInfo[key] = row;
+        }
+        renderJpxMonsterInfo();
+    } catch (error) { console.warn('JPX monster cache unavailable.', error); }
+}
+
+function recordJpxMonsterScan(html) {
+    if (!html?.includes('Scanning')) return;
+    const targets = getJpxMonsterTargets();
+    const row = parseJpxMonsterScan(html, targets, document);
+    if (!row || !getJpxMonsterDatabase().normalize(row)) return;
+    const target = targets.find(item => item.id === row.monsterId);
+    allMonsterInfo[target.key] = row;
+    renderJpxMonsterInfo();
+    getJpxMonsterDatabase().scan(jpxMonsterWorld(), row).catch(error => console.warn('JPX monster scan could not be cached.', error));
+}
+
+// BEGIN JPX MONSTER DATABASE
+// Public data: https://hv-monster.skk.moe/ (Sukka Monster Database).
+// Store only the fields JPX consumes. IndexedDB avoids reading a full database
+// on navigation or putting megabytes into the synchronous settings store.
+function createJpxMonsterDatabase({ indexedDB, request, now = Date.now, changed = () => {} }) {
+    const classes = new Set('Arthropod Avion Beast Celestial Daimon Dragonkin Elemental Giant Humanoid Mechanoid Reptilian Sprite Undead Common Rare Legendary Ultimate'.split(' '));
+    const attacks = new Set('Piercing Crushing Slashing Fire Cold Wind Elec Holy Dark Void'.split(' '));
+    const pending = new Map();
+    let opening;
+    const day = () => new Date(now()).toISOString().slice(0, 10);
+    function normalize(row) {
+        if (!row || !Number.isSafeInteger(row.monsterId) || row.monsterId <= 0 ||
+            typeof row.monsterName !== 'string' || !row.monsterName.trim() || row.monsterName.length > 256 ||
+            !classes.has(row.monsterClass) || !attacks.has(row.attack) ||
+            !Number.isSafeInteger(row.plvl) || row.plvl < 0 ||
+            typeof row.lastUpdate !== 'string' || !Number.isFinite(Date.parse(row.lastUpdate))) return null;
+        return { monsterId: row.monsterId, monsterName: row.monsterName, monsterClass: row.monsterClass,
+            attack: row.attack, plvl: row.plvl, lastUpdate: row.lastUpdate };
+    }
+    function open() {
+        if (!opening) opening = new Promise((resolve, reject) => {
+            const req = indexedDB.open('jpx-monster-database-v1', 1);
+            req.onupgradeneeded = () => {
+                const db = req.result;
+                const records = db.createObjectStore('monsters', { keyPath: ['world', 'monsterId'] });
+                records.createIndex('name', ['world', 'monsterName']);
+                db.createObjectStore('meta');
+                db.createObjectStore('scans', { keyPath: ['world', 'monsterId'] }).createIndex('name', ['world', 'monsterName']);
+            };
+            req.onerror = () => reject(req.error);
+            req.onblocked = () => reject(new Error('Monster cache is blocked by another tab'));
+            req.onsuccess = () => { req.result.onversionchange = () => { req.result.close(); opening = null; }; resolve(req.result); };
+        }).catch(error => { opening = null; throw error; });
+        return opening;
+    }
+    const value = req => new Promise((resolve, reject) => { req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error); });
+    const done = tx => new Promise((resolve, reject) => { tx.oncomplete = resolve; tx.onerror = tx.onabort = () => reject(tx.error || new Error('Monster cache write aborted')); });
+    async function metadata(world) {
+        const db = await open();
+        return await value(db.transaction('meta').objectStore('meta').get(world)) || {};
+    }
+    async function claimRefresh(world) {
+        const db = await open(), tx = db.transaction('meta', 'readwrite'), complete = done(tx);
+        const store = tx.objectStore('meta'), req = store.get(world);
+        let claimed = false;
+        req.onsuccess = () => {
+            const meta = req.result || {};
+            if (meta.day === day() || meta.retryAfter > now()) return;
+            claimed = true;
+            // This read and write share one transaction, so different tabs do
+            // not both start the large daily download. Failure expires the lease.
+            store.put({ ...meta, retryAfter: now() + 5 * 60 * 1000 }, world);
+        };
+        await complete; return claimed;
+    }
+    async function refresh(world) {
+        if (pending.has(world)) return pending.get(world);
+        const job = (async () => {
+            if (!await claimRefresh(world)) return false;
+            const rows = await request(world);
+            if (!Array.isArray(rows) || !rows.length || rows.length > 200000) throw new Error('Invalid monster database response');
+            const records = [], ids = new Set();
+            for (let offset = 0; offset < rows.length; offset += 500) {
+                for (const input of rows.slice(offset, offset + 500)) {
+                    const row = normalize(input);
+                    if (!row) continue;
+                    if (ids.has(row.monsterId)) throw new Error('Monster database contains duplicate IDs');
+                    ids.add(row.monsterId); records.push(row);
+                }
+                if (offset + 500 < rows.length) await new Promise(resolve => setTimeout(resolve, 0));
+            }
+            if (records.length < rows.length * 0.95) throw new Error('Monster database contains invalid records');
+            const db = await open(), tx = db.transaction(['monsters', 'meta'], 'readwrite'), complete = done(tx);
+            const store = tx.objectStore('monsters');
+            // Replace just this world's snapshot, atomically. Readers see the old
+            // snapshot until commit; failed downloads/writes never erase it.
+            store.delete(IDBKeyRange.bound([world, 0], [world, Number.MAX_SAFE_INTEGER]));
+            let offset = 0;
+            const batch = () => {
+                try {
+                    const end = Math.min(offset + 250, records.length);
+                    let last;
+                    for (; offset < end; offset++) last = store.put({ ...records[offset], world });
+                    // Continue inside IDB success events: the transaction remains
+                    // atomic while each small batch yields to rendering/input.
+                    if (offset < records.length) last.onsuccess = batch;
+                    else tx.objectStore('meta').put({ day: day(), count: records.length }, world);
+                } catch { tx.abort(); }
+            };
+            batch();
+            await complete;
+            return true;
+        })().finally(() => pending.delete(world));
+        pending.set(world, job);
+        return job;
+    }
+    async function read(world, targets) {
+        const result = {}, db = await open();
+        const tx = db.transaction(['monsters', 'scans']);
+        const store = tx.objectStore('monsters'), scans = tx.objectStore('scans');
+        await Promise.all(targets.map(async target => {
+            const base = target.id > 0 ? store.get([world, target.id]) : store.index('name').get([world, target.name]);
+            // An authoritative spawned ID must never fall back to a different
+            // monster with the same name. Name lookup is only for mid-round reloads.
+            const scan = target.id > 0 ? scans.get([world, target.id]) : scans.index('name').get([world, target.name]);
+            const [cached, local] = await Promise.all([value(base), value(scan)]);
+            let row = local && (!cached || Date.parse(local.lastUpdate) >= Date.parse(cached.lastUpdate)) ? local : cached;
+            row = row ? normalize(row) : null;
+            if (row) result[target.key] = { ...row };
+        }));
+        return result;
+    }
+    async function lookup(world, targets, download = true) {
+        const cached = await read(world, targets);
+        if (!download) return cached;
+        if (Object.keys(cached).length) {
+            refresh(world).then(updated => { if (updated) changed(); }).catch(error => console.warn('JPX monster database refresh failed; using cached data.', error));
+            return cached;
+        }
+        try { if (await refresh(world)) return await read(world, targets); }
+        catch (error) { console.warn('JPX monster database unavailable.', error); }
+        return cached;
+    }
+    async function scan(world, record) {
+        const row = normalize(record);
+        if (!row) return false;
+        const db = await open(), tx = db.transaction('scans', 'readwrite'), complete = done(tx);
+        tx.objectStore('scans').put({ ...row, world }); await complete;
+        return true;
+    }
+    return { lookup, refresh, scan, normalize, metadata };
+}
+
+// Parse only the fields displayed/used by JPX. Both old and new Scan layouts
+// use labelled table cells; parsing detached DOM also handles translation wrappers.
+function parseJpxMonsterScan(html, targets, document, timestamp = Date.now()) {
+    if (!html?.includes('Scanning')) return null;
+    const template = document.createElement('template'); template.innerHTML = html;
+    const root = template.content;
+    const name = root.textContent.match(/Scanning\s+(.+?)\.\.\./)?.[1]?.trim();
+    const target = targets.find(item => item.name === name);
+    if (!target?.id) return null;
+    const fields = {};
+    for (const cell of root.querySelectorAll('td')) {
+        const label = cell.textContent.trim().replace(/:$/, '');
+        if (['Monster Class', 'Melee Attack', 'Attack Type', 'Attack'].includes(label)) fields[label] = cell.nextElementSibling?.textContent.trim();
+    }
+    const type = fields['Monster Class']?.match(/^([A-Za-z]+)(?:,\s*Power Level (\d+))?$/);
+    const attack = (fields['Melee Attack'] || fields['Attack Type'] || fields.Attack)?.match(/^([A-Za-z]+)(?:[;\s]|$)/)?.[1];
+    if (!type || !attack) return null;
+    return { monsterId: target.id, monsterName: name, monsterClass: type[1],
+        plvl: Number(type[2] || 0), attack, lastUpdate: new Date(timestamp).toISOString() };
+}
+
+// END JPX MONSTER DATABASE
+
 function getMonsterInfoSignature(info) {
     // The fields consumed by display and battle conditions can change after Scan
     // even when the database mutates the same object and keeps the monster IDs.
@@ -4765,22 +5014,23 @@ function updateMonsterInfo(refresh = false) {
     }
     const request = monsterDBReady(prevMonsterIds, prevMonsterInfoSignature, generation, battleLog, refresh);
     monsterInfoRequest = request;
-    request.promise = request.promise.then(result => {
+    const builtin = updateJpxBuiltinMonsterInfo();
+    const companion = request.promise.then(result => {
         if (!result || !isCurrentBattleUpdate(generation, battleLog)) return;
-        allMonsterInfo = result.info;
+        // Retain a newer local Scan if the companion has not processed it yet.
+        const merged = { ...result.info };
+        for (const [key, current] of Object.entries(allMonsterInfo)) {
+            const row = merged[key];
+            if (getJpxMonsterDatabase().normalize(current) && (!row ||
+                (current.monsterId === row.monsterId && Date.parse(current.lastUpdate) > Date.parse(row.lastUpdate)))) merged[key] = current;
+        }
+        allMonsterInfo = merged;
         prevMonsterIds = result.monsterIds;
         prevMonsterInfoSignature = result.signature;
 
-        if (!cfgBattle.showMonsterInfo) return;
-        for (const monster of monstersObj.monsters) {
-            if (!monster.monster_btm1.isConnected) continue;
-            let monsterInfo = allMonsterInfo?.[`mkey_${(monster.index + 1) % 10}`];
-            let monClass = monster.monster_btm1.querySelector('[data-field="monClass"]');
-            if (monClass) setBattleText(monClass, monsterInfo?.monsterClass ?? '?');
-            let monTrAtkPl = monster.monster_btm1.querySelector('[data-field="monTrAtkPl"]')
-            if (monTrAtkPl) setBattleText(monTrAtkPl, `${monsterInfo?.attack ?? '?'}, ${monsterInfo?.plvl ?? '?'}`);
-        }
-    }).finally(() => {
+        renderJpxMonsterInfo();
+    });
+    request.promise = Promise.all([companion, builtin]).finally(() => {
         if (monsterInfoRequest === request) monsterInfoRequest = null;
     });
     return request.promise;
@@ -5285,7 +5535,7 @@ function combatRecorder(turnLog, action, use) {
             jpxUtils.inc(combatRecords.use, use);
             jpxUtils.inc(actionCounts, use);
 			actionCounts.history.unshift(use);
-            use === 'Scan' && updateMonsterInfo(true);
+            if (use === 'Scan') { recordJpxMonsterScan(turnLog); updateMonsterInfo(true); }
         }
     } else if (action.includes('Spirit Stance Engaged')) {
         jpxUtils.inc(combatRecords.use, 'Spirit');
@@ -10227,6 +10477,9 @@ function renderSettings() {
         localStorage.setItem(prefix + 'userKeybinds' + isekaiSuffix, JSON.stringify(userKeybinds));
         refreshJpxSelectedConfig();
         jpxPanelManager.refreshAppearance?.();
+        if (log?.isConnected) { monstersObj = getMonsters(true); updateMonsterInfo(); }
+        else if (!document.querySelector('#riddlemaster') && needsJpxMonsterDatabase())
+            getJpxMonsterDatabase().refresh(jpxMonsterWorld()).catch(error => console.warn('JPX monster database update failed.', error));
     }
 
     function saveKeyBindings() {

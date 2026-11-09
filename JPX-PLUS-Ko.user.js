@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.21
+// @version      2026.11.09.1
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -207,7 +207,7 @@
         "showDurations": "효과의 남은 턴 표시",
         "showRealTimeProficiency": "숙련도 상승량 실시간 표시",
         "showMonsterIndex": "몬스터 번호 표시",
-        "showMonsterInfo": "몬스터 종족·공격 유형·전투력 표시 (Monster DB 필요)",
+        "showMonsterInfo": "몬스터 종족·공격 유형·전투력 표시",
         "showMonsterHP": "몬스터 HP 표시 (현재 / 최대)",
         "recordBattleLog": "전투 로그 기록",
         "dailyStaminaQuotaPlus": "일일 추가 스태미나",

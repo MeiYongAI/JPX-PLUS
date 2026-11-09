@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.21
+// @version      2026.11.09.1
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -198,7 +198,7 @@
 			"showDurations": "显示状态剩余回合",
 			"showRealTimeProficiency": "实时显示熟练度增量",
 			"showMonsterIndex": "显示怪物编号",
-			"showMonsterInfo": "显示怪物类别、攻击类型和战斗力（需安装怪物数据库脚本）",
+			"showMonsterInfo": "显示怪物类别、攻击类型和战斗力",
 			"showMonsterHP": "显示怪物当前血量和最大血量",
 			"recordBattleLog": "记录战斗日志",
 			"dailyStaminaQuotaPlus": "每日额外精力额度",

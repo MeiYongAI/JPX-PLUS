@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026.11.09.1
+
+- Built in Sukka monster database reads: class, attack and power no longer require a companion script. Persistent/Isekai caches use IndexedDB and refresh daily on demand, with offline fallback, retry backoff and per-origin tab coordination.
+- Preserve current-round identity through AJAX replacement; local Scan results refresh display and metadata conditions without uploads. Chunked imports avoid the large synchronous IDB write loop. Existing companion API remains supported.
+- Update all five language packs, and include the monster cache in full data cleanup. See [behavior and verification details](docs/monster-database.md).
+- Verification: 586/586 offline repository tests, build/source consistency and language checks passed. Real public snapshots were validated and imported in isolated Chrome. No real game account or installed userscript was exercised.
+
+### 简体中文
+
+- 内置 Sukka 怪物数据库读取，怪物类别、攻击类型和战斗力无需另装数据库脚本；主／异世界分库，按需每日更新，支持旧缓存回退、失败退避与同源标签页去重。
+- AJAX 换轮丢弃迟到结果；Scan 更新本地资料及显示，不上传。完整数据库采用分批导入，保留旧配套脚本 API 兼容。
+- 同步五个语言包，清除全部数据时包括怪物缓存。详见[行为与验证边界](docs/monster-database.md#简体中文)。
+
 ## 2026.11.08.21
 
 - Shorten the mouse-enter pause setting help to its prerequisite sentence in English and all five language packs. Battle behavior is unchanged.

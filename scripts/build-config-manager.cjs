@@ -12,6 +12,10 @@ const sharedEnd = '// END JPX SHARED DATA';
 const shared = [sharedStart, fs.readFileSync(path.join(root, 'src/shared-data.js'), 'utf8'), sharedEnd].join('\n');
 if (source.includes(sharedStart)) source = source.slice(0, source.indexOf(sharedStart)) + shared + source.slice(source.indexOf(sharedEnd) + sharedEnd.length);
 else source = source.replace('// Keep the existing Battle API', shared + '\n\n// Keep the existing Battle API');
+const monsterStart = '// BEGIN JPX MONSTER DATABASE', monsterEnd = '// END JPX MONSTER DATABASE';
+const monster = [monsterStart, fs.readFileSync(path.join(root, 'src/monster-database.js'), 'utf8'), monsterEnd].join('\n');
+if (source.includes(monsterStart)) source = source.slice(0, source.indexOf(monsterStart)) + monster + source.slice(source.indexOf(monsterEnd) + monsterEnd.length);
+else source = source.replace('function getMonsterInfoSignature(info) {', monster + '\n\nfunction getMonsterInfoSignature(info) {');
 const block = [start, 'I18N.cM = ' + JSON.stringify(JSON.parse(read('en.json'))) + ';',
     'const JPX_CONFIG_MANAGER_CSS = ' + JSON.stringify(read('manager.css')) + ';',
     read('library.js'), read('store.js'), read('manager.js'), read('bindings.js'),

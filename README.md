@@ -21,6 +21,8 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 **Configs and Store are included in the main script.** No separate store installation is needed. Coming from JPX? See the short [upgrade guide](docs/upgrading.md).
 
+**Monster information is built in.** Enable **Basic settings → Monster class, attack & power** and save; no Monster DB userscript is required. Data is supplied by [Sukka's Monster Database](https://hv-monster.skk.moe/), cached separately for Persistent and Isekai, and refreshed at most once per UTC day when needed. [Cache, Scan and compatibility details](docs/monster-database.md).
+
 **Primary / alt shared data:** the same userscript installation shares settings, completed battle history and daily stamina across both hosts. Visit each host once outside combat after updating. Old copies and stamina migration controls are under **Stats → Data**. [Scope and migration details](docs/alt-shared-data-2026-11-08.md).
 
 ## Configs

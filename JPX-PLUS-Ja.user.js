@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.08.21
+// @version      2026.11.09.1
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-end
 // @match        *://*.hentaiverse.org/*
@@ -207,7 +207,7 @@
             "showDurations": "効果の残りターンを表示",
             "showRealTimeProficiency": "熟練度の上昇をリアルタイム表示",
             "showMonsterIndex": "モンスター番号を表示",
-            "showMonsterInfo": "種族・攻撃タイプ・戦闘力を表示（Monster DB が必要）",
+            "showMonsterInfo": "種族・攻撃タイプ・戦闘力を表示",
             "showMonsterHP": "モンスターの現在 HP／最大 HP を表示",
             "recordBattleLog": "戦闘ログを記録",
             "dailyStaminaQuotaPlus": "1 日の追加スタミナ枠",
