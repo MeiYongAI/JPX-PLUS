@@ -54,6 +54,9 @@ function metadata(source, file) {
 }
 const baseFile = 'JPX-PLUS-ZhTrans.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
+const mainVersion = read('JPX-PLUS.user.js').match(/^\/\/\s+@version\s+(\S+)/m)?.[1];
+assert.ok(mainVersion, 'Main userscript version');
+assert.equal(baseMetadata.version[0], mainVersion, baseFile + ': version matches main userscript');
 const { cStore: baseStore, cM: baseManager, ...baseUI } = base;
 const baseEntries = flatten(baseUI);
 const storeSource = read('src/config-manager/store.js');
@@ -74,6 +77,7 @@ const results = [];
 for (const locale of locales) {
     const file = 'JPX-PLUS-' + locale + '.user.js';
     const source = read(file), dictionary = evaluate(source, file), fields = metadata(source, file);
+    assert.equal(fields.version[0], mainVersion, file + ': version matches main userscript');
     for (const key of ['namespace', 'match', 'exclude', 'run-at']) assert.deepEqual(fields[key], baseMetadata[key], file + ': @' + key + ' compatibility');
     const { cStore, cM, ...ui } = dictionary;
     validateEntries(flatten(ui), baseEntries, file);

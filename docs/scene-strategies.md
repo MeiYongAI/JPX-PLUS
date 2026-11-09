@@ -7,7 +7,7 @@ Persistent shows General, Arena, Item World, Encounter, and Grindfest. Isekai sh
 - Changing a picker reveals **Assign** and **Cancel**. **Assign** records the selected rules as a snapshot for that scene; **Cancel** restores the current choice. Neither browsing nor selecting a draft changes battle behavior.
 - **Inherit General** removes the scene-specific assignment. General is resolved for the same world and style.
 - **No assignment** on General removes its assignment. If neither scene nor General has usable rules, automatic battle pauses with a reason.
-- Existing native slots remain available as **Current settings** until explicitly replaced or cleared. This preserves existing automatic routing when upgrading.
+- Existing native slots remain available under their resolved strategy names until explicitly replaced or cleared. This preserves existing automatic routing when upgrading.
 - **Save** changes the library copy only. Assign the newer revision when ready; the panel marks saved changes that are not assigned yet.
 - **Apply** on a single config selects fixed rules across scenes in the chosen world and persists after reload. **Restore automatic selection** exits fixed mode without deleting saved rules or assignments. Applying a whole file exits single-group selection; explicit scene assignments remain in place.
 

@@ -1,9 +1,9 @@
 name: Check configuration management
 on:
   push:
-    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'scripts/build-config-*.cjs', 'scripts/check-preview.cjs', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
+    paths: ['JPX-PLUS*.user.js', 'README*.md', 'CHANGELOG.md', 'src/config-manager/**', 'scripts/build-config-*.cjs', 'scripts/check-*.cjs', 'scripts/screenshots/**', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
   pull_request:
-    paths: ['JPX-PLUS*.user.js', 'src/config-manager/**', 'scripts/build-config-*.cjs', 'scripts/check-preview.cjs', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
+    paths: ['JPX-PLUS*.user.js', 'README*.md', 'CHANGELOG.md', 'src/config-manager/**', 'scripts/build-config-*.cjs', 'scripts/check-*.cjs', 'scripts/screenshots/**', 'docs/**', 'tests/**', 'package*.json', '.github/workflows/config-store.yml']
   workflow_dispatch:
 permissions:
   contents: read

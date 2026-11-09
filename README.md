@@ -29,7 +29,7 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 Keep several setups for the same style, battle and world. **My configs** handles saving, renaming, filtering and sorting; **Edit** opens a separate rule editor.
 
-**Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Restore automatic selection** exits fixed single-group mode. [How selection works](docs/scene-strategies.md).
+**Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Restore automatic selection** exits fixed single-group mode. [How selection works](docs/scene-strategies.md). [Scene preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=scenes).
 
 <table>
 <tr><th width="50%">My configs</th><th width="50%">Rule editor</th></tr>
@@ -40,7 +40,8 @@ Keep several setups for the same style, battle and world. **My configs** handles
 - **Save** in the editor updates your saved copy. Use **Update & apply** when you want the edited rules to take effect.
 - **More → Bind loadout** links a config to a world's persona and equipment set. Switching to that combination applies its saved rules. One config can serve several sets; unbound sets keep the current rules.
 - Colored tags identify styles, worlds, battle types and elements consistently in both themes. Tags come from the config's rule groups. Filter by world, style, battle or type; search by name and tags. Sort by type, update time, name, or drag configs into a manual order.
-- Import original JPX files. Export the rules **In use**, the **Full config**, or **Choose rules**. A full config keeps the original automatic group routing.
+- **More → Delete** lists a config's references. Confirm **Detach and delete** to remove the references and saved copy.
+- Import original JPX files. Export the rules **In use**, the **Full config**, or **Choose rules**. Scene assignments stay in the PLUS library and are not included in native JPX exports.
 
 <details>
 <summary>Loadout bindings and Export rules</summary>
@@ -55,6 +56,8 @@ Keep several setups for the same style, battle and world. **My configs** handles
 ### Store and sharing
 
 Browse and download without signing in. Save a store config to **My configs**, then apply it when ready. Sign in with GitHub to share a saved config and manage it under **Shared**.
+
+GitHub sign-in renews automatically; signing out requires confirmation. After updating from an older version, you may need to sign in once more. [Sign-in details](docs/store-authentication.md).
 
 <table>
 <tr><th width="50%">Store</th><th width="50%">Shared configs</th></tr>

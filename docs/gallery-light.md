@@ -10,6 +10,10 @@ Actual script interfaces with offline sample data.
 
 ![My configs](images/desktop-configs-en.png)
 
+### Scene strategies
+
+![Scene strategies](images/desktop-scenes-en.png)
+
 ### Loadout bindings
 
 ![Loadout bindings](images/desktop-bindings-en.png)
@@ -29,6 +33,10 @@ Actual script interfaces with offline sample data.
 ### Shared configs
 
 ![Shared configs](images/desktop-shared-en.png)
+
+### Sign out
+
+![Sign out](images/desktop-signout-en.png)
 
 ### Export rules
 
@@ -68,6 +76,10 @@ Actual script interfaces with offline sample data.
 
 ![My configs](images/mobile-configs-en.png)
 
+### Scene strategies
+
+![Scene strategies](images/mobile-scenes-en.png)
+
 ### Loadout bindings
 
 ![Loadout bindings](images/mobile-bindings-en.png)
@@ -87,6 +99,10 @@ Actual script interfaces with offline sample data.
 ### Shared configs
 
 ![Shared configs](images/mobile-shared-en.png)
+
+### Sign out
+
+![Sign out](images/mobile-signout-en.png)
 
 ### Export rules
 

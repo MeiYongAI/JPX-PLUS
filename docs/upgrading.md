@@ -4,6 +4,10 @@ Primary and alt share settings, completed battle records and daily stamina from 
 
 [English README](../README.md) · [简体中文](#简体中文)
 
+## Updating JPX-PLUS
+
+When updating an existing installation, update the main script and language pack together. Monster information is built in; the companion database script is optional. GitHub sessions now renew automatically, but an older login may require one new authorization because previous versions did not save refresh credentials. Signing out requires confirmation. [Authentication details](store-authentication.md).
+
 ## From original JPX
 
 Export the settings and records you want to keep, then disable the old main script and its language pack. Install JPX-PLUS and, if needed, one matching language pack.
@@ -23,6 +27,9 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 | Action | Result |
 | --- | --- |
 | Save in the rule editor | Update the local saved copy |
+| Scene strategies → Assign | Save a scene snapshot; unassigned scenes inherit General |
+| Restore automatic selection | Exit fixed single-group mode without deleting saved rules |
+| Detach and delete | List and remove references, then delete the saved copy |
 | Apply / Update & apply | Write those rules to the selected world and use them; pause automatic battle actions if running |
 | Store → Save | Add a local copy without applying it |
 | Store → Update saved copy | Replace that local copy after your confirmation; apply it separately |
@@ -31,6 +38,10 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 | Remove from list | Archive a withdrawn submission in the UI; keep its GitHub record and local rules |
 
 ## 简体中文
+
+### 更新 JPX-PLUS
+
+已有安装请同步更新主脚本和语言包。怪物资料已内置，数据库配套脚本不再必需。GitHub 登录支持自动续期；旧版没有保存续期凭据，更新后可能需要重新授权一次。退出登录须确认。[登录说明](store-authentication.md#简体中文)。
 
 ### 从原版 JPX 迁移
 
@@ -49,3 +60,5 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 在**我的配置 → 更多 → 绑定套装**选择世界、人格和装备套装。切换到已绑定组合后自动应用对应规则；同一配置可绑定多个组合，每个组合对应一份配置。绑定仅保存在本地，不进入原版 JPX 导出文件。手动应用保持有效，直到切换到其它组合；未绑定的套装和解除绑定都保持当前规则。修改已绑定副本后，下次切换时使用新版；后续更新加入自定义代码时需重新确认绑定。
 
 编辑页**保存**更新本地副本，**应用 / 更新并应用**才让规则生效；从商店保存或更新副本同样不会自动应用。**已分享 → 更新**修改同一投稿，审核期间保留已通过的旧版。撤下不删除他人的本地副本，移除记录也不会删除自己的规则或 GitHub 历史。
+
+**场景策略 → 分配**保存场景快照，**恢复自动选择**退出固定单组。删除被引用的副本时，先查看引用位置，再选择**解除引用并删除**。

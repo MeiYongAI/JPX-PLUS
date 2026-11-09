@@ -28,6 +28,15 @@ function boot(){
     for(const [en,zh,key,world] of values)lib.save({schemaVersion:1,kind:'battle-mode',title:english?en:zh,description:'',world,mode:key,config:{battleVersion:defaultCfgBattle.battleVersion,[key]:mode(key)}});
     lib.save({schemaVersion:1,kind:'stats',title:english?'Compact battle stats':'简洁战斗统计',description:'',world:'Any',config:clone(defaultCfgStats)});
     return lib.readState().entries.map(entry=>({id:entry.id,title:entry.envelope.title}));
+  },scenes(english){
+    restoreJpxAutomaticSelection();
+    const lib=getJpxConfigLibrary(),general=lib.get('native-Persistent-OneHanded_General');
+    lib.assignScene('Persistent','OneHanded_General',general.id,general.envelope.mode,general.revision);
+    for(const [scene,en,zh] of [['Arena','Arena shield','单手 · 竞技场'],['Item','Item World shield','单手 · 道具世界']]){
+      const key='OneHanded_'+scene,entry=lib.save({schemaVersion:1,kind:'battle-mode',title:english?en:zh,description:'',world:'Persistent',mode:key,config:{battleVersion:defaultCfgBattle.battleVersion,[key]:mode('OneHanded_General')}});
+      lib.assignScene('Persistent',key,entry.id,key,entry.revision);
+    }
+    battleType='Arena';refreshJpxSelectedConfig();window.dispatchEvent(new Event('jpx:config-library'));
   }};
 }
 const harness=source.replace('\ninitDo();','\n('+boot.toString()+')();');
@@ -117,9 +126,15 @@ async function capture(browser,english,mobile){
     await page.locator('.jpx-store-row').first().waitFor();await pair('store');
     await page.getByRole('button',{name:await label('cStore.shared'),exact:true}).click();
     await page.locator('[data-shared-id]').first().waitFor();await pair('shared');
+    await page.getByRole('button',{name:(await label('cStore.signOut'))+' · DemoPlayer',exact:true}).click();
+    await page.locator('.jpx-config-confirm').waitFor();await pair('signout');
+    await page.locator('.jpx-config-confirm').getByRole('button',{name:await label('cM.cancel'),exact:true}).click();
+    await page.locator('.jpx-config-nav').getByRole('button',{name:await label('cM.mine'),exact:true}).click();
+    await page.evaluate(english=>__shots.scenes(english),english);
+    await page.locator('.jpx-scene-open').click();await page.locator('.jpx-scenes-table').waitFor();await pair('scenes');
     await tab('battle');await page.locator('#export-button').click();await page.locator('#jpx-battle-export').waitFor();await pair('export');
     assert.deepEqual(errors,[]);
-    console.log(JSON.stringify({language:english?'en':'zh-CN',device:mobile?'mobile':'desktop',scenes:7,themes:2,errors}));
+    console.log(JSON.stringify({language:english?'en':'zh-CN',device:mobile?'mobile':'desktop',scenes:9,themes:2,errors}));
   }finally{await context.close();}
 }
 (async()=>{fs.mkdirSync(output,{recursive:true});const browser=await chromium.launch({...(process.env.PLAYWRIGHT_CHANNEL?{channel:process.env.PLAYWRIGHT_CHANNEL}:{}),headless:true});try{for(const english of [true,false])for(const mobile of [false,true])await capture(browser,english,mobile);}finally{await browser.close();}})().catch(error=>{console.error(error);process.exitCode=1;});

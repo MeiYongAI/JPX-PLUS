@@ -8,6 +8,7 @@
 - Keep scene assignments separate from native JPX exports. Applying or detaching assignments pauses affected battle tabs. See [selection behavior](docs/scene-strategies.md).
 - Simplify scene assignments into aligned desktop rows and stacked mobile controls. Show Assign/Cancel only for pending changes, preserve readable long options, and require confirmation before signing out of the config store.
 - Renew GitHub device-flow sessions instead of imposing an eight-hour logout. Preserve credentials on temporary failures and protect newer logins from stale responses. Older installations may need one new authorization; see [authentication behavior](docs/store-authentication.md).
+- Documentation follow-up: synchronize all six READMEs and upgrade guides, refresh screenshots, add scene-strategy and sign-out previews, and check local documentation links and language-pack versions. All 112 updated preview scenarios passed.
 - Verification: all 637 tests included in this release passed. Documentation previews passed 96 scenarios; source consistency, syntax and language packs passed. Live split-view gameplay and long-running real-account renewal were not exercised.
 
 ### 简体中文
@@ -17,6 +18,7 @@
 - #9：新增场景策略面板，支持双世界、十种流派、继承通用和无策略暂停。保存副本不会自动更新已分配的规则。
 - 精简场景策略界面，桌面横向对齐、手机纵向排列，修改后才显示操作按钮；长名称可展开查看，退出配置仓库登录须再次确认。
 - 修复八小时后掉登录：保存续期凭据并自动更新，临时失败保留登录，防止旧请求误删新登录。旧版更新后可能需要重新授权一次。
+- 文档补全：同步六份 README 与升级说明，重拍截图，补充场景策略和退出确认预览，并校验文档链接及语言包版本。更新后的 112 个预览场景全部通过。
 
 ## 2026.11.09.1
 

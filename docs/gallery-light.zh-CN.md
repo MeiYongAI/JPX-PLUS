@@ -10,6 +10,10 @@
 
 ![我的配置](images/desktop-configs.png)
 
+### 场景策略
+
+![场景策略](images/desktop-scenes.png)
+
 ### 套装绑定
 
 ![套装绑定](images/desktop-bindings.png)
@@ -29,6 +33,10 @@
 ### 已分享
 
 ![已分享](images/desktop-shared.png)
+
+### 退出登录
+
+![退出登录](images/desktop-signout.png)
 
 ### 导出规则
 
@@ -68,6 +76,10 @@
 
 ![我的配置](images/mobile-configs.png)
 
+### 场景策略
+
+![场景策略](images/mobile-scenes.png)
+
 ### 套装绑定
 
 ![套装绑定](images/mobile-bindings.png)
@@ -87,6 +99,10 @@
 ### 已分享
 
 ![已分享](images/mobile-shared.png)
+
+### 退出登录
+
+![退出登录](images/mobile-signout.png)
 
 ### 导出规则
 

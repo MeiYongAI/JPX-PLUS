@@ -14,6 +14,8 @@ The installed entry point is `JPX-PLUS.user.js`. It contains the core and the ge
 
 Edit the manager modules, then rebuild. Do not hand-edit the generated section in the main script. Native config structures and library storage have separate responsibilities; see [the module notes](../src/config-manager/README.md).
 
+The generated main script also embeds the shared-data, shared-UI and monster-database modules from the source directory. Changes to these modules require the same rebuild and consistency check.
+
 ## Build and test
 
 Requires Node.js 22 or newer. From the repository root:
@@ -29,6 +31,8 @@ npm test
 `npm run check` verifies syntax, reproducible generated blocks and all five external language packs. Browser tests use disposable profiles and mocked transport. They do not access your installed userscripts, account, battle or GitHub credentials. They do not measure live game network latency.
 
 To use an installed Chrome instead of the downloaded test browser, set `PLAYWRIGHT_CHANNEL=chrome`. The optional `JPX_CONFIG_REPRO` environment variable lets the battle-import regression inspect a local reporter file without committing it.
+
+Release checks cover all six READMEs, matching main-script/language-pack versions, upgrade guides, preview navigation, static galleries and current screenshots. The documentation check validates local file links and guide/gallery coverage; review translated behavior descriptions against the UI. Keep unresolved live-game issues explicit in the changelog.
 
 ## Battle performance
 
@@ -47,10 +51,10 @@ Screenshots are produced from the actual script renderers with invented, offline
 
 The neutral screenshot backdrop follows the selected theme; fixture styling does not change the product UI. The Pages preview retains browser-language detection, remembered language, URL parameters and theme/device switching. The old `page=backpack` link redirects within the preview to `configs`.
 
-The configuration-review service is maintained separately in [JPX-PLUS-Configs](https://github.com/MeiYongAI/JPX-PLUS-Configs). Ship its security-policy and catalog-metadata update alongside the manager release. Never put tokens, application private keys, reporter configs, personal automation builds or local backups in a release.
+The configuration-review service is maintained separately in [JPX-PLUS-Configs](https://github.com/MeiYongAI/JPX-PLUS-Configs). Coordinate backend updates when changing the shared envelope, catalog or review contract. Scene assignments and session renewal do not change that contract. Never put tokens, application private keys, reporter configs, personal automation builds or local backups in a release.
 
 ## 中文简述
 
 主脚本仍是独立用户脚本。配置管理源码集中在 `src/config-manager/`，修改后运行 `npm run build`，再执行 `npm run check` 和 `npm test`。测试不使用真实账号、战斗或已安装脚本的存储。
 
-截图使用真实渲染函数和离线示例数据，运行 `npm run screenshots` 重拍，再用 `npm run check:docs` 检查图片、预览切换与窄屏布局。配置审核后端需与本次主脚本同步发布，不能只更新截图和安装文件。
+截图使用真实渲染函数和离线示例数据，运行 `npm run screenshots` 重拍，再用 `npm run check:docs` 检查图片、预览切换与窄屏布局。发布时同步六份 README、五个语言包、升级说明、图集与预览入口。只有配置格式、目录或审核协议变化时才需协调后端更新；场景策略和登录续期不改变该协议。

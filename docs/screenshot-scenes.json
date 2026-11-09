@@ -7,6 +7,13 @@
     "mobile-configs"
   ],
   [
+    "scenes",
+    "Scene strategies",
+    "场景策略",
+    "desktop-scenes",
+    "mobile-scenes"
+  ],
+  [
     "bindings",
     "Loadout bindings",
     "套装绑定",
@@ -40,6 +47,13 @@
     "已分享",
     "desktop-shared",
     "mobile-shared"
+  ],
+  [
+    "signout",
+    "Sign out",
+    "退出登录",
+    "desktop-signout",
+    "mobile-signout"
   ],
   [
     "export",

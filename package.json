@@ -13,7 +13,7 @@
     "profile:reload": "node scripts/profile-reload.cjs",
     "profile:config-read": "node scripts/profile-config-read.cjs",
     "screenshots": "node scripts/screenshots/capture.cjs",
-    "check:docs": "node scripts/check-preview.cjs"
+    "check:docs": "node scripts/check-docs.cjs && node scripts/check-preview.cjs"
   },
   "devDependencies": { "playwright": "1.62.1", "sharp": "0.35.5" }
 }
