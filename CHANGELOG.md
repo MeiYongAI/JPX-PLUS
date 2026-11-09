@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.10.1
+
+- Restore the HV statistics address and remove the independent project page. Opening and refreshing statistics can briefly show HV while the userscript starts; this is an expected loading transition, not a statistics failure.
+- Keep existing records, shared storage, and the standardized ZhCN language pack. Update the main script and language pack together.
+
+### 简体中文
+
+- 统计页恢复使用 HV 地址，撤回独立页面。打开或刷新时可能短暂显示 HV，这是脚本启动前的加载过渡，不是统计功能故障。
+- 保留已有记录、共享存储和统一后的 ZhCN 语言包。请同步更新主脚本和语言包。
+
 ## 2026.11.09.5
 
 - #10 follow-up: statistics now use an independent project page. Opening, refreshing, and using statistics after closing the game tab no longer navigate through HV.
