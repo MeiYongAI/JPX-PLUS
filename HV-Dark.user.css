@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         HentaiVerse Dark
 @namespace    meiyongai.hv-dark
-@version      1.0.17
+@version      1.0.18
 @description  Dark styling for HentaiVerse, HVUT and companion scripts, with JPX-PLUS compatibility.
 @author       MeiYongAI
 @homepageURL  https://github.com/MeiYongAI/JPX-PLUS
@@ -276,6 +276,13 @@
         [src*="/y/equip/"], [src*="/y/shops/"], [src*="/y/mmail/"],
         [src*="/y/ab/ta"], [src*="/y/ab/reset"], [src*="/y/arena/startchallenge"], [src$="/rename.png"],
         [src$="/startgrindfest.png"], [src$="/userestorative.png"]):where([src$=".png"]) {
+        --hvd-control-filter: var(--hvd-image-accent);
+    }
+    /* Monster Lab text actions use the same warm palette; leave portraits and bars intact. */
+    html:root #csp img:where([src*="/y/monster/"]):is(
+        [src$="/feedallmonsters.png"], [src$="/drugallmonsters.png"], [src$="/unlock_slot.png"],
+        [src$="/feedmonster.png"], [src$="/drugmonster.png"], [src$="/createmonster.png"],
+        [src$="/saveskills.png"], [src$="/delete.png"], [src$="/prev.png"], [src$="/next.png"]) {
         --hvd-control-filter: var(--hvd-image-accent);
     }
     /* Battle action lettering uses the same palette as out-of-battle controls.
