@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.4
+// @version     2026.11.09.5
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -6606,7 +6606,7 @@
         'The potential of your equipment has grown!', 'The potential of Your equipment has grown!',
         'Defending', 'Focusing', 'Fleeing'
     ]);
-    let battleTerms, battleEquipmentTerms;
+    let battleTerms;
 
     function getBattleTerms() {
         if (battleTerms) return battleTerms;
@@ -6730,24 +6730,13 @@
 
     function appendBattleLoot(root, item) {
         if (getBattleTerms().has(item) || !looksLikeAuctionEquipment(item)) { appendBattleTerm(root, item); return; }
-        if (!battleEquipmentTerms) {
-            const dict = pageTranslations.find(rule => rule.id === 'equipment-name').translations;
-            const keys = Object.keys(dict).filter(key => !key.endsWith(':')).sort((a, b) => b.length - a.length);
-            battleEquipmentTerms = { dict, regex: new RegExp(keys.map(key => {
-                const escaped = escapeRegExp(key);
-                return /^\w+$/.test(key) ? `(?<![\\w-])${escaped}(?![\\w-])` : escaped;
-            }).join('|'), 'g') };
-        }
-        const { dict, regex } = battleEquipmentTerms;
-        regex.lastIndex = 0;
         let offset = 0;
-        for (const match of item.matchAll(regex)) {
-            root.append(document.createTextNode(item.slice(offset, match.index)));
-            const value = dict[match[0]], span = document.createElement('span');
-            if (value.style) span.style.cssText = value.style;
-            const text = typeof value === 'string' ? value : value.replace;
-            if (/<[^>]+>/.test(text)) span.innerHTML = text; else span.textContent = text;
-            root.append(span); offset = match.index + match[0].length;
+        for (const { start, end, rule } of matchEquipmentTerms(item)) {
+            root.append(document.createTextNode(item.slice(offset, start)));
+            const span = document.createElement('span');
+            if (rule.style) span.style.cssText = rule.style;
+            if (/<[^>]+>/.test(rule.html)) span.innerHTML = rule.html; else span.textContent = rule.text;
+            root.append(span); offset = end;
         }
         root.append(document.createTextNode(item.slice(offset)));
     }
@@ -7382,6 +7371,7 @@
         const finalSelector = rule._condSelectorOnly || rule.selector || null;
 
         return {
+            id: rule.id || '',
             priority: Number(rule.priority) || 1,
             selector: finalSelector,
             excludeSelector: rule.excludeSelector || null,
@@ -7390,7 +7380,9 @@
             dict: dict,
             keys: keys,
             styleKeys: keys.filter(key => typeof dict[key] === 'object' && dict[key]?.style),
-            staticRegex: staticRegex,
+            // 装备名称由统一分词器处理，计数标签仍保留原有词典路径。
+            staticRegex: rule.id === 'equipment-name'
+                ? new RegExp(keys.filter(key => key.endsWith(':')).map(escapeRegExp).join('|'), 'g') : staticRegex,
             patterns: rule.patterns || []
         };
     });
@@ -7417,7 +7409,7 @@
                 if (group.selector && element && !element.closest(group.selector)) continue;
                 if (group.excludeSelector && element && element.closest(group.excludeSelector)) continue;
             }
-            return { key, value };
+            return { key, value, group };
         }
         return null;
     }
@@ -7425,8 +7417,210 @@
     function translateCompletePhrase(text, element, scopedGroups = null) {
         const match = findCompletePhrase(text, element, scopedGroups);
         // 样式词条继续交给原有渲染路径处理，避免把 HTML 或样式当作纯文本。
-        if (!match || typeof match.value !== 'string' || /<[^>]+>/.test(match.value)) return null;
+        if (!match || match.group.id === 'equipment-name'
+            || typeof match.value !== 'string' || /<[^>]+>/.test(match.value)) return null;
         return text.replace(text.includes(match.key) ? match.key : text.trim(), () => match.value);
+    }
+
+    // 装备名称先按完整文本分词，再由各页面选择显示方式。词典只维护一份；
+    // 最长词优先，空白可变，单词边界不依赖 span/b/注释如何拆分。
+    let equipmentRules;
+    function compileEquipmentTerms(terms) {
+        const keys = [...terms.keys()].sort((a, b) => b.length - a.length);
+        return { terms, regex: new RegExp(keys.map(key => {
+            const pattern = key.split(/\s+/).map(escapeRegExp).join('\\s+');
+            return /^[A-Za-z]/.test(key) ? `(?<![\\w-])${pattern}(?![\\w-])` : pattern;
+        }).join('|'), 'g') };
+    }
+    function getEquipmentRules() {
+        if (equipmentRules) return equipmentRules;
+        const dict = pageTranslations.find(rule => rule.id === 'equipment-name').translations;
+        const terms = new Map();
+        for (const [key, value] of Object.entries(dict)) {
+            if (key.endsWith(':')) continue;
+            const term = key.trim().replace(/\s+/g, ' ');
+            const rule = { text: getPlainText(key, dict).trim(),
+                html: (typeof value === 'object' ? value.replace : value).trim(), style: value.style || '' };
+            if (!terms.has(term) || rule.style) terms.set(term, rule);
+        }
+        return equipmentRules = compileEquipmentTerms(terms);
+    }
+    function matchEquipmentTerms(text, rules = getEquipmentRules()) {
+        rules.regex.lastIndex = 0;
+        return [...text.matchAll(rules.regex)].map(match => ({
+            start: match.index, end: match.index + match[0].length,
+            rule: rules.terms.get(match[0].replace(/\s+/g, ' '))
+        }));
+    }
+    function renderEquipmentText(text, rules = getEquipmentRules()) {
+        const ranges = [];
+        let output = '', offset = 0;
+        for (const { start, end, rule } of matchEquipmentTerms(text, rules)) {
+            output += text.slice(offset, start);
+            if (rule.style) ranges.push({ start: output.length, end: output.length + (rule.colorLength || rule.text.length), style: rule.style });
+            output += rule.text;
+            offset = end;
+        }
+        return { text: output + text.slice(offset), ranges };
+    }
+    function translateEquipmentTextNode(node) {
+        const matches = matchEquipmentTerms(node.data);
+        // 原位显示路径也使用同一批最长词匹配；从右到左写回保持原偏移有效。
+        for (const { start, end, rule } of matches.reverse()) {
+            if (rule.style) applyStyleToNode(node, start, end - start, rule.html, rule.style);
+            else node.replaceData(start, end - start, rule.text);
+        }
+        return matches.length > 0;
+    }
+
+    // 论坛适配器：原文保留在 light DOM，中文及染色只进入 shadow DOM。
+    // slot 的零字号保留 innerText 原文，供拍卖助手解析；普通隐藏或无 slot
+    // 会让 innerText 丢失装备名。原链接、行内元素、注释和监听器均不重建。
+    const IS_FORUM_EQUIPMENT = mlUrl.hostname === 'forums.e-hentai.org'
+        && matchedRules.some(rule => rule.id === 'equipment-name');
+    const EQUIPMENT_DISPLAY_TAG = 'hv-equipment-text';
+    const EQUIPMENT_DISPLAY_SKIP = 'script, style, textarea, input, select, button, mark.trans-styled, .NAE_lot, .signature, [role="button"], [hidden], [aria-hidden="true"], [contenteditable]:not([contenteditable="false"])';
+    const equipmentHostViews = new WeakMap();
+    const equipmentDisplays = new WeakMap();
+    const equipmentSourceNodes = new WeakSet();
+
+    function getForumEquipmentRoot(node) {
+        if (!IS_FORUM_EQUIPMENT) return null;
+        const element = node.nodeType === 1 ? node : node.parentElement;
+        if (!element || element.closest(EQUIPMENT_DISPLAY_SKIP) || isTranslationExcluded(element)) return null;
+        const root = element.closest('a[href], .showequip, #showequip');
+        if (!root || root.closest(EQUIPMENT_DISPLAY_SKIP)) return null;
+        if (root.matches('.showequip, #showequip')) return root;
+        if (!root.closest('.postcolor')) return null;
+        try {
+            const url = new URL(root.href);
+            return /^https?:$/.test(url.protocol) && /^(?:alt\.)?hentaiverse\.org$/.test(url.hostname)
+                && /^\/(?:isekai\/)?equip\//.test(url.pathname) ? root : null;
+        } catch (_) { return null; }
+    }
+
+    // 连续文本形成一个 run；换行、块级容器、其他链接和交互控件是硬边界。
+    // 源偏移映射到原 Text 节点，译文出现在词条起点，其余字母的显示留空。
+    function collectEquipmentTextRuns(root, styles) {
+        const runs = [];
+        let run = [];
+        const flush = () => { if (run.length) runs.push(run); run = []; };
+        function visit(node) {
+            if (node.nodeType === 3) { if (node.data || equipmentDisplays.has(node)) run.push(node); return; }
+            if (node.nodeType === 8) return;
+            if (node.nodeType !== 1 || node.matches(EQUIPMENT_DISPLAY_SKIP + ', a, br, hr, img, svg, canvas, iframe')
+                || isTranslationExcluded(node)) { flush(); return; }
+            if (node.localName === EQUIPMENT_DISPLAY_TAG) { node.childNodes.forEach(visit); return; }
+            if (!styles.has(node)) styles.set(node, getComputedStyle(node));
+            const display = styles.get(node).display;
+            if (display === 'none') { flush(); return; }
+            const boundary = display !== 'inline' && display !== 'contents';
+            if (boundary) flush();
+            node.childNodes.forEach(visit);
+            if (boundary) flush();
+        }
+        root.childNodes.forEach(visit);
+        flush();
+        return runs;
+    }
+
+    function planEquipmentRun(nodes, matchesAllowed = true) {
+        let text = '';
+        const parts = nodes.map(node => {
+            const start = text.length;
+            text += node.data;
+            return { node, start, end: text.length, fragments: [] };
+        });
+        const matches = matchesAllowed ? matchEquipmentTerms(text) : [];
+        for (const part of parts) {
+            let offset = part.start;
+            for (const match of matches) {
+                if (match.end <= part.start || match.start >= part.end) continue;
+                if (match.start > offset) part.fragments.push({ text: text.slice(offset, match.start) });
+                if (match.start >= part.start) part.fragments.push(match.rule);
+                offset = Math.min(part.end, match.end);
+            }
+            if (offset < part.end) part.fragments.push({ text: text.slice(offset, part.end) });
+        }
+        return parts;
+    }
+
+    function createEquipmentView(host) {
+        const shadow = host.attachShadow({ mode: 'closed' });
+        const style = document.createElement('style');
+        style.textContent = ':host{display:inline;font-size:0;line-height:0}'
+            + 'slot{font-size:0;line-height:0;user-select:none}'
+            + '.display{font-size:var(--hv-equipment-font-size);line-height:var(--hv-equipment-line-height)}';
+        const slot = document.createElement('slot');
+        slot.setAttribute('aria-hidden', 'true');
+        const view = document.createElement('span');
+        view.className = 'display';
+        shadow.append(style, slot, view);
+        equipmentHostViews.set(host, view);
+        return view;
+    }
+
+    function renderForumEquipmentRoots(roots) {
+        if (!IS_FORUM_EQUIPMENT) return;
+        const styles = new Map(), plans = [], emptiedViews = [];
+        for (const root of roots) {
+            root.querySelectorAll(EQUIPMENT_DISPLAY_TAG).forEach(host => {
+                const view = equipmentHostViews.get(host);
+                if (!host.hasChildNodes() && view?.hasChildNodes()) emptiedViews.push(view);
+            });
+            for (const run of collectEquipmentTextRuns(root, styles)) {
+                // 悬浮窗同时包含属性和按钮；只接管装备名称，其他说明仍用原规则。
+                const isName = root.tagName === 'A' || looksLikeAuctionEquipment(run.map(node => node.data).join(''));
+                for (const node of run) {
+                    if (isName) equipmentSourceNodes.add(node); else equipmentSourceNodes.delete(node);
+                }
+                if (!isName && !run.some(node => equipmentDisplays.has(node))) continue;
+                for (const part of planEquipmentRun(run, isName)) {
+                    const { node, fragments } = part;
+                    const existing = node.parentElement?.localName === EQUIPMENT_DISPLAY_TAG ? node.parentElement : null;
+                    if (!existing && fragments.every(f => !f.style)
+                        && fragments.map(f => f.text).join('') === node.data) continue;
+                    const parent = existing ? existing.parentElement : node.parentElement;
+                    if (!styles.has(parent)) styles.set(parent, getComputedStyle(parent));
+                    const style = styles.get(parent);
+                    plans.push({ node, parent, existing, fragments, fontSize: style.fontSize, lineHeight: style.lineHeight });
+                }
+            }
+        }
+        // 批量读取样式后再写显示层，避免每个词条引发布局重算。
+        for (const view of emptiedViews) view.replaceChildren();
+        for (const { node, parent, existing, fragments, fontSize, lineHeight } of plans) {
+            const signature = JSON.stringify([fragments, fontSize, lineHeight]);
+            const previous = equipmentDisplays.get(node);
+            if (previous?.host === existing && previous.signature === signature) continue;
+            const host = existing || document.createElement(EQUIPMENT_DISPLAY_TAG);
+            if (!existing) { parent.insertBefore(host, node); host.appendChild(node); }
+            // 拍卖助手可能序列化并重建帖子；克隆宿主需重新建立 shadow 显示。
+            const view = equipmentHostViews.get(host) || createEquipmentView(host);
+            host.style.setProperty('--hv-equipment-font-size', fontSize);
+            host.style.setProperty('--hv-equipment-line-height', lineHeight);
+            view.replaceChildren(...fragments.map(fragment => {
+                if (!fragment.style) return document.createTextNode(fragment.text);
+                const mark = document.createElement('mark');
+                mark.className = 'trans-styled';
+                mark.style.cssText = 'background:transparent;color:inherit;padding:0;margin:0;' + fragment.style;
+                mark.innerHTML = fragment.html; // 只解析本地词典，原文始终用 Text 写入。
+                return mark;
+            }));
+            equipmentDisplays.set(node, { host, signature });
+        }
+    }
+
+    function translateForumEquipment(root) {
+        if (!IS_FORUM_EQUIPMENT) return;
+        const roots = new Set();
+        const enclosing = getForumEquipmentRoot(root);
+        if (enclosing) roots.add(enclosing);
+        else root.querySelectorAll?.('a[href], .showequip, #showequip').forEach(element => {
+            const target = getForumEquipmentRoot(element);
+            if (target) roots.add(target);
+        });
+        renderForumEquipmentRoots(roots);
     }
 
     // 拍卖站会保留 Text 节点引用：原位翻译，用 Highlight Range 染色，不插入 mark。
@@ -7444,14 +7638,7 @@
 
     function getAuctionRules() {
         if (auctionRules) return auctionRules;
-        const dict = pageTranslations.find(rule => rule.id === 'equipment-name').translations;
-        const terms = new Map();
-        for (const [key, value] of Object.entries(dict)) {
-            if (key.endsWith(':')) continue;
-            const term = key.trim();
-            const rule = { text: getPlainText(key, dict).trim(), style: value.style || '' };
-            if (!terms.has(term) || rule.style) terms.set(term, rule);
-        }
+        const terms = new Map([...getEquipmentRules().terms].map(([key, rule]) => [key, { ...rule }]));
         for (const [alias, quality] of Object.entries(AUCTION_QUALITY_ALIASES)) terms.set(alias, terms.get(quality));
         // 复合名称的颜色原本位于嵌套 span；只给材质着色，不扩展到部位。
         const armor = terms.get('Power Armor'), power = terms.get('Power');
@@ -7459,12 +7646,7 @@
         armor.colorLength = power.text.length;
         // 已经由站点或先前渲染翻译的名称，也使用相同配色。
         for (const rule of [...terms.values()]) if (rule.style) terms.set(rule.text, rule);
-        const keys = [...terms.keys()].sort((a, b) => b.length - a.length);
-        const regex = new RegExp(keys.map(key => {
-            const escaped = escapeRegExp(key);
-            return /^[A-Za-z]/.test(key) ? `(?<![\\w-])${escaped}(?![\\w-])` : escaped;
-        }).join('|'), 'g');
-        auctionRules = { terms, regex };
+        auctionRules = compileEquipmentTerms(terms);
         if (window.CSS?.highlights && typeof Highlight === 'function') {
             const style = document.createElement('style');
             style.id = 'hv-auction-equipment-colors';
@@ -7484,21 +7666,12 @@
     }
 
     function renderAuctionEquipment(text) {
-        const { terms, regex } = getAuctionRules();
         // 名称后的等级/属性，以及站点初始化前的 ||链接||属性数据均保持原样。
         const end = text.search(/\|\||\s+(?:Lv\.?\s*\d|(?:SD[A-Z]\s+)?Ave:)/);
         const name = end < 0 ? text : text.slice(0, end);
-        const ranges = [];
-        let output = '', offset = 0;
-        regex.lastIndex = 0;
-        for (const match of name.matchAll(regex)) {
-            output += name.slice(offset, match.index);
-            const rule = terms.get(match[0]);
-            if (rule.style) ranges.push({ start: output.length, end: output.length + (rule.colorLength || rule.text.length), style: rule.style });
-            output += rule.text;
-            offset = match.index + match[0].length;
-        }
-        return { text: output + text.slice(offset), ranges };
+        const rendered = renderEquipmentText(name, getAuctionRules());
+        rendered.text += text.slice(name.length);
+        return rendered;
     }
 
     function translateAuctionText(node) {
@@ -7578,6 +7751,8 @@
      */
     function getTranslatedString(text, element, scopedGroups = null) {
         if (!text || !text.trim()) return text;
+        const equipmentRoot = element && getForumEquipmentRoot(element);
+        if (equipmentRoot && (equipmentRoot.tagName === 'A' || looksLikeAuctionEquipment(text))) return renderEquipmentText(text).text;
         // --- 新增：如果禁用日志汉化且元素在日志区，返回原文 ---
         if (IS_LOG_TRANS_DISABLED && element && element.closest('#pane_log')) {
             return text;
@@ -7596,6 +7771,9 @@
                 if (!p.style) result = result.replace(p.pattern, p.replace);
             }
             // 2. 字典替换
+            if (group.id === 'equipment-name') {
+                result = renderEquipmentText(result).text;
+            }
             if (group.staticRegex) {
                 result = result.replace(group.staticRegex, (m) => getPlainText(m, group.dict));
             }
@@ -7618,6 +7796,7 @@
         if (IS_NATIVE_AUCTION) { translateAuctionText(node); return; }
         const parent = node.parentNode;
         if (!parent || processedMarks.has(parent)) return;
+        if (!displayContext && (equipmentDisplays.has(node) || equipmentSourceNodes.has(node)) && getForumEquipmentRoot(parent)) return;
         if (['SCRIPT', 'STYLE', 'TEXTAREA'].includes(parent.tagName)) return;
         if (!displayContext) {
             if (translateJPXSource(node, parent)) return;
@@ -7648,16 +7827,6 @@
             }
         }
 
-        // 论坛可写成「Helmet <b>of the Shadowdancer</b>」：分隔空格在
-        // b 外，词典键却以空格开头。完整样式词组也须支持独立文本节点，
-        // 只替换本节点中的词组，保留外层元素、监听及已有的空白。
-        const phrase = findCompletePhrase(text, scope, scopedGroups);
-        if (phrase && phrase.value?.style && typeof phrase.value.replace === 'string'
-            && !text.includes(phrase.key)) {
-            const trimmed = text.trim();
-            if (applyStyleToNode(node, text.indexOf(trimmed), trimmed.length,
-                phrase.value.replace.trim(), phrase.value.style)) return;
-        }
         const complete = translateCompletePhrase(text, scope, scopedGroups);
         if (complete !== null) {
             node.nodeValue = complete;
@@ -7673,6 +7842,15 @@
             if (!scopedGroups) {
                 if (group.selector && !scope.closest(group.selector)) continue;
                 if (group.excludeSelector && scope.closest(group.excludeSelector)) continue;
+            }
+            if (group.id === 'equipment-name') {
+                if (translateEquipmentTextNode(node)) {
+                    text = node.nodeValue;
+                    hasAnyMatch = true;
+                }
+                const labels = text.replace(group.staticRegex, match => getPlainText(match, group.dict));
+                if (labels !== text) { node.nodeValue = labels; text = labels; }
+                continue;
             }
 
             // ================= STEP 1: 纯文本正则 (Plain Regex) =================
@@ -7798,6 +7976,7 @@
     // ================= 5. 执行逻辑 =================
     function applyAll(root = document.body, displayContext = null) {
         if (!displayContext && isTranslationExcluded(root)) return;
+        if (!displayContext) translateForumEquipment(root);
         if (!displayContext && !activeBattleCell && !IS_LOG_TRANS_DISABLED
             && /(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)) {
             const cell = root.closest?.('#textlog td');
@@ -7846,16 +8025,25 @@
         const nodesToProcess = new Set();
         const uiToProcess = new Set();
         const battleCellsToProcess = new Set();
+        const forumLinksToProcess = new Set();
 
         mutations.forEach(m => {
             // 尤其是关闭日志汉化时，在收集行/遍历新增后代之前退出。
             if (isTranslationExcluded(m.target)) return;
+            if (m.type === 'childList' || m.type === 'characterData') {
+                const link = getForumEquipmentRoot(m.target);
+                if (link) forumLinksToProcess.add(link);
+            }
             if (m.type === 'childList' || m.type === 'characterData') {
                 const target = m.target.nodeType === 3 ? m.target.parentElement : m.target;
                 const cell = target.closest && target.closest('#textlog td');
                 if (cell) battleCellsToProcess.add(cell);
             }
             if (m.type === 'childList') {
+                // 原 Text 从显示宿主移除后可能再次插回；空显示已清除，不能复用旧签名。
+                if (IS_FORUM_EQUIPMENT) m.removedNodes.forEach(node => {
+                    if (equipmentDisplays.get(node)?.host === m.target) equipmentDisplays.delete(node);
+                });
                 if (m.target.nodeType === 1 && m.target.hasAttribute('data-hv-direct-display')
                     && (m.target.childNodes.length !== 1 || m.target.firstChild.nodeType !== 3)) {
                     m.target.removeAttribute('data-hv-direct-display');
@@ -7876,10 +8064,14 @@
             }
         });
 
+        // 同一批变更按装备名去重；直接写回原 Text 节点也能刷新中文显示。
+        renderForumEquipmentRoots([...forumLinksToProcess].filter(root => root.isConnected));
         // 行内其他节点可能改变角色位置；整行与子节点合并后只扫描一次。
         battleCellsToProcess.forEach(cell => { if (cell.isConnected) nodesToProcess.add(cell); });
         nodesToProcess.forEach(n => {
             if (!n.isConnected || isTranslationExcluded(n)) return;
+            const equipmentRoot = getForumEquipmentRoot(n);
+            if (equipmentRoot?.tagName === 'A' && forumLinksToProcess.has(equipmentRoot)) return;
             for (let parent = n.parentNode; parent; parent = parent.parentNode) {
                 if (nodesToProcess.has(parent)) return;
             }
