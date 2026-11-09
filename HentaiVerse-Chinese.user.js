@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.1
+// @version     2026.11.09.2
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -4207,7 +4207,7 @@
                 'Arthropod' : '节肢动物',
                 'Avion' : '飞禽',
                 'Beast' : '野兽',
-                'Celestial' : '天人',
+                'Celestial' : '天使',
                 'Daimon' : '魔灵',
                 'Dragonkin' : '龙类',
                 'Elemental' : '元素',
@@ -5481,7 +5481,7 @@
                 'Arthropod' : '节肢动物',
                 'Avion' : '飞禽',
                 'Beast' : '野兽',
-                'Celestial' : '天人',
+                'Celestial' : '天使',
                 'Daimon' : '魔灵',
                 'Dragonkin' : '龙类',
                 'Elemental' : '元素',
@@ -5696,14 +5696,14 @@
                 'Beasts are typically either covered in fur or feathers, or more rarely, clad in a thick hairless hide. The fur makes them somewhat weak to fire-based magicks, but resistant to wind- and cold-based attacks. Most have average defense against physical weapons, but some have evolved a hard armor of keratin around vital points which heightenes these defenses significantly.' : '野兽通常覆盖有羽毛或者毛皮，极少数野兽没有毛皮，用厚厚的表皮保护自己，它们对大部分物理攻击都有防御力，由于有些野兽进化出了专门应对打击的坚硬表皮，所以它们对打击攻击的抵抗力较强。',
                 'Their natural range of weapons allow them to bite down with sharp teeth, shred their foes with large claws, and impale them on pointy tusks. The most powerful beasts can simply use the sheer bulk of their body to crush a target.' : '它们广泛的分布范围允许野兽使用锋利的牙齿刺穿它们的敌人或者使用利爪撕碎它们，最强大的野兽甚至只用身体撞击就可以击溃绝大部分敌人。',
                 'Rumors persist about terrible Beasts corrupted beyond all recognition with dark magicks, but those who have encountered them are not in a state to give a coherent description of their abilities.' : '有确切传闻说，存在一些被黑魔法腐化的野兽，但是遇到它们的人都没有办法对它们做出连贯准确的描述。',
-                // 天人
-                'Celestials are supernatural divine beings that reside on a different plane of existence. From time to time, some of these beings enter our world for reasons they usually choose not to divulge to outsiders. While worshipped by some individuals and groups as inherently good, it is suspected that those who leave have their own agendas that do not necessarily mesh well with that ideal.' : '天人是一种超自然而且神圣的存在，他们居住在不同的星球上，有些时候一些天人也会因为一些不想被外人知道的原因进入我们世界。天人的固有特性使其被一些个人和团体所崇拜，但也有些人怀疑那些脱离大部队擅离的天人可能不是想象中的那么完美。',
-                'Appearing as lithe humanoid creatures who refuse to wear any form of armor, they have below average resistance to most physical attacks but make up for it with high agility. They have high resistance to elemental magicks, and are nearly impervious to divine attacks. They are however very weak against forbidden magicks.' : '天人作为一种轻盈的人形生物拒绝任何形势的盔甲，因此他们的物理抗性很低，但是动作敏捷，天人有很高的元素魔法抗性，而且有很高的神圣魔法抗性，但是它们对黑暗魔法的抗性很弱。',
-                'Celestials can use a wide variety of humanoid armaments, but for unknown reasons they do not employ piercing weapons in their arsenal. Higher level celestials can imbue their weapons with pure divine power that lets their melee attacks deal holy damage.' : '天人可以使用各种各样的装备，不过因为一些不明的原因，它们没有刺击用的武器，一些更高层次的天人可以使用神圣魔法的力量，它们可以给近战攻击附带上神圣属性伤害。',
+                // 天使
+                'Celestials are supernatural divine beings that reside on a different plane of existence. From time to time, some of these beings enter our world for reasons they usually choose not to divulge to outsiders. While worshipped by some individuals and groups as inherently good, it is suspected that those who leave have their own agendas that do not necessarily mesh well with that ideal.' : '天使是一种超自然而且神圣的存在，他们居住在不同的星球上，有些时候一些天使也会因为一些不想被外人知道的原因进入我们世界。天使的固有特性使其被一些个人和团体所崇拜，但也有些人怀疑那些脱离大部队擅离的天使可能不是想象中的那么完美。',
+                'Appearing as lithe humanoid creatures who refuse to wear any form of armor, they have below average resistance to most physical attacks but make up for it with high agility. They have high resistance to elemental magicks, and are nearly impervious to divine attacks. They are however very weak against forbidden magicks.' : '天使作为一种轻盈的人形生物拒绝任何形势的盔甲，因此他们的物理抗性很低，但是动作敏捷，天使有很高的元素魔法抗性，而且有很高的神圣魔法抗性，但是它们对黑暗魔法的抗性很弱。',
+                'Celestials can use a wide variety of humanoid armaments, but for unknown reasons they do not employ piercing weapons in their arsenal. Higher level celestials can imbue their weapons with pure divine power that lets their melee attacks deal holy damage.' : '天使可以使用各种各样的装备，不过因为一些不明的原因，它们没有刺击用的武器，一些更高层次的天使可以使用神圣魔法的力量，它们可以给近战攻击附带上神圣属性伤害。',
                 // 魔灵
-                'Daimons are supposedly corporeal manifestations of impure and often malevolent supernatural spirits that, some say, originate from the same plane of existance as Celestials. Their exact nature and relation to Celestials is however unknown.' : '魔灵，它们在自然中的存在通常被推测为一种不纯净和恶毒的精神集合体，有人说，它们和天人起源于同一位面，不过它们和天人确切的关系尚未为人们所知。',
+                'Daimons are supposedly corporeal manifestations of impure and often malevolent supernatural spirits that, some say, originate from the same plane of existance as Celestials. Their exact nature and relation to Celestials is however unknown.' : '魔灵，它们在自然中的存在通常被推测为一种不纯净和恶毒的精神集合体，有人说，它们和天使起源于同一位面，不过它们和天使确切的关系尚未为人们所知。',
                 'These spirits can take on any number of different appearances, but tend to choose one specifically tailored to the fears of their opponent. To allow for this shape changing capability, they do not wear any armor or use any other form of humanoid weaponry. This leaves them weak to physical attacks.' : '这些精神体外观各异，不过它们通常会选择敌人最恐惧的模样出现，为了保持这种能力的持续使用，魔灵不装备任何铠甲和装备，这使得它们无法进行物理攻击。',
-                'Like Celestials, they have high resistances to elemental magicks. They are almost imprevious to forbidden magicks, but highly vulnerable to divine attacks.' : '与天人类似，魔灵对元素魔法具有高抗性，对黑暗魔法具有很高抗性，但是惧怕物理攻击和神圣魔法。',
+                'Like Celestials, they have high resistances to elemental magicks. They are almost imprevious to forbidden magicks, but highly vulnerable to divine attacks.' : '与天使类似，魔灵对元素魔法具有高抗性，对黑暗魔法具有很高抗性，但是惧怕物理攻击和神圣魔法。',
                 'Instead of forged weapons, these creatures take advantage of their physical malleability to reshape parts of their own body into blade-like weapons or sharp implements that they use for slashing and stabbing attacks. Higher level daimons are said to be able to conjure weapons of pure darkness that can bypass all defenses not especially enchanted to withstand it.' : '比起使用锻造的武器，魔灵更擅长使用自己身体塑性而成的肢体武器，这些肢体武器像刀片和尖刺一样锐利，使得魔灵可以使用刺击和斩击攻击，高阶的魔灵据说可以召唤纯净黑暗武器，能无视除了黑暗抗性之外的所有抗性对敌人造成伤害。',
                 // 龙类
                 'Dragonkin consist of Dragons, Drakes, and all other creatures that could be mistaken for giant flying fire-breathing lizards. That is however somewhat of an over-simplification as not all Dragonkin can fly, while breath attacks are not always fire, and are only fully developed in mature members of the species.' : '龙类包括龙，双足飞龙，以及一切会被认为是巨大的飞天喷火蜥蜴的生物，这种分类可能有点过于简化，因为并不是所有的龙类都有飞行能力，它们的吐息也不一定是火焰，只有它们之中发展最为成熟的那些种类才具有这些特性。',
@@ -8094,7 +8094,7 @@
             { active: '/y/monster/arthropod_a.png', disactive: '/y/monster/arthropod.png', text: '节肢动物' },
             { active: '/y/monster/avion_a.png', disactive: '/y/monster/avion.png', text: '飞禽' },
             { active: '/y/monster/beast_a.png', disactive: '/y/monster/beast.png', text: '野兽' },
-            { active: '/y/monster/celestial_a.png', disactive: '/y/monster/celestial.png', text: '天人' },
+            { active: '/y/monster/celestial_a.png', disactive: '/y/monster/celestial.png', text: '天使' },
             { active: '/y/monster/daimon_a.png', disactive: '/y/monster/daimon.png', text: '魔灵' },
             { active: '/y/monster/dragonkin_a.png', disactive: '/y/monster/dragonkin.png', text: '龙类' },
             { active: '/y/monster/elemental_a.png', disactive: '/y/monster/elemental.png', text: '元素' },
