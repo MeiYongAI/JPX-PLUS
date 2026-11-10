@@ -69,6 +69,7 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
         catalog.entries.push({ id: index, author: record?.author || 'fixtureauthor', title: value.title, description: value.description, kind: value.kind,
             world: value.world, mode: value.mode, scriptVersion: value.scriptVersion, updatedAt: record?.updatedAt || catalog.updatedAt, sha256,
             configPath, issueUrl: 'https://github.com/MeiYongAI/JPX-PLUS-Configs/issues/' + index,
+            ...(record?.rating ? { rating: record.rating } : {}),
             ...(record?.catalogModes ? { modes: record.catalogModes } : {}) });
     }
     await page.evaluate(({ files, catalog, signedIn, shareOverrides }) => {
@@ -91,8 +92,31 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
                     }
                     if (signedIn && options.url.endsWith('/login/oauth/access_token')) response = JSON.stringify({access_token:'fixture_renewed',token_type:'bearer',expires_in:28800,refresh_token:'fixture_next_refresh',refresh_token_expires_in:15897600});
                     if (signedIn && options.url.includes('/issues?')) response = JSON.stringify(Object.values(this.issues));
-                    const commentId = options.url.match(/\/issues\/(\d+)\/comments\?/)?.[1];
-                    if (signedIn && commentId) response = JSON.stringify(this.comments[commentId] || []);
+                    const commentId = options.url.match(/\/issues\/(\d+)\/comments(?:\?|$)/)?.[1];
+                    if (commentId) {
+                        const comments = this.comments[commentId] ||= [];
+                        if (options.method === 'POST') {
+                            if (this.failComment) { options.onload({ status: 503, finalUrl: options.url, responseText: '{}' }); return; }
+                            const id = ++this.commentSequence || (this.commentSequence = 1000), timestamp = new Date().toISOString();
+                            const comment = { id, body: item.data.body, user: { id: 42, login: 'fixtureowner', type: 'User' },
+                                created_at: timestamp, updated_at: timestamp, issue_url: 'https://api.github.com/repos/MeiYongAI/JPX-PLUS-Configs/issues/' + commentId,
+                                html_url: 'https://github.com/MeiYongAI/JPX-PLUS-Configs/issues/' + commentId + '#issuecomment-' + id };
+                            comments.push(comment); response = JSON.stringify(comment);
+                        } else {
+                            const params = new URL(options.url).searchParams, size = Number(params.get('per_page') || 30), page = Number(params.get('page') || 1);
+                            response = JSON.stringify(comments.slice((page - 1) * size, page * size));
+                        }
+                    }
+                    const singleComment = options.url.match(/\/issues\/comments\/(\d+)$/)?.[1];
+                    if (singleComment) {
+                        const comments = Object.values(this.comments).find(rows => rows.some(row => row.id === Number(singleComment)));
+                        const index = comments?.findIndex(row => row.id === Number(singleComment));
+                        if (!comments) { options.onload({ status: 404, finalUrl: options.url, responseText: '{}' }); return; }
+                        if (options.method !== 'GET' && this.failComment) { options.onload({ status: 503, finalUrl: options.url, responseText: '{}' }); return; }
+                        if (options.method === 'DELETE') { comments.splice(index, 1); options.onload({ status: 204, finalUrl: options.url, responseText: '' }); return; }
+                        if (options.method === 'PATCH') Object.assign(comments[index], item.data, { updated_at: new Date().toISOString() });
+                        response = JSON.stringify(comments[index]);
+                    }
                     const issueId = options.url.match(/\/issues\/(\d+)$/)?.[1];
                     if (signedIn && issueId) {
                         if (!this.issues[issueId]) { options.onload({ status: 404, finalUrl: options.url, responseText: '{}' }); return; }
@@ -181,6 +205,138 @@ async function enterStore(page) {
 }
 async function assertClean(f) { assert.deepEqual(f.errors, []); assert.deepEqual(f.unexpected, []); }
 
+const storeComment = (id, author = 42, text = 'Helpful config') => ({ id, body: text, user: { id: author, login: author === 42 ? 'fixtureowner' : 'reader', type: 'User' },
+    issue_url: 'https://api.github.com/repos/MeiYongAI/JPX-PLUS-Configs/issues/1',
+    html_url: 'https://github.com/MeiYongAI/JPX-PLUS-Configs/issues/1#issuecomment-' + id,
+    created_at: '2026-11-10T01:00:00Z', updated_at: '2026-11-10T01:00:00Z' });
+const storeRating = (id, author, score) => storeComment(id, author, '<!-- JPX-PLUS-RATING:v1 {"score":' + score + '} -->\nRating: ' + score + '/5');
+for (const mobile of [false, true]) test('ratings create, change and withdraw a single vote independently of comments, ' + (mobile ? 'mobile' : 'desktop'), async t => {
+    const f = await fixture(t, { mobile, signedIn: true, records: [{ envelope: envelope('Rated config'), rating: { count: 1, sum: 3 } }] }), { page } = f;
+    const original = await page.evaluate(() => __fullStore.native());
+    await page.evaluate(rows => { __transport.comments[1] = rows; }, [storeRating(101, 99, 3), storeComment(102)]);
+    await enterStore(page); await page.locator('.jpx-store-rating-summary').getByText('★ 3.0 · 1 rating', { exact: true }).waitFor();
+    await page.locator('.jpx-store-title').first().click();
+    const ratings = page.locator('.jpx-store-rating'), stars = ratings.getByRole('group', { name: 'Your rating', exact: true });
+    await stars.getByRole('button', { name: '5 stars', exact: true }).click();
+    await ratings.getByText('Rating saved.', { exact: true }).waitFor();
+    assert.equal(await ratings.locator('strong').textContent(), '★ 4.0 · 2 ratings');
+    assert.equal(await stars.getByRole('button', { name: '5 stars', exact: true }).getAttribute('aria-pressed'), 'true');
+    await stars.getByRole('button', { name: '2 stars', exact: true }).click();
+    await ratings.getByText('★ 2.5 · 2 ratings', { exact: true }).waitFor();
+    assert.equal(await page.evaluate(() => __transport.calls.filter(call => call.method === 'POST' && call.url.endsWith('/comments')).length), 1);
+    assert.equal(await page.evaluate(() => __transport.calls.filter(call => call.method === 'PATCH').length), 1);
+    const comments = page.locator('.jpx-store-comments'); await comments.getByRole('button', { name: 'Refresh', exact: true }).click();
+    await comments.getByText('Helpful config', { exact: true }).waitFor();
+    assert.equal(await comments.locator('.jpx-comment-row').count(), 1);
+    assert.equal(await comments.getByText('JPX-PLUS-RATING', { exact: false }).count(), 0);
+    await ratings.getByRole('button', { name: 'Withdraw', exact: true }).click();
+    await ratings.getByText('Rating withdrawn.', { exact: true }).waitFor();
+    assert.equal(await ratings.locator('strong').textContent(), '★ 3.0 · 1 rating');
+    assert.equal(await ratings.locator('[aria-pressed=true]').count(), 0);
+    assert.equal(await page.evaluate(() => __transport.comments[1].filter(row => row.user.id === 42).length), 1, 'ordinary comment remains');
+    await page.evaluate(() => { __transport.failComment = true; });
+    await stars.getByRole('button', { name: '4 stars', exact: true }).click();
+    await ratings.getByText('The rating could not be confirmed. Refresh to check.', { exact: true }).waitFor();
+    assert.equal(await ratings.locator('[aria-pressed=true]').count(), 0, 'failed writes never display success');
+    await page.evaluate(() => { __transport.failComment = false; });
+    await ratings.getByRole('button', { name: 'Refresh', exact: true }).click();
+    await page.waitForFunction(() => document.querySelector('.jpx-store-rating')?.getAttribute('aria-busy') === 'false');
+    await stars.getByRole('button', { name: '4 stars', exact: true }).focus(); await page.keyboard.press('Enter');
+    await ratings.getByText('★ 3.5 · 2 ratings', { exact: true }).waitFor();
+    for (const width of mobile ? [320, 768] : [1024, 1440]) {
+        await page.setViewportSize({ width, height: 900 });
+        const overflow = await ratings.evaluate(node => [...node.querySelectorAll('button')].filter(child => {
+            if (!child.getClientRects().length) return false; const a = node.getBoundingClientRect(), b = child.getBoundingClientRect();
+            return b.left < a.left - 1 || b.right > a.right + 1;
+        }).length); assert.equal(overflow, 0);
+        assert.equal(await ratings.locator('button').evaluateAll(nodes => nodes.every(node => getComputedStyle(node).borderRadius === '0px')), true);
+    }
+    if (mobile) { await page.setViewportSize({ width: 375, height: 812 }); await page.evaluate(() => __fullStore.theme()); }
+    await ratings.scrollIntoViewIfNeeded(); fs.mkdirSync(path.join(root, '.test-output'), { recursive: true });
+    await page.locator('#settings-container').screenshot({ path: path.join(root, '.test-output', 'ratings-' + (mobile ? 'mobile-dark' : 'desktop-light') + '.png') });
+    await page.locator('.jpx-config-nav').getByRole('button', { name: 'Store', exact: true }).click();
+    await page.locator('.jpx-store-rating-summary').getByText('★ 3.5 · 2 ratings', { exact: true }).waitFor();
+    assert.deepEqual(await page.evaluate(() => __fullStore.native()), original); await assertClean(f);
+});
+test('ratings show public totals while signed out without fetching individual votes', async t => {
+    const f = await fixture(t, { records: [{ envelope: envelope('Rated config'), rating: { count: 2, sum: 9 } }] }), { page } = f;
+    await enterStore(page); await page.locator('.jpx-store-title').first().click();
+    const rating = page.locator('.jpx-store-rating'); await rating.getByText('★ 4.5 · 2 ratings', { exact: true }).waitFor();
+    await rating.getByRole('button', { name: 'Sign in to rate', exact: true }).waitFor();
+    assert.equal(await rating.locator('.jpx-rating-star').count(), 0);
+    assert.equal(await page.evaluate(() => __transport.calls.some(call => call.url.includes('per_page=100'))), false); await assertClean(f);
+});
+for (const mobile of [false, true]) test('comments support posting, own edits and confirmed deletion, ' + (mobile ? 'mobile dark' : 'desktop light'), async t => {
+    const f = await fixture(t, { mobile, signedIn: true }), { page } = f;
+    const original = await page.evaluate(() => __fullStore.native());
+    await page.evaluate(({ rows, dark }) => { __transport.comments[1] = rows; if (dark) __fullStore.theme(); },
+        { rows: [storeComment(101), storeComment(102, 99, '<img src=x onerror=alert(1)> ' + 'long'.repeat(80))], dark: mobile });
+    await enterStore(page); await page.locator('.jpx-store-title').first().click();
+    const section = page.locator('.jpx-store-comments'), own = section.locator('[data-comment-id="101"]'), other = section.locator('[data-comment-id="102"]');
+    await own.waitFor(); assert.equal(await other.locator('button').count(), 0); assert.equal(await section.locator('img').count(), 0);
+    assert.equal(await section.evaluate(node => !!(node.querySelector('.jpx-comment-composer').compareDocumentPosition(node.querySelector('.jpx-comment-list')) & Node.DOCUMENT_POSITION_FOLLOWING)), true);
+    assert.equal(await own.locator('.jpx-comment-header .jpx-comment-actions button').count(), 2);
+    assert.equal(await section.locator('button,textarea').evaluateAll(nodes => nodes.every(node => getComputedStyle(node).borderRadius === '0px')), true);
+    const input = section.getByRole('textbox', { name: 'Write a comment…', exact: true }), publish = section.getByRole('button', { name: 'Post', exact: true });
+    assert.equal(await publish.isDisabled(), true); await input.fill('New comment'); await publish.click();
+    await section.getByText('Comment posted.', { exact: true }).waitFor(); assert.equal(await input.inputValue(), ''); assert.equal(await publish.isDisabled(), true);
+    await own.getByRole('button', { name: 'Edit', exact: true }).click();
+    const editInput = own.getByRole('textbox', { name: 'Edit', exact: true }); await editInput.fill('Updated comment');
+    assert.equal(await section.getByRole('button', { name: 'Refresh', exact: true }).isDisabled(), true);
+    await own.getByRole('button', { name: 'Save', exact: true }).click();
+    await own.getByText('Updated comment', { exact: true }).waitFor();
+    const overflow = await section.evaluate(node => [...node.querySelectorAll('textarea,article,button')].filter(child => {
+        if (!child.getClientRects().length) return false;
+        const a = node.getBoundingClientRect(), b = child.getBoundingClientRect(); return b.left < a.left - 1 || b.right > a.right + 1;
+    }).map(child => child.outerHTML)); assert.deepEqual(overflow, [], 'comments fit the detail width');
+    if (mobile) assert.ok((await own.getByRole('button', { name: 'Edit', exact: true }).boundingBox()).height >= 44);
+    await section.scrollIntoViewIfNeeded(); fs.mkdirSync(path.join(root, '.test-output'), { recursive: true });
+    await page.locator('#settings-container').screenshot({ path: path.join(root, '.test-output', 'comments-' + (mobile ? 'mobile-dark' : 'desktop-light') + '.png') });
+    const deletes = () => page.evaluate(() => __transport.calls.filter(call => call.method === 'DELETE').length);
+    await own.getByRole('button', { name: 'Delete', exact: true }).click();
+    const dialog = page.locator('.jpx-config-confirm'); await dialog.waitFor();
+    assert.equal(await dialog.getByRole('heading').textContent(), 'Delete this comment?');
+    await dialog.getByRole('button', { name: 'Cancel', exact: true }).click(); assert.equal(await deletes(), 0);
+    await own.getByRole('button', { name: 'Delete', exact: true }).click();
+    await dialog.getByRole('button', { name: 'Delete', exact: true }).click();
+    await own.waitFor({ state: 'detached' }); assert.equal(await deletes(), 1);
+    await section.getByRole('button', { name: 'Refresh', exact: true }).click();
+    await section.getByText('New comment', { exact: true }).waitFor();
+    assert.equal(await section.locator('.jpx-comment-row').count(), 2);
+    assert.deepEqual(await page.evaluate(() => __fullStore.native()), original); await assertClean(f);
+});
+test('comments keep drafts after failed writes and reject edits changed elsewhere', async t => {
+    const f = await fixture(t, { signedIn: true }), { page } = f;
+    await page.evaluate(row => { __transport.comments[1] = [row]; __transport.failComment = true; }, storeComment(101));
+    await enterStore(page); await page.locator('.jpx-store-title').first().click();
+    const section = page.locator('.jpx-store-comments'), own = section.locator('[data-comment-id="101"]'); await own.waitFor();
+    const input = section.getByRole('textbox', { name: 'Write a comment…', exact: true }); await input.fill('Keep this draft');
+    await section.getByRole('button', { name: 'Post', exact: true }).click();
+    await section.getByText('Sending was not confirmed. Refresh to check before posting again.', { exact: true }).waitFor();
+    assert.equal(await input.inputValue(), 'Keep this draft');
+    assert.equal(await page.evaluate(() => __transport.calls.filter(call => call.method === 'POST' && call.url.endsWith('/comments')).length), 1);
+    await own.getByRole('button', { name: 'Edit', exact: true }).click();
+    const editing = own.getByRole('textbox', { name: 'Edit', exact: true }); await editing.fill('My unsaved edit');
+    await own.getByRole('button', { name: 'Save', exact: true }).click();
+    await section.locator('[role=alert]').waitFor(); assert.equal(await editing.inputValue(), 'My unsaved edit');
+    await page.evaluate(() => { __transport.failComment = false; __transport.comments[1][0].body = 'Changed remotely'; });
+    await own.getByRole('button', { name: 'Save', exact: true }).click();
+    await section.getByText('This comment has changed. Cancel editing, refresh, and try again.', { exact: true }).waitFor();
+    assert.equal(await editing.inputValue(), 'My unsaved edit');
+    assert.equal(await page.evaluate(() => __transport.calls.filter(call => call.method === 'PATCH').length), 1, 'no PATCH for stale draft');
+    await own.getByRole('button', { name: 'Cancel', exact: true }).click();
+    await section.getByRole('button', { name: 'Refresh', exact: true }).click(); await own.getByText('Changed remotely', { exact: true }).waitFor();
+    assert.equal(await input.inputValue(), 'Keep this draft'); await assertClean(f);
+});
+test('comments are readable without signing in and show no ownership controls', async t => {
+    const f = await fixture(t), { page } = f;
+    await page.evaluate(rows => { __transport.comments[1] = rows; }, [storeComment(101), { ...storeComment(102), user: { id: 99, login: 'github-actions[bot]', type: 'Bot' } }]);
+    await enterStore(page); await page.locator('.jpx-store-title').first().click();
+    const section = page.locator('.jpx-store-comments'); await section.locator('[data-comment-id="101"]').waitFor();
+    assert.equal(await section.locator('.jpx-comment-row').count(), 1); assert.equal(await section.locator('.jpx-comment-actions').count(), 0);
+    assert.equal(await section.getByRole('textbox').count(), 0); await section.getByRole('button', { name: 'Sign in to comment', exact: true }).waitFor(); await assertClean(f);
+});
+
 function discoveryRecords() {
     const data = [
         ['Shield starter', 'Persistent', 'OneHanded_Item', 'lina', 2],
@@ -201,13 +357,15 @@ function discoveryRecords() {
 }
 const visibleStoreIds = page => page.locator('.jpx-store-row[data-store-id]').evaluateAll(rows => rows.map(row => Number(row.dataset.storeId)));
 
-for (const mobile of [false, true]) test(`catalog downloads work directly from the row without applying or saving, ${mobile ? 'mobile' : 'desktop'}`, async t => {
+for (const mobile of [false, true]) test(`catalog saves directly to My configs without applying or downloading a file, ${mobile ? 'mobile' : 'desktop'}`, async t => {
     const f = await fixture(t, { mobile, count: 25 }); await enterStore(f.page);
+    const downloads = []; f.page.on('download', value => downloads.push(value));
     const native = await f.page.evaluate(() => __fullStore.native());
     const library = await f.page.evaluate(() => __fullStore.library());
     const search = f.page.locator('.jpx-store-querybar input'); await search.fill('configuration 1');
     const row = f.page.locator('[data-store-id="18"]');
-    const button = row.getByRole('button', { name: 'Download config: Store configuration 18', exact: true });
+    const button = row.locator('.jpx-store-download');
+    assert.equal(await button.getAttribute('aria-label'), 'Save: Store configuration 18');
     await button.scrollIntoViewIfNeeded();
     const stage = f.page.locator('.jpx-store-stage'), scroll = await stage.evaluate(node => node.scrollTop);
     const rowBox = await row.boundingBox(), buttonBox = await button.boundingBox();
@@ -218,20 +376,29 @@ for (const mobile of [false, true]) test(`catalog downloads work directly from t
     assert.ok(Math.abs(dateBox.y + dateBox.height - contentBox.y - contentBox.height) <= 1, 'date aligns with the bottom of the row content');
     assert.ok(Math.abs(dateBox.x + dateBox.width / 2 - buttonBox.x - buttonBox.width / 2) <= 1, 'download and date are centered together');
     assert.ok(buttonBox.width >= (mobile ? 44 : 32) && buttonBox.height >= (mobile ? 44 : 32));
-    const downloadEvent = f.page.waitForEvent('download'); await button.click();
-    const download = await downloadEvent;
-    assert.equal(download.suggestedFilename(), 'jpx-config-18.json');
-    assert.deepEqual(JSON.parse(fs.readFileSync(await download.path(), 'utf8')), envelope('Store configuration 18').config);
+    await button.click();
+    await row.getByRole('button', { name: 'Saved: Store configuration 18', exact: true }).waitFor();
+    const saved = await f.page.evaluate(() => __fullStore.library().entries.find(entry => entry.source?.id === 18));
+    assert.deepEqual(saved.envelope, envelope('Store configuration 18'));
+    assert.equal(saved.source.repository, 'MeiYongAI/JPX-PLUS-Configs');
+    assert.equal(saved.source.sha256, f.catalog.entries.find(entry => entry.id === 18).sha256);
+    assert.equal(downloads.length, 0);
     assert.equal(await search.inputValue(), 'configuration 1');
     assert.equal(await stage.evaluate(node => node.scrollTop), scroll, 'download keeps the catalog position');
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), native);
-    assert.deepEqual(await f.page.evaluate(() => __fullStore.library()), library);
+    assert.equal((await f.page.evaluate(() => __fullStore.library())).entries.length, library.entries.length + 1);
     assert.equal(await button.isEnabled(), true);
+    await button.click();
+    await f.page.locator('.jpx-config-confirm').getByRole('button', { name: 'Cancel', exact: true }).click();
+    assert.equal((await f.page.evaluate(() => __fullStore.library().entries.filter(entry => entry.source?.id === 18))).length, 1);
+    await f.page.locator('.jpx-config-manager > .jpx-config-toolbar .jpx-config-nav').getByRole('button', { name: 'My configs', exact: true }).click();
+    await f.page.locator('.jpx-config-row').filter({ hasText: 'Store configuration 18' }).waitFor();
     await assertClean(f);
 });
 
-test('catalog download rejects a mismatched file and leaves the button available to retry', async t => {
+test('catalog save rejects a mismatched file and leaves the button available to retry', async t => {
     const f = await fixture(t); await enterStore(f.page);
+    const library = await f.page.evaluate(() => __fullStore.library());
     const downloads = []; f.page.on('download', value => downloads.push(value));
     const native = await f.page.evaluate(() => __fullStore.native());
     await f.page.evaluate(() => {
@@ -249,6 +416,7 @@ test('catalog download rejects a mismatched file and leaves the button available
     assert.equal(downloads.length, 0);
     assert.equal(await button.isEnabled(), true); assert.equal(await button.getAttribute('aria-busy'), null);
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), native);
+    assert.deepEqual(await f.page.evaluate(() => __fullStore.library()), library);
     await assertClean(f);
 });
 

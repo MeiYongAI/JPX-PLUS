@@ -19,7 +19,7 @@ else source = source.replace('function getMonsterInfoSignature(info) {', monster
 const block = [start, 'I18N.cM = ' + JSON.stringify(JSON.parse(read('en.json'))) + ';',
     'I18N.cShared = ' + JSON.stringify(JSON.parse(fs.readFileSync(path.join(root, 'src/shared-ui-en.json'), 'utf8'))) + ';',
     'const JPX_CONFIG_MANAGER_CSS = ' + JSON.stringify(read('manager.css')) + ';',
-    read('library.js'), read('store.js'), read('manager.js'), read('bindings.js'),
+    read('library.js'), read('comments.js'), read('ratings.js'), read('store.js'), read('manager.js'), read('bindings.js'),
     fs.readFileSync(path.join(root, 'src/shared-ui.js'), 'utf8'), end].join('\n');
 if (source.includes(start)) source = source.slice(0, source.indexOf(start)) + block + source.slice(source.indexOf(end) + end.length);
 else {

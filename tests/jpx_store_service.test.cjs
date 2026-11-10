@@ -34,6 +34,102 @@ function setup({ clientId = 'Iv1.public-client-id', stored = true, sharedStorage
 }
 const code = value => err => err.code === value;
 const plain = value => JSON.parse(JSON.stringify(value));
+const comment = (overrides = {}) => ({ id: 91, body: 'Useful config', user: { ...identity, type: 'User' },
+    created_at: '2026-11-10T01:00:00Z', updated_at: '2026-11-10T01:00:00Z',
+    issue_url: 'https://api.github.com/repos/' + repo + '/issues/12', html_url: url(12) + '#issuecomment-91', ...overrides });
+const commentSnapshot = value => ({ id: value.id, body: value.body, updatedAt: value.updated_at });
+const ratingBody = score => '<!-- JPX-PLUS-RATING:v1 {"score":' + score + '} -->\nRating: ' + score + '/5';
+test('ratings create one vote, edit it, and withdraw without deleting ordinary comments', async () => {
+    const env = setup(), vote = comment({ body: ratingBody(5) }), changed = comment({ body: ratingBody(2) });
+    const issue = { number: 12, html_url: url(12), body: body(envelope), state: 'open' };
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100', result: [comment({ id: 80 })] },
+        { path: '/issues/12', result: issue }, { path: '/issues/12/comments', method: 'POST', result: vote });
+    assert.deepEqual(plain(await env.service.setRating(12, 5, 7)), { score: 5, count: 1, sum: 5 });
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100', result: [vote] }, { path: '/issues/12', result: issue },
+        { path: '/user', result: identity }, { path: '/issues/comments/91', result: vote }, { path: '/issues/comments/91', method: 'PATCH', result: changed });
+    assert.deepEqual(plain(await env.service.setRating(12, 2, 7)), { score: 2, count: 1, sum: 2 });
+    const older = comment({ id: 90, body: ratingBody(1), html_url: url(12) + '#issuecomment-90' });
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100', result: [older, changed, comment({ id: 80 })] },
+        { path: '/user', result: identity }, { path: '/issues/comments/90', result: older }, { path: '/issues/comments/90', method: 'DELETE', status: 204, result: '' },
+        { path: '/user', result: identity }, { path: '/issues/comments/91', result: changed }, { path: '/issues/comments/91', method: 'DELETE', status: 204, result: '' });
+    assert.deepEqual(plain(await env.service.setRating(12, null, 7)), { score: null, count: 0, sum: 0 });
+    assert.equal(env.calls.some(call => call.method === 'DELETE' && call.url.endsWith('/80')), false); env.done();
+});
+test('ratings deduplicate accounts, paginate, hide vote records and reject invalid writes', async () => {
+    const env = setup(), old = comment({ body: ratingBody(1) }), latest = comment({ id: 92, body: ratingBody(5), html_url: url(12) + '#issuecomment-92' });
+    const other = comment({ id: 93, body: ratingBody(3), user: { id: 8, login: 'other', type: 'User' }, html_url: url(12) + '#issuecomment-93' });
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100&page=1', result: Array(100).fill(old) },
+        { path: '/comments?per_page=100&page=2', result: [latest, other] });
+    assert.deepEqual(plain(await env.service.rating(12, 7)), { score: 5, count: 2, sum: 8 });
+    env.routes.push({ path: '/comments?per_page=30', result: [old, latest, other, comment({ body: 'Normal discussion' })] });
+    assert.deepEqual((await env.service.comments(12)).items.map(row => row.body).join(','), 'Normal discussion');
+    for (const score of [0, 6, 2.5, '5']) await assert.rejects(env.service.setRating(12, score, 7), code('ratingInvalid'));
+    await assert.rejects(env.service.addComment(12, ratingBody(5), 7), code('commentInvalid'));
+    env.routes.push({ path: '/user', result: { id: 9, login: 'newaccount' } });
+    await assert.rejects(env.service.setRating(12, 5, 7), code('loginRequired')); env.done();
+});
+test('ratings do not retry a failed submission or overwrite a remotely changed vote', async () => {
+    const env = setup(), vote = comment({ body: ratingBody(4) });
+    const issue = { number: 12, html_url: url(12), body: body(envelope), state: 'open' };
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100', result: [] }, { path: '/issues/12', result: issue },
+        { path: '/issues/12/comments', method: 'POST', status: 503, result: {} });
+    await assert.rejects(env.service.setRating(12, 4, 7), code('networkError'));
+    assert.equal(env.calls.filter(call => call.method === 'POST').length, 1);
+    env.routes.push({ path: '/user', result: identity }, { path: '/comments?per_page=100', result: [vote] }, { path: '/issues/12', result: issue },
+        { path: '/user', result: identity }, { path: '/issues/comments/91', result: comment({ body: ratingBody(2) }) });
+    await assert.rejects(env.service.setRating(12, 5, 7), code('commentChanged'));
+    assert.equal(env.calls.some(call => call.method === 'PATCH'), false); env.done();
+});
+test('comments allow anonymous reading and filter bots and unrelated issue records', async () => {
+    const env = setup({ stored: false }), value = comment({ body: '<img src=x onerror=alert(1)>' });
+    const rows = [value, comment({ user: { id: 8, login: 'github-actions[bot]', type: 'Bot' } }), comment({ issue_url: 'https://api.github.com/repos/other/repo/issues/12' })];
+    while (rows.length < 30) rows.push(comment({ user: { id: 8, login: 'review-bot', type: 'Bot' } }));
+    env.routes.push({ path: '/issues/12/comments?per_page=30&page=1', result: rows, check: o => assert.equal(o.headers.Authorization, undefined) });
+    const result = await env.service.comments(12);
+    assert.equal(result.items.length, 1); assert.equal(result.items[0].body, value.body); assert.equal(result.nextPage, 2);
+    env.routes.push({ path: '/issues/12/comments?per_page=30&page=2', result: [] });
+    assert.equal((await env.service.comments(12, 2)).nextPage, null); env.done();
+});
+test('comments post, edit and delete the signed-in user comment, including empty DELETE responses', async () => {
+    const env = setup(), value = comment(), changed = comment({ body: 'Updated comment', updated_at: '2026-11-10T02:00:00Z' });
+    const issue = { number: 12, html_url: url(12), body: body(envelope), state: 'open', labels: [] };
+    env.routes.push({ path: '/user', result: identity }, { path: '/issues/12', method: 'GET', result: issue },
+        { path: '/issues/12/comments', method: 'POST', result: value, check: o => assert.deepEqual(JSON.parse(o.data), { body: value.body }) });
+    const posted = await env.service.addComment(12, '  Useful config  ', 7); assert.equal(posted.id, 91);
+    env.routes.push({ path: '/user', result: identity }, { path: '/issues/comments/91', method: 'GET', result: value },
+        { path: '/issues/comments/91', method: 'PATCH', result: changed, check: o => assert.deepEqual(JSON.parse(o.data), { body: changed.body }) });
+    const edited = await env.service.updateComment(12, posted, changed.body, 7); assert.equal(edited.body, changed.body);
+    env.routes.push({ path: '/user', result: identity }, { path: '/issues/comments/91', method: 'GET', result: changed },
+        { path: '/issues/comments/91', method: 'DELETE', status: 204, result: '' });
+    assert.equal(await env.service.deleteComment(12, edited, 7), true); env.done();
+});
+test('comments reject other owners, wrong issues, changed content and account switches before writing', async () => {
+    for (const method of ['updateComment', 'deleteComment']) for (const scenario of ['owner', 'issue', 'changed', 'switched']) {
+        const env = setup(), original = comment(), current = comment(scenario === 'owner' ? { user: { id: 8, login: 'other', type: 'User' } } :
+            scenario === 'issue' ? { issue_url: 'https://api.github.com/repos/' + repo + '/issues/13' } : scenario === 'changed' ? { body: 'Changed remotely' } : {});
+        env.routes.push({ path: '/user', result: identity }, { path: '/issues/comments/91', method: 'GET', result: current,
+            check: scenario === 'switched' ? () => env.storage.set('jpx-config-store-auth-v1', { token: 'ghu_other', user: { id: 8, login: 'other' } }) : undefined });
+        const args = [12, commentSnapshot(original), ...(method === 'updateComment' ? ['My edit'] : []), 7];
+        await assert.rejects(env.service[method](...args), code(scenario === 'changed' ? 'commentChanged' : scenario === 'switched' ? 'loginRequired' : 'commentNotOwner'));
+        assert.equal(env.calls.some(call => call.method !== 'GET'), false, scenario); env.done();
+    }
+});
+test('comments validate content and closed issues and preserve useful API errors', async () => {
+    const invalid = setup();
+    for (const value of ['', '   ', 'x'.repeat(10001)]) await assert.rejects(invalid.service.addComment(12, value, 7), code('commentInvalid'));
+    assert.equal(invalid.calls.length, 0);
+    for (const closed of [{ state: 'closed' }, { locked: true }, { labels: [{ name: 'store:hide' }] }]) {
+        const env = setup(); env.routes.push({ path: '/user', result: identity }, { path: '/issues/12', result: { number: 12, html_url: url(12), body: body(envelope), state: 'open', ...closed } });
+        await assert.rejects(env.service.addComment(12, 'Hello', 7), code('commentsClosed')); assert.equal(env.calls.length, 2); env.done();
+    }
+    for (const [status, expected] of [[403, 'commentDenied'], [404, 'commentMissing'], [422, 'commentInvalid'], [503, 'networkError']]) {
+        const env = setup(), value = comment();
+        env.routes.push({ path: '/user', result: identity }, { path: '/issues/comments/91', method: 'GET', result: value },
+            { path: '/issues/comments/91', method: 'PATCH', status, result: {} });
+        await assert.rejects(env.service.updateComment(12, commentSnapshot(value), 'Updated', 7), code(expected));
+        assert.equal(env.calls.filter(call => call.method === 'PATCH').length, 1); env.done();
+    }
+});
 async function run() {
     {
         const env = setup();

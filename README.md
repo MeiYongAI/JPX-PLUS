@@ -57,6 +57,10 @@ Keep several setups for the same style, battle and world. **My configs** handles
 
 Browse and download without signing in. Save a store config to **My configs**, then apply it when ready. Sign in with GitHub to share a saved config and manage it under **Shared**.
 
+Comments appear below each config. Sign in with GitHub to post, edit or delete your own comments. Deletion requires confirmation.
+
+Rate configs from 1 to 5 stars without writing a comment. Each GitHub account gets one vote per config and can change or withdraw it. The store shows the average and number of ratings.
+
 GitHub sign-in renews automatically; signing out requires confirmation. After updating from an older version, you may need to sign in once more. [Sign-in details](docs/store-authentication.md).
 
 <table>

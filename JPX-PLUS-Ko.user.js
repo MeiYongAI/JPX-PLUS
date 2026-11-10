@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.4
+// @version      2026.11.10.5
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1111,7 +1111,39 @@
     "storageError": "보관함 저장소에 접근하지 못했어요. 플러그인 권한을 확인하고 다시 시도해 주세요.",
     "localNotFound": "이 설정은 더 이상 보관함에 없어요.",
     "savedConfig": "내 설정에 저장했어요.",
-    "saved": "저장됨"
+    "saved": "저장됨",
+    "comments": "댓글",
+    "writeComment": "댓글 쓰기…",
+    "postComment": "등록",
+    "commentSignIn": "로그인 후 댓글 쓰기",
+    "noComments": "아직 댓글이 없습니다.",
+    "commentsPublic": "댓글은 GitHub에 공개됩니다",
+    "editComment": "수정",
+    "deleteCommentConfirm": "이 댓글을 삭제할까요?",
+    "commentPosted": "댓글을 등록했습니다.",
+    "commentDeleted": "댓글을 삭제했습니다.",
+    "commentNotOwner": "내 댓글만 변경할 수 있습니다.",
+    "commentChanged": "댓글이 변경되었습니다. 수정을 취소하고 새로고침한 뒤 다시 시도해 주세요.",
+    "commentMissing": "이 댓글은 삭제되었습니다. 새로고침해 주세요.",
+    "commentInvalid": "댓글을 입력해 주세요. 최대 10,000자까지 가능합니다.",
+    "commentDenied": "댓글을 변경할 수 없습니다. GitHub 권한을 확인해 주세요.",
+    "commentsClosed": "이 설정은 댓글 작성이 마감되었습니다.",
+    "commentSendFailed": "전송 결과를 확인하지 못했습니다. 새로고침으로 확인한 뒤 다시 등록해 주세요.",
+    "noRatings": "아직 평가가 없습니다",
+    "ratingCount": "${count}명",
+    "yourRating": "내 평가",
+    "ratingStars": "별 ${score}개",
+    "ratingSignIn": "로그인 후 평가",
+    "removeRating": "철회",
+    "ratingSaved": "평가를 저장했습니다.",
+    "ratingRemoved": "평가를 철회했습니다.",
+    "ratingFailed": "평가 결과를 확인하지 못했습니다. 새로고침해 주세요.",
+    "ratingInvalid": "별 1~5개를 선택해 주세요.",
+    "ratingsClosed": "이 설정은 평가가 마감되었습니다.",
+    "ratingDenied": "평가할 수 없습니다. GitHub 권한을 확인해 주세요.",
+    "ratingChanged": "다른 곳에서 평가가 변경되었습니다. 새로고침해 주세요.",
+    "ratingsTooMany": "댓글이 너무 많아 평가를 불러올 수 없습니다. GitHub에서 이 설정을 확인해 주세요.",
+    "ratingCountOne": "1명"
 };
     i18n.cM = {
         "bind": "장비 세트 연결",

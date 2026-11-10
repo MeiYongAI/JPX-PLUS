@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.4
+// @version      2026.11.10.5
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1110,7 +1110,39 @@
             "storageError": "バックパックの保存領域にアクセスできません。プラグインの権限を確認してお試しください。",
             "localNotFound": "この設定はバックパックにありません。",
             "savedConfig": "マイ設定に保存しました。",
-            "saved": "保存済み"
+            "saved": "保存済み",
+            "comments": "コメント",
+            "writeComment": "コメントを書く…",
+            "postComment": "投稿",
+            "commentSignIn": "ログインしてコメント",
+            "noComments": "コメントはまだありません。",
+            "commentsPublic": "コメントは GitHub で公開されます",
+            "editComment": "編集",
+            "deleteCommentConfirm": "このコメントを削除しますか？",
+            "commentPosted": "コメントを投稿しました。",
+            "commentDeleted": "コメントを削除しました。",
+            "commentNotOwner": "自分のコメントのみ変更できます。",
+            "commentChanged": "コメントが変更されています。編集をキャンセルし、再読み込みしてからやり直してください。",
+            "commentMissing": "このコメントは削除されています。再読み込みしてください。",
+            "commentInvalid": "コメントを入力してください。10,000 文字までです。",
+            "commentDenied": "コメントを変更できません。GitHub の権限を確認してください。",
+            "commentsClosed": "この設定へのコメントは締め切られています。",
+            "commentSendFailed": "送信結果を確認できませんでした。再読み込みで確認してから、もう一度投稿してください。",
+            "noRatings": "評価はまだありません",
+            "ratingCount": "${count} 件",
+            "yourRating": "自分の評価",
+            "ratingStars": "星 ${score} 個",
+            "ratingSignIn": "ログインして評価",
+            "removeRating": "取り消す",
+            "ratingSaved": "評価を保存しました。",
+            "ratingRemoved": "評価を取り消しました。",
+            "ratingFailed": "評価を確認できませんでした。再読み込みしてください。",
+            "ratingInvalid": "星を 1〜5 個選んでください。",
+            "ratingsClosed": "この設定への評価は締め切られています。",
+            "ratingDenied": "評価できません。GitHub の権限を確認してください。",
+            "ratingChanged": "評価が別の場所で変更されています。再読み込みしてください。",
+            "ratingsTooMany": "コメントが多すぎるため、評価を読み込めません。GitHub でこの設定を確認してください。",
+            "ratingCountOne": "1 件"
         }
     };
     i18n.cM = {

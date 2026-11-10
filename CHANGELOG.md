@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.10.5
+
+- Save store configurations directly to My configs from the list, without applying them.
+- Add public comments with editing and confirmed deletion of your own comments.
+- Add 1–5 star ratings, one vote per GitHub account, with changes, withdrawal and public totals.
+- Keep ratings and discussion compact with square controls, accessible icons and mobile touch targets. Update every language pack and README.
+
+### 简体中文
+
+- 商店列表可直接保存到“我的配置”，不会自动应用。
+- 新增评论，支持编辑自己的评论，删除前需确认。
+- 新增 1 至 5 星评分，每个 GitHub 账号只计一票，支持改分、撤回及平均分展示。
+- 精简评论与评分界面，沿用直角风格，优化图标和手机点击区域，同步全部语言包与说明。
+
 ## 2026.11.10.4
 
 - Keep recognized spell attributes and weapon style when entering Item World. Its entry form shares the equipment form's ID and was incorrectly clearing both observations on submission.

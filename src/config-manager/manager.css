@@ -154,7 +154,7 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}
 #settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}
 #settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}
-#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 3;align-self:stretch}
+#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}
 #settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}
 #settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}
@@ -255,3 +255,40 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}
 #settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}
 #settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}
+#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}
+#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}
+#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}
+#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}
+#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}
+#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}
+#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}
+#settings-container .jpx-comment-row:last-child{border-bottom:0}
+#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}
+#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}
+#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}
+#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}
+#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}
+#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}
+#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}
+#settings-container .jpx-comment-more{margin-top:12px}
+#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}
+#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}
+#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0}
+#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}
+#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}
+#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+#settings-container .jpx-rating-stars{display:flex;gap:8px}
+#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}
+#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}
+#settings-container .jpx-rating-star svg{width:24px;height:24px}
+#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}
+#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}
+#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}
+#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}
+#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}
+#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}
+@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}
+#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.4
+// @version      2026.11.10.5
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1109,7 +1109,39 @@
             "storageError": "無法存取背包資料，請檢查插件權限後再試。",
             "localNotFound": "這份設定已不在背包中。",
             "savedConfig": "已儲存到我的設定。",
-            "saved": "已儲存"
+            "saved": "已儲存",
+            "comments": "留言",
+            "writeComment": "寫下留言…",
+            "postComment": "發佈",
+            "commentSignIn": "登入後留言",
+            "noComments": "暫無留言。",
+            "commentsPublic": "留言會公開在 GitHub",
+            "editComment": "編輯",
+            "deleteCommentConfirm": "刪除這則留言？",
+            "commentPosted": "留言已發佈。",
+            "commentDeleted": "留言已刪除。",
+            "commentNotOwner": "只能修改自己的留言。",
+            "commentChanged": "留言已被修改，請取消編輯並重新整理後再試。",
+            "commentMissing": "這則留言已不存在，請重新整理後再試。",
+            "commentInvalid": "請輸入留言，最多 10,000 字。",
+            "commentDenied": "無法修改留言，請檢查 GitHub 權限。",
+            "commentsClosed": "這份設定已關閉留言。",
+            "commentSendFailed": "尚未確認傳送結果，請重新整理確認後再發佈。",
+            "noRatings": "暫無評分",
+            "ratingCount": "${count} 人",
+            "yourRating": "我的評分",
+            "ratingStars": "${score} 星",
+            "ratingSignIn": "登入後評分",
+            "removeRating": "撤回",
+            "ratingSaved": "評分已儲存。",
+            "ratingRemoved": "評分已撤回。",
+            "ratingFailed": "尚未確認評分結果，請重新整理確認。",
+            "ratingInvalid": "請選擇 1 至 5 星。",
+            "ratingsClosed": "這份設定已關閉評分。",
+            "ratingDenied": "無法評分，請檢查 GitHub 權限。",
+            "ratingChanged": "評分已在別處修改，請重新整理後再試。",
+            "ratingsTooMany": "留言過多，無法讀取評分，請到 GitHub 查看這份設定。",
+            "ratingCountOne": "1 人"
         }
     };
     i18n.cM = {

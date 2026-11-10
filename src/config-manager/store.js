@@ -2,7 +2,7 @@
 // Construction is offline; network activity starts only after render() is explicitly called.
 function createJpxIntegratedStore(host, translate) {
     'use strict';
-    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","cancel":"Cancel","updateShare":"Update","configContents":"Config content","keepSharedConfig":"Keep shared config","noMatchingLocal":"No matching saved configs","shareChanged":"This share changed elsewhere. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn share from the list? Its GitHub record and local configs will stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more"}};
+    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","cancel":"Cancel","updateShare":"Update","configContents":"Config content","keepSharedConfig":"Keep shared config","noMatchingLocal":"No matching saved configs","shareChanged":"This share changed elsewhere. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn share from the list? Its GitHub record and local configs will stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more","comments":"Comments","writeComment":"Write a comment…","postComment":"Post","commentSignIn":"Sign in to comment","noComments":"No comments yet.","commentsPublic":"Comments are public on GitHub","editComment":"Edit","deleteCommentConfirm":"Delete this comment?","commentPosted":"Comment posted.","commentDeleted":"Comment deleted.","commentNotOwner":"You can only change your own comments.","commentChanged":"This comment has changed. Cancel editing, refresh, and try again.","commentMissing":"This comment is no longer available. Refresh and try again.","commentInvalid":"Enter a comment of up to 10,000 characters.","commentDenied":"You cannot change comments here. Check your GitHub permissions.","commentsClosed":"Comments are closed for this config.","commentSendFailed":"Sending was not confirmed. Refresh to check before posting again.","noRatings":"No ratings yet","ratingCount":"${count} ratings","yourRating":"Your rating","ratingStars":"${score} stars","ratingSignIn":"Sign in to rate","removeRating":"Withdraw","ratingSaved":"Rating saved.","ratingRemoved":"Rating withdrawn.","ratingFailed":"The rating could not be confirmed. Refresh to check.","ratingInvalid":"Choose 1 to 5 stars.","ratingsClosed":"Ratings are closed for this config.","ratingDenied":"You cannot rate this config. Check your GitHub permissions.","ratingChanged":"Your rating changed elsewhere. Refresh and try again.","ratingsTooMany":"Too many comments to load your rating. Open this config on GitHub.","ratingCountOne":"1 rating"}};
     const t = key => {
         const name = key.replace(/^cStore\./, '');
         const pack = host.jpxI18N?.cStore?.[name];
@@ -17,10 +17,14 @@ function createJpxIntegratedStore(host, translate) {
 const JPX_CONFIG_STORE = Object.freeze({ repository: 'MeiYongAI/JPX-PLUS-Configs', clientId: 'Iv23liGY2o8zyCDWgKBV' });
 const styles = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed'];
 const battleTypes = ['General', 'Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'];
+const ratingTotals = new Map();
 const jpxConfigStore = (() => {
     const repository = JPX_CONFIG_STORE.repository, api = 'https://api.github.com', raw = 'https://raw.githubusercontent.com/' + repository + '/main/';
     const tokenKey = 'jpx-config-store-auth-v1', marker = '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n';
     const archivedMarker = '<!-- JPX-PLUS-CONFIG-ARCHIVED:v1 -->\n```json\n';
+    const ratingPrefix = '<!-- JPX-PLUS-RATING:';
+    const ratingBody = score => '<!-- JPX-PLUS-RATING:v1 {"score":' + score + '} -->\nRating: ' + score + '/5';
+    const ratingScore = body => [1, 2, 3, 4, 5].find(score => body === ratingBody(score)) || null;
     const kinds = ['battle-mode', 'battle', 'stats'], worlds = ['Persistent', 'Isekai', 'Any'];
     const modes = styles.flatMap(style => battleTypes.map(type => style + '_' + type));
     const ruleTypes = { supports: ['spellSupport', 'item', 'toggle', 'stop'], attacks: ['target', 'toggle', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'], keys: ['target', 'spellSupport', 'item', 'toggle', 'stop', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'] };
@@ -236,11 +240,14 @@ const jpxConfigStore = (() => {
         return object(auth) && validToken(auth.token) ? auth : null;
     }
     async function authenticated(path, options = {}, onSuccess) {
+        const { rawResponse = false, expectedUserId, ...requestOptions } = options;
         let auth = await storedAuth();
         if (!auth) fail('loginRequired');
         for (let attempt = 0; attempt < 2; attempt++) {
+            if (expectedUserId !== undefined && auth.user?.id !== expectedUserId) fail('loginRequired');
             try {
-                const value = parse(await request(api + path, { ...options, token: auth.token }), options.limit || 6000000);
+                const response = await request(api + path, { ...requestOptions, token: auth.token });
+                const value = rawResponse ? response : parse(response, options.limit || 6000000);
                 onSuccess?.(value, auth); return value;
             }
             catch (err) {
@@ -318,6 +325,8 @@ const jpxConfigStore = (() => {
     function entryValid(entry) {
         return object(entry) && integer(entry.id) && text(entry.author, 100) && text(entry.title, 100) && text(entry.description, 4000, true) &&
             kinds.includes(entry.kind) && worlds.includes(entry.world) && text(entry.scriptVersion, 64) && text(entry.updatedAt, 64) &&
+            (entry.rating === undefined || object(entry.rating) && Number.isSafeInteger(entry.rating.count) && entry.rating.count >= 0 &&
+                Number.isSafeInteger(entry.rating.sum) && entry.rating.sum >= entry.rating.count && entry.rating.sum <= 5 * entry.rating.count) &&
             /^[a-f0-9]{64}$/.test(entry.sha256) && entry.configPath === 'catalog/configs/' + entry.id + '-' + entry.sha256 + '.json' && entry.issueUrl === issueURL(entry.id) &&
             (entry.kind === 'battle-mode' ? modes.includes(entry.mode) : entry.mode === undefined) &&
             (entry.modes === undefined || Array.isArray(entry.modes) && entry.modes.length <= modes.length && new Set(entry.modes).size === entry.modes.length &&
@@ -422,7 +431,135 @@ const jpxConfigStore = (() => {
         if (latest && latest.status !== 'pending' && pendingSubmissions.get(id) === issue.body) pendingSubmissions.delete(id);
         return latest;
     }
-    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, archive, parseSubmission, feedback, prepare: input => validate(clone(input)) });
+    function commentRecord(row, issue) {
+        if (!object(row) || !integer(row.id) || !validIdentity(row.user) || row.user.type !== 'User' ||
+            !text(row.body, 65536, true) || row.html_url !== issueURL(issue) + '#issuecomment-' + row.id ||
+            row.issue_url !== api + '/repos/' + repository + '/issues/' + issue ||
+            !Number.isFinite(Date.parse(row.created_at)) || !Number.isFinite(Date.parse(row.updated_at))) return null;
+        return { id: row.id, body: row.body, author: { id: row.user.id, login: row.user.login },
+            createdAt: row.created_at, updatedAt: row.updated_at, url: row.html_url };
+    }
+    async function comments(issue, page = 1) {
+        if (!integer(issue) || !integer(page) || page > 1000) fail('invalidResponse');
+        const path = '/repos/' + repository + '/issues/' + issue + '/comments?per_page=30&page=' + page;
+        let rows;
+        try { rows = await authenticated(path); }
+        catch (error) {
+            if (error.code !== 'loginRequired') throw error;
+            rows = parse(await request(api + path), 6000000);
+        }
+        if (!Array.isArray(rows) || rows.length > 30) fail('invalidResponse');
+        return { items: rows.map(row => commentRecord(row, issue)).filter(row => row && !row.body.startsWith(ratingPrefix)), nextPage: rows.length === 30 ? page + 1 : null };
+    }
+    function commentBody(value) {
+        if (!text(value, 10000) || encode(value).length > 60000 || value.trim().startsWith(ratingPrefix)) fail('commentInvalid');
+        return value.trim();
+    }
+    async function commentIdentity(expectedUserId) {
+        if (!integer(expectedUserId)) fail('loginRequired');
+        const identity = await user();
+        if (identity?.id !== expectedUserId) fail('loginRequired');
+        return identity;
+    }
+    async function commentMutation(action) {
+        try { return await action(); }
+        catch (error) {
+            if (error.code === 'rateLimited') throw error;
+            if (error.status === 403) fail('commentDenied');
+            if (error.status === 404) fail('commentMissing');
+            if (error.status === 422) fail('commentInvalid');
+            throw error;
+        }
+    }
+    async function commentIssue(issue, expectedUserId) {
+        const path = '/repos/' + repository + '/issues/' + issue;
+        const current = await authenticated(path, { expectedUserId });
+        if (current.number !== issue || current.html_url !== issueURL(issue) || current.pull_request || !current.body?.startsWith(marker)) fail('invalidResponse');
+        if (current.locked || current.state !== 'open' || current.labels?.some(label => (label.name || label) === 'store:hide')) fail('commentsClosed');
+        return path;
+    }
+    async function addComment(issue, input, expectedUserId) {
+        if (!integer(issue)) fail('invalidResponse');
+        const body = commentBody(input), identity = await commentIdentity(expectedUserId);
+        return commentMutation(async () => {
+            const path = await commentIssue(issue, expectedUserId);
+            const result = commentRecord(await authenticated(path + '/comments', { method: 'POST', data: { body }, expectedUserId }), issue);
+            if (!result || result.author.id !== identity.id || result.body !== body) fail('invalidResponse');
+            return result;
+        });
+    }
+    async function ownComment(issue, expected, expectedUserId, rating = false) {
+        if (!integer(issue) || !integer(expected?.id) || !text(expected.body, 65536, true) || !text(expected.updatedAt, 64)) fail('invalidResponse');
+        const identity = await commentIdentity(expectedUserId);
+        const path = '/repos/' + repository + '/issues/comments/' + expected.id;
+        const current = commentRecord(await authenticated(path, { expectedUserId }), issue);
+        if (!current || current.author.id !== identity.id) fail('commentNotOwner');
+        if (rating ? !ratingScore(current.body) : current.body.startsWith(ratingPrefix)) fail('invalidResponse');
+        if (current.body !== expected.body || current.updatedAt !== expected.updatedAt) fail('commentChanged');
+        return { current, path };
+    }
+    async function updateComment(issue, expected, input, expectedUserId) {
+        const body = commentBody(input);
+        return commentMutation(async () => {
+            const { current, path } = await ownComment(issue, expected, expectedUserId);
+            if (current.body === body) return current;
+            const result = commentRecord(await authenticated(path, { method: 'PATCH', data: { body }, expectedUserId }), issue);
+            if (!result || result.id !== current.id || result.author.id !== current.author.id || result.body !== body) fail('invalidResponse');
+            return result;
+        });
+    }
+    async function deleteComment(issue, expected, expectedUserId) {
+        return commentMutation(async () => {
+            const { path } = await ownComment(issue, expected, expectedUserId);
+            await authenticated(path, { method: 'DELETE', rawResponse: true, expectedUserId });
+            return true;
+        });
+    }
+    async function ratingRecords(issue, expectedUserId) {
+        if (!integer(issue)) fail('invalidResponse');
+        await commentIdentity(expectedUserId);
+        const records = [];
+        for (let page = 1; page <= 100; page++) {
+            const rows = await authenticated('/repos/' + repository + '/issues/' + issue + '/comments?per_page=100&page=' + page, { expectedUserId });
+            if (!Array.isArray(rows) || rows.length > 100) fail('invalidResponse');
+            for (const row of rows) { const value = commentRecord(row, issue); if (value && ratingScore(value.body)) records.push(value); }
+            if (rows.length < 100) return records;
+        }
+        fail('ratingsTooMany');
+    }
+    function ratingState(records, expectedUserId) {
+        const votes = new Map();
+        for (const record of records.slice().sort((a, b) => Date.parse(a.updatedAt) - Date.parse(b.updatedAt) || a.id - b.id)) votes.set(record.author.id, record);
+        return { score: ratingScore(votes.get(expectedUserId)?.body), count: votes.size, sum: [...votes.values()].reduce((sum, row) => sum + ratingScore(row.body), 0) };
+    }
+    async function rating(issue, expectedUserId) { return ratingState(await ratingRecords(issue, expectedUserId), expectedUserId); }
+    async function setRating(issue, score, expectedUserId) {
+        if (!integer(issue) || score !== null && (!Number.isInteger(score) || score < 1 || score > 5)) fail('ratingInvalid');
+        return commentMutation(async () => {
+            let records = await ratingRecords(issue, expectedUserId);
+            const own = records.filter(row => row.author.id === expectedUserId).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt) || b.id - a.id);
+            if (score === null) {
+                // Remove older duplicates first so withdrawing never resurrects an old vote.
+                for (const row of own.slice().reverse()) {
+                    const { path } = await ownComment(issue, row, expectedUserId, true);
+                    await authenticated(path, { method: 'DELETE', rawResponse: true, expectedUserId });
+                }
+                records = records.filter(row => row.author.id !== expectedUserId);
+            } else {
+                const path = await commentIssue(issue, expectedUserId), body = ratingBody(score);
+                const current = own[0];
+                if (!current || current.body !== body) {
+                    const target = current ? (await ownComment(issue, current, expectedUserId, true)).path : path + '/comments';
+                    const saved = commentRecord(await authenticated(target, { method: current ? 'PATCH' : 'POST', data: { body }, expectedUserId }), issue);
+                    if (!saved || saved.author.id !== expectedUserId || saved.body !== body || current && saved.id !== current.id) fail('invalidResponse');
+                    records = records.filter(row => row.id !== saved.id); records.push(saved);
+                }
+            }
+            cache = null; return ratingState(records, expectedUserId);
+        });
+    }
+    return Object.freeze({ catalog, load, user, login, logout, mine, submit, withdraw, archive, parseSubmission, feedback,
+        comments, addComment, updateComment, deleteComment, rating, setRating, prepare: input => validate(clone(input)) });
 })();
 
 
@@ -445,7 +582,8 @@ function renderConfigStore(parent, hooks, options = {}) {
     const viewHeader = el('div', undefined, 'jpx-store-view-header');
     const stage = el('div', undefined, 'jpx-store-stage');
     const layoutEvents = new AbortController();
-    let browseControls = null;
+    let browseControls = null, commentView = null, ratingView = null;
+    const commentDrafts = new Map();
     const state = { view: 'browse', entries: [], query: '', sharedQuery: '', kind: '', world: '', style: '', battleType: '', sort: 'updated',
         filtersOpen: false, visible: 30, browseScroll: 0,
         user: null, editor: null, request: 0, login: null, disposed: false, suspended: false, saved: new Set(), authGeneration: 0, currentEntry: null };
@@ -568,8 +706,10 @@ function renderConfigStore(parent, hooks, options = {}) {
             logout.setAttribute('aria-label', tr('signOut') + ' · ' + state.user.login);
             account.append(logout);
         } else account.append(button(tr('signIn'), () => login()));
+        commentView?.authChanged(); ratingView?.authChanged();
     }
     function open(view) {
+        commentView?.dispose(); commentView = null; ratingView?.dispose(); ratingView = null;
         browseControls?.queryBar.remove(); browseControls = null;
         state.login?.abort(); state.login = null;
         if (view !== 'edit' && view !== 'login') state.editor = null;
@@ -699,12 +839,17 @@ function renderConfigStore(parent, hooks, options = {}) {
                     node.setAttribute('aria-busy', 'true');
                     try {
                         const envelope = await jpxConfigStore.load(entry);
-                        if (alive() && request === state.request && node.isConnected) downloadConfig(envelope, entry.id);
+                        if (!alive() || request !== state.request || !node.isConnected) return;
+                        if (!await saveConfig(envelope, entry)) return;
+                        if (alive() && request === state.request && node.isConnected) {
+                            node.title = tr('saved'); node.setAttribute('aria-label', tr('saved') + ': ' + entry.title);
+                            node.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>';
+                        }
                     } catch (error) {
                         if (alive() && request === state.request && node.isConnected) throw error;
                     } finally { node.removeAttribute('aria-busy'); }
                 }, 'jpx-store-download');
-                download.title = tr('download'); download.setAttribute('aria-label', tr('download') + ': ' + entry.title);
+                download.title = tr('save'); download.setAttribute('aria-label', tr('save') + ': ' + entry.title);
                 download.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>';
                 tools.prepend(download); row.append(tools);
                 row.append(tags(entry, entry.author, (key, value) => {
@@ -712,6 +857,7 @@ function renderConfigStore(parent, hooks, options = {}) {
                     if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
                     render(true);
                 }));
+                row.append(el('p', jpxStoreRatingText(ratingTotals.get(entry.id) || entry.rating, tr), 'jpx-store-rating-summary'));
                 if (entry.description) row.append(el('p', entry.description, 'jpx-store-excerpt'));
                 fragment.append(row);
             }
@@ -733,6 +879,7 @@ function renderConfigStore(parent, hooks, options = {}) {
             try {
                 const catalog = await jpxConfigStore.catalog({ refresh: force });
                 if (!alive() || request !== state.request) return;
+                if (force) ratingTotals.clear();
                 state.entries = catalog.entries; orderedBy = null;
                 index = state.entries.map(entry => {
                     const modes = entry.mode ? [entry.mode] : entry.modes || [];
@@ -791,6 +938,14 @@ function renderConfigStore(parent, hooks, options = {}) {
         link.href = url; link.download = 'jpx-config-' + id + '.json'; link.click();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
+    async function saveConfig(envelope, entry) {
+        if (typeof hooks.saveConfig !== 'function') throw new Error('Save unavailable');
+        const saved = await hooks.saveConfig(JSON.parse(JSON.stringify(envelope)), { id: entry.id, author: entry.author,
+            source: { repository: JPX_CONFIG_STORE.repository, id: entry.id, author: entry.author, sha256: entry.sha256, url: entry.issueUrl } });
+        if (saved === false) return false;
+        state.saved.add(entry.id);
+        return true;
+    }
     async function details(entry) {
         const request = open('detail'); heading(entry.title, () => browse()); message(tr('loading'));
         state.currentEntry = entry;
@@ -808,11 +963,7 @@ function renderConfigStore(parent, hooks, options = {}) {
                 el('p', tr('scriptVersion') + ': ' + envelope.scriptVersion, 'jpx-store-meta'));
             const actions = el('div', undefined, 'jpx-store-actions');
             const save = button(tr(state.saved.has(entry.id) ? 'saved' : 'save'), async node => {
-                if (typeof hooks.saveConfig !== 'function') throw new Error('Save unavailable');
-                const saved = await hooks.saveConfig(JSON.parse(JSON.stringify(envelope)), { id: entry.id, author: entry.author,
-                    source: { repository: JPX_CONFIG_STORE.repository, id: entry.id, author: entry.author, sha256: entry.sha256, url: entry.issueUrl } });
-                if (saved === false) return;
-                state.saved.add(entry.id);
+                if (!await saveConfig(envelope, entry)) return;
                 if (!alive() || request !== state.request) return;
                 node.textContent = tr('saved'); message(tr('savedConfig'));
             }, 'jpx-store-primary');
@@ -820,6 +971,13 @@ function renderConfigStore(parent, hooks, options = {}) {
             if (typeof hooks.applyConfig === 'function') actions.append(button(tr('apply'), () => hooks.applyConfig(JSON.parse(JSON.stringify(envelope)))));
             actions.append(button(tr('download'), () => downloadConfig(envelope, entry.id)));
             stage.append(actions, rawPreview(envelope));
+            ratingView = renderJpxStoreRating(stage, { service: jpxConfigStore, entry, summary: ratingTotals.get(entry.id) || entry.rating, tr, el,
+                signIn: () => login(() => details(entry), () => details(entry)), user: () => state.user,
+                isCurrent: () => alive() && request === state.request, onChange: value => ratingTotals.set(entry.id, value) });
+            const draft = commentDrafts.get(entry.id) || { body: '', edits: {} }; commentDrafts.set(entry.id, draft);
+            commentView = renderJpxStoreComments(stage, { service: jpxConfigStore, entry, tr, el, confirm: confirmShare,
+                signIn: () => login(() => details(entry), () => details(entry)), user: () => state.user,
+                isCurrent: () => alive() && request === state.request, draft });
         } catch (error) {
             if (!alive() || request !== state.request) return;
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => details(entry));
@@ -1014,7 +1172,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         }
     }
     const observer = new MutationObserver(() => {
-        if (!root.isConnected) { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); }
+        if (!root.isConnected) { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); }
     });
     // The core removes its dialog directly from body; ignore battle-content mutations.
     observer.observe(doc.body, { childList: true });
@@ -1028,7 +1186,7 @@ function renderConfigStore(parent, hooks, options = {}) {
     }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
     if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
     else browse();
-    const dispose = () => { state.disposed = true; state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
+    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     dispose.back = () => {
         if (!alive() || !state.back) return false;
         Promise.resolve().then(state.back).catch(error => { if (alive()) message(errorMessage(error), true); });
@@ -1036,7 +1194,7 @@ function renderConfigStore(parent, hooks, options = {}) {
     };
     dispose.suspend = () => {
         if (state.disposed || state.suspended) return;
-        state.suspended = true; state.request++;
+        state.suspended = true; state.request++; commentView?.dispose(); commentView = null; ratingView?.dispose(); ratingView = null;
         if (state.login) { state.authGeneration++; state.login.abort(); state.login = null; }
     };
     dispose.resume = () => {

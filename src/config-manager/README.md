@@ -37,6 +37,10 @@ Native migration preserves an absent `smartDebuff.targetCount`: the battle runne
 
 The standalone Config Store is retired. The configuration-only migration bridge remains compatible with previously installed copies; it does not transfer tokens or delete source data. The integrated store signs in separately. Local configurations remain usable when game lookups are unavailable.
 
+`comments.js` displays plain-text comments on each config's GitHub issue. Reading is public; posting and changing one's own comments use the existing sign-in. Deletion requires confirmation, failed writes keep drafts, and edits check the latest author and content before writing. Automated review feedback stays separate from the discussion.
+
+`ratings.js` displays the public catalog's optional `{count,sum}` rating totals and a signed-in user's 1–5 star selection. Ratings use dedicated issue comments starting with `<!-- JPX-PLUS-RATING:v1` and never appear in the discussion. The actual GitHub user ID defines each vote; the most recently updated valid rating wins, with comment ID breaking ties. Changing a rating updates the current record; withdrawal deletes all of that user's valid duplicates. Reads fail rather than count incomplete pagination. The config repository's independent ratings workflow refreshes public totals after comment changes, with periodic reconciliation; a successful local write immediately updates the detail and list in the current store session.
+
 Local archive reads and writes belong to `library.js`; the embedded store no longer includes the retired backpack CRUD service. Authentication renewal uses shared userscript-storage tickets to coordinate tabs. Catalog ordering is reused across search/filter edits and recomputed only when the ordering changes or a fresh catalog is loaded.
 
 Native storage is backed up to `<native-key>:configManagerBackup` before the first managed application. Library migration snapshots the previous raw library to `jpx_configLibrary_v1:backup`. Malformed data is not overwritten. Apply signals pause and update the relevant running battle tab; the user explicitly resumes battle.
