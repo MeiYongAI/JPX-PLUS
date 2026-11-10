@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.10.7
+// @version      2026.11.10.8
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-start
@@ -287,7 +287,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.10.7',
+    version: '2026.11.10.8',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -8205,8 +8205,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
 function getBattleMode(defaultBattleStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return selected;
-    const effectiveStyle = getManagedBattleStyle(battleStyle || defaultBattleStyle);
-    return resolveJpxScene(effectiveStyle, battleType).mode;
+    return resolveJpxScene(battleStyle || defaultBattleStyle, battleType).mode;
 }
 
 function renderSchema(container, schema, data) {
@@ -15131,12 +15130,21 @@ function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
-    return resolveJpxScene(getManagedBattleStyle(battleStyle || defaultStyle), battleType).rules;
+    return resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+}
+
+function syncJpxSceneRuntime() {
+    // Compare only the effective selection, outside the action loop. Other
+    // scenes, saved copies and assignment metadata cannot interrupt this battle.
+    const snapshot = () => JSON.stringify([getJpxSelectedBattleMode(), getBattleMode(), getJpxBattleRules(), !!jpxSceneRuntime.failed]);
+    const before = log ? snapshot() : '';
+    refreshJpxSelectedConfig();
+    if (log && before !== snapshot()) pauseForJpxConfigApplication();
 }
 
 function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
     getJpxConfigLibrary().clearSelection(world);
-    if (world === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+    if (world === jpxConfigWorld()) syncJpxSceneRuntime();
     localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
     window.dispatchEvent(new Event('jpx:config-library'));
 }
@@ -15145,16 +15153,8 @@ function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
 function getManagedBattleStyle(detected) {
     const selected = getJpxSelectedBattleMode();
     if (selected) return selected.slice(0, selected.lastIndexOf('_'));
-    const family = value => ({ '1H_Mage': 'OneHanded', '2H_Mage': 'TwoHanded', DW_Mage: 'DualWielding', NI_Mage: 'NitenIchiryu' }[value] || value);
-    for (const type of [battleType, 'General']) {
-        const choices = BATTLE_STYLES.filter(style => family(style) === family(detected));
-        for (const style of choices) {
-            const slot = style + '_' + type;
-            const data = Object.hasOwn(jpxSceneRuntime.scenes, slot) ? jpxSceneRuntime.scenes[slot]?.rules : cfgBattle[slot], execution = data?.jpxPlusExecution;
-            if (execution?.style === style && jpxConfigHasRules(data) &&
-                (data.supports.length || data.attacks.length || Object.entries(data).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length))) return style;
-        }
-    }
+    // Automatic routing belongs to the detected style. Metadata on another
+    // style's saved rules must not turn a physical build into a mage or vice versa.
     return detected;
 }
 
@@ -15177,18 +15177,21 @@ function pauseForJpxConfigApplication() {
     return true;
 }
 
-// Applying from a second tab must also stop the battle tab before its next action.
+// A changed effective strategy must stop battle before its next action.
 window.addEventListener('storage', event => {
     if (event.key === jpxConfigLibraryKey) {
-        const before = JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed]);
-        refreshJpxSelectedConfig();
-        if (before !== JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed])) pauseForJpxConfigApplication();
+        syncJpxSceneRuntime();
         return;
     }
     if (event.key !== jpxConfigApplyKey || !event.newValue) return;
     try {
         const signal = JSON.parse(event.newValue), stats = signal.world === 'Any';
         if (!stats && signal.world !== jpxConfigWorld() || !Array.isArray(signal.scopes)) return;
+        if (!stats && !signal.scopes.length) {
+            syncJpxSceneRuntime();
+            window.dispatchEvent(new Event('jpx:config-library'));
+            return;
+        }
         const key = stats ? prefix + 'cfgStats' : prefix + 'cfgBattle' + isekaiSuffix;
         const data = JSON.parse(localStorage.getItem(key) || 'null');
         if (!data || typeof data !== 'object' || Array.isArray(data)) return;
@@ -15230,16 +15233,6 @@ function commitJpxConfigEntry(entry, world, onApplied = (patch, scope) => docume
             patch[mode]=normalized[mode]||jpxConfigClone(envelope.config[mode]);
         if(envelope.kind==='battle')for(const key of Object.keys(envelope.config))if(!BATTLE_MODES.includes(key)&&Object.hasOwn(defaultCfgBattle,key))patch[key]=jpxConfigClone(envelope.config[key]);
         patch.battleVersion=defaultCfgBattle.battleVersion;
-        // A newer explicit choice replaces a prior sibling's override, without
-        // altering its rules or falsifying equipment stats.
-        for(const mode of Object.keys(patch).filter(mode=>BATTLE_MODES.includes(mode))){
-            const type=mode.slice(mode.lastIndexOf('_'));
-            const families=[['OneHanded','1H_Mage'],['TwoHanded','2H_Mage'],['DualWielding','DW_Mage'],['NitenIchiryu','NI_Mage']];
-            const group=families.find(group=>group.includes(mode.slice(0,-type.length)));
-            for(const sibling of group||[])if(sibling+type!==mode&&!Object.hasOwn(envelope.config,sibling+type)&&current[sibling+type]?.jpxPlusExecution){
-                patch[sibling+type]=jpxConfigClone(current[sibling+type]);delete patch[sibling+type].jpxPlusExecution;
-            }
-        }
     }
     const result=stats?patch:{...current,...patch};
     const paused=world===jpxConfigWorld()&&!!log;
@@ -15692,7 +15685,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 if (pair && !candidate) throw Object.assign(new Error(), { code: 'worldMismatch' });
                 if (candidate && jpxConfigContainsCode(candidate.envelope) && await confirmAction(tr('customCode'), [['cancel', tr('cancel')], ['confirm', tr('assign'), true]]) !== 'confirm') return;
                 library.assignScene(state.sceneWorld, target, candidate?.id || null, pair?.[1], candidate?.revision, route || null);
-                if (state.sceneWorld === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+                if (state.sceneWorld === jpxConfigWorld()) syncJpxSceneRuntime();
                 localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world: state.sceneWorld, scopes: [], nonce: Date.now() + ':' + Math.random() }));
                 const scrollTop = content.scrollTop;
                 window.dispatchEvent(new Event('jpx:config-library')); showScenes(); notify(tr('assigned'));
@@ -15874,8 +15867,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const label = removeEntry ? used ? 'detachDelete' : 'delete' : 'detach';
         if (await confirmAction(tr(removeEntry ? 'deleteConfirm' : 'detach'), [['cancel', tr('cancel')], ['confirm', tr(label), true]], content) !== 'confirm') return;
         library.detach(entry.id, entry.revision, removeEntry, refs);
-        refreshJpxSelectedConfig();
-        if ([...refs.applied, ...refs.scenes].some(ref => ref.world === jpxConfigWorld())) pauseForJpxConfigApplication();
+        syncJpxSceneRuntime();
         for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
         window.dispatchEvent(new Event('jpx:config-library'));
         showMine(); notify(tr(removeEntry ? 'deleted' : 'detached'));

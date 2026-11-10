@@ -20,6 +20,10 @@ function expose() {
     initDoI18n(); loadBattleConfig();
     battleType = 'Arena'; battleStyle = getDetectedJpxBattleStyle();
     const copy = value => JSON.parse(JSON.stringify(value));
+    let pauses = 0, signals = 0;
+    const pause = pauseForJpxConfigApplication;
+    pauseForJpxConfigApplication = () => { pauses++; return pause(); };
+    window.addEventListener('storage', event => { if (event.key === jpxConfigApplyKey) signals++; });
     window.__selection = {
         open: renderSettings,
         theme: toggleJpxTheme,
@@ -45,7 +49,7 @@ function expose() {
             refreshJpxSelectedConfig();
         },
         running: () => isActiveBattle,
-        runtime: () => copy({rules:getJpxBattleRules(),mode:getBattleMode(),active:isActiveBattle,reason:readyNext}),
+        runtime: () => copy({rules:getJpxBattleRules(),mode:getBattleMode(),active:isActiveBattle,reason:readyNext,pauses,signals}),
         smart: () => smartBattle(),
         resetLobby() {
             log = null; battleStyle = ''; battleType = 'General';
@@ -234,6 +238,103 @@ test('another tab assigns scene snapshots without switching on save, and detach 
     await settings.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
     await page.waitForFunction(()=>!__selection.running()&&__selection.runtime().mode==='Staff_General');
     assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'native staff');
+    assertClean(f);
+});
+
+test('scene changes pause only affected battles once across local and remote tabs', {timeout:45000}, async t => {
+    const f = await fixture(t), {page, context, labels} = f;
+    const settings = await context.newPage();
+    await settings.goto('https://hentaiverse.org/?s=Character'); await initialize(settings);
+    const general = await addMode(settings, 'General A', 'Staff_General');
+    const nextGeneral = await addMode(settings, 'General B', 'Staff_General');
+    const arena = await addMode(settings, 'Arena A', 'Staff_Arena');
+    const duplicate = await settings.evaluate(entry => __selection.add({...entry.envelope, title:'Same arena rules'}), arena);
+    const other = await addMode(settings, 'Other style', 'OneHanded_General');
+    for (const tab of [page, settings]) await tab.evaluate(() => __selection.beginBattle());
+    await settings.getByRole('button', {name:'Scene strategies', exact:true}).click();
+    await settings.locator('[data-scene-style]').selectOption('Staff');
+    const assign = async (scene, entry, shouldPause) => {
+        const before = await Promise.all([page, settings].map(tab => tab.evaluate(() => __selection.runtime())));
+        const area = settings.locator('[data-scene="' + scene + '"]');
+        await area.locator('select').selectOption(entry ? JSON.stringify([entry.id, entry.envelope.mode]) : '');
+        await area.getByRole('button', {name:'Assign', exact:true}).click();
+        await page.waitForFunction(count => __selection.runtime().signals > count, before[0].signals);
+        const after = await Promise.all([page, settings].map(tab => tab.evaluate(() => __selection.runtime())));
+        for (let index = 0; index < after.length; index++) {
+            assert.equal(after[index].active, !shouldPause);
+            assert.equal(after[index].pauses - before[index].pauses, shouldPause ? 1 : 0, 'only an effective change pauses, once');
+        }
+        assert.deepEqual(after[0].rules, after[1].rules);
+        if (shouldPause) for (const tab of [page, settings]) await tab.evaluate(() => __selection.beginBattle());
+    };
+    await assign('General', general, false); // Native Arena still wins.
+    await settings.locator('[data-scene-style]').selectOption('OneHanded');
+    await assign('General', other, false);
+    await settings.locator('[data-scene-style]').selectOption('Staff');
+    await assign('Item', general, false);
+    await assign('Arena', arena, true);
+    await assign('Arena', duplicate, false); // Different ID, identical rules.
+    await assign('Arena', null, true); // Now inherits General A.
+    await assign('General', nextGeneral, true);
+    await settings.locator('.jpx-config-back').click();
+    await apply(settings, arena, labels);
+    await page.waitForFunction(() => __selection.snapshot().selected === 'Staff_Arena' && !__selection.running());
+    for (const tab of [page, settings]) await tab.evaluate(() => __selection.beginBattle());
+    await settings.getByRole('button', {name:'Scene strategies', exact:true}).click();
+    await settings.locator('[data-scene-style]').selectOption('Staff');
+    await assign('General', general, false); // A fixed choice ignores scene edits.
+    assertClean(f);
+});
+
+test('applying a physical config preserves the mage config and its explicit element', {timeout:45000}, async t => {
+    const f = await fixture(t), {page, labels} = f;
+    const mageRules = {...rules('Holy mage'), jpxPlusExecution:{style:'1H_Mage', element:'holy'}};
+    const mage = await page.evaluate(data => __selection.add({schemaVersion:1, kind:'battle-mode', title:'Holy mage', description:'',
+        world:'Persistent', mode:'1H_Mage_General', config:{battleVersion:20251216, '1H_Mage_General':data}}), mageRules);
+    await apply(page, mage, labels);
+    const before = (await snapshot(page)).config['1H_Mage_General'];
+    const physical = await addMode(page, 'Physical general', 'OneHanded_General');
+    await apply(page, physical, labels);
+    assert.deepEqual((await snapshot(page)).config['1H_Mage_General'], before);
+    assert.deepEqual(JSON.parse((await snapshot(page)).native)['1H_Mage_General'], before);
+    assert.deepEqual((await library(page)).applied.Persistent[physical.id].scopes, ['OneHanded_General']);
+    await page.reload(); await initialize(page);
+    await apply(page, mage, labels);
+    assert.equal((await snapshot(page)).selected, '1H_Mage_General');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.jpxPlusExecution.element, 'holy');
+    assertClean(f);
+});
+
+test('multiple General configs keep their explicit assignment across saves sorting and reloads', {timeout:45000}, async t => {
+    const f = await fixture(t), { page } = f;
+    const first = await addMode(page, 'General A', 'Staff_General');
+    const second = await addMode(page, 'General B', 'Staff_General');
+    const assignGeneral = async entry => {
+        const area = page.locator('[data-scene=General]');
+        await area.locator('select').selectOption(JSON.stringify([entry.id, entry.envelope.mode]));
+        await area.getByRole('button', {name:'Assign',exact:true}).click();
+    };
+    await page.getByRole('button', {name:'Scene strategies',exact:true}).click();
+    await assignGeneral(second);
+    const arena = page.locator('[data-scene=Arena]');
+    await arena.locator('select').selectOption('');
+    await arena.getByRole('button', {name:'Assign',exact:true}).click();
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General B');
+    await addMode(page, 'General C', 'Staff_General');
+    await page.locator('.jpx-config-back').click();
+    await page.locator('[data-config-sort]').selectOption('name');
+    await row(page, second.id).getByRole('button', {name:'Edit',exact:true}).click();
+    const editor = page.locator('.jpx-config-editor');
+    await editor.locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().click();
+    await editor.locator('.jpx-config-editor-footer').getByRole('button', {name:'Save',exact:true}).click();
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].disabled, undefined, 'saved edits do not replace assigned rules');
+    await page.reload(); await initialize(page);
+    assert.equal((await snapshot(page)).selected, '');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General B');
+    assert.equal((await library(page)).scenes.Persistent.Staff_General.id, second.id);
+    await page.getByRole('button', {name:'Scene strategies',exact:true}).click();
+    await assignGeneral(first);
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General A');
     assertClean(f);
 });
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.10.8
+
+- Keep automatic strategy selection tied to the detected style. Another physical or mage style's saved settings no longer override recognition or bypass scene-specific rules.
+- Pause for scene-assignment changes only when the current rules or selection change. Unrelated scenes, inactive General rules, identical copies and duplicate notifications no longer interrupt battle.
+- Preserve other styles' explicit spell-element settings when applying a configuration. Document how multiple General copies are assigned and verify routing with targeted offline regressions; live battle behavior has not been verified.
+
+### 简体中文
+
+- 自动选择按识别到的流派匹配策略，修复战士与战法配置互相覆盖、跳过场景专用规则的问题。
+- 调整场景分配时，仅当前规则或选择方式变化才暂停。修改无关场景、未使用的通用配置，或换成相同规则的副本不再打断战斗，重复通知不再重复暂停。
+- 应用配置时保留其他流派的法术属性设置，补充多份通用配置的分配说明。针对性离线验证通过，尚未验证真实战斗。
+
 ## 2026.11.10.7
 
 - Align spell, skill, effect, item and monster-class names in all three Chinese packs with HentaiVerse Chinese terminology. Fix outdated names such as Fiery Blast and Health Draught, and keep rule editors, loot details and statistics consistent.

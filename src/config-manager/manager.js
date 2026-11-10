@@ -103,12 +103,21 @@ function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
-    return resolveJpxScene(getManagedBattleStyle(battleStyle || defaultStyle), battleType).rules;
+    return resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+}
+
+function syncJpxSceneRuntime() {
+    // Compare only the effective selection, outside the action loop. Other
+    // scenes, saved copies and assignment metadata cannot interrupt this battle.
+    const snapshot = () => JSON.stringify([getJpxSelectedBattleMode(), getBattleMode(), getJpxBattleRules(), !!jpxSceneRuntime.failed]);
+    const before = log ? snapshot() : '';
+    refreshJpxSelectedConfig();
+    if (log && before !== snapshot()) pauseForJpxConfigApplication();
 }
 
 function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
     getJpxConfigLibrary().clearSelection(world);
-    if (world === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+    if (world === jpxConfigWorld()) syncJpxSceneRuntime();
     localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
     window.dispatchEvent(new Event('jpx:config-library'));
 }
@@ -117,16 +126,8 @@ function restoreJpxAutomaticSelection(world = jpxConfigWorld()) {
 function getManagedBattleStyle(detected) {
     const selected = getJpxSelectedBattleMode();
     if (selected) return selected.slice(0, selected.lastIndexOf('_'));
-    const family = value => ({ '1H_Mage': 'OneHanded', '2H_Mage': 'TwoHanded', DW_Mage: 'DualWielding', NI_Mage: 'NitenIchiryu' }[value] || value);
-    for (const type of [battleType, 'General']) {
-        const choices = BATTLE_STYLES.filter(style => family(style) === family(detected));
-        for (const style of choices) {
-            const slot = style + '_' + type;
-            const data = Object.hasOwn(jpxSceneRuntime.scenes, slot) ? jpxSceneRuntime.scenes[slot]?.rules : cfgBattle[slot], execution = data?.jpxPlusExecution;
-            if (execution?.style === style && jpxConfigHasRules(data) &&
-                (data.supports.length || data.attacks.length || Object.entries(data).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length))) return style;
-        }
-    }
+    // Automatic routing belongs to the detected style. Metadata on another
+    // style's saved rules must not turn a physical build into a mage or vice versa.
     return detected;
 }
 
@@ -149,18 +150,21 @@ function pauseForJpxConfigApplication() {
     return true;
 }
 
-// Applying from a second tab must also stop the battle tab before its next action.
+// A changed effective strategy must stop battle before its next action.
 window.addEventListener('storage', event => {
     if (event.key === jpxConfigLibraryKey) {
-        const before = JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed]);
-        refreshJpxSelectedConfig();
-        if (before !== JSON.stringify([jpxSelectedConfig?.mode, jpxSceneRuntime.scenes, jpxSceneRuntime.failed])) pauseForJpxConfigApplication();
+        syncJpxSceneRuntime();
         return;
     }
     if (event.key !== jpxConfigApplyKey || !event.newValue) return;
     try {
         const signal = JSON.parse(event.newValue), stats = signal.world === 'Any';
         if (!stats && signal.world !== jpxConfigWorld() || !Array.isArray(signal.scopes)) return;
+        if (!stats && !signal.scopes.length) {
+            syncJpxSceneRuntime();
+            window.dispatchEvent(new Event('jpx:config-library'));
+            return;
+        }
         const key = stats ? prefix + 'cfgStats' : prefix + 'cfgBattle' + isekaiSuffix;
         const data = JSON.parse(localStorage.getItem(key) || 'null');
         if (!data || typeof data !== 'object' || Array.isArray(data)) return;
@@ -202,16 +206,6 @@ function commitJpxConfigEntry(entry, world, onApplied = (patch, scope) => docume
             patch[mode]=normalized[mode]||jpxConfigClone(envelope.config[mode]);
         if(envelope.kind==='battle')for(const key of Object.keys(envelope.config))if(!BATTLE_MODES.includes(key)&&Object.hasOwn(defaultCfgBattle,key))patch[key]=jpxConfigClone(envelope.config[key]);
         patch.battleVersion=defaultCfgBattle.battleVersion;
-        // A newer explicit choice replaces a prior sibling's override, without
-        // altering its rules or falsifying equipment stats.
-        for(const mode of Object.keys(patch).filter(mode=>BATTLE_MODES.includes(mode))){
-            const type=mode.slice(mode.lastIndexOf('_'));
-            const families=[['OneHanded','1H_Mage'],['TwoHanded','2H_Mage'],['DualWielding','DW_Mage'],['NitenIchiryu','NI_Mage']];
-            const group=families.find(group=>group.includes(mode.slice(0,-type.length)));
-            for(const sibling of group||[])if(sibling+type!==mode&&!Object.hasOwn(envelope.config,sibling+type)&&current[sibling+type]?.jpxPlusExecution){
-                patch[sibling+type]=jpxConfigClone(current[sibling+type]);delete patch[sibling+type].jpxPlusExecution;
-            }
-        }
     }
     const result=stats?patch:{...current,...patch};
     const paused=world===jpxConfigWorld()&&!!log;
@@ -664,7 +658,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 if (pair && !candidate) throw Object.assign(new Error(), { code: 'worldMismatch' });
                 if (candidate && jpxConfigContainsCode(candidate.envelope) && await confirmAction(tr('customCode'), [['cancel', tr('cancel')], ['confirm', tr('assign'), true]]) !== 'confirm') return;
                 library.assignScene(state.sceneWorld, target, candidate?.id || null, pair?.[1], candidate?.revision, route || null);
-                if (state.sceneWorld === jpxConfigWorld()) { refreshJpxSelectedConfig(); pauseForJpxConfigApplication(); }
+                if (state.sceneWorld === jpxConfigWorld()) syncJpxSceneRuntime();
                 localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world: state.sceneWorld, scopes: [], nonce: Date.now() + ':' + Math.random() }));
                 const scrollTop = content.scrollTop;
                 window.dispatchEvent(new Event('jpx:config-library')); showScenes(); notify(tr('assigned'));
@@ -846,8 +840,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const label = removeEntry ? used ? 'detachDelete' : 'delete' : 'detach';
         if (await confirmAction(tr(removeEntry ? 'deleteConfirm' : 'detach'), [['cancel', tr('cancel')], ['confirm', tr(label), true]], content) !== 'confirm') return;
         library.detach(entry.id, entry.revision, removeEntry, refs);
-        refreshJpxSelectedConfig();
-        if ([...refs.applied, ...refs.scenes].some(ref => ref.world === jpxConfigWorld())) pauseForJpxConfigApplication();
+        syncJpxSceneRuntime();
         for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
         window.dispatchEvent(new Event('jpx:config-library'));
         showMine(); notify(tr(removeEntry ? 'deleted' : 'detached'));

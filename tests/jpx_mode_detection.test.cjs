@@ -167,6 +167,40 @@ test('main/offhand equipment combines with the original spell-bonus thresholds',
     }
 });
 
+test('automatic routing follows detected physical or mage style despite sibling metadata', () => {
+    const from = source.indexOf('function resolveJpxScene('), to = source.indexOf('function pauseForJpxConfigApplication(', from);
+    const stylesFrom = source.indexOf('const BATTLE_STYLES ='), stylesTo = source.indexOf(';', stylesFrom);
+    assert.ok(from > 0 && to > from && stylesFrom > 0);
+    for (const [main, off, physical, mage, threshold] of [
+        ['Rapier', 'Force Shield', 'OneHanded', '1H_Mage', 70], ['Mace', '', 'TwoHanded', '2H_Mage', 100],
+        ['Rapier', 'Wakizashi', 'DualWielding', 'DW_Mage', 100], ['Katana', 'Wakizashi', 'NitenIchiryu', 'NI_Mage', 100]
+    ]) {
+        const h = fixture(); h.equipment(main, off);
+        Object.assign(h.context, { cfgBattle: {}, battleType: 'Arena', selected: '', jpxSceneRuntime: { scenes: {} },
+            getJpxSelectedBattleMode: () => h.context.selected,
+            jpxConfigHasContent: value => !!value && !!(value.supports?.length || value.attacks?.length) });
+        vm.runInContext(source.slice(stylesFrom, stylesTo + 1) + source.slice(from, to), h.context);
+        const rules = style => ({ supports: [], attacks: [{ type: 'normalAttack' }], jpxPlusExecution: { style, element: 'auto' } });
+        for (const style of [physical, mage]) {
+            h.context.cfgBattle[style + '_General'] = rules(style);
+            h.context.jpxSceneRuntime.scenes[style + '_General'] = { id: style + '-general', rules: rules(style) };
+        }
+        for (const [bonus, expected] of [[threshold + 1, mage], [threshold, physical], [threshold + 1, mage]]) {
+            h.cache({ maxType: 'holy', maxValue: bonus }); h.context.battleStyle = h.api.detect();
+            const effective = vm.runInContext('getManagedBattleStyle(battleStyle)', h.context);
+            assert.equal(effective, expected);
+            assert.equal(h.context.resolveJpxScene(effective, 'Arena').id, expected + '-general');
+        }
+        h.context.jpxSceneRuntime.scenes[mage + '_Arena'] = { id: 'mage-arena', rules: { supports: [], attacks: [{ type: 'spellDamage', name: 'T1' }] } };
+        assert.equal(h.context.resolveJpxScene(h.context.getManagedBattleStyle(mage), 'Arena').id, 'mage-arena');
+        h.context.jpxSceneRuntime.scenes = {};
+        assert.equal(h.context.getManagedBattleStyle(mage), mage, 'native sibling metadata cannot override detection either');
+        assert.equal(h.context.getManagedBattleStyle(''), '', 'stored rules cannot invent unknown equipment');
+        h.context.selected = physical + '_General';
+        assert.equal(h.context.getManagedBattleStyle(mage), physical, 'an explicitly fixed selection still wins');
+    }
+});
+
 test('battle skills never invent or override pre-battle equipment recognition', () => {
     const h = fixture();
     h.equipment('Legendary Willow Staff', ''); h.api.refresh();
