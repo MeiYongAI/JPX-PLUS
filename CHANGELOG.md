@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026.11.10.7
+
+- Align spell, skill, effect, item and monster-class names in all three Chinese packs with HentaiVerse Chinese terminology. Fix outdated names such as Fiery Blast and Health Draught, and keep rule editors, loot details and statistics consistent.
+
+### 简体中文
+
+- 简中及繁中台港语言包统一采用 HentaiVerse 汉化用语，修正炎爆术、饮剂、秘药等旧译名，同步技能、状态、道具、怪物类别与统计栏名称。
+
 ## 2026.11.10.6
 
 - Show download counts in store lists and configuration details. Count successful saves to My configs and initiated file downloads, once per browser and config each UTC day.
