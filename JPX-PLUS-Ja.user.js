@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.5
+// @version      2026.11.10.6
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1142,7 +1142,9 @@
             "ratingDenied": "評価できません。GitHub の権限を確認してください。",
             "ratingChanged": "評価が別の場所で変更されています。再読み込みしてください。",
             "ratingsTooMany": "コメントが多すぎるため、評価を読み込めません。GitHub でこの設定を確認してください。",
-            "ratingCountOne": "1 件"
+            "ratingCountOne": "1 件",
+            "downloadCount": "${count} ダウンロード",
+            "downloadsUnavailable": "ダウンロード数を取得できません"
         }
     };
     i18n.cM = {

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.5
+// @version      2026.11.10.6
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1141,7 +1141,9 @@
             "ratingDenied": "無法評分，請檢查 GitHub 權限。",
             "ratingChanged": "評分已在別處修改，請重新整理後再試。",
             "ratingsTooMany": "留言過多，無法讀取評分，請到 GitHub 查看這份設定。",
-            "ratingCountOne": "1 人"
+            "ratingCountOne": "1 人",
+            "downloadCount": "${count} 次下載",
+            "downloadsUnavailable": "下載次數暫時無法讀取"
         }
     };
     i18n.cM = {

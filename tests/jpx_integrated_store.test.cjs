@@ -5,7 +5,7 @@ const fs = require('node:fs'), path = require('node:path'), vm = require('node:v
 const { webcrypto, createHash } = require('node:crypto');
 const { pathToFileURL } = require('node:url');
 const root = path.resolve(__dirname, '..');
-const source = ['comments.js', 'ratings.js', 'store.js'].map(name => fs.readFileSync(path.join(root, 'src/config-manager', name), 'utf8')).join('\n');
+const source = ['comments.js', 'ratings.js', 'downloads.js', 'store.js'].map(name => fs.readFileSync(path.join(root, 'src/config-manager', name), 'utf8')).join('\n');
 const mode = { supports: [], attacks: [{ type: 'normalAttack' }], jpxPlusExecution: { style: '2H_Mage', element: 'fire' } };
 const envelope = { schemaVersion: 1, kind: 'battle-mode', title: 'Two-handed test', description: '', world: 'Persistent', mode: 'TwoHanded_General', scriptVersion: '2026.11.07.1', config: { battleVersion: 20251216, TwoHanded_General: mode } };
 const clone = value => JSON.parse(JSON.stringify(value));
@@ -64,7 +64,7 @@ test('embedded store exposes Browse and Shared, saves locally, and opens share w
             __requests.push(options.url);
             queueMicrotask(() => options.onload({ status: 200, finalUrl: options.url,
                 responseText: options.url.endsWith('catalog/index.json')
-                    ? JSON.stringify({ schemaVersion: 1, updatedAt: entry.updatedAt, entries: [entry] }) : options.url.includes('/comments?') ? '[]' : serialized }));
+                    ? JSON.stringify({ schemaVersion: 1, updatedAt: entry.updatedAt, entries: [entry] }) : options.url.includes('/v1/downloads') ? '{"counts":{"7":0}}' : options.url.includes('/comments?') ? '[]' : serialized }));
             return { abort() {} };
         };
     }, { entry, serialized });

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.5
+// @version      2026.11.10.6
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1134,7 +1134,9 @@
         "ratingDenied": "无法评分，请检查 GitHub 权限。",
         "ratingChanged": "评分已在别处修改，请刷新后重试。",
         "ratingsTooMany": "评论过多，无法读取评分，请到 GitHub 查看这份配置。",
-        "ratingCountOne": "1 人"
+        "ratingCountOne": "1 人",
+        "downloadCount": "${count} 次下载",
+        "downloadsUnavailable": "下载量暂不可用"
     };
     i18n.cM = {
         "bind": "绑定套装",

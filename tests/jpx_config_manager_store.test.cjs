@@ -78,12 +78,27 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
             body: '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n' + files[entry.configPath].trim() + '\n```',
             html_url: entry.issueUrl, updated_at: entry.updatedAt, ...shareOverrides[entry.id]
         }]));
-        window.__transport = { calls: [], aborted: [], snapshots: {}, issues, comments: {},
+        window.__transport = { calls: [], aborted: [], snapshots: {}, issues, comments: {}, downloadCounts: {}, downloadReceipts: [],
             request(scriptId, options) {
                 const item = { scriptId, url: options.url, method: options.method, ...(options.data ? { data: JSON.parse(options.data) } : {}) }; this.calls.push(item);
                 let aborted = false;
                 if (!options.url.includes('/login/device/code')) queueMicrotask(() => {
                     if (aborted) return;
+                    if (options.url.startsWith('https://jpx-plus-downloads.lernsc.workers.dev/v1/downloads')) {
+                        if (this.failDownloads) { options.onerror(); return; }
+                        if (this.holdDownloads) { this.releaseDownloads = () => { this.holdDownloads = false; this.request(scriptId, options); }; return; }
+                        let result;
+                        if (options.method === 'POST') {
+                            const { configId, visitor, day } = item.data, key = [configId, visitor, day].join(':');
+                            const counted = !this.downloadReceipts.includes(key);
+                            if (counted) { this.downloadReceipts.push(key); this.downloadCounts[configId] = (this.downloadCounts[configId] || 0) + 1; }
+                            result = { configId, day, count: this.downloadCounts[configId], counted };
+                        } else {
+                            const ids = new URL(options.url).searchParams.get('ids').split(',');
+                            result = { counts: Object.fromEntries(ids.map(id => [id, this.downloadCounts[id] || 0])) };
+                        }
+                        options.onload({ status: 200, finalUrl: options.url, responseText: JSON.stringify(result) }); return;
+                    }
                     const pathname = options.url.split('/main/')[1];
                     let response = /\/catalog\/index\.json(?:\?|$)/.test(options.url) ? JSON.stringify(catalog) : files[pathname];
                     if (signedIn && options.url.endsWith('/user')) {
@@ -335,6 +350,46 @@ test('comments are readable without signing in and show no ownership controls', 
     const section = page.locator('.jpx-store-comments'); await section.locator('[data-comment-id="101"]').waitFor();
     assert.equal(await section.locator('.jpx-comment-row').count(), 1); assert.equal(await section.locator('.jpx-comment-actions').count(), 0);
     assert.equal(await section.getByRole('textbox').count(), 0); await section.getByRole('button', { name: 'Sign in to comment', exact: true }).waitFor(); await assertClean(f);
+});
+
+for (const mobile of [false, true]) test('download metrics count saved configs and file downloads without blocking or double counting, ' + (mobile ? 'mobile' : 'desktop'), async t => {
+    const f = await fixture(t, { mobile, count: 2 }), { page } = f; await enterStore(page);
+    const native = await page.evaluate(() => __fullStore.native());
+    const row = page.locator('[data-store-id="1"]'), count = row.locator('.jpx-download-count');
+    await page.waitForFunction(() => document.querySelector('[data-store-id="1"] .jpx-download-count')?.getAttribute('aria-label') === '0 downloads');
+    const writes = () => page.evaluate(() => __transport.calls.filter(call => call.method === 'POST' && call.url.includes('/v1/downloads')).length);
+    assert.equal(await writes(), 0);
+    await page.evaluate(() => { __transport.holdDownloads = true; }); await row.locator('.jpx-store-download').click();
+    await row.getByRole('button', { name: 'Saved: Store configuration 1', exact: true }).waitFor();
+    assert.ok(await page.evaluate(() => __fullStore.library().entries.some(entry => entry.source?.id === 1)), 'local save completes before counter response');
+    await page.waitForFunction(() => !!__transport.releaseDownloads); await page.evaluate(() => __transport.releaseDownloads());
+    await page.waitForFunction(() => document.querySelector('[data-store-id="1"] .jpx-download-count')?.getAttribute('aria-label') === '1 downloads');
+    const recorded = await writes(); await row.locator('.jpx-store-download').click();
+    await page.locator('.jpx-config-confirm').getByRole('button', { name: 'Cancel', exact: true }).click(); assert.equal(await writes(), recorded);
+    await row.locator('.jpx-store-title').click();
+    let downloaded = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download config', exact: true }).click(); await downloaded;
+    assert.equal(await writes(), recorded, 'same config and day shares save/download receipt');
+    await page.locator('.jpx-config-nav').getByRole('button', { name: 'Store', exact: true }).click();
+    await page.locator('[data-store-id="2"] .jpx-store-title').click();
+    downloaded = page.waitForEvent('download'); await page.getByRole('button', { name: 'Download config', exact: true }).click(); await downloaded;
+    await page.waitForFunction(() => __transport.downloadCounts[2] === 1);
+    assert.equal(await writes(), recorded + 1);
+    const ratingHeader = page.locator('.jpx-rating-heading'); await ratingHeader.locator('.jpx-download-count').getByText('1', { exact: true }).waitFor();
+    const overflow = await ratingHeader.evaluate(node => node.scrollWidth > node.clientWidth + 1); assert.equal(overflow, false);
+    fs.mkdirSync(path.join(root, '.test-output'), { recursive: true });
+    if (mobile) await page.evaluate(() => __fullStore.theme());
+    await ratingHeader.scrollIntoViewIfNeeded(); await page.locator('#settings-container').screenshot({ path: path.join(root, '.test-output', 'downloads-' + (mobile ? 'mobile-dark' : 'desktop-light') + '.png') });
+    assert.deepEqual(await page.evaluate(() => __fullStore.native()), native); await assertClean(f);
+});
+test('download metrics failures show unknown counts and leave save and cancellation usable', async t => {
+    const f = await fixture(t), { page } = f; await page.evaluate(() => { __transport.failDownloads = true; }); await enterStore(page);
+    const row = page.locator('[data-store-id="1"]');
+    assert.equal(await row.locator('.jpx-download-count').getAttribute('aria-label'), 'Downloads unavailable');
+    await row.locator('.jpx-store-download').click(); await row.getByRole('button', { name: 'Saved: Store configuration 1', exact: true }).waitFor();
+    assert.ok(await page.evaluate(() => __fullStore.library().entries.some(entry => entry.source?.id === 1)));
+    assert.equal(await page.evaluate(() => __transport.snapshots.main().some(([key]) => key === 'jpx-config-download-day-v1:1')), false);
+    assert.equal(await row.locator('.jpx-download-count').getAttribute('aria-label'), 'Downloads unavailable');
+    await assertClean(f);
 });
 
 function discoveryRecords() {

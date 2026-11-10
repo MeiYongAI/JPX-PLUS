@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.10.5
+// @version      2026.11.10.6
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1143,7 +1143,9 @@
     "ratingDenied": "평가할 수 없습니다. GitHub 권한을 확인해 주세요.",
     "ratingChanged": "다른 곳에서 평가가 변경되었습니다. 새로고침해 주세요.",
     "ratingsTooMany": "댓글이 너무 많아 평가를 불러올 수 없습니다. GitHub에서 이 설정을 확인해 주세요.",
-    "ratingCountOne": "1명"
+    "ratingCountOne": "1명",
+    "downloadCount": "다운로드 ${count}회",
+    "downloadsUnavailable": "다운로드 수를 불러올 수 없습니다"
 };
     i18n.cM = {
         "bind": "장비 세트 연결",

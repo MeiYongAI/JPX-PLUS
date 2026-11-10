@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.10.6
+
+- Show download counts in store lists and configuration details. Count successful saves to My configs and initiated file downloads, once per browser and config each UTC day.
+- Keep saves and downloads working when the counter is unavailable. Start counting from this release and update all language packs and READMEs.
+
+### 简体中文
+
+- 商店列表和配置详情新增下载量。保存到“我的配置”成功或发起文件下载时计数，同一浏览器对同一配置每个 UTC 日只计一次。
+- 计数服务异常不影响保存和下载。下载量从本版开始记录，同步全部语言包与说明。
+
 ## 2026.11.10.5
 
 - Save store configurations directly to My configs from the list, without applying them.

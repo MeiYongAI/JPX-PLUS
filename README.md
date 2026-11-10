@@ -61,6 +61,8 @@ Comments appear below each config. Sign in with GitHub to post, edit or delete y
 
 Rate configs from 1 to 5 stars without writing a comment. Each GitHub account gets one vote per config and can change or withdraw it. The store shows the average and number of ratings.
 
+The download count includes successful saves and initiated file downloads, at most once per browser and config per UTC day. No sign-in is needed. An anonymous daily token goes to the counter; GitHub identity and config contents are not sent. Counting failures do not interrupt downloads.
+
 GitHub sign-in renews automatically; signing out requires confirmation. After updating from an older version, you may need to sign in once more. [Sign-in details](docs/store-authentication.md).
 
 <table>

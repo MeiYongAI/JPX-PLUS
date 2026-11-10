@@ -2,7 +2,7 @@
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), assert = require('node:assert/strict');
 const { webcrypto, createHash } = require('node:crypto');
 const { test } = require('node:test');
-const source = fs.readFileSync(path.join(__dirname, '../src/config-manager/store.js'), 'utf8');
+const source = ['downloads.js', 'store.js'].map(name => fs.readFileSync(path.join(__dirname, '../src/config-manager', name), 'utf8')).join('\n');
 const repo = 'MeiYongAI/JPX-PLUS-Configs', url = id => 'https://github.com/' + repo + '/issues/' + id;
 const envelope = { schemaVersion: 1, kind: 'battle-mode', title: '双手 / Two-handed', description: 'A shared ruleset', world: 'Persistent', mode: 'TwoHanded_General', scriptVersion: '2026.11.06.7', config: { battleVersion: 20251216, TwoHanded_General: { supports: [], attacks: [{ type: 'kamisamaniNattaHi', code: 'throw Error("must not execute")' }] } } };
 const body = data => '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n' + JSON.stringify(data) + '\n```';
