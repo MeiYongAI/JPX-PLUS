@@ -1013,6 +1013,10 @@
             "authHint": "請到 GitHub 輸入下方授權碼，授權 JPX-PLUS。",
             "authorize": "前往 GitHub 授權",
             "waitingAuth": "等待授權，完成後會自動繼續。",
+            "copyCode": "複製代碼",
+            "copied": "已複製",
+            "copyFailed": "複製失敗",
+
             "cancel": "取消",
             "updateShare": "更新設定",
             "configContents": "設定內容",

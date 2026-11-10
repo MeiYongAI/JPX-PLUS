@@ -1014,6 +1014,10 @@
             "authHint": "GitHub でこのコードを入力し、JPX-PLUS を認証してください。",
             "authorize": "GitHub で認証",
             "waitingAuth": "認証待ちです。完了すると自動で続行します。",
+            "copyCode": "コードをコピー",
+            "copied": "コピーしました",
+            "copyFailed": "コピー失敗",
+
             "cancel": "キャンセル",
             "updateShare": "更新",
             "configContents": "設定内容",

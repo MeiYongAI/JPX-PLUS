@@ -1006,6 +1006,10 @@
         "authHint": "前往 GitHub 输入以下代码，授权 JPX-PLUS。",
         "authorize": "前往 GitHub 授权",
         "waitingAuth": "等待授权，完成后将自动继续。",
+        "copyCode": "复制代码",
+        "copied": "已复制",
+        "copyFailed": "复制失败",
+
         "cancel": "取消",
         "updateShare": "更新配置",
         "configContents": "配置内容",
