@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.11.1
+
+- Preserve recognized weapon style and spell attributes when entering Item World from the equipment upgrade page. Check the submit button's destination before the form action and current URL, so battle entry no longer clears recognition as an equipment change.
+- Targeted offline regressions passed. Manual application of two existing two-handed configurations worked with recognition missing; the reported manual-application failure remains unreproduced. Live battle behavior has not been verified.
+
+### 简体中文
+
+- 修复从装备强化页进入道具界时误清流派和法术属性缓存，导致下一场自动匹配不到策略的问题。按按钮实际提交地址判断入场，真正换装仍正常清理缓存。
+- 针对性离线验证通过。两份现有双手配置在识别为空时均可手动应用，暂未复现反馈中的手动应用失效；尚未验证真实战斗。
+
 ## 2026.11.10.8
 
 - Keep automatic strategy selection tied to the detected style. Another physical or mage style's saved settings no longer override recognition or bypass scene-specific rules.

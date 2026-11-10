@@ -56,6 +56,13 @@ function expose() {
         info: () => ({ element: getManagedSpellType(), stats: spellDamageBonus, style: battleStyle,
             detected: getDetectedJpxBattleStyle(), family: readJpxDetectedFamily() }),
         ensure: ensureJpxModeDetection,
+        saveManualRules(fixed) {
+            const mode = 'TwoHanded_General', rules = {supports:[{type:'stop',disabled:true,conditions:[]}],
+                attacks:[{type:'target',priorityRule:'Top Down',conditions:[]},{type:'normalAttack',conditions:[]}]};
+            const entry = getJpxConfigLibrary().save({schemaVersion:1,kind:fixed?'battle-mode':'battle',title:'Two-handed general',
+                world:jpxConfigWorld(),...(fixed?{mode}:{}),config:{battleVersion:defaultCfgBattle.battleVersion,[mode]:rules}});
+            window.dispatchEvent(new Event('jpx:config-library')); return entry.id;
+        },
         ageEquipment() { const key=jpxDetectedFamilyKey(), saved=JSON.parse(localStorage.getItem(key)); saved.verifiedAt-=86400000; localStorage.setItem(key,JSON.stringify(saved)); },
         run(tier = 'T1', element = '') {
             const rules = getJpxBattleRules(); if (rules) rules.attacks[1].name = tier;
@@ -116,16 +123,18 @@ async function recognitionLobby(t, isekai, school = 'holy') {
     return { ...f, options };
 }
 
-async function submitLobbyForm(page, query, id = 'equipform') {
-    await page.evaluate(({ query, id }) => {
+async function submitLobbyForm(page, query, id = 'equipform', destination = {}) {
+    await page.evaluate(({ query, id, destination }) => {
         history.replaceState(null, '', location.pathname + query);
         const form = document.getElementById(id) || document.body.appendChild(document.createElement('form'));
         form.id = id;
+        if (destination.action !== undefined) form.setAttribute('action', destination.action);
         // Keep native submit propagation, but replace navigation with the next fixture document.
         form.addEventListener('submit', event => event.preventDefault());
         const button = form.appendChild(document.createElement('button'));
         button.type = 'submit'; button.id = 'fixture-submit'; button.textContent = 'Submit';
-    }, { query, id });
+        if (destination.formaction !== undefined) button.setAttribute('formaction', destination.formaction);
+    }, { query, id, destination });
     await page.locator('#fixture-submit').click();
 }
 
@@ -172,6 +181,59 @@ for (const isekai of [false, true]) test('Item World exception retains other loa
         } else assert.deepEqual(after, before);
         assert.deepEqual(f.errors, []);
     }
+});
+
+for (const isekai of [false, true]) test('forge Item World submitter preserves recognition across consecutive battles: Isekai ' + isekai, async t => {
+    const f = await recognitionLobby(t, isekai, 'wind');
+    await f.navigate({...f.options, round:21, finished:true});
+    assert.equal((await f.page.evaluate(() => __spellBattle.info())).style, 'DW_Mage');
+    await f.navigate({...f.options, page:'lobby'});
+    const before = await recognitionCache(f.page, isekai), count = f.requests.length;
+    await submitLobbyForm(f.page, '?s=Bazaar&ss=am&screen=modify&eqids[]=123', 'equipform', {
+        formaction:'?s=Battle&ss=iw&filter=weapon_1handed&eqids[]=123'
+    });
+    assert.deepEqual(await recognitionCache(f.page, isekai), before, 'the confirmed battle destination is not a forge action');
+    assert.equal(f.requests.length, count);
+    await f.navigate({...f.options, round:1, quickbar:[], noWeaponSkill:true});
+    const info = await f.page.evaluate(() => __spellBattle.info());
+    assert.equal(info.style, 'DW_Mage'); assert.equal(info.element, 'wind');
+    assert.equal((await f.page.evaluate(() => __spellBattle.run())).clicks.at(-1), 'Gale');
+    assert.deepEqual(f.combatRequests, []); assert.deepEqual(f.errors, []);
+});
+
+test('Item World submission uses button action before form action and current URL', async t => {
+    for (const [query, destination, invalidates] of [
+        ['?s=Bazaar&ss=am&screen=modify', {action:'?s=Battle&ss=iw'}, false],
+        ['?s=Battle&ss=iw', {formaction:'?s=Bazaar&ss=am&screen=modify'}, true],
+        ['?s=Bazaar&ss=am&screen=modify', {action:'?s=Battle&ss=iw',formaction:'?s=Character&ss=eq'}, true]
+    ]) {
+        const f = await recognitionLobby(t, false);
+        await submitLobbyForm(f.page, query, 'equipform', destination);
+        const cache = await recognitionCache(f.page, false);
+        assert.equal(cache.jpx_equipmentFamily_v1 === null, invalidates);
+        assert.equal(cache.jpx_spellDamageBonus === null, invalidates);
+        assert.deepEqual(f.errors, []);
+    }
+});
+
+for (const fixed of [false, true]) test('manual two-handed application after lost recognition: fixed ' + fixed, async t => {
+    const f = await fixture(browser, t, {source:input, storage:storage(false), transform:markup, observedEquipment:false,
+        pageOptions:{family:'TwoHanded',quickbar:[]}});
+    assert.equal((await f.page.evaluate(() => __spellBattle.info())).style, '');
+    const id = await f.page.evaluate(fixed => __spellBattle.saveManualRules(fixed), fixed);
+    await f.page.evaluate(() => __reload.open());
+    await f.page.locator('#tab_configManager').click();
+    await f.page.locator('[data-config-id="' + id + '"]').getByRole('button',{name:'Apply',exact:true}).click();
+    if (!fixed) await f.page.locator('.jpx-config-confirm').getByRole('button',{name:'Apply',exact:true}).click();
+    await f.page.evaluate(() => document.getElementById('settings-container').close());
+    const result = await f.page.evaluate(() => __spellBattle.run());
+    if (fixed) {
+        assert.equal(result.active, true); assert.equal(result.targets, 1);
+        assert.equal((await f.page.evaluate(() => __reload.snapshot())).mode, 'TwoHanded_General');
+    } else {
+        assert.equal(result.active, false); assert.match(result.ready, /no scene or General strategy/);
+    }
+    assert.deepEqual(f.combatRequests, []); assert.deepEqual(f.errors, []);
 });
 
 for (const school of Object.keys(schools)) for (const [family, spec] of Object.entries(families)) for (const isekai of [false, true]) {

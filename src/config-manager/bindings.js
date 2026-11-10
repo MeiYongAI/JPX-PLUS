@@ -173,7 +173,7 @@ function initJpxLoadoutBindings() {
         if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
     }, true);
     document.addEventListener('submit', event => {
-        if (isJpxLoadoutSubmission(event.target)) invalidate();
+        if (isJpxLoadoutSubmission(event.target, event.submitter)) invalidate();
     }, true);
     document.addEventListener('click', event => { if (event.target.closest?.('#eqsl')) invalidate(); }, true);
     // Native navigation is handled on the next page. AJAX replacements need a
