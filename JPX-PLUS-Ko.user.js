@@ -1015,6 +1015,10 @@
     "authHint": "GitHub에 아래 코드를 입력해 JPX-PLUS를 승인해 주세요.",
     "authorize": "GitHub에서 승인",
     "waitingAuth": "승인을 기다리고 있어요. 완료되면 자동으로 이어집니다.",
+    "copyCode": "코드 복사",
+    "copied": "복사됨",
+    "copyFailed": "복사 실패",
+
     "cancel": "취소",
     "updateShare": "업데이트",
     "configContents": "설정 내용",
