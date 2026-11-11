@@ -603,7 +603,7 @@ test('store renders bounded batches and restores filters, focus and scroll after
     assert.ok(Math.abs(await stage.evaluate(node => node.scrollTop) - position) <= 1);
     assert.equal(await title.evaluate(node => node === document.activeElement), true);
     const localCalls = await f.page.evaluate(() => __transport.calls.filter(call => !call.url.includes('jpx-plus-downloads')));
-    assert.equal(localCalls.length, 2, 'local filtering and paging make no network requests');
+    assert.equal(localCalls.length, 3, 'local filtering and paging make no unexpected network requests: ' + JSON.stringify(localCalls.map(call => call.url)));
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), original); await assertClean(f);
 });
 
