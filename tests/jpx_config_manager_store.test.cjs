@@ -160,6 +160,42 @@ async function tab(page, name) {
     if (!await page.locator('#tab_' + name).isVisible()) await page.locator('#jpx-settings-menu-button').click();
     await page.locator('#tab_' + name).click();
 }
+for (const method of ['clipboard', 'denied', 'missing', 'failed', 'throws']) test('device code copying inside settings: ' + method, async t => {
+    const f = await fixture(t), { page } = f;
+    await page.evaluate(method => {
+        const request = __transport.request;
+        __transport.request = function(id, options) {
+            if (!options.url.endsWith('/login/device/code')) return request.call(this, id, options);
+            queueMicrotask(() => options.onload({ status: 200, finalUrl: options.url, responseText: JSON.stringify({
+                device_code: 'fixture-device', user_code: 'ABCD-EFGH', verification_uri: 'https://github.com/login/device', expires_in: 900, interval: 60
+            }) }));
+            return { abort() { options.onabort(); } };
+        };
+        window.__copiedCodes = [];
+        Object.defineProperty(navigator, 'clipboard', { configurable: true, value: method === 'missing' ? undefined : {
+            writeText: async text => { if (method !== 'clipboard') throw new DOMException('Denied', 'NotAllowedError'); __copiedCodes.push(text); }
+        } });
+        document.execCommand = command => {
+            if (method === 'throws') throw new Error('Clipboard unavailable');
+            if (method === 'failed') return false;
+            const node = document.activeElement;
+            if (command !== 'copy' || node.tagName !== 'TEXTAREA' || !node.closest('#settings-container')) return false;
+            __copiedCodes.push(node.value.slice(node.selectionStart, node.selectionEnd)); return true;
+        };
+    }, method);
+    await enterStore(page);
+    await page.locator('.jpx-store-account button').click();
+    const copy = page.locator('.jpx-store-auth-copy'); await copy.waitFor(); await copy.focus(); await copy.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('.jpx-store-auth-copy').disabled);
+    const failed = ['failed', 'throws'].includes(method);
+    assert.equal(await copy.textContent(), failed ? 'Copy failed' : 'Copied');
+    assert.deepEqual(await page.evaluate(() => __copiedCodes), failed ? [] : ['ABCD-EFGH']);
+    assert.equal(await page.locator('textarea').evaluateAll(nodes => nodes.filter(node => node.value === 'ABCD-EFGH').length), 0);
+    assert.equal(await copy.evaluate(node => node === document.activeElement), true);
+    await page.locator('.jpx-store-auth').getByRole('button', { name: 'Cancel', exact: true }).click();
+    await assertClean(f);
+});
+
 for (const mobile of [false,true]) test('sign out requires confirmation and cancellation preserves the session, '+(mobile?'mobile':'desktop'),async t=>{
     const f=await fixture(t,{mobile,signedIn:true,language:'en'}),{page}=f;
     await enterStore(page);
@@ -570,16 +606,19 @@ test('store renders bounded batches and restores filters, focus and scroll after
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), original); await assertClean(f);
 });
 
-async function assertTabLines(page, mobile) {
+async function assertHeaderAlignment(page) {
     const bounds = await page.locator('.jpx-config-toolbar').evaluate(header => {
-        return [...header.querySelectorAll('.jpx-config-nav button,.jpx-store-navigation button')].map(node => {
+        const mobile = header.closest('.jpx-settings-mobile');
+        return [...header.querySelectorAll('.jpx-config-nav button,.jpx-store-navigation button,.jpx-store-account button' +
+            (mobile ? '' : ',.jpx-store-querybar input'))].map(node => {
             const range = document.createRange(); range.selectNodeContents(node);
-            return { bottom: node.getBoundingClientRect().bottom, text: range.getBoundingClientRect().bottom,
-                line: (header.closest('.jpx-settings-mobile') ? node.parentElement : header).getBoundingClientRect().bottom };
+            const box = node.getBoundingClientRect();
+            return { center: box.y + box.height / 2, text: range.getBoundingClientRect().bottom,
+                tab: node.parentElement.matches('.jpx-config-nav,.jpx-store-navigation') };
         });
     });
-    assert.ok(bounds.every(item => Math.abs(item.bottom - item.line) < 1), JSON.stringify(bounds));
-    assert.ok(bounds.every(item => Math.abs(item.text - bounds[0].text) < 1), 'all header tab text shares a baseline: ' + JSON.stringify(bounds));
+    assert.ok(bounds.every(item => Math.abs(item.center - bounds[0].center) < 1), 'header controls share a center line: ' + JSON.stringify(bounds));
+    assert.ok(bounds.filter(item => item.tab).every(item => Math.abs(item.text - bounds[0].text) < 1), 'all header tab text shares a baseline: ' + JSON.stringify(bounds));
 }
 
 for (const mobile of [false, true]) for (const signedIn of [false, true]) test(`management navigation and filter bands do not jump between views, ${mobile ? 'mobile' : 'desktop'} ${signedIn ? 'signed in' : 'signed out'}`, async t => {
@@ -680,7 +719,7 @@ for (const mobile of [false, true]) for (const dark of [false, true]) test(`stor
     };
     await enterStore(f.page);
     await assertStableTabs();
-    await assertTabLines(f.page, mobile);
+    await assertHeaderAlignment(f.page);
     await navigation.first().click();
     await f.page.locator('.jpx-config-list').waitFor();
     await assertStableTabs();
@@ -715,7 +754,7 @@ for (const mobile of [false, true]) for (const dark of [false, true]) test(`stor
     } else assert.equal(await toggle.isVisible(), false);
     await f.page.screenshot({ path: path.join(root, `.test-output/config-management/store-${mobile ? 'mobile' : 'desktop'}-${dark ? 'dark' : 'light'}.png`) });
     await f.page.locator('.jpx-store-navigation button').click();
-    await assertTabLines(f.page, mobile);
+    await assertHeaderAlignment(f.page);
     await f.page.screenshot({ path: path.join(root, `.test-output/config-management/shared-${mobile ? 'mobile' : 'desktop'}-${dark ? 'dark' : 'light'}.png`) });
     await f.page.locator('.jpx-store-navigation button').click();
     const header = f.page.locator('.jpx-store-view-header'), before = await header.boundingBox();

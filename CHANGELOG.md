@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.11.2
+
+- Merge #11 by TC-Mits-Qine: add a translated copy button for the GitHub authorization code. Keep fallback copying inside the settings dialog, remove its temporary field on failure and restore keyboard focus.
+- Merge #12 by TC-Mits-Qine: center store header controls and keep statistics color labels on one line. Verify desktop/mobile layouts and clipboard success/failure paths in isolated browsers; live GitHub authorization and userscript-manager clipboard permissions have not been verified.
+
+### 简体中文
+
+- 合并 TC-Mits-Qine 的 #11：GitHub 授权码新增复制按钮，同步全部语言包。修正弹窗中的备用复制方式，失败后清理临时输入框并恢复键盘焦点。
+- 合并 TC-Mits-Qine 的 #12：商店顶部控件居中对齐，统计颜色设置的标签保持单行。桌面、手机布局及复制成功与失败流程已通过离线验证，尚未验证真实 GitHub 授权和脚本管理器权限。
+
 ## 2026.11.11.1
 
 - Preserve recognized weapon style and spell attributes when entering Item World from the equipment upgrade page. Check the submit button's destination before the form action and current URL, so battle entry no longer clears recognition as an equipment change.

@@ -1025,22 +1025,29 @@ function renderConfigStore(parent, hooks, options = {}) {
                     try {
                         if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; }
                     } catch {}
+                    const area = doc.createElement('textarea');
+                    const focused = doc.activeElement;
                     try {
-                        const area = doc.createElement('textarea');
                         area.value = text; area.setAttribute('readonly', '');
                         area.style.cssText = 'position:fixed;top:-1000px;opacity:0';
-                        doc.body.appendChild(area);
+                        // A modal dialog makes nodes outside it inert, including clipboard helpers.
+                        panel.appendChild(area);
+                        area.focus({ preventScroll: true });
                         area.select();
-                        const copied = doc.execCommand('copy');
-                        area.remove();
-                        return copied;
+                        return doc.execCommand('copy');
                     } catch { return false; }
+                    finally {
+                        area.remove();
+                        if (focused?.isConnected) focused.focus({ preventScroll: true });
+                    }
                 };
                 const codeRow = el('div', undefined, 'jpx-store-auth-code-row');
                 const codeEl = el('code', code.userCode, 'jpx-store-auth-code');
                 const copy = button(tr('copyCode'), async node => {
                     const copied = await copyCode(code.userCode);
                     node.textContent = tr(copied ? 'copied' : 'copyFailed');
+                    node.disabled = false;
+                    if (node.isConnected && alive()) node.focus({ preventScroll: true });
                     setTimeout(() => { if (node.isConnected) node.textContent = tr('copyCode'); }, 1400);
                 }, 'jpx-store-auth-copy');
                 codeRow.append(codeEl, copy); panel.append(codeRow);
