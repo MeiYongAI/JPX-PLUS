@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.11.3
+
+- Stop retaining unused full-log downloads when viewing battle statistics. Generate download data only on click, release its URL after use, and remove routine console dumps of full logs and record objects.
+- Save compact battle statistics before the optional full log, so a log quota failure does not skip those writes. Full logs remain complete and can still exceed browser storage limits.
+- Targeted offline stress, export and settlement checks passed. See [the memory audit](docs/memory-audit-2026-11-11.md) for measurements and limits; long-running live battles have not been verified.
+
+### 简体中文
+
+- 修复查看战斗统计时完整日志下载数据不断累积的问题。点击下载时才生成文件，使用后释放链接，并移除完整日志及统计对象的常规控制台输出。
+- 优先保存战斗统计，避免完整日志超过存储额度时连带漏存统计。日志仍完整保留，超长日志仍可能达到浏览器存储上限。
+- 针对性离线压力、下载和结算验证通过，详见内存排查记录；尚未验证长时间真实战斗。
+
 ## 2026.11.11.2
 
 - Merge #11 by TC-Mits-Qine: add a translated copy button for the GitHub authorization code. Keep fallback copying inside the settings dialog, remove its temporary field on failure and restore keyboard focus.

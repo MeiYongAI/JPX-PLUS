@@ -43,6 +43,7 @@ const digest = text => createHash('sha256').update(text).digest('hex');
                         if (enabled) for (let i = 0; i < (samples + warmup) * actions + 1; i++) expected.push('-'.repeat(50), 'You hit Fixture Monster for 1234 slashing damage.', 'You attack Fixture Monster 0.');
                         if (JSON.stringify(parsed) !== JSON.stringify(expected) || JSON.stringify(__log.record) !== JSON.stringify(expected)) throw Error('Log content/order mismatch: ' + JSON.stringify({ enabled, actual: parsed.length, memory: __log.record.length, expected: expected.length, tail: parsed.slice(-6), expectedTail: expected.slice(-6) }));
                         const anchor = __log.export();
+                        anchor.addEventListener('click', event => event.preventDefault()); anchor.click();
                         const exported = JSON.parse(await (await fetch(anchor.href)).text()); URL.revokeObjectURL(anchor.href);
                         if (JSON.stringify(exported) !== JSON.stringify(expected)) throw Error('Export mismatch');
                         const state = __perf.snapshot();

@@ -58,6 +58,30 @@ for (const translation of ['before', 'after']) test('Scan tables, translated wra
     assert.deepEqual(JSON.parse(fs.readFileSync(await (await downloaded).path(), 'utf8')), expected.log);
 });
 
+test('log exports allocate only on click and release each download URL', async t => {
+    const page = await fixture(t);
+    await page.evaluate(() => {
+        const create = URL.createObjectURL, revoke = URL.revokeObjectURL, timer = window.setTimeout;
+        window.__logURLs = new Map(); window.__logURLCleanups = [];
+        URL.createObjectURL = blob => { const url = create.call(URL, blob); __logURLs.set(url, blob.size); return url; };
+        URL.revokeObjectURL = url => { __logURLs.delete(url); return revoke.call(URL, url); };
+        window.setTimeout = (callback, delay, ...args) => delay === 30000
+            ? (__logURLCleanups.push(() => callback(...args)), 0) : timer(callback, delay, ...args);
+        __log.seed(['完整日志 🐱', 'You attack Fixture Monster.']);
+        for (let i = 0; i < 40; i++) __log.export();
+        document.body.append(__log.export());
+    });
+    assert.equal(await page.evaluate(() => __logURLs.size), 0, 'creating result links does not serialize or retain log blobs');
+    for (let attempt = 0; attempt < 2; attempt++) {
+        const downloaded = page.waitForEvent('download'); await page.locator('a[download="battleLog.txt"]').click();
+        assert.deepEqual(JSON.parse(fs.readFileSync(await (await downloaded).path(), 'utf8')), ['完整日志 🐱', 'You attack Fixture Monster.']);
+        assert.equal(await page.evaluate(() => __logURLs.size), 1);
+        await page.evaluate(() => { for (const cleanup of __logURLCleanups.splice(0)) cleanup(); });
+        assert.equal(await page.evaluate(() => __logURLs.size), 0, 'download cleanup releases its backing blob');
+        assert.equal(await page.locator('a[download="battleLog.txt"]').getAttribute('href'), '#');
+    }
+});
+
 test('saves serialize only the new suffix and unchanged saves write nothing', async t => {
     const page = await fixture(t);
     const actual = await page.evaluate(() => {
@@ -98,6 +122,27 @@ for (const failure of ['get', 'set']) test('failed storage ' + failure + ' does 
     assert.equal(actual.unchanged, true); assert.deepEqual(actual.old, ['old']);
     assert.equal(actual.error, failure === 'set' ? 'QuotaExceededError' : 'SecurityError');
     assert.deepEqual(actual.saved, ['old', 'new', 'later']); assert.equal(actual.length, 3);
+});
+
+test('full-log quota failure does not prevent saving battle statistics', async t => {
+    const page = await fixture(t);
+    const actual = await page.evaluate(turn => {
+        __log.seed(['old']); __log.save(); __log.html(turn); __log.recordTurn();
+        const original = Storage.prototype.setItem;
+        Storage.prototype.setItem = function(key, value) {
+            if (key === __log.key) throw new DOMException('Full log quota', 'QuotaExceededError');
+            return original.call(this, key, value);
+        };
+        let error;
+        try { __log.persist(); } catch (e) { error = e.name; } finally { Storage.prototype.setItem = original; }
+        return { error, storedLog: JSON.parse(localStorage.getItem(__log.key)), pendingLog: __log.record,
+            time: JSON.parse(localStorage.getItem('jpx_timeRecords')), combat: JSON.parse(localStorage.getItem('jpx_combatRecords')),
+            revenue: JSON.parse(localStorage.getItem('jpx_revenueRecords')), current: __perf.snapshot() };
+    }, turn);
+    assert.equal(actual.error, 'QuotaExceededError'); assert.deepEqual(actual.storedLog, ['old']);
+    assert.equal(actual.pendingLog.length, 4, 'unsaved full log stays available in memory');
+    assert.equal(actual.time.action, actual.current.action);
+    assert.deepEqual(actual.combat, actual.current.combatRecords); assert.deepEqual(actual.revenue, actual.current.revenueRecords);
 });
 
 test('a failed first write remains retryable with the complete history', async t => {
