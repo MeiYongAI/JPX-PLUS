@@ -296,3 +296,19 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 @media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}
 #settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}
+
+/* Keep every control in the store header on the same vertical center line. */
+#settings-container .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation) {
+    align-self: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,
+#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar {
+    align-self: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation)>button {
+    margin-bottom: 0;
+}
