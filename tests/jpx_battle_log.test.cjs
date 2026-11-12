@@ -243,7 +243,9 @@ for (const isekai of [false, true]) test('AJAX round resets retain all log batch
         __log.html('<tr><td>You are Victorious!</td></tr><tr><td>You attack Fixture Monster 0.</td></tr><tr><td class="tls"><hr></td></tr>', true);
         document.getElementById('btcp').innerHTML = '<img src="/y/finishbattle.png">';
         await new Promise(resolve => setTimeout(resolve, 250)); await __log.finish(); __log.persist();
-        const link = __log.export(), exported = JSON.parse(await (await fetch(link.href)).text()); URL.revokeObjectURL(link.href);
+        const link = __log.export();
+        link.addEventListener('click', event => event.preventDefault()); link.click();
+        const exported = JSON.parse(await (await fetch(link.href)).text()); URL.revokeObjectURL(link.href);
         return { stored: localStorage.getItem(__log.key), exported, record: __log.record.slice(), state: __reload.snapshot() };
     });
     assert.equal(final.stored, null); assert.deepEqual(final.exported, final.record);

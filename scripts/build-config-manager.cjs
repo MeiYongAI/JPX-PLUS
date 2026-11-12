@@ -2,7 +2,8 @@
 // Keeps the distributed userscript self-contained while the new modules remain editable.
 const fs = require('node:fs'), path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const read = name => fs.readFileSync(path.join(root, 'src/config-manager', name), 'utf8');
+// Normalize before JSON.stringify embeds CSS line endings as literal escapes.
+const read = name => fs.readFileSync(path.join(root, 'src/config-manager', name), 'utf8').replace(/\r\n/g, '\n');
 const start = '// BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)';
 const end = '// END JPX CONFIG MANAGEMENT';
 const target = path.join(root, 'JPX-PLUS.user.js');
