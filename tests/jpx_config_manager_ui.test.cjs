@@ -663,6 +663,64 @@ for (const viewport of [{ width: 1440, height: 960 }, { width: 375, height: 812 
     await f.page.keyboard.press('Escape'); await noErrors(f);
 });
 
+for (const variant of [
+    { width: 1440, height: 960, language: 'en' },
+    { width: 375, height: 812, language: 'zh', dark: true },
+    { width: 812, height: 375, language: 'zh' },
+    { width: 320, height: 640, language: 'en', scale: .8 }
+]) test(`rule insertion menu keeps its position and size at ${variant.width}x${variant.height}`, { timeout: 45000 }, async t => {
+    const f = await fixture(t, { mobile: variant.width < 1000, language: variant.language, dark: variant.dark });
+    const { page } = f;
+    await page.setViewportSize({ width: variant.width, height: variant.height }); await settle(page);
+    await openNative(f);
+    if (variant.scale) await page.locator('#settings-container').evaluate((node, scale) => node.style.setProperty('--settings-scale', scale), String(variant.scale));
+    const panel = editor(f).locator('#jpx-rule-panel-rules');
+    const titles = async () => (await panel.locator('.jpx-rule-item-name').allTextContents()).map(title => title.replace(/^\d+\.\s*/, ''));
+    const initial = await titles(), normal = variant.language === 'zh' ? '普通攻击' : 'Normal attack';
+    const opener = panel.locator('.jpx-rule-more').first();
+    const menu = page.locator('.jpx-rule-context-menu:popover-open');
+    const activePage = menu.locator('.jpx-rule-menu-page:not([inert])');
+    const activate = node => variant.width < 1000 ? node.tap() : node.click();
+    await activate(opener); await menu.waitFor();
+    const initialBounds = await menu.boundingBox();
+    const sameBounds = async () => assert.deepEqual(await menu.boundingBox(), initialBounds, 'page changes never resize or reposition the menu');
+    assert.ok(initialBounds.x >= 0 && initialBounds.y >= 0 && initialBounds.x + initialBounds.width <= variant.width + 1 && initialBounds.y + initialBounds.height <= variant.height + 1, JSON.stringify(initialBounds));
+    const rootPage = activePage;
+    const scroll = await rootPage.locator('.jpx-rule-menu-items').evaluate(node => node.scrollTop);
+    await activate(activePage.locator('.jpx-rule-menu-next').first());
+    await sameBounds();
+    assert.equal(await menu.getByRole('button').count(), 12, 'only the Back control and current rule types are accessible');
+    await page.keyboard.press('End');
+    assert.equal(await activePage.getByRole('button').last().evaluate(node => node === document.activeElement), true);
+    const lastBounds = await activePage.getByRole('button').last().boundingBox();
+    assert.ok(lastBounds.y >= initialBounds.y && lastBounds.y + lastBounds.height <= initialBounds.y + initialBounds.height, 'the last item scrolls into the menu');
+    const back = activePage.locator('.jpx-rule-menu-back');
+    const backBounds = await back.boundingBox();
+    assert.ok(backBounds.y >= initialBounds.y && backBounds.y + backBounds.height <= initialBounds.y + initialBounds.height, 'Back stays reachable while scrolling the list');
+    await activate(back); await sameBounds();
+    assert.equal(await activePage.locator('.jpx-rule-menu-next').first().evaluate(node => node === document.activeElement), true, 'Back restores the triggering item');
+    assert.equal(await activePage.locator('.jpx-rule-menu-items').evaluate(node => node.scrollTop), scroll, 'Back preserves the root scroll position');
+    await page.keyboard.press('ArrowRight'); await sameBounds();
+    await page.keyboard.press('ArrowLeft'); await sameBounds();
+    await activate(activePage.locator('.jpx-rule-menu-next').last()); await sameBounds();
+    await page.screenshot({ path: path.join(output, `rule-menu-${variant.width}x${variant.height}.png`) });
+    await activePage.getByRole('button', { name: normal, exact: true }).click();
+    assert.deepEqual(await titles(), [initial[0], initial[1], initial[1]], 'insertion below retains order');
+    await footerAction(f, 'undo'); assert.deepEqual(await titles(), initial);
+    await activate(opener); await menu.waitFor();
+    await activate(activePage.locator('.jpx-rule-menu-next').first());
+    await activePage.getByRole('button', { name: normal, exact: true }).click();
+    assert.deepEqual(await titles(), [initial[1], ...initial], 'insertion above retains order');
+    await footerAction(f, 'undo'); assert.deepEqual(await titles(), initial);
+    await activate(opener); await activate(activePage.locator('.jpx-rule-menu-next').first());
+    await page.keyboard.press('Escape'); await settle(page);
+    assert.equal(await menu.count(), 0);
+    assert.equal(await opener.evaluate(node => node === document.activeElement), true);
+    await panel.locator('.jpx-rule-add').click();
+    assert.equal(await menu.getByRole('button').count(), 11, 'flat Add menu stays unchanged');
+    await page.keyboard.press('Escape'); await noErrors(f);
+});
+
 for (const mobile of [false, true]) test(`more menu toggles and dismisses without reopening, ${mobile ? 'touch' : 'mouse'}`, async t => {
     const f = await fixture(t, { mobile }), original = await nativeSnapshot(f);
     const first = nativeRow(f).locator('.jpx-config-more'), second = nativeRow(f, 'TwoHanded_General').locator('.jpx-config-more');

@@ -1179,16 +1179,26 @@ let cfg = {
         #settings-container .jpx-rule-section-controls { flex: none; margin-left: auto; }
         #settings-container .jpx-rule-section-controls .jpx-rule-list-toggle { padding: 3px 4px; border-color: transparent; background: transparent; }
         #settings-container .jpx-rule-section { margin: 0; }
-        #settings-container .jpx-rule-context-menu { box-sizing:border-box; min-width:176px; margin:0; padding:4px; border:1px solid var(--jpx-theme-border,#c8b49b); border-radius:0; background:var(--jpx-theme-surface,#edebdf); color:var(--jpx-theme-text,#5c0d11); overflow:auto; overscroll-behavior:contain; box-shadow:0 4px 12px rgb(0 0 0 / 18%); }
+        #settings-container .jpx-rule-context-menu { box-sizing:border-box; min-width:176px; margin:0; padding:4px; border:1px solid var(--jpx-theme-border,#c8b49b); border-radius:0; background:var(--jpx-theme-surface,#edebdf); color:var(--jpx-theme-text,#5c0d11); overflow:hidden; box-shadow:0 4px 12px rgb(0 0 0 / 18%); }
+        #settings-container .jpx-rule-context-menu:popover-open { display:grid; grid-template:minmax(0,1fr) / minmax(0,1fr); }
+        #settings-container .jpx-rule-menu-page { grid-area:1 / 1; display:flex; flex-direction:column; min-height:0; min-width:0; }
+        /* Inactive pages reserve their size, so navigation never moves the popover. */
+        #settings-container .jpx-rule-menu-page[inert] { visibility:hidden; pointer-events:none; }
+        #settings-container .jpx-rule-menu-page:not([inert]) { animation:jpx-rule-menu-enter 120ms ease-out; }
+        #settings-container .jpx-rule-menu-items { min-height:0; overflow:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-gutter:stable; }
         #settings-container .jpx-rule-context-menu button { display:block; width:100%; min-height:32px; text-align:left; border:0; border-radius:0; background:transparent; padding:6px 12px; }
-        #settings-container .jpx-rule-context-menu summary { cursor:pointer; min-height:32px; box-sizing:border-box; padding:6px 12px; }
+        #settings-container .jpx-rule-context-menu :is(.jpx-rule-menu-next,.jpx-rule-menu-back) { display:flex; align-items:center; gap:8px; }
+        #settings-container .jpx-rule-context-menu svg { width:14px; height:14px; flex:none; }
+        #settings-container .jpx-rule-menu-next svg { margin-left:auto; }
+        #settings-container .jpx-rule-context-menu .jpx-rule-menu-back { flex:none; border-bottom:1px solid var(--jpx-theme-border,#c8b49b); margin-bottom:4px; }
         #settings-container .jpx-rule-context-menu .jpx-rule-menu-separator { border-top:1px solid var(--jpx-theme-border,#c8b49b); margin:4px 0; }
-        #settings-container .jpx-rule-context-menu details > button { padding-left:24px; }
         #settings-container .jpx-rule-context-menu button:hover:not(:disabled) { background:var(--jpx-theme-hover,#f1e2c5); }
         #settings-container .jpx-rule-context-menu .jpx-rule-menu-delete { color:#a1282f; }
         html[data-jpx-theme=dark] #settings-container .jpx-rule-context-menu .jpx-rule-menu-delete { color:#ffb4b6; }
-        #settings-container .jpx-rule-context-menu :is(button,summary):focus-visible { outline:2px solid var(--jpx-theme-accent,#5c0d11); outline-offset:-2px; background:var(--jpx-theme-hover,#f1e2c5); }
-        #settings-container.jpx-settings-mobile .jpx-rule-context-menu :is(button,summary) { min-height:44px; }
+        #settings-container .jpx-rule-context-menu button:focus-visible { outline:2px solid var(--jpx-theme-accent,#5c0d11); outline-offset:-2px; background:var(--jpx-theme-hover,#f1e2c5); }
+        #settings-container.jpx-settings-mobile .jpx-rule-context-menu button { min-height:44px; }
+        @keyframes jpx-rule-menu-enter { from { opacity:0; transform:translateX(4px); } to { opacity:1; transform:none; } }
+        @media (prefers-reduced-motion:reduce) { #settings-container .jpx-rule-menu-page:not([inert]) { animation:none; } }
         #settings-container .jpx-rule-scroll { flex: 1; min-height: 0; min-width: 0; overflow: auto; padding-right: 4px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #5c0d11 #e3e0d1; }
         #settings-container .jpx-rule-add-actions { display: flex; flex: none; flex-wrap: wrap; gap: 4px; padding: 8px 0 6px; border-top: 1px solid rgb(92 13 17 / 30%); background: #edebdf; }
         #settings-container .jpx-rule-add-actions button { min-height: 28px; padding: 3px 6px; }
@@ -8321,26 +8331,51 @@ function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('c
     menu.popover = 'auto';
     menu.setAttribute('role', 'group');
     menu.setAttribute('aria-label', label);
-    const add = (parent, action) => {
-        if (action.separator) {
-            const divider = document.createElement('div'); divider.className = 'jpx-rule-menu-separator';
-            divider.setAttribute('role', 'separator'); parent.append(divider);
-        } else if (action.children) {
-            const group = document.createElement('details');
-            const heading = document.createElement('summary'); heading.textContent = action.label;
-            group.append(heading); action.children.forEach(child => add(group, child)); parent.append(group);
-        } else jpxUtils.createButton(parent, { text: action.label, history: false,
-            className: action.destructive ? 'jpx-rule-menu-delete' : '',
-            disabled: action.disabled, onClick: () => {
-                menu.hidePopover();
-                if (anchor.isConnected) anchor.focus({ preventScroll: true });
-                action.run(anchor);
-            } });
+    let activePage;
+    const showPage = (page, focus) => {
+        if (activePage) { activePage.element.inert = true; activePage.element.setAttribute('aria-hidden', 'true'); }
+        activePage = page;
+        page.element.inert = false; page.element.removeAttribute('aria-hidden');
+        menu.setAttribute('aria-label', page.label);
+        (focus || page.items.querySelector('button:not(:disabled)'))?.focus({ preventScroll: true });
     };
-    for (const action of actions || []) add(menu, action);
+    const createPage = (items, pageLabel, back) => {
+        const element = document.createElement('div'), list = document.createElement('div');
+        element.className = 'jpx-rule-menu-page'; element.id = getUniqueId('ruleMenuPage');
+        element.inert = true; element.setAttribute('aria-hidden', 'true');
+        list.className = 'jpx-rule-menu-items';
+        const page = { element, items: list, label: pageLabel, back };
+        if (back) {
+            const button = jpxUtils.createButton(element, { text: pageLabel, history: false, className: 'jpx-rule-menu-back', onClick: back });
+            button.prepend(createSettingsIcon('chevronLeft'));
+            button.setAttribute('aria-label', `${t('cM.back')}: ${pageLabel}`);
+            button.title = t('cM.back');
+        }
+        element.append(list); menu.append(element);
+        for (const action of items || []) {
+            if (action.separator) {
+                const divider = document.createElement('div'); divider.className = 'jpx-rule-menu-separator';
+                divider.setAttribute('role', 'separator'); list.append(divider);
+            } else if (action.children) {
+                const button = jpxUtils.createButton(list, { text: action.label, history: false, className: 'jpx-rule-menu-next', disabled: action.disabled,
+                    onClick: () => { child.items.scrollTop = 0; showPage(child); } });
+                const child = createPage(action.children, action.label, () => showPage(page, button));
+                button.append(createSettingsIcon('chevronRight'));
+                button.setAttribute('aria-controls', child.element.id);
+            } else jpxUtils.createButton(list, { text: action.label, history: false,
+                className: action.destructive ? 'jpx-rule-menu-delete' : '',
+                disabled: action.disabled, onClick: () => {
+                    menu.hidePopover();
+                    if (anchor.isConnected) anchor.focus({ preventScroll: true });
+                    action.run(anchor);
+                } });
+        }
+        return page;
+    };
+    const root = createPage(actions, label);
     row.append(menu);
     menu.addEventListener('toggle', event => {
-        if (event.newState !== 'closed') return;
+        if (event.target !== menu || event.newState !== 'closed') return;
         if (anchor.getAttribute('aria-controls') === menu.id) {
             anchor.setAttribute('aria-expanded', 'false');
             anchor.removeAttribute('aria-controls'); anchor.popoverTargetElement = null;
@@ -8349,19 +8384,24 @@ function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('c
         menu.remove();
     });
     menu.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft' && activePage.back) {
+            activePage.back(); event.preventDefault(); event.stopPropagation(); return;
+        }
+        if (event.key === 'ArrowRight' && document.activeElement?.matches('.jpx-rule-menu-next')) {
+            document.activeElement.click(); event.preventDefault(); event.stopPropagation(); return;
+        }
         if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
-        const controls = [...menu.querySelectorAll('summary, button:not(:disabled)')].filter(node => node.checkVisibility());
+        const controls = [...activePage.element.querySelectorAll('button:not(:disabled)')];
         const index = controls.indexOf(document.activeElement);
         const next = event.key === 'Home' ? 0 : event.key === 'End' ? controls.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + controls.length) % controls.length;
         controls[next]?.focus({ preventScroll: true }); controls[next]?.scrollIntoView({ block: 'nearest' });
         event.preventDefault(); event.stopPropagation();
     });
-    menu.addEventListener('toggle', () => { if (menu.matches(':popover-open')) positionSettingsPopover(anchor, menu); }, true);
     anchor.setAttribute('aria-controls', menu.id); anchor.setAttribute('aria-expanded', 'true');
     anchor.popoverTargetElement = menu;
     menu.showPopover();
     positionSettingsPopover(anchor, menu);
-    menu.querySelector('summary, button:not(:disabled)')?.focus({ preventScroll: true });
+    showPage(root);
 }
 
 // Small static SVGs keep the userscript self-contained and inherit the HV palette.
@@ -8450,6 +8490,8 @@ function createSettingsIcon(name) {
         image: 'M3 3h18v18H3V3M3 16l6-6 5 5 3-3 4 4M16 7h.01',
         close: 'M6 6l12 12M6 18 18 6',
         chevronDown: 'm6 9 6 6 6-6',
+        chevronLeft: 'm15 6-6 6 6 6',
+        chevronRight: 'm9 6 6 6-6 6',
         download: 'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
         copy: 'M8 8h13v13H8V8M16 8V3H3v13h5',
         configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
