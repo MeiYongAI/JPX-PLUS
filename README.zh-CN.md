@@ -10,7 +10,7 @@
 
 **[安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [本次改动](CHANGELOG.md#简体中文)
 
-**2026.11.13.6：** 清理无用代码和样式，合并重复逻辑，同步五个语言包，补齐漏翻提示并简化用词。从旧版本更新前请备份配置。旧配置载入时自动转换，保存后使用统一规则格式；2026.11.13 之前的 JPX-PLUS 无法读取。[升级说明](docs/upgrading.md#简体中文)。
+**2026.11.13.7：** 修复手机菜单因焦点变化提前关闭、点击后无法切换页面的问题。从旧版本更新前请备份配置。旧配置载入时自动转换，保存后使用统一规则格式；2026.11.13 之前的 JPX-PLUS 无法读取。[升级说明](docs/upgrading.md#简体中文)。
 
 ## 安装
 

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13.6
+// @version      2026.11.13.7
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*

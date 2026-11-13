@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.13.7
+
+- Prevent mobile settings menu clicks from being interrupted when focus returns to the dialog. Menu items can finish their click and switch pages.
+- Verified the reproduced focus sequence, all four sections, menu dismissal and keyboard navigation locally. Confirmation on an iOS Safari device is still pending.
+
+### 简体中文
+
+- 修复手机设置菜单因焦点回到窗口而提前关闭，导致点击条目后无法切换页面的问题。
+- 本地复现并验证了相关焦点顺序、四个页面切换、菜单关闭及键盘操作，仍待 iOS Safari 实机确认。
+
 ## 2026.11.13.6
 
 - Remove the retired field picker and unused toolbar styles. Reuse rule schemas, statistics loading and effect-condition checks while preserving existing behavior.
