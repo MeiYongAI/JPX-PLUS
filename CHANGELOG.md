@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026.11.13.4
+
+- Hide the floating mobile launcher on battle and RiddleMaster pages, including dynamic battle transitions. Keep it available outside combat and retain the battle panel's Settings and Stats buttons.
+
+### 简体中文
+
+- 战斗和小马答题时隐藏手机悬浮入口，动态进入战斗时也会隐藏。非战斗页面正常显示，战斗面板保留设置和统计按钮。
+
 ## 2026.11.13.3
 
 - Shorten the HVUT menu entries to JPX+ Settings and JPX+ Stats. Keep the short name when switching languages.
