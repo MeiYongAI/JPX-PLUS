@@ -22,6 +22,10 @@
 
 ![规则编辑](images/desktop-rules-dark.png)
 
+### 规则菜单
+
+![规则菜单](images/desktop-rule-menu-dark.png)
+
 ### 手动排序
 
 ![手动排序](images/desktop-order-dark.png)
@@ -87,6 +91,10 @@
 ### 规则编辑
 
 ![规则编辑](images/mobile-rules-dark.png)
+
+### 规则菜单
+
+![规则菜单](images/mobile-rule-menu-dark.png)
 
 ### 手动排序
 

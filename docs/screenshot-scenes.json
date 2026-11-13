@@ -28,6 +28,13 @@
     "mobile-rules"
   ],
   [
+    "rule-menu",
+    "Rule menu",
+    "规则菜单",
+    "desktop-rule-menu",
+    "mobile-rule-menu"
+  ],
+  [
     "order",
     "Manual order",
     "手动排序",

@@ -53,6 +53,17 @@ function metadata(source, file) {
     assert.equal(fields.require, undefined, file + ': standalone without dependencies');
     return fields;
 }
+function validateTerminology(dictionary, label) {
+    const sharedNames = ['Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower',
+        'OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed', 'General'];
+    for (const group of ['cW', 'cStore', 'sP']) for (const key of sharedNames) {
+        if (Object.hasOwn(dictionary[group], key)) assert.equal(dictionary[group][key], dictionary.cB[key], label + '.' + group + '.' + key + ': consistent name');
+    }
+    for (const key of ['back', 'save', 'import', 'export', 'cancel', 'undo', 'redo'])
+        assert.equal(dictionary.cGen[key], dictionary.cM[key], label + '.' + key + ': consistent control');
+    assert.equal(dictionary.cB.rules, dictionary.cStore.rules, label + ': consistent rule-list name');
+    assert.equal(dictionary.cM.grindfest, dictionary.cB.Battle1000, label + ': consistent Grindfest name');
+}
 const baseFile = 'JPX-PLUS-ZhCN.user.js';
 const baseSource = read(baseFile), base = evaluate(baseSource, baseFile), baseMetadata = metadata(baseSource, baseFile);
 const mainSource = read('JPX-PLUS.user.js');
@@ -78,6 +89,10 @@ const sharedEntries = flatten(JSON.parse(read('src/shared-ui-en.json')));
 validateEntries(flatten(baseStore), storeEntries, baseFile + '.cStore');
 validateEntries(flatten(baseManager), managerEntries, baseFile + '.cM');
 validateEntries(flatten(baseShared), sharedEntries, baseFile + '.cShared');
+validateTerminology(base, baseFile);
+const dictionaryEntries = flatten(base);
+for (const [, key] of mainSource.matchAll(/\bt\(['"]((?:cW|cGen|sGen|cB|cS|tP|cP|rP|sP|cStore|cM|cShared)\.[^'"\r\n]+)['"]\s*[,)]/g))
+    assert.ok(Object.hasOwn(dictionaryEntries, key), 'Main script literal translation: ' + key);
 // Extract only the integrated lookup. No store startup or GM API is executed.
 const lookupSource = storeSource.match(/    const t = key => \{[\s\S]*?\n    \};/);
 assert.ok(lookupSource, 'Config Store lookup can be tested in isolation');
@@ -99,6 +114,7 @@ for (const locale of locales) {
     validateEntries(flatten(cStore), storeEntries, file + '.cStore');
     validateEntries(flatten(cM), managerEntries, file + '.cM');
     validateEntries(flatten(cShared), sharedEntries, file + '.cShared');
+    validateTerminology(dictionary, file);
     const unknown = { extension: { retained: 'custom extension' } };
     const merged = evaluate(source, file, { ...unknown, cW: { obsolete: 'replace owned namespace' } });
     assert.deepEqual(merged.extension, unknown.extension, file + ': preserve unknown namespace');

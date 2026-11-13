@@ -6,6 +6,8 @@ Primary and alt share settings, completed battle records and daily stamina from 
 
 ## Updating JPX-PLUS
 
+From 2026.11.13, support and attack actions share one ordered rule list, and normal attacks support conditions. Back up battle settings before updating. Older configurations convert when loaded; save them once to keep the new format. Files saved or exported in the new format require JPX-PLUS 2026.11.13 or upstream JPX 2026.11.11 or later.
+
 When updating an existing installation, update the main script and language pack together. Monster information is built in; the companion database script is optional. GitHub sessions now renew automatically, but an older login may require one new authorization because previous versions did not save refresh credentials. Signing out requires confirmation. [Authentication details](store-authentication.md).
 
 The Simplified Chinese pack is named JPX-PLUS-ZhCN.user.js. The old ZhTrans file is no longer provided. If your installation still updates from the old ZhTrans address, install ZhCN using the link in the README. Keep only one Simplified Chinese pack enabled.
@@ -42,6 +44,8 @@ In **My configs → More → Bind loadout**, choose a world, persona and equipme
 ## 简体中文
 
 ### 更新 JPX-PLUS
+
+从 2026.11.13 起，辅助与攻击合并为一份有序规则列表，普通攻击也能设置条件。更新前请备份战斗设置。旧配置载入时自动转换，保存一次后使用新格式。新格式的保存或导出文件需要 JPX-PLUS 2026.11.13、上游 JPX 2026.11.11 或更新版本。
 
 简体语言包统一使用 JPX-PLUS-ZhCN.user.js，不再提供旧 ZhTrans 文件。仍使用旧 ZhTrans 地址更新的用户，请通过 README 中的链接安装 ZhCN。只需启用一个简体语言包。
 

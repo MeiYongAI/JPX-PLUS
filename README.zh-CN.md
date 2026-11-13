@@ -10,7 +10,7 @@
 
 **[安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [本次改动](CHANGELOG.md#简体中文)
 
-2026.11.13 起，辅助与攻击合并为一个规则列表，普通攻击也能设置条件。规则在同一列表中编辑，支持展开收起、拖动排序和操作菜单。更新前请备份配置；旧配置加载时自动转换，保存后使用新格式。
+**2026.11.13.1：** 辅助与攻击使用同一份规则列表，普通攻击支持条件，插入菜单切换时不再跳动。更新前请备份配置。旧配置载入时自动转换，保存后使用新格式；旧版本无法读取新格式。[升级说明](docs/upgrading.md#简体中文)。
 
 ## 安装
 

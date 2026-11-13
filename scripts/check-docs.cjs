@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, '..');
 const readmes = ['README.md', 'README.zh-CN.md', 'README.zh-TW.md', 'README.zh-HK.md', 'README.ja.md', 'README.ko.md'];
 const guides = ['scene-strategies.md', 'store-authentication.md', 'monster-database.md', 'alt-shared-data-2026-11-08.md'];
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const version = read('JPX-PLUS.user.js').match(/^\/\/\s+@version\s+(\S+)/m)[1];
 const markdownFiles = directory => fs.readdirSync(path.join(root, directory), { withFileTypes: true }).flatMap(entry => {
     const file = path.join(directory, entry.name);
     return entry.isDirectory() ? markdownFiles(file) : entry.name.endsWith('.md') ? [file] : [];
@@ -34,12 +35,19 @@ for (const file of documents) {
 }
 for (const file of readmes) {
     const source = read(file);
+    if (!source.includes(version)) failures.push(file + ': missing current release ' + version);
     for (const guide of guides) {
         if (!source.includes('](docs/' + guide)) failures.push(file + ': missing guide ' + guide);
     }
     if (!source.includes('page=scenes')) failures.push(file + ': missing scene preview');
 }
 const scenes = JSON.parse(read('docs/screenshot-scenes.json'));
+if (read('CHANGELOG.md').match(/^## (\d[^\r\n]*)/m)?.[1] !== version) failures.push('CHANGELOG.md: latest release does not match ' + version);
+const preview = read('docs/index.html');
+if (!preview.includes('name="jpx-version" content="' + version + '"')) failures.push('docs/index.html: preview version does not match ' + version);
+for (const asset of ['preview.css', 'preview.js', 'images/desktop-configs-en.png']) {
+    if (!preview.includes(asset + '?v=' + version)) failures.push('docs/index.html: stale asset version for ' + asset);
+}
 for (const locale of ['en', 'zh-CN']) {
     for (const theme of ['light', 'dark']) {
         const galleryFile = 'docs/gallery-' + theme + (locale === 'en' ? '' : '.zh-CN') + '.md';

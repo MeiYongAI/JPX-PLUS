@@ -37,6 +37,12 @@
         "mobile-rules-dark"
       ]
     },
+    "rule-menu": {
+      "en": "Rule menu",
+      "zh": "规则菜单",
+      "desktop": ["desktop-rule-menu", "desktop-rule-menu-dark"],
+      "mobile": ["mobile-rule-menu", "mobile-rule-menu-dark"]
+    },
     "order": {
       "en": "Manual order",
       "zh": "手动排序",
@@ -168,6 +174,7 @@
     'zh-CN': { install: '安装脚本', changes: '本次改动', languagePacks: '语言包', languagePackHint: '一次启用一个语言包，再刷新。英语无需语言包。', gallery: '界面预览', device: '设备', desktop: '桌面', mobile: '手机', theme: '主题', light: '浅色', dark: '暗色', language: '语言', pages: '预览页面', original: '查看原图', imageError: '图片暂时未加载。', retry: '重新加载', staticGallery: '图集', feedback: '反馈', about: '预览说明', authorThanks: '感谢 JPX 原作者 ', skip: '跳至预览', title: 'JPX-PLUS · 界面预览', shown: '已显示：', disclaimer: '截图来自脚本真实界面，使用离线演示数据。结算图仅展示统计区域。', storeNote: '浏览无需登录。GitHub 登录自动续期，退出须确认。', configsNote: '按场景分配规则，或应用固定规则；恢复自动选择可退出固定模式。', panelNote: '面板默认配色随主题切换，自定义配色保留。', finalNote: '主题作用于统计区域，游戏原生背景保持原样。' }
   };
   const params = new URLSearchParams(location.search);
+  const assetVersion = document.querySelector('meta[name=jpx-version]').content;
   const normalizeLanguage = value => /^zh(?:-|$)/i.test(value || '') ? 'zh-CN' : /^en(?:-|$)/i.test(value || '') ? 'en' : null;
   let savedLanguage;
   try { savedLanguage = localStorage.getItem('jpx-preview-language'); } catch {}
@@ -229,7 +236,7 @@
     const current = ++revision;
     const words = copy[language];
     const title = sceneTitle(scene);
-    const src = 'images/' + scenes[scene][device][theme === 'dark' ? 1 : 0] + (language === 'en' ? '-en' : '') + '.png';
+    const src = 'images/' + scenes[scene][device][theme === 'dark' ? 1 : 0] + (language === 'en' ? '-en' : '') + '.png?v=' + encodeURIComponent(assetVersion);
     document.documentElement.dataset.theme = theme;
     document.documentElement.lang = language;
     document.title = words.title;

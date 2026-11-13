@@ -16,7 +16,7 @@ Edit the manager modules, then rebuild. Do not hand-edit the generated section i
 
 The generated main script also embeds the shared-data, shared-UI and monster-database modules from the source directory. Changes to these modules require the same rebuild and consistency check.
 
-Shared-data text lives in the shared-UI English JSON dictionary and each language pack's cShared section. Use the normal translation lookup; do not infer a locale from a translated label. Language checks compare every main-script English key and all module dictionaries, including placeholders, with all five packs.
+Shared-data text lives in the shared-UI English JSON dictionary and each language pack's cShared section. Use the normal translation lookup; do not infer a locale from a translated label. Language checks compare every main-script English key and all module dictionaries, including placeholders, with all five packs. They also check that style names, battle names and common controls use the same wording across the panel, editor and store. Keep abbreviated statistics headers distinct where needed.
 
 Edit the Simplified Chinese pack in JPX-PLUS-ZhCN.user.js. Installation links, updates, tests and screenshot scripts use ZhCN. The former ZhTrans compatibility file has been removed and is no longer generated or required by the checks.
 
@@ -49,6 +49,8 @@ Keep maintained regression tests and their required fixtures in Git because CI r
 To use an installed Chrome instead of the downloaded test browser, set `PLAYWRIGHT_CHANNEL=chrome`. The optional `JPX_CONFIG_REPRO` environment variable lets the battle-import regression inspect a local reporter file without committing it.
 
 Release checks cover all six READMEs, matching main-script/language-pack versions, upgrade guides, preview navigation, static galleries and current screenshots. The documentation check validates local file links and guide/gallery coverage; review translated behavior descriptions against the UI. Keep unresolved live-game issues explicit in the changelog.
+
+Pages publishes the main branch's docs directory. Update the preview version and asset query strings in index.html with each release; the preview uses that version for its image URLs too. Add scenes to preview.js, screenshot-scenes.json and all four galleries together. Run the screenshot capture before checking the preview so it shows the current script and translations.
 
 ## Battle performance
 

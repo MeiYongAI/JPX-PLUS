@@ -22,6 +22,10 @@ Actual script interfaces with offline sample data.
 
 ![Rule editor](images/desktop-rules-dark-en.png)
 
+### Rule menu
+
+![Rule menu](images/desktop-rule-menu-dark-en.png)
+
 ### Manual order
 
 ![Manual order](images/desktop-order-dark-en.png)
@@ -87,6 +91,10 @@ Actual script interfaces with offline sample data.
 ### Rule editor
 
 ![Rule editor](images/mobile-rules-dark-en.png)
+
+### Rule menu
+
+![Rule menu](images/mobile-rule-menu-dark-en.png)
 
 ### Manual order
 

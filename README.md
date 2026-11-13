@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-From 2026.11.13, support and attack actions share one ordered rule list. Normal attacks support conditions. Edit rules in one full-width list with expand/collapse, drag sorting and action menus. Back up settings before upgrading; legacy configurations convert automatically when loaded and use the new format after saving.
+**2026.11.13.1:** Support and attack actions share one ordered rule list, normal attacks support conditions, and insertion menus stay in place. Back up settings before updating. Older configs convert on load; saving uses the new format, which earlier versions cannot read. [Upgrade guide](docs/upgrading.md).
 
 ## Install
 

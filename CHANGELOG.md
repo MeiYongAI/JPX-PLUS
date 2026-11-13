@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.13.1
+
+- Keep the rule menu in place while switching to insertion options. The Back control stays visible when scrolling; keyboard navigation and touch remain supported.
+- Align style names and common actions across all five language packs. Update the six READMEs, upgrade guide and rule-editor previews.
+
+### 简体中文
+
+- 插入选项在菜单内部切换，位置和大小保持不变。滚动时保留返回按钮，支持键盘与触屏操作。
+- 核对五个语言包，统一流派名称及常用操作用词，同步六份 README、升级说明与规则编辑预览图。
+
 ## 2026.11.13
 
 - Synced upstream 2026.11.11 battle rules: support and attack actions now share one ordered rule list; normal attacks accept conditions.
@@ -8,6 +18,14 @@
 - Migrated legacy configurations, applied snapshots and automatic scene assignments together; imports and exports use the new native format. Existing saved data is not rewritten merely by loading it.
 - Updated all five language packs. Store validation supports both formats; deploy the matching JPX-PLUS-Configs changes before publishing new-format shares.
 - Back up battle settings before updating. Configurations saved in the new format require this release or upstream 2026.11.11; older versions cannot read them.
+
+### 简体中文
+
+- 同步上游 2026.11.11：辅助与攻击合并为一份有序规则列表，普通攻击也可设置条件。
+- 规则编辑改为单列表，保留展开收起、拖动排序和操作菜单，移除重复目录。
+- 减少长列表打开时的渲染工作；全部展开、收起分批执行，保留动画并可中途切换。
+- 旧配置、已应用记录和场景策略一并转换。仅载入不会改写保存的数据，保存或导出后使用新格式。
+- 更新前请备份战斗设置。新格式需要本版或上游 2026.11.11，旧版无法读取。五个语言包同步更新，商店同时接受新旧格式。
 
 ## 2026.11.11.3
 

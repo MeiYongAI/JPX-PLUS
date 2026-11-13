@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.13
+// @version      2026.11.13.1
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -249,7 +249,7 @@
             "attacks": "攻擊",
             "target": "目標",
             "priorityRule": "目標優先順序",
-            "smartDebuff": "智慧減益施法",
+            "smartDebuff": "智能減益法術",
             "targetCount": "法術目標數",
             "bottomUp": "從下往上（J → A）",
             "tailSkip": "篩選目標（+N：略過最後 N 隻；−N：只選前 N 隻）",
@@ -1073,7 +1073,7 @@
             "DW_Mage": "雙持戰法師",
             "NitenIchiryu": "二天一流",
             "NI_Mage": "二天一流戰法師",
-            "Staff": "法杖",
+            "Staff": "法師",
             "Unarmed": "徒手",
             "General": "通用",
             "Arena": "競技場",
@@ -1217,7 +1217,7 @@
         "cancel": "取消",
         "back": "返回",
         "save": "儲存",
-        "undo": "復原",
+        "undo": "撤銷",
         "redo": "重做",
         "saveChanges": "儲存修改？",
         "keepEditing": "繼續編輯",

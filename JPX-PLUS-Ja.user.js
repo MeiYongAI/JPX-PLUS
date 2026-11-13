@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13
+// @version      2026.11.13.1
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -64,8 +64,8 @@
             "settings": "設定",
             "back": "戻る",
             "save": "保存",
-            "import": "インポート",
-            "export": "エクスポート",
+            "import": "読み込む",
+            "export": "書き出す",
             "menu": "メニュー",
             "statistics": "統計",
             "lightTheme": "ライト",
@@ -226,7 +226,7 @@
             "modes": "モード",
             "name": "名前",
             "attackRules": "攻撃ルール",
-            "keyRules": "キールール",
+            "keyRules": "ショートカットルール",
             "styleOverride": "スタイルを指定",
             "currentStyle": "現在の判定",
             "exportModeShort": "エクスポート",
@@ -1013,7 +1013,7 @@
             "customCode": "カスタムコード",
             "viewConfig": "設定内容を見る",
             "scriptVersion": "スクリプトのバージョン",
-            "import": "設定にインポート",
+            "import": "設定に読み込む",
             "download": "設定をダウンロード",
             "imported": "インポートしました。内容を確認してから保存してください。",
             "importHint": "インポートは元に戻せます。確認できたら設定画面で保存してください。",

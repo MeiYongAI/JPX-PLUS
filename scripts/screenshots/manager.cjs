@@ -121,6 +121,10 @@ async function capture(browser,english,mobile){
     const cure=page.locator('#jpx-rule-panel-rules .jpx-rule-item').filter({hasText:english?'Cure':'治疗'}).first();
     if(await cure.count())await cure.locator(':scope > summary').click();
     await pair('rules');
+    await page.locator('#jpx-rule-panel-rules .jpx-rule-more').first().click();
+    await page.locator('.jpx-rule-context-menu:popover-open').getByRole('button',{name:await label('cB.insertAfter'),exact:true}).click();
+    await pair('rule-menu');
+    await page.keyboard.press('Escape');
     await page.locator(mobile?'#close-button':'.jpx-config-back').click();
     await page.locator('.jpx-config-nav').getByRole('button',{name:await label('cM.store'),exact:true}).click();
     await page.locator('.jpx-store-row').first().waitFor();await pair('store');
@@ -134,7 +138,7 @@ async function capture(browser,english,mobile){
     await page.locator('.jpx-scene-open').click();await page.locator('.jpx-scenes-table').waitFor();await pair('scenes');
     await tab('battle');await page.locator('#export-button').click();await page.locator('#jpx-battle-export').waitFor();await pair('export');
     assert.deepEqual(errors,[]);
-    console.log(JSON.stringify({language:english?'en':'zh-CN',device:mobile?'mobile':'desktop',scenes:9,themes:2,errors}));
+    console.log(JSON.stringify({language:english?'en':'zh-CN',device:mobile?'mobile':'desktop',scenes:10,themes:2,errors}));
   }finally{await context.close();}
 }
 (async()=>{fs.mkdirSync(output,{recursive:true});const browser=await chromium.launch({...(process.env.PLAYWRIGHT_CHANNEL?{channel:process.env.PLAYWRIGHT_CHANNEL}:{}),headless:true});try{for(const english of [true,false])for(const mobile of [false,true])await capture(browser,english,mobile);}finally{await browser.close();}})().catch(error=>{console.error(error);process.exitCode=1;});

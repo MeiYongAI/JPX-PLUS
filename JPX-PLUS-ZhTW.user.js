@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.13
+// @version      2026.11.13.1
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -90,7 +90,7 @@
             "expandSidebar": "展開側欄",
             "settingsSections": "設定分類",
             "expandAllRules": "全部展開",
-            "collapseAllRules": "全部收起",
+            "collapseAllRules": "全部收合",
             "draggingRule": "正在拖曳：${label}",
             "dropBefore": "放到「${label}」前面",
             "dropAfter": "放到「${label}」後面",
@@ -1073,7 +1073,7 @@
             "DW_Mage": "雙持戰法師",
             "NitenIchiryu": "二天一流",
             "NI_Mage": "二天一流戰法師",
-            "Staff": "法杖",
+            "Staff": "法師",
             "Unarmed": "徒手",
             "General": "通用",
             "Arena": "競技場",

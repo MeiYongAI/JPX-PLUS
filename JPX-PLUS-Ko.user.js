@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.13
+// @version      2026.11.13.1
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -64,7 +64,7 @@
         "settings": "설정",
         "back": "뒤로",
         "save": "저장",
-        "import": "불러오기",
+        "import": "가져오기",
         "export": "내보내기",
         "menu": "메뉴",
         "statistics": "통계",
@@ -1075,7 +1075,7 @@
     "DW_Mage": "쌍수 마법",
     "NitenIchiryu": "니텐",
     "NI_Mage": "니텐 마법",
-    "Staff": "지팡이",
+    "Staff": "마법",
     "Unarmed": "맨손",
     "General": "공통",
     "Arena": "아레나",

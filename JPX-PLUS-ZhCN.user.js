@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13
+// @version      2026.11.13.1
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1059,15 +1059,15 @@
         "integrityError": "下载的配置未通过完整性检查。",
         "requestFailed": "请求失败，请重试。",
         "OneHanded": "单手",
-        "1H_Mage": "单手法师",
+        "1H_Mage": "单手战法师",
         "TwoHanded": "双手",
-        "2H_Mage": "双手法师",
+        "2H_Mage": "双手战法师",
         "DualWielding": "双持",
-        "DW_Mage": "双持法师",
+        "DW_Mage": "双持战法师",
         "NitenIchiryu": "二天一流",
-        "NI_Mage": "二天法师",
-        "Staff": "法杖",
-        "Unarmed": "空手",
+        "NI_Mage": "二天一流战法师",
+        "Staff": "法师",
+        "Unarmed": "徒手",
         "General": "通用",
         "Arena": "竞技场",
         "Encounter": "遭遇战",
