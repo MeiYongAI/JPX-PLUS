@@ -10,7 +10,7 @@
 
 **[安裝 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[互動預覽](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [更新內容](CHANGELOG.md#简体中文)
 
-**2026.11.13.7：** 修正手機選單因焦點變化提早關閉，點選後無法切換頁面的問題。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
+**2026.11.13.8：** 統計設定按需載入，減少戰鬥中的重複計算，釋放不再使用的編輯器資料與自訂程式碼快取。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
 
 ## 安裝
 

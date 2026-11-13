@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.13.8
+
+- Build each statistics settings section when first opened, reducing the initial page size.
+- Limit recent-action checks to the requested range and release compiled custom code when its rule is no longer used.
+- Release editor references when settings close. Skip configuration snapshots when closing settings or collapsing the sidebar.
+- Focused behavior and lifecycle checks passed locally. Long-running live gameplay and memory usage have not been measured.
+
+### 简体中文
+
+- 统计设置各栏目首次打开时再加载，减少初次打开时创建的页面元素。
+- 历史动作条件只检查指定范围，自定义代码缓存随不再使用的规则释放。
+- 关闭设置时释放编辑器引用；关闭窗口、折叠侧栏不再生成配置快照。
+- 本地针对性功能与生命周期检查通过，尚未进行真实长时间挂机与内存测量。
+
 ## 2026.11.13.7
 
 - Prevent mobile settings menu clicks from being interrupted when focus returns to the dialog. Menu items can finish their click and switch pages.
