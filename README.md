@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-**2026.11.13.5:** More compact mobile settings and statistics, better long-text wrapping, and clearer English labels. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
+**2026.11.13.6:** Remove unused code and styles, share repeated logic, and update all five language packs with clearer labels and translated messages. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
 
 ## Install
 
@@ -23,7 +23,7 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 **Configs and Store are included in the main script.** No separate store installation is needed. Coming from JPX? See the short [upgrade guide](docs/upgrading.md).
 
-**Monster information is built in.** Enable **Basic settings → Monster class, attack & power** and save; no Monster DB userscript is required. Data is supplied by [Sukka's Monster Database](https://hv-monster.skk.moe/), cached separately for Persistent and Isekai, and refreshed at most once per UTC day when needed. [Cache, Scan and compatibility details](docs/monster-database.md).
+**Monster information is built in.** Enable **General → Monster class, attack & power** and save; no Monster DB userscript is required. Data is supplied by [Sukka's Monster Database](https://hv-monster.skk.moe/), cached separately for Persistent and Isekai, and refreshed at most once per UTC day when needed. [Cache, Scan and compatibility details](docs/monster-database.md).
 
 **Primary / alt shared data:** the same userscript installation shares settings, completed battle history and daily stamina across both hosts. Visit each host once outside combat after updating. Old copies and stamina migration controls are under **Stats → Data**. [Scope and migration details](docs/alt-shared-data-2026-11-08.md).
 

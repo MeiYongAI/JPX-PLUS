@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.13.5
+// @version      2026.11.13.6
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAGdklEQVR4AeyZW2wUVRjHvxkqiBAFqSigQuoFEiAhEa2GbAUCmijSlIv4oJFwFQn6YqvR6IOJRlpeFBEplGDCA4hAimiiICBL1SomJEACKg2IgJZyMyCCZY7nN2E2ZZjZnZndtrvbbvr1zLl98//958zZzYwpAT/xj+b1ji+bOTVePXvhzuqZn+2qnvVNvHrW9mwItKAprrXZGrXWgFiS0gCddBzJpeC/02IYn1rWlfJzjedLjzc0jT3+28nRWRFaC5rQJlojWtGM9lRG+BoQXzmjiCQiasulC5dL92w7KLWLd8jy8o3G2oVfF2xa8q18vnRnVgRa0IQ2NKIVzWiHARY/IzwNYBmpy8ZeZalJ9Zv3yidvbS6o/2Kf/Hn4lF+erGlHI1ptzVo7DLDA5CXyOgPiy2fNYRnpRDetq9pi7Nn+i9e8nGhDOwywwGSzuZRfY4DtkpJlh/ceE5bV2cbzruG5V4UBFphEs9mMLTASBnCfKCWrTjQ0yVerfmgxJD8OYYINRlgdqoQBqtmoVKK671z3s9OXdyVsMMLqwNkG8HVhiDH5py/3GywZpzPfSthghBVm+GwDlFgv/HvhUjObBo35HDDCCjOcJr/wcORA/eECGjpCwAoz7KZ0uTwO6CP7T1B0iEiwanZTDHOkZVlKf1d2CHggYbUsS8Fu6nvhnr+bLlyhI9eiaNhAqVg23w6Ow+iHGXZTL4HeF89fysn7f+y0mPTq28uOKQsmhOEXmGHXK0BM/Xs51GRn8MRXFkjl7u1S89evGQlykbPPXXc6p0hatrzqGJF08NVOp4BZiegF4LSELBFaWv6SBBUbJD25yDlqWlmQ4RkZY0bNgtCoc1PNa83c7nNHNuDU0T/cuVq1znJnw3t34xvihPuETjslY5njHuOuRzZg15oN7lytWnc2vKAnYU8IsjFGNmDTosVSt2a9tPVKCGoA4043nqNIGpENIOvKl1+TipFjZObt90UO8gSJbWvj0rDvSJCh9pizjWeFOXYlyb+0DEiSN+NdwK94c7W8XvZOItwnadlXOXdJIMNyxgA3bKbqnQZkysn2yMNt4Zy35bHTFqTM6RXAJgd40A3Py5CcNgB4NsagG17eGeAFFLYtp1dAWFiv8Z0GeLmST22pWDpXQCqH8r2/cwXk+xVOxRdpBfA8kAeYBMc8y0t1omztD20AwDyzA5rgOOpDTOa3tzGhDQDYLdqrzT0mTL0tnzKFNsBPXJSrWXj3gDC+tMrY0Ab4qYgCM/iRhzzTHair92xvjcbQBpz8/ZinDj8Yz8FXG/1unaaj3ue4Oi2jRWgDDn7nfXWAGTyqOLA4NlO/wXVrN/p1Zbw9vAHf/+gromLDahn1zOSUr8uAxzCvROwxhFdfa7SFN0Dfn7wP8BMz4/33hMAIVoSzOVInyrVJfvDkrF30IUWbRWgDUIbIZFdpiL4VMIEVwY8l3h5TJ+gjh1ew+SUz12tOum2RDAA+lQlhhZGzatKzYaelPT6SAZyVK7VLvx9EOPV0ghw1+i1TOjmcuWHLyAZwok36/eDCsueEpUs9SjCX12sH9d4SZX66c0xDxDL4HzETV4+lW6mXL8dh0vBukblh5mRqLMywm5aoM917dmtONzFXkCuJEbVVHwjB1XVMoaRep98oM4YXqhyne96o82GGXV9789DNhT26RE3knocR3BoEVxdTgKWkzlVnjHteW9dhNsQ8ZIqydpumadwxqI90lA+sMNvscqXrVsAHDu1H0SEiwarZzdiLS88oUeuHFA9Kex/IFfdghRl2+2vQEPPjG3t0Kxgx5n7J9w+MsBqaWfTHNiA2Z/lWHHnwiaGqV9+eujk//2CDEVaYobQN4MAoUBWGGBdLpj5ANS8DNhhhdQATBsRmrGwwDJner6hQHp/+sNOfNyVMsMEIqwOWMICG2NyadWLI3EHDB8jE+Y8KS4b2XA4YYIEJNpuxBdA1BtAem72iWpR6Wn9X/jO1fLxi06A9FwPtMMACk83mArnOAPpxyeiqhuvfyxuKJwyX59+e0Fz85DDRiejO6kAjWm3NWjsMsMDkJdz0aqSN+6RkTs0UEWN8tx5da0eMHSylC0bL7KoyNe3Vx5pZVk/NK5FsCLSgCW1oRCuaRWuHARbx+fga4IyP6a/IEoxovuFWlpFpdqm6pW/P2v5Fhdv633vbjvYO+/xaC5rQhkbRWtEc09odDr/yfwAAAP//nlygdwAAAAZJREFUAwCEBED17v6rSAAAAABJRU5ErkJggg==
 // @run-at       document-start
@@ -287,7 +287,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.13.5',
+    version: '2026.11.13.6',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -914,9 +914,6 @@ let cfg = {
         .drag-handle { cursor: grab; user-select: none; }
         .drag-handle:active { cursor: grabbing; }
 
-        .field-picker-select { width: 200px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; }
-        .field-picker-select option:checked { background-color: #e0e0e0; }
-
         #settings-container.jpx-settings-dialog {
             --jpx-motion: 160ms;
             --jpx-motion-fast: 120ms;
@@ -1115,19 +1112,10 @@ let cfg = {
             column-gap: 18px;
             align-content: start;
         }
-        #settings-container #cfgBattle-rules-ui {
-            display: grid;
-            min-width: 0;
-            grid-template-columns: minmax(0, 1fr);
-            align-content: start;
-        }
         #settings-container #cfgBattle-ui > .field-block,
-        #settings-container #cfgBattle-rules-ui > .field-block,
         #settings-container #cfgStats-ui > .field-block { min-width: 0; }
         #settings-container #cfgBattle-ui > .field-block[data-field-type=heading],
         #settings-container #cfgBattle-ui > .field-block[data-field-key=ctrlWidgetRows],
-        #settings-container #cfgBattle-rules-ui > .field-block[data-field-type=heading],
-        #settings-container #cfgBattle-rules-ui > [data-role=battleMode],
         #settings-container #cfgStats-ui > .field-block[data-field-type=heading],
         #settings-container #cfgStats-ui > .field-block[data-field-type=fieldPicker] { grid-column: 1 / -1; }
         #settings-container .jpx-battle-mode-selects {
@@ -1137,35 +1125,10 @@ let cfg = {
             gap: 8px;
         }
         #settings-container .jpx-battle-mode-selects > div { margin-right: 0 !important; }
-        #settings-container .jpx-rule-mode-header {
-            display: grid; flex: none; align-items: center;
-            grid-template-columns: repeat(3, minmax(0, max-content)) minmax(0, 1fr);
-            gap: 6px 12px; padding-bottom: 10px;
-        }
-        #settings-container .jpx-rule-mode-selection,
-        #settings-container .jpx-rule-mode-header .jpx-battle-mode-selects { display: contents !important; }
-        #settings-container .jpx-rule-mode-header .jpx-battle-mode-selects > div,
-        #settings-container .jpx-rule-mode-header .jpx-style-override {
-            display: flex !important; flex-wrap: nowrap; align-items: center; gap: 4px; min-width: 0;
-        }
-        #settings-container .jpx-rule-mode-header label { flex: none; white-space: nowrap; }
-        #settings-container .jpx-rule-mode-header select { flex: none; min-width: 0; max-width: 100%; }
-        #settings-container .jpx-rule-mode-actions { display: flex; flex-wrap: nowrap; justify-self: end; gap: 4px; }
-        #settings-container .jpx-rule-mode-actions button { flex: none; min-height: 30px; padding: 3px 8px; white-space: nowrap; }
-        #settings-container #panel_battleRules { overflow: hidden; container: jpx-rules / inline-size; }
-        @container jpx-rules (max-width: 580px) {
-            #settings-container .jpx-rule-mode-header { grid-template-columns: minmax(0, max-content) minmax(0, 1fr); }
-        }
-        @container jpx-rules (max-width: 330px) {
-            #settings-container .jpx-rule-mode-header .jpx-battle-mode-selects > div { grid-column: 1 / -1; }
-        }
-        #settings-container #cfgBattle-rules-ui,
-        #settings-container #cfgBattle-rules-ui > [data-role=battleMode],
         #settings-container .jpx-rule-sections,
         #settings-container .jpx-rule-section:not([hidden]) {
             display: flex; flex: 1; flex-direction: column; min-height: 0; min-width: 0;
         }
-        #settings-container #cfgBattle-rules-ui > [data-role=battleMode] { margin: 0; }
         #settings-container .jpx-rule-section[hidden],
         #settings-container .jpx-rule-section > .heading[hidden] { display: none; }
         #settings-container .jpx-battle-mode-selects { flex: none; padding-bottom: 10px; }
@@ -1206,8 +1169,6 @@ let cfg = {
         #settings-container .jpx-rule-add svg { width:14px; height:14px; }
         #settings-container.jpx-settings-mobile .jpx-rule-add-actions > .jpx-rule-add { min-height:44px; }
         #settings-container .jpx-keybinding-rule-group .jpx-rule-add-actions { position: sticky; bottom: 0; z-index: 2; }
-        #settings-container .jpx-style-override { display: flex; align-items: center; gap: 4px; min-width: 0; }
-        #settings-container .jpx-style-override-label { flex: none; }
         #settings-container .jpx-keybindings-settings {
             display: grid;
             min-width: 0;
@@ -1248,12 +1209,6 @@ let cfg = {
         #settings-container .jpx-settings-footer button:hover { background: #fff; }
         #settings-container .jpx-settings-footer #save-button { background: #5c0d11; color: #fff; }
         #settings-container .jpx-settings-footer #save-button:hover { background: #9b4e03; }
-        #settings-container .jpx-battle-rule-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 12px;
-        }
         #settings-container button,
         #settings-container input,
         #settings-container select,
@@ -1607,17 +1562,8 @@ let cfg = {
         #settings-container .jpx-condition-extra { display: flex; flex-wrap: wrap; gap: 6px 12px; padding-top: 6px; border-top: 1px solid rgb(92 13 17 / 16%); }
         #settings-container .jpx-condition-extra:empty { display: none; }
         #settings-container .jpx-range { display: inline-flex; max-width: 100%; align-items: center; flex-wrap: wrap; gap: 4px 6px; }
-        #settings-container .jpx-range-inputs { display: inline-flex; align-items: center; gap: 4px; }
-        #settings-container .jpx-range-inputs { min-width: 0; max-width: 100%; }
+        #settings-container .jpx-range-inputs { display: inline-flex; align-items: center; gap: 4px; min-width: 0; max-width: 100%; }
         #settings-container .jpx-range-inputs input { min-width: 7ch; max-width: min(18ch, calc((100% - 24px) / 2)); }
-        #settings-container .field-picker { flex-wrap: wrap; gap: 8px; }
-        #settings-container .field-picker-select {
-            width: min(200px, 38vw);
-            max-width: 100%;
-            flex: 0 0 min(200px, 38vw);
-            border-color: rgb(92 13 17 / 32%);
-            border-radius: 2px;
-        }
         #settings-container .multiSelect-popup { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; width: 100%; min-width: 0; max-width: 100%; }
         #settings-container .multiSelect-summary { display: inline-flex; align-items: center; gap: 8px; width: max-content; min-width: 0; max-width: 100%; background: #f9f6ec; text-align: left; }
         #settings-container .multiSelect-value { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
@@ -1751,7 +1697,7 @@ let cfg = {
         #settings-container .jpx-stats-threshold-match { flex-basis: 100%; font-size: 11px; color: var(--stats-muted); }
         #settings-container .jpx-stats-color input:focus-visible,
         #settings-container .jpx-stats-style-control button:focus-visible { outline: 2px solid var(--stats-ink); outline-offset: 2px; }
-        #settings-container .jpx-stats-transfer, #settings-container .jpx-stats-cleanup { margin-top: 12px; padding: 12px; border: 1px solid rgb(92 13 17 / 28%); background: #f4f1e5; overflow-wrap: anywhere; }
+        #settings-container .jpx-stats-transfer { margin-top: 12px; padding: 12px; border: 1px solid rgb(92 13 17 / 28%); background: #f4f1e5; overflow-wrap: anywhere; }
         #settings-container .jpx-stats-transfer select { max-width: 100%; }
         @container jpx-stats (max-width: 540px) {
             #settings-container .jpx-stats-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 10px; }
@@ -1769,16 +1715,12 @@ let cfg = {
             #settings-container .jpx-rule-section-controls .jpx-rule-list-toggle { font-size: 11px; gap: 4px; }
             #settings-container #cfgBattle-ui,
             #settings-container #cfgStats-ui { grid-template-columns: minmax(0, 1fr); }
-            #settings-container #cfgBattle-rules-ui { grid-template-columns: minmax(0, 1fr); }
             #settings-container #cfgBattle-ui > .field-block,
-            #settings-container #cfgBattle-rules-ui > .field-block,
             #settings-container #cfgStats-ui > .field-block { grid-column: 1; }
             #settings-container #cfgBattle-ui > [data-role=battleMode],
-            #settings-container #cfgBattle-rules-ui > [data-role=battleMode],
             #settings-container #cfgBattle-ui > .field-block[data-field-key=ctrlWidgetRows],
             #settings-container #cfgStats-ui > .field-block[data-field-type=fieldPicker] { grid-column: 1; }
             #settings-container .jpx-settings-group-fields { grid-template-columns: minmax(0, 1fr); }
-            #settings-container .field-picker-edit { min-width: 0 !important; max-width: 100%; }
         }
         #settings-container.jpx-settings-mobile {
             inset: var(--settings-top) auto auto var(--settings-left);
@@ -1873,7 +1815,7 @@ let cfg = {
         #settings-container.jpx-settings-mobile .jpx-control-preview-states button { min-height: 30px; min-width: 40px; }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row { grid-template-columns: auto minmax(52px, 1fr) auto 32px 28px; }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row:has(.jpx-stats-threshold-legacy) { grid-template-columns: minmax(0, 1fr) 24px; }
-        #settings-container.jpx-settings-mobile :is(.jpx-stats-transfer, .jpx-stats-cleanup) { padding: 8px; margin-top: 8px; }
+        #settings-container.jpx-settings-mobile .jpx-stats-transfer { padding: 8px; margin-top: 8px; }
         @keyframes jpx-settings-reveal { from { opacity: 0; translate: 0 -4px; } to { opacity: 1; translate: 0; } }
         @keyframes jpx-settings-fade { from { opacity: 0; } to { opacity: 1; } }
         #settings-container :is(.jpx-config-menu:popover-open,.jpx-rule-sort-popover:popover-open,.multiSelect-popup-panel,.jpx-config-confirm) {
@@ -2503,6 +2445,31 @@ const conditionsTarget = [
         { key: 'matched', type: 'rangeNumber', defaultValue: [1, 1] },
     ].map(ef => ({ ...ef, label: `cB.${ef.key}` }))
 }));
+const mkBattleRuleSchema = () => ({
+    type: 'object',
+    discriminator: 'type',
+    oneOf: {
+        target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
+        spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
+        item: mkItem('item', ITEMS, [], true, true),
+        toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
+        stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
+        smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
+            { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
+            { key: 'bottomUp', type: 'boolean' },
+            { key: 'tailSkip', type: 'number' },
+            { key: 'maxAtFirst', type: 'number' },
+            { key: 'minMonstersLeft', type: 'number' }
+        ], true, true),
+        spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
+        spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
+        skill: mkItem('skill', SKILLS, [], true, true),
+        normalAttack: mkItem('normalAttack', null, [], true, true),
+        kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
+            { key: 'code', skipLabel: true, type: 'textarea' }
+        ], false, false),
+    }
+});
 const cfgBattleSchema = {
     type: 'object',
     properties: [
@@ -2546,61 +2513,13 @@ const cfgBattleSchema = {
                         collapsibleItems: true,
                         canDisable: true,
                         flatten: true,
-                        itemSchema: {
-                            type: 'object',
-                            discriminator: 'type',
-                            oneOf: {
-                                target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
-                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
-                                item: mkItem('item', ITEMS, [], true, true),
-                                toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
-                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
-                                smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
-                                    { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
-                                    { key: 'bottomUp', type: 'boolean' },
-                                    { key: 'tailSkip', type: 'number' },
-                                    { key: 'maxAtFirst', type: 'number' },
-                                    { key: 'minMonstersLeft', type: 'number' }
-                                ], true, true),
-                                spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
-                                spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
-                                skill: mkItem('skill', SKILLS, [], true, true),
-                                normalAttack: mkItem('normalAttack', null, [], true, true),
-								kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
-									{ key: 'code', skipLabel: true, type: 'textarea' }
-								], false, false),
-                            }
-                        }
+                        itemSchema: mkBattleRuleSchema()
                     }),
                     mkF('rules', 'array', {
                         class: 'heading',
                         collapsibleItems: true,
                         canDisable: true,
-                        itemSchema: {
-                            type: 'object',
-                            discriminator: 'type',
-                            oneOf: {
-                                target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
-                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
-                                item: mkItem('item', ITEMS, [], true, true),
-                                toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
-                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
-                                smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
-                                    { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
-                                    { key: 'bottomUp', type: 'boolean' },
-                                    { key: 'tailSkip', type: 'number' },
-                                    { key: 'maxAtFirst', type: 'number' },
-                                    { key: 'minMonstersLeft', type: 'number' }
-                                ], true, true),
-                                spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
-                                spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
-                                skill: mkItem('skill', SKILLS, [], true, true),
-                                normalAttack: mkItem('normalAttack', null, [], true, true),
-								kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
-									{ key: 'code', skipLabel: true, type: 'textarea' }
-								], false, false),
-                            }
-                        }
+                        itemSchema: mkBattleRuleSchema()
                     })
                 ]
             }
@@ -2611,10 +2530,6 @@ const BATTLE_RULE_SCHEMA_KEYS = new Set(['battleModeSettings', 'modes']);
 const cfgBattleSettingsSchema = {
     type: 'object',
     properties: cfgBattleSchema.properties.filter(field => !BATTLE_RULE_SCHEMA_KEYS.has(field.key))
-};
-const cfgBattleRulesSchema = {
-    type: 'object',
-    properties: cfgBattleSchema.properties.filter(field => field.key === 'modes')
 };
 const cfgStatsSchema = {
     type: 'object',
@@ -2685,9 +2600,11 @@ const I18N = {
         moveDown: 'Move down', moveBottom: 'Move to bottom', duplicateRule: 'Duplicate rule',
         disableRule: 'Disable rule', enableRule: 'Enable rule', ruleDisabled: 'Disabled', ruleEnabled: 'Enabled',
         unsavedAdded: '+ New', unsavedModified: 'Edited', unsavedChange: 'Unsaved change',
-        conditionCount: 'Conditions: ${count}', noConditions: 'No conditions', cancel: 'Cancel',
+        cancel: 'Cancel',
     },
     cW: {
+        "noAvailableAction": "No available action.",
+        "ruleStopped": "Stop: ${message}",
         movePanel: 'Drag to move; arrow keys adjust; Home resets position',
         toggleBattle: 'Toggle automatic battle', waiting: 'Waiting',
         elementUnknown: 'Spell element unavailable. Open Character outside battle to refresh.',
@@ -2700,14 +2617,15 @@ const I18N = {
         downloadBattleLog: 'Download log',
     },
     cB: {
+        "riddleSubmitFailed": "Could not submit the answer: ${reason}",
+        "customCodeFailed": "Custom code failed: ${reason}",
+        "emptyRulesRemoved": "Removed empty rules: ${name}",
         rules: "Rules", addRule: "Add rule", ruleActions: "Rule actions", insertBefore: "Insert above", insertAfter: "Insert below",
         panelFields: 'Show in panel', panelTextColor: 'Text', panelOpacity: 'Panel opacity',
         panelPreview: 'Preview', panelMouseEnter: 'Hover panel to start auto battle',
         panelAppearance: 'Appearance', panelHeaderColor: 'Title bar', panelSurfaceColor: 'Background', panelBorderColor: 'Border',
         panelReorder: 'Reorder panel items',
-        basicSettings: 'General', keyRules: 'Key rules', supports: 'Support', attackRules: 'Attack rules', modeTools: 'Ruleset actions',
-        styleOverride: 'Override style', currentStyle: 'Detected style', applyStyle: 'Apply & reload',
-        exportModeShort: 'Export', resetModeShort: 'Reset',
+        basicSettings: "General", keyRules: "Key rules", supports: "Support",
         battleControls: 'Battle controls', battleDisplay: 'Battle display', controlPanel: 'Control panel', ajaxRoundShort: 'Next round without reloading',
         advanceToNextRound: 'Auto next round',
         autoFinishBattle: 'Auto finish battle',
@@ -3994,7 +3912,7 @@ function goNext() {
                                 .then(html => updateBattleMain(new DOMParser().parseFromString(html, 'text/html')))
                                 .catch(err => {
                                     console.error('Submission failed: ', err);
-                                    jpxUtils.createToast('Submission failed: ' + err);
+                                    jpxUtils.createToast(t('cB.riddleSubmitFailed', { reason: String(err) }));
                                 })
                                 .finally(() => {
                                     submitting = false;
@@ -4159,7 +4077,7 @@ function smartBattle() {
     if (actionManager(rules.rules)) return true;
 
     isActiveBattle = false;
-    readyNext = '\nNo available action.';
+    readyNext = "\n" + t('cW.noAvailableAction');
     jpxPanelManager.updateContent('battle');
     jpxPanelManager.setBackground('#ff5');
 
@@ -5125,6 +5043,24 @@ function updateMonsterInfo(refresh = false) {
     return request.promise;
 }
 
+function checkEffectTurns(arr, effects, ignored = false) {
+    const range = arr.slice(0, 2);
+    const matches = name => {
+        let turns = effects[name]?.turns ?? -1;
+        if (turns === 'permanent') turns = 9999;
+        return isNaN(+turns) || jpxUtils.inRange(+turns, range);
+    };
+    return ignored ? !arr.slice(2).some(matches) : arr.slice(2).every(matches);
+}
+
+function checkEffectStacks(arr, effects) {
+    const range = arr.slice(0, 2);
+    return arr.slice(2).every(name => {
+        const stack = effects[name]?.stack ?? -1;
+        return isNaN(+stack) || jpxUtils.inRange(+stack, range);
+    });
+}
+
 function initConditions() {
     let { monsters, activeMonsters, bosses, activeBosses } = monstersObj;
 
@@ -5189,35 +5125,9 @@ function initConditions() {
         pSP: range => jpxUtils.inRange(vitals.spPercentage, range),
         pOC: range => jpxUtils.inRange(vitals.oc, range),
         pSpiritStatus: flag => flag === spiritStatus,
-        pEffects: arr => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return effects.every(effect => {
-                let turns = playerEffectsObj[effect]?.turns ?? -1;
-                if (turns === 'permanent') turns = 9999;
-                return isNaN(+turns) || jpxUtils.inRange(+turns, range);
-            });
-        },
-        pIgnoredEffects: arr => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return !effects.some(effect => {
-                let turns = playerEffectsObj[effect]?.turns ?? -1;
-                if (turns === 'permanent') turns = 9999;
-                return isNaN(+turns) || jpxUtils.inRange(+turns, range);
-            });
-        },
-        pEffectStacks: arr => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return effects.every(effect => {
-                let stack = playerEffectsObj[effect]?.stack ?? -1;
-                return isNaN(+stack) || jpxUtils.inRange(+stack, range);
-            });
-        },
+        pEffects: arr => checkEffectTurns(arr, playerEffectsObj),
+        pIgnoredEffects: arr => checkEffectTurns(arr, playerEffectsObj, true),
+        pEffectStacks: arr => checkEffectStacks(arr, playerEffectsObj),
         monsters: range => jpxUtils.inRange(monsters.length, range),
         activeMonsters: range => jpxUtils.inRange(activeMonsters.length, range),
         defeatedMonsters: range => jpxUtils.inRange(monsters.length - activeMonsters.length, range),
@@ -5244,35 +5154,9 @@ function initConditions() {
         tHP: (range, t) => jpxUtils.inRange(t.hpPercentage, range),
         tMP: (range, t) => jpxUtils.inRange(t.mpPercentage, range),
         tSP: (range, t) => jpxUtils.inRange(t.spPercentage, range),
-        tEffects: (arr, t) => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return effects.every(effect => {
-                let turns = t.effectObj[effect]?.turns ?? -1;
-                if (turns === 'permanent') turns = 9999;
-                return isNaN(+turns) || jpxUtils.inRange(+turns, range);
-            });
-        },
-        tIgnoredEffects: (arr, t) => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return !effects.some(effect => {
-                let turns = t.effectObj[effect]?.turns ?? -1;
-                if (turns === 'permanent') turns = 9999;
-                return isNaN(+turns) || jpxUtils.inRange(+turns, range);
-            });
-        },
-        tEffectStacks: (arr, t) => {
-            let range = arr.slice(0, 2);
-            let effects = arr.slice(2);
-
-            return effects.every(effect => {
-                let stack = t.effectObj[effect]?.stack ?? -1;
-                return isNaN(+stack) || jpxUtils.inRange(+stack, range);
-            });
-        },
+        tEffects: (arr, target) => checkEffectTurns(arr, target.effectObj),
+        tIgnoredEffects: (arr, target) => checkEffectTurns(arr, target.effectObj, true),
+        tEffectStacks: (arr, target) => checkEffectStacks(arr, target.effectObj),
         tDaysSinceUpdate: (range, t) => {
             let lastUpdate = allMonsterInfo?.[`mkey_${(t.index + 1) % 10}`]?.lastUpdate;
             let deltaDays = lastUpdate ? jpxUtils.daysSince(lastUpdate) : 9999;
@@ -5327,7 +5211,7 @@ const actionHandlers = {
 
             // A rule stop waits for a fresh battle update; keep auto armed so
             // manual healing can clear the condition, as in upstream JPX.
-            readyNext = `Stop: ${customMessage}`;
+            readyNext = t('cW.ruleStopped', { message: customMessage });
             jpxPanelManager.updateContent('battle');
             jpxPanelManager.setBackground('#ff5');
             jpxPanelManager.dispatchState();
@@ -5471,7 +5355,7 @@ const actionHandlers = {
 			}) === true;
 		} catch (e) {
 			console.error('kamisama action error:', e);
-			jpxUtils.createToast('kamisama action error: ' + e, 5000);
+			jpxUtils.createToast(t('cB.customCodeFailed', { reason: String(e) }), 5000);
 			isActiveBattle = false;
 
 			if (cfgBattle.ctrlWidgetMouseEnter) jpxPanelManager.ready = false;
@@ -5980,17 +5864,7 @@ async function battleRecordPlayer(doFinal = true) {
         return staminaCost;
     }
 
-    if (Object.keys(cfgStats).length < 1) {
-        let storedCfgStats = {};
-        try {
-            storedCfgStats = JSON.parse(localStorage.getItem(prefix + 'cfgStats') || '{}');
-        } catch (err) {
-            console.warn('Failed to load cfgStats. Using default cfgStats.');
-            storedCfgStats = {};
-        }
-        mergeCfg(storedCfgStats, defaultCfgStats, cfgStats, 'stats');
-        delete cfgStats.darkMode;
-    }
+    if (Object.keys(cfgStats).length < 1) loadStatsSettingsConfig();
 
     let startTime = timeRecords['startTime'] || 0;
     let timestamp = new Date(timeRecords['startTime']).toISOString().slice(0, 19).replace('T', ' ');
@@ -6985,17 +6859,7 @@ function createStatsColumnControls(doc, onChange) {
 }
 
 function renderBattleRecordsPage(targetWindow = window) {
-    if (Object.keys(cfgStats).length < 1) {
-        let storedCfgStats = {};
-        try {
-            storedCfgStats = JSON.parse(localStorage.getItem(prefix + 'cfgStats') || '{}');
-        } catch (err) {
-            console.warn('Failed to load cfgStats. Using default cfgStats.');
-            storedCfgStats = {};
-        }
-        mergeCfg(storedCfgStats, defaultCfgStats, cfgStats, 'stats');
-        delete cfgStats.darkMode;
-    }
+    if (Object.keys(cfgStats).length < 1) loadStatsSettingsConfig();
 
     newWindow = targetWindow;
     const doc = targetWindow.document;
@@ -9999,164 +9863,7 @@ const fieldRenderers = {
         renderArray();
     },
 
-    fieldPicker(container, field, dataObj) {
-        if (field.statsEditor) return renderStatsFieldPicker(container, field, dataObj);
-        let editFields = field.editFields || [];
-        if (!Array.isArray(dataObj[field.key])) dataObj[field.key] = [];
-
-        container.innerHTML = `<div${field.class ? ` class="${field.class}"` : ''} style="margin-top:8px;">${t(field.label)}</div>`;
-
-        let pickerWrap = document.createElement('div');
-        pickerWrap.className = 'field-picker';
-        pickerWrap.style.cssText = 'display: flex; gap: 12px; align-items: center; padding-left: 10px;';
-        container.appendChild(pickerWrap);
-
-        let inputMap = {};
-        let leftFields = field.allFields.filter(f => !dataObj[field.key].some(d => d.id === f.id));
-        let rightFields = dataObj[field.key].map(d => {
-            let base = field.allFields.find(f => f.id === d.id);
-            return base ? { ...base, ...d } : null;
-        }).filter(Boolean);
-
-        const getSelectedIndexes = (select) => Array.from(select.selectedOptions, opt => +opt.value);
-        const getIndexGroups = (indexes) => {
-            return indexes.sort((a, b) => a - b).reduce((acc, value, i, array) => {
-                if (i > 0 && value === array[i - 1] + 1) acc.at(-1).push(value);
-                else acc.push([value]);
-                return acc;
-            }, []);
-        };
-
-        function updateDataObj() {
-            dataObj[field.key] = rightFields.map(f => {
-                let storageObj = { id: f.id };
-                editFields.forEach(editF => {
-                    let val = f[editF.key];
-                    if (val !== undefined && val !== null && val !== '') {
-                        storageObj[editF.key] = val;
-                    }
-                });
-                return storageObj;
-            });
-        }
-
-        function refresh(selectedItems = []) {
-            leftSelect.innerHTML = leftFields.map((f, i) => `<option value="${i}">${t(f.label)}</option>`).join('');
-            rightSelect.innerHTML = rightFields.map((f, i) => `<option value="${i}">${t(f.label)}</option>`).join('');
-            rightFields.forEach((f, i) => {
-                if (selectedItems.includes(f)) rightSelect.options[i].selected = true;
-            });
-            updateDataObj();
-        };
-
-        function transfer(fromArray, toArray, select, isToRight) {
-            let indexes = getSelectedIndexes(select).sort((a, b) => b - a);
-            if (!indexes.length) return;
-
-            let selectedItems = indexes.map(i => {
-                let item = fromArray[i];
-                if (isToRight) {
-                    editFields.forEach(editF => {
-                        item[editF.key] = '';
-                    });
-                }
-                return item;
-            }).reverse();
-
-            indexes.forEach(i => fromArray.splice(i, 1));
-            toArray.push(...selectedItems);
-            if (!isToRight) toArray.sort((a, b) => field.allFields.findIndex(f => f.id === a.id) - field.allFields.findIndex(f => f.id === b.id));
-            refresh(selectedItems);
-        }
-
-        function reorder(direction) {
-            let indexes = getSelectedIndexes(rightSelect);
-            if (!indexes.length) return;
-            let selectedItems = indexes.map(i => rightFields[i]);
-
-            if (direction === 'top' || direction === 'bottom') {
-                let unselected = rightFields.filter((f, i) => !indexes.includes(i));
-                rightFields = direction === 'top' ? [...selectedItems, ...unselected] : [...unselected, ...selectedItems];
-            } else {
-                let groups = getIndexGroups(indexes);
-                if (direction === 'up') {
-                    groups.forEach(group => {
-                        if (group[0] > 0) {
-                            let items = rightFields.splice(group[0], group.length);
-                            rightFields.splice(group[0] - 1, 0, ...items);
-                        }
-                    });
-                } else if (direction === 'down') {
-                    groups.reverse().forEach(group => {
-                        if (group.at(-1) < rightFields.length - 1) {
-                            let items = rightFields.splice(group[0], group.length);
-                            rightFields.splice(group[0] + 1, 0, ...items);
-                        }
-                    });
-                }
-            }
-            refresh(selectedItems);
-        };
-
-        let editBox = document.createElement('div');
-        editBox.className = 'field-picker-edit';
-        editBox.style.cssText = 'display: flex; flex-direction: column; gap: 8px; min-width: 350px;';
-        editFields.forEach(editF => {
-            let div = document.createElement('div');
-            div.textContent = `${t(editF.label)}: `;
-
-            let input = document.createElement('input');
-            input.id = getUniqueId('editField');
-            input.type = 'text';
-            input.style.width = '100%';
-            if (editF.placeholder) input.placeholder = editF.placeholder;
-            input.addEventListener('input', () => {
-                let indexes = getSelectedIndexes(rightSelect);
-                indexes.forEach(i => {
-                    rightFields[i][editF.key] = input.value;
-                });
-                updateDataObj();
-            });
-
-            div.appendChild(input);
-            editBox.appendChild(div);
-
-            inputMap[editF.key] = input;
-        });
-
-        let leftSelect = document.createElement('select');
-        let rightSelect = document.createElement('select');
-        [leftSelect, rightSelect].forEach(s => {
-            s.multiple = true;
-            s.size = field.size || 12;
-            s.className = 'field-picker-select';
-        });
-        leftSelect.addEventListener('pointerdown', () => { rightSelect.selectedIndex = -1; });
-        rightSelect.addEventListener('pointerdown', () => { leftSelect.selectedIndex = -1; });
-        rightSelect.addEventListener('change', () => {
-            let indexes = getSelectedIndexes(rightSelect);
-            editFields.forEach(editF => {
-                inputMap[editF.key].value = (indexes.length > 0) ? (rightFields[indexes[0]][editF.key] || '') : '';
-            });
-        });
-
-        let btnBoxStyle = 'display: flex; flex-direction: column; gap: 4px;';
-
-        let moveBox = document.createElement('div');
-        moveBox.style.cssText = btnBoxStyle;
-        jpxUtils.createButton(moveBox, { text: decodeURIComponent('%E2%86%92'), onClick: () => transfer(leftFields, rightFields, leftSelect, true) });
-        jpxUtils.createButton(moveBox, { text: decodeURIComponent('%E2%86%90'), onClick: () => transfer(rightFields, leftFields, rightSelect, false) });
-
-        let sortBox = document.createElement('div');
-        sortBox.style.cssText = btnBoxStyle;
-        jpxUtils.createButton(sortBox, { text: decodeURIComponent('%E2%86%91%E2%86%91'), onClick: () => reorder('top') });
-        jpxUtils.createButton(sortBox, { text: decodeURIComponent('%E2%86%91'), onClick: () => reorder('up') });
-        jpxUtils.createButton(sortBox, { text: decodeURIComponent('%E2%86%93'), onClick: () => reorder('down') });
-        jpxUtils.createButton(sortBox, { text: decodeURIComponent('%E2%86%93%E2%86%93'), onClick: () => reorder('bottom') });
-
-        pickerWrap.append(leftSelect, moveBox, rightSelect, sortBox, editBox);
-        refresh();
-    },
+    fieldPicker: renderStatsFieldPicker,
 
     object(container, field, dataObj) {
         renderSchema(container, field, dataObj[field.key]);
@@ -10737,7 +10444,7 @@ function renderSettings() {
                 !Object.keys(cfgBattle[key]).some(key => key.startsWith('kb_'))
             ) {
                 delete cfgBattle[key];
-                jpxUtils.createToast(`Removed empty ruleset: ${key}`, 5000);
+                jpxUtils.createToast(t('cB.emptyRulesRemoved', { name: jpxConfigModeLabel(key) }), 5000);
             }
         }
         console.log(cfgBattle);
@@ -11328,7 +11035,7 @@ function renderStatsImportPreview(parent, data, fileName) {
     modeLabel.appendChild(mode);
     const actions = document.createElement('div');
     actions.className = 'jpx-stats-toolbar';
-    const confirmButton = jpxUtils.createButton(actions, {
+    jpxUtils.createButton(actions, {
         text: t('cS.importConfirmAction'), history: false, onClick: async button => {
             button.disabled = true;
             try {
@@ -13204,7 +12911,7 @@ function jpxUtils() {
 // BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)
 I18N.cM = {"name":"Configs","mine":"My configs","store":"Store","new":"New","import":"Import","search":"Search configs","apply":"Apply","edit":"Edit","more":"More","inUse":"In use","updateApply":"Update & apply","settings":"Config settings","duplicate":"Duplicate","export":"Export","share":"Share","delete":"Delete","title":"Name","style":"Style","element":"Element","world":"World","scenario":"Battle","auto":"Auto","anyWorld":"Both worlds","create":"Create","cancel":"Cancel","back":"Back","save":"Save","undo":"Undo","redo":"Redo","saveChanges":"Save changes?","keepEditing":"Keep editing","discard":"Discard","deleteConfirm":"Delete this config?","empty":"No configs yet.","noMatches":"No matching configs.","copySuffix":"copy","chooseGroup":"Choose rules to edit","allBattle":"All battle settings","stats":"Stats","applyScope":"Apply this config?","applyAll":"Updates only the settings and rules included in this config.","applyWorld":"Apply in","applyPaused":"Applied. Auto-battle is paused.","applied":"Applied.","saved":"Saved.","reset":"Reset rules","resetConfirm":"Replace this group's rules with the defaults?","imported":"Added to My configs.","savedFromStore":"Saved to My configs.","sourceExists":"You already saved this config.","updateCopy":"Update saved copy","keepCopy":"Save another copy","invalidConfig":"This config cannot be read.","unsupportedVersion":"This config version is not supported.","storageCorrupt":"Could not read your saved configs. Your data is unchanged.","storageError":"Could not save. Check browser storage and try again.","tooLarge":"This config is too large.","notFound":"This config no longer exists.","appliedConfig":"Apply another config before deleting this one.","migrationConflict":"This config conflicts with saved data.","error":"Could not complete this action.","groupCount":"${count} rule groups","rename":"Rename","current":"Current settings","close":"Close","fire":"Fire","cold":"Cold","wind":"Wind","elec":"Lightning","holy":"Holy","dark":"Dark","restore":"Undo delete","deleted":"Config deleted.","refresh":"Refresh","worldMismatch":"This config is for another world.","description":"Description","editor":"Rule editor","customCode":"This config contains custom code. Apply it only if you trust its source.","recovery":"Import backup","importWorld":"Save config","statsEdit":"Edit stats","preserveModes":"Rules","applyCurrent":"Apply here","libraryChanged":"This config was changed in another tab. Reopen it before saving.","unsupportedRule":"Unsupported rule (kept unchanged)","currentStyle":"Current style","filters":"Filters","allWorlds":"All worlds","allStyles":"All styles","allBattles":"All battles","allTypes":"All types","type":"Type","singleMode":"Battle mode","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","typeSort":"By type","manualSort":"Manual","multiStyle":"Mixed styles","multiBattle":"Multiple battles","resultCount":"${count} found","exportCurrent":"In use","exportAll":"Full config","exportChoose":"Choose rules","exportUnknown":"No active rules detected yet.","bind":"Link loadout","unbind":"Unlink","persona":"Persona","equipSet":"Equipment set","personaNumber":"Persona ${id}","setNumber":"Set ${id}","replaceBinding":"Link this loadout here instead of “${name}”?","bound":"Loadout linked.","bindingUnknown":"Could not read your persona and equipment set. Reload outside battle and try again.","bindingUnavailable":"No saved persona or equipment set. Try again outside battle.","importReading":"Reading “${name}”…","importReady":"Ready to import. Check the name and world, then save to My configs. It will not apply automatically.","importDraft":"Loaded “${name}” for review. Save to keep these changes.","importPaused":"Auto-battle is paused.","importAdded":"“${name}” is in My configs. Choose Apply to use it.","importFailed":"Could not import “${name}”. ${reason}","importReadError":"Could not read the file. Select it again and retry.","importCancelled":"Import cancelled. Custom code was not approved.","fixedMode":"Fixed rules","automaticMode":"Auto by battle","restoreAutomatic":"Switch to auto","detach":"Remove links","detachDelete":"Unlink and delete","detached":"Links removed.","detachHint":"Removes this config from auto-selection, loadout links and past applications. Your current settings stay unchanged.","sceneAssignments":"Battle strategies","inheritGeneral":"Use General rules","unassigned":"None selected","noSceneRules":"Paused: no rules for this battle and no General rules.","assign":"Assign","assigned":"Assigned","executing":"Current strategy","assignmentOlder":"This strategy is still using the previous version.","grindfest":"Grindfest","fixedHint":"Uses these rules for every battle in this world, even after reloading."};
 I18N.cShared = {"title":"Shared site data","backupSection":"Settings before sharing","historySection":"Previous shared settings","quotaShort":"Stamina used before sharing","restoreAction":"Restore","scope":"The main and alt sites share settings, records and daily stamina within this userscript. Persistent and Isekai stay separate. Sharing starts with the first site's settings. Both sites' old settings are backed up below.","backup":"Download original settings","restore":"Restore this site's old settings","confirm":"Use this backup on both sites? You can restore the current settings later. Auto-battle will pause.","history":"Download earlier settings","restoreRevision":"Choose an earlier backup","quota":"Stamina used today before sharing (UTC)","quotaHelp":"To avoid counting battles twice, we keep the larger of the two old totals. Open both sites once, then adjust today's earlier usage here if needed. New battles count separately.","save":"Save","saved":"Saved","resetScope":"Also deletes shared settings and records on the main and alt sites, for both worlds.","fail":"Could not save shared data. Your original data is kept."};
-const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:12px;gap:12px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:32px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-meta{margin:3px 0 0;color:var(--jpx-theme-muted, #756753);font-size:12px;overflow-wrap:anywhere}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store .jpx-store-title{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:36px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button){height:36px;min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-rename input{min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm{padding:12px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm>:is(h3,p,label),#settings-container.jpx-settings-mobile .jpx-config-rename{margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button:where(:not(.jpx-config-stats-editor *)){min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:inherit}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:8px;margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:inherit;min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}\n#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}\n#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}\n#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}\n#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}\n#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-comment-row:last-child{border-bottom:0}\n#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}\n#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}\n#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}\n#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}\n#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}\n#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}\n#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}\n#settings-container .jpx-comment-more{margin-top:12px}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}\n#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0}\n#settings-container .jpx-store-rating-summary{display:flex;align-items:center;flex-wrap:wrap;gap:4px 16px}\n#settings-container .jpx-download-count{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-download-count svg{flex:none}\n#settings-container .jpx-rating-heading .jpx-download-count{margin-right:auto}\n#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}\n#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}\n#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}\n#settings-container .jpx-rating-stars{display:flex;gap:8px}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-rating-star svg{width:24px;height:24px}\n#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}\n@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}\n\n/* Keep every control in the store header on the same vertical center line. */\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation) {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation)>button {\n    margin-bottom: 0;\n}\n";
+const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:12px;gap:12px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:32px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store .jpx-store-title{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:36px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button){height:36px;min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-rename input{min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm{padding:12px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm>:is(h3,p,label),#settings-container.jpx-settings-mobile .jpx-config-rename{margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button:where(:not(.jpx-config-stats-editor *)){min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:inherit}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:8px;margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:inherit;min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}\n#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}\n#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}\n#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}\n#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}\n#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-comment-row:last-child{border-bottom:0}\n#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}\n#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}\n#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}\n#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}\n#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}\n#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}\n#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}\n#settings-container .jpx-comment-more{margin-top:12px}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}\n#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0}\n#settings-container .jpx-store-rating-summary{display:flex;align-items:center;flex-wrap:wrap;gap:4px 16px}\n#settings-container .jpx-download-count{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-download-count svg{flex:none}\n#settings-container .jpx-rating-heading .jpx-download-count{margin-right:auto}\n#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}\n#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}\n#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}\n#settings-container .jpx-rating-stars{display:flex;gap:8px}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-rating-star svg{width:24px;height:24px}\n#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}\n@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}\n\n/* Keep every control in the store header on the same vertical center line. */\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation) {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation)>button {\n    margin-bottom: 0;\n}\n";
 // The local library is deliberately independent of the editor and battle runtime.
 // Keep PLUS metadata outside native JPX configuration objects.
 function normalizeJpxBattleMode(mode) {
@@ -14046,7 +13753,7 @@ function createJpxStoreDownloads() {
 // Construction is offline; network activity starts only after render() is explicitly called.
 function createJpxIntegratedStore(host, translate) {
     'use strict';
-    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs shared yet.","cannotLoad":"Could not load this content.","columns":"Columns","combatRows":"Combat stats","revenueRows":"Earnings","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View config","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Finish signing in on GitHub. This page will update automatically.","copyCode":"Copy code","copied":"Copied","copyFailed":"Copy failed","cancel":"Cancel","updateShare":"Update","configContents":"Included settings","keepSharedConfig":"Keep shared config","noMatchingLocal":"No saved configs match.","shareChanged":"This shared config changed. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub to submit. Your draft will stay here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn config from the list? Its GitHub record and your saved copies stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Remove this config from the store? Players keep copies they already imported.","review":"Review feedback","noReview":"This version has no review yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"Too many GitHub requests. Try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This config has an invalid format.","tooLarge":"This config is too large.","integrityError":"The downloaded file does not match the published config.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this config.","submissionClosed":"This config was withdrawn. Create a new share to publish it again.","tooManySubmissions":"Too many shared configs to load here. Manage them on GitHub.","local":"Current","backpack":"Saved configs","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to see saved configs from both worlds. Your current settings are below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save config","saveCurrent":"Save current config","emptyBackpack":"No saved configs yet. Add one from Settings or the store.","searchBackpack":"Search saved configs","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Config saved.","backpackHint":"Saved in this browser. Apply or share it anytime.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this saved copy? Your active settings and shared configs stay.","storageCorrupt":"Could not read saved configs. Your data is unchanged.","storageError":"Could not open saved configs. Check userscript permissions and try again.","localNotFound":"This saved config is no longer available.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more","comments":"Comments","writeComment":"Write a comment…","postComment":"Post","commentSignIn":"Sign in to comment","noComments":"No comments yet.","commentsPublic":"Comments are public on GitHub","editComment":"Edit","deleteCommentConfirm":"Delete this comment?","commentPosted":"Comment posted.","commentDeleted":"Comment deleted.","commentNotOwner":"You can only change your own comments.","commentChanged":"This comment has changed. Cancel editing, refresh, and try again.","commentMissing":"This comment is no longer available. Refresh and try again.","commentInvalid":"Enter a comment of up to 10,000 characters.","commentDenied":"You cannot change comments here. Check your GitHub permissions.","commentsClosed":"Comments are closed for this config.","commentSendFailed":"Could not confirm your comment was posted. Refresh before posting again.","noRatings":"No ratings yet","ratingCount":"${count} ratings","yourRating":"Your rating","ratingStars":"${score} stars","ratingSignIn":"Sign in to rate","removeRating":"Remove rating","ratingSaved":"Rating saved.","ratingRemoved":"Rating removed.","ratingFailed":"Could not confirm your rating was saved. Refresh to check.","ratingInvalid":"Choose 1 to 5 stars.","ratingsClosed":"Ratings are closed for this config.","ratingDenied":"You cannot rate this config. Check your GitHub permissions.","ratingChanged":"Your rating changed elsewhere. Refresh and try again.","ratingsTooMany":"Too many comments to load your rating. Open this config on GitHub.","ratingCountOne":"1 rating","downloadCount":"${count} downloads","downloadsUnavailable":"Downloads unavailable","rules":"Rules"}};
+    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs shared yet.","cannotLoad":"Could not load this content.","columns":"Columns","combatRows":"Combat stats","revenueRows":"Earnings","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View config","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Finish signing in on GitHub. This page will update automatically.","copyCode":"Copy code","copied":"Copied","copyFailed":"Copy failed","cancel":"Cancel","updateShare":"Update","configContents":"Included settings","keepSharedConfig":"Keep shared config","noMatchingLocal":"No saved configs match.","shareChanged":"This shared config changed. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn config from the list? Its GitHub record and your saved copies stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Remove this config from the store? Players keep copies they already imported.","review":"Review feedback","noReview":"This version has no review yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"Too many GitHub requests. Try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This config has an invalid format.","tooLarge":"This config is too large.","integrityError":"The downloaded file does not match the published config.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this config.","submissionClosed":"This config was withdrawn. Create a new share to publish it again.","tooManySubmissions":"Too many shared configs to load here. Manage them on GitHub.","local":"Current","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","appliesTo":"Applies to","save":"Save","apply":"Apply config","delete":"Delete","storageCorrupt":"Could not read saved configs. Your data is unchanged.","storageError":"Could not access saved configs. Check browser storage and try again.","localNotFound":"This saved config is no longer available.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more","comments":"Comments","writeComment":"Write a comment…","postComment":"Post","commentSignIn":"Sign in to comment","noComments":"No comments yet.","commentsPublic":"Comments are public on GitHub","editComment":"Edit","deleteCommentConfirm":"Delete this comment?","commentPosted":"Comment posted.","commentDeleted":"Comment deleted.","commentNotOwner":"You can only change your own comments.","commentChanged":"This comment has changed. Cancel editing, refresh, and try again.","commentMissing":"This comment is no longer available. Refresh and try again.","commentInvalid":"Enter a comment of up to 10,000 characters.","commentDenied":"You cannot change comments here. Check your GitHub permissions.","commentsClosed":"Comments are closed for this config.","commentSendFailed":"Could not confirm your comment was posted. Refresh before posting again.","noRatings":"No ratings yet","ratingCount":"${count} ratings","yourRating":"Your rating","ratingStars":"${score} stars","ratingSignIn":"Sign in to rate","removeRating":"Remove rating","ratingSaved":"Rating saved.","ratingRemoved":"Rating removed.","ratingFailed":"Could not confirm your rating was saved. Refresh to check.","ratingInvalid":"Choose 1 to 5 stars.","ratingsClosed":"Ratings are closed for this config.","ratingDenied":"You cannot rate this config. Check your GitHub permissions.","ratingChanged":"Your rating changed elsewhere. Refresh and try again.","ratingsTooMany":"Too many comments to load your rating. Open this config on GitHub.","ratingCountOne":"1 rating","downloadCount":"${count} downloads","downloadsUnavailable":"Downloads unavailable","rules":"Rules"}};
     const t = key => {
         const name = key.replace(/^cStore\./, '');
         const pack = host.jpxI18N?.cStore?.[name];

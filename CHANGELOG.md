@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.13.6
+
+- Remove the retired field picker and unused toolbar styles. Reuse rule schemas, statistics loading and effect-condition checks while preserving existing behavior.
+- Update all five language packs: remove 30 unused entries, translate five runtime messages, shorten Chinese condition labels and replace outdated backpack wording.
+- Align documented settings names and update README summaries and Pages asset versions. Syntax, language, documentation and targeted behavior checks passed; live gameplay has not been retested.
+
+### 简体中文
+
+- 移除旧字段编辑器和废弃工具栏样式，复用规则定义、统计配置读取和状态条件判断，保留原有行为。
+- 同步五个语言包：清理 30 条废弃词条，补齐 5 条运行提示，简化中文条件标签，更新旧“背包”用语。
+- 对齐说明文档中的设置入口，同步 README 和 Pages 版本。语法、语言包、文档及针对性逻辑对比检查通过，尚未重新进行游戏内实测。
+
 ## 2026.11.13.5
 
 - Make mobile settings more compact and consistent. Keep the four statistics sections on one row and align color pickers, reset buttons and previews.

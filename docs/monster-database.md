@@ -1,6 +1,6 @@
 # Built-in monster information
 
-Starting with JPX-PLUS 2026.11.09.1, **Basic settings → Monster class, attack & power** works without a separate Monster DB userscript. Enable it and save. Update the main script and your language pack together.
+Starting with JPX-PLUS 2026.11.09.1, **General → Monster class, attack & power** works without a separate Monster DB userscript. Enable it and save. Update the main script and your language pack together.
 
 ## Data and updates
 
@@ -21,7 +21,7 @@ The existing window.HVMonsterDB reader remains compatible if the companion is st
 
 ## 简体中文
 
-从 **2026.11.09.1** 起，在基础设置中勾选 **显示怪物类别、攻击类型和战斗力** 并保存即可使用，不再需要安装怪物数据库脚本。主脚本与语言包应一起更新。
+从 **2026.11.09.1** 起，在基本设置中勾选 **显示怪物类别、攻击类型和战斗力** 并保存即可使用，不再需要安装怪物数据库脚本。主脚本与语言包应一起更新。
 
 - 数据由 Sukka 怪物数据库提供。仅发送匿名 GET 下载公开 JSON；不发送游戏登录信息或战斗日志，不执行远程代码。
 - 主世界、异世界分库，按需每日 UTC 更新一次。非战斗时安排空闲更新；首次在战斗中使用且没有缓存时也可异步下载，不等待下载完成再开始初始化。

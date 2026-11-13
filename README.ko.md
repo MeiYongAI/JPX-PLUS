@@ -10,7 +10,7 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 
 **[JPX-PLUS 설치](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[미리보기](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [변경 내역](CHANGELOG.md)
 
-**2026.11.13.5:** 모바일 설정·통계 화면을 간결하게 정리하고, 긴 문구와 통계 설정 편집기의 표시 문제를 수정했습니다. 영어 안내도 더 쉽게 다듬었습니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
+**2026.11.13.6:** 사용하지 않는 코드와 스타일을 정리하고 중복 처리를 통합했습니다. 5개 언어팩의 빠진 번역을 채우고 문구를 쉽게 다듬었습니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
 
 ## 설치
 
