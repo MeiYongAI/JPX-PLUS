@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.09.6
+// @version     2026.11.13.1
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -2300,6 +2300,20 @@
         },
 
         {
+            // 奖杯累计献祭额与 HVUT 库存估值是不同含义，必须完整句匹配。
+            // 先于短词翻译，不再把共有的 worth of trophies 展开为长篇说明。
+            id: 'shrine-trophy-summary',
+            priority: 10,
+            selector: '#shrine_trophy',
+            conditions: [
+                { mode: 'regex', match: /^https?:\/\/(?:alt\.)?hentaiverse\.org\/(?:isekai\/)?\?s=Bazaar&ss=ss(?:&|$)/ }
+            ],
+            patterns: [
+                { pattern: /^(\s*)You have handed in ([\d,]+) credits worth of trophies\.(\s*)$/, replace: '$1累计已献祭奖杯价值：$2 Credits。$3' },
+                { pattern: /^(\s*)You have ([\d,]+) credits worth of trophies in the inventory\.(\s*)$/, replace: '$1库存奖杯价值：$2 Credits$3' },
+            ]
+        },
+        {
             // 祭坛
             priority: 2,
             conditions: [
@@ -2339,8 +2353,6 @@
                 'You can select the major class of the item being granted from the list below.' : '你可以选择要获取的装备类型或部位。',
                 'Offering ' : '献祭 ',
                 'Trophy Tier' : '奖杯等级',
-                'You have handed in' : '你有总价值',
-                'worth of trophies' : '的奖杯献祭记录(在购买了hath能力"雪花的信徒"后，每献祭价值合计1000万的奖杯，可获得一张“无双凭证”，用于兑换灵魂绑定的无双装备)',
                 'Collectibles can be exchanged for a random selection of bindings and materials.' : '献祭一个收藏品可以获得随机种类的 1 个粘合剂和 1-3 个高阶基本素材',
                 'Random Reward' : '随机奖励',
                 'Are you sure you wish to offer Snowflake a' : '你确定要献上一个',
@@ -8108,8 +8120,8 @@
                     else if (n.nodeType === 3) nodesToProcess.add(n);
                 });
             } else if (m.type === 'characterData') {
-                // 切换种族可复用原文本节点；仅在页面写入新原文时清除完成标记。
-                if (m.target.parentElement?.closest('#monstercreate_right')
+                // 切换种族、更新献祭累计值可复用原节点；仅新原文清除完成标记。
+                if (m.target.parentElement?.closest('#monstercreate_right, #shrine_trophy')
                     && translationCache.get(m.target) !== m.target.nodeValue) {
                     TRANSLATED_NODES.delete(m.target);
                 }
