@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.13.9
+
+- Use the same 120 ms fade for rule menus, config menus, multi-select lists and mobile navigation.
+- Remove sideways motion inside rule menus. Keep submenu positions and sizes stable, and respect reduced-motion settings.
+
+### 简体中文
+
+- 规则菜单、配置菜单、多选列表与手机导航统一使用 120ms 淡入。
+- 移除规则菜单内部列表的横移动画，保持子菜单位置与大小稳定，并遵循系统减少动态效果设置。
+
 ## 2026.11.13.8
 
 - Build each statistics settings section when first opened, reducing the initial page size.

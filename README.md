@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-**2026.11.13.8:** Load statistics sections as needed, reduce repeated work during battle, and release unused editor data and custom-code caches. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
+**2026.11.13.9:** Use a consistent, brief fade when menus open. Submenu lists no longer slide sideways. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
 
 ## Install
 
