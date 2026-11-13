@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026.11.13.3
+
+- Shorten the HVUT menu entries to JPX+ Settings and JPX+ Stats. Keep the short name when switching languages.
+
+### 简体中文
+
+- HVUT 菜单中的入口简化为 JPX+ 设置、JPX+ 统计，切换语言后保持简称。
+
 ## 2026.11.13.2
 
 - Add individual and group reset controls for panel colors, opacity and statistics appearance. Statistics restore each item's original colors; panel colors follow the current theme.

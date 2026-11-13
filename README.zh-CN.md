@@ -10,7 +10,7 @@
 
 **[安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [本次改动](CHANGELOG.md#简体中文)
 
-**2026.11.13.2：** 配色和透明度支持单项或整组恢复默认，可即时预览、撤销与重做，手机端更方便点按。从旧版本更新前请备份配置。旧配置载入时自动转换，保存后使用统一规则格式；2026.11.13 之前的 JPX-PLUS 无法读取。[升级说明](docs/upgrading.md#简体中文)。
+**2026.11.13.3：** HVUT 菜单中的名称简化为 JPX+。 配色和透明度支持单项或整组恢复默认，可即时预览、撤销与重做，手机端更方便点按。从旧版本更新前请备份配置。旧配置载入时自动转换，保存后使用统一规则格式；2026.11.13 之前的 JPX-PLUS 无法读取。[升级说明](docs/upgrading.md#简体中文)。
 
 ## 安装
 
