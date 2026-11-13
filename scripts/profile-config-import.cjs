@@ -133,7 +133,7 @@ const repeats = Number(process.env.JPX_IMPORT_REPEATS || 3);
                     const measured = await page.evaluate(() => __importPerf.finish());
                     assert.equal(measured.state.active, entry === 'direct' && variant === 'baseline');
                     if (entry === 'direct') assert.equal(measured.state.native, before.native, 'direct import stays unsaved');
-                    assert.equal(JSON.parse(measured.state.config).TwoHanded_General.supports.length, scenario.rules);
+                    assert.equal((JSON.parse(measured.state.config).TwoHanded_General.rules ? JSON.parse(measured.state.config).TwoHanded_General.rules.length - 2 : JSON.parse(measured.state.config).TwoHanded_General.supports.length), scenario.rules);
                     assert.ok(measured.state.updates > before.updates);
                     assert.deepEqual(errors, []);
                     const phases = measured.records.map(record => ({ ...record,

@@ -10,6 +10,7 @@ const root = path.resolve(__dirname, '..');
 const main = fs.readFileSync(process.env.JPX_TEST_SOURCE || path.join(root, 'JPX-PLUS.user.js'), 'utf8');
 const html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:8px;background:#edebdf;color:#5c0d11;font:12px Verdana}#csp{width:1240px;height:704px}</style></head><body><div id="csp"><div id="navbar"></div></div></body></html>';
 const clone = value => JSON.parse(JSON.stringify(value));
+const normalized = value => { const copy=clone(value); for (const mode of Object.values(copy.config || {})) if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) { mode.rules=[...mode.supports,...mode.attacks]; delete mode.supports; delete mode.attacks; } return copy; };
 const config = { battleVersion: 20251216, OneHanded_General: { supports: [{ type: 'stop', customMessage: 'Original native settings', conditions: [] }], attacks: [{ type: 'normalAttack' }] } };
 const envelope = (title, world = 'Any') => ({ schemaVersion: 1, kind: 'battle-mode', title, description: 'Offline store sample', world,
     mode: 'TwoHanded_General', scriptVersion: '2026.11.07.1', config: { battleVersion: 20251216,
@@ -21,6 +22,7 @@ const legacyRecords = Array.from({ length: 7 }, (_, index) => ({ id: String(inde
 function expose() {
     initDoI18n(); loadBattleConfig(); battleStyle = 'OneHanded'; battleType = 'General';
     const clone = value => JSON.parse(JSON.stringify(value));
+const normalized = value => { const copy=clone(value); for (const mode of Object.values(copy.config || {})) if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) { mode.rules=[...mode.supports,...mode.attacks]; delete mode.supports; delete mode.attacks; } return copy; };
     window.__fullStore = { open: renderSettings, theme: toggleJpxTheme,
         label: key => t('cM.' + key),
         native: () => ({ battle: clone(cfgBattle), stats: clone(cfgStats), shortcuts: clone(userKeybinds),
@@ -470,7 +472,7 @@ for (const mobile of [false, true]) test(`catalog saves directly to My configs w
     await button.click();
     await row.getByRole('button', { name: 'Saved: Store configuration 18', exact: true }).waitFor();
     const saved = await f.page.evaluate(() => __fullStore.library().entries.find(entry => entry.source?.id === 18));
-    assert.deepEqual(saved.envelope, envelope('Store configuration 18'));
+    assert.deepEqual(saved.envelope, normalized(envelope('Store configuration 18')));
     assert.equal(saved.source.repository, 'MeiYongAI/JPX-PLUS-Configs');
     assert.equal(saved.source.sha256, f.catalog.entries.find(entry => entry.id === 18).sha256);
     assert.equal(downloads.length, 0);
@@ -832,7 +834,7 @@ test('core compatibility bridge preserves imported archives without transferring
     const current = await f.page.evaluate(() => __fullStore.library());
     for (const before of legacyRecords) {
         const after = current.entries.find(entry => entry.id === before.id);
-        assert.deepEqual(after.envelope, before.envelope); assert.equal(after.createdAt, before.savedAt);
+        assert.deepEqual(after.envelope, normalized(before.envelope)); assert.equal(after.createdAt, before.savedAt);
     }
     await f.page.evaluate(entries => window.JPXPlus.migrateLegacyConfigs(entries), legacyRecords);
     assert.equal((await f.page.evaluate(() => __fullStore.library())).entries.length, current.entries.length, 'repeated handoff does not duplicate archives');
@@ -863,7 +865,7 @@ for (const mobile of [false, true]) test('full core store saves without applying
     await store.getByRole('button', { name: 'Save', exact: true }).click();
     await store.getByRole('button', { name: 'Saved', exact: true }).waitFor();
     const saved = await f.page.evaluate(() => __fullStore.library().entries.find(entry => entry.source?.id === 1));
-    assert.deepEqual(saved.envelope, envelope('Store configuration 1'));
+    assert.deepEqual(saved.envelope, normalized(envelope('Store configuration 1')));
     assert.equal(saved.source.repository, 'MeiYongAI/JPX-PLUS-Configs'); assert.equal(saved.source.author, 'fixtureauthor');
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), native, 'store save changes only the library');
     await store.getByRole('button', { name: 'Saved', exact: true }).click();
@@ -1125,7 +1127,7 @@ test('the update picker only offers saved entries of the original kind and mode'
 test('updates reject concurrent source changes and let the author reselect the new revision', async t => {
     const f = await fixture(t, { signedIn: true }); const saved = await saveLocal(f.page); await enterShared(f);
     const form = await openShareUpdate(f); await form.locator('[data-share-source]').selectOption(saved.id);
-    const newer = clone(saved.envelope); newer.config.TwoHanded_General.supports[0].customMessage = 'Newer local revision';
+    const newer = clone(saved.envelope); newer.config.TwoHanded_General.rules[0].customMessage = 'Newer local revision';
     await f.page.evaluate(({ id, envelope }) => __fullStore.saveLocal(envelope, id), { id: saved.id, envelope: newer });
     await form.getByRole('button', { name: 'Submit update', exact: true }).click();
     await f.page.getByText('This saved config changed. Select it again before submitting.', { exact: true }).waitFor();

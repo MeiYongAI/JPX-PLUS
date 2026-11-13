@@ -1,5 +1,7 @@
 # Configuration management
 
+From 2026.11.13, native battle modes use one ordered rules array. normalizeJpxBattleMode converts legacy supports followed by attacks, preserves key rules and PLUS metadata, and treats an existing rules array as authoritative. Library entries, applied snapshots and scene snapshots normalize on detached reads without rewriting stored originals. Saving persists the new format. Update both store validators before releasing; published legacy snapshots retain their original hashes.
+
 From 2026.11.09.2, optional `scenes[world][style_scene]` records hold an entry ID, source mode, revision and detached rules snapshot. Missing keys preserve native routing; null explicitly clears a slot and permits General fallback. Assignments are validated and cached outside the action loop. Saving or changing metadata on the library copy does not mutate its assigned snapshot. Native exports omit these records; In use exports the effective rules. See [scene behavior](../../docs/scene-strategies.md).
 
 `clearSelection` exits fixed mode without clearing applied records. `references` identifies application records, scene routes and loadout bindings; `detach` removes them in one write after revision/reference checks. The manager lists these references before deletion.

@@ -10,6 +10,8 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 
 **[JPX-PLUS 설치](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[미리보기](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [변경 내역](CHANGELOG.md)
 
+2026.11.13부터 보조와 공격 규칙이 하나의 목록으로 통합되며, 일반 공격에도 조건을 설정할 수 있습니다. 하나의 목록에서 규칙을 편집하며 펼치기·접기, 드래그 정렬과 작업 메뉴를 사용할 수 있습니다. 업데이트 전에 설정을 백업하세요. 기존 설정은 불러올 때 자동 변환되고 저장하면 새 형식이 됩니다.
+
 ## 설치
 
 1. 유저스크립트 관리 확장 프로그램에서 JPX-PLUS를 설치한 뒤 HentaiVerse를 새로고침합니다.

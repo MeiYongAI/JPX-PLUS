@@ -88,9 +88,9 @@ for (const fixture of fixtures) for (const isekai of [false, true]) for (const c
         const after = await page.evaluate(() => __battleImport.snapshot());
         assert.equal(after.active[isekai ? 'Isekai' : 'Persistent'], entry.id);
         assert.equal(after.mode, 'TwoHanded_General');
-        for (const [mode, rules] of Object.entries(normalized.config)) if (rules && typeof rules === 'object' && Array.isArray(rules.attacks)) assert.deepEqual(after.config[mode], rules);
+        for (const [mode, rules] of Object.entries(normalized.config)) if (rules && typeof rules === 'object' && Array.isArray(rules.rules)) assert.deepEqual(after.config[mode], rules);
         assert.deepEqual(after.config.OneHanded_Tower, normalized.config.OneHanded_Tower);
-        assert.equal(Object.hasOwn(after.config.OneHanded_Tower.attacks[0], 'targetCount'), false, 'missing optional targets stay missing');
+        assert.equal(Object.hasOwn(after.config.OneHanded_Tower.rules[0], 'targetCount'), false, 'missing optional targets stay missing');
         assert.equal(after.running, false, 'applying does not resume a battle');
         const cost = await page.evaluate(() => __battleImport.routingCost()); t.diagnostic(JSON.stringify(cost));
         assert.equal(cost.libraryReads, 0); assert.equal(cost.parses, 0); assert.equal(cost.serializes, 0);

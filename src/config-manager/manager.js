@@ -6,9 +6,9 @@ const jpxConfigLibraryKey = 'jpx_configLibrary_v1';
 const jpxConfigApplyKey = 'jpx_configApplySignal_v1';
 const jpxConfigClone = value => JSON.parse(JSON.stringify(value));
 const jpxConfigWorld = () => isekaiSuffix ? 'Isekai' : 'Persistent';
-const jpxConfigHasRules = value => value && Array.isArray(value.supports) && Array.isArray(value.attacks);
+const jpxConfigHasRules = value => value && (Object.hasOwn(value, 'rules') ? Array.isArray(value.rules) : Array.isArray(value.supports) && Array.isArray(value.attacks));
 const jpxConfigHasContent = value => jpxConfigHasRules(value) && Object.entries(value).some(([key, rules]) =>
-    (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
+    (key === 'rules' || !Array.isArray(value.rules) && (key === 'supports' || key === 'attacks') || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
 let jpxSelectedConfig;
 let jpxSceneRuntime = { scenes: {} };
 const jpxConfigSceneLabel = scene => scene === 'Battle1000' ? t('cM.grindfest') : t('cB.' + scene);
@@ -76,6 +76,7 @@ function refreshJpxSelectedConfig() {
     try {
         const runtime = getJpxConfigLibrary().readRuntime(jpxConfigWorld()), record = runtime.selection;
         jpxSceneRuntime = runtime;
+        if (record?.mode) normalizeJpxBattleMode(cfgBattle[record.mode]);
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };
@@ -103,7 +104,9 @@ function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
-    return resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+    const mode = resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+    if (mode && !Array.isArray(mode.rules)) normalizeJpxBattleMode(mode);
+    return mode;
 }
 
 function syncJpxSceneRuntime() {
@@ -806,7 +809,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             captureList(); openEditor(entry, entry.envelope.mode);
             state.editor.history.run(tr('reset'), () => {
                 const mode = entry.envelope.mode, execution = state.editor.draft.envelope.config[mode].jpxPlusExecution;
-                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { supports: [], attacks: [] });
+                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { rules: [] });
                 if (execution) state.editor.draft.envelope.config[mode].jpxPlusExecution = execution;
                 state.editor.redraw();
             });
@@ -903,7 +906,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 if (single && !imported) {
                     const selectedStyle = style.value === 'auto' ? mode.slice(0,split) : style.value;
                     const nextMode = selectedStyle + '_' + scenario.value;
-                    const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { supports:[],attacks:[] });
+                    const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { rules:[] });
                     if (next.mode && next.mode !== nextMode) delete next.config[next.mode];
                     if (style.value !== 'auto' || element.value !== 'auto') rules.jpxPlusExecution = { style:style.value, element:element.value };
                     else delete rules.jpxPlusExecution;
@@ -1071,7 +1074,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const content=el('div',undefined,'jpx-config-editor-content'), footer=el('div',undefined,'jpx-config-editor-footer');
         const undoButton=button(tr('undo'),()=>history.undo()),redoButton=button(tr('redo'),()=>history.redo());
         const saveButton=button(tr('save'),()=>saveEditor(),'jpx-config-primary');
-        footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);root.append(notice,editor);
+        footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);
         const previousHistory=settingsEditHistory;
         state.editor={draft,mode,baseline:'',previousHistory,revision:entry.revision,history:null};
         const draw=()=>{
@@ -1122,7 +1125,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             if(!['z','y'].includes(event.key.toLowerCase()))return;event.preventDefault();event.stopPropagation();
             if(event.key.toLowerCase()==='y'||event.shiftKey)history.redo();else history.undo();
         });
-        state.editor.history=history;settingsEditHistory=history;update();
+        state.editor.history=history;settingsEditHistory=history;update();root.append(notice,editor);
         (root.closest('.jpx-settings-mobile') ? document.getElementById('close-button') : back).focus({preventScroll:true});
     }
     const dirty=()=>!!state.editor&&JSON.stringify(state.editor.draft.envelope)!==state.editor.baseline;

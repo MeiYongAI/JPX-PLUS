@@ -20,7 +20,7 @@ function instrument() {
     window.__imports = {
         setup(status) {
             if (status === 'running' || status === 'stop') {
-                if (status === 'stop') cfgBattle.TwoHanded_General.supports[0].disabled = false;
+                if (status === 'stop') cfgBattle.TwoHanded_General.rules[0].disabled = false;
                 localStorage.setItem(prefix + 'cfgBattle' + isekaiSuffix, JSON.stringify(cfgBattle));
                 toggleActive();
             }
@@ -76,3 +76,13 @@ async function choose(page, value, name = 'Import case.json') {
 async function save(page) { await page.locator('.jpx-config-form').getByRole('button', { name: 'Save', exact: true }).click(); }
 const row = (page, title) => page.locator('.jpx-config-row').filter({ has: page.locator('.jpx-config-title strong', { hasText: title }) });
 module.exports = { fixture, envelope, choose, save, row, mainHTML };
+
+// Expected native output after loading either supported rule format.
+module.exports.normalized = value => {
+    const copy = JSON.parse(JSON.stringify(value));
+    const config = copy.config || copy;
+    for (const mode of Object.values(config)) if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) {
+        mode.rules = [...mode.supports, ...mode.attacks]; delete mode.supports; delete mode.attacks;
+    }
+    return copy;
+};

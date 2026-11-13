@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.11.3
+// @version      2026.11.13
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAGdklEQVR4AeyZW2wUVRjHvxkqiBAFqSigQuoFEiAhEa2GbAUCmijSlIv4oJFwFQn6YqvR6IOJRlpeFBEplGDCA4hAimiiICBL1SomJEACKg2IgJZyMyCCZY7nN2E2ZZjZnZndtrvbbvr1zLl98//958zZzYwpAT/xj+b1ji+bOTVePXvhzuqZn+2qnvVNvHrW9mwItKAprrXZGrXWgFiS0gCddBzJpeC/02IYn1rWlfJzjedLjzc0jT3+28nRWRFaC5rQJlojWtGM9lRG+BoQXzmjiCQiasulC5dL92w7KLWLd8jy8o3G2oVfF2xa8q18vnRnVgRa0IQ2NKIVzWiHARY/IzwNYBmpy8ZeZalJ9Zv3yidvbS6o/2Kf/Hn4lF+erGlHI1ptzVo7DLDA5CXyOgPiy2fNYRnpRDetq9pi7Nn+i9e8nGhDOwywwGSzuZRfY4DtkpJlh/ceE5bV2cbzruG5V4UBFphEs9mMLTASBnCfKCWrTjQ0yVerfmgxJD8OYYINRlgdqoQBqtmoVKK671z3s9OXdyVsMMLqwNkG8HVhiDH5py/3GywZpzPfSthghBVm+GwDlFgv/HvhUjObBo35HDDCCjOcJr/wcORA/eECGjpCwAoz7KZ0uTwO6CP7T1B0iEiwanZTDHOkZVlKf1d2CHggYbUsS8Fu6nvhnr+bLlyhI9eiaNhAqVg23w6Ow+iHGXZTL4HeF89fysn7f+y0mPTq28uOKQsmhOEXmGHXK0BM/Xs51GRn8MRXFkjl7u1S89evGQlykbPPXXc6p0hatrzqGJF08NVOp4BZiegF4LSELBFaWv6SBBUbJD25yDlqWlmQ4RkZY0bNgtCoc1PNa83c7nNHNuDU0T/cuVq1znJnw3t34xvihPuETjslY5njHuOuRzZg15oN7lytWnc2vKAnYU8IsjFGNmDTosVSt2a9tPVKCGoA4043nqNIGpENIOvKl1+TipFjZObt90UO8gSJbWvj0rDvSJCh9pizjWeFOXYlyb+0DEiSN+NdwK94c7W8XvZOItwnadlXOXdJIMNyxgA3bKbqnQZkysn2yMNt4Zy35bHTFqTM6RXAJgd40A3Py5CcNgB4NsagG17eGeAFFLYtp1dAWFiv8Z0GeLmST22pWDpXQCqH8r2/cwXk+xVOxRdpBfA8kAeYBMc8y0t1omztD20AwDyzA5rgOOpDTOa3tzGhDQDYLdqrzT0mTL0tnzKFNsBPXJSrWXj3gDC+tMrY0Ab4qYgCM/iRhzzTHair92xvjcbQBpz8/ZinDj8Yz8FXG/1unaaj3ue4Oi2jRWgDDn7nfXWAGTyqOLA4NlO/wXVrN/p1Zbw9vAHf/+gromLDahn1zOSUr8uAxzCvROwxhFdfa7SFN0Dfn7wP8BMz4/33hMAIVoSzOVInyrVJfvDkrF30IUWbRWgDUIbIZFdpiL4VMIEVwY8l3h5TJ+gjh1ew+SUz12tOum2RDAA+lQlhhZGzatKzYaelPT6SAZyVK7VLvx9EOPV0ghw1+i1TOjmcuWHLyAZwok36/eDCsueEpUs9SjCX12sH9d4SZX66c0xDxDL4HzETV4+lW6mXL8dh0vBukblh5mRqLMywm5aoM917dmtONzFXkCuJEbVVHwjB1XVMoaRep98oM4YXqhyne96o82GGXV9789DNhT26RE3knocR3BoEVxdTgKWkzlVnjHteW9dhNsQ8ZIqydpumadwxqI90lA+sMNvscqXrVsAHDu1H0SEiwarZzdiLS88oUeuHFA9Kex/IFfdghRl2+2vQEPPjG3t0Kxgx5n7J9w+MsBqaWfTHNiA2Z/lWHHnwiaGqV9+eujk//2CDEVaYobQN4MAoUBWGGBdLpj5ANS8DNhhhdQATBsRmrGwwDJner6hQHp/+sNOfNyVMsMEIqwOWMICG2NyadWLI3EHDB8jE+Y8KS4b2XA4YYIEJNpuxBdA1BtAem72iWpR6Wn9X/jO1fLxi06A9FwPtMMACk83mArnOAPpxyeiqhuvfyxuKJwyX59+e0Fz85DDRiejO6kAjWm3NWjsMsMDkJdz0aqSN+6RkTs0UEWN8tx5da0eMHSylC0bL7KoyNe3Vx5pZVk/NK5FsCLSgCW1oRCuaRWuHARbx+fga4IyP6a/IEoxovuFWlpFpdqm6pW/P2v5Fhdv633vbjvYO+/xaC5rQhkbRWtEc09odDr/yfwAAAP//nlygdwAAAAZJREFUAwCEBED17v6rSAAAAABJRU5ErkJggg==
 // @run-at       document-start
@@ -287,7 +287,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.11.3',
+    version: '2026.11.13',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -335,7 +335,7 @@ let defaultCfgBattle = {
         {"id":"round"}
     ],
     "OneHanded_General": {
-        "supports": [
+        "rules": [
             {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
             {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
             {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
@@ -359,9 +359,7 @@ let defaultCfgBattle = {
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[-1,0,"Regen"]}]},
             {"type":"item","name":"Health Draught","conditions":[{"key":"pEffects","value":[-1,0,"Regeneration"]},{"key":"monsters","value":[4,10]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
             {"type":"item","name":"Mana Draught","conditions":[{"key":"pEffects","value":[-1,0,"Replenishment"]},{"key":"pMP","value":[0,0.85]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
-            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]}
-        ],
-        "attacks": [
+            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
             {"type":"smartDebuff","name":"Weaken","targetCount":3,"tailSkip":0,"bottomUp":false,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tTypes","value":["Arena400","Arena500"],"offset":[0,0],"matched":[1,1]},{"key":"tIgnoredEffects","value":[1,9999,"Weakened"],"offset":[0,0],"matched":[1,1]}]},
             {"type":"target","priorityRule":"Top Down","conditions":[{"key":"world","value":["Persistent"]},{"key":"tDaysSinceUpdate","value":[46,9999],"offset":[0,0],"matched":[1,1]},{"key":"tIgnoredEffects","value":[0,9999,"Imperiled","Searing Skin","Freezing Limbs","Turbulent Air","Deep Burns","Breached Defense","Blunted Attack"],"offset":[0,0],"matched":[1,1]}]},
             {"type":"skill","name":"Scan","conditions":[{"key":"pActionCounts","value":[0,0,"Scan"]}]},
@@ -373,11 +371,11 @@ let defaultCfgBattle = {
             {"type":"smartDebuff","name":"Imperil","targetCount":3,"bottomUp":false,"tailSkip":-1,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Imperiled"],"offset":[0,0],"matched":[1,1]},{"key":"activeBosses","value":[0,0]}]},
             {"type":"skill","name":"Merciful Blow","conditions":[{"key":"tTypes","value":["Ultimate","Arena300","Arena400","Arena500"],"offset":[0,0],"matched":[1,1]},{"key":"tEffects","value":[0,9999,"Bleeding Wound"],"offset":[0,0],"matched":[1,1]},{"key":"tHP","value":[0.04,0.22],"offset":[0,0],"matched":[1,1]},{"key":"pOC","value":[4.5,10]}]},
             {"type":"skill","name":"Vital Strike","conditions":[{"key":"tTypes","value":["Ultimate","Arena300","Arena400","Arena500"],"offset":[0,0],"matched":[1,1]},{"key":"tEffects","value":[0,9999,"Stunned"],"offset":[0,0],"matched":[1,1]},{"key":"tHP","value":[0.05,1],"offset":[0,0],"matched":[1,1]},{"key":"pOC","value":[2.5,10]}]},
-            {"type":"normalAttack"}
+            {"type":"normalAttack","conditions":[]}
         ]
     },
     "OneHanded_Tower": {
-        "supports": [
+        "rules": [
             {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
             {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.6]}]},
             {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.6]}]},
@@ -401,9 +399,7 @@ let defaultCfgBattle = {
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[-1,0,"Regen"]}]},
             {"type":"item","name":"Health Draught","conditions":[{"key":"pEffects","value":[-1,0,"Regeneration"]},{"key":"monsters","value":[4,10]}]},
             {"type":"item","name":"Mana Draught","conditions":[{"key":"pEffects","value":[-1,0,"Replenishment"]},{"key":"pMP","value":[0,0.85]}]},
-            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]}]}
-        ],
-        "attacks": [
+            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Sleep","bottomUp":true,"tailSkip":1,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Asleep"],"offset":[0,0],"matched":[1,1]},{"key":"roundCurrent","value":[0,9999]},{"key":"floor","value":[36,9999]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Weaken","bottomUp":false,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Weakened","Asleep"],"offset":[0,0],"matched":[1,1]},{"key":"roundCurrent","value":[10,9999]},{"key":"floor","value":[40,9999]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Silence","bottomUp":true,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Asleep","Silenced"],"offset":[0,0],"matched":[1,1]},{"key":"roundCurrent","value":[15,9999]},{"key":"floor","value":[40,9999]}]},
@@ -412,19 +408,16 @@ let defaultCfgBattle = {
             {"type":"toggle","name":"Spirit","toggled":true,"conditions":[{"key":"pOC","value":[6,10]}]},
             {"type":"skill","name":"Merciful Blow","conditions":[{"key":"tEffects","value":[0,9999,"Bleeding Wound"],"offset":[0,0],"matched":[1,1]},{"key":"tHP","value":[0.04,0.22],"offset":[0,0],"matched":[1,1]},{"key":"pOC","value":[4.5,10]},{"key":"roundCurrent","value":[0,9999]},{"key":"floor","value":[95,9999]}]},
             {"type":"skill","name":"Vital Strike","conditions":[{"key":"tEffects","value":[0,9999,"Stunned"],"offset":[0,0],"matched":[1,1]},{"key":"tHP","value":[0.05,1],"offset":[0,0],"matched":[1,1]},{"key":"pOC","value":[2.5,10]},{"key":"pSpiritStatus","value":true},{"key":"roundCurrent","value":[0,9999]},{"key":"floor","value":[60,9999]}]},
-            {"type":"normalAttack"}
+            {"type":"normalAttack","conditions":[]}
         ]
     },
     "1H_Mage_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "TwoHanded_General": {
-        "supports": [
+        "rules": [
 			{"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
 			{"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
 			{"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
@@ -447,9 +440,7 @@ let defaultCfgBattle = {
 			{"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[-1,0,"Regen"]}]},
 			{"type":"item","name":"Health Draught","conditions":[{"key":"pEffects","value":[-1,0,"Regeneration"]},{"key":"monsters","value":[4,10]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
             {"type":"item","name":"Mana Draught","conditions":[{"key":"pEffects","value":[-1,0,"Replenishment"]},{"key":"pMP","value":[0,0.85]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
-            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]}
-		],
-		"attacks": [
+            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
 			{"type":"smartDebuff","name":"Weaken","targetCount":3,"bottomUp":false,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Weakened"],"offset":[0,0],"matched":[1,1]},{"key":"tTypes","value":["Arena400","Arena500"],"offset":[0,0],"matched":[1,1]}]},
 			{"type":"smartDebuff","name":"Silence","targetCount":3,"bottomUp":false,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Silenced"],"offset":[0,0],"matched":[1,1]},{"key":"tTypes","value":["Arena400","Arena500"],"offset":[0,0],"matched":[1,1]}]},
 			{"type":"smartDebuff","name":"Imperil","targetCount":3,"bottomUp":false,"tailSkip":0,"maxAtFirst":4,"minMonstersLeft":5,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Imperiled"],"offset":[0,0],"matched":[1,1]},{"key":"tTypes","value":["Ultimate","Arena300","Arena400","Arena500"],"offset":[0,0],"matched":[1,1]}]},
@@ -457,47 +448,32 @@ let defaultCfgBattle = {
 		]
     },
     "2H_Mage_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "DualWielding_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "DW_Mage_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "NitenIchiryu_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "NI_Mage_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
     "Staff_General": {
-        "supports": [
+        "rules": [
             {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
             {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
             {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
@@ -520,9 +496,7 @@ let defaultCfgBattle = {
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[-1,0,"Regen"]}]},
             {"type":"item","name":"Health Draught","conditions":[{"key":"pEffects","value":[-1,0,"Regeneration"]},{"key":"monsters","value":[4,10]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
             {"type":"item","name":"Mana Draught","conditions":[{"key":"pEffects","value":[-1,0,"Replenishment"]},{"key":"pMP","value":[0,0.85]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
-            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]}
-        ],
-        "attacks": [
+            {"type":"item","name":"Spirit Draught","conditions":[{"key":"pEffects","value":[-1,0,"Refreshment"]},{"key":"pSP","value":[0,0.9]},{"key":"battleTypes","value":["Arena","Colosseum","Battle1000","Tower","Item"]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Weaken","bottomUp":false,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Weakened"],"offset":[0,0],"matched":[1,1]},{"key":"tTypes","value":["Arena400","Arena500"],"offset":[0,0],"matched":[1,1]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Silence","bottomUp":false,"tailSkip":0,"maxAtFirst":10,"minMonstersLeft":10,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Silenced"],"offset":[0,0],"matched":[1,1]},{"key":"tTypes","value":["Arena400","Arena500"],"offset":[0,0],"matched":[1,1]}]},
             {"type":"smartDebuff","targetCount":3,"name":"Imperil","bottomUp":false,"tailSkip":0,"maxAtFirst":3,"minMonstersLeft":5,"conditions":[{"key":"tIgnoredEffects","value":[1,9999,"Imperiled"],"offset":[0,0],"matched":[1,1]}]},
@@ -540,14 +514,11 @@ let defaultCfgBattle = {
             {"type":"spellDamage","name":"T3","conditions":[{"key":"pMP","value":[0.2,1]}]},
             {"type":"spellDamage","name":"T2","conditions":[{"key":"pMP","value":[0.2,1]}]},
             {"type":"spellDamage","name":"T1","conditions":[{"key":"pMP","value":[0.2,1]}]},
-            {"type":"normalAttack"}
+            {"type":"normalAttack","conditions":[]}
         ]
     },
     "Unarmed_General": {
-        "supports": [
-
-        ],
-        "attacks": [
+        "rules": [
 
         ]
     },
@@ -1208,9 +1179,22 @@ let cfg = {
         #settings-container .jpx-rule-section-controls { flex: none; margin-left: auto; }
         #settings-container .jpx-rule-section-controls .jpx-rule-list-toggle { padding: 3px 4px; border-color: transparent; background: transparent; }
         #settings-container .jpx-rule-section { margin: 0; }
+        #settings-container .jpx-rule-context-menu { box-sizing:border-box; min-width:176px; margin:0; padding:4px; border:1px solid var(--jpx-theme-border,#c8b49b); border-radius:0; background:var(--jpx-theme-surface,#edebdf); color:var(--jpx-theme-text,#5c0d11); overflow:auto; overscroll-behavior:contain; box-shadow:0 4px 12px rgb(0 0 0 / 18%); }
+        #settings-container .jpx-rule-context-menu button { display:block; width:100%; min-height:32px; text-align:left; border:0; border-radius:0; background:transparent; padding:6px 12px; }
+        #settings-container .jpx-rule-context-menu summary { cursor:pointer; min-height:32px; box-sizing:border-box; padding:6px 12px; }
+        #settings-container .jpx-rule-context-menu .jpx-rule-menu-separator { border-top:1px solid var(--jpx-theme-border,#c8b49b); margin:4px 0; }
+        #settings-container .jpx-rule-context-menu details > button { padding-left:24px; }
+        #settings-container .jpx-rule-context-menu button:hover:not(:disabled) { background:var(--jpx-theme-hover,#f1e2c5); }
+        #settings-container .jpx-rule-context-menu .jpx-rule-menu-delete { color:#a1282f; }
+        html[data-jpx-theme=dark] #settings-container .jpx-rule-context-menu .jpx-rule-menu-delete { color:#ffb4b6; }
+        #settings-container .jpx-rule-context-menu :is(button,summary):focus-visible { outline:2px solid var(--jpx-theme-accent,#5c0d11); outline-offset:-2px; background:var(--jpx-theme-hover,#f1e2c5); }
+        #settings-container.jpx-settings-mobile .jpx-rule-context-menu :is(button,summary) { min-height:44px; }
         #settings-container .jpx-rule-scroll { flex: 1; min-height: 0; min-width: 0; overflow: auto; padding-right: 4px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #5c0d11 #e3e0d1; }
         #settings-container .jpx-rule-add-actions { display: flex; flex: none; flex-wrap: wrap; gap: 4px; padding: 8px 0 6px; border-top: 1px solid rgb(92 13 17 / 30%); background: #edebdf; }
         #settings-container .jpx-rule-add-actions button { min-height: 28px; padding: 3px 6px; }
+        #settings-container .jpx-rule-add-actions > .jpx-rule-add { display:inline-flex; align-items:center; gap:8px; min-height:34px; padding:6px 12px; border-radius:0; }
+        #settings-container .jpx-rule-add svg { width:14px; height:14px; }
+        #settings-container.jpx-settings-mobile .jpx-rule-add-actions > .jpx-rule-add { min-height:44px; }
         #settings-container .jpx-keybinding-rule-group .jpx-rule-add-actions { position: sticky; bottom: 0; z-index: 2; }
         #settings-container .jpx-style-override { display: flex; align-items: center; gap: 4px; min-width: 0; }
         #settings-container .jpx-style-override-label { flex: none; }
@@ -1435,13 +1419,19 @@ let cfg = {
         #settings-container .jpx-rule-array-item {
             display: block;
             min-width: 0;
+            content-visibility:auto;
+            contain-intrinsic-block-size:auto 44px;
         }
+        #settings-container .jpx-rule-array-item:has(.jpx-rule-item[open]) { contain-intrinsic-block-size:auto 224px; }
+        #settings-container .jpx-rule-array-item:has(.multiSelect-summary[aria-expanded=true]),
+        #settings-container .jpx-rule-item-body:has(.multiSelect-summary[aria-expanded=true]) { content-visibility:visible; }
+        #settings-container .array-row.jpx-rule-array-item:not(.array-row .array-row) { margin:0; padding:2px 4px; }
         #settings-container .jpx-rule-item { min-width: 0; }
         #settings-container .jpx-rule-item > summary {
             display: grid;
             grid-template-columns: 26px 5px minmax(0, 1fr) auto;
             min-width: 0;
-            min-height: 32px;
+            min-height: 44px;
             align-items: center;
             gap: 4px 6px;
             cursor: pointer;
@@ -1469,11 +1459,11 @@ let cfg = {
         ${jpxDisclosureCSS('#settings-container .jpx-rule-item')}
         @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
             #settings-container .jpx-rule-item:has(.multiSelect-summary[aria-expanded=true])::details-content { overflow: visible; }
-            #settings-container .jpx-rule-bulk-toggle .jpx-rule-item::details-content { transition: none; }
         }
-        #settings-container .jpx-rule-item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; }
-        #settings-container .jpx-rule-item-meta { margin-left: auto; color: #71634f; font-size: 11px; white-space: nowrap; }
+        #settings-container .jpx-rule-item-name { min-width: 0; overflow-wrap: anywhere; font-weight: 700; line-height:1.5; }
         #settings-container .jpx-rule-item-preview { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #71634f; font-size: 11px; line-height: 18px; }
+        #settings-container .jpx-rule-item-preview:empty { display:none; }
+        #settings-container .jpx-rule-item[open] > summary { background:var(--jpx-theme-hover,#f1e2c5); }
         #settings-container .jpx-keybinding-header { flex-wrap: wrap; gap: 6px; }
         #settings-container .jpx-rule-list-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 2px; padding-bottom: 2px; }
         #settings-container .jpx-rule-list-toolbar { display: flex; flex: none; align-items: center; justify-content: flex-end; margin: 0 0 0 auto; padding: 0; border: 0; }
@@ -1489,6 +1479,7 @@ let cfg = {
             background: rgb(244 229 196 / 70%);
         }
         #settings-container .jpx-rule-array-item.is-disabled .jpx-rule-summary-text { opacity: .65; }
+        #settings-container .jpx-rule-array-item.is-disabled .jpx-rule-item-name { text-decoration:line-through; }
         #settings-container .jpx-rule-array-item.is-dragging { z-index: 2; opacity: .25; outline: 1px dashed #9b4e03; background: #f4e5c4; box-shadow: inset 0 0 0 1px rgb(155 78 3 / 25%); }
         #settings-container .jpx-rule-array-item.is-drop-before { box-shadow: inset 0 3px #9b4e03; background: #f4e5c4; }
         #settings-container .jpx-rule-array-item.is-drop-after { box-shadow: inset 0 -3px #9b4e03; background: #f4e5c4; }
@@ -1515,7 +1506,7 @@ let cfg = {
         #settings-container .jpx-drag-grip:active { cursor: grabbing; }
         #settings-container .jpx-rule-array-item .drag-handle { cursor: grab; touch-action: none; user-select: none; }
         #settings-container .jpx-rule-array-item.is-dragging .drag-handle { cursor: grabbing; }
-        #settings-container .jpx-rule-item-body { padding: 5px 0 3px 13px; border-top: 1px solid rgb(92 13 17 / 15%); }
+        #settings-container .jpx-rule-item-body { padding: 5px 0 3px 13px; border-top: 1px solid rgb(92 13 17 / 15%); content-visibility:auto; contain-intrinsic-block-size:auto 180px; }
         #settings-container .jpx-rule-item-body > .field-block:first-child[data-field-type=constant] { display: none; }
         #settings-container .jpx-array-item-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
         #settings-container .jpx-array-item-actions svg { width: 14px; height: 14px; vertical-align: middle; }
@@ -1558,6 +1549,12 @@ let cfg = {
             min-height: 27px;
             padding: 2px;
         }
+        #settings-container .jpx-rule-item > summary > .jpx-array-item-actions { flex-wrap:nowrap; gap:0; }
+        #settings-container .jpx-rule-item > summary > .jpx-array-item-actions > button { width:32px; min-width:32px; min-height:32px; border:0; border-radius:0; background:transparent; }
+        #settings-container .jpx-rule-item > summary > .jpx-array-item-actions > button:hover { background:var(--jpx-theme-selected,#ead8b4); }
+        #settings-container.jpx-settings-mobile .jpx-rule-item > summary { grid-template-columns:44px 5px minmax(0,1fr) auto; gap:4px; }
+        #settings-container.jpx-settings-mobile .jpx-rule-item > summary > .drag-handle { width:44px; min-width:44px; min-height:44px; }
+        #settings-container.jpx-settings-mobile .jpx-rule-item > summary > .jpx-array-item-actions > button { width:44px; min-width:44px; min-height:44px; }
         #settings-container .jpx-rule-sort-actions { display: inline-flex; gap: 0; margin-right: 5px; }
         #settings-container .jpx-rule-sort-actions > button { border-radius: 0; }
         #settings-container .jpx-rule-sort-actions > button + button { margin-left: -1px; }
@@ -1746,10 +1743,8 @@ let cfg = {
             #settings-container .jpx-stats-style-fields { grid-template-columns: minmax(0, 1fr); }
         }
         @container jpx-settings (max-width: 600px) {
-            #settings-container .jpx-rule-section-tabs > button { padding: 5px 4px; font-size: 11px; }
-            #settings-container .jpx-rule-section-controls .jpx-rule-list-toggle { font-size: 10px; gap: 2px; }
-            #settings-container .jpx-rule-item > summary { grid-template-columns: 26px 5px minmax(0, 1fr); }
-            #settings-container .jpx-rule-item > summary > .jpx-array-item-actions { grid-column: 3; grid-row: 2; }
+            #settings-container .jpx-rule-section-tabs > button { padding: 5px 6px; font-size: 12px; }
+            #settings-container .jpx-rule-section-controls .jpx-rule-list-toggle { font-size: 11px; gap: 4px; }
             #settings-container #cfgBattle-ui,
             #settings-container #cfgStats-ui { grid-template-columns: minmax(0, 1fr); }
             #settings-container #cfgBattle-rules-ui { grid-template-columns: minmax(0, 1fr); }
@@ -2514,10 +2509,10 @@ const cfgBattleSchema = {
                             discriminator: 'type',
                             oneOf: {
                                 target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
-                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, true, true),
-                                item: mkItem('item', ITEMS, true, true),
+                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
+                                item: mkItem('item', ITEMS, [], true, true),
                                 toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
-                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }]),
+                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
                                 smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
                                     { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
                                     { key: 'bottomUp', type: 'boolean' },
@@ -2528,29 +2523,14 @@ const cfgBattleSchema = {
                                 spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
                                 spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
                                 skill: mkItem('skill', SKILLS, [], true, true),
-                                normalAttack: mkItem('normalAttack', null, [], false, false),
+                                normalAttack: mkItem('normalAttack', null, [], true, true),
 								kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
 									{ key: 'code', skipLabel: true, type: 'textarea' }
 								], false, false),
                             }
                         }
                     }),
-                    mkF('supports', 'array', {
-                        class: 'heading',
-                        collapsibleItems: true,
-                        canDisable: true,
-                        itemSchema: {
-                            type: 'object',
-                            discriminator: 'type',
-                            oneOf: {
-                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, true, true),
-                                item: mkItem('item', ITEMS, true, true),
-                                toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }]),
-                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }]),
-                            }
-                        }
-                    }),
-                    mkF('attacks', 'array', {
+                    mkF('rules', 'array', {
                         class: 'heading',
                         collapsibleItems: true,
                         canDisable: true,
@@ -2559,7 +2539,10 @@ const cfgBattleSchema = {
                             discriminator: 'type',
                             oneOf: {
                                 target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
+                                spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
+                                item: mkItem('item', ITEMS, [], true, true),
                                 toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
+                                stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
                                 smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
                                     { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
                                     { key: 'bottomUp', type: 'boolean' },
@@ -2570,7 +2553,7 @@ const cfgBattleSchema = {
                                 spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
                                 spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
                                 skill: mkItem('skill', SKILLS, [], true, true),
-                                normalAttack: mkItem('normalAttack', null, [], false, false),
+                                normalAttack: mkItem('normalAttack', null, [], true, true),
 								kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
 									{ key: 'code', skipLabel: true, type: 'textarea' }
 								], false, false),
@@ -2674,6 +2657,7 @@ const I18N = {
         downloadBattleLog: 'Download log',
     },
     cB: {
+        rules: "Rules", addRule: "Add rule", ruleActions: "Rule actions", insertBefore: "Insert above", insertAfter: "Insert below",
         panelFields: 'Show in panel', panelTextColor: 'Text', panelOpacity: 'Panel opacity',
         panelPreview: 'Preview', panelMouseEnter: 'Hover panel to start auto battle',
         panelAppearance: 'Appearance', panelHeaderColor: 'Title bar', panelSurfaceColor: 'Background', panelBorderColor: 'Border',
@@ -4128,16 +4112,7 @@ function smartBattle() {
         jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#ff5');
         return true;
     }
-    let { supports, attacks } = rules;
-    if (supports.length < 1) {
-        isActiveBattle = false;
-        readyNext = '\nWith so few conditions, you might die in auto-battle.';
-        jpxPanelManager.updateContent('battle');
-        jpxPanelManager.setBackground('#ff5');
-        return true;
-    }
-    if (actionManager(supports)) return true;
-    if (actionManager(attacks)) return true;
+    if (actionManager(rules.rules)) return true;
 
     isActiveBattle = false;
     readyNext = '\nNo available action.';
@@ -5264,7 +5239,7 @@ function initConditions() {
     return { generalHandlers, targetHandlers };
 }
 
-function checkConditions(conditions, target, checkGlobal = true, checkTarget = true) {
+function checkConditions(conditions = [], target, checkGlobal = true, checkTarget = true) {
     let { monsters, activeMonsters, bosses, activeBosses } = monstersObj;
 
     if (jpxUtils.isEmpty(conditionsObj)) conditionsObj = initConditions();
@@ -5304,7 +5279,7 @@ const actionHandlers = {
     stop(action, monster) {
         const { customMessage, conditions } = action;
 
-        if (checkConditions(conditions, monster, true, !!monster)) {
+        if (checkConditions(conditions, monster)) {
 
             // A rule stop waits for a fresh battle update; keep auto armed so
             // manual healing can clear the condition, as in upstream JPX.
@@ -5322,7 +5297,7 @@ const actionHandlers = {
 
         if (
             spellCooldowns[name] === 0 &&
-            checkConditions(conditions, monster, true, !!monster)
+            checkConditions(conditions, monster)
         ) {
             readyNext = 0;
             cast(name);
@@ -5336,7 +5311,7 @@ const actionHandlers = {
 
         if (
             itemCooldowns[name] === 0 &&
-            checkConditions(conditions, monster, true, !!monster)
+            checkConditions(conditions, monster)
         ) {
             readyNext = 0;
             use(name);
@@ -5349,7 +5324,7 @@ const actionHandlers = {
         const { name, toggled, conditions } = action;
         return (
             (name !== 'Spirit' || toggled !== spiritStatus) &&
-            checkConditions(conditions, monster, true, !!monster) &&
+            checkConditions(conditions, monster) &&
             doToggleGoNext(name)
         );
     },
@@ -5430,8 +5405,10 @@ const actionHandlers = {
     },
 
     normalAttack(action, monster) {
+        const { conditions } = action;
         return (
             monster &&
+            checkConditions(conditions, monster) &&
             doAttackGoNext(monster)
         )
     },
@@ -5487,7 +5464,7 @@ function actionManager(actions) {
             continue;
         }
 
-        if (action.type !== 'smartDebuff' && action.type !== 'kamisamaniNattaHi' && targetPhase && !targetMonster) continue;
+        if (targetPhase && !targetMonster && ['spellDebuff', 'spellDamage', 'skill', 'normalAttack'].includes(action.type)) continue;
         if (handler(action, targetMonster)) return true;
         targetLocked = false;
     }
@@ -7785,7 +7762,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
 //Settings
 let settingsEditHistory = null;
 let statsSettingsView = { section: 'combatRows', fields: {} };
-let battleRulesView = { section: 'supports', scroll: {} };
+let battleRulesView = { section: 'rules', scroll: {} };
 const settingsChangeBindings = new WeakMap();
 
 // List scroll belongs to the dialog view, never to saved/exported statistics configuration.
@@ -7928,7 +7905,7 @@ function createSettingsChangeTracker(container, readData) {
             } else Object.entries(current).forEach(([key, value]) => match(value, baseline?.[key]));
         }
         Object.entries(roots()).forEach(([scope, value]) => match(value, saved[scope]));
-        container.querySelectorAll('[data-jpx-change-bound]').forEach(element => {
+        container.querySelectorAll('[data-jpx-change-bound]:not(.jpx-config-manager *)').forEach(element => {
             const binding = settingsChangeBindings.get(element);
             if (!binding) return;
             const { data, key, item, badgeTarget } = binding;
@@ -7971,8 +7948,9 @@ function createSettingsChangeTracker(container, readData) {
     const observer = new MutationObserver(records => {
         // Text captions, previews and disclosure icons are view updates. Only
         // rebuilding bound fields requires scanning configuration badges again.
-        if (records.some(record => [...record.addedNodes, ...record.removedNodes].some(node =>
-            node.nodeType === 1 && (node.matches('[data-jpx-change-bound]') || node.querySelector('[data-jpx-change-bound]'))))) refresh();
+        if (records.some(record => !record.target.closest?.('.jpx-config-manager') && [...record.addedNodes, ...record.removedNodes].some(node =>
+            node.nodeType === 1 && !node.matches('.jpx-config-manager') &&
+            (node.matches('[data-jpx-change-bound]') || node.querySelector('[data-jpx-change-bound]:not(.jpx-config-manager *)'))))) refresh();
     });
     observer.observe(container, { childList: true, subtree: true });
     return { refresh, save, captureIdentities,
@@ -8018,7 +7996,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         BATTLE_MODES.forEach(key => {
             const mode = battle[key];
             if (mode && Object.entries(mode).every(([name, value]) =>
-                (name === 'supports' || name === 'attacks') && Array.isArray(value) && !value.length)) delete battle[key];
+                (name === 'rules' || name === 'supports' || name === 'attacks') && Array.isArray(value) && !value.length)) delete battle[key];
         });
         return { battle: JSON.stringify(battle), shortcuts: JSON.stringify(userKeybinds), stats: JSON.stringify(cfgStats) };
     }
@@ -8114,7 +8092,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
             if (entry.changed.includes('stats')) cfgStats = JSON.parse(snapshot.data.stats);
             changes.restore(snapshot.identities, entry.changed);
             statsSettingsView = JSON.parse(JSON.stringify(snapshot.view.stats || { section: 'combatRows', fields: {} }));
-            battleRulesView = snapshot.view.rules || { section: 'supports', scroll: {} };
+            battleRulesView = snapshot.view.rules || { section: 'rules', scroll: {} };
             fieldRenderers.expandedRuleItems = new WeakSet();
             snapshot.view.expanded.forEach(path => {
                 const item = path.reduce((value, key) => value?.[key], cfgBattle);
@@ -8290,9 +8268,9 @@ function renderBattleRuleSections(container, schema, data, mode) {
             }
         });
     };
-    ['supports', 'attacks', 'keyBindings'].forEach(key => {
+    ['rules', 'keyBindings'].forEach(key => {
         const field = schema.properties.find(field => field.key === key);
-        const label = key === 'keyBindings' ? 'cB.keyRules' : key === 'attacks' ? 'cB.attackRules' : field.label;
+        const label = key === 'keyBindings' ? 'cB.keyRules' : field.label;
         const button = jpxUtils.createButton(nav, { text: t(label), history: false, onClick: () => select(key) });
         button.dataset.ruleSection = key;
         button.id = `jpx-rule-section-${key}`;
@@ -8312,7 +8290,7 @@ function renderBattleRuleSections(container, schema, data, mode) {
         const heading = panel.querySelector(':scope > .heading');
         const toolbar = heading?.querySelector('.jpx-rule-list-toolbar');
         if (heading) heading.hidden = true;
-        const scroll = panel.querySelector(':scope > .jpx-rule-scroll');
+        const scroll = panel.querySelector('.jpx-rule-scroll');
         scroll.addEventListener('scroll', () => {
             if (!panel.hidden) battleRulesView.scroll[`${mode}:${key}`] = scroll.scrollTop;
         });
@@ -8329,7 +8307,61 @@ function renderBattleRuleSections(container, schema, data, mode) {
         sections.get(keys[next]).button.focus({ preventScroll: true });
     });
     container.replaceChildren(navigation, ...[...sections.values()].map(section => section.panel));
-    select(sections.has(battleRulesView.section) ? battleRulesView.section : 'supports');
+    select(sections.has(battleRulesView.section) ? battleRulesView.section : 'rules');
+}
+
+// Context-menu actions share the row controls and undo history.
+function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('cB.ruleActions')) {
+    const current = anchor.popoverTargetElement;
+    if (current?.matches('.jpx-rule-context-menu:popover-open')) { current.hidePopover(); return; }
+    document.querySelectorAll('.jpx-rule-context-menu').forEach(menu => { if (menu.matches(':popover-open')) menu.hidePopover(); menu.remove(); });
+    const menu = document.createElement('div');
+    menu.className = 'jpx-rule-context-menu';
+    menu.id = getUniqueId('ruleMenu');
+    menu.popover = 'auto';
+    menu.setAttribute('role', 'group');
+    menu.setAttribute('aria-label', label);
+    const add = (parent, action) => {
+        if (action.separator) {
+            const divider = document.createElement('div'); divider.className = 'jpx-rule-menu-separator';
+            divider.setAttribute('role', 'separator'); parent.append(divider);
+        } else if (action.children) {
+            const group = document.createElement('details');
+            const heading = document.createElement('summary'); heading.textContent = action.label;
+            group.append(heading); action.children.forEach(child => add(group, child)); parent.append(group);
+        } else jpxUtils.createButton(parent, { text: action.label, history: false,
+            className: action.destructive ? 'jpx-rule-menu-delete' : '',
+            disabled: action.disabled, onClick: () => {
+                menu.hidePopover();
+                if (anchor.isConnected) anchor.focus({ preventScroll: true });
+                action.run(anchor);
+            } });
+    };
+    for (const action of actions || []) add(menu, action);
+    row.append(menu);
+    menu.addEventListener('toggle', event => {
+        if (event.newState !== 'closed') return;
+        if (anchor.getAttribute('aria-controls') === menu.id) {
+            anchor.setAttribute('aria-expanded', 'false');
+            anchor.removeAttribute('aria-controls'); anchor.popoverTargetElement = null;
+        }
+        if ((menu.contains(document.activeElement) || document.activeElement === document.body) && anchor.isConnected) anchor.focus({ preventScroll: true });
+        menu.remove();
+    });
+    menu.addEventListener('keydown', event => {
+        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+        const controls = [...menu.querySelectorAll('summary, button:not(:disabled)')].filter(node => node.checkVisibility());
+        const index = controls.indexOf(document.activeElement);
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? controls.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + controls.length) % controls.length;
+        controls[next]?.focus({ preventScroll: true }); controls[next]?.scrollIntoView({ block: 'nearest' });
+        event.preventDefault(); event.stopPropagation();
+    });
+    menu.addEventListener('toggle', () => { if (menu.matches(':popover-open')) positionSettingsPopover(anchor, menu); }, true);
+    anchor.setAttribute('aria-controls', menu.id); anchor.setAttribute('aria-expanded', 'true');
+    anchor.popoverTargetElement = menu;
+    menu.showPopover();
+    positionSettingsPopover(anchor, menu);
+    menu.querySelector('summary, button:not(:disabled)')?.focus({ preventScroll: true });
 }
 
 // Small static SVGs keep the userscript self-contained and inherit the HV palette.
@@ -8408,7 +8440,10 @@ function bindSettingsNativePickers(container) {
     };
 }
 
+const settingsIconTemplates = new Map();
 function createSettingsIcon(name) {
+    const cached = settingsIconTemplates.get(name);
+    if (cached) return cached.cloneNode(true);
     const paths = {
         filter: 'M4 7h16M7 12h10M10 17h4',
         columns: 'M3 4h18v16H3V4M9 4v16M15 4v16',
@@ -8418,7 +8453,8 @@ function createSettingsIcon(name) {
         download: 'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
         copy: 'M8 8h13v13H8V8M16 8V3H3v13h5',
         configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
-        more: 'M5 12h.01M12 12h.01M19 12h.01',
+        more: 'M5 11v2M12 11v2M19 11v2',
+        add: 'M12 5v14M5 12h14',
         battle: 'M4 21v-7m0-4V3m8 18v-4m0-4V3m8 18V10m0-4V3M1 14h6m2-1h6m2-3h6',
         battleRules: 'M9 5h12M9 12h12M9 19h12M3 4l1 1 2-2M3 11l1 1 2-2M3 18l1 1 2-2',
         keyBindings: 'M7 4v16M17 4v16M4 7h16M4 17h16M9 4v3m6-3v3M9 17v3m6-3v3',
@@ -8458,11 +8494,13 @@ function createSettingsIcon(name) {
             dot.setAttribute('r', '1.7');
             icon.appendChild(dot);
         }
+        settingsIconTemplates.set(name, icon.cloneNode(true));
         return icon;
     }
     const path = document.createElementNS(icon.namespaceURI, 'path');
     path.setAttribute('d', paths[name]);
     icon.appendChild(path);
+    settingsIconTemplates.set(name, icon.cloneNode(true));
     return icon;
 }
 
@@ -8513,7 +8551,8 @@ function positionSettingsPopover(anchor, menu) {
 }
 
 function openRuleSortMenu(anchor, index, count, move) {
-    const current = anchor.closest('.array-row').querySelector('.jpx-rule-sort-popover');
+    const row = anchor.closest('.array-row');
+    const current = row.querySelector('.jpx-rule-sort-popover');
     if (current?.matches(':popover-open')) { current.hidePopover(); return; }
     document.querySelectorAll('.jpx-rule-sort-popover:popover-open').forEach(menu => menu.hidePopover());
     const menu = document.createElement('div');
@@ -8561,7 +8600,7 @@ function openRuleSortMenu(anchor, index, count, move) {
         }
     });
     menu.append(label, presets);
-    anchor.closest('.array-row').append(menu);
+    row.append(menu);
     anchor.setAttribute('aria-controls', menu.id);
     anchor.setAttribute('aria-expanded', 'true');
     // Keep the trigger inside the popover's light-dismiss boundary.
@@ -9128,6 +9167,10 @@ const fieldRenderers = {
         if (!Array.isArray(dataObj[field.key])) dataObj[field.key] = [];
         let arrayGroupId = Symbol('array-group');
         const renderedRuleItems = new Map();
+        let bulkFrame = 0, bulkTarget = null, bulkQueue = [], bulkIndex = 0;
+        const cancelBulkToggle = () => {
+            cancelAnimationFrame(bulkFrame); bulkFrame = 0; bulkTarget = null; bulkQueue = []; bulkIndex = 0;
+        };
         const liveRegion = document.createElement('span');
         liveRegion.className = 'jpx-sr-only';
         liveRegion.setAttribute('aria-live', 'polite');
@@ -9141,7 +9184,7 @@ const fieldRenderers = {
             toolbar.className = 'jpx-rule-list-toolbar';
             let allRulesToggle;
             updateAllRulesToggle = () => {
-                const allExpanded = renderedRuleItems.size > 0 && [...renderedRuleItems.values()].every(details => details.open);
+                const allExpanded = bulkTarget ?? (renderedRuleItems.size > 0 && [...renderedRuleItems.values()].every(details => details.open));
                 if (allRulesToggle.getAttribute('aria-expanded') === String(allExpanded)) return;
                 const label = t(allExpanded ? 'cGen.collapseAllRules' : 'cGen.expandAllRules');
                 const caption = document.createElement('span');
@@ -9155,16 +9198,26 @@ const fieldRenderers = {
                 className: 'jpx-rule-list-toggle',
                 history: false,
                 onClick: () => {
-                    const shouldExpand = [...renderedRuleItems.values()].some(details => !details.open);
-                    listDiv.classList.add('jpx-rule-bulk-toggle');
-                    for (const [item, details] of renderedRuleItems) {
-                        if (shouldExpand) details.jpxBuildBody();
-                        details.open = shouldExpand;
-                        if (shouldExpand) fieldRenderers.expandedRuleItems.add(item);
-                        else fieldRenderers.expandedRuleItems.delete(item);
-                    }
+                    const shouldExpand = bulkTarget === null ? [...renderedRuleItems.values()].some(details => !details.open) : !bulkTarget;
+                    cancelBulkToggle(); bulkTarget = shouldExpand;
+                    bulkQueue = [...renderedRuleItems].filter(([, details]) => details.open !== shouldExpand);
                     updateAllRulesToggle();
-                    requestAnimationFrame(() => requestAnimationFrame(() => listDiv.classList.remove('jpx-rule-bulk-toggle')));
+                    const batch = () => {
+                        bulkFrame = 0;
+                        if (!listDiv.isConnected) { cancelBulkToggle(); return; }
+                        const deadline = performance.now() + 5;
+                        let processed = 0;
+                        while (bulkIndex < bulkQueue.length && processed++ < 12 && performance.now() < deadline) {
+                            const [item, details] = bulkQueue[bulkIndex++];
+                            if (shouldExpand) details.jpxBuildBody();
+                            details.open = shouldExpand;
+                            if (shouldExpand) fieldRenderers.expandedRuleItems.add(item);
+                            else fieldRenderers.expandedRuleItems.delete(item);
+                        }
+                        if (bulkIndex < bulkQueue.length) bulkFrame = requestAnimationFrame(batch);
+                        else { cancelBulkToggle(); updateAllRulesToggle(); }
+                    };
+                    batch();
                 }
             });
             toolbar.append(allRulesToggle, liveRegion);
@@ -9189,14 +9242,15 @@ const fieldRenderers = {
             container.append(addBar);
         }
         const scrollContainer = () => field.fixedActions ? listDiv : container.closest('.jpx-rule-scroll, [role=tabpanel]');
-
         const ruleRows = () => [...listDiv.children].filter(row => row.classList.contains('jpx-rule-array-item'));
-        const clearDropTargets = () => listDiv.querySelectorAll('.is-drop-before, .is-drop-after').forEach(target => {
+        const clearDropTargets = () => container.querySelectorAll('.is-drop-before, .is-drop-after').forEach(target => {
             target.classList.remove('is-drop-before', 'is-drop-after');
         });
         const getRuleLabel = item => {
-            const label = item?.name ? t(`cB.${item.name}`) : item?.customMessage || '';
-            return `${t(`cB.${item?.type || field.key}`)}${label ? `: ${label}` : ''}`;
+            if (item?.name) return t('cB.' + item.name);
+            const type = t('cB.' + (item?.type || field.key));
+            const detail = item?.customMessage || (item?.priorityRule ? t('cB.' + item.priorityRule) : '');
+            return detail ? type + ' · ' + detail : type;
         };
         const clearDragState = (announcement = '') => {
             const drag = fieldRenderers.dragState;
@@ -9252,8 +9306,8 @@ const fieldRenderers = {
                 // Keep the landing cue at both edges without drawing a line through the lifted text.
                 drag.dropMarker.classList.toggle('over-preview', markerTop < preview.bottom && markerTop + 3 * scale > preview.top);
                 drag.dropMarker.style.display = 'block';
-                drag.dropMarker.style.left = '0';
-                drag.dropMarker.style.width = '100%';
+                drag.dropMarker.style.left = ((bounds.left - area.left) / scale) + 'px';
+                drag.dropMarker.style.width = (bounds.width / scale) + 'px';
                 drag.dropMarker.style.top = `${(markerTop - area.top) / scale}px`;
             }
             if (drag.dropRow === hovered && drag.dropPosition === position) return;
@@ -9359,13 +9413,14 @@ const fieldRenderers = {
                 return;
             }
             const bounds = getDragBounds();
-            const panel = scrollContainer();
             const { pointerX: x, pointerY: y } = drag;
+            const panel = scrollContainer();
+            const panelBounds = panel?.getBoundingClientRect() || bounds;
             const edge = 28 * getSettingsCoordinateSpace(listDiv).scale;
             if (panel && x >= bounds.left && x < bounds.right && y >= bounds.top && y < bounds.bottom) {
-                if (y < bounds.top + edge && panel.scrollTop > 0) {
+                if (y < panelBounds.top + edge && panel.scrollTop > 0) {
                     panel.scrollTop -= 8;
-                } else if (y > bounds.bottom - edge && panel.scrollTop + panel.clientHeight < panel.scrollHeight) {
+                } else if (y > panelBounds.bottom - edge && panel.scrollTop + panel.clientHeight < panel.scrollHeight) {
                     panel.scrollTop += 8;
                 }
             }
@@ -9373,10 +9428,10 @@ const fieldRenderers = {
             updateDropTarget(x, y);
             drag.frameId = requestAnimationFrame(trackRuleDrag);
         }
-        listDiv.addEventListener('pointerdown', event => {
+        container.addEventListener('pointerdown', event => {
             const handle = event.target.closest('.drag-handle');
             const row = handle?.closest('.jpx-rule-array-item');
-            if (!row || !listDiv.contains(row) || !event.isPrimary || event.button !== 0) return;
+            if (!row || row.parentElement !== listDiv || !event.isPrimary || event.button !== 0) return;
             const drag = fieldRenderers.dragState;
             if (drag.pointerId !== null) return;
             drag.pointerId = event.pointerId;
@@ -9444,9 +9499,7 @@ const fieldRenderers = {
         });
 
         function renderRowButtons(row, index) {
-            const isTop = index === 0;
-            const isBottom = index === dataObj[field.key].length - 1;
-
+            row.jpxRuleActions = [];
             const disabled = dataObj[field.key][index].disabled === true;
             if (field.collapsibleItems) row.classList.toggle('is-disabled', disabled);
             else row.style.opacity = disabled ? '0.5' : '1';
@@ -9455,7 +9508,13 @@ const fieldRenderers = {
             const summary = row.querySelector(':scope > .jpx-rule-item > summary');
             (summary || row).appendChild(actions);
             const actionButton = (label, options, parent = actions) => {
-                const button = jpxUtils.createButton(parent, options);
+                const change = options.onClick;
+                const run = change && options.history !== false ? () => {
+                    if (settingsEditHistory) settingsEditHistory.run(t(label), change); else change();
+                } : change;
+                if (change && options.history !== false) row.jpxRuleActions.push({ label: t(label), run, destructive: label === 'delete' });
+                if (options.menuOnly && field.collapsibleItems) return null;
+                const button = jpxUtils.createButton(parent, { ...options, history: false, onClick: run });
                 button.title = t(label);
                 button.setAttribute('aria-label', t(label));
                 return button;
@@ -9476,6 +9535,30 @@ const fieldRenderers = {
                 if (settingsEditHistory) settingsEditHistory.run(t('cGen.reorderRules'), move);
                 else move();
             };
+            if (field.collapsibleItems) {
+                const insert = (offset, schema) => {
+                    const item = createEmptyObject(schema);
+                    const change = () => {
+                        dataObj[field.key].splice(index + offset, 0, item); fieldRenderers.expandedRuleItems.add(item); renderArray();
+                        const inserted = ruleRows()[index + offset];
+                        inserted?.scrollIntoView({ block: 'nearest' }); inserted?.querySelector('summary')?.focus({ preventScroll: true });
+                    };
+                    if (settingsEditHistory) settingsEditHistory.run(t('add'), change); else change();
+                };
+                for (const [label, offset] of [['insertBefore', 0], ['insertAfter', 1]]) row.jpxRuleActions.push({ label: t('cB.' + label),
+                    children: Object.entries(field.itemSchema.oneOf).map(([type, schema]) => ({ label: t('cB.' + type), run: () => insert(offset, schema) })) });
+                row.jpxRuleActions.push({ separator: true });
+                for (const [label, destination] of [['moveTop', 0], ['moveUp', index - 1], ['moveDown', index + 1], ['moveBottom', dataObj[field.key].length - 1]])
+                    row.jpxRuleActions.push({ label: t('cGen.' + label), disabled: destination === index || destination < 0 || destination >= dataObj[field.key].length, run: () => moveTo(destination) });
+                row.jpxRuleActions.push({ label: t('cGen.moveToPosition'), run: anchor => openRuleSortMenu(anchor, index, dataObj[field.key].length, moveTo) }, { separator: true });
+                const more = actionButton('cB.ruleActions', { history: false, className: 'jpx-rule-more',
+                    onClick: (button, event) => { event.preventDefault(); openJpxRuleMenu(button, row); } });
+                more.append(createSettingsIcon('more')); more.setAttribute('aria-haspopup', 'true'); more.setAttribute('aria-expanded', 'false');
+                row.addEventListener('contextmenu', event => {
+                    if (event.target.closest('input, textarea, select, .jpx-rule-context-menu')) return;
+                    event.preventDefault(); event.stopPropagation(); openJpxRuleMenu(more, row);
+                });
+            }
             let handle = actionButton('cGen.dragRule', { className: 'drag-handle jpx-drag-grip', history: false }, summary || actions);
             if (summary) summary.prepend(handle);
             handle.replaceChildren(createSettingsIcon('grip'));
@@ -9491,21 +9574,19 @@ const fieldRenderers = {
                 event.stopPropagation();
                 moveTo(target);
             });
-            const sortActions = createSettingsMoveButtons(actions, index, dataObj[field.key].length, moveTo);
-            const sortMenu = actionButton('cGen.reorderRules', { history: false,
-                onClick: (button, event) => {
-                    // The target association prevents light dismissal; this handler owns toggling.
-                    event.preventDefault();
-                    openRuleSortMenu(button, index, dataObj[field.key].length, moveTo);
-                } }, sortActions);
-            sortMenu.append(createSettingsIcon('sort'));
-            sortMenu.setAttribute('aria-haspopup', 'dialog');
-            sortMenu.setAttribute('aria-expanded', 'false');
-            actionButton('cGen.duplicateRule', { text: decodeURIComponent('%E2%A7%89'), onClick: () => {
+            if (!field.collapsibleItems) {
+                const sortActions = createSettingsMoveButtons(actions, index, dataObj[field.key].length, moveTo);
+                const sortMenu = actionButton('cGen.reorderRules', { history: false,
+                    onClick: (button, event) => { event.preventDefault(); openRuleSortMenu(button, index, dataObj[field.key].length, moveTo); } }, sortActions);
+                sortMenu.append(createSettingsIcon('sort'));
+                sortMenu.setAttribute('aria-haspopup', 'dialog'); sortMenu.setAttribute('aria-expanded', 'false');
+            }
+            actionButton('cGen.duplicateRule', { menuOnly: true, text: decodeURIComponent('%E2%A7%89'), onClick: () => {
                 const copy = JSON.parse(JSON.stringify(dataObj[field.key][index]));
                 dataObj[field.key].splice(index + 1, 0, copy);
                 if (field.collapsibleItems) fieldRenderers.expandedRuleItems.add(copy);
                 renderArray();
+                ruleRows()[index + 1]?.querySelector('summary')?.focus({ preventScroll: true });
             }});
             if (field.canDisable) {
                 const toggle = actionButton(disabled ? 'cGen.enableRule' : 'cGen.disableRule', {
@@ -9517,9 +9598,12 @@ const fieldRenderers = {
                             dataObj[field.key][index].disabled = true;
                         }
                         renderArray();
+                        ruleRows()[index]?.querySelector('.jpx-rule-state-toggle')?.focus({ preventScroll: true });
                     }
                 });
                 toggle.dataset.enabled = String(!disabled);
+                toggle.setAttribute('aria-pressed', String(!disabled));
+                if (field.collapsibleItems) actions.prepend(toggle);
                 const status = document.createElement('span');
                 status.className = 'jpx-sr-only';
                 status.id = getUniqueId('rule-state');
@@ -9529,9 +9613,11 @@ const fieldRenderers = {
                 toggle.prepend(createSettingsIcon(disabled ? 'ruleDisabled' : 'ruleEnabled'));
                 toggle.title = `${t(disabled ? 'cGen.ruleDisabled' : 'cGen.ruleEnabled')} · ${t(disabled ? 'cGen.enableRule' : 'cGen.disableRule')}`;
             }
-            actionButton('delete', { text: t('delete'), className: 'jpx-delete-button', onClick: () => {
+            if (field.collapsibleItems) row.jpxRuleActions.push({ separator: true });
+            actionButton('delete', { menuOnly: true, text: t('delete'), className: 'jpx-delete-button', onClick: () => {
                 dataObj[field.key].splice(index, 1);
                 renderArray();
+                (ruleRows()[Math.min(index, dataObj[field.key].length - 1)]?.querySelector('summary') || addBar?.querySelector('button'))?.focus({ preventScroll: true });
             }});
         };
 
@@ -9551,6 +9637,21 @@ const fieldRenderers = {
             };
 
             if (field.itemSchema.discriminator) {
+                if (field.collapsibleItems) {
+                    const label = t('cB.addRule');
+                    const button = jpxUtils.createButton(addContainer, { text: label, className: 'jpx-rule-add', history: false,
+                        onClick: (anchor, event) => {
+                            event.preventDefault();
+                            openJpxRuleMenu(anchor, addContainer, Object.entries(field.itemSchema.oneOf).map(([type, schema]) => ({
+                                label: t('cB.' + type), run: () => {
+                                    if (settingsEditHistory) settingsEditHistory.run(label, () => addAction(schema)); else addAction(schema);
+                                }
+                            })), label);
+                        } });
+                    button.prepend(createSettingsIcon('add')); button.append(createSettingsIcon('chevronDown'));
+                    button.setAttribute('aria-haspopup', 'true'); button.setAttribute('aria-expanded', 'false');
+                    return;
+                }
                 for (const [typeKey, subSchema] of Object.entries(field.itemSchema.oneOf)) {
                     jpxUtils.createButton(addContainer, {
                         text: `${t('add')} ${t(subSchema.properties.find(item => item.type === 'constant')?.label)}`,
@@ -9653,6 +9754,7 @@ const fieldRenderers = {
             dataObj[field.key].forEach((value, index) => {
                 let row = document.createElement('div');
                 row.className = 'array-row';
+                if (field.collapsibleItems) row.classList.add('jpx-rule-array-item');
 
                 let itemSchema = field.itemSchema;
                 if (itemSchema.discriminator) itemSchema = resolveSchema(itemSchema, value);
@@ -9695,33 +9797,29 @@ const fieldRenderers = {
                         heading.className = 'jpx-rule-summary-heading';
                         const name = document.createElement('span');
                         name.className = 'jpx-rule-item-name';
-                        const meta = document.createElement('span');
-                        meta.className = 'jpx-rule-item-meta';
                         const preview = document.createElement('span');
                         preview.className = 'jpx-rule-item-preview';
-                        heading.append(name, meta);
+                        heading.append(name);
                         summaryText.append(heading, preview);
                         summary.appendChild(summaryText);
                         // Build before the native open action, so its first paint
                         // already has the final content size for the transition.
                         summary.addEventListener('click', event => {
-                            if (!details.open && !event.target.closest('button,input,select,textarea,a')) buildBody();
+                            if (event.target.closest('button,input,select,textarea,a')) return;
+                            cancelBulkToggle();
+                            if (!details.open) buildBody();
                         });
                         const updateSummary = () => {
-                            const type = t(`cB.${value.type}`);
-                            const label = value.name ? t(`cB.${value.name}`) : value.customMessage || '';
-                            const nameText = `${index + 1}. ${label ? `${type} · ${label}` : type}`;
+                            const nameText = (index + 1) + '. ' + getRuleLabel(value);
                             if (name.textContent !== nameText) { name.textContent = nameText; name.title = nameText; }
                             const conditions = value.conditions || [];
-                            const metaText = [t('cGen.conditionCount', { count: conditions.length }), value.disabled ? t('cGen.ruleDisabled') : ''].filter(Boolean).join(' · ');
-                            if (meta.textContent !== metaText) meta.textContent = metaText;
                             const previewText = conditions.length ? conditions.map(condition => {
                                 const raw = condition.value;
                                 const formatted = Array.isArray(raw)
                                     ? raw.map(v => typeof v === 'string' ? t(`cB.${v}`) : String(v)).join(' / ')
                                     : typeof raw === 'boolean' ? t(raw ? 'cGen.on' : 'cGen.off') : typeof raw === 'string' ? raw : String(raw);
                                 return `${t(`cB.${condition.key}`)}: ${formatted}`;
-                            }).join('；') : t('cGen.noConditions');
+                            }).join('；') : '';
                             if (preview.textContent !== previewText) { preview.textContent = previewText; preview.title = previewText; }
                         };
                         objDiv.classList.add('jpx-rule-item-body');
@@ -9759,6 +9857,7 @@ const fieldRenderers = {
         };
 
         function renderArray() {
+            cancelBulkToggle();
             for (const [item, details] of renderedRuleItems) {
                 if (details.open) fieldRenderers.expandedRuleItems.add(item);
                 else fieldRenderers.expandedRuleItems.delete(item);
@@ -10248,37 +10347,13 @@ function mergeCfg(storedCfg, defaultCfg, mergedCfg, mergedType) {
             //patch 20260208
             key === '1H_Mage_General' && (localObj ??= storedCfg.Battlecaster_General);
             //-
-            if (localObj && Array.isArray(localObj.supports) && Array.isArray(localObj.attacks)) {
+            if (normalizeJpxBattleMode(localObj)) {
                 mergedCfg[key] = localObj;
             } else {
                 if (jpxUtils.isEmpty(defaultCfg[key])) continue;
                 mergedCfg[key] = JSON.parse(JSON.stringify(defaultCfg[key]));
+                normalizeJpxBattleMode(mergedCfg[key]);
             }
-
-            mergedCfg[key].supports.forEach(support => {
-                //patch 20260309
-                if (support.type === 'spellInstant' || support.type === 'spellDuration') {
-                    support.type = 'spellSupport';
-                } else if (support.type === 'itemInstant' || support.type === 'itemDuration') {
-                    support.type = 'item';
-                }
-                //-
-            });
-            mergedCfg[key].attacks.forEach(attack => {
-                //patch 20260103
-                if (attack.type === 'target' && 'bottomUp' in attack) {
-                    attack.priorityRule = attack.bottomUp ? 'Bottom Up' : 'Top Down';
-                    delete attack.bottomUp;
-                }
-                //-
-                //patch 20260507
-                // Older rules omit this optional field and use the runtime default.
-                // Do not introduce undefined into otherwise valid JSON configs.
-                if (attack.type === 'smartDebuff' && Object.hasOwn(attack, 'targetCount')) {
-                    attack.targetCount = jpxUtils.parseValue(attack.targetCount);
-                }
-                //-
-            });
         }
 
         for (const key in defaultCfg) {
@@ -10534,8 +10609,7 @@ function renderSettings() {
         for (const key of BATTLE_MODES) {
             if (
                 key !== modeKey && !key.includes('_General') && cfgBattle[key] && jpxUtils.isEmpty(defaultCfgBattle[key]) &&
-                Array.isArray(cfgBattle[key].supports) && cfgBattle[key].supports.length === 0 &&
-                Array.isArray(cfgBattle[key].attacks) && cfgBattle[key].attacks.length === 0 &&
+                Array.isArray(cfgBattle[key].rules) && cfgBattle[key].rules.length === 0 &&
                 !Object.keys(cfgBattle[key]).some(key => key.startsWith('kb_'))
             ) {
                 delete cfgBattle[key];
@@ -10586,7 +10660,7 @@ function renderSettings() {
         const data = validator.save({ schemaVersion: 1, kind: 'battle', title: 'Settings import', description: '', world: jpxConfigWorld(),
             config: parseJpxSettingsImport(content) }).envelope.config;
         if ([...BATTLE_MODES, 'Battlecaster_General'].some(key => Object.entries(data[key] || {}).some(([group, rules]) =>
-            (group === 'supports' || group === 'attacks' || group.startsWith('kb_')) &&
+            (group === 'rules' || group.startsWith('kb_')) &&
             Array.isArray(rules) && rules.some(rule => rule?.type === 'kamisamaniNattaHi'))) && !confirm(t('cB.importCustomCodeWarning'))) {
             throw Object.assign(new Error('Custom code import rejected'), { code: 'importCancelled' });
         }
@@ -10604,7 +10678,7 @@ function renderSettings() {
     // tab only when visited. Battle rules can contain thousands of hidden controls.
     loadStatsSettingsConfig();
     statsSettingsView = { section: 'combatRows', fields: {} };
-    battleRulesView = { section: 'supports', scroll: {} };
+    battleRulesView = { section: 'rules', scroll: {} };
     let tabs = [
         {
             id: 'battle',
@@ -10693,8 +10767,7 @@ function renderSettings() {
     tabs.forEach(mountTab);
     const draftWorld = isekaiSuffix ? 'Isekai' : 'Persistent';
     const selectedDraftMode = () => document.querySelector('[data-role="battleMode"]')?.dataset.currentValue || getBattleMode('OneHanded');
-    const hasDraftRules = mode => mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks) &&
-        (mode.supports.length || mode.attacks.length || Object.entries(mode).some(([key, value]) => key.startsWith('kb_') && Array.isArray(value) && value.length));
+    const hasDraftRules = jpxConfigHasContent;
     const readDraftBattle = world => {
         if (world === draftWorld) return cfgBattle;
         if (!['Persistent', 'Isekai'].includes(world)) return null;
@@ -10723,7 +10796,7 @@ function renderSettings() {
                             const modes = BATTLE_MODES.filter(mode => hasDraftRules(data[mode]));
                             const source = world === draftWorld ? 'draft' : 'saved';
                             for (const mode of modes) drafts.push({ kind: 'battle-mode', world, mode, source,
-                                supports: data[mode].supports.length, attacks: data[mode].attacks.length,
+                                rules: data[mode].rules.length,
                                 current: world === draftWorld && mode === selected });
                             if (modes.length) drafts.push({ kind: 'battle', world, source, modes: modes.length, current: world === draftWorld });
                         }
@@ -10771,7 +10844,7 @@ function renderSettings() {
                                 if (!(mode in config)) continue;
                                 const data = config[mode];
                                 if (copy.kind === 'battle' && object(data) && !Object.keys(data).length) continue;
-                                if (!object(data) || !Array.isArray(data.supports) || !Array.isArray(data.attacks)) throw new Error('Invalid battle rules');
+                                if (!object(data) || !normalizeJpxBattleMode(data)) throw new Error('Invalid battle rules');
                                 for (const [key, rules] of Object.entries(data)) {
                                     const group = groups.find(field => field.key === (key.startsWith('kb_') ? 'keyBindings' : key));
                                     if (!group) continue;
@@ -12968,6 +13041,33 @@ I18N.cShared = {"title":"Primary / alt shared data","backupSection":"Settings be
 const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:16px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:44px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-meta{margin:3px 0 0;color:var(--jpx-theme-muted, #756753);font-size:12px;overflow-wrap:anywhere}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button),#settings-container.jpx-settings-mobile .jpx-config-rename input{height:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button{min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:14px}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:12px;margin-bottom:16px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:16px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}\n#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}\n#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}\n#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}\n#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}\n#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-comment-row:last-child{border-bottom:0}\n#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}\n#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}\n#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}\n#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}\n#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}\n#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}\n#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}\n#settings-container .jpx-comment-more{margin-top:12px}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}\n#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0}\n#settings-container .jpx-store-rating-summary{display:flex;align-items:center;flex-wrap:wrap;gap:4px 16px}\n#settings-container .jpx-download-count{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-download-count svg{flex:none}\n#settings-container .jpx-rating-heading .jpx-download-count{margin-right:auto}\n#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}\n#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}\n#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}\n#settings-container .jpx-rating-stars{display:flex;gap:8px}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-rating-star svg{width:24px;height:24px}\n#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}\n@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}\n\n/* Keep every control in the store header on the same vertical center line. */\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation) {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation)>button {\n    margin-bottom: 0;\n}\n";
 // The local library is deliberately independent of the editor and battle runtime.
 // Keep PLUS metadata outside native JPX configuration objects.
+function normalizeJpxBattleMode(mode) {
+    if (!mode || typeof mode !== 'object' || Array.isArray(mode)) return false;
+    if (Object.hasOwn(mode, 'rules')) {
+        if (!Array.isArray(mode.rules)) return false;
+    } else {
+        if (!Array.isArray(mode.supports) || !Array.isArray(mode.attacks)) return false;
+        mode.rules = [...mode.supports, ...mode.attacks];
+    }
+    delete mode.supports;
+    delete mode.attacks;
+    for (const [key, rules] of Object.entries(mode)) {
+        if (key !== 'rules' && !key.startsWith('kb_') || !Array.isArray(rules)) continue;
+        for (const rule of rules) {
+            if (!rule || typeof rule !== 'object') continue;
+            if (['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
+            else if (['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
+            if (rule.type === 'target' && 'bottomUp' in rule) {
+                rule.priorityRule = rule.bottomUp ? 'Bottom Up' : 'Top Down';
+                delete rule.bottomUp;
+            }
+            if (rule.type === 'smartDebuff' && typeof rule.targetCount === 'string' && rule.targetCount.trim() && !isNaN(rule.targetCount))
+                rule.targetCount = Number(rule.targetCount);
+        }
+    }
+    return true;
+}
+
 function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersion }) {
     const MAX_JSON = 8 * 1024 * 1024;
     const MAX_ENVELOPE = 2 * 1024 * 1024;
@@ -13056,9 +13156,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!object(mode)) fail('invalidConfig');
         // Native JPX permits an explicitly empty scene and falls back to General.
         if (!Object.keys(mode).length) return;
-        if (!Array.isArray(mode.supports) || !Array.isArray(mode.attacks)) fail('invalidConfig');
+        if (!normalizeJpxBattleMode(mode)) fail('invalidConfig');
         for (const [group, rules] of Object.entries(mode)) {
-            if (group !== 'supports' && group !== 'attacks' && !group.startsWith('kb_')) continue;
+            if (group !== 'rules' && !group.startsWith('kb_')) continue;
             if (!Array.isArray(rules)) fail('invalidConfig');
             for (const rule of rules) {
                 if (!object(rule) || typeof rule.type !== 'string' || !rule.type) fail('invalidConfig');
@@ -13103,19 +13203,6 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
             if (!Object.hasOwn(config, mode)) continue;
             const data = config[mode];
             validateRules(data);
-            for (const rule of data.supports || []) {
-                if (['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
-                else if (['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
-            }
-            for (const rule of data.attacks || []) {
-                if (rule.type === 'target' && 'bottomUp' in rule) {
-                    rule.priorityRule = rule.bottomUp ? 'Bottom Up' : 'Top Down';
-                    delete rule.bottomUp;
-                }
-                if (rule.type === 'smartDebuff' && typeof rule.targetCount === 'string' && rule.targetCount.trim() && !isNaN(rule.targetCount)) {
-                    rule.targetCount = Number(rule.targetCount);
-                }
-            }
         }
         return envelope;
     }
@@ -13154,6 +13241,8 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                         record.revision > entry.revision || !Array.isArray(record.scopes) || !record.scopes.length ||
                         record.scopes.some(scope => typeof scope !== 'string' || !scope) || !object(record.config) ||
                         ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('storageCorrupt');
+                    if (entry.envelope.kind !== 'stats') for (const mode of modeSet)
+                        if (Object.hasOwn(record.config, mode)) validateRules(record.config[mode]);
                 }
             }
             if (Object.hasOwn(state, 'active')) {
@@ -13398,6 +13487,8 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!object(record) || !Number.isSafeInteger(record.revision) || record.revision < 1 || record.revision > entry.revision ||
             !Array.isArray(record.scopes) || !record.scopes.length || record.scopes.some(scope => typeof scope !== 'string' || !scope) ||
             !object(record.config) || ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('invalidConfig');
+        if (entry.envelope.kind !== 'stats') for (const mode of modeSet)
+            if (Object.hasOwn(record.config, mode)) validateRules(record.config[mode]);
         record.scopes = [...new Set(record.scopes)];
         const records = state.applied[world] ||= {};
         for (const [id, applied] of Object.entries(records)) {
@@ -13789,7 +13880,7 @@ function createJpxStoreDownloads() {
 // Construction is offline; network activity starts only after render() is explicitly called.
 function createJpxIntegratedStore(host, translate) {
     'use strict';
-    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","copyCode":"Copy code","copied":"Copied","copyFailed":"Copy failed","cancel":"Cancel","updateShare":"Update","configContents":"Config content","keepSharedConfig":"Keep shared config","noMatchingLocal":"No matching saved configs","shareChanged":"This share changed elsewhere. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn share from the list? Its GitHub record and local configs will stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more","comments":"Comments","writeComment":"Write a comment…","postComment":"Post","commentSignIn":"Sign in to comment","noComments":"No comments yet.","commentsPublic":"Comments are public on GitHub","editComment":"Edit","deleteCommentConfirm":"Delete this comment?","commentPosted":"Comment posted.","commentDeleted":"Comment deleted.","commentNotOwner":"You can only change your own comments.","commentChanged":"This comment has changed. Cancel editing, refresh, and try again.","commentMissing":"This comment is no longer available. Refresh and try again.","commentInvalid":"Enter a comment of up to 10,000 characters.","commentDenied":"You cannot change comments here. Check your GitHub permissions.","commentsClosed":"Comments are closed for this config.","commentSendFailed":"Sending was not confirmed. Refresh to check before posting again.","noRatings":"No ratings yet","ratingCount":"${count} ratings","yourRating":"Your rating","ratingStars":"${score} stars","ratingSignIn":"Sign in to rate","removeRating":"Withdraw","ratingSaved":"Rating saved.","ratingRemoved":"Rating withdrawn.","ratingFailed":"The rating could not be confirmed. Refresh to check.","ratingInvalid":"Choose 1 to 5 stars.","ratingsClosed":"Ratings are closed for this config.","ratingDenied":"You cannot rate this config. Check your GitHub permissions.","ratingChanged":"Your rating changed elsewhere. Refresh and try again.","ratingsTooMany":"Too many comments to load your rating. Open this config on GitHub.","ratingCountOne":"1 rating","downloadCount":"${count} downloads","downloadsUnavailable":"Downloads unavailable"}};
+    const translations = {"en":{"name":"Config store","browse":"Browse","mine":"My configs","share":"Share config","signIn":"Sign in","signOut":"Sign out","signedOut":"Signed out.","currentMode":"Battle mode","allBattle":"All battle settings","stats":"Statistics","persistent":"Persistent","isekai":"Isekai","anyWorld":"Both worlds","back":"Back","retry":"Retry","refresh":"Refresh","search":"Search configs or authors","type":"Type","allTypes":"All types","loading":"Loading…","noMatches":"No matching configs.","noConfigs":"No configs have been published yet.","cannotLoad":"This content could not be loaded.","columns":"Columns","combatRows":"Combat rows","revenueRows":"Revenue rows","supports":"Support rules","attacks":"Attack rules","customCode":"Custom code","viewConfig":"View configuration","scriptVersion":"Script version","import":"Import into settings","download":"Download config","imported":"Imported. Review your settings, then save.","importHint":"Importing can be undone. Save in Settings when ready.","connecting":"Connecting to GitHub…","authHint":"Enter this code on GitHub to authorize JPX-PLUS.","authorize":"Authorize on GitHub","waitingAuth":"Waiting for authorization. This page will continue automatically.","copyCode":"Copy code","copied":"Copied","copyFailed":"Copy failed","cancel":"Cancel","updateShare":"Update","configContents":"Config content","keepSharedConfig":"Keep shared config","noMatchingLocal":"No matching saved configs","shareChanged":"This share changed elsewhere. Reopen it before submitting.","localChanged":"This saved config changed. Select it again before submitting.","updateSubmitted":"Update submitted for review.","editShare":"Edit","world":"World","title":"Title","description":"Description","submit":"Submit for review","submitUpdate":"Submit update","reviewHint":"Shared publicly on GitHub. Code and suspicious content require AI security review and maintainer approval.","loginBeforeShare":"Sign in to GitHub when you submit. Your draft stays here.","submitting":"Submitting…","submitted":"Submitted for review.","pending":"In review","published":"Published","changes":"Changes needed","needsReview":"Maintainer review","unavailable":"Review unavailable","hidden":"Hidden","withdrawn":"Withdrawn","noShares":"No shared configs.","withdraw":"Withdraw","removeShare":"Remove from list","removeShareConfirm":"Remove this withdrawn share from the list? Its GitHub record and local configs will stay.","withdrawFirst":"Withdraw this share before removing its record. Refresh the list and try again.","withdrawConfirm":"Withdraw this configuration from the store? Players who imported it will keep their local copy.","review":"Review feedback","noReview":"No review is available for this revision yet.","loginRequired":"Sign in to GitHub to manage your shared configs.","notConfigured":"GitHub sign-in is not configured yet.","rateLimit":"GitHub's request limit was reached. Please try again later.","networkError":"Could not reach GitHub. Check your connection and try again.","invalidConfig":"This configuration has an invalid format.","tooLarge":"This configuration exceeds the size limit.","integrityError":"The downloaded configuration did not pass its integrity check.","requestFailed":"The request failed. Please try again.","OneHanded":"One-handed","1H_Mage":"1H Mage","TwoHanded":"Two-handed","2H_Mage":"2H Mage","DualWielding":"Dual wield","DW_Mage":"DW Mage","NitenIchiryu":"Niten Ichiryu","NI_Mage":"NI Mage","Staff":"Staff","Unarmed":"Unarmed","General":"General","Arena":"Arena","Encounter":"Encounter","Colosseum":"Colosseum","Battle1000":"Grindfest","Item":"Item World","Tower":"Tower","publishedVersion":"Published version","accessDenied":"GitHub authorization was cancelled.","loginExpired":"The authorization code expired. Please sign in again.","managerUnavailable":"Enable the plugin permissions in your userscript manager.","notOwner":"Only the author can edit this configuration.","submissionClosed":"This configuration has been withdrawn. Share it again as a new submission.","tooManySubmissions":"There are too many submissions to load at once. Please open GitHub to manage them.","local":"Current","backpack":"Backpack","shared":"Shared","style":"Style","battleType":"Battle type","all":"All","shareShort":"Share","useConfig":"Use config","chooseConfig":"Choose a config","currentSettings":"Current settings","savedSettings":"Saved settings","noLocal":"No local configs are available.","updateCore":"Update JPX-PLUS to browse saved configs from both worlds. Current settings are available below.","changeConfig":"Change config","appliesTo":"Applies to","saveBackpack":"Save to backpack","saveCurrent":"Save a current config","emptyBackpack":"Your backpack is empty. Save configs from your settings or the store to keep several versions.","searchBackpack":"Search backpack","editBackpack":"Edit saved config","save":"Save","saving":"Saving…","savedBackpack":"Saved to backpack.","backpackHint":"Kept locally in this browser. Apply or share it when you are ready.","apply":"Apply config","delete":"Delete","deleteBackpackConfirm":"Delete this copy from your backpack? Your applied settings and shared configs will stay unchanged.","storageCorrupt":"The backpack data could not be read. Your saved data has been kept.","storageError":"Could not access backpack storage. Please check the plugin permissions and try again.","localNotFound":"This config is no longer in your backpack.","savedConfig":"Saved to My configs.","saved":"Saved","filters":"Filters","allWorlds":"Any world","allStyles":"All styles","allBattles":"All battles","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","resultCount":"${count} found","showMore":"Show more","comments":"Comments","writeComment":"Write a comment…","postComment":"Post","commentSignIn":"Sign in to comment","noComments":"No comments yet.","commentsPublic":"Comments are public on GitHub","editComment":"Edit","deleteCommentConfirm":"Delete this comment?","commentPosted":"Comment posted.","commentDeleted":"Comment deleted.","commentNotOwner":"You can only change your own comments.","commentChanged":"This comment has changed. Cancel editing, refresh, and try again.","commentMissing":"This comment is no longer available. Refresh and try again.","commentInvalid":"Enter a comment of up to 10,000 characters.","commentDenied":"You cannot change comments here. Check your GitHub permissions.","commentsClosed":"Comments are closed for this config.","commentSendFailed":"Sending was not confirmed. Refresh to check before posting again.","noRatings":"No ratings yet","ratingCount":"${count} ratings","yourRating":"Your rating","ratingStars":"${score} stars","ratingSignIn":"Sign in to rate","removeRating":"Withdraw","ratingSaved":"Rating saved.","ratingRemoved":"Rating withdrawn.","ratingFailed":"The rating could not be confirmed. Refresh to check.","ratingInvalid":"Choose 1 to 5 stars.","ratingsClosed":"Ratings are closed for this config.","ratingDenied":"You cannot rate this config. Check your GitHub permissions.","ratingChanged":"Your rating changed elsewhere. Refresh and try again.","ratingsTooMany":"Too many comments to load your rating. Open this config on GitHub.","ratingCountOne":"1 rating","downloadCount":"${count} downloads","downloadsUnavailable":"Downloads unavailable","rules":"Rules"}};
     const t = key => {
         const name = key.replace(/^cStore\./, '');
         const pack = host.jpxI18N?.cStore?.[name];
@@ -13885,8 +13976,8 @@ const jpxConfigStore = (() => {
             let ruleCount = 0;
             for (const mode of selected) {
                 if (value.kind === 'battle' && object(config[mode]) && !Object.keys(config[mode]).length) continue;
-                if (!object(config[mode]) || !Array.isArray(config[mode].supports) || !Array.isArray(config[mode].attacks)) fail('invalidConfig');
-                for (const group of ['supports', 'attacks', ...Object.keys(config[mode]).filter(key => key.startsWith('kb_'))]) {
+                if (!object(config[mode]) || (Object.hasOwn(config[mode], 'rules') ? !Array.isArray(config[mode].rules) : !Array.isArray(config[mode].supports) || !Array.isArray(config[mode].attacks))) fail('invalidConfig');
+                for (const group of [...(Array.isArray(config[mode].rules) ? ['rules'] : ['supports', 'attacks']), ...Object.keys(config[mode]).filter(key => key.startsWith('kb_'))]) {
                     const rules = config[mode][group], allowed = ruleTypes[group] || ruleTypes.keys;
                     if (!Array.isArray(rules)) fail('invalidConfig');
                     if ((ruleCount += rules.length) > 2000) fail('tooLarge');
@@ -14727,12 +14818,14 @@ function renderConfigStore(parent, hooks, options = {}) {
             for (const [key, name] of [['statsColumns', 'columns'], ['combatRows', 'combatRows'], ['revenueRows', 'revenueRows']])
                 if (Array.isArray(values[key])) counts.push(tr(name) + ': ' + values[key].filter(item => item.disabled !== true).length);
         } else {
-            let supports = 0, attacks = 0, code = 0;
-            for (const mode of Object.values(values)) if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) {
-                supports += mode.supports.length; attacks += mode.attacks.length;
-                code += [...mode.supports, ...mode.attacks].filter(rule => rule.type === 'kamisamaniNattaHi').length;
+            let count = 0, code = 0;
+            for (const mode of Object.values(values)) {
+                const rules = Array.isArray(mode?.rules) ? mode.rules :
+                    Array.isArray(mode?.supports) && Array.isArray(mode.attacks) ? [...mode.supports, ...mode.attacks] : [];
+                count += rules.length;
+                code += rules.filter(rule => rule.type === 'kamisamaniNattaHi').length;
             }
-            counts.push(tr('supports') + ': ' + supports, tr('attacks') + ': ' + attacks);
+            counts.push(tr('rules') + ': ' + count);
             if (code) counts.push(tr('customCode') + ': ' + code);
         }
         return counts.join(' · ');
@@ -15071,9 +15164,9 @@ const jpxConfigLibraryKey = 'jpx_configLibrary_v1';
 const jpxConfigApplyKey = 'jpx_configApplySignal_v1';
 const jpxConfigClone = value => JSON.parse(JSON.stringify(value));
 const jpxConfigWorld = () => isekaiSuffix ? 'Isekai' : 'Persistent';
-const jpxConfigHasRules = value => value && Array.isArray(value.supports) && Array.isArray(value.attacks);
+const jpxConfigHasRules = value => value && (Object.hasOwn(value, 'rules') ? Array.isArray(value.rules) : Array.isArray(value.supports) && Array.isArray(value.attacks));
 const jpxConfigHasContent = value => jpxConfigHasRules(value) && Object.entries(value).some(([key, rules]) =>
-    (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
+    (key === 'rules' || !Array.isArray(value.rules) && (key === 'supports' || key === 'attacks') || key.startsWith('kb_')) && Array.isArray(rules) && rules.length);
 let jpxSelectedConfig;
 let jpxSceneRuntime = { scenes: {} };
 const jpxConfigSceneLabel = scene => scene === 'Battle1000' ? t('cM.grindfest') : t('cB.' + scene);
@@ -15141,6 +15234,7 @@ function refreshJpxSelectedConfig() {
     try {
         const runtime = getJpxConfigLibrary().readRuntime(jpxConfigWorld()), record = runtime.selection;
         jpxSceneRuntime = runtime;
+        if (record?.mode) normalizeJpxBattleMode(cfgBattle[record.mode]);
         if (record?.mode && BATTLE_MODES.includes(record.mode) && jpxConfigHasRules(cfgBattle[record.mode]) &&
             JSON.stringify(cfgBattle[record.mode]) === JSON.stringify(record.config[record.mode])) {
             jpxSelectedConfig = { mode: record.mode, rules: cfgBattle[record.mode] };
@@ -15168,7 +15262,9 @@ function getJpxBattleRules(defaultStyle = '') {
     const selected = getJpxSelectedBattleMode();
     if (selected) return cfgBattle[selected];
     if (jpxSceneRuntime.failed) return null;
-    return resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+    const mode = resolveJpxScene(battleStyle || defaultStyle, battleType).rules;
+    if (mode && !Array.isArray(mode.rules)) normalizeJpxBattleMode(mode);
+    return mode;
 }
 
 function syncJpxSceneRuntime() {
@@ -15871,7 +15967,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             captureList(); openEditor(entry, entry.envelope.mode);
             state.editor.history.run(tr('reset'), () => {
                 const mode = entry.envelope.mode, execution = state.editor.draft.envelope.config[mode].jpxPlusExecution;
-                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { supports: [], attacks: [] });
+                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { rules: [] });
                 if (execution) state.editor.draft.envelope.config[mode].jpxPlusExecution = execution;
                 state.editor.redraw();
             });
@@ -15968,7 +16064,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 if (single && !imported) {
                     const selectedStyle = style.value === 'auto' ? mode.slice(0,split) : style.value;
                     const nextMode = selectedStyle + '_' + scenario.value;
-                    const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { supports:[],attacks:[] });
+                    const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { rules:[] });
                     if (next.mode && next.mode !== nextMode) delete next.config[next.mode];
                     if (style.value !== 'auto' || element.value !== 'auto') rules.jpxPlusExecution = { style:style.value, element:element.value };
                     else delete rules.jpxPlusExecution;
@@ -16136,7 +16232,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const content=el('div',undefined,'jpx-config-editor-content'), footer=el('div',undefined,'jpx-config-editor-footer');
         const undoButton=button(tr('undo'),()=>history.undo()),redoButton=button(tr('redo'),()=>history.redo());
         const saveButton=button(tr('save'),()=>saveEditor(),'jpx-config-primary');
-        footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);root.append(notice,editor);
+        footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);
         const previousHistory=settingsEditHistory;
         state.editor={draft,mode,baseline:'',previousHistory,revision:entry.revision,history:null};
         const draw=()=>{
@@ -16187,7 +16283,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             if(!['z','y'].includes(event.key.toLowerCase()))return;event.preventDefault();event.stopPropagation();
             if(event.key.toLowerCase()==='y'||event.shiftKey)history.redo();else history.undo();
         });
-        state.editor.history=history;settingsEditHistory=history;update();
+        state.editor.history=history;settingsEditHistory=history;update();root.append(notice,editor);
         (root.closest('.jpx-settings-mobile') ? document.getElementById('close-button') : back).focus({preventScroll:true});
     }
     const dirty=()=>!!state.editor&&JSON.stringify(state.editor.draft.envelope)!==state.editor.baseline;
@@ -16335,7 +16431,7 @@ function getJpxLoadoutCatalog(world = jpxConfigWorld()) {
 
 function jpxConfigContainsCode(envelope) {
     return BATTLE_MODES.some(mode => Object.entries(envelope.config[mode] || {}).some(([key, rules]) =>
-        (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) &&
+        (key === 'rules' || key === 'supports' || key === 'attacks' || key.startsWith('kb_')) &&
         Array.isArray(rules) && rules.some(rule => rule.type === 'kamisamaniNattaHi')));
 }
 

@@ -97,7 +97,7 @@ for(const withoutNative of [false,true]) test('current export uses the assigned 
     const expected=await f.page.evaluate(()=>__exportTest.snapshot());
     await f.page.locator('#export-button').click();
     const current=await download(f);
-    assert.equal(current.data.TwoHanded_Tower.supports[0].customMessage,'Assigned export');
+    assert.equal(current.data.TwoHanded_Tower.rules[0].customMessage,'Assigned export');
     await f.page.locator('#export-button').click();await f.page.locator('[data-export-scope=all]').click();
     const full=await download(f);assert.deepEqual(full.data,expected.config);
     await f.page.locator('#export-button').click();await f.page.locator('[data-export-scope=choose]').click();

@@ -10,6 +10,8 @@
 
 **[安裝 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[互動預覽](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [更新內容](CHANGELOG.md#简体中文)
 
+由 2026.11.13 起，輔助與攻擊合併為一份規則列表，普通攻擊也可設定條件。規則在同一列表中編輯，支援展開收起、拖曳排序及操作選單。更新前請備份設定；舊設定載入時會自動轉換，儲存後使用新格式。
+
 ## 安裝
 
 1. 透過用戶腳本管理器安裝 JPX-PLUS，然後重新整理 HentaiVerse。

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.11.3
+// @version      2026.11.13
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -129,6 +129,12 @@
         "downloadBattleLog": "전투 로그 다운로드"
     },
     "cB": {
+			"rules": "규칙",
+			"addRule": "규칙 추가",
+			"ruleActions": "규칙 작업",
+			"insertBefore": "위에 삽입",
+			"insertAfter": "아래에 삽입",
+
         "battleSettings": "전투 설정",
         "panelFields": "표시 항목",
         "panelTextColor": "텍스트",
@@ -966,6 +972,7 @@
     }
 };
     i18n.cStore = {
+        "rules": "규칙",
     "name": "설정 스토어",
     "browse": "둘러보기",
     "mine": "내 설정",

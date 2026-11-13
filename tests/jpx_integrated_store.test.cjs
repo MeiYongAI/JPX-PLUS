@@ -99,3 +99,24 @@ test('embedded store exposes Browse and Shared, saves locally, and opens share w
     assert.equal(await page.getByRole('button', { name: 'Change config', exact: true }).count(), 0);
     assert.deepEqual(errors, []);
 });
+
+
+test('client and server accept ordered unified rules and reject malformed rule lists', async () => {
+    const fixture = sandbox();
+    vm.runInContext(source + ';globalThis.integrated = createJpxIntegratedStore(unsafeWindow, key => key);', fixture.context);
+    const input = clone(envelope);
+    input.config.TwoHanded_General = { rules: [
+        { type: 'target', priorityRule: 'Top Down', conditions: [] },
+        { type: 'spellSupport', name: 'Cure', conditions: [{ key: 'tHP', value: [0, .5] }] },
+        { type: 'normalAttack', conditions: [{ key: 'pMP', value: [0, .2] }] }
+    ], kb_Q: [{ type: 'normalAttack' }] };
+    assert.deepEqual(clone(fixture.context.integrated.service.prepare(input)), input);
+    if (fs.existsSync(serverValidator)) {
+        const { validateEnvelope } = await import(pathToFileURL(serverValidator));
+        assert.deepEqual(validateEnvelope(input).envelope, input);
+        const invalid = clone(input); invalid.config.TwoHanded_General.rules = {};
+        assert.throws(() => validateEnvelope(invalid));
+    }
+    const invalid = clone(input); invalid.config.TwoHanded_General.rules = {};
+    assert.throws(() => fixture.context.integrated.service.prepare(invalid));
+});

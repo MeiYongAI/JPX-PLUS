@@ -65,7 +65,7 @@ function expose() {
         },
         ageEquipment() { const key=jpxDetectedFamilyKey(), saved=JSON.parse(localStorage.getItem(key)); saved.verifiedAt-=86400000; localStorage.setItem(key,JSON.stringify(saved)); },
         run(tier = 'T1', element = '') {
-            const rules = getJpxBattleRules(); if (rules) rules.attacks[1].name = tier;
+            const rules = getJpxBattleRules(); if (rules) rules.rules.find(rule => rule.type === 'spellDamage').name = tier;
             if (rules && element) rules.jpxPlusExecution = { element };
             isActiveBattle = true; smartBattle();
             return { active: isActiveBattle, ready: readyNext, clicks: [...window.__spellClicks], targets: window.__attacks };

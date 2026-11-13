@@ -10,6 +10,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 
 const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'JPX-PLUS.user.js'), 'utf8');
+const normalized = config => { const copy=structuredClone(config); for (const mode of Object.values(copy.config || copy)) if(mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) { mode.rules=[...mode.supports,...mode.attacks]; delete mode.supports;delete mode.attacks; } return copy; };
 const rules = marker => ({ supports: [{ type: 'stop', customMessage: marker, conditions: [] }], attacks: [{ type: 'normalAttack' }] });
 const html = equipment => '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body>' +
     '<div id="csp"><div id="navbar"></div></div>' + (equipment ? '<div id="eqsb">' +
@@ -191,10 +192,10 @@ test('scene panel assigns snapshots, inherits General, isolates worlds and pause
     };
     const original=(await snapshot(page)).native;
     await assign('General',general);await assign('Arena',arena);
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff Arena');
     assert.equal((await snapshot(page)).native,original,'assignments do not overwrite native settings');
     await page.locator('[data-scene-style]').selectOption('OneHanded');
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff Arena');
     await page.locator('[data-scene-style]').selectOption('Staff');
     await page.locator('[data-scene-world]').selectOption('Isekai');
     assert.deepEqual(await page.locator('[data-scene]').evaluateAll(rows=>rows.map(row=>row.dataset.scene)),['General','Arena','Item','Tower','Battle1000']);
@@ -202,11 +203,11 @@ test('scene panel assigns snapshots, inherits General, isolates worlds and pause
     await page.locator('[data-scene-world]').selectOption('Persistent');
     await assign('Arena',null);
     assert.match(await page.locator('[data-scene="Arena"] select').evaluate(node=>node.selectedOptions[0].textContent),/Inherit General.*My Staff General/);
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff General');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff General');
     await page.reload();await initialize(page);
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff General');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff General');
     await apply(page,arena,labels);
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'My Staff Arena');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff Arena');
     await page.getByRole('button',{name:'Restore automatic selection',exact:true}).click();
     await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
     await page.evaluate(()=>__selection.beginBattle());
@@ -226,7 +227,7 @@ test('another tab assigns scene snapshots without switching on save, and detach 
     const area=settings.locator('[data-scene="Arena"]');
     await area.locator('select').selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
     await area.getByRole('button',{name:'Assign',exact:true}).click();
-    await page.waitForFunction(()=>__selection.runtime().rules.supports[0].customMessage==='Assigned from another tab'&&!__selection.running());
+    await page.waitForFunction(()=>__selection.runtime().rules.rules[0].customMessage==='Assigned from another tab'&&!__selection.running());
     await page.evaluate(()=>__selection.beginBattle());
     await addMode(settings,'Unused saved copy','Staff_General');
     await page.waitForFunction(()=>__selection.library().entries.some(entry=>entry.envelope.title==='Unused saved copy'));
@@ -237,7 +238,7 @@ test('another tab assigns scene snapshots without switching on save, and detach 
     assert.match(await settings.locator('.jpx-config-confirm').textContent(),/Scene strategies/);
     await settings.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
     await page.waitForFunction(()=>!__selection.running()&&__selection.runtime().mode==='Staff_General');
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'native staff');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'native staff');
     assertClean(f);
 });
 
@@ -319,22 +320,22 @@ test('multiple General configs keep their explicit assignment across saves sorti
     const arena = page.locator('[data-scene=Arena]');
     await arena.locator('select').selectOption('');
     await arena.getByRole('button', {name:'Assign',exact:true}).click();
-    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General B');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].customMessage, 'General B');
     await addMode(page, 'General C', 'Staff_General');
     await page.locator('.jpx-config-back').click();
     await page.locator('[data-config-sort]').selectOption('name');
     await row(page, second.id).getByRole('button', {name:'Edit',exact:true}).click();
     const editor = page.locator('.jpx-config-editor');
-    await editor.locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().click();
+    await editor.locator('#jpx-rule-panel-rules .jpx-rule-state-toggle').first().click();
     await editor.locator('.jpx-config-editor-footer').getByRole('button', {name:'Save',exact:true}).click();
-    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].disabled, undefined, 'saved edits do not replace assigned rules');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].disabled, undefined, 'saved edits do not replace assigned rules');
     await page.reload(); await initialize(page);
     assert.equal((await snapshot(page)).selected, '');
-    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General B');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].customMessage, 'General B');
     assert.equal((await library(page)).scenes.Persistent.Staff_General.id, second.id);
     await page.getByRole('button', {name:'Scene strategies',exact:true}).click();
     await assignGeneral(first);
-    assert.equal((await page.evaluate(() => __selection.runtime())).rules.supports[0].customMessage, 'General A');
+    assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].customMessage, 'General A');
     assertClean(f);
 });
 
@@ -373,7 +374,7 @@ test('scene edits reveal only pending actions, cancel without writes and restore
     await area.getByRole('button',{name:'Assign',exact:true}).click();
     assert.equal(await area.locator('select').evaluate(node=>node===document.activeElement),true);
     assert.equal(await page.locator('.jpx-scene-pending:visible').count(),0);
-    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.supports[0].customMessage,'Arena alternative');
+    assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'Arena alternative');
     assertClean(f);
 });
 
@@ -466,7 +467,7 @@ test('old untouched native placeholders stay hidden while saved empty drafts and
     const beforeNavigation = await library(page);
     for (const original of old) {
         const stored = beforeNavigation.entries.find(entry => entry.id === original.id);
-        assert.deepEqual(stored.envelope, original.envelope, 'hidden placeholders are retained without data loss');
+        assert.deepEqual(stored.envelope, normalized(original.envelope), 'hidden placeholders are retained without data loss');
         assert.equal(stored.revision, original.revision);
     }
     await page.locator('#tab_stats').click(); await page.locator('#tab_configManager').click();
@@ -549,18 +550,18 @@ test('saving an active draft retains its applied snapshot until Update & apply i
     const before = await snapshot(page), previous = await library(page);
     await row(page, entry.id).getByRole('button', { name: labels.edit, exact: true }).click();
     const editor = page.locator('.jpx-config-editor');
-    await editor.locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().click();
+    await editor.locator('#jpx-rule-panel-rules .jpx-rule-state-toggle').first().click();
     await editor.locator('.jpx-config-editor-footer').getByRole('button', { name: labels.save, exact: true }).click();
     await row(page, entry.id).getByRole('button', { name: labels.updateApply, exact: true }).waitFor();
     const state = await library(page), saved = state.entries.find(item => item.id === entry.id);
     assert.equal(saved.revision, entry.revision + 1);
-    assert.equal(saved.envelope.config.OneHanded_Item.supports[0].disabled, true);
+    assert.equal(saved.envelope.config.OneHanded_Item.rules[0].disabled, true);
     assert.deepEqual(state.applied.Persistent[entry.id], previous.applied.Persistent[entry.id]);
     assert.deepEqual(await snapshot(page), before, 'saving never mutates the runtime or native storage');
     await assertCurrentBattle(page, entry.id);
     await row(page, entry.id).getByRole('button', { name: labels.updateApply, exact: true }).click();
     await page.waitForFunction(id => __selection.library().applied.Persistent[id].revision === __selection.get(id).revision, entry.id);
-    assert.equal((await snapshot(page)).config.OneHanded_Item.supports[0].disabled, true);
+    assert.equal((await snapshot(page)).config.OneHanded_Item.rules[0].disabled, true);
     assert.equal((await snapshot(page)).mode, 'OneHanded_Item');
     await assertCurrentBattle(page, entry.id);
     assertClean(f);
@@ -580,7 +581,7 @@ test('another tab changes the exact selected mode and pauses a running battle be
     const observed = await snapshot(battlePage);
     assert.equal(observed.mode, 'TwoHanded_Item');
     assert.equal(observed.detected, '');
-    assert.equal(observed.config.TwoHanded_Item.supports[0].customMessage, 'From another tab');
+    assert.equal(observed.config.TwoHanded_Item.rules[0].customMessage, 'From another tab');
     await assertCurrentBattle(battlePage, entry.id);
     assertClean(f);
 });

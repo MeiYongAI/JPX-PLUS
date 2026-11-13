@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.11.3
+// @version      2026.11.13
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -120,6 +120,12 @@
 			"downloadBattleLog": "下载战斗日志"
 		},
 		"cB": {
+			"rules": "规则",
+			"addRule": "添加规则",
+			"ruleActions": "规则操作",
+			"insertBefore": "在上方插入",
+			"insertAfter": "在下方插入",
+
             "battleSettings": "战斗设置",
 			"panelFields": "显示项目",
 			"panelTextColor": "文本",
@@ -957,6 +963,7 @@
 		}
 	};
     i18n.cStore = {
+        "rules": "规则",
         "name": "配置商店",
         "browse": "浏览",
         "mine": "我的配置",

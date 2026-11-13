@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.11.3
+// @version      2026.11.13
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -129,6 +129,12 @@
             "downloadBattleLog": "戦闘ログをダウンロード"
         },
         "cB": {
+			"rules": "ルール",
+			"addRule": "ルールを追加",
+			"ruleActions": "ルール操作",
+			"insertBefore": "上に挿入",
+			"insertAfter": "下に挿入",
+
             "battleSettings": "戦闘設定",
             "panelFields": "表示項目",
             "panelTextColor": "文字",
@@ -965,6 +971,7 @@
             "ed": "Energy Drink"
         },
         "cStore": {
+        "rules": "ルール",
             "name": "設定ストア",
             "browse": "探す",
             "mine": "マイ設定",

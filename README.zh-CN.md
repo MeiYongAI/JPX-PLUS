@@ -10,6 +10,8 @@
 
 **[安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [本次改动](CHANGELOG.md#简体中文)
 
+2026.11.13 起，辅助与攻击合并为一个规则列表，普通攻击也能设置条件。规则在同一列表中编辑，支持展开收起、拖动排序和操作菜单。更新前请备份配置；旧配置加载时自动转换，保存后使用新格式。
+
 ## 安装
 
 1. 使用脚本管理器安装 JPX-PLUS，刷新游戏。

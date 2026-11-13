@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026.11.13
+
+- Synced upstream 2026.11.11 battle rules: support and attack actions now share one ordered rule list; normal attacks accept conditions.
+- Simplified the rule editor into one full-width list: compact rows, one Add rule picker, drag and keyboard sorting, and secondary actions in menus. No duplicate outline panel on desktop or phones.
+- Reduced long-list editor rendering work; bulk expand/collapse runs in cancellable batches with animation.
+- Migrated legacy configurations, applied snapshots and automatic scene assignments together; imports and exports use the new native format. Existing saved data is not rewritten merely by loading it.
+- Updated all five language packs. Store validation supports both formats; deploy the matching JPX-PLUS-Configs changes before publishing new-format shares.
+- Back up battle settings before updating. Configurations saved in the new format require this release or upstream 2026.11.11; older versions cannot read them.
+
 ## 2026.11.11.3
 
 - Stop retaining unused full-log downloads when viewing battle statistics. Generate download data only on click, release its URL after use, and remove routine console dumps of full logs and record objects.

@@ -1,5 +1,32 @@
 // The local library is deliberately independent of the editor and battle runtime.
 // Keep PLUS metadata outside native JPX configuration objects.
+function normalizeJpxBattleMode(mode) {
+    if (!mode || typeof mode !== 'object' || Array.isArray(mode)) return false;
+    if (Object.hasOwn(mode, 'rules')) {
+        if (!Array.isArray(mode.rules)) return false;
+    } else {
+        if (!Array.isArray(mode.supports) || !Array.isArray(mode.attacks)) return false;
+        mode.rules = [...mode.supports, ...mode.attacks];
+    }
+    delete mode.supports;
+    delete mode.attacks;
+    for (const [key, rules] of Object.entries(mode)) {
+        if (key !== 'rules' && !key.startsWith('kb_') || !Array.isArray(rules)) continue;
+        for (const rule of rules) {
+            if (!rule || typeof rule !== 'object') continue;
+            if (['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
+            else if (['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
+            if (rule.type === 'target' && 'bottomUp' in rule) {
+                rule.priorityRule = rule.bottomUp ? 'Bottom Up' : 'Top Down';
+                delete rule.bottomUp;
+            }
+            if (rule.type === 'smartDebuff' && typeof rule.targetCount === 'string' && rule.targetCount.trim() && !isNaN(rule.targetCount))
+                rule.targetCount = Number(rule.targetCount);
+        }
+    }
+    return true;
+}
+
 function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersion }) {
     const MAX_JSON = 8 * 1024 * 1024;
     const MAX_ENVELOPE = 2 * 1024 * 1024;
@@ -88,9 +115,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!object(mode)) fail('invalidConfig');
         // Native JPX permits an explicitly empty scene and falls back to General.
         if (!Object.keys(mode).length) return;
-        if (!Array.isArray(mode.supports) || !Array.isArray(mode.attacks)) fail('invalidConfig');
+        if (!normalizeJpxBattleMode(mode)) fail('invalidConfig');
         for (const [group, rules] of Object.entries(mode)) {
-            if (group !== 'supports' && group !== 'attacks' && !group.startsWith('kb_')) continue;
+            if (group !== 'rules' && !group.startsWith('kb_')) continue;
             if (!Array.isArray(rules)) fail('invalidConfig');
             for (const rule of rules) {
                 if (!object(rule) || typeof rule.type !== 'string' || !rule.type) fail('invalidConfig');
@@ -135,19 +162,6 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
             if (!Object.hasOwn(config, mode)) continue;
             const data = config[mode];
             validateRules(data);
-            for (const rule of data.supports || []) {
-                if (['spellInstant', 'spellDuration'].includes(rule.type)) rule.type = 'spellSupport';
-                else if (['itemInstant', 'itemDuration'].includes(rule.type)) rule.type = 'item';
-            }
-            for (const rule of data.attacks || []) {
-                if (rule.type === 'target' && 'bottomUp' in rule) {
-                    rule.priorityRule = rule.bottomUp ? 'Bottom Up' : 'Top Down';
-                    delete rule.bottomUp;
-                }
-                if (rule.type === 'smartDebuff' && typeof rule.targetCount === 'string' && rule.targetCount.trim() && !isNaN(rule.targetCount)) {
-                    rule.targetCount = Number(rule.targetCount);
-                }
-            }
         }
         return envelope;
     }
@@ -186,6 +200,8 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
                         record.revision > entry.revision || !Array.isArray(record.scopes) || !record.scopes.length ||
                         record.scopes.some(scope => typeof scope !== 'string' || !scope) || !object(record.config) ||
                         ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('storageCorrupt');
+                    if (entry.envelope.kind !== 'stats') for (const mode of modeSet)
+                        if (Object.hasOwn(record.config, mode)) validateRules(record.config[mode]);
                 }
             }
             if (Object.hasOwn(state, 'active')) {
@@ -430,6 +446,8 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (!object(record) || !Number.isSafeInteger(record.revision) || record.revision < 1 || record.revision > entry.revision ||
             !Array.isArray(record.scopes) || !record.scopes.length || record.scopes.some(scope => typeof scope !== 'string' || !scope) ||
             !object(record.config) || ('execution' in record && !object(record.execution)) || !validRecordMode(record)) fail('invalidConfig');
+        if (entry.envelope.kind !== 'stats') for (const mode of modeSet)
+            if (Object.hasOwn(record.config, mode)) validateRules(record.config[mode]);
         record.scopes = [...new Set(record.scopes)];
         const records = state.applied[world] ||= {};
         for (const [id, applied] of Object.entries(records)) {

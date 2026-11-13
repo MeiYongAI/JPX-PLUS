@@ -19,7 +19,7 @@ function setup({ stored = true } = {}) {
     const values = new Map(), storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
     if (stored) values.set('jpx_cfgBattle', JSON.stringify(native()));
     const utils = { isEmpty: value => !value || !Object.keys(value).length, parseValue: value => typeof value === 'string' && value.trim() && !isNaN(value) ? Number(value) : value };
-    const merge = new Function('BATTLE_MODES', 'jpxUtils', mergeCode + ';return mergeCfg;')(modes, utils);
+    const merge = new Function('BATTLE_MODES', 'jpxUtils', libraryCode + mergeCode + ';return mergeCfg;')(modes, utils);
     const window = { JPXPlus: { version: 'test' }, dispatchEvent() {} };
     const api = new Function('createJpxConfigLibrary', 'localStorage', 'prefix', 'isekaiSuffix', 'cfgBattle', 'defaultCfgBattle', 'defaultCfgStats', 'BATTLE_MODES', 't', 'window', 'mergeCfg', 'crypto', 'TextEncoder', managerTop + ';return {seed:seedJpxConfigLibrary,migrate:migrateJpxLegacyConfigs,library:getJpxConfigLibrary};')(
         factory, storage, 'jpx_', '', native(), native(), { statsVersion: 20260109 }, modes, key => key, window, merge, webcrypto, TextEncoder);

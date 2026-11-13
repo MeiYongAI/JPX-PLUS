@@ -4,6 +4,7 @@ const { test, before, after } = require('node:test');
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fixture, envelope, choose, save, row, mainHTML } = require('./fixtures/battle-import.cjs');
+const { normalized } = require('./fixtures/battle-import.cjs');
 let browser;
 before(async () => { browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL || 'chrome', headless: true }); });
 after(async () => browser?.close());
@@ -29,7 +30,7 @@ for (const isekai of [false, true]) for (const status of ['lobby', 'running', 'p
         const after = await snapshot(page);
         assert.deepEqual(runtime(after), runtime(before));
         const saved = await page.evaluate(() => __imports.library().entries.find(entry => entry.envelope.title === 'Import case'));
-        assert.deepEqual(saved.envelope.config, value.config);
+        assert.deepEqual(saved.envelope.config, normalized(value).config);
         assert.equal(saved.envelope.world, world);
         assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /Imported.*Import case.*My configs.*Not applied yet/s);
     });
@@ -56,7 +57,7 @@ test('UTF-8 BOM text exports import without losing their native configuration', 
     await choose(page, Buffer.from('\ufeff' + JSON.stringify(value)), 'Windows export.txt');
     await save(page);
     const saved = await page.evaluate(() => __imports.library().entries.find(entry => entry.envelope.title === 'Import case'));
-    assert.deepEqual(saved.envelope, value);
+    assert.deepEqual(saved.envelope, normalized(value));
 });
 
 test('cancelling the name form or the whole-config application preserves runtime and storage', async t => {
@@ -157,7 +158,7 @@ for (const isekai of [false, true]) test('applying an imported opposite-world co
     const after = await snapshot(page);
     assert.deepEqual(after.config, before.config); assert.equal(after.native, before.native); assert.equal(after.active, true);
     assert.equal(after.attacks, before.attacks);
-    assert.deepEqual(JSON.parse(after.otherWorld).OneHanded_Item, value.config.OneHanded_Item);
+    assert.deepEqual(JSON.parse(after.otherWorld).OneHanded_Item, normalized(value).config.OneHanded_Item);
 });
 
 test('world-independent import waits for explicit destination and applies to the chosen world', async t => {
@@ -170,7 +171,7 @@ test('world-independent import waits for explicit destination and applies to the
     await page.locator('.jpx-config-confirm').getByRole('button', { name: 'Apply', exact: true }).click();
     const after = await snapshot(page);
     assert.equal(after.active, true); assert.deepEqual(after.config, before.config);
-    assert.deepEqual(JSON.parse(after.otherWorld).OneHanded_Item, value.config.OneHanded_Item);
+    assert.deepEqual(JSON.parse(after.otherWorld).OneHanded_Item, normalized(value).config.OneHanded_Item);
 });
 
 test('statistics-only import and application do not alter running battle rules', async t => {
@@ -209,7 +210,7 @@ for (const status of ['paused', 'stop', 'puzzle', 'between', 'finished']) test('
     await page.waitForTimeout(250);
     const after = await snapshot(page);
     assert.equal(after.active, false); assert.equal(after.attacks, before.attacks);
-    assert.deepEqual(after.config.OneHanded_Item, value.config.OneHanded_Item);
+    assert.deepEqual(after.config.OneHanded_Item, normalized(value).config.OneHanded_Item);
 });
 
 test('mobile import naming, save and application preserve the same battle semantics', async t => {
@@ -250,9 +251,9 @@ test('legacy multi-mode file and extension metadata survive import as one packag
     const saved = await page.evaluate(() => __imports.library().entries.find(entry => entry.envelope.title === 'Legacy multi'));
     assert.equal(saved.envelope.kind, 'battle'); assert.equal(saved.envelope.mode, undefined);
     assert.deepEqual(saved.envelope.config.futureRoot, config.futureRoot);
-    assert.deepEqual(saved.envelope.config.OneHanded_Item, config.OneHanded_Item);
-    assert.equal(saved.envelope.config.TwoHanded_General.supports[0].type, 'spellSupport');
-    assert.equal(saved.envelope.config.TwoHanded_General.attacks[0].priorityRule, 'Bottom Up');
+    assert.deepEqual(saved.envelope.config.OneHanded_Item, normalized(config).OneHanded_Item);
+    assert.equal(saved.envelope.config.TwoHanded_General.rules[0].type, 'spellSupport');
+    assert.equal(saved.envelope.config.TwoHanded_General.rules[1].priorityRule, 'Bottom Up');
     assert.deepEqual(runtime(await snapshot(page)), runtime(before));
     await row(page, 'Legacy multi').getByRole('button', { name: 'Apply', exact: true }).click();
     await page.locator('.jpx-config-confirm').getByRole('button', { name: 'Apply', exact: true }).click();

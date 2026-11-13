@@ -118,7 +118,7 @@ async function capture(browser,english,mobile){
     const current=page.locator('[data-config-id="native-Persistent-OneHanded_General"]');
     await current.getByRole('button',{name:await label('cM.edit'),exact:true}).click();
     await page.locator('.jpx-config-editor').waitFor();
-    const cure=page.locator('#jpx-rule-panel-supports .jpx-rule-item').filter({hasText:english?'Cure':'治疗'}).first();
+    const cure=page.locator('#jpx-rule-panel-rules .jpx-rule-item').filter({hasText:english?'Cure':'治疗'}).first();
     if(await cure.count())await cure.locator(':scope > summary').click();
     await pair('rules');
     await page.locator(mobile?'#close-button':'.jpx-config-back').click();

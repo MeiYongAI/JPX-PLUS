@@ -17,6 +17,7 @@ function envelope(extra = {}) {
     return { schemaVersion: 1, kind: 'battle-mode', title: '日常', description: '', world: 'Persistent', mode: 'OneHanded_General',
         config: { battleVersion: 20251216, OneHanded_General: { supports: [{ type: 'spellSupport', name: 'Cure', conditions: [{ key: 'pHP', value: [0, .4] }] }], attacks: [{ type: 'normalAttack' }] } }, ...extra };
 }
+const normalizedConfig = config => { const copy = structuredClone(config); for (const mode of Object.values(copy)) { if (mode && Array.isArray(mode.supports) && Array.isArray(mode.attacks)) { mode.rules = [...mode.supports, ...mode.attacks]; delete mode.supports; delete mode.attacks; } } return copy; };
 const isCode = code => error => error.code === code;
 const snapshot = (entry, extra = {}) => ({ id: entry.id, revision: entry.revision,
     scopes: [entry.envelope.mode], config: entry.envelope.config, ...extra });
@@ -71,7 +72,7 @@ test('bindings isolate world, persona and set without touching native exports or
     for (const slot of slots) library.setBinding(slot, entry.id, entry.revision);
     assert.equal(library.readState().bindings.length, 4);
     assert.deepEqual(library.get(entry.id), before);
-    assert.deepEqual(library.get(entry.id).envelope.config, envelope().config);
+    assert.deepEqual(library.get(entry.id).envelope.config, normalizedConfig(envelope().config));
     const other = library.save(envelope({ title: 'Other' }));
     assert.throws(() => library.setBinding(slots[0], other.id, other.revision), isCode('libraryChanged'));
     library.setBinding(slots[0], other.id, other.revision, entry.id);
@@ -165,7 +166,7 @@ test('reading an empty library does not write; save and every read have clone bo
     first.envelope.title = 'changed output';
     const read = library.get(first.id);
     assert.equal(read.envelope.title, '日常');
-    assert.equal(read.envelope.config.OneHanded_General.supports[0].name, 'Cure');
+    assert.equal(read.envelope.config.OneHanded_General.rules[0].name, 'Cure');
     read.source.id = 99;
     library.list()[0].execution.element = 'cold';
     assert.deepEqual(library.get(first.id).source, { repository: 'demo', id: 12 });
@@ -183,7 +184,7 @@ test('updating a saved copy increments revision without changing its applied sna
     assert.equal(next.createdAt, first.createdAt);
     assert.deepEqual(next.execution, first.execution);
     assert.equal(library.readState().applied.Persistent[first.id].revision, 1);
-    assert.equal(library.readState().applied.Persistent[first.id].config.OneHanded_General.supports[0].name, 'Cure');
+    assert.equal(library.readState().applied.Persistent[first.id].config.OneHanded_General.rules[0].name, 'Cure');
 });
 
 test('renaming preserves active rules and advances only matching applied revisions', () => {
@@ -191,7 +192,7 @@ test('renaming preserves active rules and advances only matching applied revisio
     const original = library.save(envelope(), { source: { repository: 'demo', id: 7 }, execution: { style: 'OneHanded' } });
     library.setApplied('Persistent', snapshot(original, { mode: original.envelope.mode }), { activate: true });
     library.setApplied('Isekai', snapshot(original));
-    const edited = structuredClone(original.envelope); edited.config.OneHanded_General.supports[0].name = 'Full-Cure';
+    const edited = structuredClone(original.envelope); edited.config.OneHanded_General.rules[0].name = 'Full-Cure';
     const newer = library.save(edited, { id: original.id });
     library.setApplied('Persistent', snapshot(newer, { mode: newer.envelope.mode }), { activate: true });
     const before = library.readState(), renamed = library.rename(original.id, '  新名称  ', newer.revision), after = library.readState();
@@ -236,14 +237,14 @@ test('local normalization preserves complete legacy modes and nested extension d
     assert.equal(saved.battleVersion, 20251216);
     assert.equal(Object.hasOwn(saved, 'version'), false);
     assert.equal(Object.hasOwn(saved, 'Battlecaster_General'), false);
-    assert.equal(saved['1H_Mage_General'].supports[0].type, 'spellSupport');
-    assert.equal(saved['1H_Mage_General'].supports[1].type, 'item');
-    assert.equal(saved['1H_Mage_General'].attacks[0].priorityRule, 'Bottom Up');
-    assert.equal(Object.hasOwn(saved['1H_Mage_General'].attacks[0], 'bottomUp'), false);
-    assert.equal(saved['1H_Mage_General'].attacks[1].targetCount, 3);
+    assert.equal(saved['1H_Mage_General'].rules[0].type, 'spellSupport');
+    assert.equal(saved['1H_Mage_General'].rules[1].type, 'item');
+    assert.equal(saved['1H_Mage_General'].rules[2].priorityRule, 'Bottom Up');
+    assert.equal(Object.hasOwn(saved['1H_Mage_General'].rules[2], 'bottomUp'), false);
+    assert.equal(saved['1H_Mage_General'].rules[3].targetCount, 3);
     assert.deepEqual(saved['1H_Mage_General']['kb_Ctrl+1'], raw.config.Battlecaster_General['kb_Ctrl+1']);
     assert.deepEqual(saved.unknownRoot, raw.config.unknownRoot);
-    assert.deepEqual(saved.TwoHanded_General, raw.config.TwoHanded_General);
+    assert.deepEqual(saved.TwoHanded_General, normalizedConfig(raw.config).TwoHanded_General);
     assert.deepEqual(saved.OneHanded_Item, {});
     assert.equal(saved['1H_Mage_General'].futureMode, 5);
 });
@@ -514,7 +515,7 @@ test('seed migration commits entries, applications and marker in one write and p
     assert.equal(state.entries.length, 3);
     assert.deepEqual(Object.keys(state.applied.Persistent).sort(), [active.id, 'native-TwoHanded'].sort());
     assert.equal(state.applied.Persistent['native-TwoHanded'].revision, 1);
-    assert.deepEqual(state.applied.Persistent['native-TwoHanded'].config, entries[1].envelope.config);
+    assert.deepEqual(state.applied.Persistent['native-TwoHanded'].config, normalizedConfig(entries[1].envelope.config));
 });
 
 test('corrupt or unsupported storage is preserved and every mutating operation fails closed', () => {
@@ -560,5 +561,29 @@ test('statistics and local code are kept as data without executing or sanitizing
         statsColumns: [{ id: 'turns', customName: '回合', styleText: 'color: red;', future: { keep: true } }], futureRoot: ['opaque'] } };
     assert.deepEqual(library.save(stats).envelope, stats);
     const code = envelope(); code.config.OneHanded_General.attacks = [{ type: 'kamisamaniNattaHi', code: 'throw new Error("must never run");' }];
-    assert.deepEqual(library.save(code).envelope.config, code.config);
+    assert.deepEqual(library.save(code).envelope.config, normalizedConfig(code.config));
+});
+
+
+test('unified rules are authoritative and legacy snapshots migrate without writes or lost selection', () => {
+    const { library, values, options } = setup();
+    const entry = library.save(envelope());
+    library.setApplied('Persistent', snapshot(entry, { mode: entry.envelope.mode }), { activate: true });
+    library.assignScene('Persistent', 'OneHanded_Item', entry.id, entry.envelope.mode, entry.revision);
+    const state = JSON.parse(values.get('library'));
+    const old = envelope().config.OneHanded_General;
+    state.entries[0].envelope.config.OneHanded_General = structuredClone(old);
+    state.applied.Persistent[entry.id].config.OneHanded_General = structuredClone(old);
+    state.scenes.Persistent.OneHanded_Item.rules = structuredClone(old);
+    const raw = JSON.stringify(state); values.set('library', raw);
+    const fresh = createJpxConfigLibrary(options), runtime = fresh.readRuntime('Persistent');
+    assert.equal(values.get('library'), raw, 'loading preserves the persisted original');
+    assert.equal(runtime.selection.id, entry.id);
+    assert.deepEqual(runtime.selection.config.OneHanded_General, runtime.scenes.OneHanded_Item.rules);
+    assert.deepEqual(runtime.selection.config.OneHanded_General.rules.map(rule => rule.type), ['spellSupport', 'normalAttack']);
+    const input = envelope(); input.config.OneHanded_General.rules = [];
+    const saved = fresh.save(input).envelope.config.OneHanded_General;
+    assert.deepEqual(saved, { rules: [] }, 'an intentional empty rules list does not revive legacy actions');
+    input.config.OneHanded_General.rules = 'invalid';
+    assert.throws(() => fresh.save(input), isCode('invalidConfig'));
 });

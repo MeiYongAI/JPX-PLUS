@@ -66,7 +66,7 @@ function getJpxLoadoutCatalog(world = jpxConfigWorld()) {
 
 function jpxConfigContainsCode(envelope) {
     return BATTLE_MODES.some(mode => Object.entries(envelope.config[mode] || {}).some(([key, rules]) =>
-        (key === 'supports' || key === 'attacks' || key.startsWith('kb_')) &&
+        (key === 'rules' || key === 'supports' || key === 'attacks' || key.startsWith('kb_')) &&
         Array.isArray(rules) && rules.some(rule => rule.type === 'kamisamaniNattaHi')));
 }
 

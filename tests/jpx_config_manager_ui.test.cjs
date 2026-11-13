@@ -13,6 +13,7 @@ const output = path.join(root, '.test-output/config-management');
 const source = fs.readFileSync(path.join(root, 'JPX-PLUS.user.js'), 'utf8');
 const zh = fs.readFileSync(path.join(root, 'JPX-PLUS-ZhCN.user.js'), 'utf8');
 const clone = value => JSON.parse(JSON.stringify(value));
+const { normalized } = require('./fixtures/battle-import.cjs');
 const html = '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:8px;background:#edebdf;color:#5c0d11;font:12px Verdana}#csp{width:1240px;height:704px}</style></head><body><div id="csp"><div id="navbar"></div></div></body></html>';
 const makeRules = marker => ({
     supports: [{ type: 'stop', customMessage: marker, conditions: [{ key: 'pHP', value: [0, .2] }] }],
@@ -106,7 +107,7 @@ const rowByTitle = (f, title) => manager(f).locator('.jpx-config-row').filter({ 
 const nativeSnapshot = f => f.page.evaluate(() => ({ runtime: __manager.config(), stored: __manager.native() }));
 const savedEntry = (f, id) => f.page.evaluate(id => __manager.library().entries.find(entry => entry.id === id), id);
 async function openNative(f) { await nativeRow(f).getByRole('button', { name: f.labels.edit, exact: true }).click(); await editor(f).waitFor(); }
-async function toggleFirstRule(f) { await editor(f).locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().click(); }
+async function toggleFirstRule(f) { await editor(f).locator('#jpx-rule-panel-rules .jpx-rule-state-toggle').first().click(); }
 async function footerAction(f, key) { await editor(f).locator('.jpx-config-editor-footer').getByRole('button', { name: f.labels[key], exact: true }).click(); }
 async function settle(page) { await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))); }
 async function noErrors(f) {
@@ -146,12 +147,12 @@ test('editing and undo stay detached; explicit application changes only the chos
     await toggleFirstRule(f);
     assert.deepEqual(await nativeSnapshot(f), original, 'unsaved rule changes do not affect battle');
     await footerAction(f, 'undo');
-    assert.equal(await editor(f).locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().getAttribute('data-enabled'), 'true');
+    assert.equal(await editor(f).locator('#jpx-rule-panel-rules .jpx-rule-state-toggle').first().getAttribute('data-enabled'), 'true');
     assert.deepEqual(await nativeSnapshot(f), original, 'undo does not rewrite running config');
     await footerAction(f, 'redo');
-    assert.equal(await editor(f).locator('#jpx-rule-panel-supports .jpx-rule-state-toggle').first().getAttribute('data-enabled'), 'false');
+    assert.equal(await editor(f).locator('#jpx-rule-panel-rules .jpx-rule-state-toggle').first().getAttribute('data-enabled'), 'false');
     await footerAction(f, 'save');
-    assert.equal((await savedEntry(f, id)).envelope.config.OneHanded_General.supports[0].disabled, true);
+    assert.equal((await savedEntry(f, id)).envelope.config.OneHanded_General.rules[0].disabled, true);
     assert.deepEqual(await nativeSnapshot(f), original, 'save only updates the library');
     await nativeRow(f).getByRole('button', { name: f.labels.updateApply, exact: true }).waitFor();
     await f.page.evaluate(() => __manager.beginBattle());
@@ -159,9 +160,10 @@ test('editing and undo stay detached; explicit application changes only the chos
     await nativeRow(f).locator('.jpx-config-status').waitFor();
     assert.equal(await f.page.evaluate(() => __manager.running()), false, 'auto-battle stops before applying');
     const applied = await nativeSnapshot(f), expected = clone(original.runtime);
-    expected.battle.OneHanded_General.supports[0].disabled = true;
+    expected.battle.OneHanded_General.rules[0].disabled = true;
+    expected.battle.OneHanded_General.rules[1].conditions = [];
     assert.deepEqual(applied.runtime, expected, 'unrelated modes, stats, and shortcuts stay unchanged');
-    const expectedStored = JSON.parse(original.stored.battle); expectedStored.OneHanded_General.supports[0].disabled = true;
+    const expectedStored = JSON.parse(original.stored.battle); expectedStored.OneHanded_General.rules[0].disabled = true; expectedStored.OneHanded_General.rules[1].conditions = [];
     assert.deepEqual(JSON.parse(applied.stored.battle), expectedStored);
     assert.equal(applied.stored.magic, original.stored.magic, 'detected magic damage is never forged');
     await noErrors(f);
@@ -199,15 +201,15 @@ test('multi-mode import stays one file, edits one group, and confirms whole-conf
     let imported = await f.page.evaluate(() => __manager.library().entries.find(entry => entry.envelope.title === 'Legacy multi-mode'));
     assert.equal(imported.envelope.kind, 'battle');
     assert.equal(imported.envelope.mode, undefined);
-    assert.deepEqual(imported.envelope.config, legacy, 'whole file and extension metadata survive import');
+    assert.deepEqual(imported.envelope.config, normalized(legacy), 'whole file and extension metadata survive import');
     await rowByTitle(f, 'Legacy multi-mode').getByRole('button', { name: f.labels.edit, exact: true }).click();
     assert.equal(await editor(f).count(), 0);
     assert.equal(await manager(f).locator('.jpx-config-group').count(), 2, 'choose group in management');
     await manager(f).locator('.jpx-config-group').first().click();
     await toggleFirstRule(f); await footerAction(f, 'save');
     imported = await savedEntry(f, imported.id);
-    assert.equal(imported.envelope.config.OneHanded_General.supports[0].disabled, true);
-    assert.deepEqual(imported.envelope.config.TwoHanded_Item, legacy.TwoHanded_Item);
+    assert.equal(imported.envelope.config.OneHanded_General.rules[0].disabled, true);
+    assert.deepEqual(imported.envelope.config.TwoHanded_Item, normalized(legacy).TwoHanded_Item);
     assert.deepEqual(imported.envelope.config.futureRoot, legacy.futureRoot);
     assert.deepEqual(await nativeSnapshot(f), original, 'editing an imported group cannot apply its other groups');
     await rowByTitle(f, 'Legacy multi-mode').getByRole('button', { name: f.labels.apply, exact: true }).click();
@@ -219,7 +221,7 @@ test('multi-mode import stays one file, edits one group, and confirms whole-conf
     await rowByTitle(f, 'Legacy multi-mode').locator('.jpx-config-status').waitFor();
     const applied = await nativeSnapshot(f);
     assert.deepEqual(applied.runtime.battle.OneHanded_General, imported.envelope.config.OneHanded_General);
-    assert.deepEqual(applied.runtime.battle.TwoHanded_Item, legacy.TwoHanded_Item);
+    assert.deepEqual(applied.runtime.battle.TwoHanded_Item, normalized(legacy).TwoHanded_Item);
     assert.deepEqual(applied.runtime.battle.TwoHanded_General, original.runtime.battle.TwoHanded_General);
     assert.equal(applied.runtime.battle.recordBattleLog, true);
     assert.deepEqual((await savedEntry(f, imported.id)).envelope.config.futureRoot, legacy.futureRoot);
@@ -258,7 +260,7 @@ test('saving in a section-change prompt returns to the requested page without ap
     const confirm = manager(f).locator('.jpx-config-confirm'); await confirm.waitFor();
     await confirm.getByRole('button', { name: f.labels.save, exact: true }).click();
     await f.page.locator('#panel_stats').waitFor({ state: 'visible' });
-    assert.equal((await savedEntry(f, 'native-Persistent-OneHanded_General')).envelope.config.OneHanded_General.supports[0].disabled, true);
+    assert.equal((await savedEntry(f, 'native-Persistent-OneHanded_General')).envelope.config.OneHanded_General.rules[0].disabled, true);
     assert.deepEqual(await nativeSnapshot(f), original, 'save-before-navigation changes the library only');
     await selectTab(f.page, 'configManager');
     await nativeRow(f).getByRole('button', { name: f.labels.updateApply, exact: true }).waitFor();
@@ -317,18 +319,22 @@ test('deep rule editing retains expanded items and scroll position through undo 
         conditions: [{ key: 'pHP', value: [0, .2] }] })), attacks: [{ type: 'normalAttack' }] };
     await importFile(f, { battleVersion: 20251216, OneHanded_General: rules }, 'Long rules.json');
     await rowByTitle(f, 'Long rules').getByRole('button', { name: f.labels.edit, exact: true }).click();
-    const items = editor(f).locator('#jpx-rule-panel-supports .jpx-rule-item');
-    assert.equal(await items.count(), 80);
+    const items = editor(f).locator('#jpx-rule-panel-rules .jpx-rule-item');
+    assert.equal(await items.count(), 81);
     await items.nth(5).locator(':scope > summary').click();
     await items.nth(45).locator(':scope > summary').click();
     const input = items.nth(45).locator('[data-field-key="customMessage"] input');
     await input.scrollIntoViewIfNeeded(); await input.focus(); await settle(f.page);
-    const view = () => editor(f).locator('#jpx-rule-panel-supports').evaluate(panel => ({
+    const view = () => editor(f).locator('#jpx-rule-panel-rules').evaluate(panel => ({
         scroll: panel.querySelector('.jpx-rule-scroll').scrollTop,
         expanded: [...panel.querySelectorAll('.jpx-rule-item')].flatMap((item, index) => item.open ? [index] : [])
     }));
     const before = await view();
     assert.ok(before.scroll > 1000, 'the edited rule is deep inside a scrollable list');
+    const panel = editor(f).locator('#jpx-rule-panel-rules');
+    assert.equal(await panel.locator('nav').count(), 0, 'rules use one list without a duplicate navigation panel');
+    const layout = await panel.evaluate(node => ({ panel: node.clientWidth, list: node.querySelector('.jpx-rule-scroll').clientWidth }));
+    assert.ok(Math.abs(layout.panel - layout.list) <= 1, 'the rule list uses the full editor width');
     assert.deepEqual(before.expanded, [5, 45]);
     await input.fill('Edited deep rule'); await settle(f.page);
     const edited = await view();
@@ -344,7 +350,7 @@ test('deep rule editing retains expanded items and scroll position through undo 
     assert.equal(await input.inputValue(), 'Edited deep rule');
     assert.deepEqual(await nativeSnapshot(f), original, 'history navigation does not affect live configuration');
     const entry = await f.page.evaluate(() => __manager.library().entries.find(entry => entry.envelope.title === 'Long rules'));
-    assert.deepEqual(entry.envelope.config.OneHanded_General, rules, 'undo and redo do not save the draft');
+    assert.deepEqual(entry.envelope.config.OneHanded_General, normalized({mode:rules}).mode, 'undo and redo do not save the draft');
     await noErrors(f);
 });
 
@@ -435,8 +441,8 @@ test('collapsed rules defer controls, preserve header geometry, and reuse forms 
         conditions: [{ key: 'pHP', value: [0, .4] }] })), attacks: [{ type: 'normalAttack', conditions: [] }] };
     await importFile(f, { battleVersion: 20251216, OneHanded_General: rules }, 'Deferred rules.json');
     await rowByTitle(f, 'Deferred rules').getByRole('button', { name: f.labels.edit, exact: true }).click();
-    const items = editor(f).locator('#jpx-rule-panel-supports .jpx-rule-item');
-    assert.equal(await items.count(), 160);
+    const items = editor(f).locator('#jpx-rule-panel-rules .jpx-rule-item');
+    assert.equal(await items.count(), 161);
     assert.equal(await items.locator('.jpx-rule-item-body input').count(), 0, 'closed complete rules do not build hidden input controls');
     const item = items.first(), summary = item.locator(':scope > summary');
     const before = await summary.boundingBox();
@@ -464,7 +470,7 @@ test('disclosure animates without moving header controls and supports rapid reve
     await importFile(f, { battleVersion: 20251216, OneHanded_General: rules }, 'Motion.json');
     await rowByTitle(f, 'Motion').getByRole('button', { name: f.labels.edit, exact: true }).click();
     await f.page.emulateMedia({ reducedMotion: 'no-preference' });
-    const items = editor(f).locator('#jpx-rule-panel-supports .jpx-rule-item'), first = items.first();
+    const items = editor(f).locator('#jpx-rule-panel-rules .jpx-rule-item'), first = items.first();
     const frames = await first.evaluate(async item => {
         const summary = item.querySelector('summary');
         const before = summary.getBoundingClientRect();
@@ -486,9 +492,23 @@ test('disclosure animates without moving header controls and supports rapid reve
         for (let i = 0; i < 5; i++) { summary.click(); await new Promise(requestAnimationFrame); }
     });
     assert.equal(await first.getAttribute('open'), null, 'rapid reversal ends closed');
-    await f.page.emulateMedia({ reducedMotion: 'reduce' });
+    await f.page.waitForTimeout(180);
     const toggle = editor(f).locator('.jpx-rule-section-controls .jpx-rule-list-toggle');
+    for (const expanded of [true, false]) {
+        const motion = await toggle.evaluate(async button => {
+            const row = document.querySelector('#jpx-rule-panel-rules .jpx-rule-item');
+            const before = row.getBoundingClientRect().height, samples = [], start = performance.now();
+            button.click();
+            do { await new Promise(requestAnimationFrame); samples.push(row.getBoundingClientRect().height); } while (performance.now() - start < 260);
+            return { before, samples };
+        });
+        const low = Math.min(motion.before, motion.samples.at(-1)), high = Math.max(motion.before, motion.samples.at(-1));
+        assert.ok(motion.samples.some(height => height > low + 2 && height < high - 2), 'bulk disclosure has intermediate frames');
+        await f.page.waitForFunction(open => document.querySelectorAll('#jpx-rule-panel-rules .jpx-rule-item[open]').length === (open ? 25 : 0), expanded);
+    }
+    await f.page.emulateMedia({ reducedMotion: 'reduce' });
     await toggle.click();
+    await f.page.waitForFunction(() => document.querySelectorAll('#jpx-rule-panel-rules .jpx-rule-item[open]').length === 25);
     assert.equal(await items.locator('[data-field-key=customMessage] input').count(), 24);
     const handle = await first.locator('[data-field-key=customMessage] input').elementHandle();
     await toggle.click(); await toggle.click();
@@ -503,7 +523,7 @@ test('six-dot grip supports drag and keyboard sorting with reversible isolated e
         attacks: [{ type: 'normalAttack', conditions: [] }] };
     await importFile(f, { battleVersion: 20251216, OneHanded_General: rules }, 'Sorting.json');
     await rowByTitle(f, 'Sorting').getByRole('button', { name: f.labels.edit, exact: true }).click();
-    const rows = editor(f).locator('#jpx-rule-panel-supports .jpx-rule-array-item');
+    const rows = editor(f).locator('#jpx-rule-panel-rules .jpx-rule-array-item');
     const names = () => rows.locator('.jpx-rule-item-name').allTextContents();
     const before = await names();
     const grip = rows.first().locator('.jpx-drag-grip'), start = await grip.boundingBox(), target = await rows.nth(2).boundingBox();
@@ -584,7 +604,7 @@ for (const mobile of [false, true]) test(`native dropdown options inherit dark c
         supports: [{ type: 'item', name: 'Mystic Gem', conditions: [] }], attacks: [{ type: 'normalAttack', conditions: [] }]
     } }, 'Dark picker.json');
     await rowByTitle(f, 'Dark picker').getByRole('button', { name: f.labels.edit, exact: true }).click();
-    const item = editor(f).locator('#jpx-rule-panel-supports .jpx-rule-item').first();
+    const item = editor(f).locator('#jpx-rule-panel-rules .jpx-rule-item').first();
     await item.locator(':scope > summary').click();
     const select = item.locator('[data-field-key=name] select'); await select.click();
     const appearance = () => select.evaluate(node => {
@@ -902,7 +922,7 @@ for (const options of [
         await f.page.locator('#settings-container').screenshot({ path: path.join(output, tag + '-rename.png') });
         await rename.getByRole('textbox').press('Escape');
         await openNative(f); await checkLayout(f);
-        await editor(f).locator('#jpx-rule-panel-supports .jpx-rule-item > summary').first().click();
+        await editor(f).locator('#jpx-rule-panel-rules .jpx-rule-item > summary').first().click();
         await checkLayout(f);
         await f.page.locator('#settings-container').screenshot({ path: path.join(output, tag + '-editor.png') });
         await noErrors(f);

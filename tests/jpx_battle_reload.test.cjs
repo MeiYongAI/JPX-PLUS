@@ -133,7 +133,7 @@ test('explicitly applied rules remain selected after full-page round and floor n
     const f=await setup(t);const selected=await f.page.evaluate(()=>__reload.applySelection());
     await f.navigate({round:2,floor:14},true);
     const state=await snapshot(f.page);assert.equal(state.mode,selected);assert.equal(state.active,false);
-    assert.equal(state.config[selected].supports[0].customMessage,'Selected tower rules');
+    assert.equal(state.config[selected].rules[0].customMessage,'Selected tower rules');
     assert.equal(await f.page.evaluate(()=>localStorage.getItem('jpx_difficulty')),'Nightmare');
 });
 

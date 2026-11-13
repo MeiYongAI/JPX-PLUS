@@ -3,6 +3,7 @@ const { test, before, after } = require('node:test');
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const { fixture, envelope, mainHTML } = require('./fixtures/battle-import.cjs');
+const { normalized } = require('./fixtures/battle-import.cjs');
 let browser;
 before(async () => { browser = await chromium.launch({ channel: process.env.PLAYWRIGHT_CHANNEL || 'chrome', headless: true }); });
 after(async () => browser?.close());
@@ -14,7 +15,7 @@ function substantiveConfig(config) {
     return Object.fromEntries(Object.entries(config).filter(([, value]) =>
         !value || typeof value !== 'object' || Array.isArray(value) ||
         !Object.entries(value).every(([key, rows]) =>
-            ['supports', 'attacks'].includes(key) && Array.isArray(rows) && rows.length === 0)));
+            ['rules', 'supports', 'attacks'].includes(key) && Array.isArray(rows) && rows.length === 0)));
 }
 async function direct(page, value) {
     const chooser = page.waitForEvent('filechooser'); await page.locator('#import-button').click();
@@ -31,7 +32,7 @@ for (const isekai of [false, true]) test('direct battle import pauses before usi
     await direct(page, config); await done(page);
     const after = await snapshot(page);
     assert.equal(after.active, false); assert.equal(after.attacks, before.attacks);
-    assert.deepEqual(after.config.TwoHanded_General, config.TwoHanded_General);
+    assert.deepEqual(after.config.TwoHanded_General, normalized(config).TwoHanded_General);
     assert.equal(after.native, before.native, 'direct import remains an unsaved edit');
     assert.equal(after.library, before.library);
     const feedback = page.locator('.jpx-settings-window > .jpx-import-feedback');
@@ -39,7 +40,7 @@ for (const isekai of [false, true]) test('direct battle import pauses before usi
     assert.match(await feedback.textContent(), /Auto-battle is paused/);
     assert.equal(await feedback.locator('p').getAttribute('role'), 'status');
     await page.locator('#save-button').click();
-    assert.deepEqual(JSON.parse((await snapshot(page)).native).TwoHanded_General, config.TwoHanded_General);
+    assert.deepEqual(JSON.parse((await snapshot(page)).native).TwoHanded_General, normalized(config).TwoHanded_General);
     assert.equal(await feedback.locator('p').textContent(), 'Saved.');
 });
 
@@ -74,7 +75,7 @@ test('direct import keeps the newer selection when file reads finish out of orde
     await direct(page, newer); await page.waitForFunction(() => __imports.pending() === 2);
     await page.evaluate(() => __imports.release(1)); await done(page);
     await page.evaluate(() => __imports.release()); await page.waitForTimeout(60);
-    assert.equal((await snapshot(page)).config.TwoHanded_General.supports[0].customMessage, 'Newer direct file');
+    assert.equal((await snapshot(page)).config.TwoHanded_General.rules[0].customMessage, 'Newer direct file');
 });
 
 test('rejecting custom code in direct import leaves active rules intact', async t => {
@@ -103,7 +104,7 @@ test('direct import remains undoable and redoable without restarting battle', as
     assert.deepEqual(substantiveConfig(undone.config), substantiveConfig(before.config));
     assert.equal(undone.active, false); assert.equal(undone.native, before.native);
     await page.keyboard.press('Control+y');
-    assert.deepEqual((await snapshot(page)).config.TwoHanded_General, config.TwoHanded_General);
+    assert.deepEqual((await snapshot(page)).config.TwoHanded_General, normalized(config).TwoHanded_General);
     assert.equal((await snapshot(page)).active, false); assert.equal((await snapshot(page)).native, before.native);
 });
 
@@ -132,7 +133,7 @@ test('direct import still accepts legacy version aliases and spell migration', a
     config.TwoHanded_General.supports = [{ type: 'spellInstant', name: 'Cure', conditions: [] }];
     await direct(page, config); await done(page);
     const state = await snapshot(page);
-    assert.equal(state.config.TwoHanded_General.supports[0].type, 'spellSupport');
+    assert.equal(state.config.TwoHanded_General.rules[0].type, 'spellSupport');
     assert.equal(state.active, false);
 });
 
@@ -141,7 +142,7 @@ for (const status of ['lobby', 'paused', 'stop', 'between', 'puzzle', 'finished'
     await direct(page, config); await done(page);
     const after = await snapshot(page);
     assert.equal(after.active, false); assert.equal(after.attacks, before.attacks);
-    assert.deepEqual(after.config.TwoHanded_General, config.TwoHanded_General);
+    assert.deepEqual(after.config.TwoHanded_General, normalized(config).TwoHanded_General);
     assert.equal(after.native, before.native);
 });
 
@@ -153,7 +154,7 @@ for (const fallback of [false, true]) test('pending direct import across AJAX ' 
     await page.evaluate(() => __imports.release());
     if (!fallback) await done(page); else await page.waitForTimeout(80);
     const after = await snapshot(page);
-    assert.deepEqual(after.config.TwoHanded_General, fallback ? before.config.TwoHanded_General : config.TwoHanded_General);
+    assert.deepEqual(after.config.TwoHanded_General, fallback ? before.config.TwoHanded_General : normalized(config).TwoHanded_General);
     assert.equal(after.native, before.native);
     if (!fallback) assert.equal(after.active, false);
 });

@@ -20,7 +20,7 @@ function expose(){
         bind:(id,personaId,setId,world=jpxConfigWorld())=>{const lib=getJpxConfigLibrary(),entry=lib.get(id);return lib.setBinding({world,personaId,setId},id,entry.revision);},
         remember(personaId,setId){const doc=new DOMParser().parseFromString(window.__fixture(personaId,setId),'text/html');rememberJpxLoadout(doc,doc);},
         rememberPages(character,equipment){rememberJpxLoadout(new DOMParser().parseFromString(character,'text/html'),new DOMParser().parseFromString(equipment,'text/html'));},
-        custom(id){const lib=getJpxConfigLibrary(),entry=lib.get(id);entry.envelope.config[entry.envelope.mode].supports.push({type:'kamisamaniNattaHi',code:'window.__mustNotRun = true'});return lib.save(entry.envelope,{id});},
+        custom(id){const lib=getJpxConfigLibrary(),entry=lib.get(id);entry.envelope.config[entry.envelope.mode].rules.push({type:'kamisamaniNattaHi',code:'window.__mustNotRun = true'});return lib.save(entry.envelope,{id});},
         battle(){log=document.createElement('div');isActiveBattle=true;},
         running:()=>isActiveBattle,
         route(count){for(let i=0;i<count;i++)getJpxSelectedBattleMode();}

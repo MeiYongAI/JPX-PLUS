@@ -24,6 +24,22 @@ function instrument() {
     document.addEventListener('DOMContentLoaded', reDoBattle);
     preDoBattle();
     window.__strategy = {
+        conditionProbe() {
+            const log = [];
+            const target = { index: 0 };
+            monstersObj = { monsters: [target], activeMonsters: [target] };
+            conditionsObj = { generalHandlers: { pHP: () => false }, targetHandlers: { tHP: () => true } };
+            doAttackGoNext = () => { log.push('attack'); return true; };
+            const denied = actionHandlers.normalAttack({ conditions: [{ key: 'pHP', value: [0, .2] }] }, target);
+            const legacy = actionHandlers.normalAttack({}, target);
+            const missingTarget = checkConditions([{ key: 'tHP', value: [0, 1] }], null);
+            log.length = 0;
+            actionHandlers.target = () => null;
+            spellCooldowns = { Cure: 0 };
+            cast = name => log.push(name);
+            const support = actionManager([{ type: 'target' }, { type: 'normalAttack' }, { type: 'spellSupport', name: 'Cure', conditions: [] }]);
+            return { denied, legacy, missingTarget, support, log };
+        },
         open: renderSettings, toggle: toggleActive,
         state: () => ({ active: isActiveBattle, pendingHover: !!jpxPanelManager.roundHoverResume, mode: getBattleMode(),
             ready: readyNext, processed, decisions, targets: [...targets], config: JSON.parse(JSON.stringify(getJpxBattleRules())) }),
@@ -85,7 +101,7 @@ test('assigned scene rules drive battle actions and manual keys without changing
     const entry=await add(page,'TwoHanded_General',data);
     await page.evaluate(id=>{__strategy.scene('Arena');__strategy.assign(id,'TwoHanded_Arena');},entry.id);
     assert.equal((await state(page)).active,false);
-    assert.deepEqual(await page.evaluate(()=>__strategy.resolved()),data);
+    assert.deepEqual(await page.evaluate(()=>__strategy.resolved()),{kb_Q:data.kb_Q,rules:[...data.supports,...data.attacks]});
     await page.evaluate(()=>__strategy.toggle());await settle(page);
     assert.deepEqual((await state(page)).targets,['mkey_0']);
     await page.evaluate(()=>__strategy.toggle());
@@ -119,7 +135,7 @@ test('battle draft editing and saving do not affect execution until Update & app
     const before = await state(page);
     await row(page, entry.id).getByRole('button', { name: labels.edit, exact: true }).click();
     const editor = page.locator('.jpx-config-editor');
-    const rule = editor.locator('#jpx-rule-panel-supports .jpx-rule-item').first();
+    const rule = editor.locator('#jpx-rule-panel-rules .jpx-rule-item').first();
     await rule.locator(':scope > summary').click();
     await rule.locator('[data-field-key=customMessage] input').fill('Edited during combat');
     await rule.locator('.jpx-rule-state-toggle').click();
@@ -223,12 +239,12 @@ test('editing target priority in battle applies without waiting for another log 
     assert.deepEqual((await state(page)).targets, ['mkey_1']);
     await row(page, entry.id).getByRole('button', { name: labels.edit, exact: true }).click();
     const editor = page.locator('.jpx-config-editor');
-    await editor.locator('#jpx-rule-section-attacks').click();
-    const target = editor.locator('#jpx-rule-panel-attacks .jpx-rule-item').first();
+    await editor.locator('#jpx-rule-section-rules').click();
+    const target = editor.locator('#jpx-rule-panel-rules .jpx-rule-item').nth(1);
     await target.locator(':scope > summary').click();
     await target.locator('[data-field-key=priorityRule] select').selectOption('Bottom Up');
     await editor.locator('.jpx-config-editor-footer').getByRole('button', { name: labels.save, exact: true }).click();
-    assert.equal((await state(page)).config.attacks[0].priorityRule, 'Top Down');
+    assert.equal((await state(page)).config.rules[1].priorityRule, 'Top Down');
     await apply(page, entry, labels.updateApply);
     await close(page);
     await page.locator('#ctrl-widget .jpx-widget-info').click(); await settle(page);
@@ -248,7 +264,7 @@ test('edited stop conditions use current battle state after apply, including und
     assert.deepEqual((await state(page)).targets, ['mkey_1']);
     await row(page, entry.id).getByRole('button', { name: labels.edit, exact: true }).click();
     const editor = page.locator('.jpx-config-editor');
-    const rule = editor.locator('#jpx-rule-panel-supports .jpx-rule-item').first();
+    const rule = editor.locator('#jpx-rule-panel-rules .jpx-rule-item').first();
     await rule.locator(':scope > summary').click();
     const numbers = rule.locator('[data-field-key=conditions] input[type=number]');
     assert.equal(await numbers.count(), 2);
@@ -257,7 +273,7 @@ test('edited stop conditions use current battle state after apply, including und
     await footer.getByRole('button', { name: labels.undo, exact: true }).click();
     await footer.getByRole('button', { name: labels.redo, exact: true }).click();
     await footer.getByRole('button', { name: labels.save, exact: true }).click();
-    assert.deepEqual((await state(page)).config.supports[0].conditions[0].value, [0, 0.2]);
+    assert.deepEqual((await state(page)).config.rules[0].conditions[0].value, [0, 0.2]);
     await apply(page, entry, labels.updateApply);
     await close(page);
     await page.locator('#ctrl-widget .jpx-widget-info').click(); await settle(page);
@@ -324,4 +340,11 @@ test('applying a new strategy while stopped requires resume even after manual re
     assert.deepEqual((await state(page)).targets, []);
     await page.locator('#ctrl-widget .jpx-widget-info').click(); await settle(page);
     assert.deepEqual((await state(page)).targets, ['mkey_0']);
+});
+
+
+test('normal attacks honor conditions, while failed targeting still permits support actions', async t => {
+    const { page } = await fixture(t);
+    const result = await page.evaluate(() => __strategy.conditionProbe());
+    assert.deepEqual(result, { denied: false, legacy: true, missingTarget: false, support: true, log: ['Cure'] });
 });

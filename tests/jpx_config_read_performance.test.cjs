@@ -25,14 +25,14 @@ test('selection reads copy only the requested record and retain independent owne
  const raw=values.get('library'),selected=library.readSelection('Persistent');
  assert.equal(metrics.encodes,0,'parsed JSON never reaches the arbitrary-object descriptor walker');
  assert.deepEqual(metrics.copies,[entry.id],'no full-library clone on a selection read');
- selected.config[mode].supports[0].name='Changed';selected.scopes.length=0;
- assert.equal(library.readSelection('Persistent').config[mode].supports[0].name,'Cure');
+ selected.config[mode].rules[0].name='Changed';selected.scopes.length=0;
+ assert.equal(library.readSelection('Persistent').config[mode].rules[0].name,'Cure');
  const state=library.readState();state.applied.Persistent[entry.id].mode='TwoHanded_General';
  const list=library.list();list[0].envelope.title='Changed';
- const item=library.get(entry.id);item.envelope.config[mode].supports=[];
+ const item=library.get(entry.id);item.envelope.config[mode].rules=[];
  assert.equal(library.readSelection('Persistent').mode,mode);
  assert.equal(library.get(entry.id).envelope.title,'Read test');
- assert.equal(library.get(entry.id).envelope.config[mode].supports.length,1);
+ assert.equal(library.get(entry.id).envelope.config[mode].rules.length,1);
  assert.equal(values.get('library'),raw,'reads do not modify storage');
  assert.equal(library.readSelection('Isekai'),null);
  assert.throws(()=>library.readSelection('unknown'),error=>error.code==='invalidConfig');
@@ -41,17 +41,17 @@ test('selection reads copy only the requested record and retain independent owne
 test('selection cache sees external replacement, removal, corruption and recovery',()=>{
  const {library,values,entry}=setup();const good=values.get('library');
  assert.equal(library.readSelection('Persistent').id,entry.id);
- const replacement=JSON.parse(good);replacement.applied.Persistent[entry.id].config[mode].supports[0].name='Regen';
+ const replacement=JSON.parse(good);replacement.applied.Persistent[entry.id].config[mode].rules[0].name='Regen';
  values.set('library',JSON.stringify(replacement));
- assert.equal(library.readSelection('Persistent').config[mode].supports[0].name,'Regen');
+ assert.equal(library.readSelection('Persistent').config[mode].rules[0].name,'Regen');
  values.set('library','{broken');assert.throws(()=>library.readSelection('Persistent'),corrupt);
  values.delete('library');assert.equal(library.readSelection('Persistent'),null);assert.deepEqual(library.readState().entries,[]);
- values.set('library',good);assert.equal(library.readSelection('Persistent').config[mode].supports[0].name,'Cure');
+ values.set('library',good);assert.equal(library.readSelection('Persistent').config[mode].rules[0].name,'Cure');
 });
 
 test('selection reads still reject corruption in an unrelated saved config and bindings',()=>{
  const {library,values}=setup();const other=library.save(env()),good=values.get('library');
- for(const change of [state=>{state.entries.find(e=>e.id===other.id).envelope.config[mode].supports='bad';},
+ for(const change of [state=>{state.entries.find(e=>e.id===other.id).envelope.config[mode].rules='bad';},
   state=>{state.bindings=[{world:'Persistent',personaId:'1',setId:'1',id:'missing',trustedRevision:1}];},
   state=>{state.active.Persistent='missing';},state=>{state.entries.push(state.entries[0]);}]){
   const state=JSON.parse(good);change(state);const raw=JSON.stringify(state);values.set('library',raw);
@@ -89,10 +89,10 @@ test('stored legacy envelopes normalize privately without modifying original JSO
  entry.envelope.mode='Battlecaster_General';entry.envelope.config={version:20251216,Battlecaster_General:{supports:[{type:'spellDuration',name:'Haste'}],attacks:[{type:'target',bottomUp:true}]}};
  delete state.active;state.applied={};const raw=JSON.stringify(state);values.set('library',raw);
  const library=create(options),first=library.get(entry.id);
- assert.equal(first.envelope.mode,'1H_Mage_General');assert.equal(first.envelope.config['1H_Mage_General'].supports[0].type,'spellSupport');
- assert.equal(first.envelope.config['1H_Mage_General'].attacks[0].priorityRule,'Bottom Up');
- first.envelope.config['1H_Mage_General'].supports=[];
- assert.equal(library.get(entry.id).envelope.config['1H_Mage_General'].supports.length,1);assert.equal(values.get('library'),raw);
+ assert.equal(first.envelope.mode,'1H_Mage_General');assert.equal(first.envelope.config['1H_Mage_General'].rules[0].type,'spellSupport');
+ assert.equal(first.envelope.config['1H_Mage_General'].rules[1].priorityRule,'Bottom Up');
+ first.envelope.config['1H_Mage_General'].rules=[];
+ assert.equal(library.get(entry.id).envelope.config['1H_Mage_General'].rules.length,2);assert.equal(values.get('library'),raw);
 });
 
 test('indexed validation preserves applications and 2000 persona/set bindings',()=>{

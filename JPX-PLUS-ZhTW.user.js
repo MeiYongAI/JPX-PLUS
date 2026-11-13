@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Taiwan) Language Pack
 // @namespace    ijpx
-// @version      2026.11.11.3
+// @version      2026.11.13
 // @description  JPX-PLUS 繁體中文（台灣）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -128,6 +128,12 @@
             "downloadBattleLog": "下載戰鬥日誌"
         },
         "cB": {
+			"rules": "規則",
+			"addRule": "新增規則",
+			"ruleActions": "規則操作",
+			"insertBefore": "在上方插入",
+			"insertAfter": "在下方插入",
+
             "battleSettings": "戰鬥設定",
             "panelFields": "顯示項目",
             "panelTextColor": "文字",
@@ -964,6 +970,7 @@
             "ed": "能量飲料"
         },
         "cStore": {
+        "rules": "規則",
             "name": "設定商店",
             "browse": "瀏覽",
             "mine": "我的設定",
