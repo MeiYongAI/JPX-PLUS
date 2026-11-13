@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.13.2
+
+- Add individual and group reset controls for panel colors, opacity and statistics appearance. Statistics restore each item's original colors; panel colors follow the current theme.
+- Keep live previews, undo/redo and explicit saving. Use square controls and larger touch targets on phones. Update all five language packs.
+
+### 简体中文
+
+- 控制面板配色、透明度和统计外观新增单项及整组恢复默认。统计项恢复原有配色，面板配色跟随当前主题。
+- 保留即时预览、撤销、重做和手动保存。沿用直角样式，手机端加大点按区域，同步五个语言包。
+
 ## 2026.11.13.1
 
 - Keep the rule menu in place while switching to insertion options. The Back control stays visible when scrolling; keyboard navigation and touch remain supported.

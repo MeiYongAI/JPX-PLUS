@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13.1
+// @version      2026.11.13.2
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -60,6 +60,8 @@
 			"openStats": "打开统计"
 		},
 		"cGen": {
+            "restoreDefault": "恢复默认",
+            "restoreDefaults": "恢复默认",
 			"settings": "设置", "back": "返回", "save": "保存", "import": "导入", "export": "导出", "menu": "菜单", "statistics": "统计",
             "lightTheme": "浅色", "darkTheme": "暗色", "switchTheme": "切换浅色／暗色主题",
 			"undo": "撤销",

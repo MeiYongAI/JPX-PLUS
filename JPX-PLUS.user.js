@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.13.1
+// @version      2026.11.13.2
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-start
@@ -287,7 +287,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.13.1',
+    version: '2026.11.13.2',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -1367,10 +1367,17 @@ let cfg = {
         #settings-container .jpx-control-panel-editor .jpx-control-list .jpx-stats-select[aria-pressed=true] { background: transparent; box-shadow: none; font-weight: normal; }
         #settings-container .jpx-control-list .jpx-stats-select:hover { background: #fff; }
         #settings-container .jpx-control-style { display: grid; gap: 6px; }
-        #settings-container .jpx-control-style-row { display: flex; min-width: 0; align-items: center; justify-content: space-between; gap: 6px; min-height: 28px; }
+        #settings-container .jpx-control-style-row { display: grid; grid-template-columns: minmax(0, 1fr) 32px 28px; min-width: 0; align-items: center; gap: 8px; min-height: 28px; }
+        #settings-container .jpx-control-preview { display: grid; gap: 8px; min-width: 0; }
+        #settings-container .jpx-control-preview-states { justify-content: center; }
+        #settings-container button.jpx-appearance-reset { display: inline-flex; flex: none; justify-content: center; align-items: center; width: 28px; min-width: 28px; height: 28px; min-height: 28px; margin: 0; padding: 4px; border: 1px solid var(--jpx-theme-border, #c8b49b); border-radius: 0; color: var(--jpx-theme-accent, #5c0d11); background: transparent; }
+        #settings-container button.jpx-appearance-reset svg { width: 14px; height: 14px; }
+        #settings-container button.jpx-appearance-reset:focus-visible { outline: 2px solid var(--jpx-theme-accent, #5c0d11); outline-offset: 2px; }
+        #settings-container button.jpx-appearance-reset-all { width: auto; height: auto; padding: 4px 8px; margin-left: auto; white-space: nowrap; font: inherit; }
+        #settings-container .jpx-control-style input[type=color] { margin: 0; }
         #settings-container .jpx-control-style-row > label { flex: none; }
         #settings-container .jpx-control-style input[type=color] { width: 32px; height: 28px; min-width: 32px; padding: 1px; background: #fff; border: 1px solid rgb(92 13 17 / 24%); cursor: pointer; }
-        #settings-container .jpx-control-opacity-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 6px; margin-top: 2px; padding-top: 8px; border-top: 1px solid var(--stats-border); }
+        #settings-container .jpx-control-opacity-row { grid-template-columns: minmax(0, 1fr) auto 28px; gap: 4px 8px; margin-top: 2px; padding-top: 8px; border-top: 1px solid var(--stats-border); }
         #settings-container .jpx-control-opacity-row input { grid-column: 1 / -1; grid-row: 2; }
         #settings-container input[data-control-opacity] { flex: 1; width: 0; min-width: 44px; height: 28px; padding: 0; }
         #settings-container .jpx-control-opacity-row input[data-control-opacity] { width: 100%; min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; }
@@ -1713,11 +1720,12 @@ let cfg = {
         #settings-container .jpx-stats-edit-field:has(.jpx-stats-palette) { align-items: start; }
         #settings-container .jpx-stats-edit-field:has(.jpx-stats-palette) > label { padding-top: 4px; }
         #settings-container .jpx-stats-style-control:has(.jpx-stats-palette) { display: block; }
-        #settings-container .jpx-stats-palette { display: grid; grid-template-columns: 32px 32px minmax(44px, 1fr); align-items: center; gap: 8px; min-width: 0; }
+        #settings-container .jpx-stats-palette { display: grid; grid-template-columns: 68px 68px minmax(44px, 1fr); align-items: center; gap: 8px; min-width: 0; }
         /* Keep the outer 6em label column at the same font size as the editable rows. */
         #settings-container .jpx-stats-color-heading { margin-bottom: 6px; color: var(--stats-muted); }
-        #settings-container .jpx-stats-color-heading > div { display: grid; grid-template-columns: 32px 32px minmax(44px, 1fr); gap: 8px; text-align: center; font-size: 11px; }
-        #settings-container .jpx-stats-color { display: flex; flex: none; cursor: pointer; }
+        #settings-container .jpx-stats-color-heading > div { display: grid; grid-template-columns: 68px 68px minmax(44px, 1fr); gap: 8px; text-align: center; font-size: 11px; }
+        #settings-container .jpx-stats-color { display: flex; align-items: center; gap: 8px; min-width: 0; }
+        #settings-container .jpx-stats-color input[type=color] { margin: 0; }
         #settings-container .jpx-stats-color input[type=color] { width: 32px; height: 26px; min-height: 26px; padding: 1px; border: 1px solid var(--stats-border); background: #fff; cursor: pointer; }
         #settings-container .jpx-stats-color input[data-default=true] { border-style: dashed; }
         #settings-container .jpx-stats-preview { min-width: 0; }
@@ -1839,7 +1847,15 @@ let cfg = {
         #settings-container.jpx-settings-mobile textarea { font-size: 16px; min-height: 36px; }
         #settings-container.jpx-settings-mobile input[type=color] { min-width: 40px; }
         #settings-container.jpx-settings-mobile .jpx-stats-palette,
-        #settings-container.jpx-settings-mobile .jpx-stats-color-heading > div { grid-template-columns: 40px 40px minmax(44px, 1fr); }
+        #settings-container.jpx-settings-mobile .jpx-stats-color-heading > div { grid-template-columns: 44px 44px minmax(44px, 1fr); }
+        #settings-container.jpx-settings-mobile .jpx-stats-color { flex-direction: column; gap: 4px; }
+        #settings-container.jpx-settings-mobile .jpx-stats-color input[type=color],
+        #settings-container.jpx-settings-mobile .jpx-control-style input[type=color],
+        #settings-container.jpx-settings-mobile button.jpx-appearance-reset { width: 44px; min-width: 44px; min-height: 44px; height: 44px; }
+        #settings-container.jpx-settings-mobile button.jpx-appearance-reset-all { width: auto; height: auto; }
+        #settings-container.jpx-settings-mobile .jpx-control-style-row { grid-template-columns: minmax(0, 1fr) 44px 44px; }
+        #settings-container.jpx-settings-mobile .jpx-control-opacity-row { grid-template-columns: minmax(0, 1fr) auto 44px; }
+        #settings-container.jpx-settings-mobile .jpx-control-preview-states button { min-height: 44px; min-width: 44px; }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row { grid-template-columns: auto minmax(52px, 1fr) auto 40px 24px; }
         #settings-container.jpx-settings-mobile .jpx-stats-threshold-row:has(.jpx-stats-threshold-legacy) { grid-template-columns: minmax(0, 1fr) 24px; }
         @keyframes jpx-settings-reveal { from { opacity: 0; translate: 0 -4px; } to { opacity: 1; translate: 0; } }
@@ -2641,6 +2657,7 @@ const I18N = {
         lightTheme: 'Light', darkTheme: 'Dark', switchTheme: 'Switch light / dark theme',
         undo: 'Undo', redo: 'Redo', undoEmpty: 'Nothing to undo', redoEmpty: 'Nothing to redo',
         undoAction: 'Undo: ${label}', redoAction: 'Redo: ${label}',
+        restoreDefault: 'Restore default', restoreDefaults: 'Restore defaults',
         configEdit: 'Configuration', shortcutConfig: 'Shortcuts',
         importConfig: 'Import configuration', reorderRules: 'Reorder rules',
         rangeTo: 'to', rangeMin: 'Minimum', rangeMax: 'Maximum', on: 'On', off: 'Off', deleteCondition: 'Delete condition',
@@ -8681,8 +8698,10 @@ function setControlPanelStyleProperty(css, property, value, priority) {
         const match = chunk.match(/^(\s*(?:\/\*[\s\S]*?\*\/\s*)*)([\w-]+)(\s*:)/);
         if (!match || match[2].toLowerCase() !== property) return chunk;
         found = true;
+        if (value === null) return match[1];
         return match[0] + ' ' + replacement + (chunk.endsWith(';') ? ';' : '');
     }).join('');
+    if (value === null) return result.trim();
     return found ? result : result + (result.trim() && !result.trimEnd().endsWith(';') ? ';' : '') +
         (result ? ' ' : '') + property + ': ' + replacement + ';';
 }
@@ -8717,6 +8736,37 @@ function renderControlPanelSettings(container, field, data) {
 function renderControlPanelAppearance(container, data, state, element) {
     const heading = element('div', 'jpx-control-heading');
     heading.append(element('strong', '', t('cB.panelAppearance')));
+    const resets = [];
+    const addReset = (parent, key, label, properties, all = false) => {
+        const button = jpxUtils.createButton(parent, {
+            className: 'jpx-appearance-reset' + (all ? ' jpx-appearance-reset-all' : ''),
+            text: all ? t('cGen.restoreDefaults') : t('cGen.restoreDefault') + ': ' + label,
+            icon: all ? undefined : 'undo',
+            onClick: () => {
+                readStyle();
+                let css = typeof data.ctrlWidgetStyleText === 'string' ? data.ctrlWidgetStyleText : '';
+                const keys = properties();
+                // Old custom borders override every state. Bridge them before resetting just one.
+                if (keys.includes(`--jpx-${state.previewState}-border`) && hasLegacyBorder()) {
+                    if (!all) for (const other of stateKeys.filter(value => value !== state.previewState)) {
+                        const property = `--jpx-${other}-border`;
+                        if (!parsed.getPropertyValue(property)) css = setControlPanelStyleProperty(css, property, getComputedStyle(sample).borderTopColor);
+                    }
+                    for (const side of ['top', 'right', 'bottom', 'left']) {
+                        css = setControlPanelStyleProperty(css, `border-${side}-color`, 'var(--jpx-state-border)', 'important');
+                    }
+                }
+                for (const property of keys) css = setControlPanelStyleProperty(css, property, null);
+                data.ctrlWidgetStyleText = css;
+                update();
+            },
+        });
+        button.type = 'button';
+        button.dataset.controlReset = key;
+        resets.push({ button, key, label, properties, all });
+        return button;
+    };
+    addReset(heading, 'all', '', () => ['color', 'opacity', ...paletteProperties], true);
     const states = element('div', 'jpx-control-preview-states');
     states.setAttribute('role', 'group');
     states.setAttribute('aria-label', t('cB.panelPreview'));
@@ -8729,7 +8779,6 @@ function renderControlPanelAppearance(container, data, state, element) {
         button.dataset.controlPreviewState = key;
         return button;
     });
-    heading.append(states);
     const body = element('div', 'jpx-control-appearance-body');
     const controls = element('div', 'jpx-control-style');
     const colorRow = element('div', 'jpx-control-style-row');
@@ -8740,6 +8789,7 @@ function renderControlPanelAppearance(container, data, state, element) {
     color.dataset.controlColor = '';
     colorLabel.htmlFor = color.id;
     colorRow.append(colorLabel, color);
+    addReset(colorRow, 'color', t('cB.panelTextColor'), () => ['color']);
     const opacityRow = element('div', 'jpx-control-style-row jpx-control-opacity-row');
     const opacityLabel = element('label', '', t('cB.panelOpacity'));
     const opacity = element('input', '');
@@ -8752,6 +8802,7 @@ function renderControlPanelAppearance(container, data, state, element) {
     amount.dataset.controlOpacityValue = '';
     amount.htmlFor = opacity.id;
     opacityRow.append(opacityLabel, opacity, amount);
+    addReset(opacityRow, 'opacity', t('cB.panelOpacity'), () => ['opacity']);
     controls.append(colorRow);
     const paletteInputs = new Map();
     for (const [key, labelKey] of [['header', 'panelHeaderColor'], ['surface', 'panelSurfaceColor'], ['border', 'panelBorderColor']]) {
@@ -8790,6 +8841,7 @@ function renderControlPanelAppearance(container, data, state, element) {
             write(changes, input, bridgeBorder);
         });
         row.append(label, input);
+        addReset(row, key, t('cB.' + labelKey), () => [`--jpx-${state.previewState}-${key}`, ...(key === 'header' ? [`--jpx-${state.previewState}-ink`] : [])]);
         controls.append(row);
         paletteInputs.set(key, { input, labelKey });
     }
@@ -8801,7 +8853,9 @@ function renderControlPanelAppearance(container, data, state, element) {
     const content = previewParts.info;
     content.classList.add('jpx-control-preview-content');
     stage.append(sample);
-    body.append(controls, stage);
+    const preview = element('div', 'jpx-control-preview');
+    preview.append(states, stage);
+    body.append(controls, preview);
     container.append(heading, body);
     bindSettingsChange(controls, data, 'ctrlWidgetStyleText');
     const parsed = document.createElement('span').style;
@@ -8811,6 +8865,10 @@ function renderControlPanelAppearance(container, data, state, element) {
     const readStyle = () => { parsed.cssText = typeof data.ctrlWidgetStyleText === 'string' ? data.ctrlWidgetStyleText : ''; };
     const paletteProperties = stateKeys.flatMap(key => ['header', 'surface', 'border', 'ink'].map(part => `--jpx-${key}-${part}`));
     const borderProperties = ['top', 'right', 'bottom', 'left'].flatMap(side => ['width', 'style', 'color'].map(part => `border-${side}-${part}`));
+    const hasLegacyBorder = () => ['top', 'right', 'bottom', 'left'].some(side => {
+        const value = parsed.getPropertyValue(`border-${side}-color`);
+        return value && value !== 'var(--jpx-state-border)';
+    });
     const syncColor = (input, rawColor, source) => {
         if (input._jpxRawColor === rawColor) return;
         input._jpxRawColor = rawColor;
@@ -8854,6 +8912,13 @@ function renderControlPanelAppearance(container, data, state, element) {
         }).filter(row => row !== null);
         updateControlWidgetRows(content, rows);
         stateButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.controlPreviewState === state.previewState)));
+        for (const { button, key, label, properties, all } of resets) {
+            button.disabled = !properties().some(property => parsed.getPropertyValue(property)) && !((all || key === 'border') && hasLegacyBorder());
+            if (!all) {
+                button.title = t('cGen.restoreDefault') + ': ' + (['header', 'surface', 'border'].includes(key) ? stateLabel + ' · ' : '') + label;
+                button.setAttribute('aria-label', button.title);
+            }
+        }
     }
     function write(changes, source, bridgeBorder = false) {
         readStyle();
@@ -11399,8 +11464,10 @@ function bindStatsListDrag(list, moveField, options = {}) {
 }
 
 // Native color inputs edit individual CSS properties; opening them never changes the stored style.
-function renderStatsColorControls(container, input, updateStyle) {
+function renderStatsColorControls(container, input, updateStyle, defaultStyle = '') {
     const parsed = document.createElement('span').style;
+    const defaults = document.createElement('span').style;
+    defaults.cssText = defaultStyle;
     const canvas = document.createElement('canvas');
     canvas.width = canvas.height = 1;
     const context = canvas.getContext('2d', { willReadFrequently: true });
@@ -11409,7 +11476,7 @@ function renderStatsColorControls(container, input, updateStyle) {
     container.append(palette);
     const colors = [['color', 'textColor', '#5c0d11'], ['background-color', 'backgroundColor', '#edebdf']];
     const controls = colors.map(([property, titleKey, fallback]) => {
-        const label = document.createElement('label');
+        const label = document.createElement('div');
         label.className = 'jpx-stats-color';
         const picker = document.createElement('input');
         picker.type = 'color';
@@ -11418,13 +11485,27 @@ function renderStatsColorControls(container, input, updateStyle) {
         picker.setAttribute('aria-label', input.getAttribute('aria-label') + ': ' + t('cS.' + titleKey));
         label.append(picker);
         palette.append(label);
+        const reset = jpxUtils.createButton(label, {
+            className: 'jpx-appearance-reset', icon: 'undo',
+            text: t('cGen.restoreDefault') + ': ' + picker.getAttribute('aria-label'),
+            onClick: () => {
+                parsed.cssText = input.value;
+                const value = defaults.getPropertyValue(property);
+                if (value) parsed.setProperty(property, value, defaults.getPropertyPriority(property));
+                else parsed.removeProperty(property);
+                input.value = parsed.cssText;
+                updateStyle();
+            },
+        });
+        reset.type = 'button';
+        reset.dataset.colorReset = property;
         picker.addEventListener('input', () => {
             parsed.cssText = input.value;
             parsed.setProperty(property, picker.value, parsed.getPropertyPriority(property));
             input.value = parsed.cssText;
             updateStyle(picker);
         });
-        return { picker, property, fallback };
+        return { picker, reset, property, fallback };
     });
     const preview = document.createElement('div');
     preview.className = 'jpx-stats-preview';
@@ -11443,8 +11524,11 @@ function renderStatsColorControls(container, input, updateStyle) {
         }
         const computed = getComputedStyle(sample);
         for (const control of controls) {
-            const { picker, property, fallback } = control;
+            const { picker, reset, property, fallback } = control;
             const color = parsed.getPropertyValue(property);
+            reset.disabled = color === defaults.getPropertyValue(property) && parsed.getPropertyPriority(property) === defaults.getPropertyPriority(property);
+            picker.dataset.default = String(reset.disabled);
+            picker.title = picker.getAttribute('aria-label') + ': ' + (color || t('cS.defaultColor'));
             const resolvedColor = computed.getPropertyValue(property) || color || fallback;
             if (control.lastColor === color && control.lastResolvedColor === resolvedColor) continue;
             control.lastColor = color;
@@ -11459,8 +11543,6 @@ function renderStatsColorControls(container, input, updateStyle) {
                 const hex = '#' + [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(value => value.toString(16).padStart(2, '0')).join('');
                 if (picker.value !== hex) picker.value = hex;
             }
-            picker.dataset.default = String(!color);
-            picker.title = picker.getAttribute('aria-label') + ': ' + (color || t('cS.defaultColor'));
         }
     };
     palette._jpxRefreshTheme = syncColors;
@@ -11694,6 +11776,8 @@ function renderStatsFieldPicker(container, field, data) {
         const item = data[field.key].find(item => item.id === view.selected);
         editor.hidden = !item;
         if (!item) return;
+        const defaults = defaultCfgStats[field.key]?.find(row => row.id === item.id) || {};
+        const styleFields = field.editFields.filter(edit => edit.key.startsWith('s_') || edit.key === 'styleText');
         const title = element('div', 'jpx-stats-edit-title');
         const titleText = element('strong', '', item.customName || labelFor(item));
         title.append(titleText);
@@ -11764,6 +11848,28 @@ function renderStatsFieldPicker(container, field, data) {
             });
             bindSettingsChange(title, item, 'customName');
         }
+        const resetStyles = jpxUtils.createButton(title, {
+            text: t('cGen.restoreDefaults'), className: 'jpx-appearance-reset jpx-appearance-reset-all',
+            onClick: () => {
+                for (const { key } of styleFields) {
+                    if (defaults[key]) item[key] = defaults[key];
+                    else delete item[key];
+                }
+                renderEditor();
+                editor.querySelector('[data-stats-reset]')?.focus({ preventScroll: true });
+            },
+        });
+        resetStyles.type = 'button';
+        resetStyles.dataset.statsReset = '';
+        const currentStyle = document.createElement('span').style, defaultStyle = document.createElement('span').style;
+        const syncResetStyles = () => {
+            resetStyles.disabled = styleFields.every(({ key }) => {
+                currentStyle.cssText = item[key] || '';
+                defaultStyle.cssText = defaults[key] || '';
+                return currentStyle.cssText === defaultStyle.cssText;
+            });
+        };
+        syncResetStyles();
         const colorHeading = element('div', 'jpx-stats-color-heading');
         colorHeading.setAttribute('aria-hidden', 'true');
         const colorLabels = element('div', '');
@@ -11794,19 +11900,20 @@ function renderStatsFieldPicker(container, field, data) {
             input.dataset.editKey = edit.key;
             input.dataset.styleField = '';
             input.title = t('cS.styleHelp');
-            input.setAttribute('aria-label', edit.group ? `${t(`cS.${edit.group}`)}: ${t(edit.label)}` : t(edit.label));
+            input.setAttribute('aria-label', edit.group ? `${t(`cS.${edit.group}`)}: ${t(edit.label)}` : t(edit.key === 'styleText' ? 'cS.appearance' : edit.label));
             let syncColors;
             const updateStyle = sourcePicker => {
                 if (input.value) item[edit.key] = input.value;
                 else delete item[edit.key];
                 syncColors?.(sourcePicker);
                 syncThresholdPreview?.();
+                syncResetStyles();
             };
             input.addEventListener('input', updateStyle);
             control.append(input);
             if (edit.key.startsWith('s_') || edit.key === 'styleText') {
                 input.hidden = true;
-                syncColors = renderStatsColorControls(control, input, updateStyle);
+                syncColors = renderStatsColorControls(control, input, updateStyle, defaults[edit.key] || '');
                 syncColors();
             }
             row.append(label, control);

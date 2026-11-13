@@ -10,7 +10,7 @@
 
 **[安裝 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[互動預覽](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [更新內容](CHANGELOG.md#简体中文)
 
-**2026.11.13.1：** 輔助與攻擊使用同一份規則列表，普通攻擊支援條件，插入選單切換時不再跳動。更新前請備份設定。舊設定載入時自動轉換，儲存後使用新格式；舊版本無法讀取新格式。[升級說明](docs/upgrading.md#简体中文)。
+**2026.11.13.2：** 配色和透明度支援單項或整組還原預設，可即時預覽、復原與重做，手機上更容易點選。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
 
 ## 安裝
 

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13.1
+// @version      2026.11.13.2
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -61,6 +61,8 @@
             "openStats": "統計"
         },
         "cGen": {
+            "restoreDefault": "初期値に戻す",
+            "restoreDefaults": "初期値に戻す",
             "settings": "設定",
             "back": "戻る",
             "save": "保存",
