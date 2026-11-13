@@ -10,7 +10,7 @@
 
 **[安裝 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[互動預覽](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [更新內容](CHANGELOG.md#简体中文)
 
-**2026.11.13.4：** 戰鬥和小馬答題時隱藏手機懸浮入口，非戰鬥頁面正常顯示；戰鬥面板保留設定和統計按鈕。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
+**2026.11.13.5：** 改善手機設定與統計版面，修正長文字和統計設定編輯器的顯示問題，並精簡英文文案。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
 
 ## 安裝
 

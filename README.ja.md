@@ -10,7 +10,7 @@ HentaiVerse 向けの JPX 拡張ユーザースクリプトです。複数の設
 
 **[JPX-PLUS をインストール](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[プレビューを試す](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [更新履歴](CHANGELOG.md)
 
-**2026.11.13.4：** 戦闘中と RiddleMaster ではスマートフォンのフローティングメニューを非表示にし、戦闘外では表示します。戦闘パネルの設定・統計ボタンは引き続き使えます。旧版からの更新前に設定をバックアップしてください。旧設定は読み込み時に変換され、保存後は JPX-PLUS 2026.11.13 より前のバージョンで読み込めません。[更新ガイド](docs/upgrading.md)。
+**2026.11.13.5：** スマートフォンの設定・統計画面を見やすく整理し、長い文字列や統計設定エディターの表示を修正しました。英語の案内も簡潔になりました。旧版からの更新前に設定をバックアップしてください。旧設定は読み込み時に変換され、保存後は JPX-PLUS 2026.11.13 より前のバージョンで読み込めません。[更新ガイド](docs/upgrading.md)。
 
 ## インストール
 

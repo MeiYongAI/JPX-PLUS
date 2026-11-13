@@ -12,8 +12,8 @@
 #settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}
 #settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}
 #settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}
-#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:16px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}
-#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:12px;gap:12px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}
+#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:32px}
 #settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}
 #settings-container .jpx-config-manager *{box-sizing:border-box}
 #settings-container .jpx-config-manager [hidden]{display:none!important}
@@ -113,6 +113,7 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}
 #settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}
 #settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}
+#settings-container .jpx-config-manager .jpx-store .jpx-store-title{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}
 #settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}
 #settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}
 #settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}
@@ -163,7 +164,7 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}
-#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:36px}
 #settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}
 #settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}
 #settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}
@@ -192,16 +193,19 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}
 #settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}
-#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button),#settings-container.jpx-settings-mobile .jpx-config-rename input{height:44px;min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button){height:36px;min-height:36px}
+#settings-container.jpx-settings-mobile .jpx-config-rename input{min-height:32px}
+#settings-container.jpx-settings-mobile .jpx-config-confirm{padding:12px}
+#settings-container.jpx-settings-mobile .jpx-config-confirm>:is(h3,p,label),#settings-container.jpx-settings-mobile .jpx-config-rename{margin-bottom:12px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}
-#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:36px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}
 #settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}
-#settings-container.jpx-settings-mobile .jpx-config-manager button{min-height:44px}
+#settings-container.jpx-settings-mobile .jpx-config-manager button:where(:not(.jpx-config-stats-editor *)){min-height:44px}
 #settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}
 #settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}
 #settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}
@@ -248,10 +252,10 @@ html[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(v
 #settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}
 #settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}
 #settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}
-#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:14px}
-#settings-container.jpx-settings-mobile .jpx-scene-context{gap:12px;margin-bottom:16px}
-#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:16px;min-height:44px}
-#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 12px}
+#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:inherit}
+#settings-container.jpx-settings-mobile .jpx-scene-context{gap:8px;margin-bottom:12px}
+#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:inherit;min-height:32px}
+#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px}
 #settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}
 #settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}
 #settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}

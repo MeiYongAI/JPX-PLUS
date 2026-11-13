@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.13.5
+
+- Make mobile settings more compact and consistent. Keep the four statistics sections on one row and align color pickers, reset buttons and previews.
+- Fix overflow and missing theme styles in saved statistics configs. Let long store titles wrap, align shortcut controls, and match condition selectors to nearby inputs.
+- Use touch-action on editable fields to avoid Firefox focus zoom while keeping scrolling and pinch zoom available.
+- Simplify English labels and prompts across settings, configs and the store. Keep import, deletion and custom-code warnings clear.
+
+### 简体中文
+
+- 统一手机设置的字号、控件尺寸与间距。统计四个栏目保持一排，配色、重置按钮与预览横向对齐。
+- 修复已保存统计配置编辑器的横向溢出与主题样式缺失；商店长标题正常换行，快捷键按列对齐，条件多选按钮与输入框等高。
+- 为可编辑输入框设置触摸行为，避免 Firefox 聚焦时自动放大，同时保留正常滚动与双指缩放。
+- 精简设置、配置管理与商店的英文文案，保留导入、删除与自定义代码的重要提示。
+
 ## 2026.11.13.4
 
 - Hide the floating mobile launcher on battle and RiddleMaster pages, including dynamic battle transitions. Keep it available outside combat and retain the battle panel's Settings and Stats buttons.

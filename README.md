@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-**2026.11.13.4:** Hide the floating mobile launcher during battles and RiddleMaster. It remains available outside combat; the battle control panel keeps its Settings and Stats buttons. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
+**2026.11.13.5:** More compact mobile settings and statistics, better long-text wrapping, and clearer English labels. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
 
 ## Install
 
@@ -31,7 +31,7 @@ Update the main script and your language pack together. GitHub update URLs are i
 
 Keep several setups for the same style, battle and world. **My configs** handles saving, renaming, filtering and sorting; **Edit** opens a separate rule editor.
 
-**Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Restore automatic selection** exits fixed single-group mode. [How selection works](docs/scene-strategies.md). [Scene preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=scenes).
+**Battle strategies** assigns saved rules by world, style and scene, with General inheritance. **Switch to auto** exits fixed single-group mode. [How selection works](docs/scene-strategies.md). [Scene preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=scenes).
 
 <table>
 <tr><th width="50%">My configs</th><th width="50%">Rule editor</th></tr>
@@ -40,17 +40,17 @@ Keep several setups for the same style, battle and world. **My configs** handles
 
 - **Apply** uses the selected rule set immediately. **In use** marks the applied copy; **Current style** separately marks the detected equipment style. Applying during battle pauses automatic actions.
 - **Save** in the editor updates your saved copy. Use **Update & apply** when you want the edited rules to take effect.
-- **More → Bind loadout** links a config to a world's persona and equipment set. Switching to that combination applies its saved rules. One config can serve several sets; unbound sets keep the current rules.
+- **More → Link loadout** links a config to a world's persona and equipment set. Switching to that combination applies its saved rules. One config can serve several sets; unbound sets keep the current rules.
 - Colored tags identify styles, worlds, battle types and elements consistently in both themes. Tags come from the config's rule groups. Filter by world, style, battle or type; search by name and tags. Sort by type, update time, name, or drag configs into a manual order.
 - **More → Delete** lists a config's references. Confirm **Detach and delete** to remove the references and saved copy.
 - Import original JPX files. Export the rules **In use**, the **Full config**, or **Choose rules**. Scene assignments stay in the PLUS library and are not included in native JPX exports.
 
 <details>
-<summary>Loadout bindings and Export rules</summary>
+<summary>Loadout links and Export rules</summary>
 
 <table>
-<tr><th width="50%">Loadout bindings</th><th width="50%">Export rules</th></tr>
-<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=bindings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-bindings-dark-en.png"><img src="docs/images/desktop-bindings-en.png" width="100%" alt="Loadout bindings"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=export&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-export-dark-en.png"><img src="docs/images/desktop-export-en.png" width="100%" alt="Export rules"></picture></a></td></tr>
+<tr><th width="50%">Loadout links</th><th width="50%">Export rules</th></tr>
+<tr><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=bindings&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-bindings-dark-en.png"><img src="docs/images/desktop-bindings-en.png" width="100%" alt="Loadout links"></picture></a></td><td valign="top"><a href="https://meiyongai.github.io/JPX-PLUS/?lang=en&amp;page=export&amp;device=desktop"><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/desktop-export-dark-en.png"><img src="docs/images/desktop-export-en.png" width="100%" alt="Export rules"></picture></a></td></tr>
 </table>
 
 </details>

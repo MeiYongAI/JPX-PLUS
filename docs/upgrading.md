@@ -16,7 +16,7 @@ The Simplified Chinese pack is named JPX-PLUS-ZhCN.user.js. The old ZhTrans file
 
 Export the settings and records you want to keep, then disable the old main script and its language pack. Install JPX-PLUS and, if needed, one matching language pack.
 
-Import battle configs under **Configs → My configs → Import**. Imported rules are saved first. **Scene strategies** assigns saved rules by world, style and scene, with General inheritance. **Apply** on one mode fixes that ruleset across scenes and reloads; **Restore automatic selection** exits fixed mode. A complete file stays one item and updates native settings; explicit scene assignments remain in place. See [selection behavior](scene-strategies.md).
+Import battle configs under **Configs → My configs → Import**. Imported rules are saved first. **Battle strategies** assigns saved rules by world, style and scene, with General inheritance. **Apply** on one mode fixes that ruleset across scenes and reloads; **Switch to auto** exits fixed mode. A complete file stays one item and updates native settings; explicit scene assignments remain in place. See [selection behavior](scene-strategies.md).
 
 Statistics and historical records retain their own import/export controls. The local library is separate from the native battle settings. Original JPX files remain supported; PLUS-specific options are not a promise of lossless export back to original JPX.
 
@@ -26,13 +26,13 @@ The standalone script is no longer distributed. Use **Configs → My configs / S
 
 ## Save, apply and update
 
-In **My configs → More → Bind loadout**, choose a world, persona and equipment set. A confirmed switch applies the matching saved config. Bindings stay local and are not included in native JPX exports. One config can bind to several combinations; each combination selects one config. Manual application is kept until you switch to another combination. Unbound sets and removing a binding keep the current rules. Editing a bound copy affects the next matching switch; code added by a later update requires binding confirmation again.
+In **My configs → More → Link loadout**, choose a world, persona and equipment set. A confirmed switch applies the matching saved config. Bindings stay local and are not included in native JPX exports. One config can bind to several combinations; each combination selects one config. Manual application is kept until you switch to another combination. Unbound sets and removing a binding keep the current rules. Editing a bound copy affects the next matching switch; code added by a later update requires binding confirmation again.
 
 | Action | Result |
 | --- | --- |
 | Save in the rule editor | Update the local saved copy |
-| Scene strategies → Assign | Save a scene snapshot; unassigned scenes inherit General |
-| Restore automatic selection | Exit fixed single-group mode without deleting saved rules |
+| Battle strategies → Assign | Save a scene snapshot; unassigned scenes inherit General |
+| Switch to auto | Exit fixed single-group mode without deleting saved rules |
 | Detach and delete | List and remove references, then delete the saved copy |
 | Apply / Update & apply | Write those rules to the selected world and use them; pause automatic battle actions if running |
 | Store → Save | Add a local copy without applying it |

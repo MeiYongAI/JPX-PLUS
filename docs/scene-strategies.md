@@ -1,6 +1,6 @@
-# Scene strategies
+# Battle strategies
 
-Open **Configs → Scene strategies**. Select a world and one of the ten styles to inspect its assignments. Browsing these selectors does not change the active style, world, or rules.
+Open **Configs → Battle strategies**. Select a world and one of the ten styles to inspect its assignments. Browsing these selectors does not change the active style, world, or rules.
 
 Persistent shows General, Arena, Item World, Encounter, and Grindfest. Isekai shows General, Arena, Item World, Tower, and Grindfest. Each picker lists saved rules for that style and world, including groups from multi-mode files.
 
@@ -9,11 +9,11 @@ Automatic selection follows the detected style in the current world: scene rules
 Multiple General copies are not selected by detected spell element. For example, saved fire and holy Staff configs still share one Staff General assignment. The assigned rules' explicit element takes priority; otherwise the detected spell element is used.
 
 - Changing a picker reveals **Assign** and **Cancel**. **Assign** records the selected rules as a snapshot for that scene; **Cancel** restores the current choice. Neither browsing nor selecting a draft changes battle behavior.
-- **Inherit General** removes the scene-specific assignment. General is resolved for the same world and style.
+- **Use General rules** removes the scene-specific assignment. General is resolved for the same world and style.
 - **No assignment** on General removes its assignment. If neither scene nor General has usable rules, automatic battle pauses with a reason.
 - Existing native slots remain available under their resolved strategy names until explicitly replaced or cleared. This preserves existing automatic routing when upgrading.
 - **Save** changes the library copy only. Assign the newer revision when ready; the panel marks saved changes that are not assigned yet.
-- **Apply** on a single config selects fixed rules across scenes in the chosen world and persists after reload. **Restore automatic selection** exits fixed mode without deleting saved rules or assignments. Applying a whole file exits single-group selection; explicit scene assignments remain in place.
+- **Apply** on a single config selects fixed rules across scenes in the chosen world and persists after reload. **Switch to auto** exits fixed mode without deleting saved rules or assignments. Applying a whole file exits single-group selection; explicit scene assignments remain in place.
 
 Each scene shows its strategy directly in the picker; the active scene has an **In use** marker. Desktop rows align labels and controls, while phone controls stack below their labels. Open the picker to read long names in full. The library distinguishes the current strategy from configs assigned to another scene. Deletion lists application records, fixed selections, scene assignments and loadout bindings. **Detach and delete** removes these references atomically and keeps native settings; detached scenes return to General inheritance. Assignment changes pause a battle only when its effective rules or selection change, including other tabs on the same origin or shared primary/alt storage. Other scenes, inactive General rules and identical replacement copies do not interrupt it. Explicit configuration application still pauses battle before applying.
 

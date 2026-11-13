@@ -10,13 +10,13 @@ Actual script interfaces with offline sample data.
 
 ![My configs](images/desktop-configs-en.png)
 
-### Scene strategies
+### Battle strategies
 
-![Scene strategies](images/desktop-scenes-en.png)
+![Battle strategies](images/desktop-scenes-en.png)
 
-### Loadout bindings
+### Loadout links
 
-![Loadout bindings](images/desktop-bindings-en.png)
+![Loadout links](images/desktop-bindings-en.png)
 
 ### Rule editor
 
@@ -80,13 +80,13 @@ Actual script interfaces with offline sample data.
 
 ![My configs](images/mobile-configs-en.png)
 
-### Scene strategies
+### Battle strategies
 
-![Scene strategies](images/mobile-scenes-en.png)
+![Battle strategies](images/mobile-scenes-en.png)
 
-### Loadout bindings
+### Loadout links
 
-![Loadout bindings](images/mobile-bindings-en.png)
+![Loadout links](images/mobile-bindings-en.png)
 
 ### Rule editor
 
