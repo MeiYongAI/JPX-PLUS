@@ -10,20 +10,6 @@ function expose(){
         open:renderSettings,init:initJpxLoadoutBindings,lookup:()=>ensureJpxModeDetection(true),
         state:()=>getJpxConfigLibrary().readState(), catalog:getJpxLoadoutCatalog, label:key=>t('cM.'+key),
         confirmed:()=>jpxLoadoutConfirmed, pending:()=>jpxLoadoutPending, detectionContext:getJpxDetectionContext,
-        sync:()=>jpxLoadoutSyncRequired, detect:getDetectedJpxBattleStyle,
-        refresh:refreshJpxModeDetection, magic:()=>readJpxSpellDamageBonus(true),
-        modeInit:initJpxModeDetection,
-        guardedActions(entry='actions'){
-            let actions=0;const handler=actionHandlers.stop,update=jpxPanelManager.updateContent,dispatch=jpxPanelManager.dispatchState;
-            actionHandlers.stop=()=>{actions++;return true;};jpxPanelManager.updateContent=jpxPanelManager.dispatchState=()=>{};
-            try{
-                if(entry==='toggle'){isActiveBattle=false;toggleActive();}
-                else if(entry==='next'){isActiveBattle=true;goNext();}
-                else actionManager([{type:'stop'}]);
-                return{actions,active:isActiveBattle,message:readyNext};
-            }
-            finally{actionHandlers.stop=handler;jpxPanelManager.updateContent=update;jpxPanelManager.dispatchState=dispatch;}
-        },
         native:()=>JSON.parse(localStorage.getItem(prefix+'cfgBattle'+isekaiSuffix)||'null'),
         selected:()=>getJpxSelectedBattleMode(),apply:id=>commitJpxConfigEntry(getJpxConfigLibrary().get(id),jpxConfigWorld()),
         theme:toggleJpxTheme,
@@ -46,19 +32,13 @@ before(async()=>{browser=await chromium.launch({...(process.env.PLAYWRIGHT_CHANN
 after(async()=>browser?.close());
 async function fixture(t,{world='Persistent',width=1360,zh=false}={}){
     const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});t.after(()=>context.close());
-    let current={persona:'1',set:'1'},blocked=false,holdNext=null,modeEvidence=false;const requests=[],errors=[];
+    let current={persona:'1',set:'1'},blocked=false,holdNext=null;const requests=[],errors=[];
     await context.route('**/*',async route=>{
         const req=route.request(),url=new URL(req.url());
         if(req.isNavigationRequest())return route.fulfill({contentType:'text/html',body:html(current.persona,current.set)});
         if(url.searchParams.get('s')==='Character'){
             requests.push({url:req.url(),method:req.method()});
-            const evidence='<div class="spc">Spell Damage Bonus</div><table><tr><td>20%</td><td>Wind</td></tr></table>'+
-                '<div class="eqb" onclick="location.href=\'/?s=Character&ss=eq&equip_slot=1\'"><div>Main hand</div><div data-eid="101">Weapon</div></div>'+
-                '<div class="eqb eqdisabled"><div>Offhand</div><div class="eqempty">Unavailable</div></div>';
-            let body=blocked?'Unavailable':html(current.persona,current.set);
-            if(modeEvidence&&!blocked)body=body.replace('<div id="eqsb"></div>','<div id="eqsb">'+evidence+'</div>')+
-                '<script>var dynjs_equip={"101":{"n":"Exquisite Mace of Slaughter"}};</script>';
-            const held=holdNext;holdNext=null;
+            const body=blocked?'Unavailable':html(current.persona,current.set),held=holdNext;holdNext=null;
             if(held)await held;
             return route.fulfill({status:blocked?503:200,contentType:'text/html',body});
         }
@@ -71,7 +51,7 @@ async function fixture(t,{world='Persistent',width=1360,zh=false}={}){
         await page.addScriptTag({content:harness});
     };
     await page.goto('https://hentaiverse.org/'+(world==='Isekai'?'isekai/':''));await boot();
-    return{page,context,requests,errors,boot,world,setGame:(persona,set)=>{current={persona,set};},evidence:()=>{modeEvidence=true;},block:()=>{blocked=true;},
+    return{page,context,requests,errors,boot,world,setGame:(persona,set)=>{current={persona,set};},block:()=>{blocked=true;},
         hold(){let release;holdNext=new Promise(resolve=>{release=resolve;});return release;}};
 }
 const state=page=>page.evaluate(()=>__binding.state());
@@ -79,125 +59,6 @@ const active=async(page,world='Persistent')=>(await state(page)).active?.[world]
 const add=(page,title,mode)=>page.evaluate(({title,mode})=>__binding.save(title,mode),{title,mode});
 const bind=(page,id,personaId,setId,world)=>page.evaluate(args=>__binding.bind(...args),[id,personaId,setId,world]);
 const remember=(page,p,s)=>page.evaluate(([p,s])=>__binding.remember(p,s),[p,s]);
-const completeHvut=(page,p,s)=>page.evaluate(([p,s])=>{
-    const key=location.pathname.startsWith('/isekai/')?'hvuti_persona':'hvut_persona';
-    const button=document.querySelector('#hvut-top span');button.textContent='(E...)';
-    localStorage.setItem(key,JSON.stringify({pset:p,eset:s,[p]:{name:'Build '+p,[s]:{name:'Set '+s}}}));
-    button.textContent='Set '+s;
-},[p,s]);
-
-test('character page retains its old selector while JPX uses verified new equipment and stats',async t=>{
-    const f=await fixture(t),{page}=f;f.evidence();
-    await page.evaluate(()=>{__binding.modeInit();__binding.init();});
-    await page.evaluate(()=>__binding.lookup());const initialRequests=f.requests.length;
-    f.setGame('2','2');await completeHvut(page,2,2);await page.waitForFunction(()=>!__binding.sync());
-    assert.equal(await page.locator('#persona_form select').inputValue(),'1');
-    assert.equal(await page.evaluate(()=>__binding.detectionContext().personaId),'2');
-    assert.equal(await page.evaluate(()=>__binding.detect()),'TwoHanded');
-    await page.evaluate(()=>__binding.refresh());
-    assert.deepEqual(await page.evaluate(()=>__binding.magic()),{maxType:'wind',maxValue:20});
-    assert.equal(f.requests.length-initialRequests,2);assert.deepEqual(f.errors,[]);
-});
-
-test('HVUT mounting after ten seconds and replacing its top bar both remain observed',async t=>{
-    const f=await fixture(t),{page}=f;f.evidence();
-    await page.clock.install();
-    await page.evaluate(()=>{window.__top=document.getElementById('hvut-top');__top.remove();__binding.init();});
-    await page.clock.fastForward(11000);
-    await page.evaluate(()=>document.getElementById('navbar').after(window.__top));
-    f.setGame('2','2');await completeHvut(page,2,2);await page.waitForFunction(()=>!__binding.sync());
-    assert.equal(await page.evaluate(()=>__binding.confirmed().personaId),'2');
-    await page.evaluate(()=>{const old=document.getElementById('hvut-top');old.replaceWith(old.cloneNode(true));});
-    f.setGame('1','3');await completeHvut(page,1,3);await page.waitForFunction(()=>!__binding.sync());
-    assert.equal(await page.evaluate(()=>__binding.confirmed().setId),'3');
-    assert.equal(f.requests.length,4);assert.deepEqual(f.errors,[]);
-});
-
-test('delegated HVUT selection starts synchronization before the top label changes',async t=>{
-    const f=await fixture(t),{page}=f;f.evidence();await page.evaluate(()=>__binding.init());
-    await page.evaluate(()=>{
-        const menu=document.createElement('div');menu.className='hvut-top-sub';
-        menu.innerHTML='<select><option value="1">A</option><option value="2">B</option></select><select><option value="1">Set 1</option></select>';
-        document.querySelector('#hvut-top>div').append(menu);
-        const select=menu.firstChild;select.value='2';select.dispatchEvent(new Event('change',{bubbles:true}));
-    });
-    assert.equal(await page.evaluate(()=>__binding.sync()),true);assert.equal(await page.evaluate(()=>__binding.pending()),true);
-    await page.evaluate(()=>__binding.lookup());assert.equal(f.requests.length,0);
-    f.setGame('2','2');await completeHvut(page,2,2);await page.waitForFunction(()=>!__binding.sync());
-    assert.equal(await page.evaluate(()=>__binding.confirmed().personaId),'2');assert.deepEqual(f.errors,[]);
-});
-
-test('re-enabled HVUT selectors complete a switch even when its busy label is unchanged',async t=>{
-    const f=await fixture(t),{page}=f;f.evidence();await page.evaluate(()=>__binding.init());
-    await page.evaluate(()=>{
-        const menu=document.createElement('div');menu.className='hvut-top-sub';
-        menu.innerHTML='<select><option value="1">A</option><option value="2">B</option></select><select><option value="2">Set 2</option></select>';
-        document.querySelector('#hvut-top>div').append(menu);
-        const select=menu.firstChild;select.value='2';select.dispatchEvent(new Event('change',{bubbles:true}));select.disabled=true;
-    });
-    f.setGame('2','2');
-    await page.evaluate(()=>{
-        localStorage.setItem('hvut_persona',JSON.stringify({pset:2,eset:2,2:{name:'B',2:{name:'Set 2'}}}));
-        document.querySelector('.hvut-top-sub select').disabled=false;
-    });
-    await page.waitForFunction(()=>!__binding.sync());
-    assert.equal(await page.evaluate(()=>__binding.confirmed().personaId),'2');assert.equal(f.requests.length,2);assert.deepEqual(f.errors,[]);
-});
-
-test('HVUT difficulty selector changes do not start loadout verification',async t=>{
-    const f=await fixture(t),{page}=f;await page.evaluate(()=>__binding.init());
-    await page.evaluate(()=>{
-        const node=document.createElement('div');node.innerHTML='<span>PFUDOR</span><div class="hvut-top-sub"><select><option value="7">IWBTH</option></select></div>';
-        document.getElementById('hvut-top').append(node);
-        const select=node.querySelector('select');select.dispatchEvent(new Event('change',{bubbles:true}));select.disabled=true;
-    });
-    assert.equal(await page.evaluate(()=>__binding.sync()),false);
-    await page.evaluate(()=>document.querySelector('.hvut-top-sub select').disabled=false);
-    assert.equal(await page.evaluate(()=>__binding.sync()),false);assert.equal(f.requests.length,0);assert.deepEqual(f.errors,[]);
-});
-
-test('a second set switch discards the first lookup and applies only the last verified binding',async t=>{
-    const f=await fixture(t),{page}=f,a=await add(page,'A'),b=await add(page,'B'),c=await add(page,'C','TwoHanded_General');
-    await bind(page,a.id,'1','1');await bind(page,b.id,'2','2');await bind(page,c.id,'2','3');await page.evaluate(()=>__binding.init());f.evidence();
-    f.setGame('2','2');const release=f.hold(),started=page.waitForRequest(/ss=ch/);await completeHvut(page,2,2);await started;
-    assert.equal(await active(page),a.id);
-    f.setGame('2','3');await completeHvut(page,2,3);await page.waitForFunction(()=>!__binding.sync());
-    release();await page.waitForTimeout(50);
-    assert.equal(await active(page),c.id);assert.equal(await page.evaluate(()=>__binding.confirmed().setId),'3');assert.deepEqual(f.errors,[]);
-});
-
-for(const failure of ['server-mismatch','http-error','missing-equipment'])test('HVUT '+failure+' keeps automation paused instead of using old rules',async t=>{
-    const f=await fixture(t),{page}=f,a=await add(page,'A'),b=await add(page,'B');
-    await bind(page,a.id,'1','1');await bind(page,b.id,'2','2');await page.evaluate(()=>__binding.init());
-    if(failure!=='missing-equipment')f.evidence();if(failure!=='server-mismatch')f.setGame('2','2');if(failure==='http-error')f.block();
-    await completeHvut(page,2,2);await page.evaluate(()=>__binding.lookup());
-    assert.equal(await active(page),a.id);assert.equal(await page.evaluate(()=>__binding.sync()),true);
-    await page.evaluate(()=>__binding.battle());const result=await page.evaluate(()=>__binding.guardedActions());
-    assert.equal(result.actions,0);assert.equal(result.active,false);assert.match(result.message,/not verified/);assert.deepEqual(f.errors,[]);
-});
-
-for(const world of ['Persistent','Isekai'])test(world+': unfinished verification survives battle navigation and never sends combat requests',async t=>{
-    const f=await fixture(t,{world}),{page}=f;f.evidence();await page.evaluate(()=>__binding.init());
-    f.setGame('2','2');const release=f.hold(),started=page.waitForRequest(/ss=ch/);await completeHvut(page,2,2);await started;
-    assert.equal(await page.evaluate(()=>__binding.sync()),true);
-    await page.reload();await f.boot();
-    await page.evaluate(()=>{
-        document.getElementById('csp').innerHTML='<table id="textlog"></table>';
-        __binding.battle();__binding.modeInit();__binding.init();
-    });
-    const count=f.requests.length;release();await page.evaluate(()=>__binding.lookup());
-    const result=await page.evaluate(()=>__binding.guardedActions());
-    assert.equal(result.actions,0);assert.equal(result.active,false);assert.equal(f.requests.length,count);
-    for(const entry of ['toggle','next']){
-        const guarded=await page.evaluate(entry=>__binding.guardedActions(entry),entry);
-        assert.equal(guarded.active,false);assert.equal(guarded.actions,0);assert.match(guarded.message,/not verified/);
-    }
-    assert.equal(await page.evaluate(()=>__binding.detect()),'');
-    await page.reload();await f.boot();await page.evaluate(()=>{__binding.modeInit();__binding.init();});await page.evaluate(()=>__binding.lookup());
-    assert.equal(await page.evaluate(()=>__binding.sync()),false);assert.equal(await page.evaluate(()=>__binding.detect()),'TwoHanded');
-    assert.equal((await page.evaluate(()=>__binding.guardedActions())).actions,1);
-    assert.deepEqual(f.errors,[]);
-});
 
 for(const world of ['Persistent','Isekai'])test(world+': confirmed tuples apply exact local rules; manual choices persist until the tuple changes',async t=>{
     const f=await fixture(t,{world}),{page}=f,a=await add(page,'A'),b=await add(page,'B','TwoHanded_General');
@@ -222,7 +83,7 @@ test('native reload observes a changed set while a pending dropdown never applie
     assert.equal(await active(page),b.id);assert.deepEqual(f.errors,[]);
 });
 
-test('HVUT waits for completion and fresh server evidence before applying once',async t=>{
+test('HVUT waits for the equipment response, then applies once without fetching',async t=>{
     const f=await fixture(t),{page}=f,a=await add(page,'A'),b=await add(page,'B','TwoHanded_General');
     await bind(page,a.id,'1','1');await bind(page,b.id,'2','2');await page.evaluate(()=>__binding.init());
     await page.evaluate(()=>{document.querySelector('#hvut-top span').textContent='(P...)';});
@@ -232,15 +93,11 @@ test('HVUT waits for completion and fresh server evidence before applying once',
         document.querySelector('#hvut-top span').textContent='(E...)';
     });
     assert.equal(await active(page),a.id);
-    f.setGame('2','2');f.evidence();
-    const release=f.hold();
     await page.evaluate(()=>{const d=JSON.parse(localStorage.getItem('hvut_persona'));d.eset=2;localStorage.setItem('hvut_persona',JSON.stringify(d));document.querySelector('#hvut-top span').textContent='Tower';});
-    assert.equal(await active(page),a.id);assert.equal(await page.evaluate(()=>__binding.sync()),true);
-    release();await page.waitForFunction(()=>!__binding.sync());
     assert.equal(await active(page),b.id);assert.equal(await page.evaluate(()=>__binding.selected()),'TwoHanded_General');
     const saved=await page.evaluate(()=>localStorage.getItem('jpx_configApplySignal_v1'));
     await page.evaluate(()=>document.querySelector('#hvut-top').append(document.createElement('span')));
-    assert.equal(await page.evaluate(()=>localStorage.getItem('jpx_configApplySignal_v1')),saved);assert.equal(f.requests.length,2);assert.deepEqual(f.errors,[]);
+    assert.equal(await page.evaluate(()=>localStorage.getItem('jpx_configApplySignal_v1')),saved);assert.deepEqual(f.requests,[]);
 });
 
 test('bindings never probe or auto-apply during battle/puzzle; steady routing does not read the library',async t=>{
@@ -297,32 +154,28 @@ test('HVUT switching already in progress at startup waits for completion',async 
     await bind(page,a.id,'1','1');await bind(page,b.id,'2','2');
     await page.evaluate(()=>{document.querySelector('#hvut-top span').textContent='(E...)';__binding.init();});
     assert.equal(await active(page),undefined);assert.equal(f.requests.length,0);
-    f.setGame('2','2');f.evidence();
     await page.evaluate(()=>{localStorage.setItem('hvut_persona',JSON.stringify({pset:2,eset:2,2:{name:'Build B',2:{name:'Tower'}}}));document.querySelector('#hvut-top span').textContent='Tower';});
-    await page.waitForFunction(()=>!__binding.sync());
     assert.equal(await active(page),b.id);assert.deepEqual(f.errors,[]);
 });
 
 for(const world of ['Persistent','Isekai'])test(world+': fast HVUT completion applies once and ignores stale page selectors',async t=>{
     const f=await fixture(t,{world}),{page}=f,a=await add(page,'A'),b=await add(page,'B','TwoHanded_General');
     await bind(page,a.id,'1','1');await bind(page,b.id,'2','3');await page.evaluate(()=>__binding.init());
-    f.setGame('2','3');f.evidence();
     await page.evaluate(world=>{
         const button=document.querySelector('#hvut-top span');
         button.textContent='(P...)';
         localStorage.setItem(world==='Isekai'?'hvuti_persona':'hvut_persona',JSON.stringify({pset:2,eset:3,2:{name:'Renamed B',3:{name:'Tower'}}}));
         button.textContent='(E...)';button.textContent='Tower';
     },world);
-    await page.waitForFunction(()=>!__binding.sync());
     assert.equal(await active(page,world),b.id);
     assert.equal(await page.evaluate(()=>__binding.detectionContext().personaId),'2');
-    assert.equal(await page.evaluate(()=>__binding.detectionContext().persona),'Build B','the server name wins over a cached HVUT name');
+    assert.equal(await page.evaluate(()=>__binding.detectionContext().persona),'Renamed B');
     const catalog=await page.evaluate(()=>__binding.catalog());
     assert.equal(catalog.personas.find(p=>p.id==='2').lastSetId,'3');
     const signal=await page.evaluate(()=>localStorage.getItem('jpx_configApplySignal_v1'));
     await page.evaluate(()=>document.querySelector('#hvut-top span').textContent='Renamed again');
     assert.equal(await page.evaluate(()=>localStorage.getItem('jpx_configApplySignal_v1')),signal);
-    assert.equal(f.requests.length,2);assert.deepEqual(f.errors,[]);
+    assert.deepEqual(f.requests,[]);assert.deepEqual(f.errors,[]);
 });
 
 test('native AJAX equipment replacement confirms the server tuple without another focus event',async t=>{

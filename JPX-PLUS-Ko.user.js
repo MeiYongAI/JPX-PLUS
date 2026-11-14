@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.14
+// @version      2026.11.13.9
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1229,8 +1229,6 @@
         "sceneAssignments": "전투별 전략",
         "inheritGeneral": "공통 규칙 사용",
         "unassigned": "지정 안 됨",
-        "loadoutSyncing": "페르소나와 장비 세트를 확인 중입니다. 확인될 때까지 자동 전투가 중지됩니다. 완료되지 않으면 전투 밖에서 새로고침하세요.",
-        "loadoutSyncBattle": "중지됨: 전투 시작 전에 페르소나와 장비 세트를 확인하지 못했습니다. 로비로 돌아가 동기화하세요.",
         "noSceneRules": "일시 정지: 이 전투에 쓸 규칙과 공통 규칙이 없어요.",
         "assign": "지정",
         "assigned": "지정됨",

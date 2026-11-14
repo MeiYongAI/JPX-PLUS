@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Traditional Chinese (Hong Kong) Language Pack
 // @namespace    ijpx
-// @version      2026.11.14
+// @version      2026.11.13.9
 // @description  JPX-PLUS 繁體中文（香港）語言包；請只啟用一個 JPX-PLUS 語言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1228,8 +1228,6 @@
         "sceneAssignments": "場景策略",
         "inheritGeneral": "使用通用規則",
         "unassigned": "未分配",
-        "loadoutSyncing": "正在核實人格／套裝，自動戰鬥暫不可用；若一直未完成，請在戰鬥外重新整理。",
-        "loadoutSyncBattle": "已暫停：進入戰鬥前未完成人格／套裝核實，請返回戰鬥外同步。",
         "noSceneRules": "已暫停：目前場景和通用規則都無法使用。",
         "assign": "分配",
         "assigned": "已分配",

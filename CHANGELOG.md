@@ -1,19 +1,5 @@
 # Changelog
 
-## 2026.11.14
-
-- Verify persona/set, equipped weapons and spell bonuses after HVUT quick switches before applying loadout bindings. Ignore the stale native character page.
-- Observe late-created and replaced HVUT top bars, discard superseded switch responses, and keep difficulty changes separate from loadout changes. The flow is event-driven, without new polling or automatic retry paths.
-- Keep unverified switches paused across navigation: automatic battle actions and rule hotkeys remain blocked until verification completes outside battle. Add matching messages to all five language packs.
-- Verification: 81 focused tests and seven isolated scenarios using the original HVUT switching callbacks passed. These use local fixtures; live-account verification is still pending.
-
-### 简体中文
-
-- HVUT 快切后核实人格／套装、武器和法伤，再应用对应绑定；不再信任仍显示旧内容的原生角色页。
-- 支持 HVUT 顶栏迟加载与重建，丢弃被后续切换取代的响应，难度切换不会触发套装同步。采用事件驱动，不新增轮询或自动重试路径。
-- 待核实状态跨页面保留：未核实就进入战斗时，暂停自动动作和策略快捷键，回到战斗外完成核实后解除；同步五个语言包提示。
-- 验证：81 项针对性测试及 7 个使用 HVUT 原始切换函数的隔离场景通过，均使用本地模拟响应，尚待真实账号确认。
-
 ## 2026.11.13.9
 
 - Use the same 120 ms fade for rule menus, config menus, multi-select lists and mobile navigation.

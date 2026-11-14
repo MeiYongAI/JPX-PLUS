@@ -3,44 +3,6 @@ const jpxLoadoutSlot = value => /^[1-9]\d{0,5}$/.test(String(value || '')) ? Str
 const jpxLoadoutKey = (world = jpxConfigWorld()) => prefix + 'loadouts_v1' + (world === 'Isekai' ? '_isekai' : '');
 const jpxLoadoutSame = (a, b) => !!a && !!b && a.world === b.world && a.personaId === b.personaId && a.setId === b.setId;
 let jpxLoadoutConfirmed = null, jpxLoadoutPending = false, jpxLoadoutBusy = false, jpxLoadoutInitialized = false;
-const jpxLoadoutSyncKey = prefix + 'loadoutSync_v1' + isekaiSuffix;
-let jpxLoadoutSyncRequired = sessionStorage.getItem(jpxLoadoutSyncKey) === '1', jpxLoadoutSyncExpected = null;
-
-function setJpxLoadoutSync(required, expected = null) {
-    jpxLoadoutSyncRequired = required; jpxLoadoutSyncExpected = expected;
-    if (required) sessionStorage.setItem(jpxLoadoutSyncKey, '1');
-    else sessionStorage.removeItem(jpxLoadoutSyncKey);
-    renderJpxLoadoutSync();
-}
-
-function renderJpxLoadoutSync() {
-    let notice = document.getElementById('jpx-loadout-sync');
-    if (!jpxLoadoutSyncRequired) { notice?.remove(); return; }
-    if (!notice) {
-        notice = document.createElement('div'); notice.id = 'jpx-loadout-sync'; notice.setAttribute('role', 'status');
-        notice.style.cssText = jpxThemeCSS('padding:8px 12px;margin:6px;border:1px solid #c8b49b;background:#f9f6ec;color:#5c0d11;font:13px/1.5 Arial,sans-serif;');
-        (document.getElementById('csp') || document.body).prepend(notice);
-    }
-    const text = t('cM.' + (log || document.querySelector('#textlog, #battle_main') ? 'loadoutSyncBattle' : 'loadoutSyncing'));
-    if (notice.textContent !== text) notice.textContent = text;
-}
-
-function guardJpxLoadoutSync() {
-    if (!jpxLoadoutSyncRequired) return false;
-    const message = '\n' + t('cM.loadoutSyncBattle'), changed = isActiveBattle || readyNext !== message;
-    isActiveBattle = false; readyNext = message; cancelBattleDecision();
-    if (changed) {
-        jpxPanelManager.updateContent('battle'); jpxPanelManager.setBackground('#ff5'); jpxPanelManager.dispatchState();
-    }
-    renderJpxLoadoutSync();
-    return true;
-}
-
-function matchesJpxLoadoutSync(context) {
-    const expected = jpxLoadoutSyncExpected;
-    return !expected || context.world === expected.world && context.personaId === expected.personaId &&
-        (!expected.setId || context.setId === expected.setId);
-}
 
 function readJpxLoadoutCatalog(world = jpxConfigWorld()) {
     let saved;
@@ -158,7 +120,7 @@ function confirmJpxLoadout(current, catalog, livePage = false) {
 }
 
 function rememberJpxLoadout(character = document, equipment = document) {
-    if ((jpxLoadoutPending || jpxDetectionSourceIgnored) && character === document) return;
+    if (jpxLoadoutPending && character === document) return;
     const equipmentPersona = equipment.querySelector('#persona_form select');
     const selector = equipmentPersona || character.querySelector('#persona_form select');
     const personaId = jpxLoadoutSlot(selector?.value);
@@ -190,7 +152,7 @@ function initJpxLoadoutBindings() {
     if (jpxLoadoutInitialized) return;
     jpxLoadoutInitialized = true;
     const unavailable = () => !!log || !!document.querySelector('#textlog, #battle_main, #riddlemaster');
-    if (unavailable()) { renderJpxLoadoutSync(); return; }
+    if (unavailable()) return;
     const invalidate = () => {
         jpxLoadoutPending = true; jpxLoadoutConfirmed = null;
         jpxDetectionGeneration++; jpxDetectionRetryAt = 0;
@@ -207,17 +169,7 @@ function initJpxLoadoutBindings() {
             if (jpxLoadoutPending && !jpxLoadoutBusy && !unavailable() && document.visibilityState !== 'hidden') ensureJpxModeDetection(true);
         }, 80);
     };
-    const personaSelectors = node => [...(node.closest?.('#hvut-top .hvut-top-sub')?.querySelectorAll('select') || [])];
-    const isPersonaSelect = node => node.matches?.('select') && personaSelectors(node).length === 2;
     document.addEventListener('change', event => {
-        const select = event.target, menu = select.closest?.('#hvut-top .hvut-top-sub');
-        const selectors = menu ? personaSelectors(select) : [];
-        if (selectors.length === 2 && selectors.includes(select)) {
-            watchHvut(select.closest('#hvut-top'));
-            const personaId = jpxLoadoutSlot(selectors[0].value), setId = select === selectors[1] ? jpxLoadoutSlot(selectors[1].value) : '';
-            beginHvut(personaId ? { world: jpxConfigWorld(), personaId, setId } : null);
-            return;
-        }
         if (event.target.closest?.('#persona_form, [name=equip_set]')) invalidate();
     }, true);
     document.addEventListener('submit', event => {
@@ -234,45 +186,42 @@ function initJpxLoadoutBindings() {
                 (node.matches('#persona_form, #eqsl, #eqsb') || node.querySelector('#persona_form, #eqsl, #eqsb'))))) refresh();
     });
     nativeObserver.observe(document.getElementById('csp') || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
-    let hvutPending = false, watchedTop = null, hvutObserver = null;
-    const hvutBusy = () => [...watchedTop.children].some(node => /^\([PE]\.\.\.\)$/.test(node.firstElementChild?.textContent?.trim())) ||
-        [...watchedTop.querySelectorAll('.hvut-top-sub select:disabled')].some(isPersonaSelect);
-    function beginHvut(expected = null) {
-        hvutPending = true; jpxLoadoutBusy = true;
-        invalidate(); setJpxLoadoutSync(true, expected);
-    }
-    function finishHvut() {
-        const observed = readJpxHvutLoadout()?.current;
-        if (jpxLoadoutSyncExpected && observed && !matchesJpxLoadoutSync(observed)) return;
-        hvutPending = false; jpxLoadoutBusy = false;
-        if (observed) setJpxLoadoutSync(true, observed);
-        // HVUT's final cache is an expected tuple, not proof of a ready strategy.
-        // One server lookup verifies the loadout, equipment and attributes together.
-        ensureJpxModeDetection();
-    }
+    let hvutPending = false;
     function watchHvut(top) {
-        if (!top || watchedTop === top) return;
-        hvutObserver?.disconnect(); watchedTop = top;
-        if (hvutBusy()) beginHvut();
-        hvutObserver = new MutationObserver(records => {
+        const isBusy = () => [...top.children].some(node => /^\([PE]\.\.\.\)$/.test(node.firstElementChild?.textContent?.trim()));
+        if (isBusy()) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); }
+        new MutationObserver(records => {
             if (unavailable()) return;
-            if (hvutBusy()) { if (!hvutPending) beginHvut(); return; }
-            // Preserve switches that enter and leave busy within a single task.
-            const completed = records.some(record => record.type === 'attributes' && isPersonaSelect(record.target) && record.oldValue !== null && !record.target.disabled ||
-                /^\([PE]\.\.\.\)$/.test(record.oldValue?.trim()) ||
+            const busy = isBusy();
+            if (busy) { hvutPending = true; jpxLoadoutBusy = true; invalidate(); return; }
+            // A cached/fast response can enter and leave P/E busy in one task.
+            // Mutation records retain the removed busy text even then.
+            const completed = records.some(record => /^\([PE]\.\.\.\)$/.test(record.oldValue?.trim()) ||
                 [...record.removedNodes].some(node => /^\([PE]\.\.\.\)$/.test(node.textContent?.trim())));
-            if (!completed) return;
-            if (!hvutPending) beginHvut();
-            finishHvut();
-        });
-        hvutObserver.observe(top, { childList: true, subtree: true, characterData: true, characterDataOldValue: true, attributes: true, attributeOldValue: true, attributeFilter: ['disabled'] });
+            if (!hvutPending && !completed) return;
+            if (!hvutPending) invalidate();
+            hvutPending = false; jpxLoadoutBusy = false;
+            const observed = readJpxHvutLoadout();
+            if (!observed?.current || !observed.personas.some(persona => persona.id === observed.current.personaId && persona.sets.some(set => set.id === observed.current.setId))) { refresh(); return; }
+            // HVUT writes persona first, set second. Its P/E indicator must finish
+            // before the tuple is accepted; intermediate cache values are ignored.
+            try {
+                confirmJpxLoadout(observed.current, getJpxLoadoutCatalog());
+                window.dispatchEvent(new Event('jpx:mode-detected'));
+            }
+            catch (error) { console.warn('JPX-PLUS loadout binding failed.', error); }
+        }).observe(top, { childList: true, subtree: true, characterData: true, characterDataOldValue: true });
     }
-    watchHvut(document.getElementById('hvut-top'));
-    const topObserver = new MutationObserver(() => {
-        if (unavailable()) { topObserver.disconnect(); hvutObserver?.disconnect(); return; }
-        if (!watchedTop?.isConnected) watchHvut(document.getElementById('hvut-top'));
-    });
-    topObserver.observe(document.getElementById('navbar')?.parentElement || document.body, { childList: true });
+    const top = document.getElementById('hvut-top');
+    if (top) watchHvut(top);
+    else {
+        const observer = new MutationObserver(() => {
+            const top = document.getElementById('hvut-top');
+            if (top) { observer.disconnect(); clearTimeout(timeout); watchHvut(top); }
+        });
+        observer.observe(document.getElementById('navbar')?.parentElement || document.body, { childList: true });
+        const timeout = setTimeout(() => observer.disconnect(), 10000);
+    }
     window.addEventListener('storage', event => {
         if (event.key !== jpxLoadoutKey() && event.key !== (isekaiSuffix ? 'hvuti' : 'hvut') + '_persona') return;
         if (unavailable()) return;
@@ -296,7 +245,6 @@ function initJpxLoadoutBindings() {
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && jpxLoadoutPending) refresh(); });
     window.addEventListener('pagehide', () => clearTimeout(refreshTimer));
     try {
-        if (jpxLoadoutSyncRequired) { invalidate(); renderJpxLoadoutSync(); }
         rememberJpxLoadout();
         if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().readState().bindings?.some(item => item.world === jpxConfigWorld())) ensureJpxModeDetection(true);
     } catch (error) { console.warn('JPX-PLUS loadout binding could not be read.', error); }

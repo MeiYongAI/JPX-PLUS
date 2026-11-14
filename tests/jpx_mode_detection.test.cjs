@@ -39,7 +39,7 @@ function fixture(options = {}) {
         addEventListener: (name, callback) => { (listeners.window[name] ||= []).push(callback); }
     };
     const context = vm.createContext({ document, window, localStorage: storage,
-        prefix: 'jpx_', isekaiSuffix: suffix, log: null, battleStyle: 'TwoHanded', jpxLoadoutBusy: false, jpxLoadoutSyncRequired: false,
+        prefix: 'jpx_', isekaiSuffix: suffix, log: null, battleStyle: 'TwoHanded', jpxLoadoutBusy: false,
         readJpxLoadoutCatalog: () => JSON.parse(data.get('jpx_loadouts_v1' + suffix) || '{}'), queueMicrotask,
         spellDamageBonus: { maxType: 'fire', maxValue: 0 },
         Event: class { constructor(type) { this.type = type; } },

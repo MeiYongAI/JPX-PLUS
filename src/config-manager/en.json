@@ -133,8 +133,6 @@
   "sceneAssignments": "Battle strategies",
   "inheritGeneral": "Use General rules",
   "unassigned": "None selected",
-  "loadoutSyncing": "Syncing persona/equipment set. Auto battle waits for verification; if this does not finish, reload outside battle.",
-  "loadoutSyncBattle": "Paused: persona/equipment set was not verified before battle. Return to the lobby to synchronize.",
   "noSceneRules": "Paused: no rules for this battle and no General rules.",
   "assign": "Assign",
   "assigned": "Assigned",
