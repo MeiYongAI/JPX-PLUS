@@ -8,6 +8,12 @@ Automatic selection follows the detected style in the current world: scene rules
 
 Multiple General copies are not selected by detected spell element. For example, saved fire and holy Staff configs still share one Staff General assignment. The assigned rules' explicit element takes priority; otherwise the detected spell element is used.
 
+HVUT quick switches invalidate the displayed character page immediately. JPX-PLUS waits for HVUT to finish, then verifies the persona/set, equipped weapons and spell bonuses from fresh server responses before applying the binding. It does not replace the native character form or assume that HVUT's cached tuple is sufficient. Late-created and replaced HVUT top bars are observed without a discovery timeout.
+
+If a switch is not verified before entering battle, JPX-PLUS pauses its automatic actions and rule hotkeys. The pending marker survives navigation in that tab and world; verification resumes outside battle. There is no polling or inferred default style. A failed or inconsistent response leaves the switch unverified. Fixed manual selections and unbound-set behavior are unchanged.
+
+HVUT 顶部快切后，原生角色框可能仍显示旧人格。JPX-PLUS 会立即停用旧页面数据，等待 HVUT 切换结束，再通过服务器响应核实人格／套装、武器和法伤，核实成功后才应用绑定。若未核实就进入战斗，自动动作和策略快捷键保持暂停；返回战斗外完成同步后解除。此流程不轮询、不猜测流派，也不会改写原生角色框。
+
 - Changing a picker reveals **Assign** and **Cancel**. **Assign** records the selected rules as a snapshot for that scene; **Cancel** restores the current choice. Neither browsing nor selecting a draft changes battle behavior.
 - **Use General rules** removes the scene-specific assignment. General is resolved for the same world and style.
 - **No assignment** on General removes its assignment. If neither scene nor General has usable rules, automatic battle pauses with a reason.

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.13.9
+// @version      2026.11.14
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -1229,6 +1229,8 @@
         "sceneAssignments": "戦闘別の戦略",
         "inheritGeneral": "共通ルールを使う",
         "unassigned": "未割り当て",
+        "loadoutSyncing": "ペルソナと装備セットを確認中です。確認完了まで自動戦闘は停止します。完了しない場合は戦闘外で再読み込みしてください。",
+        "loadoutSyncBattle": "停止中：戦闘開始前にペルソナと装備セットを確認できませんでした。ロビーに戻って同期してください。",
         "noSceneRules": "一時停止：この戦闘で使えるルールも共通ルールもありません。",
         "assign": "割り当て",
         "assigned": "割り当て済み",

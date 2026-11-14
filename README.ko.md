@@ -10,7 +10,7 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 
 **[JPX-PLUS 설치](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[미리보기](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [변경 내역](CHANGELOG.md)
 
-**2026.11.13.9:** 메뉴가 열릴 때 짧게 나타나는 효과로 통일했습니다. 하위 메뉴 목록이 옆으로 움직이는 효과도 없앴습니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
+**2026.11.14:** HVUT 빠른 전환 후 페르소나, 장비 세트, 무기와 마법 피해 보너스를 확인하여 이전 캐릭터 페이지의 정보를 사용하지 않습니다. 확인이 끝나기 전에 전투에 들어가면 자동 행동을 중지합니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
 
 ## 설치
 
