@@ -10,7 +10,7 @@
 
 **[安裝 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[互動預覽](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [更新內容](CHANGELOG.md#简体中文)
 
-**2026.11.13.9：** 統一選單開啟時的短淡入動畫，子選單列表不再橫移。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
+**2026.11.14.1:** 精簡戰鬥處理、統計與設定管理，移除未使用程式碼；離線基準未發現明顯效能下降。從舊版本更新前請備份設定。舊設定載入時自動轉換，儲存後使用統一規則格式；2026.11.13 之前的 JPX-PLUS 無法讀取。[升級說明](docs/upgrading.md#简体中文)。
 
 ## 安裝
 

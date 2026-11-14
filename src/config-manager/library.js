@@ -376,9 +376,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         state.bindings.splice(index, 1); write(state); return true;
     }
     function backup() {
-        readState(); // Never replace or hide a corrupt source with an apparently valid backup.
-        const raw = getRaw(key);
-        if (getRaw(backupKey) === null || getRaw(backupKey) === undefined) {
+        readValidatedState(); // Never replace or hide a corrupt source with an apparently valid backup.
+        const raw = getRaw(key), previous = getRaw(backupKey);
+        if (previous === null || previous === undefined) {
             putRaw(backupKey, JSON.stringify({ savedAt: new Date().toISOString(), raw: raw ?? null }));
         }
         return backupKey;

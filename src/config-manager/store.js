@@ -272,7 +272,7 @@ const jpxConfigStore = (() => {
                 if (!validIdentity(value)) fail('invalidResponse');
                 const current = readAuth();
                 if (!sameAuth(current, auth)) fail('loginRequired');
-                if (sameAuth(current, auth) && (current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
+                if ((current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
                     GM_setValue(tokenKey, { ...current, user: { id: value.id, login: value.login } });
                 }
             });
@@ -1141,7 +1141,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         if (issue.labels.includes('store:hide')) return 'hidden';
         if (issue.pending) return 'pending';
         const labels = issue.labels;
-        for (const [label, key] of [['store:hide', 'hidden'], ['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
+        for (const [label, key] of [['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
             if (labels.includes(label)) return key;
         return 'pending';
     }
@@ -1231,8 +1231,9 @@ function renderConfigStore(parent, hooks, options = {}) {
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => mine());
         }
     }
+    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     const observer = new MutationObserver(() => {
-        if (!root.isConnected) { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); }
+        if (!root.isConnected) dispose();
     });
     // The core removes its dialog directly from body; ignore battle-content mutations.
     observer.observe(doc.body, { childList: true });
@@ -1246,7 +1247,6 @@ function renderConfigStore(parent, hooks, options = {}) {
     }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
     if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
     else browse();
-    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     dispose.back = () => {
         if (!alive() || !state.back) return false;
         Promise.resolve().then(state.back).catch(error => { if (alive()) message(errorMessage(error), true); });

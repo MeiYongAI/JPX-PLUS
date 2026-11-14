@@ -92,7 +92,7 @@ function getJpxSelectedBattleMode() {
 function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
     if (!style) return { mode: '', rules: null, id: '', inherited: false, assigned: false };
     const direct = style + '_' + scene, general = style + '_General';
-    for (const mode of [...new Set([direct, general])]) {
+    for (const mode of direct === general ? [general] : [direct, general]) {
         const assigned = Object.hasOwn(routes, mode), route = routes[mode];
         const rules = assigned ? route?.rules : config[mode];
         if (jpxConfigHasContent(rules)) return { mode, rules, id: route?.id || '', inherited: mode !== direct, assigned };
@@ -717,11 +717,13 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const entries = orderedEntries.filter(entry => {
             if (!visibleSavedEntry(entry, application)) return false;
             const envelope = entry.envelope, data = classify(envelope);
-            return (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
+            const matches = (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
                 (!state.kind || envelope.kind === state.kind) &&
                 ((!state.style && !state.scenario) || data.modes.some(mode => (!state.style || mode.slice(0, mode.lastIndexOf('_')) === state.style) &&
-                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
-                words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
+                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario)));
+            if (!matches || !words.length) return matches;
+            const text = normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' '));
+            return words.every(word => text.includes(word));
         });
         const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle), battleType);
         const fixedMode = getJpxSelectedBattleMode();
@@ -1054,17 +1056,14 @@ function renderJpxConfigManager(parent, hooks = {}) {
         captureList();showMine();notify(tr(paused?'applyPaused':'applied'));
     }
     function chooseEditor(entry) {
+        // A detached schema editor uses the same fields without touching live cfgStats.
+        if(entry.envelope.kind==='stats'){openEditor(entry,null);return;}
         const modes=modesOf(entry.envelope);
-        if(entry.envelope.kind==='stats'){openStatsEditor(entry);return;}
         if(modes.length===1){openEditor(entry,modes[0]);return;}
         resetPage('groups');const header=el('div',undefined,'jpx-config-editor-header');header.append(backButton(showMine),el('strong',entry.envelope.title));
         body=el('div',undefined,'jpx-config-body');
         for(const mode of modes)body.append(button(jpxConfigModeLabel(mode),()=>openEditor(entry,mode),'jpx-config-group'));
         root.append(header,notice,body);
-    }
-    function openStatsEditor(entry){
-        // A detached schema editor uses the same fields without touching live cfgStats.
-        openEditor(entry,null);
     }
     function openEditor(entry,mode){
         resetPage('editor');

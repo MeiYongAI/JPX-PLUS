@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.13.9
+// @version      2026.11.14.1
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAGdklEQVR4AeyZW2wUVRjHvxkqiBAFqSigQuoFEiAhEa2GbAUCmijSlIv4oJFwFQn6YqvR6IOJRlpeFBEplGDCA4hAimiiICBL1SomJEACKg2IgJZyMyCCZY7nN2E2ZZjZnZndtrvbbvr1zLl98//958zZzYwpAT/xj+b1ji+bOTVePXvhzuqZn+2qnvVNvHrW9mwItKAprrXZGrXWgFiS0gCddBzJpeC/02IYn1rWlfJzjedLjzc0jT3+28nRWRFaC5rQJlojWtGM9lRG+BoQXzmjiCQiasulC5dL92w7KLWLd8jy8o3G2oVfF2xa8q18vnRnVgRa0IQ2NKIVzWiHARY/IzwNYBmpy8ZeZalJ9Zv3yidvbS6o/2Kf/Hn4lF+erGlHI1ptzVo7DLDA5CXyOgPiy2fNYRnpRDetq9pi7Nn+i9e8nGhDOwywwGSzuZRfY4DtkpJlh/ceE5bV2cbzruG5V4UBFphEs9mMLTASBnCfKCWrTjQ0yVerfmgxJD8OYYINRlgdqoQBqtmoVKK671z3s9OXdyVsMMLqwNkG8HVhiDH5py/3GywZpzPfSthghBVm+GwDlFgv/HvhUjObBo35HDDCCjOcJr/wcORA/eECGjpCwAoz7KZ0uTwO6CP7T1B0iEiwanZTDHOkZVlKf1d2CHggYbUsS8Fu6nvhnr+bLlyhI9eiaNhAqVg23w6Ow+iHGXZTL4HeF89fysn7f+y0mPTq28uOKQsmhOEXmGHXK0BM/Xs51GRn8MRXFkjl7u1S89evGQlykbPPXXc6p0hatrzqGJF08NVOp4BZiegF4LSELBFaWv6SBBUbJD25yDlqWlmQ4RkZY0bNgtCoc1PNa83c7nNHNuDU0T/cuVq1znJnw3t34xvihPuETjslY5njHuOuRzZg15oN7lytWnc2vKAnYU8IsjFGNmDTosVSt2a9tPVKCGoA4043nqNIGpENIOvKl1+TipFjZObt90UO8gSJbWvj0rDvSJCh9pizjWeFOXYlyb+0DEiSN+NdwK94c7W8XvZOItwnadlXOXdJIMNyxgA3bKbqnQZkysn2yMNt4Zy35bHTFqTM6RXAJgd40A3Py5CcNgB4NsagG17eGeAFFLYtp1dAWFiv8Z0GeLmST22pWDpXQCqH8r2/cwXk+xVOxRdpBfA8kAeYBMc8y0t1omztD20AwDyzA5rgOOpDTOa3tzGhDQDYLdqrzT0mTL0tnzKFNsBPXJSrWXj3gDC+tMrY0Ab4qYgCM/iRhzzTHair92xvjcbQBpz8/ZinDj8Yz8FXG/1unaaj3ue4Oi2jRWgDDn7nfXWAGTyqOLA4NlO/wXVrN/p1Zbw9vAHf/+gromLDahn1zOSUr8uAxzCvROwxhFdfa7SFN0Dfn7wP8BMz4/33hMAIVoSzOVInyrVJfvDkrF30IUWbRWgDUIbIZFdpiL4VMIEVwY8l3h5TJ+gjh1ew+SUz12tOum2RDAA+lQlhhZGzatKzYaelPT6SAZyVK7VLvx9EOPV0ghw1+i1TOjmcuWHLyAZwok36/eDCsueEpUs9SjCX12sH9d4SZX66c0xDxDL4HzETV4+lW6mXL8dh0vBukblh5mRqLMywm5aoM917dmtONzFXkCuJEbVVHwjB1XVMoaRep98oM4YXqhyne96o82GGXV9789DNhT26RE3knocR3BoEVxdTgKWkzlVnjHteW9dhNsQ8ZIqydpumadwxqI90lA+sMNvscqXrVsAHDu1H0SEiwarZzdiLS88oUeuHFA9Kex/IFfdghRl2+2vQEPPjG3t0Kxgx5n7J9w+MsBqaWfTHNiA2Z/lWHHnwiaGqV9+eujk//2CDEVaYobQN4MAoUBWGGBdLpj5ANS8DNhhhdQATBsRmrGwwDJner6hQHp/+sNOfNyVMsMEIqwOWMICG2NyadWLI3EHDB8jE+Y8KS4b2XA4YYIEJNpuxBdA1BtAem72iWpR6Wn9X/jO1fLxi06A9FwPtMMACk83mArnOAPpxyeiqhuvfyxuKJwyX59+e0Fz85DDRiejO6kAjWm3NWjsMsMDkJdz0aqSN+6RkTs0UEWN8tx5da0eMHSylC0bL7KoyNe3Vx5pZVk/NK5FsCLSgCW1oRCuaRWuHARbx+fga4IyP6a/IEoxovuFWlpFpdqm6pW/P2v5Fhdv633vbjvYO+/xaC5rQhkbRWtEc09odDr/yfwAAAP//nlygdwAAAAZJREFUAwCEBED17v6rSAAAAABJRU5ErkJggg==
 // @run-at       document-start
@@ -287,7 +287,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.13.9',
+    version: '2026.11.14.1',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -301,18 +301,31 @@ window.JPXPlus = Object.freeze({
         return true;
     }
 });
+function createDefaultRecoveryRules(spiritPotion = 0.5, spiritElixir = 0.4) {
+    return [
+        {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
+        {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,spiritPotion]}]},
+        {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,spiritElixir]}]},
+        {"type":"item","name":"Spirit Elixir","conditions":[{"key":"pSP","value":[0,spiritElixir]}]},
+        {"type":"stop","customMessage":"Can't use Spirit Elixir","conditions":[{"key":"pSP","value":[0,spiritElixir]}]},
+        {"type":"item","name":"Health Gem","conditions":[]},
+        {"type":"spellSupport","name":"Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
+        {"type":"item","name":"Health Potion","conditions":[{"key":"pHP","value":[0,0.4]}]},
+        {"type":"spellSupport","name":"Full-Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
+        {"type":"item","name":"Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
+        {"type":"stop","customMessage":"Can't use Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
+        {"type":"item","name":"Mana Gem","conditions":[{"key":"pMP","value":[0,0.8]}]},
+        {"type":"item","name":"Mana Potion","conditions":[{"key":"pMP","value":[0,0.4]}]},
+        {"type":"item","name":"Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
+        {"type":"stop","customMessage":"Can't use Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
+        {"type":"item","name":"Mystic Gem","conditions":[{"key":"pIgnoredEffects","value":[0,9999,"Channeling"]}]},
+    ];
+}
+
 let defaultCfgBattle = {
     "battleVersion": 20251216,
     "advanceToNextRound": false,
     "autoFinishBattle": false,
-    // Retired automation fields remain inert for legacy configuration round trips.
-    "autoStartBattle": false,
-    "autoCheckIn": false,
-    "dailyBattleTime": "08:00",
-    "autoArena": false,
-    "autoRingOfBlood": false,
-    "autoRingOfBloodChallenges": [],
-    "autoEncounter": false,
     "ajaxRound": false,
     "showCooldowns": false,
     "quickbarExtend": [],
@@ -336,22 +349,7 @@ let defaultCfgBattle = {
     ],
     "OneHanded_General": {
         "rules": [
-            {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
-            {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
-            {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"item","name":"Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"stop","customMessage":"Can't use Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Gem","conditions":[]},
-            {"type":"spellSupport","name":"Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Potion","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"spellSupport","name":"Full-Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"stop","customMessage":"Can't use Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Gem","conditions":[{"key":"pMP","value":[0,0.8]}]},
-            {"type":"item","name":"Mana Potion","conditions":[{"key":"pMP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"stop","customMessage":"Can't use Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"item","name":"Mystic Gem","conditions":[{"key":"pIgnoredEffects","value":[0,9999,"Channeling"]}]},
+            ...createDefaultRecoveryRules(),
             {"type":"spellSupport","name":"Heartseeker","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,100,"Heartseeker"]}]},
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,50,"Regen"]}]},
             {"type":"toggle","name":"Spirit","toggled":true,"conditions":[{"key":"pOC","value":[6,10]}]},
@@ -376,22 +374,7 @@ let defaultCfgBattle = {
     },
     "OneHanded_Tower": {
         "rules": [
-            {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
-            {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.6]}]},
-            {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.6]}]},
-            {"type":"item","name":"Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.6]}]},
-            {"type":"stop","customMessage":"Can't use Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.6]}]},
-            {"type":"item","name":"Health Gem","conditions":[]},
-            {"type":"spellSupport","name":"Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Potion","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"spellSupport","name":"Full-Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"stop","customMessage":"Can't use Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Gem","conditions":[{"key":"pMP","value":[0,0.8]}]},
-            {"type":"item","name":"Mana Potion","conditions":[{"key":"pMP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"stop","customMessage":"Can't use Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"item","name":"Mystic Gem","conditions":[{"key":"pIgnoredEffects","value":[0,9999,"Channeling"]}]},
+            ...createDefaultRecoveryRules(0.6, 0.6),
             {"type":"spellSupport","name":"Heartseeker","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,100,"Heartseeker"]}]},
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,50,"Regen"]}]},
             {"type":"toggle","name":"Spirit","toggled":true,"conditions":[{"key":"pOC","value":[6,10]},{"key":"defeatedMonsters","value":[1,10]}]},
@@ -418,22 +401,7 @@ let defaultCfgBattle = {
     },
     "TwoHanded_General": {
         "rules": [
-			{"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
-			{"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
-			{"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-			{"type":"item","name":"Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-			{"type":"stop","customMessage":"Can't use Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-			{"type":"item","name":"Health Gem","conditions":[]},
-			{"type":"spellSupport","name":"Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-			{"type":"item","name":"Health Potion","conditions":[{"key":"pHP","value":[0,0.4]}]},
-			{"type":"spellSupport","name":"Full-Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-			{"type":"item","name":"Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-			{"type":"stop","customMessage":"Can't use Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-			{"type":"item","name":"Mana Gem","conditions":[{"key":"pMP","value":[0,0.8]}]},
-			{"type":"item","name":"Mana Potion","conditions":[{"key":"pMP","value":[0,0.4]}]},
-			{"type":"item","name":"Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-			{"type":"stop","customMessage":"Can't use Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-			{"type":"item","name":"Mystic Gem","conditions":[{"key":"pIgnoredEffects","value":[0,9999,"Channeling"]}]},
+            ...createDefaultRecoveryRules(),
 			{"type":"spellSupport","name":"Heartseeker","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,100,"Heartseeker"]}]},
 			{"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,50,"Regen"]}]},
 			{"type":"spellSupport","name":"Heartseeker","conditions":[{"key":"pEffects","value":[-1,0,"Heartseeker"]}]},
@@ -474,22 +442,7 @@ let defaultCfgBattle = {
     },
     "Staff_General": {
         "rules": [
-            {"type":"item","name":"Spirit Gem","conditions":[{"key":"pSP","value":[0,0.9]}]},
-            {"type":"item","name":"Spirit Potion","conditions":[{"key":"pSP","value":[0,0.5]}]},
-            {"type":"item","name":"Last Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"item","name":"Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"stop","customMessage":"Can't use Spirit Elixir","conditions":[{"key":"pSP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Gem","conditions":[]},
-            {"type":"spellSupport","name":"Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Potion","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"spellSupport","name":"Full-Cure","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"stop","customMessage":"Can't use Health Elixir","conditions":[{"key":"pHP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Gem","conditions":[{"key":"pMP","value":[0,0.8]}]},
-            {"type":"item","name":"Mana Potion","conditions":[{"key":"pMP","value":[0,0.4]}]},
-            {"type":"item","name":"Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"stop","customMessage":"Can't use Mana Elixir","conditions":[{"key":"pMP","value":[0,0.2]}]},
-            {"type":"item","name":"Mystic Gem","conditions":[{"key":"pIgnoredEffects","value":[0,9999,"Channeling"]}]},
+            ...createDefaultRecoveryRules(),
             {"type":"spellSupport","name":"Arcane Focus","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,100,"Arcane Focus"]}]},
             {"type":"spellSupport","name":"Regen","conditions":[{"key":"pEffects","value":[0,9999,"Channeling"]},{"key":"pEffects","value":[-1,50,"Regen"]}]},
             {"type":"spellSupport","name":"Arcane Focus","conditions":[{"key":"pEffects","value":[-1,0,"Arcane Focus"]}]},
@@ -1951,6 +1904,15 @@ let regExp = {
     crystal: /(?:(\d+)x )?(Crystal of \w+)/,
 }
 
+const COMBAT_LOG_COUNTERS = Object.entries({
+    magicalDealt: ['miss', 'evade', 'resistPartially', 'resist'],
+    physicalDealt: ['miss', 'evade', 'parryPartially', 'parry'],
+    magicalTaken: ['miss', 'evade', 'blockPartially', 'block', 'resistPartially'],
+    physicalTaken: ['miss', 'evade', 'parryPartially', 'parry', 'blockPartially', 'block'],
+}).flatMap(([category, keys]) => keys.map(key =>
+    [regExp[category + key[0].toUpperCase() + key.slice(1)], category, key]))
+    .concat([[regExp.counter, 'use', 'Counter']]);
+
 let log;
 let battleStyle = '';
 let battleType = '';
@@ -2054,14 +2016,14 @@ const spellsDamageObj = {
     holy: ['Smite', 'Banishment', 'Paradise Lost'],
     dark: ['Corruption', 'Disintegrate', 'Ragnarok'],
 };
-const bossTypes = {
-    Rare: new Set(['Manbearpig', 'White Bunneh', 'Mithra', 'Dalek']),
-    Legendary: new Set(['Konata', 'Mikuru Asahina', 'Ryouko Asakura', 'Yuki Nagato']),
-    Ultimate: new Set(['Skuld', 'Urd', 'Verdandi', 'Yggdrasil', 'Real Life', 'Invisible Pink Unicorn', 'Flying Spaghetti Monster']),
-    Arena300: new Set(['Drogon', 'Rhaegal', 'Viserion']),
-    Arena400: new Set(['New Game +', 'Bottomless Dungeon', 'Recycled Boss Rush', 'Time Trial Mode', 'Achievement Grind', 'Hardcore Mode']),
-    Arena500: new Set(['Angel Bunny', 'Applejack', 'Fluttershy', 'Gummy', 'Pinkie Pie', 'Rarity', 'Spike', 'Rainbow Dash', 'Twilight Sparkle']),
-};
+const bossTypes = new Map(Object.entries({
+    Rare: ['Manbearpig', 'White Bunneh', 'Mithra', 'Dalek'],
+    Legendary: ['Konata', 'Mikuru Asahina', 'Ryouko Asakura', 'Yuki Nagato'],
+    Ultimate: ['Skuld', 'Urd', 'Verdandi', 'Yggdrasil', 'Real Life', 'Invisible Pink Unicorn', 'Flying Spaghetti Monster'],
+    Arena300: ['Drogon', 'Rhaegal', 'Viserion'],
+    Arena400: ['New Game +', 'Bottomless Dungeon', 'Recycled Boss Rush', 'Time Trial Mode', 'Achievement Grind', 'Hardcore Mode'],
+    Arena500: ['Angel Bunny', 'Applejack', 'Fluttershy', 'Gummy', 'Pinkie Pie', 'Rarity', 'Spike', 'Rainbow Dash', 'Twilight Sparkle'],
+}).flatMap(([type, names]) => names.map(name => [name, type])));
 
 const BATTLE_STYLES = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 'DW_Mage', 'NitenIchiryu', 'NI_Mage', 'Staff', 'Unarmed'];
 const BATTLE_TYPES = ['Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'];
@@ -4098,23 +4060,12 @@ function doSpellsDebuffGoNext({name, targetCount = 3, tailSkip = 0, bottomUp = f
     }
     if ((actionCounts[name] ?? 0) >= maxDo) return false;
 
-    let startIndex = 0;
-    let endIndex = 0;
     let firstIndex = activeMonsters[0].index;
     let lastIndex = activeMonsters.at(-1).index;
     let dir = !bottomUp ? 1 : -1;
-    if (!bottomUp) {
-        startIndex = firstIndex;
-        endIndex = tailSkip >= 0
-            ? lastIndex + 1 - tailSkip
-            : startIndex + Math.abs(tailSkip);
-    } else {
-        startIndex = monsters.length - 1 - lastIndex;
-        endIndex = tailSkip >= 0
-            ? monsters.length - (firstIndex + tailSkip)
-            : startIndex + Math.abs(tailSkip);
-    }
-    endIndex = Math.min(endIndex, monsters.length);
+    const startIndex = bottomUp ? monsters.length - 1 - lastIndex : firstIndex;
+    const limit = bottomUp ? monsters.length - firstIndex : lastIndex + 1;
+    const endIndex = Math.min(tailSkip >= 0 ? limit - tailSkip : startIndex + Math.abs(tailSkip), monsters.length);
     if (endIndex <= 0) return false;
 
     let undebuffedObj = {};
@@ -4125,6 +4076,12 @@ function doSpellsDebuffGoNext({name, targetCount = 3, tailSkip = 0, bottomUp = f
         );
     };
     const getIndex = (j) => !bottomUp ? j : monsters.length - 1 - j;
+    const castAtEdge = (i, j) => {
+        if ((targetCount === 2 && !bottomUp || targetCount === 3) && i === startIndex && monsters[j + dir]?.isAlive) j += dir;
+        else if ((targetCount === 2 && bottomUp || targetCount === 3) && i === endIndex - 1 && monsters[j - dir]?.isAlive) j -= dir;
+        doSpellGoNext(name, monsters[j]);
+        return true;
+    };
 
     if (targetCount >= 3) {
         for (let i = startIndex + 1; i < endIndex - 1; i++) {
@@ -4138,14 +4095,7 @@ function doSpellsDebuffGoNext({name, targetCount = 3, tailSkip = 0, bottomUp = f
         for (let i = startIndex; i < endIndex; i++) {
             let j = getIndex(i);
             if (!isUnDebuffed(j - 1) || !isUnDebuffed(j)) continue;
-            if ((targetCount === 2 && !bottomUp || targetCount === 3) && i === startIndex && monsters[j + dir]?.isAlive) {
-                doSpellGoNext(name, monsters[j + dir]);
-            } else if ((targetCount === 2 && bottomUp || targetCount === 3) && i === endIndex - 1 && monsters[j - dir]?.isAlive) {
-                doSpellGoNext(name, monsters[j - dir]);
-            } else {
-                doSpellGoNext(name, monsters[j]);
-            }
-            return true;
+            return castAtEdge(i, j);
         }
     }
     if (targetCount >= 3) {
@@ -4159,14 +4109,7 @@ function doSpellsDebuffGoNext({name, targetCount = 3, tailSkip = 0, bottomUp = f
     for (let i = startIndex; i < endIndex; i++) {
         let j = getIndex(i);
         if (!isUnDebuffed(j)) continue;
-        if ((targetCount === 2 && !bottomUp || targetCount === 3) && i === startIndex && monsters[j + dir]?.isAlive) {
-            doSpellGoNext(name, monsters[j + dir]);
-        } else if ((targetCount === 2 && bottomUp || targetCount === 3) && i === endIndex - 1 && monsters[j - dir]?.isAlive) {
-            doSpellGoNext(name, monsters[j - dir]);
-        } else {
-            doSpellGoNext(name, monsters[j]);
-        }
-        return true;
+        return castAtEdge(i, j);
     }
 
     return false;
@@ -4235,12 +4178,8 @@ function getActionCooldowns(render = false) {
             let tooltip = slot.getAttribute('onmouseover');
             let matches = tooltip?.match(regexp);
 
-            let name;
-            if (matches) {
-                name = getName(matches);
-            } else {
-                name = slot.textContent?.trim() || jpxUtils.parseHVClasses(slot.querySelector('div'), true);
-            }
+            const name = matches ? getName(matches)
+                : slot.textContent?.trim() || jpxUtils.parseHVClasses(slot.querySelector('div'), true);
             if (!name) continue;
 
             let cooldown;
@@ -4250,27 +4189,18 @@ function getActionCooldowns(render = false) {
                 result[name] = 0;
             } else {
                 let lastUse = timeRecords.lastUse[name] ?? -Infinity;
-                let initCooldown = getInitlCooldown(matches) ?? 0;
+                let initCooldown = getInitlCooldown(matches);
                 cooldown = lastUse + initCooldown - timeRecords.turn;
 
                 result[name] = cooldown > 0 ? cooldown : '-';
             }
 
             if (!render) continue;
+            const info = { tooltip, onClick, cooldown };
             if (slot.id === 'ikey_p') {
-                quickbarObj.ikey_p = {
-                    name,
-                    tooltip,
-                    onClick,
-                    cooldown,
-                };
-            } else {
-                quickbarObj[name] = {
-                    tooltip,
-                    onClick,
-                    cooldown,
-                };
-            }
+                info.name = name;
+                quickbarObj.ikey_p = info;
+            } else quickbarObj[name] = info;
         }
 
         return result;
@@ -4552,13 +4482,10 @@ function getMonsters(render = false) {
             : nameContainer.textContent;
         monster.name = nameText.trim() || jpxUtils.parseHVClasses(nameContainer);
         //type
-        for (const [type, names] of Object.entries(bossTypes)) {
-            if (names.has(monster.name)) {
-                monster.type = type;
-                monster.isAlive && activeBosses.push(monster);
-                bosses.push(monster);
-                break;
-            }
+        monster.type = bossTypes.get(monster.name) || 'Normal';
+        if (monster.type !== 'Normal') {
+            monster.isAlive && activeBosses.push(monster);
+            bosses.push(monster);
         }
         //info: attackType, powerLevel, trainer
         if (render && cfgBattle.showMonsterInfo) {
@@ -5063,6 +4990,14 @@ function checkEffectStacks(arr, effects) {
 
 function initConditions() {
     let { monsters, activeMonsters, bosses, activeBosses } = monstersObj;
+    const checkActions = (arr, matches) => {
+        const range = arr.slice(0, 2);
+        return arr.slice(2).every(action => {
+            const tier = action.match(/^T(\d)$/)?.[1];
+            const name = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
+            return !!name && matches(name, range);
+        });
+    };
 
     const generalHandlers = {
         world: arr => arr.includes(!isekaiSuffix ? 'Persistent' : 'Isekai'),
@@ -5074,57 +5009,21 @@ function initConditions() {
         roundLeft: range => jpxUtils.inRange(roundInfo.total - roundInfo.current, range),
         roundTotal: range => jpxUtils.inRange(roundInfo.total, range),
         floor: range => (battleType !== 'Tower' || jpxUtils.inRange(towerFloor, range)),
-        pActionCooldown: arr => {
-            let range = arr.slice(0, 2);
-            let actions = arr.slice(2);
-
-            return actions.every(action => {
-                let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
-                if (!action2) return false;
-                let cooldown = spellCooldowns[action2] ?? itemCooldowns[action2];
-                if (cooldown === '-') cooldown = 9999;
-                return jpxUtils.inRange(cooldown, range);
-            });
-        },
-		pActionHistory: arr => {
-            let range = arr.slice(0, 2).map(n => n - 1);
-            let actions = arr.slice(2);
-
-            return actions.every(action => {
-                let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
-                if (!action2) return false;
-                const history = actionCounts.history;
-                const end = Math.min(history.length - 1, Math.floor(range[1]));
-                for (let index = Math.max(0, Math.ceil(range[0])); index <= end; index++) {
-                    if (history[index] === action2) return true;
-                }
-                return false;
-            });
-        },
-        pActionCounts: arr => {
-            let range = arr.slice(0, 2);
-            let actions = arr.slice(2);
-
-            return actions.every(action => {
-                let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
-                if (!action2) return false;
-                return jpxUtils.inRange(actionCounts[action2] ?? 0, range);
-            });
-        },
-		pTotalActionCounts: arr => {
-            let range = arr.slice(0, 2);
-            let actions = arr.slice(2);
-
-            return actions.every(action => {
-                let tier = action.match(/^T(\d)$/)?.[1];
-                let action2 = tier ? spellsDamageObj[getManagedSpellType()]?.[tier - 1] : action;
-                if (!action2) return false;
-				return jpxUtils.inRange(combatRecords.use[action2] || revenueRecords.consumable[action2]?.use || 0, range);
-            });
-        },
+        pActionCooldown: arr => checkActions(arr, (name, range) => {
+            const cooldown = spellCooldowns[name] ?? itemCooldowns[name];
+            return jpxUtils.inRange(cooldown === '-' ? 9999 : cooldown, range);
+        }),
+        pActionHistory: arr => checkActions(arr, (name, range) => {
+            const history = actionCounts.history;
+            const end = Math.min(history.length - 1, Math.floor(range[1] - 1));
+            for (let index = Math.max(0, Math.ceil(range[0] - 1)); index <= end; index++) {
+                if (history[index] === name) return true;
+            }
+            return false;
+        }),
+        pActionCounts: arr => checkActions(arr, (name, range) => jpxUtils.inRange(actionCounts[name] ?? 0, range)),
+        pTotalActionCounts: arr => checkActions(arr, (name, range) =>
+            jpxUtils.inRange(combatRecords.use[name] || revenueRecords.consumable[name]?.use || 0, range)),
         pHP: range => jpxUtils.inRange(vitals.hpPercentage, range),
         pMP: range => jpxUtils.inRange(vitals.mpPercentage, range),
         pSP: range => jpxUtils.inRange(vitals.spPercentage, range),
@@ -5173,9 +5072,9 @@ function initConditions() {
 }
 
 function checkConditions(conditions = [], target, checkGlobal = true, checkTarget = true) {
-    let { monsters, activeMonsters, bosses, activeBosses } = monstersObj;
+    let { monsters, activeMonsters } = monstersObj;
 
-    if (jpxUtils.isEmpty(conditionsObj)) conditionsObj = initConditions();
+    conditionsObj ||= initConditions();
     let { generalHandlers, targetHandlers } = conditionsObj;
 
     return conditions.every(condition => {
@@ -5210,6 +5109,10 @@ function getKamisama(action) {
         kamisamaCache.set(action, cached);
     }
     return cached.fn;
+}
+
+function doTargetedSpell({ name, conditions }, monster) {
+    return monster && checkConditions(conditions, monster) && doSpellGoNext(name, monster);
 }
 
 const actionHandlers = {
@@ -5273,9 +5176,8 @@ const actionHandlers = {
         let { activeMonsters } = monstersObj;
         monstersObj.sorted ??= {};
 
-        const getSorted = (fn, asc) => {
-            return monstersObj.sorted[priorityRule] ??= jpxUtils.getSortedArray(activeMonsters, fn, priorityRule.includes('Low to High'));
-        };
+        const getSorted = fn => monstersObj.sorted[priorityRule] ??= [...activeMonsters].sort(
+            priorityRule.includes('Low to High') ? (a, b) => fn(a) - fn(b) : (a, b) => fn(b) - fn(a));
 
         let list = activeMonsters;
         switch (priorityRule) {
@@ -5299,18 +5201,11 @@ const actionHandlers = {
         const { conditions } = action;
         return (
             checkConditions(conditions, monster, true, false) &&
-            doSpellsDebuffGoNext({ ...action })
+            doSpellsDebuffGoNext(action)
         );
     },
 
-    spellDebuff(action, monster) {
-        const { name, conditions } = action;
-        return (
-            monster &&
-            checkConditions(conditions, monster) &&
-            doSpellGoNext(name, monster)
-        );
-    },
+    spellDebuff: doTargetedSpell,
 
     spellDamage(action, monster) {
         const { name, conditions } = action;
@@ -5332,14 +5227,7 @@ const actionHandlers = {
         );
     },
 
-    skill(action, monster) {
-        const { name, conditions } = action;
-        return (
-            monster &&
-            checkConditions(conditions, monster) &&
-            doSpellGoNext(name, monster)
-        );
-    },
+    skill: doTargetedSpell,
 
     normalAttack(action, monster) {
         const { conditions } = action;
@@ -5519,34 +5407,19 @@ function riddleRecorder() {
 }
 
 function combatRecorder(turnLog, action, use) {
-    if (use) {
-        if (
-            !regExp.zeroturn.test(action) ||
-            use.includes('Gem') ||
-            use.includes('Caffeinated Candy') ||
-            use.includes('Energy Drink')
-        ) {
-            jpxUtils.inc(combatRecords.use, use);
-            jpxUtils.inc(actionCounts, use);
-			actionCounts.history.unshift(use);
-            if (use === 'Scan') { recordJpxMonsterScan(turnLog); updateMonsterInfo(true); }
-        }
-    } else if (action.includes('Spirit Stance Engaged')) {
-        jpxUtils.inc(combatRecords.use, 'Spirit');
-        jpxUtils.inc(actionCounts, 'Spirit');
-		actionCounts.history.unshift('Spirit');
-    } else if (action.includes('Defending.')) {
-        jpxUtils.inc(combatRecords.use, 'Defend');
-        jpxUtils.inc(actionCounts, 'Defend');
-		actionCounts.history.unshift('Defend');
-    } else if (action.includes('Focusing.')) {
-        jpxUtils.inc(combatRecords.use, 'Focus');
-        jpxUtils.inc(actionCounts, 'Focus');
-		actionCounts.history.unshift('Focus');
-    } else {
-        jpxUtils.inc(combatRecords.use, 'Attack');
-        jpxUtils.inc(actionCounts, 'Attack');
-		actionCounts.history.unshift('Attack');
+    let recordedUse = use;
+    if (!recordedUse) {
+        if (action.includes('Spirit Stance Engaged')) recordedUse = 'Spirit';
+        else if (action.includes('Defending.')) recordedUse = 'Defend';
+        else if (action.includes('Focusing.')) recordedUse = 'Focus';
+        else recordedUse = 'Attack';
+    }
+    if (!use || !regExp.zeroturn.test(action) || use.includes('Gem') ||
+        use.includes('Caffeinated Candy') || use.includes('Energy Drink')) {
+        jpxUtils.inc(combatRecords.use, recordedUse);
+        jpxUtils.inc(actionCounts, recordedUse);
+        actionCounts.history.unshift(recordedUse);
+        if (use === 'Scan') { recordJpxMonsterScan(turnLog); updateMonsterInfo(true); }
     }
 
     if (turnLog.includes('You gain the effect Cloak of the Fallen.')) {
@@ -5571,19 +5444,11 @@ function combatRecorder(turnLog, action, use) {
                 let crit = damageTaken.groups.v.includes('crit');
                 let hit = !glance && !crit;
                 let damageType = jpxUtils.lowerFirst(damageTaken.groups.t);
-                //Magical Taken
-                if (damage[i].includes(' casts ')) {
-                    glance && (combatRecords.magicalTaken.glance += 1);
-                    hit && (combatRecords.magicalTaken.hit += 1);
-                    crit && (combatRecords.magicalTaken.crit += 1);
-                    jpxUtils.inc(combatRecords.magicalTaken, damageType, +damageTaken.groups.n);
-                //Physical Taken
-                } else {
-                    glance && (combatRecords.physicalTaken.glance += 1);
-                    hit && (combatRecords.physicalTaken.hit += 1);
-                    crit && (combatRecords.physicalTaken.crit += 1);
-                    jpxUtils.inc(combatRecords.physicalTaken, damageType, +damageTaken.groups.n);
-                }
+                const records = damage[i].includes(' casts ') ? combatRecords.magicalTaken : combatRecords.physicalTaken;
+                glance && (records.glance += 1);
+                hit && (records.hit += 1);
+                crit && (records.crit += 1);
+                jpxUtils.inc(records, damageType, +damageTaken.groups.n);
             } else if (spiritShield) {
                 jpxUtils.inc(combatRecords.physicalTaken, 'spiritShield' + 'hit');
                 jpxUtils.inc(combatRecords.physicalTaken, 'spiritShield' + 'damagePlus', +spiritShield[1]);
@@ -5594,22 +5459,13 @@ function combatRecorder(turnLog, action, use) {
                 let critStack = parseInt(damageDealt.groups.s) || 1;
                 let hit = !glance && !crit;
                 let damageType = jpxUtils.lowerFirst(damageDealt.groups.t);
-                //Magical Dealt
-                if (action.includes('You cast')) {
-                    glance && (combatRecords.magicalDealt.glance += 1);
-                    hit && (combatRecords.magicalDealt.hit += 1);
-                    crit && (combatRecords.magicalDealt.crit += 1);
-                    jpxUtils.inc(combatRecords.magicalDealt, damageType, +damageDealt.groups.n);
-                //Physical Dealt
-                } else {
-                    glance && (combatRecords.physicalDealt.glance += 1);
-                    hit && (combatRecords.physicalDealt.hit += 1);
-                    if (crit) {
-                        combatRecords.physicalDealt.crit += 1;
-                        jpxUtils.inc(combatRecords.physicalDealt, `crit${critStack}`);
-                    }
-                    jpxUtils.inc(combatRecords.physicalDealt, damageType, +damageDealt.groups.n);
-                }
+                const magical = action.includes('You cast');
+                const records = magical ? combatRecords.magicalDealt : combatRecords.physicalDealt;
+                glance && (records.glance += 1);
+                hit && (records.hit += 1);
+                crit && (records.crit += 1);
+                if (crit && !magical) jpxUtils.inc(records, `crit${critStack}`);
+                jpxUtils.inc(records, damageType, +damageDealt.groups.n);
             } else if (strike) {
                 let damageType = jpxUtils.lowerFirst(strike[3]);
                 jpxUtils.inc(combatRecords.physicalDealt, damageType, +strike[2]);
@@ -5660,40 +5516,10 @@ function combatRecorder(turnLog, action, use) {
     let patchBlockAndParry = turnLog.match(/You block and parry the attack/g);
     if (patchBlockAndParry) jpxUtils.inc(combatRecords.physicalTaken, 'blockAndParry', patchBlockAndParry.length);
 
-    let combatRecordsFactory = (regexp, combatRecordsType, combatRecordsKey) => {
+    for (const [regexp, category, key] of COMBAT_LOG_COUNTERS) {
         let match = turnLog.match(regexp);
-        if (match) jpxUtils.inc(combatRecords[combatRecordsType], combatRecordsKey, match.length);
+        if (match) jpxUtils.inc(combatRecords[category], key, match.length);
     }
-
-    //Magical Dealt
-    combatRecordsFactory(regExp.magicalDealtMiss, 'magicalDealt', 'miss');
-    combatRecordsFactory(regExp.magicalDealtEvade, 'magicalDealt', 'evade');
-    combatRecordsFactory(regExp.magicalDealtResistPartially, 'magicalDealt', 'resistPartially');
-    combatRecordsFactory(regExp.magicalDealtResist, 'magicalDealt', 'resist');
-
-    //Physical Dealt
-    combatRecordsFactory(regExp.physicalDealtMiss, 'physicalDealt', 'miss');
-    combatRecordsFactory(regExp.physicalDealtEvade, 'physicalDealt', 'evade');
-    combatRecordsFactory(regExp.physicalDealtParryPartially, 'physicalDealt', 'parryPartially');
-    combatRecordsFactory(regExp.physicalDealtParry, 'physicalDealt', 'parry');
-
-    //Magical Taken
-    combatRecordsFactory(regExp.magicalTakenMiss, 'magicalTaken', 'miss');
-    combatRecordsFactory(regExp.magicalTakenEvade, 'magicalTaken', 'evade');
-    combatRecordsFactory(regExp.magicalTakenBlockPartially, 'magicalTaken', 'blockPartially');
-    combatRecordsFactory(regExp.magicalTakenBlock, 'magicalTaken', 'block');
-    combatRecordsFactory(regExp.magicalTakenResistPartially, 'magicalTaken', 'resistPartially');
-
-    //Physical Taken
-    combatRecordsFactory(regExp.physicalTakenMiss, 'physicalTaken', 'miss');
-    combatRecordsFactory(regExp.physicalTakenEvade, 'physicalTaken', 'evade');
-    combatRecordsFactory(regExp.physicalTakenParryPartially, 'physicalTaken', 'parryPartially');
-    combatRecordsFactory(regExp.physicalTakenParry, 'physicalTaken', 'parry');
-    combatRecordsFactory(regExp.physicalTakenBlockPartially, 'physicalTaken', 'blockPartially');
-    combatRecordsFactory(regExp.physicalTakenBlock, 'physicalTaken', 'block');
-
-    //Counter
-    combatRecordsFactory(regExp.counter, 'use', 'Counter');
 }
 
 function revenueRecorder(turnLog, action, use) {
@@ -6055,18 +5881,17 @@ function combatRecordPlayer(combatRecords) {
             <td>${t('cP.physical')}</td><td>${t('cP.magical')}</td><td>${t('cP.spirit')}</td><td>${t('cP.total')}</td>
         </tr>`;
 
-    function renderCombatRow(label, rowId, style, combatRecords, rowConfig) {
-        let pd = combatRecords.physicalDealt[rowId] ?? 0;
-        let md = combatRecords.magicalDealt[rowId] ?? 0;
-        let td = pd + md;
-
-        let pt = combatRecords.physicalTaken[rowId] ?? 0;
-        let pts = combatRecords.physicalTaken['spiritShield' + rowId] ?? 0;
-        let mt = combatRecords.magicalTaken[rowId] ?? 0;
-        let mts = combatRecords.magicalTaken['spiritShield' + rowId] ?? 0;
-        let tt = pt + pts + mt + mts;
-
-        let dataObj = { label, pd, md, td, pt, pts, mt, mts, tt };
+    const readRow = id => ({
+        pd: combatRecords.physicalDealt[id] ?? 0,
+        md: combatRecords.magicalDealt[id] ?? 0,
+        pt: combatRecords.physicalTaken[id] ?? 0,
+        pts: combatRecords.physicalTaken['spiritShield' + id] ?? 0,
+        mt: combatRecords.magicalTaken[id] ?? 0,
+        mts: combatRecords.magicalTaken['spiritShield' + id] ?? 0,
+    });
+    function renderCombatRow(label, style, values, rowConfig) {
+        const { pd, md, pt, pts, mt, mts } = values;
+        const dataObj = { label, ...values, td: pd + md, tt: pt + pts + mt + mts };
         let order = ['label', 'pd', 'md', 'td', 'pt', 'mt', 'pts', 'tt'];
 
         let html = `<tr ${style}>`;
@@ -6086,13 +5911,7 @@ function combatRecordPlayer(combatRecords) {
         if (!totalsTypes.includes(f.type) || f.isTotal) return;
         totals[f.type] ??= { pd: 0, md: 0, pt: 0, pts: 0, mt: 0, mts: 0 };
 
-        let acc = totals[f.type];
-        acc.pd += (combatRecords.physicalDealt[f.id] ?? 0);
-        acc.md += (combatRecords.magicalDealt[f.id] ?? 0);
-        acc.pt += (combatRecords.physicalTaken[f.id] ?? 0);
-        acc.pts += (combatRecords.physicalTaken['spiritShield' + f.id] ?? 0);
-        acc.mt += (combatRecords.magicalTaken[f.id] ?? 0);
-        acc.mts += (combatRecords.magicalTaken['spiritShield' + f.id] ?? 0);
+        for (const [key, value] of Object.entries(readRow(f.id))) totals[f.type][key] += value;
     });
 
     cfgStats.combatRows.forEach(row => {
@@ -6104,25 +5923,13 @@ function combatRecordPlayer(combatRecords) {
         let styleNormal = row.styleText ? `style="${row.styleText}"` : '';
         let styleTotal = `style="border-top: 1px solid; border-bottom: 1px solid; ${row.styleText || ''}"`;
 
-        switch (field.type) {
-            case 'damage':
-            case 'result':
-            case 'resultPartially': {
-                if (field.isTotal) {
-                    let totalData = { ...(totals[field.type] || { pd: 0, md: 0, pt: 0, pts: 0, mt: 0, mts: 0 }) };
-                    /*patch*/if (isekaiSuffix && field.type === 'result') totalData.pt -= combatRecords.physicalTaken.blockAndParry || 0;
-                    innerHTML += renderCombatRow(t(field.label), 'total', styleTotal, {
-                        physicalDealt: { total: totalData.pd || 0 },
-                        magicalDealt: { total: totalData.md || 0 },
-                        physicalTaken: { total: totalData.pt || 0, spiritShieldtotal: totalData.pts || 0 },
-                        magicalTaken: { total: totalData.mt || 0, spiritShieldtotal: totalData.mts || 0 }
-                    }, row);
-                } else {
-                    innerHTML += renderCombatRow(t(field.label), field.id, styleNormal, combatRecords, row);
-                }
-                break;
-            }
-        }
+        if (!totalsTypes.includes(field.type)) return;
+        if (field.isTotal) {
+            const values = { ...totals[field.type] };
+            if (isekaiSuffix && field.type === 'result') values.pt -= combatRecords.physicalTaken.blockAndParry || 0;
+            for (const key of Object.keys(values)) values[key] ||= 0;
+            innerHTML += renderCombatRow(t(field.label), styleTotal, values, row);
+        } else innerHTML += renderCombatRow(t(field.label), styleNormal, readRow(field.id), row);
     });
 
     innerHTML += `
@@ -6176,9 +5983,7 @@ function combatRecordPlayer_Use(combatRecords) {
     }
 
     let useKeys = new Set();
-    let temp_combatUseRows = [{"id":"action"}, {"id":"item"}, {"id":"skill"}, {"id":"spellSupport"}, {"id":"spellDamage"}, {"id":"spellDebuff"}];
-    temp_combatUseRows.forEach(row => {
-        let field = COMBAT_USE_FIELDS.find(f => f.id === row.id);
+    COMBAT_USE_FIELDS.forEach(field => {
         let entries = [];
         for (const { key, label } of field.keys) {
             let count = combatRecords.use[key];
@@ -7264,11 +7069,7 @@ async function importIndexedDB(jsonData, merge = true) {
 
         for (const record of jsonData.stores[storeName]) {
             const key = record[objectStore.keyPath];
-            if (merge) {
-                if (!existingKeys.has(key)) objectStore.put(record);
-            } else {
-                objectStore.put(record);
-            }
+            if (!merge || !existingKeys.has(key)) objectStore.put(record);
         }
 
         await new Promise((resolve, reject) => {
@@ -7291,139 +7092,81 @@ function filterData(data, filters) {
 }
 
 function generateAggregate(data_array, type, timestamp_name = null) { //type: Average, Total
-    if (data_array.length === 0) {
-        return false
-    } else {
-        let length = type === 'Average' ? data_array.length : 1;
-        let new_data = {
-            date: timestamp_name || t(`sP.${type}`),
-            roundInfo: {
-                current: Math.round(data_array.map(x => x.roundInfo.current).reduce((a,b) => a + b, 0) / length * 100) / 100,
-                total: Math.round(data_array.map(x => x.roundInfo.total).reduce((a,b) => a + b, 0) / length * 100) / 100,
-            },
-            deltaSeconds: Math.round(data_array.map(x => x.deltaSeconds).reduce((a,b) => a + b, 0) / length * 1000) / 1000,
-            deltaTime: '',
-            turns: Math.round(data_array.map(x => x.turns).reduce((a,b) => a + b, 0) / length * 100) / 100,
-            tps: 0,
-            riddle: Math.round(data_array.map(x => x.riddle).reduce((a,b) => a + b, 0) / length * 100) / 100,
-            combatRecords: jpxUtils.createCombatRecords(),
-            revenueRecords: jpxUtils.createRevenueRecords(),
-        };
-        new_data.deltaTime = jpxUtils.secondsToTime(new_data.deltaSeconds, true);
-        new_data.tps = Math.round(new_data.turns / new_data.deltaSeconds * 100) / 100;
+    if (data_array.length === 0) return false;
+    const length = type === 'Average' ? data_array.length : 1;
+    const aggregate = (get, scale = 100) => Math.round(data_array.reduce((sum, row) => sum + get(row), 0) / length * scale) / scale;
+    const scalarCategories = ['exp', 'credit', 'staminaCost', 'totalProfit', 'finalProfit'];
+    const countCategories = ['proficiency', 'material', 'token', 'food', 'figurine', 'artifact', 'trophy', 'crystal'];
+    const new_data = {
+        date: timestamp_name || t(`sP.${type}`),
+        roundInfo: { current: aggregate(row => row.roundInfo.current), total: aggregate(row => row.roundInfo.total) },
+        deltaSeconds: aggregate(row => row.deltaSeconds, 1000),
+        deltaTime: '',
+        turns: aggregate(row => row.turns),
+        tps: 0,
+        riddle: aggregate(row => row.riddle),
+        combatRecords: jpxUtils.createCombatRecords(),
+        revenueRecords: jpxUtils.createRevenueRecords(),
+    };
+    new_data.deltaTime = jpxUtils.secondsToTime(new_data.deltaSeconds, true);
+    new_data.tps = Math.round(new_data.turns / new_data.deltaSeconds * 100) / 100;
 
-        for (let i = 0; i < data_array.length; i++) {
-            for (const [categoryKey, categoryValue] of Object.entries(data_array[i].combatRecords)) {
-                for (const [fieldKey, fieldValue] of Object.entries(categoryValue)) {
-                    jpxUtils.inc(new_data.combatRecords[categoryKey], fieldKey, fieldValue);
+    for (const row of data_array) {
+        for (const [category, fields] of Object.entries(row.combatRecords)) {
+            for (const [key, value] of Object.entries(fields)) jpxUtils.inc(new_data.combatRecords[category], key, value);
+        }
+        for (const [category, fields] of Object.entries(row.revenueRecords)) {
+            const target = new_data.revenueRecords[category];
+            if (scalarCategories.includes(category)) new_data.revenueRecords[category] += fields;
+            else if (category === 'equipment') {
+                for (const [key, value] of Object.entries(fields)) {
+                    target[key] ??= [];
+                    target[key] = target[key].concat(value);
                 }
-            }
-            for (const [categoryKey, categoryValue] of Object.entries(data_array[i].revenueRecords)) {
-                switch (categoryKey) {
-                    case ('exp'):
-                    case ('credit'):
-                    case ('staminaCost'):
-                    case ('totalProfit'):
-                    case ('finalProfit'):
-                        new_data.revenueRecords[categoryKey] += categoryValue;
-                        break;
-                    case ('equipment'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            new_data.revenueRecords[categoryKey][key] ??= [];
-                            new_data.revenueRecords[categoryKey][key] = new_data.revenueRecords[categoryKey][key].concat(value);
-                        }
-                        break;
-                    case ('consumable'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            if (key != 'total' && key != 'profit') {
-                                new_data.revenueRecords[categoryKey][key] ??= {};
-                                ['drop', 'use', 'balance'].forEach(prop => {
-                                    jpxUtils.inc(new_data.revenueRecords[categoryKey][key], prop, value[prop]);
-                                });
-                            }
-                        }
-                        break;
-                    case ('proficiency'):
-                    case ('material'):
-                    case ('token'):
-                    case ('food'):
-                    case ('figurine'):
-                    case ('artifact'):
-                    case ('trophy'):
-                    case ('crystal'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            if (key != 'total' && key != 'profit') {
-                                jpxUtils.inc(new_data.revenueRecords[categoryKey], key, value);
-                            }
-                        }
-                        break;
+            } else if (category === 'consumable') {
+                for (const [key, value] of Object.entries(fields)) {
+                    if (key === 'total' || key === 'profit') continue;
+                    target[key] ??= {};
+                    for (const prop of ['drop', 'use', 'balance']) jpxUtils.inc(target[key], prop, value[prop]);
+                }
+            } else if (countCategories.includes(category)) {
+                for (const [key, value] of Object.entries(fields)) {
+                    if (key !== 'total' && key !== 'profit') jpxUtils.inc(target, key, value);
                 }
             }
         }
-        new_data.revenueRecords.staminaCost = Math.round(new_data.revenueRecords.staminaCost * 10) / 10;
-        for (const [key, value] of Object.entries(new_data.revenueRecords.proficiency)) {
-            new_data.revenueRecords.proficiency[key] = Math.round(value * 1000) / 1000;
-        }
-
-        if (type === 'Average') {
-            for (const [categoryKey, categoryValue] of Object.entries(new_data.combatRecords)) {
-                for (const [fieldKey, fieldValue] of Object.entries(categoryValue)) {
-                    new_data.combatRecords[categoryKey][fieldKey] = Math.round(fieldValue / length * 10) / 10;
-                }
-            }
-            for (const [categoryKey, categoryValue] of Object.entries(new_data.revenueRecords)) {
-                switch (categoryKey) {
-                    case ('exp'):
-                    case ('credit'):
-                    case ('staminaCost'):
-                    case ('totalProfit'):
-                    case ('finalProfit'):
-                        new_data.revenueRecords[categoryKey] = Math.round(categoryValue / length * 10) / 10;
-                        break;
-					case ('equipment'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            new_data.revenueRecords[categoryKey][key] ??= [];
-							new_data.revenueRecords[categoryKey][`${key}_Avg`] = Math.round(new_data.revenueRecords[categoryKey][key].length / length * 10) / 10;
-                        }
-                        break;
-                    case ('consumable'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            if (key != 'total' && key != 'profit') {
-                                ['drop', 'use', 'balance'].forEach(prop => {
-                                    new_data.revenueRecords[categoryKey][key][prop] = Math.round(value[prop] / length * 10) / 10;
-                                });
-                            }
-                        }
-                        break;
-                    case ('proficiency'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            if (key != 'total' && key != 'profit') {
-                                new_data.revenueRecords[categoryKey][key] = Math.round(value / length * 1000) / 1000;
-                            }
-                        }
-                        break;
-                    case ('material'):
-                    case ('token'):
-                    case ('food'):
-                    case ('figurine'):
-                    case ('artifact'):
-                    case ('trophy'):
-                    case ('crystal'):
-                        for (const [key, value] of Object.entries(categoryValue)) {
-                            if (key != 'total' && key != 'profit') {
-                                new_data.revenueRecords[categoryKey][key] = Math.round(value / length * 10) / 10;
-                            }
-                        }
-                        break;
-                }
-            }
-        }
-
-        return new_data;
     }
+    new_data.revenueRecords.staminaCost = Math.round(new_data.revenueRecords.staminaCost * 10) / 10;
+    for (const [key, value] of Object.entries(new_data.revenueRecords.proficiency)) {
+        new_data.revenueRecords.proficiency[key] = Math.round(value * 1000) / 1000;
+    }
+
+    if (type === 'Average') {
+        const average = (value, scale = 10) => Math.round(value / length * scale) / scale;
+        for (const fields of Object.values(new_data.combatRecords)) {
+            for (const [key, value] of Object.entries(fields)) fields[key] = average(value);
+        }
+        for (const [category, fields] of Object.entries(new_data.revenueRecords)) {
+            if (scalarCategories.includes(category)) new_data.revenueRecords[category] = average(fields);
+            else if (category === 'equipment') {
+                for (const [key, value] of Object.entries(fields)) fields[`${key}_Avg`] = average(value.length);
+            } else if (category === 'consumable') {
+                for (const [key, value] of Object.entries(fields)) {
+                    if (key === 'total' || key === 'profit') continue;
+                    for (const prop of ['drop', 'use', 'balance']) value[prop] = average(value[prop]);
+                }
+            } else if (countCategories.includes(category)) {
+                const scale = category === 'proficiency' ? 1000 : 10;
+                for (const [key, value] of Object.entries(fields)) {
+                    if (key !== 'total' && key !== 'profit') fields[key] = average(value, scale);
+                }
+            }
+        }
+    }
+    return new_data;
 }
 
-function createFilter(targetWindow = newWindow, onChange) {
+function createFilter(targetWindow, onChange) {
     const doc = targetWindow.document;
     let filtersDiv = doc.createElement('div');
     filtersDiv.id = 'filtersDiv';
@@ -7492,12 +7235,7 @@ function createFilter(targetWindow = newWindow, onChange) {
     tools.append(groups.get('filter-roundTotal'), toolsRow);
     filtersDiv.append(scope, match, tools);
     filtersDiv.addEventListener('change', (e) => {
-        if (e.target.tagName === 'INPUT') {
-            if (onChange) { onChange(); return; }
-            getBattleRecordsRender(getFilters(targetWindow)).then(battleRecords => {
-                if (!targetWindow.closed) renderDynamicTable(battleRecords, cfgStats.statsColumns, targetWindow.document.body);
-            });
-        }
+        if (e.target.tagName === 'INPUT') onChange();
     });
 
     return filtersDiv;
@@ -7517,11 +7255,11 @@ function getFilters(targetWindow = newWindow) {
                 break;
             }
             case 'rangeNumber': {
-                filters[filter.key] = [parseInt(filterEl.querySelector('.range-min').value) ?? 0, parseInt(filterEl.querySelector('.range-max').value) ?? 9999];
+                filters[filter.key] = [parseInt(filterEl.querySelector('.range-min').value), parseInt(filterEl.querySelector('.range-max').value)];
                 break;
             }
             case 'number': {
-                filters[filter.key] = parseInt(filterEl.querySelector('input').value) ?? 0;
+                filters[filter.key] = parseInt(filterEl.querySelector('input').value);
                 break;
             }
         }
@@ -8146,7 +7884,7 @@ function canDeferRuleFields(schema, data) {
                 canDeferRuleFields({ properties: [{ ...option, key: 'value' }, ...extras] }, item);
         });
         if (field.type === 'object') return !!value && canDeferRuleFields(field, value);
-        return ['constant', 'heading', 'text', 'textarea', 'number', 'boolean', 'time'].includes(field.type);
+        return ['constant', 'heading', 'text', 'textarea', 'number', 'boolean'].includes(field.type);
     });
 }
 
@@ -8936,13 +8674,6 @@ const fieldRenderers = {
         renderSchema(fields, { type: 'object', properties: field.properties }, dataObj);
         container.append(heading, fields);
     },
-    heading(container, field) {
-        let div = document.createElement('div');
-        div.textContent = t(field.label);
-        if (field.class) div.classList.add(field.class);
-        container.appendChild(div);
-    },
-
     constant(container, field) {
         let div = document.createElement('div');
         div.textContent = t(field.label);
@@ -9000,20 +8731,6 @@ const fieldRenderers = {
         container.querySelector('input').oninput = event => dataObj[key] = +event.target.value;
     },
 
-    time(container, field, dataObj) {
-        const input = document.createElement('input');
-        input.type = 'time';
-        input.step = '60';
-        input.required = true;
-        input.id = getUniqueId(field.key);
-        input.value = dataObj[field.key] ?? '08:00';
-        input.oninput = event => dataObj[field.key] = event.target.value;
-        const label = document.createElement('label');
-        label.htmlFor = input.id;
-        label.textContent = t(field.label) + ': ';
-        container.append(label, input);
-    },
-
     rangeNumber(container, field, dataObj) {
         let key = field.key;
         if (!Array.isArray(dataObj[key])) dataObj[key] = [0, 0];
@@ -9037,16 +8754,14 @@ const fieldRenderers = {
     },
 
     dropdown(container, field, dataObj) {
-        function createSelectComponent(field, dataObj) {
+        function createSelectComponent(field) {
             let component = {
-                element: document.createElement('div'),
-                getValue: () => {},
-                setValue: (value) => {},
                 onchange: () => {}
             };
 
             if (!Array.isArray(field.options) && typeof field.options === 'object') {
                 let selects = {};
+                component.element = document.createElement('div');
                 component.element.className = 'jpx-battle-mode-selects';
 
                 component.getValue = () => {
@@ -9102,7 +8817,7 @@ const fieldRenderers = {
             return select;
         }
 
-        let selectComponent = createSelectComponent(field, dataObj);
+        let selectComponent = createSelectComponent(field);
 
         let initValue = dataObj[field.key];
         if (initValue === undefined) {
@@ -10109,7 +9824,7 @@ const fieldRenderers = {
 
 function renderField(container, field, dataObj) {
     if (field.label) container.dataset.editLabel = t(field.label);
-    const renderer = fieldRenderers[field.type];
+    const renderer = fieldRenderers[field.type === 'heading' ? 'constant' : field.type];
     if (renderer) renderer(container, field, dataObj);
     if (field.help) {
         const help = document.createElement('p');
@@ -10932,14 +10647,7 @@ function switchTab(targetId, tabs) {
 }
 
 function renderBattleTab(parent) {
-    let storedCfgBattle = {};
-    try {
-        storedCfgBattle = JSON.parse(localStorage.getItem(prefix + 'cfgBattle' + isekaiSuffix) || '{}');
-    } catch (err) {
-        console.warn('Failed to load cfgBattle. Using default cfgBattle.');
-        storedCfgBattle = {};
-    }
-    mergeCfg(storedCfgBattle, defaultCfgBattle, cfgBattle, 'battle');
+    loadBattleConfig();
 
     let cfgBattleUI = document.createElement('div');
     cfgBattleUI.id = 'cfgBattle-ui';
@@ -12399,17 +12107,11 @@ function jpxMarket() {
     ns.updatePrice = async function (priceData) {
         let finishBattle = document.querySelector('img[src$="finishbattle.png"]');
         let isekaiSuffixUrl = document.URL.includes('isekai') ? 'isekai/' : '';
-        let urlArray = [
-            `${location.origin}/${isekaiSuffixUrl}?s=Bazaar&ss=mk&screen=browseitems&filter=co`,
-            `${location.origin}/${isekaiSuffixUrl}?s=Bazaar&ss=mk&screen=browseitems&filter=ma`,
-            `${location.origin}/${isekaiSuffixUrl}?s=Bazaar&ss=mk&screen=browseitems&filter=tr`,
-        ];
+        let urlArray = ['co', 'ma', 'tr'].map(filter =>
+            `${location.origin}/${isekaiSuffixUrl}?s=Bazaar&ss=mk&screen=browseitems&filter=${filter}`);
         if (!isekaiSuffix) {
-            urlArray = urlArray.concat([
-                `${location.origin}/?s=Bazaar&ss=mk&screen=browseitems&filter=ar`,
-                `${location.origin}/?s=Bazaar&ss=mk&screen=browseitems&filter=fi`,
-                `${location.origin}/?s=Bazaar&ss=mk&screen=browseitems&filter=mo`,
-            ]);
+            urlArray.push(...['ar', 'fi', 'mo'].map(filter =>
+                `${location.origin}/?s=Bazaar&ss=mk&screen=browseitems&filter=${filter}`));
         }
         let latestPriceData = {};
 
@@ -12437,19 +12139,8 @@ function jpxMarket() {
                                 let bid = parseFloat(itemListTds[2].textContent.trim().replace(' C', '').replace(',', ''));
                                 let defaultBid = ns.defaultPriceData[name];
 
-                                if (!isNaN(bid)) {
-                                    if (!isNaN(defaultBid)) {
-                                        if (bid >= defaultBid) {
-                                            latestPriceData[name] = bid;
-                                        } else {
-                                            latestPriceData[name] = defaultBid;
-                                        }
-                                    } else {
-                                        latestPriceData[name] = bid;
-                                    }
-                                } else if (!isNaN(defaultBid)) {
-                                    latestPriceData[name] = defaultBid;
-                                }
+                                if (!isNaN(defaultBid) && (isNaN(bid) || bid < defaultBid)) bid = defaultBid;
+                                if (!isNaN(bid)) latestPriceData[name] = bid;
                             }
                         });
                     } catch (e) {
@@ -12549,30 +12240,9 @@ function jpxUtils() {
         return Math.floor((today - date) / (1000 * 60 * 60 * 24));
     };
 
-    ns.getSortedArray = function(arr, getValue, asc = true) {
-        if (!Array.isArray(arr) || !arr.length) return [];
-
-        if (typeof getValue !== 'function') getValue = (item) => item;
-
-        return [...arr].sort((a, b) => {
-            let va = getValue(a);
-            let vb = getValue(b);
-            return asc ? va - vb : vb - va;
-        });
-    };
-
     ns.lowerFirst = function (str) {
         if (!str) return str;
         return str.charAt(0).toLowerCase() + str.slice(1);
-    };
-
-    ns.titleCase = function (str, multiWord = false) {
-        if (!str) return str;
-        if (!multiWord && /\s/.test(str)) return str;
-        return str
-            .replace(/([a-z])([A-Z])/g, '$1 $2')
-            .replace(/[_-]/g, ' ')
-            .replace(/\b\w/g, c => c.toUpperCase());
     };
 
     ns.sentenceCase = function (str, multiWord = false) {
@@ -12721,29 +12391,12 @@ function jpxUtils() {
 
     ns.stringifyLimited = function(obj, maxPrettyLevel = 3) {
         function helper(value, level) {
-            if (value && typeof value === 'object') {
-                const isArray = Array.isArray(value);
-                const entries = isArray ? value : Object.entries(value);
-
-                if (level < maxPrettyLevel) {
-                    if (isArray) {
-                        return '[\n' +
-                            value.map(value => '\t'.repeat(level + 1) + helper(value, level + 1))
-                                .join(',\n') + '\n' +
-                            '\t'.repeat(level) + ']';
-                    } else {
-                        return '{\n' +
-                            Object.entries(value)
-                                .map(([key, value]) => '\t'.repeat(level + 1) + JSON.stringify(key) + ': ' + helper(value, level + 1))
-                                .join(',\n') + '\n' +
-                            '\t'.repeat(level) + '}';
-                    }
-                } else {
-                    return JSON.stringify(value);
-                }
-            } else {
-                return JSON.stringify(value);
-            }
+            if (!value || typeof value !== 'object' || !(level < maxPrettyLevel)) return JSON.stringify(value);
+            const isArray = Array.isArray(value), indent = '\t'.repeat(level + 1);
+            const entries = isArray
+                ? value.map(item => indent + helper(item, level + 1))
+                : Object.entries(value).map(([key, item]) => indent + JSON.stringify(key) + ': ' + helper(item, level + 1));
+            return (isArray ? '[' : '{') + '\n' + entries.join(',\n') + '\n' + '\t'.repeat(level) + (isArray ? ']' : '}');
         }
 
         return helper(obj, 0);
@@ -12827,17 +12480,12 @@ function jpxUtils() {
         return result.join(separator);
     };
 
+    const HVClasses = {
+        '2a': '.', '2b': ',', '2c': '!', '2d': '?', '2e': '%', '2f': '+', '2g': '-', '2h': '=', '2i': '/', '2j': '\\',
+        '2k': "'", '2l': '"', '2m': ':', '2n': ';', '2o': '(', '2p': ')', '2q': '[', '2r': ']', '2s': '_', '39': ' ',
+    };
     ns.parseHVClasses = function (container, preserveSmallWords = false){
-        let content = [...container?.children]
-            .map(div => {
-                const HVClasses = {
-                    '2a': '.', '2b': ',', '2c': '!', '2d': '?', '2e': '%', '2f': '+', '2g': '-', '2h': '=', '2i': '/', '2j': '\\',
-                    '2k': "'", '2l': '"', '2m': ':', '2n': ';', '2o': '(', '2p': ')', '2q': '[', '2r': ']', '2s': '_', '39': ' ',
-                };
-
-                let key = div.className.slice(-2);
-                return HVClasses[key] ?? div.className.slice(-1);
-            })
+        let content = Array.from(container?.children, div => HVClasses[div.className.slice(-2)] ?? div.className.slice(-1))
             .join('')
             .toLowerCase()
             .split(' ')
@@ -12845,9 +12493,7 @@ function jpxUtils() {
             .join(' ');
 
         if (preserveSmallWords) {
-            let smallWords = ['Of', 'The'];
-            let regex = new RegExp(`(?<!^)\\b(${smallWords.join('|')})\\b(?<!$)`, 'g');
-            content = content.replace(regex, match => match.toLowerCase());
+            content = content.replace(/(?<!^)\b(Of|The)\b(?<!$)/g, match => match.toLowerCase());
         }
 
         return content;
@@ -12893,9 +12539,8 @@ function jpxUtils() {
     };
 
     ns.xhrGet = async function(urlArray, interval = 250) {
-        let promises = [];
-        urlArray.forEach((url, index) => {
-            const promise = new Promise((resolve, reject) => {
+        const promises = urlArray.map((url, index) =>
+            new Promise((resolve, reject) => {
                 setTimeout(() => {
                     let xhr = new XMLHttpRequest();
                     xhr.open('GET', url, true);
@@ -12914,9 +12559,7 @@ function jpxUtils() {
                     };
                     xhr.send();
                 }, index * interval);
-            });
-            promises.push(promise);
-        });
+            }));
 
         return Promise.allSettled(promises);
     };
@@ -13307,9 +12950,9 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         state.bindings.splice(index, 1); write(state); return true;
     }
     function backup() {
-        readState(); // Never replace or hide a corrupt source with an apparently valid backup.
-        const raw = getRaw(key);
-        if (getRaw(backupKey) === null || getRaw(backupKey) === undefined) {
+        readValidatedState(); // Never replace or hide a corrupt source with an apparently valid backup.
+        const raw = getRaw(key), previous = getRaw(backupKey);
+        if (previous === null || previous === undefined) {
             putRaw(backupKey, JSON.stringify({ savedAt: new Date().toISOString(), raw: raw ?? null }));
         }
         return backupKey;
@@ -14040,7 +13683,7 @@ const jpxConfigStore = (() => {
                 if (!validIdentity(value)) fail('invalidResponse');
                 const current = readAuth();
                 if (!sameAuth(current, auth)) fail('loginRequired');
-                if (sameAuth(current, auth) && (current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
+                if ((current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
                     GM_setValue(tokenKey, { ...current, user: { id: value.id, login: value.login } });
                 }
             });
@@ -14909,7 +14552,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         if (issue.labels.includes('store:hide')) return 'hidden';
         if (issue.pending) return 'pending';
         const labels = issue.labels;
-        for (const [label, key] of [['store:hide', 'hidden'], ['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
+        for (const [label, key] of [['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
             if (labels.includes(label)) return key;
         return 'pending';
     }
@@ -14999,8 +14642,9 @@ function renderConfigStore(parent, hooks, options = {}) {
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => mine());
         }
     }
+    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     const observer = new MutationObserver(() => {
-        if (!root.isConnected) { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); }
+        if (!root.isConnected) dispose();
     });
     // The core removes its dialog directly from body; ignore battle-content mutations.
     observer.observe(doc.body, { childList: true });
@@ -15014,7 +14658,6 @@ function renderConfigStore(parent, hooks, options = {}) {
     }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
     if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
     else browse();
-    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     dispose.back = () => {
         if (!alive() || !state.back) return false;
         Promise.resolve().then(state.back).catch(error => { if (alive()) message(errorMessage(error), true); });
@@ -15140,7 +14783,7 @@ function getJpxSelectedBattleMode() {
 function resolveJpxScene(style, scene, routes = jpxSceneRuntime.scenes, config = cfgBattle) {
     if (!style) return { mode: '', rules: null, id: '', inherited: false, assigned: false };
     const direct = style + '_' + scene, general = style + '_General';
-    for (const mode of [...new Set([direct, general])]) {
+    for (const mode of direct === general ? [general] : [direct, general]) {
         const assigned = Object.hasOwn(routes, mode), route = routes[mode];
         const rules = assigned ? route?.rules : config[mode];
         if (jpxConfigHasContent(rules)) return { mode, rules, id: route?.id || '', inherited: mode !== direct, assigned };
@@ -15765,11 +15408,13 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const entries = orderedEntries.filter(entry => {
             if (!visibleSavedEntry(entry, application)) return false;
             const envelope = entry.envelope, data = classify(envelope);
-            return (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
+            const matches = (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
                 (!state.kind || envelope.kind === state.kind) &&
                 ((!state.style && !state.scenario) || data.modes.some(mode => (!state.style || mode.slice(0, mode.lastIndexOf('_')) === state.style) &&
-                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario))) &&
-                words.every(word => normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' ')).includes(word));
+                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario)));
+            if (!matches || !words.length) return matches;
+            const text = normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' '));
+            return words.every(word => text.includes(word));
         });
         const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle), battleType);
         const fixedMode = getJpxSelectedBattleMode();
@@ -16102,17 +15747,14 @@ function renderJpxConfigManager(parent, hooks = {}) {
         captureList();showMine();notify(tr(paused?'applyPaused':'applied'));
     }
     function chooseEditor(entry) {
+        // A detached schema editor uses the same fields without touching live cfgStats.
+        if(entry.envelope.kind==='stats'){openEditor(entry,null);return;}
         const modes=modesOf(entry.envelope);
-        if(entry.envelope.kind==='stats'){openStatsEditor(entry);return;}
         if(modes.length===1){openEditor(entry,modes[0]);return;}
         resetPage('groups');const header=el('div',undefined,'jpx-config-editor-header');header.append(backButton(showMine),el('strong',entry.envelope.title));
         body=el('div',undefined,'jpx-config-body');
         for(const mode of modes)body.append(button(jpxConfigModeLabel(mode),()=>openEditor(entry,mode),'jpx-config-group'));
         root.append(header,notice,body);
-    }
-    function openStatsEditor(entry){
-        // A detached schema editor uses the same fields without touching live cfgStats.
-        openEditor(entry,null);
     }
     function openEditor(entry,mode){
         resetPage('editor');

@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026.11.14.1
+
+- Remove unused helpers, retired default fields and the unused time-field renderer. Reuse recovery rules, statistics aggregation and settings rendering while retaining supported behavior.
+- Simplify action and damage counters; use direct boss-name lookup and a shared glyph table. Reduce temporary objects, repeated search-text construction and unnecessary library copies.
+- Reuse store teardown and remove checks already guaranteed by preceding validation. Keep the HVUT quick-switch verification change withdrawn.
+- Reduce the main script by 358 lines and 17,491 bytes compared with the rollback baseline. Offline measurements found no substantial slowdown; live-game TPS and memory usage were not measured.
+- Full JPX regression: 739/801 passed; all 62 failures also reproduced before the final cleanup round. Build, syntax and language checks passed. See the [verification report](docs/code-cleanup-2026-11-14.md) for scope and timing results.
+
+### 简体中文
+
+- 移除未使用工具、废弃默认字段和时间字段渲染器，复用恢复规则、统计汇总与设置渲染，保留已有支持功能。
+- 精简动作与伤害计数，改用怪物名称直接查询与共享字符表，减少临时对象、搜索文本重复构建和无用配置库拷贝。
+- 商店退出复用统一清理，删除前置校验已经保证的重复检查；保持 HVUT 快捷切换校验补丁的撤回状态。
+- 相较回退基线，主脚本净减 358 行、17,491 字节。离线计时未发现明显性能退化，未测实战 TPS 或内存占用。
+- 完整 JPX 回归为 739/801 通过，62 项失败均在最后一轮精简前复现；构建、语法、语言检查通过。范围与性能数据见[验证记录](docs/code-cleanup-2026-11-14.md)。
+
 ## 2026.11.13.9
 
 - Use the same 120 ms fade for rule menus, config menus, multi-select lists and mobile navigation.
