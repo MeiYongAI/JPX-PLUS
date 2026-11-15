@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026.11.15
+
+- Align 30 Simplified Chinese labels with HentaiVerse Chinese: expand elemental damage names, use 打击 / 斩击 for physical damage, and use I Wanna / 彩虹小马 for IWBTH / PFUDOR in settings and statistics.
+- Check 54 skill and spell names against the HentaiVerse skill dictionary; their existing names already match after omitting display-only tier and category markers.
+- Keep other translations and battle behavior unchanged. The main script and other language packs receive release-version updates only.
+
+### 简体中文
+
+- 同步 30 处简体中文文案：元素伤害类型使用完整名称，物理伤害使用“打击／斩击”，设置与统计中的 IWBTH／PFUDOR 统一为“I Wanna／彩虹小马”。
+- 核对 54 个技能与法术名称，忽略仅用于显示的阶级及分类标记后，现有名称已与 HentaiVerse 技能词典一致。
+- 其它文案与战斗逻辑不变，主脚本和其余语言包仅更新发布版本号。
+
 ## 2026.11.14.1
 
 - Remove unused helpers, retired default fields and the unused time-field renderer. Reuse recovery rules, statistics aggregation and settings rendering while retaining supported behavior.

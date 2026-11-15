@@ -10,7 +10,7 @@ HentaiVerse 向けの JPX 拡張ユーザースクリプトです。複数の設
 
 **[JPX-PLUS をインストール](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[プレビューを試す](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [更新履歴](CHANGELOG.md)
 
-**2026.11.14.1:** 戦闘処理・統計・設定管理を簡素化し、未使用のコードを削除しました。オフライン計測では大幅な性能低下は確認されていません。旧版からの更新前に設定をバックアップしてください。旧設定は読み込み時に変換され、保存後は JPX-PLUS 2026.11.13 より前のバージョンで読み込めません。[更新ガイド](docs/upgrading.md)。
+**2026.11.15:** 簡体字中国語のダメージ種別と難易度名を HentaiVerse 中国語翻訳に統一しました。スキル・魔法名は一致を確認済みです。旧版からの更新前に設定をバックアップしてください。旧設定は読み込み時に変換され、保存後は JPX-PLUS 2026.11.13 より前のバージョンで読み込めません。[更新ガイド](docs/upgrading.md)。
 
 ## インストール
 
