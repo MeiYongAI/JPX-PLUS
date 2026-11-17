@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Japanese Language Pack
 // @namespace    ijpx
-// @version      2026.11.15
+// @version      2026.11.17
 // @description  JPX-PLUS 日本語言語パック
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -212,6 +212,7 @@
             "basic": "基本設定",
             "advanceToNextRound": "自動で次のラウンドへ",
             "autoFinishBattle": "戦闘後に自動で戻る",
+            "hideRoundPopup": "ラウンド勝利のポップアップを非表示",
             "ajaxRound": "AJAX でラウンドを切り替え（他のスクリプトと競合する場合はオフ）",
             "showCooldowns": "ショートカット欄に残りクールダウンを表示",
             "quickbarExtend": "ショートカット欄を拡張",

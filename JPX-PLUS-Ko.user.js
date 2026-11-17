@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Korean Language Pack
 // @namespace    ijpx
-// @version      2026.11.15
+// @version      2026.11.17
 // @description  JPX-PLUS 한국어 언어 팩
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -212,6 +212,7 @@
         "basic": "기본 설정",
         "advanceToNextRound": "자동으로 다음 라운드 진입",
         "autoFinishBattle": "전투 종료 후 자동으로 나가기",
+        "hideRoundPopup": "라운드 승리 팝업 숨기기",
         "ajaxRound": "AJAX로 라운드 전환 (다른 스크립트와 충돌하면 꺼 주세요)",
         "showCooldowns": "퀵바에 남은 쿨타임 표시",
         "quickbarExtend": "퀵바 슬롯 확장",

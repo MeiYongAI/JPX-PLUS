@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026.11.17
+
+- Add a default-off "Hide the round victory popup" setting under General → Battle controls, with labels in all supported languages.
+- Hide victory and experience popups during auto next round. Manual round entry, final results and riddle prompts remain available.
+
+### 简体中文
+
+- 基本设置 → 战斗操作新增“隐藏过轮胜利弹窗”，默认关闭，补齐各语言选项名称。
+- 自动过轮时隐藏胜利与经验弹窗，保留手动过轮、最终结算和小马图。
+
 ## 2026.11.15
 
 - Align 30 Simplified Chinese labels with HentaiVerse Chinese: expand elemental damage names, use 打击 / 斩击 for physical damage, and use I Wanna / 彩虹小马 for IWBTH / PFUDOR in settings and statistics.

@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-**2026.11.15:** Align Simplified Chinese damage-type and difficulty names with HentaiVerse Chinese; skill and spell names were checked and already match. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
+**2026.11.17:** Add an optional setting to hide round victory popups during auto next round. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
 
 ## Install
 

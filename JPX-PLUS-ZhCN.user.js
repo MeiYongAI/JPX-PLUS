@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         JPX-PLUS Simplified Chinese Language Pack
 // @namespace    ijpx
-// @version      2026.11.15
+// @version      2026.11.17
 // @description  JPX-PLUS 简体中文语言包；请只启用一个 JPX-PLUS 语言包。
 // @run-at       document-start
 // @match        *://*.hentaiverse.org/*
@@ -203,6 +203,7 @@
 			"basic": "基本设置",
 			"advanceToNextRound": "自动进入下一轮",
 			"autoFinishBattle": "自动结束战斗",
+			"hideRoundPopup": "隐藏过轮胜利弹窗",
 			"ajaxRound": "使用 AJAX 切换轮次（与其他脚本冲突时关闭）",
 			"showCooldowns": "在快捷栏显示剩余冷却回合",
 			"quickbarExtend": "扩展快捷栏",

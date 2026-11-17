@@ -10,7 +10,7 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 
 **[JPX-PLUS 설치](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[미리보기](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [변경 내역](CHANGELOG.md)
 
-**2026.11.15:** 간체 중국어 피해 유형과 난이도 명칭을 HentaiVerse 중국어 번역에 맞췄습니다. 스킬과 주문 이름도 일치함을 확인했습니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
+**2026.11.17:** 라운드 승리 팝업을 숨기는 설정을 추가했습니다. 기본값은 꺼짐입니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
 
 ## 설치
 
