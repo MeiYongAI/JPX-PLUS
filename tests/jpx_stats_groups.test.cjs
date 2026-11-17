@@ -74,7 +74,16 @@ test('category edits preserve totals, averages, consumable balances and detail b
  assert.deepEqual(await page.locator('td[data-column=credit]').allTextContents(),credit);assert.deepEqual(await page.locator('td[data-column=hd]').allTextContents(),potions);
  assert.equal(await page.locator('.jpx-records-detail').count(),37);
  await page.locator('[data-expand-group=earnings]').click();await page.locator('input[data-column-field=credit]').uncheck();
- assert.equal(await page.locator('.jpx-records-group-header th[data-column-group=earnings]').getAttribute('colspan'),'3');
+ assert.equal(await page.locator('.jpx-records-group-header th[data-column-group=earnings]').getAttribute('colspan'),'4');
+});
+test('EXP is added once and enabled for a legacy statistics config',async t=>{
+ const page=await fixture(t);
+ await page.evaluate(()=>{const saved=__groups.config();saved.statsColumns=saved.statsColumns.filter(c=>c.id!=='exp');localStorage.setItem('jpx_cfgStats',JSON.stringify(saved));});
+ await page.evaluate(()=>__groups.reload());await ready(page);
+ assert.ok((await fields(page)).includes('exp'));
+ const runtime=await page.evaluate(()=>__groups.config());
+ assert.equal(runtime.statsColumns.filter(c=>c.id==='exp').length,1);
+ assert.equal(runtime.statsColumns.find(c=>c.id==='exp').disabled,false);
 });
 for(const language of ['ZhTW','ZhHK','Ja','Ko'])test('localized category controls render without missing labels: '+language,async t=>{
  const page=await fixture(t,{width:320,dark:true,language});await openColumns(page);

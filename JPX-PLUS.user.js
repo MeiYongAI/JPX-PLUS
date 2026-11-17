@@ -535,6 +535,7 @@ let defaultCfgStats = {
         {"id":"deltaTime"},
         {"id":"turns"},
         {"id":"tps"},
+        {"id":"exp"},
         {"id":"finalProfit"},
         {"id":"credit"},
         {"id":"eqP"},
@@ -2226,6 +2227,7 @@ const STATS_FIELDS = [
     { id: 'deltaTime', get: d => d.deltaTime || '' },
     { id: 'turns', style: 'min-width: 60px;', get: d => d.turns || '' },
     { id: 'tps', get: d => d.tps || '' },
+    { id: 'exp', get: d => d.revenueRecords?.exp || 0 },
     { id: 'finalProfit', get: d => d.revenueRecords?.finalProfit || 0 },
     { id: 'credit', get: d => d.revenueRecords?.credit || 0 },
     { id: 'staminaCost', get: d => d.revenueRecords?.staminaCost || 0 },
@@ -2304,7 +2306,7 @@ const STATS_THRESHOLD_FIELDS = new Set([
 
 const STATS_COLUMN_GROUPS = [
     { id: 'basic', fields: ['date','world','level','persona','battleType','round','deltaTime','turns','tps'] },
-    { id: 'earnings', fields: ['finalProfit','credit','staminaCost','totalProfit'] },
+    { id: 'earnings', fields: ['exp','finalProfit','credit','staminaCost','totalProfit'] },
     { id: 'drops', fields: ['eqP','eqL','eqM','cha','blo','food','fig','arti','crys','t2','t36','lCharm','gCharm'] },
     { id: 'potions', fields: ['hd','md','sd','hp','mp','sp','he','me','se','le'] },
     { id: 'scrolls', fields: ['swif','prot','avat','abso','shad','life','gods'] },
@@ -2743,7 +2745,7 @@ const I18N = {
         loadingRecords: 'Loading records…', recordsError: 'Could not load records',
         openRecord: 'View details', rangeMin: 'Minimum rounds', rangeMax: 'Maximum rounds',
 
-        roundTotal: 'Total rounds', deltaTime: 'Duration', tps: 'Turns/s', finalProfit: 'Net profit', 'Aggregate by Day': 'Group by day',
+        roundTotal: 'Total rounds', deltaTime: 'Duration', tps: 'Turns/s', exp: 'EXP', finalProfit: 'Net profit', 'Aggregate by Day': 'Group by day',
 
         pDGlance: 'PDGlance', pDHit: 'PDHit', pDCrit: 'PDCrit', mDGlance: 'MDGlance', mDHit: 'MDHit', mDCrit: 'MDCrit',
         mDRes: 'MDRes', mDRes50: 'MDRes50', mDRes75: 'MDRes75', mDRes90: 'MDRes90', mDResP: 'MDResP', mDDRes0: 'MDDRes0', mDDRes12: 'MDDRes12', mDDRes3: 'MDDRes3',
@@ -10711,7 +10713,15 @@ function normalizeStatsConfig(data) {
             return true;
         });
         for (const base of field.allFields) {
-            if (!seen.has(base.id)) items.push({ ...defaultCfgStats[field.key].find(item => item.id === base.id), id: base.id, disabled: true });
+            if (seen.has(base.id)) continue;
+            // EXP is a new default stats column; enable it once for existing configs.
+            if (field.key === 'statsColumns' && base.id === 'exp') {
+                const item = { ...defaultCfgStats.statsColumns.find(entry => entry.id === 'exp'), id: 'exp', disabled: false };
+                const index = items.findIndex(entry => entry.id === 'tps');
+                items.splice(index >= 0 ? index + 1 : items.length, 0, item);
+            } else {
+                items.push({ ...defaultCfgStats[field.key].find(item => item.id === base.id), id: base.id, disabled: true });
+            }
         }
         data[field.key] = items;
     }
