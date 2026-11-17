@@ -910,6 +910,7 @@
             "deltaTime": "用時",
             "turns": "回合數",
             "tps": "每秒回合數",
+            "exp": "經驗",
             "finalProfit": "最終收益",
             "credit": "信用點",
             "staminaCost": "精力消耗",

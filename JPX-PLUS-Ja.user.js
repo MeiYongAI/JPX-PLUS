@@ -911,6 +911,7 @@
             "deltaTime": "所要時間",
             "turns": "ターン数",
             "tps": "ターン/秒",
+            "exp": "経験値",
             "finalProfit": "純利益",
             "credit": "Credits",
             "staminaCost": "消費スタミナ",

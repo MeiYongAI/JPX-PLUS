@@ -911,6 +911,7 @@
         "deltaTime": "소요 시간",
         "turns": "턴 수",
         "tps": "턴/초",
+        "exp": "경험치",
         "finalProfit": "순이익",
         "credit": "크레딧",
         "staminaCost": "스태미나 소모",
