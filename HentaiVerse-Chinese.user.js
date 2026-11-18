@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.18.1
+// @version     2026.11.18.2
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -12,6 +12,7 @@
 // @match     https://reasoningtheory.net/*
 // @match     *://lisieuxing.com/*
 // @match     *://auction.ngnl.host/*
+// @match     https://sswqd.github.io/hvmarket/*
 // @grant     none
 // @license      MIT
 // @homepageURL https://github.com/MeiYongAI/JPX-PLUS
@@ -6077,6 +6078,15 @@
 
     ];
 
+    let equipmentRules;
+    const plainTranslationCache = new Map();
+
+    // 市集自带双语界面，单独启动装备显示，不安装 HV 的弹窗、表单和日志钩子。
+    if (location.hostname === 'sswqd.github.io' && location.pathname.startsWith('/hvmarket/')) {
+        installHVMarketNames();
+        return;
+    }
+
     //翻译逻辑区
 
     //原生弹窗劫持
@@ -7454,7 +7464,6 @@
 
     // 装备名称先按完整文本分词，再由各页面选择显示方式。词典只维护一份；
     // 最长词优先，空白可变，单词边界不依赖 span/b/注释如何拆分。
-    let equipmentRules;
     function compileEquipmentTerms(terms) {
         const keys = [...terms.keys()].sort((a, b) => b.length - a.length);
         return { terms, regex: new RegExp(keys.map(key => {
@@ -7501,6 +7510,63 @@
             else node.replaceData(start, end - start, rule.text);
         }
         return matches.length > 0;
+    }
+
+    function installHVMarketNames() {
+        const views = new WeakMap();
+        function render(host) {
+            const source = host.textContent;
+            let state = views.get(host);
+            if (state?.source === source) return;
+            const matches = matchEquipmentTerms(source);
+            if (!state) {
+                if (!matches.length || host.shadowRoot) return;
+                state = { view: host.attachShadow({ mode: 'closed' }) };
+                views.set(host, state);
+            }
+            state.source = source;
+            // 保留站点生成的品阶 span 和英文原文；仅本地词典的内容可作为 HTML。
+            if (!matches.length) { state.view.replaceChildren(document.createElement('slot')); return; }
+            const parts = [];
+            let offset = 0;
+            for (const { start, end, rule } of matches) {
+                if (start > offset) parts.push(source.slice(offset, start));
+                parts.push(equipmentFragment(rule));
+                offset = end;
+            }
+            if (offset < source.length) parts.push(source.slice(offset));
+            state.view.replaceChildren(...parts);
+        }
+        function observe(container, selector) {
+            if (!container) return;
+            function collect(node, roots) {
+                if (node.nodeType !== 1) return;
+                if (node.matches(selector)) roots.add(node);
+                else node.querySelectorAll(selector).forEach(el => roots.add(el));
+            }
+            container.querySelectorAll(selector).forEach(render);
+            new MutationObserver(records => {
+                const roots = new Set();
+                for (const m of records) {
+                    const target = m.target.nodeType === 1 ? m.target : m.target.parentElement;
+                    const name = target?.closest(selector);
+                    if (name) roots.add(name);
+                    else m.addedNodes.forEach(node => collect(node, roots));
+                }
+                for (const el of roots) if (container.contains(el)) render(el);
+            }).observe(container, { childList: true, subtree: true, characterData: true });
+        }
+        observe(document.getElementById('main'), 'td > span.nm');
+        observe(document.getElementById('modal-root'), '.modal:has(> .body > .detail) > h3 > span');
+    }
+
+    function equipmentFragment(fragment) {
+        if (!fragment.style) return document.createTextNode(fragment.text);
+        const mark = document.createElement('mark');
+        mark.className = 'trans-styled';
+        mark.style.cssText = 'background:transparent;color:inherit;padding:0;margin:0;' + fragment.style;
+        mark.innerHTML = fragment.html; // 只解析本地词典，原文始终用 Text 写入。
+        return mark;
     }
 
     // 论坛适配器：原文保留在 light DOM，中文及染色只进入 shadow DOM。
@@ -7680,14 +7746,7 @@
             view = view || createEquipmentView(host);
             host.style.setProperty('--hv-equipment-font-size', fontSize);
             host.style.setProperty('--hv-equipment-line-height', lineHeight);
-            view.replaceChildren(...fragments.map(fragment => {
-                if (!fragment.style) return document.createTextNode(fragment.text);
-                const mark = document.createElement('mark');
-                mark.className = 'trans-styled';
-                mark.style.cssText = 'background:transparent;color:inherit;padding:0;margin:0;' + fragment.style;
-                mark.innerHTML = fragment.html; // 只解析本地词典，原文始终用 Text 写入。
-                return mark;
-            }));
+            view.replaceChildren(...fragments.map(equipmentFragment));
             equipmentDisplays.set(node, { host, signature });
         }
     }
@@ -7804,7 +7863,6 @@
         }
     }
 
-    const plainTranslationCache = new Map();
     function getPlainText(text, translationsDict) {
         if (!text) return text;
         const val = translationsDict[text];
