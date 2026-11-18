@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.13.1
+// @version     2026.11.18.1
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -5482,6 +5482,24 @@
             patterns: []
         },
 
+        {
+            // 右栏的 Accuracy 是百分比属性，同名升级项目沿用原译。
+            priority: 10,
+            selector: '#monsterstats_right > div > div:first-child',
+            conditions: [
+                { mode: 'regex', match: /^https?:\/\/(?:alt\.)?hentaiverse\.org\/(?:isekai\/)?\?s=Bazaar&ss=ml(?:[&#]|$)/ }
+            ],
+            translations: {
+                'Accuracy': '命中率',
+                'Evade Bonus': '闪避率加成',
+                'Parry Bonus': '招架率加成',
+                'Resist Bonus': '抵抗率加成',
+                'Anti-Block': '反格挡率',
+                'Anti-Evade': '反闪避率',
+                'Anti-Parry': '反招架率',
+                'Anti-Resist': '反抵抗率',
+            }
+        },
         {
             // 怪物实验室 (来自旧版移植)
             priority: 2,
