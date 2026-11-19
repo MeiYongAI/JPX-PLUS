@@ -7293,6 +7293,8 @@ function generateAggregate(data_array, type, timestamp_name = null) { //type: Av
     const aggregate = (get, scale = 100) => Math.round(data_array.reduce((sum, row) => sum + get(row), 0) / length * scale) / scale;
     const scalarCategories = ['exp', 'credit', 'staminaCost', 'totalProfit', 'finalProfit'];
     const countCategories = ['proficiency', 'material', 'token', 'food', 'figurine', 'artifact', 'trophy', 'crystal'];
+    // The stored total/profit entries of item categories are derived, never summed.
+    const items = fields => Object.entries(fields).filter(([key]) => key !== 'total' && key !== 'profit');
     const new_data = {
         date: timestamp_name || t(`sP.${type}`),
         roundInfo: { current: aggregate(row => row.roundInfo.current), total: aggregate(row => row.roundInfo.total) },
@@ -7315,20 +7317,14 @@ function generateAggregate(data_array, type, timestamp_name = null) { //type: Av
             const target = new_data.revenueRecords[category];
             if (scalarCategories.includes(category)) new_data.revenueRecords[category] += fields;
             else if (category === 'equipment') {
-                for (const [key, value] of Object.entries(fields)) {
-                    target[key] ??= [];
-                    target[key] = target[key].concat(value);
-                }
+                for (const [key, value] of Object.entries(fields)) target[key] = (target[key] ?? []).concat(value);
             } else if (category === 'consumable') {
-                for (const [key, value] of Object.entries(fields)) {
-                    if (key === 'total' || key === 'profit') continue;
+                for (const [key, value] of items(fields)) {
                     target[key] ??= {};
                     for (const prop of ['drop', 'use', 'balance']) jpxUtils.inc(target[key], prop, value[prop]);
                 }
             } else if (countCategories.includes(category)) {
-                for (const [key, value] of Object.entries(fields)) {
-                    if (key !== 'total' && key !== 'profit') jpxUtils.inc(target, key, value);
-                }
+                for (const [key, value] of items(fields)) jpxUtils.inc(target, key, value);
             }
         }
     }
@@ -7347,15 +7343,10 @@ function generateAggregate(data_array, type, timestamp_name = null) { //type: Av
             else if (category === 'equipment') {
                 for (const [key, value] of Object.entries(fields)) fields[`${key}_Avg`] = average(value.length);
             } else if (category === 'consumable') {
-                for (const [key, value] of Object.entries(fields)) {
-                    if (key === 'total' || key === 'profit') continue;
-                    for (const prop of ['drop', 'use', 'balance']) value[prop] = average(value[prop]);
-                }
+                for (const [, value] of items(fields)) for (const prop of ['drop', 'use', 'balance']) value[prop] = average(value[prop]);
             } else if (countCategories.includes(category)) {
                 const scale = category === 'proficiency' ? 1000 : 10;
-                for (const [key, value] of Object.entries(fields)) {
-                    if (key !== 'total' && key !== 'profit') fields[key] = average(value, scale);
-                }
+                for (const [key, value] of items(fields)) fields[key] = average(value, scale);
             }
         }
     }
@@ -8738,6 +8729,14 @@ function renderControlPanelRows(container, data, state, element, updatePreview) 
     refresh();
 }
 
+const settingsLabelHTML = (field, id) => field.skipLabel ? '' : `<label for="${id}">${t(field.label)}</label>`;
+
+function bindSettingsTextInput(input, field, dataObj) {
+    if (field.placeholder) input.placeholder = field.placeholder;
+    input.value = dataObj[field.key] ?? '';
+    input.oninput = event => dataObj[field.key] = event.target.value;
+}
+
 const fieldRenderers = {
     expandedRuleItems: new WeakSet(),
     group(container, field, dataObj) {
@@ -8754,8 +8753,7 @@ const fieldRenderers = {
     },
 
     boolean(container, field, dataObj) {
-        let key = field.key;
-        let checkboxId = getUniqueId(key);
+        const key = field.key, checkboxId = getUniqueId(key);
         container.innerHTML = `
             <label for="${checkboxId}">
                 <input type="checkbox" id="${checkboxId}" ${dataObj[key] ? 'checked' : ''}>
@@ -8766,52 +8764,39 @@ const fieldRenderers = {
     },
 
     text(container, field, dataObj) {
-        let key = field.key;
-        let inputId = getUniqueId(key);
+        const inputId = getUniqueId(field.key);
         container.innerHTML = `
-            ${field.skipLabel ? '' : `<label for="${inputId}">${t(field.label)}</label>`}
+            ${settingsLabelHTML(field, inputId)}
             <input id="${inputId}" type="text">
         `;
-
-        let input = container.querySelector('input');
-        if (field.placeholder) input.placeholder = field.placeholder;
-        input.value = dataObj[key] ?? '';
-        input.oninput = event => dataObj[key] = event.target.value;
+        bindSettingsTextInput(container.querySelector('input'), field, dataObj);
     },
 
-	textarea(container, field, dataObj) {
-		let key = field.key;
-		let inputId = getUniqueId(key);
-		container.innerHTML = `
-			${field.skipLabel ? '' : `<label for="${inputId}">${t(field.label)}</label>`}
+    textarea(container, field, dataObj) {
+        const inputId = getUniqueId(field.key);
+        container.innerHTML = `
+			${settingsLabelHTML(field, inputId)}
 			<textarea id="${inputId}" rows="${field.rows ?? 10}" cols="${field.cols ?? 130}"></textarea>
 		`;
-
-		let textarea = container.querySelector('textarea');
-		if (field.placeholder) textarea.placeholder = field.placeholder;
-		textarea.value = dataObj[key] ?? '';
-		textarea.oninput = event => dataObj[key] = event.target.value;
-	},
+        bindSettingsTextInput(container.querySelector('textarea'), field, dataObj);
+    },
 
     number(container, field, dataObj) {
-        let key = field.key;
-        let inputId = getUniqueId(key);
+        const key = field.key, inputId = getUniqueId(key);
         container.innerHTML = `
-            ${field.skipLabel ? '' : `<label for="${inputId}">${t(field.label)}</label>`}
+            ${settingsLabelHTML(field, inputId)}
             <input id="${inputId}" type="number" value="${dataObj[key] ?? 0}">
         `;
         container.querySelector('input').oninput = event => dataObj[key] = +event.target.value;
     },
 
     rangeNumber(container, field, dataObj) {
-        let key = field.key;
+        const key = field.key;
         if (!Array.isArray(dataObj[key])) dataObj[key] = [0, 0];
-        let idMin = getUniqueId(`${key}_min`);
-        let idMax = getUniqueId(`${key}_max`);
-
+        const idMin = getUniqueId(`${key}_min`), idMax = getUniqueId(`${key}_max`);
         container.classList.add('jpx-range');
         container.innerHTML = `
-            ${field.skipLabel ? '' : `<label for="${idMin}">${t(field.label)}</label>`}
+            ${settingsLabelHTML(field, idMin)}
             <span class="jpx-range-inputs">
                 <input id="${idMin}" type="number" value="${dataObj[key][0]}">
                 <span>${t('cGen.rangeTo')}</span>
