@@ -3482,11 +3482,13 @@ function initDo() {
     //Lobby
     if (!log) {
         ensureJpxModeDetection();
-        if (needsJpxMonsterDatabase()) {
-            const refresh = () => getJpxMonsterDatabase().refresh(jpxMonsterWorld()).catch(error => console.warn('JPX monster database update failed.', error));
-            if (window.requestIdleCallback) window.requestIdleCallback(refresh, { timeout: 5000 });
-            else setTimeout(refresh, 0);
-        }
+        // Checking the rules validates the whole configuration library; keep it
+        // off the first paint, together with the refresh it decides.
+        const refresh = () => {
+            if (needsJpxMonsterDatabase()) getJpxMonsterDatabase().refresh(jpxMonsterWorld()).catch(error => console.warn('JPX monster database update failed.', error));
+        };
+        if (window.requestIdleCallback) window.requestIdleCallback(refresh, { timeout: 5000 });
+        else setTimeout(refresh, 0);
         if (
             (queriesObj.s === 'Bazaar' && queriesObj.ss === 'am' && queriesObj.screen === 'modify') ||
             (queriesObj.s === 'Battle' && queriesObj.ss === 'iw')
