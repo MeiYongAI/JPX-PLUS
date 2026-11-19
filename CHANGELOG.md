@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026.11.20
+
+- Stop delaying HVUT and other userscripts on page load (#15, #16). Tampermonkey loads a script's whole GM storage before injecting it and holds the page's other scripts until then, so JPX-PLUS's shared archive slowed every page.
+  - Configuration history and pre-sharing backups are stored compressed; results older than yesterday are bundled and compressed; cleared or deleted statistics are now really removed. Stamina already used stays counted. A reporter's 3.6 MB store dropped below 1.9 MB before clearing statistics.
+  - Ordinary pages no longer validate the whole configuration library before HVUT can paint; the monster-database check runs when the browser is idle.
+- Add an EXP column to statistics (#17).
+- Simplify the configuration store, configuration manager, settings window and records viewer code (about 27 KB and 550 lines less) without changing their behavior.
+- Battle settings and battle behavior are unchanged. After updating, the first non-battle page compacts existing data in the background; versions before 2026.11.20 cannot read the compacted statistics.
+- HentaiVerse Chinese 2026.11.20: translate HVUT's character stats in one pass instead of forcing a style recalculation per stat (about 200 ms on the Character page).
+
+### 简体中文
+
+- 不再拖慢 HVUT 和其它脚本的页面加载（#15、#16）。油猴在注入脚本前要先读入它的全部存储，并让同页其它脚本一起等，JPX-PLUS 的共享数据因此拖慢了每个页面。
+  - 配置修订历史与共享前备份改为压缩保存；昨天以前的战斗结果合并压缩；清除或删除的统计会真正删除，已用体力照常计算。反馈者的 3.6MB 存储在清除统计前就降到 1.9MB 以下。
+  - 普通页面不再在 HVUT 显示前校验整个配置库，怪物库检查改到浏览器空闲时进行。
+- 统计新增经验值（EXP）列（#17）。
+- 精简配置商店、配置管理、设置窗口和统计页代码（约减少 27KB、550 行），功能不变。
+- 战斗配置与战斗逻辑不变。更新后第一次打开非战斗页面会在后台整理已有数据；2026.11.20 之前的版本无法读取整理后的统计。
+- Hentaiverse 汉化 2026.11.20：一次性翻译 HVUT 属性区，不再每格强制重算样式（角色页约省 200ms）。
+
 ## 2026.11.17
 
 - Add a default-off "Hide the round victory popup" setting under General → Battle controls, with labels in all supported languages.
