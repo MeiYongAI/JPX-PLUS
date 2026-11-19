@@ -79,7 +79,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
     // them before every page. Pack copies once their host has migrated, and fold
     // results older than the stamina window into one bundle per pass.
     // Decide from key names alone: ordinary page loads must not read payloads.
-    const packPending = root + 'packPending', packedMarker = root + 'recoveryPacked_v1', settledDays = 3, bundleMinimum = 20;
+    const packPending = root + 'packPending', packedMarker = root + 'recoveryPacked_v1', settledDays = 1, bundleMinimum = 20;
     const packDue = () => !!get(packPending) || !get(packedMarker);
     const settledKeys = all => {
         const cutoff = day(now() - settledDays * 86400000);
