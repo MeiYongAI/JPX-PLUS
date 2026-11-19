@@ -19,6 +19,7 @@ const styles = ['OneHanded', '1H_Mage', 'TwoHanded', '2H_Mage', 'DualWielding', 
 const battleTypes = ['General', 'Arena', 'Encounter', 'Colosseum', 'Battle1000', 'Item', 'Tower'];
 const ratingTotals = new Map();
 const downloadCounts = createJpxStoreDownloads();
+const clone = value => JSON.parse(JSON.stringify(value));
 const jpxConfigStore = (() => {
     const repository = JPX_CONFIG_STORE.repository, api = 'https://api.github.com', raw = 'https://raw.githubusercontent.com/' + repository + '/main/';
     const tokenKey = 'jpx-config-store-auth-v1', marker = '<!-- JPX-PLUS-CONFIG:v1 -->\n```json\n';
@@ -30,7 +31,7 @@ const jpxConfigStore = (() => {
     const modes = styles.flatMap(style => battleTypes.map(type => style + '_' + type));
     const ruleTypes = { supports: ['spellSupport', 'item', 'toggle', 'stop'], attacks: ['target', 'toggle', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'], keys: ['target', 'spellSupport', 'item', 'toggle', 'stop', 'smartDebuff', 'spellDebuff', 'spellDamage', 'skill', 'normalAttack', 'kamisamaniNattaHi'] };
     const conditionKeys = new Set('world pLevel pMaxSpellType battleTypes difficulty roundCurrent roundLeft roundTotal floor pActionCooldown pActionHistory pActionCounts pTotalActionCounts pHP pMP pSP pOC pSpiritStatus pEffects pIgnoredEffects pEffectStacks monsters activeMonsters defeatedMonsters bosses activeBosses defeatedBosses mLevel mWithoutEffects tName tTypes tClasses tPowerLevel tIndex tHP tMP tSP tEffects tIgnoredEffects tEffectStacks tDaysSinceUpdate'.split(' '));
-    const encode = value => new TextEncoder().encode(value), clone = value => JSON.parse(JSON.stringify(value));
+    const encode = value => new TextEncoder().encode(value);
     let cache, loginPending, refreshing, sessionGeneration = 0;
     const pendingSubmissions = new Map();
     const error = code => Object.assign(new Error(code), { code });
@@ -39,7 +40,8 @@ const jpxConfigStore = (() => {
     const integer = value => Number.isSafeInteger(value) && value > 0;
     const validToken = value => typeof value === 'string' && /^[A-Za-z0-9_]{1,512}$/.test(value);
     const text = (value, max, empty = false) => typeof value === 'string' && (empty || value.trim().length > 0) && value.length <= max && !/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value);
-    const issueURL = id => 'https://github.com/' + repository + '/issues/' + id;
+    const issueURL = id => 'https://github.com/' + repository + '/issues/' + id, issuesPath = '/repos/' + repository + '/issues';
+    const person = value => ({ id: value.id, login: value.login });
     function inspect(value, depth = 0, budget = { nodes: 0, stringLimit: Infinity }) {
         if (++budget.nodes > (budget.nodeLimit || 12000) || depth > 24) fail('invalidConfig');
         if (typeof value === 'string') { if (value.length > budget.stringLimit) fail('tooLarge'); return; }
@@ -125,10 +127,7 @@ const jpxConfigStore = (() => {
         if (typeof body !== 'string' || !body.startsWith(marker) || !body.endsWith('\n```')) fail('invalidConfig');
         return validate(parse(body.slice(marker.length, -4)));
     }
-    async function hash(source) {
-        const digest = await crypto.subtle.digest('SHA-256', encode(source));
-        return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
-    }
+    const hash = async source => jpxStoreHex(await crypto.subtle.digest('SHA-256', encode(source)));
     function request(url, { method = 'GET', data, token, signal, limit = 6000000, accept = 'application/json' } = {}) {
         if (typeof GM_xmlhttpRequest !== 'function') return Promise.reject(error('managerUnavailable'));
         const target = new URL(url);
@@ -164,6 +163,8 @@ const jpxConfigStore = (() => {
     }
     const validIdentity = value => object(value) && integer(value.id) && typeof value.login === 'string' && /^[a-z\d](?:[a-z\d-]{0,38})$/i.test(value.login);
     const sameAuth = (left, right) => !!left && !!right && left.token === right.token && left.refreshToken === right.refreshToken;
+    // Device-flow endpoints on github.com; every request carries the public client id first.
+    const githubLogin = (path, data, signal) => request('https://github.com/login/' + path, { method: 'POST', signal, data: { client_id: JPX_CONFIG_STORE.clientId, ...data } });
     function readAuth() {
         if (typeof GM_getValue !== 'function') fail('managerUnavailable');
         return GM_getValue(tokenKey, null);
@@ -213,9 +214,7 @@ const jpxConfigStore = (() => {
             if (!validToken(auth.refreshToken) || !Number.isFinite(auth.refreshExpiresAt) || auth.refreshExpiresAt <= Date.now()) return auth;
             // GitHub device-flow refresh does not require a client secret.
             // Never copy these credentials into page storage, exports or logs.
-            const result = parse(await request('https://github.com/login/oauth/access_token', { method: 'POST', data: {
-                client_id: JPX_CONFIG_STORE.clientId, grant_type: 'refresh_token', refresh_token: auth.refreshToken
-            } }));
+            const result = parse(await githubLogin('oauth/access_token', { grant_type: 'refresh_token', refresh_token: auth.refreshToken }));
             if (generation !== sessionGeneration || !sameAuth(readAuth(), auth)) return readAuth();
             if (result.error) {
                 // Retain the record: another process may have just rotated it,
@@ -273,14 +272,14 @@ const jpxConfigStore = (() => {
                 const current = readAuth();
                 if (!sameAuth(current, auth)) fail('loginRequired');
                 if ((current.user?.id !== value.id || current.user?.login !== value.login) && typeof GM_setValue === 'function') {
-                    GM_setValue(tokenKey, { ...current, user: { id: value.id, login: value.login } });
+                    GM_setValue(tokenKey, { ...current, user: person(value) });
                 }
             });
-            return { id: identity.id, login: identity.login };
+            return person(identity);
         } catch (err) {
             if (err.code === 'loginRequired') return null;
             const auth = readAuth();
-            if (['networkError', 'rateLimited'].includes(err.code) && validToken(auth?.token) && validIdentity(auth?.user)) return { id: auth.user.id, login: auth.user.login };
+            if (['networkError', 'rateLimited'].includes(err.code) && validToken(auth?.token) && validIdentity(auth?.user)) return person(auth.user);
             throw err;
         }
     }
@@ -297,28 +296,28 @@ const jpxConfigStore = (() => {
         if (!JPX_CONFIG_STORE.clientId) fail('notConfigured');
         if (loginPending) fail('loginPending');
         if (typeof GM_setValue !== 'function') fail('managerUnavailable');
-        const generation = sessionGeneration; loginPending = true;
+        const generation = sessionGeneration, cancelled = () => generation !== sessionGeneration || signal?.aborted; loginPending = true;
         try {
-            const device = parse(await request('https://github.com/login/device/code', { method: 'POST', data: { client_id: JPX_CONFIG_STORE.clientId }, signal }));
+            const device = parse(await githubLogin('device/code', {}, signal));
             if (!text(device.device_code, 256) || !text(device.user_code, 64) || device.verification_uri !== 'https://github.com/login/device' || !integer(device.expires_in) || device.expires_in > 1800 || !integer(device.interval) || device.interval > 60) fail('invalidResponse');
             onDeviceCode?.({ userCode: device.user_code, verificationUri: device.verification_uri, expiresIn: device.expires_in });
             const expires = Date.now() + device.expires_in * 1000; let interval = Math.max(5, device.interval);
             while (Date.now() < expires) {
                 await pause(Math.min(interval * 1000, expires - Date.now()), signal);
-                if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
+                if (cancelled()) fail('cancelled');
                 if (Date.now() >= expires) break;
-                const result = parse(await request('https://github.com/login/oauth/access_token', { method: 'POST', signal, data: { client_id: JPX_CONFIG_STORE.clientId, device_code: device.device_code, grant_type: 'urn:ietf:params:oauth:grant-type:device_code' } }));
+                const result = parse(await githubLogin('oauth/access_token', { device_code: device.device_code, grant_type: 'urn:ietf:params:oauth:grant-type:device_code' }, signal));
                 if (result.error === 'authorization_pending') continue;
                 if (result.error === 'slow_down') { interval += 5; continue; }
                 if (result.error) fail(result.error === 'access_denied' ? 'accessDenied' : result.error === 'expired_token' ? 'loginExpired' : result.error === 'device_flow_disabled' ? 'notConfigured' : 'loginFailed');
                 const auth = authFromResponse(result);
                 const identity = parse(await request(api + '/user', { token: result.access_token, signal }));
                 if (!validIdentity(identity)) fail('invalidResponse');
-                if (generation !== sessionGeneration || signal?.aborted) fail('cancelled');
-                auth.user = { id: identity.id, login: identity.login };
+                if (cancelled()) fail('cancelled');
+                auth.user = person(identity);
                 await GM_setValue(tokenKey, auth);
-                if (generation !== sessionGeneration || signal?.aborted) { forgetAuth(auth); fail('cancelled'); }
-                return { id: identity.id, login: identity.login };
+                if (cancelled()) { forgetAuth(auth); fail('cancelled'); }
+                return person(identity);
             }
             fail('loginExpired');
         } finally { loginPending = false; }
@@ -354,24 +353,30 @@ const jpxConfigStore = (() => {
     async function ownIssue(id) {
         if (!integer(id)) fail('invalidResponse');
         const identity = await user(); if (!identity) fail('loginRequired');
-        const issue = await authenticated('/repos/' + repository + '/issues/' + id);
+        const issue = await authenticated(issuesPath + '/' + id);
         if (issue.pull_request || issue.user?.id !== identity.id || issue.number !== id || issue.html_url !== issueURL(id)) fail('notOwner');
         return issue;
+    }
+    // Walks 100-row pages until a short page; a full last page means the list is too long.
+    async function eachPage(path, maxPages, tooMany, visit, options) {
+        for (let page = 1; page <= maxPages; page++) {
+            const rows = await authenticated(path + 'per_page=100&page=' + page, options);
+            if (!Array.isArray(rows)) fail('invalidResponse');
+            visit(rows);
+            if (rows.length < 100) return;
+        }
+        fail(tooMany);
     }
     async function mine() {
         const identity = await user(); if (!identity) fail('loginRequired');
         const collected = [];
-        for (let page = 1; page <= 10; page++) {
-            const rows = await authenticated('/repos/' + repository + '/issues?state=all&creator=' + encodeURIComponent(identity.login) + '&per_page=100&page=' + page);
-            if (!Array.isArray(rows)) fail('invalidResponse');
+        await eachPage(issuesPath + '?state=all&creator=' + encodeURIComponent(identity.login) + '&', 10, 'tooManySubmissions', rows => {
             for (const row of rows) {
                 if (row.pull_request || row.user?.id !== identity.id || !integer(row.number) || row.html_url !== issueURL(row.number) || typeof row.body !== 'string' || !row.body.startsWith(marker)) continue;
                 collected.push({ id: row.number, title: row.title, state: row.state, labels: (row.labels || []).map(label => typeof label === 'string' ? label : label.name).filter(label => typeof label === 'string'), body: row.body, url: row.html_url, updatedAt: row.updated_at,
                     pending: pendingSubmissions.get(row.number) === row.body });
             }
-            if (rows.length < 100) break;
-            if (page === 10) fail('tooManySubmissions');
-        }
+        });
         return collected;
     }
     async function submit(input, issueNumber, expectedBody) {
@@ -386,14 +391,14 @@ const jpxConfigStore = (() => {
         if (generation !== sessionGeneration) fail('loginRequired');
         const body = marker + JSON.stringify(value) + '\n```';
         if (encode(body).length > 60000) fail('tooLarge');
-        const result = await authenticated('/repos/' + repository + '/issues' + (issueNumber === undefined ? '' : '/' + issueNumber), { method: issueNumber === undefined ? 'POST' : 'PATCH', data: { title: '[Config] ' + value.title, body } });
+        const result = await authenticated(issuesPath + (issueNumber === undefined ? '' : '/' + issueNumber), { method: issueNumber === undefined ? 'POST' : 'PATCH', data: { title: '[Config] ' + value.title, body } });
         if (!integer(result.number) || result.html_url !== issueURL(result.number) || result.body !== body || result.state !== 'open' || issueNumber !== undefined && result.number !== issueNumber) fail('invalidResponse');
         pendingSubmissions.set(result.number, body);
         return { id: result.number, url: result.html_url };
     }
     async function withdraw(id) {
         const issue = await ownIssue(id); if (!issue.body?.startsWith(marker)) fail('invalidConfig');
-        await authenticated('/repos/' + repository + '/issues/' + id, { method: 'PATCH', data: { state: 'closed' } });
+        await authenticated(issuesPath + '/' + id, { method: 'PATCH', data: { state: 'closed' } });
         cache = null;
     }
     async function archive(id) {
@@ -405,16 +410,14 @@ const jpxConfigStore = (() => {
         // Keep the issue and exact configuration as an audit record. A distinct
         // marker removes it from Shared on every device without admin privileges.
         const body = archivedMarker + issue.body.slice(marker.length);
-        const result = await authenticated('/repos/' + repository + '/issues/' + id, { method: 'PATCH', data: { state: 'closed', body } });
+        const result = await authenticated(issuesPath + '/' + id, { method: 'PATCH', data: { state: 'closed', body } });
         if (result.number !== id || result.html_url !== issueURL(id) || result.user?.id !== issue.user.id || result.state !== 'closed' || result.body !== body) fail('invalidResponse');
         cache = null;
     }
     async function feedback(id) {
         const issue = await ownIssue(id), envelope = parseSubmission(issue.body), revision = await hash(JSON.stringify(envelope) + '\n');
         let latest = null;
-        for (let page = 1; page <= 10; page++) {
-            const rows = await authenticated('/repos/' + repository + '/issues/' + id + '/comments?per_page=100&page=' + page);
-            if (!Array.isArray(rows)) fail('invalidResponse');
+        await eachPage(issuesPath + '/' + id + '/comments?', 10, 'tooManySubmissions', rows => {
             for (const row of rows) {
                 if (row.user?.login !== 'github-actions[bot]' || row.user.type !== 'Bot' || typeof row.body !== 'string') continue;
                 const match = row.body.match(/<!-- JPX-PLUS-REVIEW:v1 (\{[^\r\n]+\}) -->/);
@@ -426,23 +429,21 @@ const jpxConfigStore = (() => {
                     latest = value;
                 } catch { /* Ignore malformed, unrelated, or stale comments. */ }
             }
-            if (rows.length < 100) break;
-            if (page === 10) fail('tooManySubmissions');
-        }
+        });
         if (latest && latest.status !== 'pending' && pendingSubmissions.get(id) === issue.body) pendingSubmissions.delete(id);
         return latest;
     }
     function commentRecord(row, issue) {
         if (!object(row) || !integer(row.id) || !validIdentity(row.user) || row.user.type !== 'User' ||
             !text(row.body, 65536, true) || row.html_url !== issueURL(issue) + '#issuecomment-' + row.id ||
-            row.issue_url !== api + '/repos/' + repository + '/issues/' + issue ||
+            row.issue_url !== api + issuesPath + '/' + issue ||
             !Number.isFinite(Date.parse(row.created_at)) || !Number.isFinite(Date.parse(row.updated_at))) return null;
         return { id: row.id, body: row.body, author: { id: row.user.id, login: row.user.login },
             createdAt: row.created_at, updatedAt: row.updated_at, url: row.html_url };
     }
     async function comments(issue, page = 1) {
         if (!integer(issue) || !integer(page) || page > 1000) fail('invalidResponse');
-        const path = '/repos/' + repository + '/issues/' + issue + '/comments?per_page=30&page=' + page;
+        const path = issuesPath + '/' + issue + '/comments?per_page=30&page=' + page;
         let rows;
         try { rows = await authenticated(path); }
         catch (error) {
@@ -473,7 +474,7 @@ const jpxConfigStore = (() => {
         }
     }
     async function commentIssue(issue, expectedUserId) {
-        const path = '/repos/' + repository + '/issues/' + issue;
+        const path = issuesPath + '/' + issue;
         const current = await authenticated(path, { expectedUserId });
         if (current.number !== issue || current.html_url !== issueURL(issue) || current.pull_request || !current.body?.startsWith(marker)) fail('invalidResponse');
         if (current.locked || current.state !== 'open' || current.labels?.some(label => (label.name || label) === 'store:hide')) fail('commentsClosed');
@@ -492,7 +493,7 @@ const jpxConfigStore = (() => {
     async function ownComment(issue, expected, expectedUserId, rating = false) {
         if (!integer(issue) || !integer(expected?.id) || !text(expected.body, 65536, true) || !text(expected.updatedAt, 64)) fail('invalidResponse');
         const identity = await commentIdentity(expectedUserId);
-        const path = '/repos/' + repository + '/issues/comments/' + expected.id;
+        const path = issuesPath + '/comments/' + expected.id;
         const current = commentRecord(await authenticated(path, { expectedUserId }), issue);
         if (!current || current.author.id !== identity.id) fail('commentNotOwner');
         if (rating ? !ratingScore(current.body) : current.body.startsWith(ratingPrefix)) fail('invalidResponse');
@@ -520,13 +521,11 @@ const jpxConfigStore = (() => {
         if (!integer(issue)) fail('invalidResponse');
         await commentIdentity(expectedUserId);
         const records = [];
-        for (let page = 1; page <= 100; page++) {
-            const rows = await authenticated('/repos/' + repository + '/issues/' + issue + '/comments?per_page=100&page=' + page, { expectedUserId });
-            if (!Array.isArray(rows) || rows.length > 100) fail('invalidResponse');
+        await eachPage(issuesPath + '/' + issue + '/comments?', 100, 'ratingsTooMany', rows => {
+            if (rows.length > 100) fail('invalidResponse');
             for (const row of rows) { const value = commentRecord(row, issue); if (value && ratingScore(value.body)) records.push(value); }
-            if (rows.length < 100) return records;
-        }
-        fail('ratingsTooMany');
+        }, { expectedUserId });
+        return records;
     }
     function ratingState(records, expectedUserId) {
         const votes = new Map();
@@ -573,32 +572,36 @@ function renderConfigStore(parent, hooks, options = {}) {
         if (className) node.className = className;
         return node;
     };
+    const div = className => el('div', undefined, className);
     const root = el('section', undefined, 'jpx-store');
-    const toolbar = el('div', undefined, 'jpx-store-toolbar');
-    const navigation = el('div', undefined, 'jpx-store-navigation');
-    const account = el('div', undefined, 'jpx-store-account');
+    const toolbar = div('jpx-store-toolbar');
+    const navigation = div('jpx-store-navigation');
+    const account = div('jpx-store-account');
     const status = el('p', '', 'jpx-store-status');
     status.setAttribute('role', 'status');
     status.hidden = true;
-    const viewHeader = el('div', undefined, 'jpx-store-view-header');
-    const stage = el('div', undefined, 'jpx-store-stage');
+    const viewHeader = div('jpx-store-view-header');
+    const stage = div('jpx-store-stage');
     const layoutEvents = new AbortController();
     let browseControls = null, commentView = null, ratingView = null;
     const commentDrafts = new Map();
-    const state = { view: 'browse', entries: [], query: '', sharedQuery: '', kind: '', world: '', style: '', battleType: '', sort: 'updated',
+    const state = { view: 'browse', query: '', sharedQuery: '', kind: '', world: '', style: '', battleType: '', sort: 'updated',
         filtersOpen: false, visible: 30, browseScroll: 0,
         user: null, editor: null, request: 0, login: null, disposed: false, suspended: false, saved: new Set(), authGeneration: 0, currentEntry: null };
     const alive = () => !state.disposed && !state.suspended && root.isConnected;
+    const live = request => alive() && request === state.request;
+    const labelled = (node, label) => { node.title = label; node.setAttribute('aria-label', label); return node; };
+    const icon = (path, size = 16, stroke = 1.7) => '<svg viewBox="0 0 24 24" width="' + size + '" height="' + size + '" fill="none" stroke="currentColor" stroke-width="' + stroke +
+        '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + path + '"/></svg>';
     function downloadCount(id) {
         const node = el('span', undefined, 'jpx-download-count'); node.dataset.downloadId = String(id); node.setAttribute('role', 'img');
-        node.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></svg><span></span>';
+        node.innerHTML = icon('M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4', 14, 1.6) + '<span></span>';
         paintDownloadCount(node); return node;
     }
     function paintDownloadCount(node) {
         const count = downloadCounts.peek(Number(node.dataset.downloadId)), text = count === null ? '—' : count.toLocaleString();
         node.lastElementChild.textContent = text;
-        node.title = tr(count === null ? 'downloadsUnavailable' : 'downloadCount').replace('${count}', text);
-        node.setAttribute('aria-label', node.title);
+        labelled(node, tr(count === null ? 'downloadsUnavailable' : 'downloadCount').replace('${count}', text));
     }
     function refreshDownloadCounts() {
         const nodes = [...stage.querySelectorAll('.jpx-download-count')];
@@ -614,8 +617,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         }).catch(() => {});
     }
     function layoutBrowseControls() {
-        if (!alive()) return;
-        if (!browseControls) return;
+        if (!alive() || !browseControls) return;
         const { queryBar, results, refresh, clear, sort } = browseControls;
         const mobile = root.closest('.jpx-settings-mobile');
         const focused = doc.activeElement;
@@ -643,13 +645,13 @@ function renderConfigStore(parent, hooks, options = {}) {
         status.hidden = !text;
         status.dataset.error = String(error);
     }
+    // Error codes that share their message key; anything else is a generic failure.
+    const messageCodes = new Set(['loginRequired', 'notConfigured', 'networkError', 'invalidConfig', 'tooLarge', 'accessDenied', 'loginExpired', 'managerUnavailable',
+        'notOwner', 'submissionClosed', 'withdrawFirst', 'shareChanged', 'localChanged', 'tooManySubmissions', 'storageCorrupt', 'storageError', 'localNotFound']);
     function errorMessage(error) {
-        const codes = { loginRequired: 'loginRequired', notConfigured: 'notConfigured', rateLimited: 'rateLimit',
-            networkError: 'networkError', invalidConfig: 'invalidConfig', tooLarge: 'tooLarge', integrityFailed: 'integrityError',
-            accessDenied: 'accessDenied', loginExpired: 'loginExpired', managerUnavailable: 'managerUnavailable',
-            notOwner: 'notOwner', submissionClosed: 'submissionClosed', withdrawFirst: 'withdrawFirst', shareChanged: 'shareChanged', localChanged: 'localChanged', tooManySubmissions: 'tooManySubmissions',
-            storageCorrupt: 'storageCorrupt', storageError: 'storageError', localNotFound: 'localNotFound' };
-        return tr(codes[error?.code] || 'requestFailed');
+        const code = error?.code, renamed = { rateLimited: 'rateLimit', integrityFailed: 'integrityError' };
+        if (Object.hasOwn(renamed, code)) return tr(renamed[code]);
+        return tr(messageCodes.has(code) ? code : 'requestFailed');
     }
     function button(text, action, className) {
         const node = el('button', text, className);
@@ -674,8 +676,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         const node = button(tr('refresh'), action);
         if (options.toolbarHost) {
             node.className = 'jpx-store-refresh';
-            node.title = tr('refresh'); node.setAttribute('aria-label', tr('refresh'));
-            node.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 0 1 15.6-5.4L21 8M21 3v5h-5M21 13A9 9 0 0 1 5.4 18.4L3 16M3 21v-5h5"/></svg>';
+            labelled(node, tr('refresh')).innerHTML = icon('M3 11a9 9 0 0 1 15.6-5.4L21 8M21 3v5h-5M21 13A9 9 0 0 1 5.4 18.4L3 16M3 21v-5h5');
         }
         return node;
     }
@@ -690,9 +691,10 @@ function renderConfigStore(parent, hooks, options = {}) {
     const worldName = world => tr(world === 'Isekai' ? 'isekai' : world === 'Persistent' ? 'persistent' : 'anyWorld');
     const styleName = style => host.jpxI18N?.cB?.[style] || host.jpxI18N?.cW?.[style] || tr(style);
     const battleName = battle => host.jpxI18N?.cB?.[battle] || tr(battle);
+    const splitMode = mode => { const split = mode.lastIndexOf('_'); return [mode.slice(0, split), mode.slice(split + 1)]; };
     function modeName(mode) {
         if (!mode) return '';
-        const split = mode.lastIndexOf('_'), style = mode.slice(0, split), battle = mode.slice(split + 1);
+        const [style, battle] = splitMode(mode);
         return styleName(style) + ' · ' + battleName(battle);
     }
     function info(envelope, author) {
@@ -733,16 +735,17 @@ function renderConfigStore(parent, hooks, options = {}) {
         } else account.append(button(tr('signIn'), () => login()));
         commentView?.authChanged(); ratingView?.authChanged();
     }
+    const closeViews = () => { commentView?.dispose(); ratingView?.dispose(); commentView = ratingView = null; };
     function open(view) {
-        commentView?.dispose(); commentView = null; ratingView?.dispose(); ratingView = null;
+        closeViews();
         browseControls?.queryBar.remove(); browseControls = null;
         state.login?.abort(); state.login = null;
         if (view !== 'edit' && view !== 'login') state.editor = null;
         if (view !== 'detail') state.currentEntry = null;
         state.view = view; state.back = null;
-        root.classList.toggle('jpx-store-browsing', !!options.toolbarHost && view === 'browse');
-        viewHeader.classList.toggle('jpx-store-browse-header', !!options.toolbarHost && view === 'browse');
-        viewHeader.classList.toggle('jpx-config-list-header', !!options.toolbarHost && view === 'browse');
+        const browsing = !!options.toolbarHost && view === 'browse';
+        root.classList.toggle('jpx-store-browsing', browsing);
+        viewHeader.classList.toggle('jpx-store-browse-header', browsing); viewHeader.classList.toggle('jpx-config-list-header', browsing);
         state.request++;
         browseButton.setAttribute('aria-pressed', String(view === 'browse' || view === 'detail'));
         mineButton.setAttribute('aria-pressed', String(view === 'mine' || view === 'edit'));
@@ -751,47 +754,51 @@ function renderConfigStore(parent, hooks, options = {}) {
         return state.request;
     }
     function heading(title, back) {
-        const row = el('div', undefined, 'jpx-store-heading');
+        const row = div('jpx-store-heading');
         state.back = back || null;
         if (back) row.append(button(tr('back'), back, 'jpx-store-back'));
         row.append(el('h3', title)); viewHeader.append(row);
     }
-    function empty(text, action, label = tr('retry')) {
-        const box = el('div', undefined, 'jpx-store-empty');
+    function empty(text, action, label = tr('retry'), target = stage) {
+        const box = div('jpx-store-empty');
         box.append(el('p', text));
         if (action) box.append(button(label, action));
-        stage.append(box);
+        target.append(box);
+    }
+    function searchField(value, label) {
+        const node = el('input'); node.type = 'search'; node.value = value; node.placeholder = label;
+        node.setAttribute('aria-label', label); return node;
+    }
+    // Stats configs have no style or battle type, so choosing them clears both.
+    function chooseFilter(key, value) {
+        state[key === 'scenario' ? 'battleType' : key] = value;
+        if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
     }
     async function browse(refresh = false) {
         const backEntry = state.view === 'detail' ? state.currentEntry?.id : null;
         const backScroll = backEntry ? state.browseScroll : 0;
         const request = open('browse');
-        const queryBar = el('div', undefined, 'jpx-store-querybar');
-        const search = el('input'); search.type = 'search'; search.value = state.query; search.placeholder = tr('search');
-        search.setAttribute('aria-label', tr('search'));
-        const filters = el('div', undefined, 'jpx-store-filter-grid');
+        const queryBar = div('jpx-store-querybar');
+        const search = searchField(state.query, tr('search'));
+        const filters = div('jpx-store-filter-grid');
         filters.id = 'jpx-store-catalog-filters';
         const toggle = button(tr('filters'), () => { state.filtersOpen = !state.filtersOpen; updateFilters(); }, 'jpx-store-filter-toggle');
         toggle.setAttribute('aria-controls', filters.id);
         const refreshButton = refreshControl(() => loadCatalog(true));
         queryBar.append(search, toggle, refreshButton);
         const controls = {};
-        for (const [key, label, choices] of [
-            ['world', 'world', [['', tr('allWorlds')], ...['Persistent', 'Isekai'].map(value => [value, worldName(value)])]],
-            ['style', 'style', [['', tr('allStyles')], ...styles.map(value => [value, styleName(value)])]],
-            ['battleType', 'battleType', [['', tr('allBattles')], ...battleTypes.map(value => [value, battleName(value)])]],
-            ['kind', 'type', [['', tr('allTypes')], ...kinds()]]
+        for (const [key, choices] of [
+            ['world', [['', tr('allWorlds')], ...['Persistent', 'Isekai'].map(value => [value, worldName(value)])]],
+            ['style', [['', tr('allStyles')], ...styles.map(value => [value, styleName(value)])]],
+            ['battleType', [['', tr('allBattles')], ...battleTypes.map(value => [value, battleName(value)])]],
+            ['kind', [['', tr('allTypes')], ...kinds()]]
         ]) {
             const control = select(choices, state[key]); controls[key] = control;
-            control.setAttribute('aria-label', tr(label)); control.dataset.storeFilter = key;
-            control.addEventListener('change', () => {
-                state[key] = control.value;
-                if (key === 'kind' && state.kind === 'stats') state.style = state.battleType = '';
-                render(true);
-            });
+            control.setAttribute('aria-label', tr(key === 'kind' ? 'type' : key)); control.dataset.storeFilter = key;
+            control.addEventListener('change', () => { chooseFilter(key, control.value); render(true); });
             filters.append(control);
         }
-        const results = el('div', undefined, 'jpx-store-results');
+        const results = div('jpx-store-results');
         const count = el('span', '', 'jpx-store-result-count');
         count.setAttribute('role', 'status'); count.setAttribute('aria-live', 'polite');
         const reset = () => {
@@ -803,8 +810,9 @@ function renderConfigStore(parent, hooks, options = {}) {
         sort.setAttribute('aria-label', tr('sort')); sort.dataset.storeSort = '';
         sort.addEventListener('change', () => { state.sort = sort.value; render(true); });
         results.append(count, clear, sort);
-        const list = el('div', undefined, 'jpx-store-list');
+        const list = div('jpx-store-list');
         list.setAttribute('aria-busy', 'true');
+        const focusEntry = id => list.querySelector('[data-store-id="' + id + '"] .jpx-store-title')?.focus({ preventScroll: true });
         browseControls = { queryBar, results, refresh: refreshButton, clear, sort };
         viewHeader.append(queryBar, filters, results); stage.append(list); layoutBrowseControls();
         // Normalize catalog metadata once, then filter locally without more requests.
@@ -831,8 +839,9 @@ function renderConfigStore(parent, hooks, options = {}) {
             updateFilters();
             if (!index) return;
             if (orderedBy !== state.sort) {
-                index.sort((a, b) => state.sort === 'type' ? hooks.compareTypes(a.entry,b.entry) || collator.compare(a.entry.title,b.entry.title) || a.entry.id-b.entry.id :
-                    state.sort === 'name' ? collator.compare(a.entry.title, b.entry.title) || a.entry.id - b.entry.id : b.updated - a.updated || b.entry.id - a.entry.id);
+                const byTitle = (a, b) => collator.compare(a.entry.title, b.entry.title) || a.entry.id - b.entry.id;
+                index.sort((a, b) => state.sort === 'type' ? hooks.compareTypes(a.entry, b.entry) || byTitle(a, b) :
+                    state.sort === 'name' ? byTitle(a, b) : b.updated - a.updated || b.entry.id - a.entry.id);
                 orderedBy = state.sort;
             }
             if (resetPosition) { state.visible = 30; state.browseScroll = 0; stage.scrollTop = 0; }
@@ -840,22 +849,17 @@ function renderConfigStore(parent, hooks, options = {}) {
             const words = normalize(state.query).split(' ').filter(Boolean);
             const matches = index.filter(({ entry, modes, text }) => (!state.kind || entry.kind === state.kind) &&
                 (!state.world || entry.world === state.world || entry.world === 'Any') &&
-                ((!state.style && !state.battleType) || modes.some(mode => (!state.style || mode.slice(0,mode.lastIndexOf('_')) === state.style) &&
-                    (!state.battleType || mode.slice(mode.lastIndexOf('_')+1) === state.battleType))) && words.every(word => text.includes(word)));
+                ((!state.style && !state.battleType) || modes.some(mode => { const [style, battle] = splitMode(mode);
+                    return (!state.style || style === state.style) && (!state.battleType || battle === state.battleType); })) && words.every(word => text.includes(word)));
             count.textContent = tr('resultCount').replace('${count}', String(matches.length));
-            if (!matches.length) {
-                const box = el('div', undefined, 'jpx-store-empty');
-                box.append(el('p', tr(index.length ? 'noMatches' : 'noConfigs')));
-                if (!clear.hidden) box.append(button(tr('clearFilters'), () => { reset(); search.focus(); }));
-                list.append(box); return;
-            }
+            if (!matches.length) return empty(tr(index.length ? 'noMatches' : 'noConfigs'), clear.hidden ? null : () => { reset(); search.focus(); }, tr('clearFilters'), list);
             const fragment = doc.createDocumentFragment();
             for (const { entry, updated } of matches.slice(0, state.visible)) {
                 const row = el('article', undefined, 'jpx-store-row');
                 row.dataset.storeId = String(entry.id);
                 const title = button(entry.title, () => { state.browseScroll = stage.scrollTop; return details(entry); }, 'jpx-store-title');
                 row.append(title);
-                const tools = el('div', undefined, 'jpx-store-row-tools');
+                const tools = div('jpx-store-row-tools');
                 if (updated) {
                     const date = el('time', new Date(updated).toLocaleDateString(), 'jpx-store-date');
                     date.dateTime = entry.updatedAt; date.title = tr('latest'); tools.append(date);
@@ -864,24 +868,20 @@ function renderConfigStore(parent, hooks, options = {}) {
                     node.setAttribute('aria-busy', 'true');
                     try {
                         const envelope = await jpxConfigStore.load(entry);
-                        if (!alive() || request !== state.request || !node.isConnected) return;
+                        if (!live(request) || !node.isConnected) return;
                         if (!await saveConfig(envelope, entry)) return;
-                        if (alive() && request === state.request && node.isConnected) {
+                        if (live(request) && node.isConnected) {
                             node.title = tr('saved'); node.setAttribute('aria-label', tr('saved') + ': ' + entry.title);
-                            node.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>';
+                            node.innerHTML = icon('m5 12 4 4L19 6');
                         }
                     } catch (error) {
-                        if (alive() && request === state.request && node.isConnected) throw error;
+                        if (live(request) && node.isConnected) throw error;
                     } finally { node.removeAttribute('aria-busy'); }
                 }, 'jpx-store-download');
                 download.title = tr('save'); download.setAttribute('aria-label', tr('save') + ': ' + entry.title);
-                download.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>';
+                download.innerHTML = icon('M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4');
                 tools.prepend(download); row.append(tools);
-                row.append(tags(entry, entry.author, (key, value) => {
-                    state[key === 'scenario' ? 'battleType' : key] = value;
-                    if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
-                    render(true);
-                }));
+                row.append(tags(entry, entry.author, (key, value) => { chooseFilter(key, value); render(true); }));
                 const metrics = el('p', undefined, 'jpx-store-rating-summary');
                 metrics.append(el('span', jpxStoreRatingText(ratingTotals.get(entry.id) || entry.rating, tr)), downloadCount(entry.id)); row.append(metrics);
                 if (entry.description) row.append(el('p', entry.description, 'jpx-store-excerpt'));
@@ -889,8 +889,7 @@ function renderConfigStore(parent, hooks, options = {}) {
             }
             if (matches.length > state.visible) fragment.append(button(tr('showMore'), () => {
                 const position = stage.scrollTop, next = matches[state.visible]?.entry.id;
-                state.visible += 30; render();
-                list.querySelector('[data-store-id="' + next + '"] .jpx-store-title')?.focus({ preventScroll: true });
+                state.visible += 30; render(); focusEntry(next);
                 stage.scrollTop = position;
             }, 'jpx-store-show-more'));
             list.append(fragment); refreshDownloadCounts();
@@ -899,18 +898,17 @@ function renderConfigStore(parent, hooks, options = {}) {
         search.addEventListener('compositionend', () => { state.query = search.value; render(true); });
         updateFilters();
         async function loadCatalog(force) {
-            refreshButton.disabled = true; refreshButton.setAttribute('aria-busy', 'true');
-            refreshButton.setAttribute('aria-label', tr('loading')); refreshButton.title = tr('loading');
+            refreshButton.disabled = true; refreshButton.setAttribute('aria-busy', 'true'); labelled(refreshButton, tr('loading'));
             list.setAttribute('aria-busy', 'true'); message('');
             try {
                 const catalog = await jpxConfigStore.catalog({ refresh: force });
-                if (!alive() || request !== state.request) return;
+                if (!live(request)) return;
                 if (force) ratingTotals.clear();
-                state.entries = catalog.entries; orderedBy = null;
-                index = state.entries.map(entry => {
+                orderedBy = null;
+                index = catalog.entries.map(entry => {
                     const modes = entry.mode ? [entry.mode] : entry.modes || [];
-                    const labels = modes.flatMap(mode => { const split=mode.lastIndexOf('_'), style=mode.slice(0,split), battle=mode.slice(split+1);
-                        return [mode,modeName(mode),tr(style),tr(battle),translations.en[style],translations.en[battle]]; });
+                    const labels = modes.flatMap(mode => { const [style, battle] = splitMode(mode);
+                        return [mode, modeName(mode), tr(style), tr(battle), translations.en[style], translations.en[battle]]; });
                     return { entry, modes, updated: Date.parse(entry.updatedAt) || 0,
                         text: normalize([entry.title, entry.description, entry.author, entry.kind, kindName(entry.kind), entry.world,
                             worldName(entry.world), entry.world === 'Any' ? t('cM.anyWorld') : '',
@@ -919,17 +917,16 @@ function renderConfigStore(parent, hooks, options = {}) {
                 });
                 const scroll = stage.scrollTop; render(); stage.scrollTop = scroll;
             } catch (error) {
-                if (!alive() || request !== state.request) return;
+                if (!live(request)) return;
                 message(errorMessage(error), true);
             } finally {
-                refreshButton.disabled = false; refreshButton.removeAttribute('aria-busy');
-                refreshButton.setAttribute('aria-label', tr('refresh')); refreshButton.title = tr('refresh');
+                refreshButton.disabled = false; refreshButton.removeAttribute('aria-busy'); labelled(refreshButton, tr('refresh'));
                 list.setAttribute('aria-busy', 'false');
             }
         }
         await loadCatalog(refresh);
-        if (backEntry && alive() && request === state.request) {
-            list.querySelector('[data-store-id="' + backEntry + '"] .jpx-store-title')?.focus({ preventScroll: true });
+        if (backEntry && live(request)) {
+            focusEntry(backEntry);
             stage.scrollTop = backScroll;
         }
     }
@@ -969,7 +966,7 @@ function renderConfigStore(parent, hooks, options = {}) {
     }
     async function saveConfig(envelope, entry) {
         if (typeof hooks.saveConfig !== 'function') throw new Error('Save unavailable');
-        const saved = await hooks.saveConfig(JSON.parse(JSON.stringify(envelope)), { id: entry.id, author: entry.author,
+        const saved = await hooks.saveConfig(clone(envelope), { id: entry.id, author: entry.author,
             source: { repository: JPX_CONFIG_STORE.repository, id: entry.id, author: entry.author, sha256: entry.sha256, url: entry.issueUrl } });
         if (saved === false) return false;
         state.saved.add(entry.id);
@@ -981,47 +978,41 @@ function renderConfigStore(parent, hooks, options = {}) {
         state.currentEntry = entry;
         try {
             const envelope = await jpxConfigStore.load(entry);
-            if (!alive() || request !== state.request) return;
+            if (!live(request)) return;
             message('');
-            stage.append(tags(envelope, entry.author, (key, value) => {
-                state[key === 'scenario' ? 'battleType' : key] = value;
-                if (key === 'kind' && value === 'stats') state.style = state.battleType = '';
-                return browse();
-            }));
+            stage.append(tags(envelope, entry.author, (key, value) => { chooseFilter(key, value); return browse(); }));
             if (envelope.description) stage.append(el('p', envelope.description, 'jpx-store-description'));
             stage.append(el('p', configSummary(envelope), 'jpx-store-meta'),
                 el('p', tr('scriptVersion') + ': ' + envelope.scriptVersion, 'jpx-store-meta'));
-            const actions = el('div', undefined, 'jpx-store-actions');
+            const actions = div('jpx-store-actions');
             const save = button(tr(state.saved.has(entry.id) ? 'saved' : 'save'), async node => {
                 if (!await saveConfig(envelope, entry)) return;
-                if (!alive() || request !== state.request) return;
+                if (!live(request)) return;
                 node.textContent = tr('saved'); message(tr('savedConfig'));
             }, 'jpx-store-primary');
             actions.append(save);
-            if (typeof hooks.applyConfig === 'function') actions.append(button(tr('apply'), () => hooks.applyConfig(JSON.parse(JSON.stringify(envelope)))));
+            if (typeof hooks.applyConfig === 'function') actions.append(button(tr('apply'), () => hooks.applyConfig(clone(envelope))));
             actions.append(button(tr('download'), () => downloadConfig(envelope, entry.id)));
             stage.append(actions, rawPreview(envelope));
-            ratingView = renderJpxStoreRating(stage, { service: jpxConfigStore, entry, summary: ratingTotals.get(entry.id) || entry.rating, tr, el,
-                signIn: () => login(() => details(entry), () => details(entry)), user: () => state.user,
-                isCurrent: () => alive() && request === state.request, onChange: value => ratingTotals.set(entry.id, value) });
+            const reopen = () => details(entry), community = { service: jpxConfigStore, entry, tr, el,
+                signIn: () => login(reopen, reopen), user: () => state.user, isCurrent: () => live(request) };
+            ratingView = renderJpxStoreRating(stage, { ...community, summary: ratingTotals.get(entry.id) || entry.rating, onChange: value => ratingTotals.set(entry.id, value) });
             stage.querySelector('.jpx-rating-heading strong').after(downloadCount(entry.id)); refreshDownloadCounts();
             const draft = commentDrafts.get(entry.id) || { body: '', edits: {} }; commentDrafts.set(entry.id, draft);
-            commentView = renderJpxStoreComments(stage, { service: jpxConfigStore, entry, tr, el, confirm: confirmShare,
-                signIn: () => login(() => details(entry), () => details(entry)), user: () => state.user,
-                isCurrent: () => alive() && request === state.request, draft });
+            commentView = renderJpxStoreComments(stage, { ...community, confirm: confirmShare, draft });
         } catch (error) {
-            if (!alive() || request !== state.request) return;
+            if (!live(request)) return;
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => details(entry));
         }
     }
     async function login(after = () => browse(), cancel = () => browse()) {
         const generation = ++state.authGeneration;
         const request = open('login'); heading(tr('signIn'), cancel);
-        const panel = el('div', undefined, 'jpx-store-auth'); stage.append(panel);
+        const panel = div('jpx-store-auth'); stage.append(panel);
         const controller = new AbortController(); state.login = controller; message(tr('connecting'));
         try {
             const user = await jpxConfigStore.login(code => {
-                if (!alive() || request !== state.request) return;
+                if (!live(request)) return;
                 message(''); panel.replaceChildren(el('p', tr('authHint')));
                 const copyCode = async text => {
                     try {
@@ -1043,7 +1034,7 @@ function renderConfigStore(parent, hooks, options = {}) {
                         if (focused?.isConnected) focused.focus({ preventScroll: true });
                     }
                 };
-                const codeRow = el('div', undefined, 'jpx-store-auth-code-row');
+                const codeRow = div('jpx-store-auth-code-row');
                 const codeEl = el('code', code.userCode, 'jpx-store-auth-code');
                 const copy = button(tr('copyCode'), async node => {
                     const copied = await copyCode(code.userCode);
@@ -1060,23 +1051,21 @@ function renderConfigStore(parent, hooks, options = {}) {
                 link.href = url.href; link.target = '_blank'; link.rel = 'noopener noreferrer';
                 panel.append(link, el('p', tr('waitingAuth'), 'jpx-store-meta'), button(tr('cancel'), cancel));
             }, controller.signal);
-            if (!alive() || request !== state.request || generation !== state.authGeneration) return;
+            if (!live(request) || generation !== state.authGeneration) return;
             state.user = user || await jpxConfigStore.user(); state.login = null; accountControls(); await after();
         } catch (error) {
-            if (!alive() || request !== state.request || error?.name === 'AbortError') return;
+            if (!live(request) || error?.name === 'AbortError') return;
             message(errorMessage(error), true); panel.replaceChildren(button(tr('retry'), () => login(after, cancel)));
         }
     }
-    async function edit(existing) {
-        if (!existing?.envelope) return options.onBack?.();
-        const model = existing;
-        if (model.id && !model.originalEnvelope) model.originalEnvelope = JSON.parse(JSON.stringify(model.envelope));
-        state.editor = model; open('edit');
+    async function edit(model) {
+        if (!model?.envelope) return options.onBack?.();
+        if (model.id && !model.originalEnvelope) model.originalEnvelope = clone(model.envelope);
+        state.editor = model; const request = open('edit');
         heading(tr(model.id ? 'updateShare' : 'share'), model.back || options.onBack || (() => mine()));
-        const request = state.request;
         const form = el('form', undefined, 'jpx-store-form'); form.dataset.storeEditor = 'share';
         const envelope = model.envelope;
-        const world = model.id ? select([['Persistent', tr('persistent')], ['Isekai', tr('isekai')], ['Any', tr('anyWorld')]], envelope.world) : null;
+        const world = model.id ? select(['Persistent', 'Isekai', 'Any'].map(value => [value, worldName(value)]), envelope.world) : null;
         const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope.title || '';
         const description = el('textarea'); description.rows = 4; description.maxLength = 4000; description.value = envelope.description || '';
         const metadata = el('p', info(envelope), 'jpx-store-meta'); form.append(metadata);
@@ -1108,7 +1097,7 @@ function renderConfigStore(parent, hooks, options = {}) {
         }
         if (world) form.append(field(tr('appliesTo'), world));
         form.append(field(tr('title'), title), field(tr('description'), description));
-        const actions = el('div', undefined, 'jpx-store-actions');
+        const actions = div('jpx-store-actions');
         const publish = el('button', tr(model.id ? 'submitUpdate' : 'submit'), 'jpx-store-primary'); publish.type = 'submit';
         actions.append(publish); form.append(preview, actions, el('p', tr('reviewHint'), 'jpx-store-meta'));
         for (const [control, key] of [[title, 'title'], [description, 'description'], ...(world ? [[world, 'world']] : [])])
@@ -1129,20 +1118,20 @@ function renderConfigStore(parent, hooks, options = {}) {
                 if (!alive()) { state.view = 'mine'; return; }
                 if (request !== state.request) { hooks.notify?.(tr('submitted')); return; }
                 await mine();
-                if (hooks.notify) hooks.notify(tr(model.id ? 'updateSubmitted' : 'submitted'));
-                else message(tr(model.id ? 'updateSubmitted' : 'submitted'));
+                const done = tr(model.id ? 'updateSubmitted' : 'submitted');
+                if (hooks.notify) hooks.notify(done); else message(done);
             } catch (error) { if (alive()) message(errorMessage(error), true); }
             finally { if (publish.isConnected) publish.disabled = false; }
         });
         stage.append(form);
     }
+    // Review status -> message key; the order is the label priority on an issue.
+    const reviewStatus = { pending: 'pending', 'changes-requested': 'changes', 'needs-review': 'needsReview', unavailable: 'unavailable', published: 'publishedVersion' };
     function issueStatus(issue) {
         if (issue.state === 'closed') return 'withdrawn';
         if (issue.labels.includes('store:hide')) return 'hidden';
         if (issue.pending) return 'pending';
-        const labels = issue.labels;
-        for (const [label, key] of [['store:pending', 'pending'], ['store:changes-requested', 'changes'], ['store:needs-review', 'needsReview'], ['store:unavailable', 'unavailable'], ['store:published', 'published']])
-            if (labels.includes(label)) return key;
+        for (const [status, key] of Object.entries(reviewStatus)) if (issue.labels.includes('store:' + status)) return key;
         return 'pending';
     }
     async function mine() {
@@ -1153,9 +1142,8 @@ function renderConfigStore(parent, hooks, options = {}) {
             for (const row of stage.querySelectorAll('.jpx-store-row')) row.hidden = !words.every(word => (row.dataset.searchText || row.textContent).normalize('NFKC').toLocaleLowerCase().includes(word));
         };
         if (options.toolbarHost) {
-            const queryBar = el('div', undefined, 'jpx-store-querybar');
-            search = el('input'); search.type = 'search'; search.value = state.sharedQuery;
-            search.placeholder = t('cM.search'); search.setAttribute('aria-label', t('cM.search')); search.disabled = !state.user;
+            const queryBar = div('jpx-store-querybar');
+            search = searchField(state.sharedQuery, t('cM.search')); search.disabled = !state.user;
             search.addEventListener('input', () => { state.sharedQuery = search.value; filterShares(); });
             const refresh = refreshControl(() => mine()); refresh.disabled = !state.user;
             queryBar.append(search, refresh); browseControls = { queryBar, refresh }; layoutBrowseControls();
@@ -1165,15 +1153,14 @@ function renderConfigStore(parent, hooks, options = {}) {
         message(tr('loading'));
         try {
             const issues = await jpxConfigStore.mine();
-            if (!alive() || request !== state.request) return;
+            if (!live(request)) return;
             message('');
             if (!issues.length) { empty(tr('noShares')); return; }
-            const list = el('div', undefined, 'jpx-store-list'); stage.append(list);
+            const list = div('jpx-store-list'); stage.append(list);
             for (const issue of issues) {
                 const row = el('article', undefined, 'jpx-store-row'); row.dataset.sharedId = issue.id;
                 const title = el('strong', issue.title.replace(/^\[Config\]\s*/, ''));
-                const statusKey = issueStatus(issue);
-                const badge = el('span', tr(statusKey === 'published' ? 'publishedVersion' : statusKey), 'jpx-store-badge');
+                const badge = el('span', tr(issueStatus(issue)), 'jpx-store-badge'), listed = issue.state !== 'closed' && !issue.labels.includes('store:hide');
                 row.append(title, badge);
                 try {
                     const envelope = jpxConfigStore.parseSubmission(issue.body);
@@ -1183,21 +1170,21 @@ function renderConfigStore(parent, hooks, options = {}) {
                     row.append(group);
                     row.dataset.searchText = [title.textContent, info(envelope), ...group.querySelectorAll('[title]')].map(value => typeof value === 'string' ? value : value.title).join(' ') + ' ' + group.textContent;
                 } catch { /* Keep malformed submissions manageable. */ }
-                const actions = el('div', undefined, 'jpx-store-actions');
+                const actions = div('jpx-store-actions');
                 if (issue.state !== 'closed') {
                     actions.append(button(tr('updateShare'), () => edit({ id: issue.id, envelope: jpxConfigStore.parseSubmission(issue.body), originalBody: issue.body, back: () => mine() })),
                         button(tr('withdraw'), async () => {
                             if (!await confirmShare(tr('withdraw'), tr('withdrawConfirm'), tr('withdraw'))) return;
-                            if (!alive() || request !== state.request) return;
+                            if (!live(request)) return;
                             await jpxConfigStore.withdraw(issue.id); await mine();
                         }));
                 } else {
                     actions.append(button(tr('removeShare'), async () => {
                         if (!await confirmShare(tr('removeShare'), tr('removeShareConfirm'), tr('removeShare'))) return;
-                        if (!alive() || request !== state.request) return;
+                        if (!live(request)) return;
                         message('');
                         await jpxConfigStore.archive(issue.id);
-                        if (!alive() || request !== state.request) return;
+                        if (!live(request)) return;
                         const visible = [...list.children].filter(item => !item.hidden), index = visible.indexOf(row);
                         const neighbor = visible[index + 1] || visible[index - 1];
                         row.remove();
@@ -1209,9 +1196,9 @@ function renderConfigStore(parent, hooks, options = {}) {
                     const old = row.querySelector('.jpx-store-feedback');
                     if (old) { old.remove(); node.setAttribute('aria-expanded', 'false'); return; }
                     const feedback = await jpxConfigStore.feedback(issue.id);
-                    if (!alive() || request !== state.request) return;
-                    if (issue.state !== 'closed' && !issue.labels.includes('store:hide')) badge.textContent = tr(feedback ? ({ published: 'publishedVersion', 'changes-requested': 'changes', 'needs-review': 'needsReview', unavailable: 'unavailable', pending: 'pending' })[feedback.status] : 'pending');
-                    const box = el('div', undefined, 'jpx-store-feedback');
+                    if (!live(request)) return;
+                    if (listed) badge.textContent = tr(feedback ? reviewStatus[feedback.status] : 'pending');
+                    const box = div('jpx-store-feedback');
                     const language = tr('browse') === '浏览' ? 'zh' : 'en';
                     box.append(el('p', feedback?.summary?.[language] || tr('noReview')));
                     for (const finding of feedback?.findings || []) box.append(el('p', [finding.path, finding[language]].filter(Boolean).join(' — ')));
@@ -1220,18 +1207,18 @@ function renderConfigStore(parent, hooks, options = {}) {
                 row.append(actions); list.append(row);
                 // Reconcile only this session's submissions when the user opens
                 // or refreshes Shared. No battle-time polling or per-row timers.
-                if (issue.pending && issue.state !== 'closed' && !issue.labels.includes('store:hide')) jpxConfigStore.feedback(issue.id).then(feedback => {
-                    if (!alive() || request !== state.request || !feedback) return;
-                    badge.textContent = tr(({ published: 'publishedVersion', 'changes-requested': 'changes', 'needs-review': 'needsReview', unavailable: 'unavailable', pending: 'pending' })[feedback.status]);
+                if (issue.pending && listed) jpxConfigStore.feedback(issue.id).then(feedback => {
+                    if (!live(request) || !feedback) return;
+                    badge.textContent = tr(reviewStatus[feedback.status]);
                 }).catch(() => { /* Keep pending until a later refresh succeeds. */ });
             }
             filterShares();
         } catch (error) {
-            if (!alive() || request !== state.request) return;
+            if (!live(request)) return;
             message(errorMessage(error), true); empty(tr('cannotLoad'), () => mine());
         }
     }
-    const dispose = () => { state.disposed = true; commentView?.dispose(); ratingView?.dispose(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
+    const dispose = () => { state.disposed = true; closeViews(); state.login?.abort(); layoutEvents.abort(); browseControls?.queryBar.remove(); toolbar.remove(); observer.disconnect(); };
     const observer = new MutationObserver(() => {
         if (!root.isConnected) dispose();
     });
@@ -1245,7 +1232,7 @@ function renderConfigStore(parent, hooks, options = {}) {
             state.user = user; if (alive()) accountControls();
         }
     }).catch(cause => { if (alive() && authGeneration === state.authGeneration) message(errorMessage(cause), true); });
-    if (options.share) edit({ envelope: JSON.parse(JSON.stringify(options.share)), back: options.onBack });
+    if (options.share) edit({ envelope: clone(options.share), back: options.onBack });
     else browse();
     dispose.back = () => {
         if (!alive() || !state.back) return false;
@@ -1254,7 +1241,7 @@ function renderConfigStore(parent, hooks, options = {}) {
     };
     dispose.suspend = () => {
         if (state.disposed || state.suspended) return;
-        state.suspended = true; state.request++; commentView?.dispose(); commentView = null; ratingView?.dispose(); ratingView = null;
+        state.suspended = true; state.request++; closeViews();
         if (state.login) { state.authGeneration++; state.login.abort(); state.login = null; }
     };
     dispose.resume = () => {

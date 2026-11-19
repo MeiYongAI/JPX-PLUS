@@ -10,11 +10,7 @@ function renderJpxStoreRating(parent, { service, entry, summary, tr, el, user, s
     root.append(heading, actions, status); parent.append(root);
     let disposed = false, busy = false, ready = false, score = null, generation = 0, identity = user()?.id;
     const current = () => !disposed && root.isConnected && isCurrent();
-    let feedbackTimer;
-    const say = (text, error = false) => {
-        clearTimeout(feedbackTimer); status.textContent = text; status.hidden = !text; status.setAttribute('role', error ? 'alert' : 'status');
-        if (text && !error && text !== tr('loading')) feedbackTimer = setTimeout(() => { if (current()) status.hidden = true; }, 2500);
-    };
+    const say = jpxStoreStatusMessage(status, tr, current);
     const failure = error => {
         const key = ({ loginRequired: 'ratingSignIn', rateLimited: 'rateLimit', ratingsTooMany: 'ratingsTooMany', ratingInvalid: 'ratingInvalid',
             commentsClosed: 'ratingsClosed', commentDenied: 'ratingDenied', commentChanged: 'ratingChanged', commentMissing: 'ratingChanged' })[error?.code] || 'ratingFailed';
@@ -84,6 +80,6 @@ function renderJpxStoreRating(parent, { service, entry, summary, tr, el, user, s
             if (!current() || identity === user()?.id) return;
             identity = user()?.id; generation++; busy = false; ready = false; score = null; say(''); render(); load();
         },
-        dispose() { disposed = true; generation++; clearTimeout(feedbackTimer); }
+        dispose() { disposed = true; generation++; say.cancel(); }
     };
 }

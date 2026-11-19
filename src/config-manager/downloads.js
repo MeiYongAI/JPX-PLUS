@@ -1,3 +1,4 @@
+const jpxStoreHex = bytes => [...new Uint8Array(bytes)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 function createJpxStoreDownloads() {
     const endpoint = 'https://jpx-plus-downloads.lernsc.workers.dev/v1/downloads';
     const seedKey = 'jpx-config-download-seed-v1', receiptKey = 'jpx-config-download-day-v1:';
@@ -51,12 +52,12 @@ function createJpxStoreDownloads() {
                 if (GM_getValue(receiptKey + id) === day) return null;
                 let seed = GM_getValue(seedKey);
                 if (typeof seed !== 'string' || !/^[a-f0-9]{64}$/.test(seed)) {
-                    seed = [...crypto.getRandomValues(new Uint8Array(32))].map(byte => byte.toString(16).padStart(2, '0')).join('');
+                    seed = jpxStoreHex(crypto.getRandomValues(new Uint8Array(32)));
                     GM_setValue(seedKey, seed); if (GM_getValue(seedKey) !== seed) return null;
                 }
                 // Each config and UTC day gets an unrelated public token; the seed never leaves GM storage.
                 const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(seed + ':' + id + ':' + day));
-                const visitor = [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+                const visitor = jpxStoreHex(digest);
                 const result = await request('POST', '', { configId: id, day, visitor });
                 if (result?.configId !== id || result.day !== day || typeof result.counted !== 'boolean') return null;
                 const count = remember(id, result.count); GM_setValue(receiptKey + id, day); return count;

@@ -11,6 +11,16 @@ function jpxStoreActionIcon(node, name, label) {
     node.setAttribute('aria-label', label); node.title = label;
     return node;
 }
+// Successes fade after a moment; errors and the loading notice stay until replaced.
+function jpxStoreStatusMessage(status, tr, current) {
+    let timer;
+    const say = (text, error = false) => {
+        clearTimeout(timer); status.textContent = text; status.hidden = !text; status.setAttribute('role', error ? 'alert' : 'status');
+        if (text && !error && text !== tr('loading')) timer = setTimeout(() => { if (current()) status.hidden = true; }, 2500);
+    };
+    say.cancel = () => clearTimeout(timer);
+    return say;
+}
 function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signIn, user, isCurrent, draft }) {
     const root = el('section', undefined, 'jpx-store-comments'), heading = el('div', undefined, 'jpx-comment-heading');
     const list = el('div', undefined, 'jpx-comment-list'), composer = el('div', undefined, 'jpx-comment-composer');
@@ -18,7 +28,7 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
     const current = () => !disposed && root.isConnected && isCurrent();
     let disposed = false, loading = false, mutating = false, nextPage = null, request = 0, items = [];
     let editing = null, userId = user()?.id;
-    const buttons = new Map();
+    const buttons = new Map(), busy = () => loading || mutating || !!editing;
     function button(text, action, className, disabled = () => false) {
         const node = el('button', text, className); node.type = 'button';
         let pending = false;
@@ -32,15 +42,10 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
         });
         return node;
     }
-    let feedbackTimer;
-    const say = (text, error = false) => {
-        clearTimeout(feedbackTimer); status.textContent = text; status.hidden = !text; status.setAttribute('role', error ? 'alert' : 'status');
-        if (text && !error && text !== tr('loading')) feedbackTimer = setTimeout(() => { if (current()) status.hidden = true; }, 2500);
-    };
+    const say = jpxStoreStatusMessage(status, tr, current);
     const failure = (error, sending = false) => {
-        const key = ({ loginRequired: 'commentSignIn', commentNotOwner: 'commentNotOwner', commentChanged: 'commentChanged',
-            commentMissing: 'commentMissing', commentInvalid: 'commentInvalid', commentDenied: 'commentDenied', commentsClosed: 'commentsClosed',
-            rateLimited: 'rateLimit' })[error?.code] || (sending ? 'commentSendFailed' : 'requestFailed');
+        const code = error?.code, key = code === 'loginRequired' ? 'commentSignIn' : code === 'rateLimited' ? 'rateLimit' :
+            ['commentNotOwner', 'commentChanged', 'commentMissing', 'commentInvalid', 'commentDenied', 'commentsClosed'].includes(code) ? code : sending ? 'commentSendFailed' : 'requestFailed';
         say(tr(key), true);
     };
     const controls = () => {
@@ -61,7 +66,7 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
         input.placeholder = tr('writeComment'); input.setAttribute('aria-label', tr('writeComment'));
         input.setAttribute('aria-description', tr('commentsPublic'));
         const publish = button(tr('postComment'), async () => {
-            if (loading || mutating || editing || !valid(input.value) || !current()) return;
+            if (busy() || !valid(input.value) || !current()) return;
             const identity = user(), body = input.value;
             if (!identity) { failure({ code: 'loginRequired' }); return; }
             mutating = true; input.disabled = true; controls(); say('');
@@ -75,12 +80,13 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
             finally {
                 mutating = false; if (current()) { input.disabled = false; controls(); input.focus({ preventScroll: true }); }
             }
-        }, 'jpx-store-primary', () => loading || mutating || !!editing || !valid(input.value));
+        }, 'jpx-store-primary', () => busy() || !valid(input.value));
         input.addEventListener('input', () => { draft.body = input.value; controls(); });
         const footer = el('div', undefined, 'jpx-comment-compose-footer');
         publish.title = tr('commentsPublic'); footer.append(publish);
         composer.append(input, footer);
     }
+    const focusComment = id => list.querySelector('[data-comment-id="' + id + '"] button')?.focus({ preventScroll: true });
     function renderList() {
         list.replaceChildren();
         if (!items.length) { list.append(el('p', tr('noComments'), 'jpx-store-meta')); return; }
@@ -95,7 +101,7 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
             if (user()?.id === item.author.id) {
                 const actions = el('div', undefined, 'jpx-comment-actions');
                 const edit = button(tr('editComment'), () => {
-                    if (loading || mutating || editing || !current()) return;
+                    if (busy() || !current()) return;
                     editing = item.id; row.dataset.editing = 'true'; controls();
                     const input = el('textarea'); input.rows = 4; input.maxLength = 10000;
                     const savedDraft = draft.edits[item.id] || { body: item.body, original: item };
@@ -110,22 +116,22 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
                             delete draft.edits[item.id];
                             if (!current()) return;
                             items = items.map(value => value.id === item.id ? updated : value); editing = null; renderList(); say(tr('saved'));
-                            list.querySelector('[data-comment-id="' + item.id + '"] button')?.focus({ preventScroll: true });
+                            focusComment(item.id);
                         } catch (error) { if (current()) failure(error); }
                         finally { mutating = false; if (current()) { input.disabled = false; cancel.disabled = false; controls(); } }
                     }, 'jpx-store-primary', () => mutating || !valid(input.value));
                     const cancel = button(tr('cancel'), () => {
                         if (mutating) return; delete draft.edits[item.id]; editing = null; renderList(); controls();
-                        list.querySelector('[data-comment-id="' + item.id + '"] button')?.focus({ preventScroll: true });
+                        focusComment(item.id);
                     }, undefined, () => mutating);
                     input.addEventListener('input', () => { savedDraft.body = input.value; controls(); });
                     content.replaceWith(input); actions.replaceChildren(cancel, save); row.append(actions); controls(); input.focus();
-                }, undefined, () => loading || mutating || !!editing);
+                }, undefined, busy);
                 const remove = button(tr('delete'), async () => {
-                    if (loading || mutating || editing || !current()) return;
+                    if (busy() || !current()) return;
                     const identity = user(); if (!identity) return;
                     if (!await confirm(tr('deleteCommentConfirm'), '', tr('delete'))) return;
-                    if (!current() || loading || mutating || editing || user()?.id !== identity.id) return;
+                    if (!current() || busy() || user()?.id !== identity.id) return;
                     mutating = true; controls(); say('');
                     try {
                         await service.deleteComment(entry.id, item, identity.id);
@@ -134,7 +140,7 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
                         items = items.filter(value => value.id !== item.id); renderList(); say(tr('commentDeleted'));
                     } catch (error) { if (current()) failure(error); }
                     finally { mutating = false; if (current()) { controls(); refresh.focus({ preventScroll: true }); } }
-                }, undefined, () => loading || mutating || !!editing);
+                }, undefined, busy);
                 jpxStoreActionIcon(edit, 'edit', tr('editComment')); jpxStoreActionIcon(remove, 'delete', tr('delete'));
                 edit.classList.add('jpx-community-icon'); remove.classList.add('jpx-community-icon');
                 actions.append(edit, remove); header.append(actions);
@@ -143,7 +149,7 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
         }
     }
     async function load(page = 1) {
-        if (loading || mutating || editing || !current()) return;
+        if (busy() || !current()) return;
         const generation = ++request; loading = true; controls(); say(tr('loading'));
         try {
             const result = await service.comments(entry.id, page);
@@ -159,9 +165,9 @@ function renderJpxStoreComments(parent, { service, entry, tr, el, confirm, signI
         if (!current() || mutating || userId === user()?.id) return;
         userId = user()?.id; editing = null; renderList(); renderComposer(); controls();
     }
-    const refresh = jpxStoreActionIcon(button('', () => load(), 'jpx-community-icon', () => loading || mutating || !!editing), 'refresh', tr('refresh'));
-    const more = button(tr('showMore'), () => load(nextPage), 'jpx-comment-more', () => loading || mutating || !!editing); more.hidden = true;
+    const refresh = jpxStoreActionIcon(button('', () => load(), 'jpx-community-icon', busy), 'refresh', tr('refresh'));
+    const more = button(tr('showMore'), () => load(nextPage), 'jpx-comment-more', busy); more.hidden = true;
     heading.append(el('h4', tr('comments')), refresh); root.append(heading, composer, status, list, more); parent.append(root);
     renderComposer(); load();
-    return { authChanged: syncAuth, dispose() { disposed = true; request++; clearTimeout(feedbackTimer); buttons.clear(); } };
+    return { authChanged: syncAuth, dispose() { disposed = true; request++; say.cancel(); buttons.clear(); } };
 }
