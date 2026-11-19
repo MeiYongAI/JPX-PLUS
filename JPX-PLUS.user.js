@@ -6500,31 +6500,36 @@ function createRecordTableScroll(table, doc, doClone = false) {
     return scroll;
 }
 
-function newWindowRecordPlayer(doClone, battleRecords, timeRecordEl, combatRecordEl, combatRecord_UseEl, revenueRecordEl) {
-    let newWin = window.open();
-    if (!newWin) return;
-    let doc = newWin.document;
-    doc.title = t('sP.battleDetails') + ' · ' + (battleRecords.timestamp || battleRecords.date || '');
+// An explicit empty className still writes class="", as the original editors did.
+function createJpxElement(tag, className, text, doc = document) {
+    const node = doc.createElement(tag);
+    if (className !== undefined) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+}
+
+// Shared head of the statistics page and its detail windows.
+function initJpxRecordDocument(doc, title) {
+    doc.title = title;
     doc.documentElement.lang = document.documentElement.lang || 'en';
     const viewport = doc.createElement('meta');
     viewport.name = 'viewport'; viewport.content = 'width=device-width, initial-scale=1';
     doc.head.append(viewport);
+}
+
+function newWindowRecordPlayer(doClone, battleRecords, timeRecordEl, combatRecordEl, combatRecord_UseEl, revenueRecordEl) {
+    const newWin = window.open();
+    if (!newWin) return;
+    const doc = newWin.document;
+    initJpxRecordDocument(doc, t('sP.battleDetails') + ' · ' + (battleRecords.timestamp || battleRecords.date || ''));
     ensureJpxStyle(doc);
     doc.body.className = 'jpx-record-detail';
     doc.documentElement.style.scrollbarColor = 'var(--jpx-theme-accent, #5c0d11) var(--jpx-theme-background, #e3e0d1)';
     applyJpxTheme(doc);
 
-    let container = doc.createElement('main');
-    container.className = 'jpx-record-detail-page';
-    const summary = doc.createElement('header');
-    summary.className = 'jpx-record-detail-summary';
-    const grid = doc.createElement('div');
-    grid.className = 'jpx-record-detail-grid';
-
-    let left = doc.createElement('div');
-    left.className = 'jpx-record-detail-column';
-
-    let info = doc.createElement('div');
+    const [container, summary, grid, left, right] = [['main', 'page'], ['header', 'summary'], ['div', 'grid'], ['div', 'column'], ['div', 'column']]
+        .map(([tag, name]) => createJpxElement(tag, 'jpx-record-detail-' + name, '', doc));
+    const info = doc.createElement('div');
     info.id = 'info-records-div';
     [
         battleRecords.timestamp,
@@ -6533,24 +6538,16 @@ function newWindowRecordPlayer(doClone, battleRecords, timeRecordEl, combatRecor
         `${battleRecords.roundInfo.current}/${battleRecords.roundInfo.total}` + (battleRecords.result !== 'Victory' ? ` (${t(`sP.${battleRecords.result}`)})` : ''),
         t(`sP.${Object.keys(difficultyMap).find(key => difficultyMap[key] === battleRecords.difficulty)}`),
         `LV: ${battleRecords.playerLevel}`,
-    ].forEach(text => {
-        const item = doc.createElement('span');
-        item.textContent = text;
-        info.appendChild(item);
-    });
+    ].forEach(text => { info.appendChild(doc.createElement('span')).textContent = text; });
     summary.appendChild(info);
     if (timeRecordEl) summary.appendChild(doClone ? timeRecordEl.cloneNode(true) : timeRecordEl);
-
-    let right = doc.createElement('div');
-    right.className = 'jpx-record-detail-column';
     grid.append(left, right);
     container.append(summary, grid);
     doc.body.appendChild(container);
 
-    [[combatRecordEl, left], [combatRecord_UseEl, left], [revenueRecordEl, right]].forEach(([el, column]) => {
-        if (!el) return;
-        column.appendChild(createRecordTableScroll(el, doc, doClone));
-    });
+    for (const [el, column] of [[combatRecordEl, left], [combatRecord_UseEl, left], [revenueRecordEl, right]]) {
+        if (el) column.appendChild(createRecordTableScroll(el, doc, doClone));
+    }
     summary.append(createRecordImageActions(doc, () => container));
 }
 
@@ -6904,22 +6901,17 @@ function renderBattleRecordsPage(targetWindow = window) {
     doc.head.replaceChildren();
     doc.body.replaceChildren();
     doc.body.removeAttribute('style');
-    doc.title = t('sP.jpxStats');
-    doc.documentElement.lang = document.documentElement.lang || 'en';
-    const viewport = doc.createElement('meta');
-    viewport.name = 'viewport'; viewport.content = 'width=device-width, initial-scale=1';
-    doc.head.append(viewport);
+    initJpxRecordDocument(doc, t('sP.jpxStats'));
     doc.head.appendChild(doc.createElement('style')).textContent = jpxThemeCSS(`
         ${JPX_SCROLLBAR_CSS}
         * { box-sizing: border-box; }
         ${JPX_RECORD_IMAGE_CSS}
-        body { margin: 0; background: #edebdf; color: #392d25; font: 13px/1.45 Arial, Helvetica, sans-serif; }
+        body { margin: 0; overflow:hidden; background: #edebdf; color: #392d25; font: 13px/1.45 Arial, Helvetica, sans-serif; }
         html[data-jpx-theme=dark] body { color-scheme: dark; }
         button, input { font: inherit; color: inherit; }
         button, input[type=checkbox] { cursor: pointer; }
         input { accent-color: #5c0d11; }
         :focus-visible { outline: 1px solid #9b4e03; outline-offset: -1px; box-shadow: 0 0 0 2px rgb(155 78 3 / 12%); }
-        body { overflow:hidden; }
         .jpx-records-page { display:flex; flex-direction:column; gap:10px; height:100vh; height:100dvh; padding:12px; }
         .jpx-records-toolbar { flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; min-width:0; }
         .jpx-records-heading { min-width:0; }
@@ -6931,8 +6923,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         .jpx-records-icon:active { background:#ead9b8; }
         .jpx-records-icon[aria-expanded=true] { background:#ead9b8; border-color:#b49369; }
         @media(hover:hover) { .jpx-records-icon:hover { background:#eee2c9; } }
-        .jpx-records-sheet { inset:0; width:min(600px,calc(100% - 32px)); max-width:none; max-height:calc(100dvh - 48px); margin:auto; padding:0; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#392d25; box-shadow:0 3px 10px #0002; overflow:hidden; }
-        .jpx-records-sheet { --jpx-motion:160ms; --jpx-motion-fast:120ms; }
+        .jpx-records-sheet { inset:0; width:min(600px,calc(100% - 32px)); max-width:none; max-height:calc(100dvh - 48px); margin:auto; padding:0; border:1px solid #c8b49b; border-radius:2px; background:#f9f6ec; color:#392d25; box-shadow:0 3px 10px #0002; overflow:hidden; --jpx-motion:160ms; --jpx-motion-fast:120ms; }
         .jpx-records-sheet[data-panel=columns] { height:min(620px,calc(100dvh - 48px)); }
         .jpx-records-sheet[open] { display:flex; flex-direction:column; }
         .jpx-records-sheet[data-panel=columns] .jpx-records-sheet-body { flex:1; }
@@ -7028,16 +7019,12 @@ function renderBattleRecordsPage(targetWindow = window) {
         @media(prefers-reduced-motion:reduce) { .jpx-records-icon { transition:none; } .jpx-records-sheet { --jpx-motion:0ms; --jpx-motion-fast:0ms; } }
     `);
     applyJpxTheme(doc);
-    const page = doc.createElement('main');
-    page.className = 'jpx-records-page';
-    const tableRegion = doc.createElement('div');
-    tableRegion.className = 'jpx-records-table-scroll';
+    const el = (tag, className, text) => createJpxElement(tag, className, text, doc);
+    const page = el('main', 'jpx-records-page'), tableRegion = el('div', 'jpx-records-table-scroll');
     tableRegion.tabIndex = 0;
     tableRegion.setAttribute('role', 'region');
     tableRegion.setAttribute('aria-label', t('sP.jpxStats'));
-    const message = doc.createElement('p');
-    message.className = 'jpx-records-message'; message.textContent = t('sP.loadingRecords');
-    tableRegion.append(message);
+    tableRegion.append(el('p', 'jpx-records-message', t('sP.loadingRecords')));
     let revision = 0, pendingRead, cachedRecords = null;
     const columnControls = createStatsColumnControls(doc, () => {
         if (cachedRecords) renderDynamicTable(cachedRecords, cfgStats.statsColumns, tableRegion);
@@ -7056,9 +7043,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         } catch (error) {
             if (targetWindow.closed || request !== revision || error.name === 'AbortError') return;
             cachedRecords = null; count.textContent = t('sP.recordsError');
-            const notice = doc.createElement('p');
-            notice.className = 'jpx-records-message'; notice.textContent = t('sP.recordsError');
-            tableRegion.replaceChildren(notice);
+            tableRegion.replaceChildren(el('p', 'jpx-records-message', t('sP.recordsError')));
             console.error('Could not load battle records:', error);
         } finally {
             if (!targetWindow.closed && request === revision) tableRegion.setAttribute('aria-busy', 'false');
@@ -7092,8 +7077,7 @@ function renderBattleRecordsPage(targetWindow = window) {
         });
         if (field.type === 'rangeNumber') ['min', 'max'].forEach((part, index) => group.querySelector('.range-' + part).setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin')));
     }
-    const clearRecords = doc.createElement('button'); clearRecords.type = 'button';
-    clearRecords.className = 'jpx-records-icon jpx-records-clear';
+    const clearRecords = el('button', 'jpx-records-icon jpx-records-clear'); clearRecords.type = 'button';
     clearRecords.append(createSettingsIcon('delete'));
     clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',clearRecords.title);
     clearRecords.setAttribute('aria-haspopup','dialog');
@@ -7101,23 +7085,20 @@ function renderBattleRecordsPage(targetWindow = window) {
         const current = getFilters(targetWindow);
         openJpxRecordsCleanup(targetWindow,{world:current.world?.length === 1 ? current.world[0] : '',battleType:current.battleType?.length === 1 ? current.battleType[0] : ''});
     };
-    const toolbar = doc.createElement('header'); toolbar.className = 'jpx-records-toolbar';
-    const heading = doc.createElement('div'); heading.className = 'jpx-records-heading';
-    const title = doc.createElement('h1'); title.textContent = t('sP.jpxStats');
-    const count = doc.createElement('p'); count.className = 'jpx-records-count'; count.textContent = t('sP.loadingRecords'); count.setAttribute('role','status');
-    heading.append(title,count);
-    const actions = doc.createElement('nav'); actions.className = 'jpx-records-actions'; actions.setAttribute('aria-label',t('sP.jpxStats'));
+    const toolbar = el('header', 'jpx-records-toolbar'), heading = el('div', 'jpx-records-heading');
+    const count = el('p', 'jpx-records-count', t('sP.loadingRecords')); count.setAttribute('role','status');
+    heading.append(el('h1', undefined, t('sP.jpxStats')), count);
+    const actions = el('nav', 'jpx-records-actions'); actions.setAttribute('aria-label',t('sP.jpxStats'));
     const aggregate = filters.querySelector('#filter-aggregate');
     aggregate.onchange = () => filterState.refresh?.();
     actions.append(aggregate); toolbar.append(heading,actions);
     const sheet = doc.createElement('dialog'); sheet.id = 'jpx-records-sheet'; sheet.className = 'jpx-records-sheet';
     sheet.setAttribute('aria-labelledby','jpx-records-sheet-title');
-    const sheetHeader = doc.createElement('header'); sheetHeader.className = 'jpx-records-sheet-header';
-    const sheetTitle = doc.createElement('h2'); sheetTitle.id = 'jpx-records-sheet-title';
+    const sheetHeader = el('header', 'jpx-records-sheet-header'), sheetTitle = el('h2'); sheetTitle.id = 'jpx-records-sheet-title';
     const close = doc.createElement('button'); close.type = 'button'; close.className = 'jpx-records-icon jpx-records-sheet-close';
     close.title = t('cM.close'); close.setAttribute('aria-label',close.title); close.append(createSettingsIcon('close')); close.autofocus = true;
     sheetHeader.append(sheetTitle,close);
-    const sheetBody = doc.createElement('div'); sheetBody.className = 'jpx-records-sheet-body';
+    const sheetBody = el('div', 'jpx-records-sheet-body');
     const imageActions = createRecordImageActions(doc, () => tableRegion.querySelector('#battleStatsTable'), true);
     const panels = { filters, columns:columnControls.node, image:imageActions };
     const triggers = new Map();
@@ -7383,7 +7364,9 @@ function generateAggregate(data_array, type, timestamp_name = null) { //type: Av
 
 function createFilter(targetWindow, onChange) {
     const doc = targetWindow.document;
-    let filtersDiv = doc.createElement('div');
+    const el = (tag, className) => createJpxElement(tag, className, '', doc);
+    const input = (type, value) => { const node = doc.createElement('input'); node.type = type; node.value = value; return node; };
+    const filtersDiv = doc.createElement('div');
     filtersDiv.id = 'filtersDiv';
     filtersDiv.setAttribute('role', 'group');
     filtersDiv.setAttribute('aria-label', t('sP.filters'));
@@ -7399,88 +7382,50 @@ function createFilter(targetWindow, onChange) {
             group.append(label);
             group.setAttribute('aria-labelledby', label.id);
         }
-        const options = doc.createElement('div');
-        options.className = 'jpx-records-filter-options';
-        switch (filter.type) {
-            case 'checkbox': {
-                for (const opt of filter.options) {
-                    let isChecked = true;
-                    if (filter.id === 'filter-aggregate') isChecked = false;
-                    if (filter.id === 'filter-world') isChecked = !isekaiSuffix ? opt === 'Persistent' : opt === 'Isekai';
-                    const option = doc.createElement('label');
-                    const input = doc.createElement('input');
-                    input.type = 'checkbox'; input.value = opt; input.checked = isChecked;
-                    option.append(input, doc.createTextNode(t(`sP.${opt}`)));
-                    options.append(option);
-                }
-                break;
-            }
-            case 'rangeNumber': {
-                options.className = 'jpx-records-range';
-                for (const [index, part] of ['min', 'max'].entries()) {
-                    if (index) options.append(doc.createTextNode('–'));
-                    const input = doc.createElement('input');
-                    input.type = 'number'; input.className = 'range-' + part; input.value = filter.value[index];
-                    input.setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin'));
-                    options.append(input);
-                }
-                break;
-            }
-            case 'number': {
-                const input = doc.createElement('input');
-                input.type = 'number'; input.value = filter.value;
-                input.setAttribute('aria-labelledby', label.id);
-                options.append(input);
-                break;
-            }
-        }
+        const options = el('div', filter.type === 'rangeNumber' ? 'jpx-records-range' : 'jpx-records-filter-options');
+        if (filter.type === 'checkbox') for (const opt of filter.options) {
+            const box = input('checkbox', opt);
+            box.checked = filter.id === 'filter-world' ? opt === (isekaiSuffix ? 'Isekai' : 'Persistent') : filter.id !== 'filter-aggregate';
+            options.appendChild(el('label')).append(box, doc.createTextNode(t(`sP.${opt}`)));
+        } else if (filter.type === 'rangeNumber') for (const [index, part] of ['min', 'max'].entries()) {
+            if (index) options.append(doc.createTextNode('–'));
+            const range = input('number', filter.value[index]);
+            range.className = 'range-' + part;
+            range.setAttribute('aria-label', t(index ? 'sP.rangeMax' : 'sP.rangeMin'));
+            options.append(range);
+        } else if (filter.type === 'number') options.appendChild(input('number', filter.value)).setAttribute('aria-labelledby', label.id);
         group.append(options); groups.set(filter.id, group);
     }
-    const scope = doc.createElement('div');
-    scope.className = 'jpx-records-filter-scope';
-    scope.append(groups.get('filter-world'), groups.get('filter-result'));
-    const match = doc.createElement('div');
-    match.className = 'jpx-records-filter-match';
-    match.append(groups.get('filter-battleType'), groups.get('filter-difficulties'));
-    const tools = doc.createElement('div');
-    tools.className = 'jpx-records-filter-tools';
-    const toolsRow = doc.createElement('div');
-    toolsRow.className = 'jpx-records-tools-row';
-    toolsRow.append(groups.get('filter-rows'), groups.get('filter-aggregate'));
-    tools.append(groups.get('filter-roundTotal'), toolsRow);
-    filtersDiv.append(scope, match, tools);
-    filtersDiv.addEventListener('change', (e) => {
-        if (e.target.tagName === 'INPUT') onChange();
-    });
-
+    const section = (className, ...ids) => { const node = el('div', className); node.append(...ids.map(id => groups.get(id))); return node; };
+    const tools = section('jpx-records-filter-tools', 'filter-roundTotal');
+    tools.append(section('jpx-records-tools-row', 'filter-rows', 'filter-aggregate'));
+    filtersDiv.append(section('jpx-records-filter-scope', 'filter-world', 'filter-result'),
+        section('jpx-records-filter-match', 'filter-battleType', 'filter-difficulties'), tools);
+    filtersDiv.addEventListener('change', e => { if (e.target.tagName === 'INPUT') onChange(); });
     return filtersDiv;
 }
 
 function getFilters(targetWindow = newWindow) {
-    let filters = {};
-
-    STATS_FILTERS.forEach(filter => {
-        let filterEl = targetWindow.document.getElementById(filter.id);
-        if (!filterEl) return;
-
-        switch (filter.type) {
-            case 'checkbox': {
-                let checked = Array.from(filterEl.querySelectorAll('input:checked')).map(x => x.value);
-                filters[filter.key] = filter.options.length === 1 ? !!checked.length : checked;
-                break;
-            }
-            case 'rangeNumber': {
-                filters[filter.key] = [parseInt(filterEl.querySelector('.range-min').value), parseInt(filterEl.querySelector('.range-max').value)];
-                break;
-            }
-            case 'number': {
-                filters[filter.key] = parseInt(filterEl.querySelector('input').value);
-                break;
-            }
-        }
-    });
-
+    const filters = {};
+    for (const filter of STATS_FILTERS) {
+        const filterEl = targetWindow.document.getElementById(filter.id);
+        if (!filterEl) continue;
+        if (filter.type === 'checkbox') {
+            const checked = Array.from(filterEl.querySelectorAll('input:checked')).map(x => x.value);
+            filters[filter.key] = filter.options.length === 1 ? !!checked.length : checked;
+        } else if (filter.type === 'rangeNumber') {
+            filters[filter.key] = [parseInt(filterEl.querySelector('.range-min').value), parseInt(filterEl.querySelector('.range-max').value)];
+        } else if (filter.type === 'number') filters[filter.key] = parseInt(filterEl.querySelector('input').value);
+    }
     return filters;
+}
+
+// Shared by the table and the threshold preview, including invalid colors and duplicate minima.
+function parseStatsColorThresholds(tokens) {
+    return tokens.map(token => {
+        const [value, color] = token.split(':');
+        return { min: parseFloat(value.trim()), color: color?.trim() };
+    }).filter(threshold => !isNaN(threshold.min)).sort((a, b) => b.min - a.min);
 }
 
 function renderDynamicTable(battleRecords, displayedColumns, parent) {
@@ -7488,10 +7433,16 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     const scrollLeft = parent.scrollLeft, scrollTop = parent.scrollTop;
     parent.querySelector('#battleStatsTable')?.remove();
     parent.querySelectorAll(':scope > .jpx-records-message').forEach(node => node.remove());
+    const notice = key => {
+        const message = createJpxElement('p', 'jpx-records-message', '', doc);
+        message.setAttribute('role', 'status');
+        message.textContent = t(key);
+        parent.append(message);
+    };
 
     let activeFields = displayedColumns.filter(column => column.disabled !== true &&
         statsColumnGroupVisible(cfgStats.columnGroups, STATS_COLUMN_GROUP_BY_ID.get(column.id))).map(column => {
-        let baseField = STATS_FIELDS.find(f => f.id === column.id);
+        const baseField = STATS_FIELDS.find(f => f.id === column.id);
         return baseField ? { ...baseField, ...column } : null;
     }).filter(f => f);
 
@@ -7500,19 +7451,12 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     activeFields = STATS_COLUMN_GROUPS.flatMap(group => activeFields.filter(field => STATS_COLUMN_GROUP_BY_ID.get(field.id) === group.id));
 
     const records = battleRecords.filter(record => record && typeof record === 'object');
-    if (!activeFields.length) {
-        const message = doc.createElement('p');
-        message.className = 'jpx-records-message';
-        message.setAttribute('role', 'status');
-        message.textContent = t('sP.noColumns');
-        parent.append(message);
-        return;
-    }
-    let table = doc.createElement('table');
+    if (!activeFields.length) return notice('sP.noColumns');
+    const table = doc.createElement('table');
     table.id = 'battleStatsTable';
     table.setAttribute('aria-label', t('sP.jpxStats'));
 
-    let thead = doc.createElement('thead');
+    const thead = doc.createElement('thead');
     const groupRow = doc.createElement('tr'); groupRow.className = 'jpx-records-group-header';
     let lastGroup, groupHeader, groupColumns, groupCount = 0;
     for (const field of activeFields) {
@@ -7521,7 +7465,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
             groupColumns = doc.createElement('colgroup'); table.append(groupColumns); groupCount = 0;
             groupHeader = doc.createElement('th'); groupHeader.scope = 'colgroup';
             groupHeader.dataset.columnGroup = group;
-            const label = doc.createElement('span'); label.textContent = t('sP.group_' + group); groupHeader.append(label);
+            groupHeader.appendChild(doc.createElement('span')).textContent = t('sP.group_' + group);
             groupRow.append(groupHeader); lastGroup = group;
         }
         groupHeader.colSpan = ++groupCount; groupColumns.span = groupCount;
@@ -7538,23 +7482,21 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     thead.append(groupRow, headerRow);
     table.appendChild(thead);
 
-    let tbody = doc.createElement('tbody');
-
+    const tbody = doc.createElement('tbody');
     const columnThresholds = new Map();
-    const parseColorThresholds = (str) => {
-        if (!str) return [];
-        return str.split(',').map(s => {
-            const [value, color] = s.split(':');
-            return { min: parseFloat(value.trim()), color: color?.trim() };
-        }).filter(thr => !isNaN(thr.min)).sort((a, b) => b.min - a.min);
+    const tooltip = (td, content, label) => {
+        td.classList.add('tooltip');
+        td.setAttribute('content', content);
+        td.tabIndex = 0;
+        td.setAttribute('aria-label', label);
     };
 
     for (const [index, record] of records.entries()) {
-        let tr = doc.createElement('tr');
+        const tr = doc.createElement('tr');
         if (index < 2 && [t('sP.Total'), t('sP.Average')].includes(record.date)) tr.dataset.summary = '';
 
         for (const field of activeFields) {
-            let td = doc.createElement('td');
+            const td = doc.createElement('td');
             td.dataset.column = field.id;
             let value = field.get(record);
 
@@ -7566,37 +7508,21 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
                 detail.textContent = value || '';
                 detail.title = t('sP.openRecord');
                 detail.setAttribute('aria-label', t('sP.openRecord') + ': ' + (value || ''));
-                detail.addEventListener('click', () => {
-                    jpxMarket.getMarketPrice(false).then((priceData) => {
-                        newWindowRecordPlayer(
-                            false,
-                            record,
-                            timeRecordPlayer(record),
-                            combatRecordPlayer(record.combatRecords),
-                            combatRecordPlayer_Use(record.combatRecords),
-                            revenueRecordPlayer(record.revenueRecords, priceData)
-                        );
-                    });
-                });
+                detail.addEventListener('click', () => jpxMarket.getMarketPrice(false).then(priceData => newWindowRecordPlayer(false, record,
+                    timeRecordPlayer(record), combatRecordPlayer(record.combatRecords), combatRecordPlayer_Use(record.combatRecords),
+                    revenueRecordPlayer(record.revenueRecords, priceData))));
                 td.append(detail);
             } else if (value && typeof value === 'object' && 'drop' in value) {
-                td.classList.add('tooltip', 'jpx-records-number');
                 const details = `${t('sP.drop')}: ${value.drop.toLocaleString()}\n${t('sP.use')}: ${value.use.toLocaleString()}`;
-                td.setAttribute('content', details);
-                td.tabIndex = 0;
-                td.setAttribute('aria-label', value.balance.toLocaleString() + '; ' + details);
+                tooltip(td, details, value.balance.toLocaleString() + '; ' + details);
+                td.classList.add('jpx-records-number');
                 td.textContent = value.balance.toLocaleString();
             } else if (typeof value === 'number') {
                 td.classList.add('jpx-records-number');
                 td.textContent = value.toLocaleString();
-
                 if (field.colorThresholds) {
-                    let thresholds = columnThresholds.get(field);
-                    if (!thresholds) {
-                        thresholds = parseColorThresholds(field.colorThresholds);
-                        columnThresholds.set(field, thresholds);
-                    }
-                    let match = thresholds.find(thr => value >= thr.min);
+                    if (!columnThresholds.has(field)) columnThresholds.set(field, parseStatsColorThresholds(field.colorThresholds.split(',')));
+                    const match = columnThresholds.get(field).find(thr => value >= thr.min);
                     if (match) td.style.color = match.color;
                 }
             } else {
@@ -7606,12 +7532,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
             const equipment = record.revenueRecords?.equipment?.[field.equipmentQuality];
             if (field.equipmentQuality && Array.isArray(equipment) && equipment.length) {
                 const names = equipment.filter(name => typeof name === 'string' && name.trim()).join('\n');
-                if (names) {
-                    td.classList.add('tooltip');
-                    td.setAttribute('content', names);
-                    td.tabIndex = 0;
-                    td.setAttribute('aria-label', td.textContent + '; ' + names);
-                }
+                if (names) tooltip(td, names, td.textContent + '; ' + names);
             }
             tr.appendChild(td);
         }
@@ -7620,11 +7541,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
 
     table.appendChild(tbody);
     parent.appendChild(table);
-    if (!records.length) {
-        const message = doc.createElement('p');
-        message.className = 'jpx-records-message'; message.setAttribute('role', 'status');
-        message.textContent = t('sP.noRecords'); parent.append(message);
-    }
+    if (!records.length) notice('sP.noRecords');
     parent.scrollLeft = scrollLeft; parent.scrollTop = scrollTop;
 }
 
@@ -7849,12 +7766,7 @@ function createSettingsChangeTracker(container, readData) {
 // Editing history is scoped to one open dialog. Persistence remains an explicit save action.
 function createSettingsEditHistory(container, toolbar, restoreView) {
     const entries = [];
-    let position = 0;
-    let disposed = false;
-    let restoring = false;
-    let mergeKey = null;
-    let lastEditTime = 0;
-    let colorEdit = null;
+    let position = 0, disposed = false, restoring = false, mergeKey = null, lastEditTime = 0, colorEdit = null;
     const pendingInputs = new WeakMap();
     const scopes = ['battle', 'shortcuts', 'stats'];
 
@@ -7883,7 +7795,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         visit(cfgBattle, []);
         return { data: readData(), identities: changes.captureIdentities(), view: {
             tab: container.querySelector('[role=tab][aria-selected=true]')?.id.slice(4) || 'battle',
-            mode: container.querySelector('[data-role=battleMode]')?.dataset.currentValue,
+            mode,
             scroll: [...container.querySelectorAll('[role=tabpanel]')].map(panel => [panel.id, panel.scrollTop]),
             expanded,
             stats: JSON.parse(JSON.stringify(statsSettingsView)),
@@ -7893,21 +7805,21 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
     const buttons = document.createElement('div');
     buttons.className = 'jpx-history-buttons';
     toolbar.prepend(buttons);
-    const undoButton = jpxUtils.createButton(buttons, { id: 'undo-settings-button', history: false, onClick: () => undo() });
-    const redoButton = jpxUtils.createButton(buttons, { id: 'redo-settings-button', history: false, onClick: () => redo() });
-    for (const [button, name] of [[undoButton, 'undo'], [redoButton, 'redo']]) {
-        const label = document.createElement('span');
-        label.className = 'jpx-history-label';
-        label.textContent = t(`cGen.${name}`);
-        button.append(createSettingsIcon(name), label);
+    const [undoButton, redoButton] = ['undo', 'redo'].map(name => {
+        const button = jpxUtils.createButton(buttons, { id: `${name}-settings-button`, history: false, onClick: () => name === 'undo' ? undo() : redo() });
+        button.append(createSettingsIcon(name), createJpxElement('span', 'jpx-history-label', t(`cGen.${name}`)));
         button.setAttribute('aria-label', t(`cGen.${name}`));
-    }
+        return button;
+    });
     const changes = createSettingsChangeTracker(container, readData);
+    const syncButtons = () => {
+        undoButton.disabled = position === 0;
+        redoButton.disabled = position === entries.length;
+    };
     function update() {
         if (disposed) return;
         changes.refresh();
-        undoButton.disabled = position === 0;
-        redoButton.disabled = position === entries.length;
+        syncButtons();
         undoButton.title = position ? t('cGen.undoAction', { label: entries[position - 1].label }) + ' (Ctrl+Z)' : t('cGen.undoEmpty');
         redoButton.title = position < entries.length ? t('cGen.redoAction', { label: entries[position].label }) + ' (Ctrl+Y / Ctrl+Shift+Z)' : t('cGen.redoEmpty');
     }
@@ -7939,8 +7851,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         colorEdit = null;
         finish(pending.before, pending.label);
         // A picker may return to its starting color, leaving no history entry to update buttons.
-        undoButton.disabled = position === 0;
-        redoButton.disabled = position === entries.length;
+        syncButtons();
     }
     function run(label, action) {
         if (disposed || restoring) return action();
@@ -7981,14 +7892,12 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         flushColorEdit();
         if (position < entries.length) { const entry = entries[position++]; apply(entry, entry.after); }
     }
+    const inputLabel = target => target.getAttribute('aria-label') || target.labels?.[0]?.textContent.trim();
     function beforeInput(event) {
         if (restoring || event.target.closest('.jpx-battle-mode-selects, .jpx-config-manager, #jpx-battle-export')) return;
         if (event.target.matches?.('input[type=color], input[type=range]')) {
             if (colorEdit?.target !== event.target) flushColorEdit();
-            if (!colorEdit) {
-                colorEdit = { target: event.target, before: capture(),
-                    label: event.target.getAttribute('aria-label') || event.target.labels?.[0]?.textContent.trim() || t('cGen.configEdit') };
-            }
+            colorEdit ||= { target: event.target, before: capture(), label: inputLabel(event.target) || t('cGen.configEdit') };
             return;
         }
         flushColorEdit();
@@ -8006,7 +7915,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
             }
             return;
         }
-        const label = target.getAttribute('aria-label') || target.labels?.[0]?.textContent.trim() || target.closest('[data-edit-label]')?.dataset.editLabel || t('cGen.configEdit');
+        const label = inputLabel(target) || target.closest('[data-edit-label]')?.dataset.editLabel || t('cGen.configEdit');
         finish(pendingInputs.get(event), label, event.type === 'input' && target.matches('input:not([type=checkbox]), textarea') ? target.id : null);
         pendingInputs.delete(event);
     }
@@ -8024,14 +7933,9 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
         if (key === 'y' || event.shiftKey) redo();
         else undo();
     }
-    ['input', 'change'].forEach(type => {
-        container.addEventListener(type, beforeInput, true);
-        container.addEventListener(type, afterInput);
-    });
-    container.addEventListener('focusout', endTyping);
-    container.addEventListener('pointerdown', beforeAction, true);
-    container.addEventListener('click', beforeAction, true);
-    container.addEventListener('keydown', onKeyDown, true);
+    const listeners = [['input', beforeInput, true], ['input', afterInput], ['change', beforeInput, true], ['change', afterInput],
+        ['focusout', endTyping], ['pointerdown', beforeAction, true], ['click', beforeAction, true], ['keydown', onKeyDown, true]];
+    listeners.forEach(args => container.addEventListener(...args));
     update();
     return {
         run,
@@ -8044,14 +7948,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
             disposed = true;
             changes.dispose();
             entries.length = 0;
-            ['input', 'change'].forEach(type => {
-                container.removeEventListener(type, beforeInput, true);
-                container.removeEventListener(type, afterInput);
-            });
-            container.removeEventListener('focusout', endTyping);
-            container.removeEventListener('pointerdown', beforeAction, true);
-            container.removeEventListener('click', beforeAction, true);
-            container.removeEventListener('keydown', onKeyDown, true);
+            listeners.forEach(args => container.removeEventListener(...args));
         },
     };
 }
@@ -8064,16 +7961,13 @@ function getBattleMode(defaultBattleStyle = '') {
 
 function renderSchema(container, schema, data) {
     container.innerHTML = '';
-
-    if (schema.type === 'object') {
-        schema.properties.forEach(field => {
-            let fieldDiv = document.createElement('div');
-            fieldDiv.className = 'field-block';
-            fieldDiv.dataset.fieldKey = field.key;
-            fieldDiv.dataset.fieldType = field.type;
-            renderField(fieldDiv, field, data);
-            container.appendChild(fieldDiv);
-        });
+    if (schema.type !== 'object') return;
+    for (const field of schema.properties) {
+        const fieldDiv = createJpxElement('div', 'field-block');
+        fieldDiv.dataset.fieldKey = field.key;
+        fieldDiv.dataset.fieldType = field.type;
+        renderField(fieldDiv, field, data);
+        container.appendChild(fieldDiv);
     }
 }
 
@@ -8103,24 +7997,32 @@ function canDeferRuleFields(schema, data) {
     });
 }
 
+// Shortcut rule groups are the kb_* entries of a battle mode.
+const readKeyBindingRules = value => Object.fromEntries(Object.entries(value || {}).filter(([name]) => name.startsWith('kb_')));
+
+function closeSettingsMultiSelects(root) {
+    root.querySelectorAll('.multiSelect-popup-panel').forEach(panel => panel.style.display = 'none');
+    root.querySelectorAll('.multiSelect-summary').forEach(summary => summary.setAttribute('aria-expanded', 'false'));
+}
+
+// Wrapping arrow-key navigation shared by the section switchers.
+function getSettingsSectionStep(key, index, count) {
+    return { ArrowLeft: (index + count - 1) % count, ArrowRight: (index + 1) % count, Home: 0, End: count - 1 }[key];
+}
+
 function renderBattleRuleSections(container, schema, data, mode) {
     container.className = 'jpx-rule-sections';
-    const navigation = document.createElement('div');
-    navigation.className = 'jpx-rule-navigation';
-    const nav = document.createElement('div');
-    nav.className = 'jpx-rule-section-tabs';
+    const navigation = createJpxElement('div', 'jpx-rule-navigation'), nav = createJpxElement('div', 'jpx-rule-section-tabs');
     nav.setAttribute('role', 'group');
     nav.setAttribute('aria-label', t('cB.battleRules'));
-    const controls = document.createElement('div');
-    controls.className = 'jpx-rule-section-controls';
+    const controls = createJpxElement('div', 'jpx-rule-section-controls');
     navigation.append(nav, controls);
     const sections = new Map();
     const select = key => {
         fieldRenderers.dragState.cancel?.();
         jpxUtils.keyCaptureController?.abort();
         container.querySelectorAll('.jpx-rule-sort-popover:popover-open').forEach(menu => menu.hidePopover());
-        container.querySelectorAll('.multiSelect-popup-panel').forEach(panel => panel.style.display = 'none');
-        container.querySelectorAll('.multiSelect-summary').forEach(button => button.setAttribute('aria-expanded', 'false'));
+        closeSettingsMultiSelects(container);
         battleRulesView.section = key;
         sections.forEach(({ panel, button, scroll, toolbar }, id) => {
             const selected = id === key;
@@ -8143,11 +8045,8 @@ function renderBattleRuleSections(container, schema, data, mode) {
         const button = jpxUtils.createButton(nav, { text: t(label), history: false, onClick: () => select(key) });
         button.dataset.ruleSection = key;
         button.id = `jpx-rule-section-${key}`;
-        bindSettingsChange(button, data, key === 'keyBindings'
-            ? value => Object.fromEntries(Object.entries(value || {}).filter(([name]) => name.startsWith('kb_')))
-            : key);
-        const panel = document.createElement('section');
-        panel.className = 'field-block jpx-rule-section';
+        bindSettingsChange(button, data, key === 'keyBindings' ? readKeyBindingRules : key);
+        const panel = createJpxElement('section', 'field-block jpx-rule-section');
         panel.dataset.fieldKey = key;
         panel.dataset.fieldType = field.type;
         panel.id = `jpx-rule-panel-${key}`;
@@ -8168,8 +8067,7 @@ function renderBattleRuleSections(container, schema, data, mode) {
     nav.addEventListener('keydown', event => {
         const keys = [...sections.keys()];
         const index = keys.indexOf(event.target.closest('[data-rule-section]')?.dataset.ruleSection);
-        if (index < 0) return;
-        const next = { ArrowLeft: (index + keys.length - 1) % keys.length, ArrowRight: (index + 1) % keys.length, Home: 0, End: keys.length - 1 }[event.key];
+        const next = index < 0 ? undefined : getSettingsSectionStep(event.key, index, keys.length);
         if (next === undefined) return;
         event.preventDefault();
         select(keys[next]);
@@ -8179,17 +8077,35 @@ function renderBattleRuleSections(container, schema, data, mode) {
     select(sections.has(battleRulesView.section) ? battleRulesView.section : 'rules');
 }
 
+function createSettingsPopover(className, idPrefix, role, label) {
+    const menu = createJpxElement('div', className);
+    menu.id = getUniqueId(idPrefix);
+    menu.popover = 'auto';
+    menu.setAttribute('role', role);
+    menu.setAttribute('aria-label', label);
+    return menu;
+}
+
+// Keep the trigger inside the popover's light-dismiss boundary.
+function showSettingsPopover(anchor, menu) {
+    anchor.setAttribute('aria-controls', menu.id); anchor.setAttribute('aria-expanded', 'true');
+    anchor.popoverTargetElement = menu;
+    menu.showPopover();
+    positionSettingsPopover(anchor, menu);
+}
+
+function releaseSettingsPopoverAnchor(anchor, menu) {
+    if (anchor.getAttribute('aria-controls') !== menu.id) return;
+    anchor.setAttribute('aria-expanded', 'false');
+    anchor.removeAttribute('aria-controls'); anchor.popoverTargetElement = null;
+}
+
 // Context-menu actions share the row controls and undo history.
 function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('cB.ruleActions')) {
     const current = anchor.popoverTargetElement;
     if (current?.matches('.jpx-rule-context-menu:popover-open')) { current.hidePopover(); return; }
     document.querySelectorAll('.jpx-rule-context-menu').forEach(menu => { if (menu.matches(':popover-open')) menu.hidePopover(); menu.remove(); });
-    const menu = document.createElement('div');
-    menu.className = 'jpx-rule-context-menu';
-    menu.id = getUniqueId('ruleMenu');
-    menu.popover = 'auto';
-    menu.setAttribute('role', 'group');
-    menu.setAttribute('aria-label', label);
+    const menu = createSettingsPopover('jpx-rule-context-menu', 'ruleMenu', 'group', label);
     let activePage;
     const showPage = (page, focus) => {
         if (activePage) { activePage.element.inert = true; activePage.element.setAttribute('aria-hidden', 'true'); }
@@ -8199,10 +8115,9 @@ function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('c
         (focus || page.items.querySelector('button:not(:disabled)'))?.focus({ preventScroll: true });
     };
     const createPage = (items, pageLabel, back) => {
-        const element = document.createElement('div'), list = document.createElement('div');
-        element.className = 'jpx-rule-menu-page'; element.id = getUniqueId('ruleMenuPage');
+        const element = createJpxElement('div', 'jpx-rule-menu-page'), list = createJpxElement('div', 'jpx-rule-menu-items');
+        element.id = getUniqueId('ruleMenuPage');
         element.inert = true; element.setAttribute('aria-hidden', 'true');
-        list.className = 'jpx-rule-menu-items';
         const page = { element, items: list, label: pageLabel, back };
         if (back) {
             const button = jpxUtils.createButton(element, { text: pageLabel, history: false, className: 'jpx-rule-menu-back', onClick: back });
@@ -8212,10 +8127,8 @@ function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('c
         }
         element.append(list); menu.append(element);
         for (const action of items || []) {
-            if (action.separator) {
-                const divider = document.createElement('div'); divider.className = 'jpx-rule-menu-separator';
-                divider.setAttribute('role', 'separator'); list.append(divider);
-            } else if (action.children) {
+            if (action.separator) list.appendChild(createJpxElement('div', 'jpx-rule-menu-separator')).setAttribute('role', 'separator');
+            else if (action.children) {
                 const button = jpxUtils.createButton(list, { text: action.label, history: false, className: 'jpx-rule-menu-next', disabled: action.disabled,
                     onClick: () => { child.items.scrollTop = 0; showPage(child); } });
                 const child = createPage(action.children, action.label, () => showPage(page, button));
@@ -8235,35 +8148,25 @@ function openJpxRuleMenu(anchor, row, actions = row.jpxRuleActions, label = t('c
     row.append(menu);
     menu.addEventListener('toggle', event => {
         if (event.target !== menu || event.newState !== 'closed') return;
-        if (anchor.getAttribute('aria-controls') === menu.id) {
-            anchor.setAttribute('aria-expanded', 'false');
-            anchor.removeAttribute('aria-controls'); anchor.popoverTargetElement = null;
-        }
+        releaseSettingsPopoverAnchor(anchor, menu);
         if ((menu.contains(document.activeElement) || document.activeElement === document.body) && anchor.isConnected) anchor.focus({ preventScroll: true });
         menu.remove();
     });
     menu.addEventListener('keydown', event => {
-        if (event.key === 'ArrowLeft' && activePage.back) {
-            activePage.back(); event.preventDefault(); event.stopPropagation(); return;
-        }
-        if (event.key === 'ArrowRight' && document.activeElement?.matches('.jpx-rule-menu-next')) {
-            document.activeElement.click(); event.preventDefault(); event.stopPropagation(); return;
-        }
-        if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
-        const controls = [...activePage.element.querySelectorAll('button:not(:disabled)')];
-        const index = controls.indexOf(document.activeElement);
-        const next = event.key === 'Home' ? 0 : event.key === 'End' ? controls.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + controls.length) % controls.length;
-        controls[next]?.focus({ preventScroll: true }); controls[next]?.scrollIntoView({ block: 'nearest' });
+        if (event.key === 'ArrowLeft' && activePage.back) activePage.back();
+        else if (event.key === 'ArrowRight' && document.activeElement?.matches('.jpx-rule-menu-next')) document.activeElement.click();
+        else if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+            const controls = [...activePage.element.querySelectorAll('button:not(:disabled)')];
+            const index = controls.indexOf(document.activeElement);
+            const next = event.key === 'Home' ? 0 : event.key === 'End' ? controls.length - 1 : (index + (event.key === 'ArrowDown' ? 1 : -1) + controls.length) % controls.length;
+            controls[next]?.focus({ preventScroll: true }); controls[next]?.scrollIntoView({ block: 'nearest' });
+        } else return;
         event.preventDefault(); event.stopPropagation();
     });
-    anchor.setAttribute('aria-controls', menu.id); anchor.setAttribute('aria-expanded', 'true');
-    anchor.popoverTargetElement = menu;
-    menu.showPopover();
-    positionSettingsPopover(anchor, menu);
+    showSettingsPopover(anchor, menu);
     showPage(root);
 }
 
-// Small static SVGs keep the userscript self-contained and inherit the HV palette.
 // Chromium dismisses a native picker before delivering a second click to its input,
 // then the click's default action opens it again. Remember the observed :open state
 // only while the popup is actually present, and suppress that one reopening click.
@@ -8328,81 +8231,66 @@ function bindSettingsNativePickers(container) {
         const input = pickerFor(event.target);
         if (input) watch(input);
     };
-    container.addEventListener('pointerdown', onPointerDown, true);
-    container.addEventListener('click', onClick, true);
-    container.addEventListener('keydown', onKeyDown, true);
+    const listeners = [['pointerdown', onPointerDown, true], ['click', onClick, true], ['keydown', onKeyDown, true]];
+    listeners.forEach(args => container.addEventListener(...args));
     return () => {
         stop();
-        container.removeEventListener('pointerdown', onPointerDown, true);
-        container.removeEventListener('click', onClick, true);
-        container.removeEventListener('keydown', onKeyDown, true);
+        listeners.forEach(args => container.removeEventListener(...args));
     };
 }
 
+// Small static SVGs keep the userscript self-contained and inherit the HV palette.
 const settingsIconTemplates = new Map();
+const SETTINGS_ICON_PATHS = {
+    filter: 'M4 7h16M7 12h10M10 17h4',
+    columns: 'M3 4h18v16H3V4M9 4v16M15 4v16',
+    image: 'M3 3h18v18H3V3M3 16l6-6 5 5 3-3 4 4M16 7h.01',
+    close: 'M6 6l12 12M6 18 18 6',
+    chevronDown: 'm6 9 6 6 6-6',
+    chevronLeft: 'm15 6-6 6 6 6',
+    chevronRight: 'm9 6 6 6-6 6',
+    download: 'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
+    copy: 'M8 8h13v13H8V8M16 8V3H3v13h5',
+    configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
+    more: 'M5 11v2M12 11v2M19 11v2',
+    add: 'M12 5v14M5 12h14',
+    battle: 'M4 21v-7m0-4V3m8 18v-4m0-4V3m8 18V10m0-4V3M1 14h6m2-1h6m2-3h6',
+    battleRules: 'M9 5h12M9 12h12M9 19h12M3 4l1 1 2-2M3 11l1 1 2-2M3 18l1 1 2-2',
+    keyBindings: 'M7 4v16M17 4v16M4 7h16M4 17h16M9 4v3m6-3v3M9 17v3m6-3v3',
+    stats: 'M4 3v18h17M9 17v-6m5 6V7m5 10V4',
+    plugin: 'M8 3v4m8-4v4M5 7h14v3a7 7 0 0 1-14 0V7m7 10v4',
+    edit: 'M14 4l5 5M4 18l5-1L20 6a2.8 2.8 0 0 0-4-4L5 13l-1 5M3 22h18',
+    confirm: 'M5 12l4 4L19 6',
+    collapse: 'M9 3v18M15 9l-3 3 3 3',
+    expand: 'M9 3v18m4-12 3 3-3 3',
+    collapseRules: 'M7 16l5-5 5 5M7 8l5-5 5 5',
+    expandRules: 'M7 8l5 5 5-5M7 16l5 5 5-5',
+    up: 'M12 20V4m-6 6 6-6 6 6',
+    down: 'M12 4v16m-6-6 6 6 6-6',
+    sort: 'M7 3v18m-3-3 3 3 3-3M14 5h7M14 11h5M14 17h3',
+    ruleEnabled: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0M8 12l3 3 5-6',
+    ruleDisabled: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0M8 12h8',
+    delete: 'M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7',
+    undo: 'M3 4v6h6M3 10l5-5a8 8 0 1 1-1 12',
+    redo: 'M21 4v6h-6m6 0-5-5a8 8 0 1 0 1 12',
+};
 function createSettingsIcon(name) {
-    const cached = settingsIconTemplates.get(name);
-    if (cached) return cached.cloneNode(true);
-    const paths = {
-        filter: 'M4 7h16M7 12h10M10 17h4',
-        columns: 'M3 4h18v16H3V4M9 4v16M15 4v16',
-        image: 'M3 3h18v18H3V3M3 16l6-6 5 5 3-3 4 4M16 7h.01',
-        close: 'M6 6l12 12M6 18 18 6',
-        chevronDown: 'm6 9 6 6 6-6',
-        chevronLeft: 'm15 6-6 6 6 6',
-        chevronRight: 'm9 6 6 6-6 6',
-        download: 'M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5',
-        copy: 'M8 8h13v13H8V8M16 8V3H3v13h5',
-        configManager: 'M3 5h7l2 3h9v12H3V5M7 12h10M7 16h7',
-        more: 'M5 11v2M12 11v2M19 11v2',
-        add: 'M12 5v14M5 12h14',
-        battle: 'M4 21v-7m0-4V3m8 18v-4m0-4V3m8 18V10m0-4V3M1 14h6m2-1h6m2-3h6',
-        battleRules: 'M9 5h12M9 12h12M9 19h12M3 4l1 1 2-2M3 11l1 1 2-2M3 18l1 1 2-2',
-        keyBindings: 'M7 4v16M17 4v16M4 7h16M4 17h16M9 4v3m6-3v3M9 17v3m6-3v3',
-        stats: 'M4 3v18h17M9 17v-6m5 6V7m5 10V4',
-        plugin: 'M8 3v4m8-4v4M5 7h14v3a7 7 0 0 1-14 0V7m7 10v4',
-        edit: 'M14 4l5 5M4 18l5-1L20 6a2.8 2.8 0 0 0-4-4L5 13l-1 5M3 22h18',
-        confirm: 'M5 12l4 4L19 6',
-        collapse: 'M9 3v18M15 9l-3 3 3 3',
-        expand: 'M9 3v18m4-12 3 3-3 3',
-        collapseRules: 'M7 16l5-5 5 5M7 8l5-5 5 5',
-        expandRules: 'M7 8l5 5 5-5M7 16l5 5 5-5',
-        up: 'M12 20V4m-6 6 6-6 6 6',
-        down: 'M12 4v16m-6-6 6 6 6-6',
-        sort: 'M7 3v18m-3-3 3 3 3-3M14 5h7M14 11h5M14 17h3',
-        ruleEnabled: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0M8 12l3 3 5-6',
-        ruleDisabled: 'M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0M8 12h8',
-        delete: 'M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7',
-        undo: 'M3 4v6h6M3 10l5-5a8 8 0 1 1-1 12',
-        redo: 'M21 4v6h-6m6 0-5-5a8 8 0 1 0 1 12',
-    };
-    const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    icon.setAttribute('viewBox', '0 0 24 24');
-    icon.setAttribute('fill', 'none');
-    icon.setAttribute('stroke', 'currentColor');
-    icon.setAttribute('stroke-width', '1.8');
-    icon.setAttribute('stroke-linecap', 'round');
-    icon.setAttribute('stroke-linejoin', 'round');
-    icon.setAttribute('aria-hidden', 'true');
-    icon.setAttribute('focusable', 'false');
-    if (name === 'grip') {
-        icon.setAttribute('fill', 'currentColor');
-        icon.setAttribute('stroke', 'none');
-        for (const x of [8, 16]) for (const y of [5, 12, 19]) {
-            const dot = document.createElementNS(icon.namespaceURI, 'circle');
-            dot.setAttribute('cx', x);
-            dot.setAttribute('cy', y);
-            dot.setAttribute('r', '1.7');
-            icon.appendChild(dot);
-        }
-        settingsIconTemplates.set(name, icon.cloneNode(true));
-        return icon;
+    if (!settingsIconTemplates.has(name)) {
+        const svg = (tag, attributes) => {
+            const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+            for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
+            return node;
+        };
+        const icon = svg('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round',
+            'stroke-linejoin': 'round', 'aria-hidden': 'true', focusable: 'false' });
+        if (name === 'grip') {
+            icon.setAttribute('fill', 'currentColor');
+            icon.setAttribute('stroke', 'none');
+            for (const cx of [8, 16]) for (const cy of [5, 12, 19]) icon.appendChild(svg('circle', { cx, cy, r: '1.7' }));
+        } else icon.appendChild(svg('path', { d: SETTINGS_ICON_PATHS[name] }));
+        settingsIconTemplates.set(name, icon);
     }
-    const path = document.createElementNS(icon.namespaceURI, 'path');
-    path.setAttribute('d', paths[name]);
-    icon.appendChild(path);
-    settingsIconTemplates.set(name, icon.cloneNode(true));
-    return icon;
+    return settingsIconTemplates.get(name).cloneNode(true);
 }
 
 function createSettingsMoveButtons(parent, index, count, move) {
@@ -8456,33 +8344,18 @@ function openRuleSortMenu(anchor, index, count, move) {
     const current = row.querySelector('.jpx-rule-sort-popover');
     if (current?.matches(':popover-open')) { current.hidePopover(); return; }
     document.querySelectorAll('.jpx-rule-sort-popover:popover-open').forEach(menu => menu.hidePopover());
-    const menu = document.createElement('div');
-    menu.className = 'jpx-rule-sort-popover';
-    menu.id = getUniqueId('ruleSort');
-    menu.popover = 'auto';
-    menu.setAttribute('role', 'dialog');
-    menu.setAttribute('aria-label', t('cGen.reorderRules'));
-    const label = document.createElement('label');
-    label.textContent = t('cGen.moveToPosition');
-    const input = document.createElement('input');
-    input.type = 'number';
-    input.min = '1';
-    input.max = String(count);
-    input.step = '1';
-    input.required = true;
-    input.value = String(index + 1);
+    const menu = createSettingsPopover('jpx-rule-sort-popover', 'ruleSort', 'dialog', t('cGen.reorderRules'));
+    const label = createJpxElement('label', undefined, t('cGen.moveToPosition'));
+    const input = Object.assign(document.createElement('input'), { type: 'number', min: '1', max: String(count), step: '1', required: true, value: String(index + 1) });
     input.setAttribute('aria-label', t('cGen.rulePosition'));
-    const total = document.createElement('span');
-    total.textContent = `/ ${count}`;
-    label.append(input, total);
+    label.append(input, createJpxElement('span', undefined, `/ ${count}`));
     const apply = () => {
         if (!input.reportValidity()) return;
         menu.hidePopover();
         move(input.valueAsNumber - 1);
     };
     jpxUtils.createButton(label, { text: t('cGen.moveApply'), history: false, onClick: apply });
-    const presets = document.createElement('div');
-    presets.className = 'jpx-rule-sort-presets';
+    const presets = createJpxElement('div', 'jpx-rule-sort-presets');
     for (const [key, destination] of [['moveTop', 0], ['moveBottom', count - 1]]) {
         jpxUtils.createButton(presets, { text: t(`cGen.${key}`), disabled: index === destination, history: false,
             onClick: () => { menu.hidePopover(); move(destination); } });
@@ -8491,25 +8364,20 @@ function openRuleSortMenu(anchor, index, count, move) {
         if (event.key === 'Enter') { event.preventDefault(); apply(); }
     });
     menu.addEventListener('toggle', event => {
-        if (event.newState === 'closed') {
-            if (anchor.getAttribute('aria-controls') === menu.id) {
-                anchor.setAttribute('aria-expanded', 'false');
-                anchor.removeAttribute('aria-controls');
-                anchor.popoverTargetElement = null;
-            }
-            menu.remove();
-        }
+        if (event.newState !== 'closed') return;
+        releaseSettingsPopoverAnchor(anchor, menu);
+        menu.remove();
     });
     menu.append(label, presets);
     row.append(menu);
-    anchor.setAttribute('aria-controls', menu.id);
-    anchor.setAttribute('aria-expanded', 'true');
-    // Keep the trigger inside the popover's light-dismiss boundary.
-    anchor.popoverTargetElement = menu;
-    menu.showPopover();
-    positionSettingsPopover(anchor, menu);
+    showSettingsPopover(anchor, menu);
     input.focus({ preventScroll: true });
     input.select();
+}
+
+// Record an editor action in the open dialog's undo history, when there is one.
+function runSettingsEdit(label, action) {
+    if (settingsEditHistory) settingsEditHistory.run(label, action); else action();
 }
 
 // Transient row metadata belongs to this dialog, not to the runtime's selected-row array.
@@ -8555,17 +8423,8 @@ function renderControlPanelSettings(container, field, data) {
     }
     const state = controlPanelEditorState;
     state.history = settingsEditHistory;
-    const element = (tag, className, text) => {
-        const el = document.createElement(tag);
-        el.className = className;
-        if (text) el.textContent = text;
-        return el;
-    };
-    container.classList.add('jpx-settings-group');
-    const title = element('h3', 'heading', t(field.label));
-    title.id = getUniqueId('controlPanel');
-    container.setAttribute('role', 'group');
-    container.setAttribute('aria-labelledby', title.id);
+    const element = createJpxElement;
+    const title = startSettingsGroup(container, 'controlPanel', field.label);
     const layout = element('div', 'jpx-control-panel-editor');
     const rowsPane = element('div', '');
     const appearance = element('div', 'jpx-control-appearance');
@@ -8574,6 +8433,26 @@ function renderControlPanelSettings(container, field, data) {
     const updatePreview = renderControlPanelAppearance(appearance, data, state, element);
     renderControlPanelRows(rowsPane, data, state, element, updatePreview);
 }
+
+// A labelled settings group; the caller places the returned heading.
+function startSettingsGroup(container, idPrefix, label) {
+    container.classList.add('jpx-settings-group');
+    const heading = createJpxElement('h3', 'heading', t(label));
+    heading.id = getUniqueId(idPrefix);
+    container.setAttribute('role', 'group');
+    container.setAttribute('aria-labelledby', heading.id);
+    return heading;
+}
+
+// One-pixel canvas used to resolve CSS colors into native picker values.
+function createSettingsColorContext() {
+    const canvas = document.createElement('canvas');
+    canvas.width = canvas.height = 1;
+    return canvas.getContext('2d', { willReadFrequently: true });
+}
+
+const readSettingsPixel = context => [...context.getImageData(0, 0, 1, 1).data];
+const toSettingsHex = rgb => '#' + rgb.slice(0, 3).map(value => value.toString(16).padStart(2, '0')).join('');
 
 function renderControlPanelAppearance(container, data, state, element) {
     const heading = element('div', 'jpx-control-heading');
@@ -8623,38 +8502,30 @@ function renderControlPanelAppearance(container, data, state, element) {
     });
     const body = element('div', 'jpx-control-appearance-body');
     const controls = element('div', 'jpx-control-style');
-    const colorRow = element('div', 'jpx-control-style-row');
-    const colorLabel = element('label', '', t('cB.panelTextColor'));
-    const color = element('input', '');
-    color.type = 'color';
-    color.id = getUniqueId('controlColor');
+    const styleRow = (className, label, type, idPrefix) => {
+        const row = element('div', className), caption = element('label', '', label), input = element('input', '');
+        input.type = type;
+        input.id = getUniqueId(idPrefix);
+        caption.htmlFor = input.id;
+        row.append(caption, input);
+        return [row, input];
+    };
+    const [colorRow, color] = styleRow('jpx-control-style-row', t('cB.panelTextColor'), 'color', 'controlColor');
     color.dataset.controlColor = '';
-    colorLabel.htmlFor = color.id;
-    colorRow.append(colorLabel, color);
     addReset(colorRow, 'color', t('cB.panelTextColor'), () => ['color']);
-    const opacityRow = element('div', 'jpx-control-style-row jpx-control-opacity-row');
-    const opacityLabel = element('label', '', t('cB.panelOpacity'));
-    const opacity = element('input', '');
-    opacity.type = 'range';
+    const [opacityRow, opacity] = styleRow('jpx-control-style-row jpx-control-opacity-row', t('cB.panelOpacity'), 'range', 'controlOpacity');
     opacity.min = '0'; opacity.max = '100'; opacity.step = '1';
-    opacity.id = getUniqueId('controlOpacity');
     opacity.dataset.controlOpacity = '';
-    opacityLabel.htmlFor = opacity.id;
     const amount = element('output', '');
     amount.dataset.controlOpacityValue = '';
     amount.htmlFor = opacity.id;
-    opacityRow.append(opacityLabel, opacity, amount);
+    opacityRow.append(amount);
     addReset(opacityRow, 'opacity', t('cB.panelOpacity'), () => ['opacity']);
     controls.append(colorRow);
     const paletteInputs = new Map();
     for (const [key, labelKey] of [['header', 'panelHeaderColor'], ['surface', 'panelSurfaceColor'], ['border', 'panelBorderColor']]) {
-        const row = element('div', 'jpx-control-style-row');
-        const label = element('label', '', t('cB.' + labelKey));
-        const input = element('input', '');
-        input.type = 'color';
-        input.id = getUniqueId('controlPalette');
+        const [row, input] = styleRow('jpx-control-style-row', t('cB.' + labelKey), 'color', 'controlPalette');
         input.dataset.controlPalette = key;
-        label.htmlFor = input.id;
         input.addEventListener('input', () => {
             const property = `--jpx-${state.previewState}-${key}`;
             const changes = { [property]: input.value };
@@ -8682,7 +8553,6 @@ function renderControlPanelAppearance(container, data, state, element) {
             }
             write(changes, input, bridgeBorder);
         });
-        row.append(label, input);
         addReset(row, key, t('cB.' + labelKey), () => [`--jpx-${state.previewState}-${key}`, ...(key === 'header' ? [`--jpx-${state.previewState}-ink`] : [])]);
         controls.append(row);
         paletteInputs.set(key, { input, labelKey });
@@ -8701,9 +8571,7 @@ function renderControlPanelAppearance(container, data, state, element) {
     container.append(heading, body);
     bindSettingsChange(controls, data, 'ctrlWidgetStyleText');
     const parsed = document.createElement('span').style;
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 1;
-    const context = canvas.getContext('2d', { willReadFrequently: true });
+    const context = createSettingsColorContext();
     const readStyle = () => { parsed.cssText = typeof data.ctrlWidgetStyleText === 'string' ? data.ctrlWidgetStyleText : ''; };
     const paletteProperties = stateKeys.flatMap(key => ['header', 'surface', 'border', 'ink'].map(part => `--jpx-${key}-${part}`));
     const borderProperties = ['top', 'right', 'bottom', 'left'].flatMap(side => ['width', 'style', 'color'].map(part => `border-${side}-${part}`));
@@ -8717,7 +8585,7 @@ function renderControlPanelAppearance(container, data, state, element) {
         if (source !== input) {
             context.fillStyle = '#000000'; context.fillRect(0, 0, 1, 1);
             context.fillStyle = rawColor; context.fillRect(0, 0, 1, 1);
-            input.value = '#' + [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(v => v.toString(16).padStart(2, '0')).join('');
+            input.value = toSettingsHex(readSettingsPixel(context));
         }
     };
     function update(source) {
@@ -8809,8 +8677,7 @@ function renderControlPanelRows(container, data, state, element, updatePreview) 
             refresh();
             focusRow(id);
         };
-        if (settingsEditHistory) settingsEditHistory.run(t('cB.panelReorder'), action);
-        else action();
+        runSettingsEdit(t('cB.panelReorder'), action);
     }
     const cancelDrag = bindStatsListDrag(list, move);
     function refresh() {
@@ -8835,9 +8702,7 @@ function renderControlPanelRows(container, data, state, element, updatePreview) 
                 },
             });
             select.setAttribute('aria-pressed', String(state.selected === id));
-            const grip = element('span', enabled ? 'jpx-stats-grip jpx-drag-grip' : 'jpx-drag-grip');
-            grip.append(createSettingsIcon('grip'));
-            grip.setAttribute('aria-hidden', 'true');
+            const grip = createStatsGrip(enabled ? 'jpx-stats-grip jpx-drag-grip' : 'jpx-drag-grip');
             if (enabled) grip.title = t('cS.reorderHint');
             select.append(grip, element('span', 'jpx-stats-row-label', t(base.label)));
             select.addEventListener('keydown', event => {
@@ -8877,21 +8742,13 @@ const fieldRenderers = {
     expandedRuleItems: new WeakSet(),
     group(container, field, dataObj) {
         if (field.controlPanelEditor) return renderControlPanelSettings(container, field, dataObj);
-        container.classList.add('jpx-settings-group');
-        const heading = document.createElement('h3');
-        heading.className = 'heading';
-        heading.id = getUniqueId(field.key);
-        heading.textContent = t(field.label);
-        container.setAttribute('role', 'group');
-        container.setAttribute('aria-labelledby', heading.id);
-        const fields = document.createElement('div');
-        fields.className = 'jpx-settings-group-fields';
+        const heading = startSettingsGroup(container, field.key, field.label);
+        const fields = createJpxElement('div', 'jpx-settings-group-fields');
         renderSchema(fields, { type: 'object', properties: field.properties }, dataObj);
         container.append(heading, fields);
     },
     constant(container, field) {
-        let div = document.createElement('div');
-        div.textContent = t(field.label);
+        const div = createJpxElement('div', undefined, t(field.label));
         if (field.class) div.classList.add(field.class);
         container.appendChild(div);
     },
@@ -8961,129 +8818,91 @@ const fieldRenderers = {
                 <input id="${idMax}" type="number" value="${dataObj[key][1]}">
             </span>
         `;
-        container.querySelector(`#${idMin}`).setAttribute('aria-label', `${t(field.label)}: ${t('cGen.rangeMin')}`);
-        container.querySelector(`#${idMax}`).setAttribute('aria-label', `${t(field.label)}: ${t('cGen.rangeMax')}`);
-
-        container.querySelector(`#${idMin}`).oninput = event => dataObj[key][0] = +event.target.value;
-        container.querySelector(`#${idMax}`).oninput = event => dataObj[key][1] = +event.target.value;
+        [idMin, idMax].forEach((id, index) => {
+            const input = container.querySelector(`#${id}`);
+            input.setAttribute('aria-label', `${t(field.label)}: ${t(index ? 'cGen.rangeMax' : 'cGen.rangeMin')}`);
+            input.oninput = event => dataObj[key][index] = +event.target.value;
+        });
     },
 
     dropdown(container, field, dataObj) {
-        function createSelectComponent(field) {
-            let component = {
-                onchange: () => {}
-            };
-
-            if (!Array.isArray(field.options) && typeof field.options === 'object') {
-                let selects = {};
-                component.element = document.createElement('div');
-                component.element.className = 'jpx-battle-mode-selects';
-
-                component.getValue = () => {
-                    let values = Object.keys(field.options).map(key => jpxUtils.parseValue(selects[key].value));
-                    return field.flatten ? values.join(field.flatten) : values;
-                };
-
-                component.setValue = (value) => {
-                    let values = value;
-                    if (field.flatten && typeof value === 'string') {
-                        if (field.flatten === '_') values = value.split(/_(?!Mage(?:_|$))/);
-                        else values = value.split(field.flatten);
-                    }
-                    Object.keys(field.options).forEach((key, i) => { if (values?.[i] !== undefined) selects[key].value = values[i]; });
-                };
-
-                for (const [subLabel, subOptions] of Object.entries(field.options)) {
-                    let subWrap = document.createElement('div');
-                    subWrap.style.display = 'inline-block';
-                    subWrap.style.marginRight = '8px';
-
-                    let select = createSelect(subOptions);
-                    let label = document.createElement('label');
-                    label.textContent = t(`cB.${subLabel}`);
-                    subWrap.appendChild(label);
-                    label.htmlFor = select.id;
-                    select.onchange = () => component.onchange();
-                    subWrap.appendChild(select);
-                    selects[subLabel] = select;
-                    component.element.appendChild(subWrap);
-                };
-            } else {
-                let select = createSelect(field.options);
-                component.element = select;
-                component.getValue = () => jpxUtils.parseValue(select.value);
-                component.setValue = (value) => { select.value = value; };
-                select.onchange = () => component.onchange();
-            }
-
-            return component;
-        }
-
-        function createSelect(options) {
-            let select = document.createElement('select');
-            select.id = getUniqueId(field.key)
-            options.forEach(opt => {
-                let option = document.createElement('option');
+        const createSelect = options => {
+            const select = document.createElement('select');
+            select.id = getUniqueId(field.key);
+            for (const opt of options) {
+                const option = select.appendChild(document.createElement('option'));
                 option.value = opt.value;
                 option.textContent = t(opt.label);
-                select.appendChild(option);
-            });
-
-            return select;
-        }
-
-        let selectComponent = createSelectComponent(field);
-
-        let initValue = dataObj[field.key];
-        if (initValue === undefined) {
-            if (Array.isArray(field.options)) {
-                initValue = field.options[0]?.value;
-            } else {
-                let defaultVals = Object.values(field.options).map(opts => (opts[0]?.value));
-                initValue = field.flatten ? defaultVals.join(field.flatten) : defaultVals;
             }
+            return select;
+        };
+        // Grouped options render one select per part; their values form one (optionally joined) value.
+        const component = { onchange: () => {} };
+        if (!Array.isArray(field.options) && typeof field.options === 'object') {
+            const selects = {};
+            component.element = createJpxElement('div', 'jpx-battle-mode-selects');
+            component.getValue = () => {
+                const values = Object.keys(field.options).map(key => jpxUtils.parseValue(selects[key].value));
+                return field.flatten ? values.join(field.flatten) : values;
+            };
+            component.setValue = value => {
+                const values = field.flatten && typeof value === 'string' ? value.split(field.flatten === '_' ? /_(?!Mage(?:_|$))/ : field.flatten) : value;
+                Object.keys(field.options).forEach((key, i) => { if (values?.[i] !== undefined) selects[key].value = values[i]; });
+            };
+            for (const [subLabel, subOptions] of Object.entries(field.options)) {
+                const subWrap = document.createElement('div');
+                subWrap.style.display = 'inline-block';
+                subWrap.style.marginRight = '8px';
+                const select = createSelect(subOptions);
+                const label = subWrap.appendChild(document.createElement('label'));
+                label.textContent = t(`cB.${subLabel}`);
+                label.htmlFor = select.id;
+                select.onchange = () => component.onchange();
+                subWrap.appendChild(select);
+                selects[subLabel] = select;
+                component.element.appendChild(subWrap);
+            }
+        } else {
+            const select = component.element = createSelect(field.options);
+            component.getValue = () => jpxUtils.parseValue(select.value);
+            component.setValue = value => { select.value = value; };
+            select.onchange = () => component.onchange();
         }
 
         if (field.hasModeDropdown) {
             container.dataset.role = field.hasModeDropdown;
-            
-            let selectContent = document.createElement('div');
-            selectComponent.onchange = () => {
+            const selectContent = document.createElement('div');
+            component.onchange = () => {
                 fieldRenderers.dragState.cancel?.();
                 selectContent.innerHTML = '';
-                let currentValue = selectComponent.getValue();
+                const currentValue = component.getValue();
                 container.dataset.currentValue = currentValue;
                 if (jpxUtils.isEmpty(dataObj[currentValue])) dataObj[currentValue] = {};
                 renderBattleRuleSections(selectContent, field.itemSchema, dataObj[currentValue], currentValue);
             };
-
-            container.appendChild(selectComponent.element);
-            container.appendChild(selectContent);
-
-            let modeKey = getBattleMode('OneHanded');
-            let importBtn = document.getElementById('import-button');
-            let resetBtn = document.getElementById('reset-current-button');
-            let finalKey = (importBtn?.dataset.battleMode) || (resetBtn?.dataset.battleMode) || modeKey;
-
+            container.append(component.element, selectContent);
+            // Import and reset hand the rebuilt editor the mode it should keep showing.
+            const modeKey = getBattleMode('OneHanded');
+            const importBtn = document.getElementById('import-button'), resetBtn = document.getElementById('reset-current-button');
+            const finalKey = importBtn?.dataset.battleMode || resetBtn?.dataset.battleMode || modeKey;
             if (importBtn) delete importBtn.dataset.battleMode;
             if (resetBtn) delete resetBtn.dataset.battleMode;
-
-            if (finalKey) selectComponent.setValue(finalKey);
-            selectComponent.onchange(); 
-
+            if (finalKey) component.setValue(finalKey);
+            component.onchange();
         } else {
-            let wrap = document.createElement('div');
-            let label = document.createElement('label');
-            label.htmlFor = selectComponent.element.id;
+            let initValue = dataObj[field.key];
+            if (initValue === undefined) {
+                const defaults = Array.isArray(field.options) ? null : Object.values(field.options).map(opts => opts[0]?.value);
+                initValue = !defaults ? field.options[0]?.value : field.flatten ? defaults.join(field.flatten) : defaults;
+            }
+            const wrap = document.createElement('div');
+            const label = wrap.appendChild(document.createElement('label'));
+            label.htmlFor = component.element.id;
             label.textContent = t(field.label);
-            wrap.appendChild(label);
-
-            selectComponent.setValue(initValue);
-            dataObj[field.key] = selectComponent.getValue();
-
-            selectComponent.onchange = () => dataObj[field.key] = selectComponent.getValue();
-
-            wrap.appendChild(selectComponent.element);
+            component.setValue(initValue);
+            dataObj[field.key] = component.getValue();
+            component.onchange = () => dataObj[field.key] = component.getValue();
+            wrap.appendChild(component.element);
             container.appendChild(wrap);
         }
     },
@@ -9091,14 +8910,14 @@ const fieldRenderers = {
     dragState: { pointerId: null, fromIndex: null, groupId: null, sourceRow: null, sourceHandle: null, dragImage: null, dragLayer: null, dropMarker: null, dropRow: null, dropPosition: null, startX: 0, startY: 0, pointerX: 0, pointerY: 0, handleOffsetX: 0, handleOffsetY: 0, grabOffsetY: 0, frameId: null, cancel: null, dragging: false },
     array(container, field, dataObj) {
         if (!Array.isArray(dataObj[field.key])) dataObj[field.key] = [];
-        let arrayGroupId = Symbol('array-group');
+        const arrayGroupId = Symbol('array-group');
         const renderedRuleItems = new Map();
         let bulkFrame = 0, bulkTarget = null, bulkQueue = [], bulkIndex = 0;
         const cancelBulkToggle = () => {
             cancelAnimationFrame(bulkFrame); bulkFrame = 0; bulkTarget = null; bulkQueue = []; bulkIndex = 0;
         };
-        const liveRegion = document.createElement('span');
-        liveRegion.className = 'jpx-sr-only';
+        const setRuleExpanded = (item, open) => open ? fieldRenderers.expandedRuleItems.add(item) : fieldRenderers.expandedRuleItems.delete(item);
+        const liveRegion = createJpxElement('span', 'jpx-sr-only');
         liveRegion.setAttribute('aria-live', 'polite');
         let updateAllRulesToggle = () => {};
         let toolbar = null;
@@ -9106,16 +8925,13 @@ const fieldRenderers = {
         if (!field.skipLabel) container.innerHTML = `<div${field.class ? ` class="${field.class}"` : ''} style="font-weight:bold; margin-bottom:4px;">${t(field.label)}</div>`;
 
         if (field.collapsibleItems) {
-            toolbar = document.createElement('div');
-            toolbar.className = 'jpx-rule-list-toolbar';
+            toolbar = createJpxElement('div', 'jpx-rule-list-toolbar');
             let allRulesToggle;
             updateAllRulesToggle = () => {
                 const allExpanded = bulkTarget ?? (renderedRuleItems.size > 0 && [...renderedRuleItems.values()].every(details => details.open));
                 if (allRulesToggle.getAttribute('aria-expanded') === String(allExpanded)) return;
                 const label = t(allExpanded ? 'cGen.collapseAllRules' : 'cGen.expandAllRules');
-                const caption = document.createElement('span');
-                caption.textContent = label;
-                allRulesToggle.replaceChildren(createSettingsIcon(allExpanded ? 'collapseRules' : 'expandRules'), caption);
+                allRulesToggle.replaceChildren(createSettingsIcon(allExpanded ? 'collapseRules' : 'expandRules'), createJpxElement('span', undefined, label));
                 allRulesToggle.title = label;
                 allRulesToggle.setAttribute('aria-label', label);
                 allRulesToggle.setAttribute('aria-expanded', String(allExpanded));
@@ -9137,8 +8953,7 @@ const fieldRenderers = {
                             const [item, details] = bulkQueue[bulkIndex++];
                             if (shouldExpand) details.jpxBuildBody();
                             details.open = shouldExpand;
-                            if (shouldExpand) fieldRenderers.expandedRuleItems.add(item);
-                            else fieldRenderers.expandedRuleItems.delete(item);
+                            setRuleExpanded(item, shouldExpand);
                         }
                         if (bulkIndex < bulkQueue.length) bulkFrame = requestAnimationFrame(batch);
                         else { cancelBulkToggle(); updateAllRulesToggle(); }
@@ -9149,24 +8964,16 @@ const fieldRenderers = {
             toolbar.append(allRulesToggle, liveRegion);
             updateAllRulesToggle();
         }
-        let listDiv = document.createElement('div');
+        const listDiv = document.createElement('div');
         if (field.fixedActions) listDiv.className = 'jpx-rule-scroll';
         container.appendChild(listDiv);
-        if (field.collapsibleItems) {
-            if (!field.skipLabel) {
-                const heading = container.firstElementChild;
-                heading.classList.add('jpx-rule-list-heading');
-                heading.appendChild(toolbar);
-            } else {
-                container.insertBefore(toolbar, listDiv);
-            }
-        }
         if (!field.collapsibleItems) container.appendChild(liveRegion);
-        const addBar = field.collapsibleItems ? document.createElement('div') : null;
-        if (addBar) {
-            addBar.className = 'jpx-rule-add-actions';
-            container.append(addBar);
-        }
+        else if (!field.skipLabel) {
+            const heading = container.firstElementChild;
+            heading.classList.add('jpx-rule-list-heading');
+            heading.appendChild(toolbar);
+        } else container.insertBefore(toolbar, listDiv);
+        const addBar = field.collapsibleItems ? container.appendChild(createJpxElement('div', 'jpx-rule-add-actions')) : null;
         const scrollContainer = () => field.fixedActions ? listDiv : container.closest('.jpx-rule-scroll, [role=tabpanel]');
         const ruleRows = () => [...listDiv.children].filter(row => row.classList.contains('jpx-rule-array-item'));
         const clearDropTargets = () => container.querySelectorAll('.is-drop-before, .is-drop-after').forEach(target => {
@@ -9187,22 +8994,8 @@ const fieldRenderers = {
             drag.sourceHandle?.setAttribute('aria-grabbed', 'false');
             drag.dragLayer?.remove();
             clearDropTargets();
-            drag.pointerId = null;
-            drag.fromIndex = null;
-            drag.groupId = null;
-            drag.sourceRow = null;
-            drag.sourceHandle = null;
-            drag.dragImage = null;
-            drag.dragLayer = null;
-            drag.dropMarker = null;
-            drag.dropRow = null;
-            drag.dropPosition = null;
-            drag.handleOffsetX = 0;
-            drag.handleOffsetY = 0;
-            drag.grabOffsetY = 0;
-            drag.frameId = null;
-            drag.cancel = null;
-            drag.dragging = false;
+            Object.assign(drag, { pointerId: null, fromIndex: null, groupId: null, sourceRow: null, sourceHandle: null, dragImage: null, dragLayer: null,
+                dropMarker: null, dropRow: null, dropPosition: null, handleOffsetX: 0, handleOffsetY: 0, grabOffsetY: 0, frameId: null, cancel: null, dragging: false });
             window.removeEventListener('blur', cancelRuleDrag);
             window.removeEventListener('resize', cancelRuleDrag);
             if (handle?.hasPointerCapture(pointerId)) handle.releasePointerCapture(pointerId);
@@ -9220,8 +9013,7 @@ const fieldRenderers = {
             if (!hovered || hovered.parentElement !== listDiv || hovered === drag.sourceRow) {
                 clearDropTargets();
                 if (drag.dropMarker) drag.dropMarker.style.display = 'none';
-                drag.dropRow = null;
-                drag.dropPosition = null;
+                Object.assign(drag, { dropRow: null, dropPosition: null });
                 return;
             }
             const bounds = hovered.getBoundingClientRect();
@@ -9231,19 +9023,15 @@ const fieldRenderers = {
                 const preview = drag.dragImage.getBoundingClientRect();
                 // Keep the landing cue at both edges without drawing a line through the lifted text.
                 drag.dropMarker.classList.toggle('over-preview', markerTop < preview.bottom && markerTop + 3 * scale > preview.top);
-                drag.dropMarker.style.display = 'block';
-                drag.dropMarker.style.left = ((bounds.left - area.left) / scale) + 'px';
-                drag.dropMarker.style.width = (bounds.width / scale) + 'px';
-                drag.dropMarker.style.top = `${(markerTop - area.top) / scale}px`;
+                Object.assign(drag.dropMarker.style, { display: 'block', left: ((bounds.left - area.left) / scale) + 'px',
+                    width: (bounds.width / scale) + 'px', top: `${(markerTop - area.top) / scale}px` });
             }
             if (drag.dropRow === hovered && drag.dropPosition === position) return;
             clearDropTargets();
             hovered.classList.add(`is-drop-${position}`);
-            drag.dropRow = hovered;
-            drag.dropPosition = position;
-            const targetIndex = ruleRows().indexOf(hovered);
+            Object.assign(drag, { dropRow: hovered, dropPosition: position });
             liveRegion.textContent = t(position === 'before' ? 'cGen.dropBefore' : 'cGen.dropAfter', {
-                label: getRuleLabel(dataObj[field.key][targetIndex])
+                label: getRuleLabel(dataObj[field.key][ruleRows().indexOf(hovered)])
             });
         };
         const getDragBounds = () => {
@@ -9263,12 +9051,7 @@ const fieldRenderers = {
             const drag = fieldRenderers.dragState;
             const sourceIndex = ruleRows().indexOf(row);
             if (sourceIndex < 0) return;
-            drag.fromIndex = sourceIndex;
-            drag.groupId = arrayGroupId;
-            drag.pointerId = event.pointerId;
-            drag.sourceRow = row;
-            drag.sourceHandle = handle;
-            drag.dragging = true;
+            Object.assign(drag, { fromIndex: sourceIndex, groupId: arrayGroupId, pointerId: event.pointerId, sourceRow: row, sourceHandle: handle, dragging: true });
             const rowBounds = row.getBoundingClientRect();
             const handleBounds = handle.getBoundingClientRect();
             const summary = row.querySelector('.jpx-rule-summary-text');
@@ -9283,14 +9066,14 @@ const fieldRenderers = {
             handle.setAttribute('aria-grabbed', 'true');
             liveRegion.textContent = t('cGen.draggingRule', { label: getRuleLabel(dataObj[field.key][sourceIndex]) });
 
-            const dragLayer = document.createElement('div');
-            dragLayer.className = 'jpx-rule-drag-layer';
-            dragLayer.setAttribute('aria-hidden', 'true');
-            container.appendChild(dragLayer);
+            const hiddenPart = className => {
+                const node = createJpxElement('div', className);
+                node.setAttribute('aria-hidden', 'true');
+                return node;
+            };
+            const dragLayer = container.appendChild(hiddenPart('jpx-rule-drag-layer'));
             drag.dragLayer = dragLayer;
-            const dragImage = document.createElement('div');
-            dragImage.className = 'jpx-rule-drag-image';
-            dragImage.setAttribute('aria-hidden', 'true');
+            const dragImage = hiddenPart('jpx-rule-drag-image');
             dragImage.style.width = `${rowBounds.width / scale}px`;
             dragImage.style.minHeight = `${(drag.handleOffsetY + handleBounds.height / 2) / scale + 6}px`;
             dragImage.style.setProperty('--jpx-drag-handle-x', `${drag.handleOffsetX / scale}px`);
@@ -9302,18 +9085,11 @@ const fieldRenderers = {
                 dragImage.style.setProperty('--jpx-drag-label-x', `${(summaryBounds.left - rowBounds.left) / scale}px`);
                 dragImage.appendChild(labelPreview);
             }
-            const gripPreview = document.createElement('span');
-            gripPreview.className = 'jpx-rule-drag-grip jpx-drag-grip';
-            gripPreview.appendChild(createSettingsIcon('grip'));
-            dragImage.appendChild(gripPreview);
-            dragLayer.appendChild(dragImage);
-            drag.dragImage = dragImage;
-            const dropMarker = document.createElement('div');
-            dropMarker.className = 'jpx-rule-drop-marker';
+            dragImage.appendChild(createJpxElement('span', 'jpx-rule-drag-grip jpx-drag-grip')).appendChild(createSettingsIcon('grip'));
+            drag.dragImage = dragLayer.appendChild(dragImage);
+            const dropMarker = hiddenPart('jpx-rule-drop-marker');
             dropMarker.style.display = 'none';
-            dropMarker.setAttribute('aria-hidden', 'true');
-            dragLayer.appendChild(dropMarker);
-            drag.dropMarker = dropMarker;
+            drag.dropMarker = dragLayer.appendChild(dropMarker);
             drag.frameId = requestAnimationFrame(trackRuleDrag);
         };
         function updateDragImage(x, y) {
@@ -9360,24 +9136,17 @@ const fieldRenderers = {
             if (!row || row.parentElement !== listDiv || !event.isPrimary || event.button !== 0) return;
             const drag = fieldRenderers.dragState;
             if (drag.pointerId !== null) return;
-            drag.pointerId = event.pointerId;
-            drag.groupId = arrayGroupId;
-            drag.fromIndex = ruleRows().indexOf(row);
-            drag.sourceRow = row;
-            drag.sourceHandle = handle;
-            drag.startX = event.clientX;
-            drag.startY = event.clientY;
-            drag.pointerX = event.clientX;
-            drag.pointerY = event.clientY;
-            drag.cancel = cancelRuleDrag;
+            Object.assign(drag, { pointerId: event.pointerId, groupId: arrayGroupId, fromIndex: ruleRows().indexOf(row), sourceRow: row, sourceHandle: handle,
+                startX: event.clientX, startY: event.clientY, pointerX: event.clientX, pointerY: event.clientY, cancel: cancelRuleDrag });
             window.addEventListener('blur', cancelRuleDrag);
             window.addEventListener('resize', cancelRuleDrag);
             try { handle.setPointerCapture(event.pointerId); } catch {}
             event.preventDefault();
         });
+        const ownsPointer = event => fieldRenderers.dragState.groupId === arrayGroupId && fieldRenderers.dragState.pointerId === event.pointerId;
         container.addEventListener('pointermove', event => {
             const drag = fieldRenderers.dragState;
-            if (drag.groupId !== arrayGroupId || drag.pointerId !== event.pointerId) return;
+            if (!ownsPointer(event)) return;
             drag.pointerX = event.clientX;
             drag.pointerY = event.clientY;
             if (!drag.dragging && Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) >= 6 * getSettingsCoordinateSpace(listDiv).scale) {
@@ -9387,13 +9156,10 @@ const fieldRenderers = {
             updateDragImage(event.clientX, event.clientY);
             updateDropTarget(event.clientX, event.clientY);
         });
-        const finishRuleDrag = event => {
+        container.addEventListener('pointerup', event => {
             const drag = fieldRenderers.dragState;
-            if (drag.groupId !== arrayGroupId || drag.pointerId !== event.pointerId) return;
-            if (!drag.dragging) {
-                clearDragState();
-                return;
-            }
+            if (!ownsPointer(event)) return;
+            if (!drag.dragging) return clearDragState();
             updateDropTarget(event.clientX, event.clientY);
             const from = drag.fromIndex;
             const targetIndex = ruleRows().indexOf(drag.dropRow);
@@ -9411,33 +9177,22 @@ const fieldRenderers = {
                 clearDragState(t('cGen.ruleMoved', { label, index: destination + 1 }));
                 renderArray();
             };
-            if (settingsEditHistory) settingsEditHistory.run(t('cGen.reorderRules'), move);
-            else move();
-        };
-        container.addEventListener('pointerup', finishRuleDrag);
-        container.addEventListener('lostpointercapture', event => {
-            if (fieldRenderers.dragState.groupId === arrayGroupId && fieldRenderers.dragState.pointerId === event.pointerId) cancelRuleDrag();
+            runSettingsEdit(t('cGen.reorderRules'), move);
         });
-        container.addEventListener('pointercancel', event => {
-            if (fieldRenderers.dragState.groupId === arrayGroupId && fieldRenderers.dragState.pointerId === event.pointerId) {
-                clearDragState(t('cGen.dragCancelled'));
-            }
-        });
+        container.addEventListener('lostpointercapture', event => { if (ownsPointer(event)) cancelRuleDrag(); });
+        container.addEventListener('pointercancel', event => { if (ownsPointer(event)) clearDragState(t('cGen.dragCancelled')); });
 
         function renderRowButtons(row, index) {
             row.jpxRuleActions = [];
             const disabled = dataObj[field.key][index].disabled === true;
             if (field.collapsibleItems) row.classList.toggle('is-disabled', disabled);
             else row.style.opacity = disabled ? '0.5' : '1';
-            const actions = document.createElement('div');
-            actions.className = 'jpx-array-item-actions';
+            const actions = createJpxElement('div', 'jpx-array-item-actions');
             const summary = row.querySelector(':scope > .jpx-rule-item > summary');
             (summary || row).appendChild(actions);
             const actionButton = (label, options, parent = actions) => {
                 const change = options.onClick;
-                const run = change && options.history !== false ? () => {
-                    if (settingsEditHistory) settingsEditHistory.run(t(label), change); else change();
-                } : change;
+                const run = change && options.history !== false ? () => runSettingsEdit(t(label), change) : change;
                 if (change && options.history !== false) row.jpxRuleActions.push({ label: t(label), run, destructive: label === 'delete' });
                 if (options.menuOnly && field.collapsibleItems) return null;
                 const button = jpxUtils.createButton(parent, { ...options, history: false, onClick: run });
@@ -9458,8 +9213,7 @@ const fieldRenderers = {
                     movedRow?.scrollIntoView({ block: 'nearest' });
                     liveRegion.textContent = t('cGen.ruleMoved', { label: getRuleLabel(moved), index: destination + 1 });
                 };
-                if (settingsEditHistory) settingsEditHistory.run(t('cGen.reorderRules'), move);
-                else move();
+                runSettingsEdit(t('cGen.reorderRules'), move);
             };
             if (field.collapsibleItems) {
                 const insert = (offset, schema) => {
@@ -9469,7 +9223,7 @@ const fieldRenderers = {
                         const inserted = ruleRows()[index + offset];
                         inserted?.scrollIntoView({ block: 'nearest' }); inserted?.querySelector('summary')?.focus({ preventScroll: true });
                     };
-                    if (settingsEditHistory) settingsEditHistory.run(t('add'), change); else change();
+                    runSettingsEdit(t('add'), change);
                 };
                 for (const [label, offset] of [['insertBefore', 0], ['insertAfter', 1]]) row.jpxRuleActions.push({ label: t('cB.' + label),
                     children: Object.entries(field.itemSchema.oneOf).map(([type, schema]) => ({ label: t('cB.' + type), run: () => insert(offset, schema) })) });
@@ -9515,14 +9269,13 @@ const fieldRenderers = {
                 ruleRows()[index + 1]?.querySelector('summary')?.focus({ preventScroll: true });
             }});
             if (field.canDisable) {
-                const toggle = actionButton(disabled ? 'cGen.enableRule' : 'cGen.disableRule', {
+                const action = disabled ? 'cGen.enableRule' : 'cGen.disableRule', stateLabel = t(disabled ? 'cGen.ruleDisabled' : 'cGen.ruleEnabled');
+                const toggle = actionButton(action, {
                     className: 'jpx-rule-state-toggle',
                     onClick: () => {
-                        if (dataObj[field.key][index]?.disabled === true) {
-                            delete dataObj[field.key][index].disabled;
-                        } else if (dataObj[field.key][index] && typeof dataObj[field.key][index] === 'object') {
-                            dataObj[field.key][index].disabled = true;
-                        }
+                        const rule = dataObj[field.key][index];
+                        if (rule?.disabled === true) delete rule.disabled;
+                        else if (rule && typeof rule === 'object') rule.disabled = true;
                         renderArray();
                         ruleRows()[index]?.querySelector('.jpx-rule-state-toggle')?.focus({ preventScroll: true });
                     }
@@ -9530,14 +9283,12 @@ const fieldRenderers = {
                 toggle.dataset.enabled = String(!disabled);
                 toggle.setAttribute('aria-pressed', String(!disabled));
                 if (field.collapsibleItems) actions.prepend(toggle);
-                const status = document.createElement('span');
-                status.className = 'jpx-sr-only';
+                const status = createJpxElement('span', 'jpx-sr-only', stateLabel);
                 status.id = getUniqueId('rule-state');
-                status.textContent = t(disabled ? 'cGen.ruleDisabled' : 'cGen.ruleEnabled');
                 toggle.append(status);
                 toggle.setAttribute('aria-describedby', status.id);
                 toggle.prepend(createSettingsIcon(disabled ? 'ruleDisabled' : 'ruleEnabled'));
-                toggle.title = `${t(disabled ? 'cGen.ruleDisabled' : 'cGen.ruleEnabled')} · ${t(disabled ? 'cGen.enableRule' : 'cGen.disableRule')}`;
+                toggle.title = `${stateLabel} · ${t(action)}`;
             }
             if (field.collapsibleItems) row.jpxRuleActions.push({ separator: true });
             actionButton('delete', { menuOnly: true, text: t('delete'), className: 'jpx-delete-button', onClick: () => {
@@ -9569,30 +9320,24 @@ const fieldRenderers = {
                         onClick: (anchor, event) => {
                             event.preventDefault();
                             openJpxRuleMenu(anchor, addContainer, Object.entries(field.itemSchema.oneOf).map(([type, schema]) => ({
-                                label: t('cB.' + type), run: () => {
-                                    if (settingsEditHistory) settingsEditHistory.run(label, () => addAction(schema)); else addAction(schema);
-                                }
+                                label: t('cB.' + type), run: () => runSettingsEdit(label, () => addAction(schema))
                             })), label);
                         } });
                     button.prepend(createSettingsIcon('add')); button.append(createSettingsIcon('chevronDown'));
                     button.setAttribute('aria-haspopup', 'true'); button.setAttribute('aria-expanded', 'false');
                     return;
                 }
-                for (const [typeKey, subSchema] of Object.entries(field.itemSchema.oneOf)) {
-                    jpxUtils.createButton(addContainer, {
-                        text: `${t('add')} ${t(subSchema.properties.find(item => item.type === 'constant')?.label)}`,
-                        onClick: () => addAction(subSchema)
-                    });
-                };
-            } else {
-                jpxUtils.createButton(addContainer, { text: t('add'), onClick: () => addAction(field.itemSchema) });
-            }
-        };
+                for (const subSchema of Object.values(field.itemSchema.oneOf)) jpxUtils.createButton(addContainer, {
+                    text: `${t('add')} ${t(subSchema.properties.find(item => item.type === 'constant')?.label)}`,
+                    onClick: () => addAction(subSchema)
+                });
+            } else jpxUtils.createButton(addContainer, { text: t('add'), onClick: () => addAction(field.itemSchema) });
+        }
 
         function renderMultiSelectMode() {
             if (field.hasRange) {
                 if (dataObj[field.key].length < 2) dataObj[field.key].unshift(0, 0);
-                let rangeBox = document.createElement('div');
+                const rangeBox = document.createElement('div');
                 rangeBox.style.cssText = 'display: inline-flex; align-items: baseline;  margin-right: 8px;';
                 fieldRenderers.rangeNumber(rangeBox, { ...field, label: field.hasRange, skipLabel: false }, dataObj);
                 listDiv.appendChild(rangeBox);
@@ -9600,40 +9345,32 @@ const fieldRenderers = {
 
             if (field.popup) {
                 listDiv.classList.add('multiSelect-popup');
-                let summary = document.createElement('button');
+                const summary = document.createElement('button');
                 summary.type = 'button';
                 summary.className = 'multiSelect-summary';
                 summary.setAttribute('aria-haspopup', 'group');
                 summary.setAttribute('aria-expanded', 'false');
-                const selectedText = document.createElement('span');
-                selectedText.className = 'multiSelect-value';
-                summary.appendChild(selectedText);
-                summary.onclick = (e) => {
+                const selectedText = summary.appendChild(createJpxElement('span', 'multiSelect-value'));
+                summary.onclick = e => {
                     e.stopPropagation();
-                    document.querySelectorAll('.multiSelect-popup-panel').forEach(p => {
-                        let isHidden = panel.style.display === 'none';
-                        if (p === panel) panel.style.display = isHidden ? 'block' : 'none';
-                        else p.style.display = 'none';
-                    });
+                    const show = panel.style.display === 'none';
+                    document.querySelectorAll('.multiSelect-popup-panel').forEach(p => { p.style.display = p === panel && show ? 'block' : 'none'; });
                     document.querySelectorAll('.multiSelect-summary').forEach(item => {
                         item.setAttribute('aria-expanded', String(item === summary && panel.style.display !== 'none'));
                     });
                     positionSettingsMultiSelect(summary);
                 };
-                let panel = document.createElement('div');
-                panel.className = 'multiSelect-popup-panel';
+                const panel = createJpxElement('div', 'multiSelect-popup-panel');
                 panel.id = getUniqueId(`${field.key}_options`);
                 panel.setAttribute('role', 'group');
                 summary.setAttribute('aria-controls', panel.id);
                 panel.style.display = 'none';
-                panel.onclick = (e) => e.stopPropagation();
-
+                panel.onclick = e => e.stopPropagation();
                 listDiv.style.position = 'relative';
                 listDiv.append(summary, panel);
-
                 const updateSummary = () => {
-                    let values = field.hasRange ? dataObj[field.key].slice(2) : dataObj[field.key];
-                    let labels = values.map(v => t(field.multiSelectOptions.find(opt => opt.value === v)?.label || v));
+                    const values = field.hasRange ? dataObj[field.key].slice(2) : dataObj[field.key];
+                    const labels = values.map(v => t(field.multiSelectOptions.find(opt => opt.value === v)?.label || v));
                     selectedText.textContent = labels.join(', ') || t('cB.clickToSelect');
                     summary.title = labels.join(', ');
                     positionSettingsMultiSelect(summary);
@@ -9647,39 +9384,31 @@ const fieldRenderers = {
             }
 
             function renderCheckboxes(targetContainer, onUpdate) {
-                field.multiSelectOptions.forEach(opt => {
-                    let id = getUniqueId(`${field.key}_${opt.value}`);
-                    let span = document.createElement('span');
+                for (const opt of field.multiSelectOptions) {
+                    const span = document.createElement('span');
                     span.style.cssText = 'display: inline-flex; align-items: center; margin-right: 8px;';
-
-                    let checkbox = document.createElement('input');
+                    const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
-                    checkbox.id = id;
+                    checkbox.id = getUniqueId(`${field.key}_${opt.value}`);
                     checkbox.checked = dataObj[field.key].includes(opt.value);
                     checkbox.onchange = e => {
-                        if (e.target.checked) {
-                            if (!dataObj[field.key].includes(opt.value)) dataObj[field.key].push(opt.value);
-                        } else {
-                            if (field.hasRange) dataObj[field.key] = [...dataObj[field.key].slice(0, 2), ...dataObj[field.key].slice(2).filter(v => v !== opt.value)];
-                            else dataObj[field.key] = dataObj[field.key].filter(v => v !== opt.value);
-                        }
-                        if (onUpdate) onUpdate();
+                        const values = dataObj[field.key];
+                        if (e.target.checked) { if (!values.includes(opt.value)) values.push(opt.value); }
+                        else if (field.hasRange) dataObj[field.key] = [...values.slice(0, 2), ...values.slice(2).filter(v => v !== opt.value)];
+                        else dataObj[field.key] = values.filter(v => v !== opt.value);
+                        onUpdate?.();
                     };
-
-                    let label = document.createElement('label');
-                    label.htmlFor = id;
-                    label.textContent = t(opt.label);
-
-                    span.append(checkbox, label)
+                    const label = createJpxElement('label', undefined, t(opt.label));
+                    label.htmlFor = checkbox.id;
+                    span.append(checkbox, label);
                     targetContainer.appendChild(span);
-                });
+                }
             }
         }
 
         function renderDynamicListMode() {
             dataObj[field.key].forEach((value, index) => {
-                let row = document.createElement('div');
-                row.className = 'array-row';
+                const row = createJpxElement('div', 'array-row');
                 if (field.collapsibleItems) row.classList.add('jpx-rule-array-item');
 
                 let itemSchema = field.itemSchema;
@@ -9687,10 +9416,8 @@ const fieldRenderers = {
 
                 // Preserve extension rules without guessing their type or discarding data.
                 if (!itemSchema) {
-                    const unknown = document.createElement('details');
-                    unknown.className = 'jpx-rule-unknown';
-                    const summary = document.createElement('summary');
-                    summary.textContent = `${index + 1}. ${t('cM.unsupportedRule')} · ${value.type || value.key || ''}`;
+                    const unknown = createJpxElement('details', 'jpx-rule-unknown');
+                    const summary = createJpxElement('summary', undefined, `${index + 1}. ${t('cM.unsupportedRule')} · ${value.type || value.key || ''}`);
                     const raw = document.createElement('pre');
                     raw.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%';
                     raw.textContent = JSON.stringify(value, null, 2);
@@ -9701,8 +9428,7 @@ const fieldRenderers = {
                 if (itemSchema.type === 'text') {
                     renderField(row, { ...itemSchema, key: index, label: index + 1 }, dataObj[field.key]);
                 } else if (itemSchema.type === 'object') {
-                    let objDiv = document.createElement('div');
-                    objDiv.className = 'object-item';
+                    const objDiv = createJpxElement('div', 'object-item');
                     let bodyReady = false;
                     const buildBody = () => {
                         if (bodyReady) return;
@@ -9711,20 +9437,13 @@ const fieldRenderers = {
                     };
                     if (field.collapsibleItems) {
                         row.classList.add('jpx-rule-array-item');
-                        const details = document.createElement('details');
-                        details.className = 'jpx-rule-item';
+                        const details = createJpxElement('details', 'jpx-rule-item');
                         details.open = fieldRenderers.expandedRuleItems.has(value);
                         details.jpxBuildBody = buildBody;
                         if (details.open || !canDeferRuleFields(itemSchema, value)) buildBody();
                         const summary = document.createElement('summary');
-                        const summaryText = document.createElement('span');
-                        summaryText.className = 'jpx-rule-summary-text';
-                        const heading = document.createElement('span');
-                        heading.className = 'jpx-rule-summary-heading';
-                        const name = document.createElement('span');
-                        name.className = 'jpx-rule-item-name';
-                        const preview = document.createElement('span');
-                        preview.className = 'jpx-rule-item-preview';
+                        const [summaryText, heading, name, preview] = ['summary-text', 'summary-heading', 'item-name', 'item-preview']
+                            .map(part => createJpxElement('span', 'jpx-rule-' + part));
                         heading.append(name);
                         summaryText.append(heading, preview);
                         summary.appendChild(summaryText);
@@ -9749,22 +9468,16 @@ const fieldRenderers = {
                             if (preview.textContent !== previewText) { preview.textContent = previewText; preview.title = previewText; }
                         };
                         objDiv.classList.add('jpx-rule-item-body');
-                        objDiv.addEventListener('input', updateSummary);
-                        objDiv.addEventListener('change', updateSummary);
-                        objDiv.addEventListener('click', updateSummary);
+                        for (const type of ['input', 'change', 'click']) objDiv.addEventListener(type, updateSummary);
                         details.addEventListener('toggle', () => {
                             if (!details.isConnected) return;
                             if (details.open) buildBody();
                             // Bulk disclosure already updates the view state once.
                             if (fieldRenderers.expandedRuleItems.has(value) !== details.open) {
-                                if (details.open) fieldRenderers.expandedRuleItems.add(value);
-                                else fieldRenderers.expandedRuleItems.delete(value);
+                                setRuleExpanded(value, details.open);
                                 updateAllRulesToggle();
                             }
-                            if (!details.open) {
-                                objDiv.querySelectorAll('.multiSelect-popup-panel').forEach(panel => panel.style.display = 'none');
-                                objDiv.querySelectorAll('.multiSelect-summary').forEach(input => input.setAttribute('aria-expanded', 'false'));
-                            }
+                            if (!details.open) closeSettingsMultiSelects(objDiv);
                         });
                         updateSummary();
                         details.append(summary, objDiv);
@@ -9784,10 +9497,7 @@ const fieldRenderers = {
 
         function renderArray() {
             cancelBulkToggle();
-            for (const [item, details] of renderedRuleItems) {
-                if (details.open) fieldRenderers.expandedRuleItems.add(item);
-                else fieldRenderers.expandedRuleItems.delete(item);
-            }
+            for (const [item, details] of renderedRuleItems) setRuleExpanded(item, details.open);
             renderedRuleItems.clear();
             const scrollTop = listDiv.scrollTop;
             listDiv.innerHTML = '';
@@ -9808,199 +9518,136 @@ const fieldRenderers = {
     },
 
     keyBasedObjectArray(container, field, dataObj) {
-        let targetData = field.flatten ? dataObj : dataObj[field.key];
-
+        const targetData = field.flatten ? dataObj : dataObj[field.key];
         container.innerHTML = `<div${field.class ? ` class="${field.class}"` : ''} style="font-weight:bold; margin-bottom:4px;">${t(field.label)}</div>`;
-
-        let listDiv = document.createElement('div');
+        const listDiv = document.createElement('div');
         if (field.fixedActions) listDiv.className = 'jpx-rule-scroll';
         container.appendChild(listDiv);
-        const addBindingBar = document.createElement('div');
-        addBindingBar.className = 'jpx-rule-add-actions';
-        container.append(addBindingBar);
+        const addBindingBar = container.appendChild(createJpxElement('div', 'jpx-rule-add-actions'));
 
         function renderKeyBinding(key) {
-            let row = document.createElement('div');
-            row.className = 'jpx-keybinding-rule-group';
+            const row = createJpxElement('div', 'jpx-keybinding-rule-group');
             row.style.cssText = 'border: 1px solid #444; padding: 10px; margin-bottom: 15px;';
-
-            let header = document.createElement('div');
-            header.className = 'jpx-keybinding-header';
+            const header = createJpxElement('div', 'jpx-keybinding-header');
             header.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #444; padding-bottom: 5px;';
-
-            let span = document.createElement('span');
+            const span = document.createElement('span');
             span.append(`${t('cB.binding')}: `);
             jpxUtils.createButton(span, {
                 text: jpxUtils.formatKeyCombo(key, ' + '),
-                onClick: (btn, e) => {
-                    let originalText = btn.textContent;
+                onClick: btn => {
+                    const originalText = btn.textContent;
                     btn.textContent = '...';
-                    jpxUtils.captureKeyCombo(
-                        (result) => {
-                            let newKey = 'kb_' + result.comboString;
-                            if (newKey === key) return renderAll();
-                            if (targetData[newKey]) {
-                                jpxUtils.createToast(t('cB.duplicateKeys'));
-                                return renderAll();
-                            }
-
-                            let newEntries = Object.entries(targetData).map(([k, v]) => (k === key ? [newKey, v] : [k, v]));
-                            for (const k in targetData) delete targetData[k];
-                            Object.assign(targetData, Object.fromEntries(newEntries));
-
-                            renderAll();
-                        },
-                        () => { btn.textContent = originalText; }
-                    );
+                    jpxUtils.captureKeyCombo(result => {
+                        const newKey = 'kb_' + result.comboString;
+                        if (newKey === key) return renderAll();
+                        if (targetData[newKey]) {
+                            jpxUtils.createToast(t('cB.duplicateKeys'));
+                            return renderAll();
+                        }
+                        // Rename in place, keeping the binding's position among the mode's keys.
+                        const newEntries = Object.entries(targetData).map(([k, v]) => (k === key ? [newKey, v] : [k, v]));
+                        for (const k in targetData) delete targetData[k];
+                        Object.assign(targetData, Object.fromEntries(newEntries));
+                        renderAll();
+                    }, () => { btn.textContent = originalText; });
                 }
             });
             header.appendChild(span);
-
             const deleteBindingButton = jpxUtils.createButton(header, {
                 text: t('delete'),
                 className: 'jpx-delete-button',
-                onClick: () => { if(confirm(`${t('delete')} ${jpxUtils.formatKeyCombo(key, ' + ')}?`)) { delete targetData[key]; renderAll(); } } 
+                onClick: () => { if (confirm(`${t('delete')} ${jpxUtils.formatKeyCombo(key, ' + ')}?`)) { delete targetData[key]; renderAll(); } }
             });
-
             row.appendChild(header);
             bindSettingsChange(row, targetData, key, span);
-
-            let arrayContainer = document.createElement('div');
-            renderField(arrayContainer, {
-                key,
-                skipLabel: true,
-                type: 'array',
-                canDisable: field.canDisable,
-                collapsibleItems: field.collapsibleItems,
-                itemSchema: field.itemSchema,
-            }, targetData);
+            const arrayContainer = document.createElement('div');
+            renderField(arrayContainer, { key, skipLabel: true, type: 'array', canDisable: field.canDisable,
+                collapsibleItems: field.collapsibleItems, itemSchema: field.itemSchema }, targetData);
             const toolbar = arrayContainer.querySelector(':scope > .jpx-rule-list-toolbar');
             if (toolbar) header.insertBefore(toolbar, deleteBindingButton);
             row.appendChild(arrayContainer);
-
             listDiv.appendChild(row);
         }
 
         function renderAll() {
             listDiv.innerHTML = '';
-            Object.keys(targetData).forEach(k => {
-                if (field.flatten && k.startsWith('kb_')) {
-                    renderKeyBinding(k);
-                } else if (!field.flatten) {
-                    renderKeyBinding(k);
-                }
-            });
+            for (const k of Object.keys(targetData)) if (!field.flatten || k.startsWith('kb_')) renderKeyBinding(k);
         }
 
         jpxUtils.createButton(addBindingBar, {
             text: t('cB.addNewKeyBinding'),
-            onClick: (btn, e) => {
-                let originalText = btn.textContent;
+            onClick: btn => {
+                const originalText = btn.textContent;
                 btn.textContent = `... ${t('cB.recording')} ...`;
-                jpxUtils.captureKeyCombo(
-                    (result) => {
-                        let newKey = 'kb_' + result.comboString;
-                        if (targetData[newKey]) {
-                            jpxUtils.createToast(t('cB.duplicateKeys'));
-                        } else {
-                            targetData[newKey] = [];
-                        }
-                        renderAll();
-                        requestAnimationFrame(() => listDiv.lastElementChild?.scrollIntoView({ block: 'start' }));
-                        btn.textContent = originalText;
-                    },
-                    () => { btn.textContent = originalText; }
-                );
+                jpxUtils.captureKeyCombo(result => {
+                    const newKey = 'kb_' + result.comboString;
+                    if (targetData[newKey]) jpxUtils.createToast(t('cB.duplicateKeys'));
+                    else targetData[newKey] = [];
+                    renderAll();
+                    requestAnimationFrame(() => listDiv.lastElementChild?.scrollIntoView({ block: 'start' }));
+                    btn.textContent = originalText;
+                }, () => { btn.textContent = originalText; });
             }
         });
-
         renderAll();
     },
 
     conditionsArray(container, field, dataObj) {
         if (!Array.isArray(dataObj[field.key])) dataObj[field.key] = [];
-
-        let listDiv = document.createElement('div');
-        container.appendChild(listDiv);
+        const listDiv = container.appendChild(document.createElement('div'));
+        const getDefaultValue = (type, defaultValue) => {
+            if (defaultValue !== undefined) return JSON.parse(JSON.stringify(defaultValue));
+            switch (type) {
+                case 'boolean': return false;
+                case 'text': return '';
+                case 'number': return 0;
+                case 'rangeNumber': return [0, 0];
+                case 'array': return [];
+                case 'dropdown': return '';
+                default: return null;
+            }
+        };
 
         function createRow(item, index) {
-            let selectId = getUniqueId('condition');
-
-            let row = document.createElement('div');
-            row.className = 'dynamic-array-row';
-
-            let select = document.createElement('select');
+            const selectId = getUniqueId('condition');
+            const row = createJpxElement('div', 'dynamic-array-row');
+            const select = document.createElement('select');
             select.id = selectId;
             select.setAttribute('aria-label', `${t('conditions')} ${index + 1}`);
-            field.options.forEach(opt => {
-                let option = document.createElement('option');
+            for (const opt of field.options) {
+                const option = select.appendChild(document.createElement('option'));
                 option.value = opt.key;
                 option.textContent = t(opt.label);
-                select.appendChild(option);
-            });
+            }
             select.value = item.key ?? field.options[0]?.key;
-            row.appendChild(select);
-
-            let inputDiv = document.createElement('div');
-            inputDiv.className = 'jpx-condition-value';
-            row.appendChild(inputDiv);
-
-            let extraDiv = document.createElement('div');
-            extraDiv.className = 'jpx-condition-extra';
-            row.appendChild(extraDiv);
+            const inputDiv = createJpxElement('div', 'jpx-condition-value'), extraDiv = createJpxElement('div', 'jpx-condition-extra');
+            row.append(select, inputDiv, extraDiv);
 
             function renderInput() {
                 inputDiv.innerHTML = '';
                 inputDiv.classList.remove('jpx-range');
                 extraDiv.innerHTML = '';
-
-                let selectedOption = field.options.find(option => option.key === select.value);
+                const selectedOption = field.options.find(option => option.key === select.value);
                 if (!selectedOption) return;
-
-                if ((item.key !== undefined && item.key !== select.value) || item.key === undefined) {
+                // Switching the condition type starts that condition from its defaults.
+                if (item.key === undefined || item.key !== select.value) {
                     Object.keys(item).forEach(k => delete item[k]);
                     item.key = selectedOption.key;
                     item.value = getDefaultValue(selectedOption.type, selectedOption.defaultValue);
                 }
-
-                if (selectedOption.extraFields) {
-                    selectedOption.extraFields.forEach(f => {
-                        if (item[f.key] === undefined) item[f.key] = getDefaultValue(f.type, f.defaultValue);
-                    });
-                }
-
-                renderField(inputDiv, {
-                    ...selectedOption,
-                    key: 'value',
-                    skipLabel: true,
-                }, item);
-
-                if (selectedOption.extraFields) {
-                    selectedOption.extraFields.forEach(f => {
-                        let wrap = document.createElement('div');
-                        renderField(wrap, f, item);
-                        extraDiv.appendChild(wrap);
-                    });
-                }
+                selectedOption.extraFields?.forEach(f => {
+                    if (item[f.key] === undefined) item[f.key] = getDefaultValue(f.type, f.defaultValue);
+                });
+                renderField(inputDiv, { ...selectedOption, key: 'value', skipLabel: true }, item);
+                selectedOption.extraFields?.forEach(f => {
+                    const wrap = document.createElement('div');
+                    renderField(wrap, f, item);
+                    extraDiv.appendChild(wrap);
+                });
             }
-
-            function getDefaultValue(type, defaultValue) {
-                if (defaultValue !== undefined) return JSON.parse(JSON.stringify(defaultValue));
-
-                switch (type) {
-                    case 'boolean': return false;
-                    case 'text': return '';
-                    case 'number': return 0;
-                    case 'rangeNumber': return [0, 0];
-                    case 'array': return [];
-                    case 'dropdown': return '';
-                    default: return null;
-                }
-            }
-
             select.onchange = () => { renderInput(); };
 
-            let deleteButton = jpxUtils.createButton(row, {
+            const deleteButton = jpxUtils.createButton(row, {
                 className: 'jpx-delete-button',
                 onClick: () => {
                     dataObj[field.key].splice(index, 1);
@@ -10010,7 +9657,6 @@ const fieldRenderers = {
             deleteButton.title = t('cGen.deleteCondition');
             deleteButton.setAttribute('aria-label', t('cGen.deleteCondition'));
             deleteButton.replaceChildren(createSettingsIcon('delete'));
-
             renderInput();
             bindSettingsChange(row, item, null, row, true);
             return row;
@@ -10018,21 +9664,17 @@ const fieldRenderers = {
 
         function renderList() {
             listDiv.innerHTML = '';
-            dataObj[field.key].forEach((item, index) => {
-                listDiv.appendChild(createRow(item, index));
-            });
+            dataObj[field.key].forEach((item, index) => listDiv.appendChild(createRow(item, index)));
         }
 
         jpxUtils.createButton(container, {
             text: `${t('add')} ${t(field.key)}`,
             onClick: () => {
-                let newItem = {};
+                const newItem = {};
                 dataObj[field.key].push(newItem);
-                let index = dataObj[field.key].length - 1;
-                listDiv.appendChild(createRow(newItem, index));
+                listDiv.appendChild(createRow(newItem, dataObj[field.key].length - 1));
             }
         });
-
         renderList();
     }
 };
@@ -10042,55 +9684,36 @@ function renderField(container, field, dataObj) {
     const renderer = fieldRenderers[field.type === 'heading' ? 'constant' : field.type];
     if (renderer) renderer(container, field, dataObj);
     if (field.help) {
-        const help = document.createElement('p');
-        help.className = 'jpx-field-help';
+        const help = createJpxElement('p', 'jpx-field-help');
         help.id = getUniqueId('help');
         help.textContent = t(field.help);
         container.querySelector('input, select, textarea')?.setAttribute('aria-describedby', help.id);
         container.appendChild(help);
     }
     if (!['group', 'heading', 'constant'].includes(field.type) && !field.hasModeDropdown) {
-        const key = field.type === 'keyBasedObjectArray' && field.flatten
-            ? value => Object.fromEntries(Object.entries(value || {}).filter(([name]) => name.startsWith('kb_')))
-            : field.key;
+        const key = field.type === 'keyBasedObjectArray' && field.flatten ? readKeyBindingRules : field.key;
         const badgeTarget = container.querySelector(':scope > label, :scope > .jpx-rule-list-heading') || container;
         bindSettingsChange(container, dataObj, key, badgeTarget);
     }
 }
 
 function resolveSchema(schema, dataObj) {
-    if (!schema.discriminator) return schema;
-    const typeValue = dataObj[schema.discriminator];
-    return schema.oneOf[typeValue];
+    return schema.discriminator ? schema.oneOf[dataObj[schema.discriminator]] : schema;
 }
 
 function createEmptyObject(schema) {
     const obj = {};
-    schema.properties.forEach(property => {
-        if (property.type === 'constant') {
-            obj[property.key] = property.value;
-            return;
+    for (const property of schema.properties) {
+        if (property.type === 'constant') obj[property.key] = property.value;
+        else if (property.default !== undefined) obj[property.key] = property.default;
+        else {
+            // Built per property, so new rules never share container values.
+            const defaults = { text: '', number: 0, rangeNumber: [0, 0], boolean: false, array: [], fieldPicker: [],
+                object: () => createEmptyObject(property), keyBasedObjectArray: {} };
+            const value = defaults[property.type];
+            obj[property.key] = typeof value === 'function' ? value() : value;
         }
-
-        if (property.default !== undefined) {
-            obj[property.key] = property.default;
-            return;
-        }
-
-        const defaults = {
-            text: '',
-            number: 0,
-            rangeNumber: [0,0],
-            boolean: false,
-            array: [],
-            fieldPicker: [],
-            object: () => createEmptyObject(property),
-            keyBasedObjectArray: {},
-        };
-
-        obj[property.key] = typeof defaults[property.type] === 'function' ? defaults[property.type]() : defaults[property.type] ?? undefined;
-    });
-
+    }
     return obj;
 }
 
@@ -10176,25 +9799,11 @@ function renderSettings() {
     });
     const disposeNativePickers = bindSettingsNativePickers(container);
 
-    let windowPanel = document.createElement('div');
-    windowPanel.className = 'jpx-settings-window';
-
-    let titleBar = document.createElement('div');
-    titleBar.className = 'jpx-settings-titlebar';
-
-    let title = document.createElement('strong');
-    title.className = 'jpx-settings-title';
-    title.textContent = 'JPX-PLUS';
-    titleBar.appendChild(title);
+    const windowPanel = createJpxElement('div', 'jpx-settings-window'), titleBar = createJpxElement('div', 'jpx-settings-titlebar');
+    const title = titleBar.appendChild(createJpxElement('strong', 'jpx-settings-title', 'JPX-PLUS'));
     const themeToggle = jpxUtils.createButton(titleBar, { id: 'jpx-theme-toggle', history: false, onClick: toggleJpxTheme });
     themeToggle.setAttribute('role', 'switch');
-
-    let closeButton = jpxUtils.createButton(titleBar, {
-        id: 'close-button',
-        text: '×',
-        history: false,
-        onClick: requestClose
-    });
+    const closeButton = jpxUtils.createButton(titleBar, { id: 'close-button', text: '×', history: false, onClick: requestClose });
     closeButton.setAttribute('aria-label', t('cGen.closeSettings'));
     const navigationButton = jpxUtils.createButton(titleBar, {
         id: 'jpx-settings-menu-button', history: false,
@@ -10206,17 +9815,12 @@ function renderSettings() {
     navigationButton.setAttribute('aria-label', t('cGen.settingsSections'));
     windowPanel.appendChild(titleBar);
 
-    let tabHeader = document.createElement('nav');
-    tabHeader.className = 'settings-tab-header';
+    const tabHeader = createJpxElement('nav', 'settings-tab-header');
     tabHeader.id = 'jpx-settings-navigation';
     tabHeader.setAttribute('role', 'tablist');
     tabHeader.setAttribute('aria-label', t('cGen.settingsSections'));
-    let settingsWorkspace = document.createElement('div');
-    settingsWorkspace.className = 'jpx-settings-workspace';
-    let settingsPanels = document.createElement('div');
-    settingsPanels.className = 'jpx-settings-panels';
-    const sidebar = document.createElement('div');
-    sidebar.className = 'jpx-settings-sidebar';
+    const settingsWorkspace = createJpxElement('div', 'jpx-settings-workspace'), settingsPanels = createJpxElement('div', 'jpx-settings-panels');
+    const sidebar = createJpxElement('div', 'jpx-settings-sidebar');
     let sidebarCollapsed = localStorage.getItem(prefix + 'settingsSidebarCollapsed') === 'true';
     const sidebarToggle = jpxUtils.createButton(sidebar, {
         className: 'jpx-settings-sidebar-toggle',
@@ -10273,41 +9877,34 @@ function renderSettings() {
         const mobile = physicalWidth <= 650 || (touchMedia.matches && physicalWidth <= 1024 && physicalHeight <= 600);
         const changed = mobile !== container.classList.contains('jpx-settings-mobile');
         container.classList.toggle('jpx-settings-mobile', mobile);
-        if (mobile) {
-            container.style.setProperty('--settings-left', `${viewport?.offsetLeft || 0}px`);
-            container.style.setProperty('--settings-top', `${viewport?.offsetTop || 0}px`);
-            container.style.setProperty('--settings-width', `${width / pageScale}px`);
-            container.style.setProperty('--settings-height', `${height / pageScale}px`);
-            container.style.setProperty('--settings-scale', pageScale);
-        }
+        if (mobile) for (const [name, value] of [['left', `${viewport?.offsetLeft || 0}px`], ['top', `${viewport?.offsetTop || 0}px`],
+            ['width', `${width / pageScale}px`], ['height', `${height / pageScale}px`], ['scale', pageScale]]) container.style.setProperty('--settings-' + name, value);
         if (changed || !tabHeader.hasAttribute('aria-orientation')) {
             tabHeader.setAttribute('aria-orientation', 'vertical');
             closeButton.textContent = mobile ? `‹ ${t('cGen.back')}` : '×';
             closeButton.setAttribute('aria-label', t(mobile ? 'cGen.back' : 'cGen.closeSettings'));
             title.textContent = mobile ? t('cGen.settings') : 'JPX-PLUS';
         }
-        if (changed) setMobileNavigation(false);
-        if (changed) switchTab(tabs.find(tab => tab.btn.getAttribute('aria-selected') === 'true')?.id || 'battle', tabs);
+        if (changed) {
+            setMobileNavigation(false);
+            switchTab(tabs.find(tab => tab.btn.getAttribute('aria-selected') === 'true')?.id || 'battle', tabs);
+        }
         container.querySelectorAll('.multiSelect-summary[aria-expanded=true]').forEach(positionSettingsMultiSelect);
     };
     tabHeader.addEventListener('keydown', event => {
         const currentIndex = tabs.findIndex(tab => tab.btn === event.target.closest('[role=tab]'));
         if (currentIndex < 0) return;
-        let nextIndex = currentIndex;
         const vertical = tabHeader.getAttribute('aria-orientation') === 'vertical';
-        if ((vertical && event.key === 'ArrowDown') || (!vertical && event.key === 'ArrowRight')) nextIndex = (currentIndex + 1) % tabs.length;
-        else if ((vertical && event.key === 'ArrowUp') || (!vertical && event.key === 'ArrowLeft')) nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-        else if (event.key === 'Home') nextIndex = 0;
-        else if (event.key === 'End') nextIndex = tabs.length - 1;
-        else return;
+        const step = { [vertical ? 'ArrowDown' : 'ArrowRight']: 1, [vertical ? 'ArrowUp' : 'ArrowLeft']: -1 }[event.key];
+        const nextIndex = step ? (currentIndex + step + tabs.length) % tabs.length : { Home: 0, End: tabs.length - 1 }[event.key];
+        if (nextIndex === undefined) return;
         event.preventDefault();
         tabs[nextIndex].btn.focus();
         switchTab(tabs[nextIndex].id, tabs);
     });
 
     function closeMultiSelectPopups() {
-        container.querySelectorAll('.multiSelect-popup-panel').forEach(panel => panel.style.display = 'none');
-        container.querySelectorAll('.multiSelect-summary').forEach(summary => summary.setAttribute('aria-expanded', 'false'));
+        closeSettingsMultiSelects(container);
     }
     const onPointerDown = event => {
         if (container.classList.contains('jpx-settings-navigation-open') &&
@@ -10325,35 +9922,21 @@ function renderSettings() {
     };
     const onKeyDown = event => {
         if (event.key !== 'Escape') return;
-        if (container.classList.contains('jpx-settings-navigation-open')) {
-            event.preventDefault();
-            event.stopPropagation();
-            setMobileNavigation(false, true);
-            return;
-        }
-        if (fieldRenderers.dragState.cancel) {
-            event.preventDefault();
-            event.stopPropagation();
-            fieldRenderers.dragState.cancel();
-            return;
-        }
+        const consume = () => { event.preventDefault(); event.stopPropagation(); };
+        if (container.classList.contains('jpx-settings-navigation-open')) { consume(); setMobileNavigation(false, true); return; }
+        if (fieldRenderers.dragState.cancel) { consume(); fieldRenderers.dragState.cancel(); return; }
         const sortMenu = container.querySelector('.jpx-rule-sort-popover:popover-open');
         if (sortMenu) {
-            event.preventDefault();
-            event.stopPropagation();
+            consume();
             const anchor = container.querySelector(`[aria-controls="${sortMenu.id}"]`);
             sortMenu.hidePopover();
             anchor?.focus({ preventScroll: true });
-            return;
-        }
-        const hasOpenPopup = [...container.querySelectorAll('.multiSelect-popup-panel')]
-            .some(panel => panel.style.display !== 'none');
-        if (hasOpenPopup) {
-            event.preventDefault();
-            event.stopPropagation();
+        } else if ([...container.querySelectorAll('.multiSelect-popup-panel')].some(panel => panel.style.display !== 'none')) {
+            consume();
             closeMultiSelectPopups();
         }
     };
+    const viewportListeners = [[window, 'resize'], [viewport, 'resize'], [viewport, 'scroll'], [touchMedia, 'change']];
     const cleanup = () => {
         jpxConfigManagerView?.dispose();
         disposeNativePickers();
@@ -10365,10 +9948,7 @@ function renderSettings() {
         document.removeEventListener('pointerdown', onPointerDown, true);
         document.removeEventListener('keydown', onKeyDown, true);
         container.removeEventListener('focusin', onNavigationFocus);
-        window.removeEventListener('resize', updateSettingsViewport);
-        viewport?.removeEventListener('resize', updateSettingsViewport);
-        viewport?.removeEventListener('scroll', updateSettingsViewport);
-        touchMedia.removeEventListener('change', updateSettingsViewport);
+        viewportListeners.forEach(([target, type]) => target?.removeEventListener(type, updateSettingsViewport));
     };
     document.addEventListener('pointerdown', onPointerDown, true);
     document.addEventListener('keydown', onKeyDown, true);
@@ -10406,16 +9986,12 @@ function renderSettings() {
     }
 
     function refreshBattleViews() {
-        [
-            { id: 'cfgBattle-ui', schema: cfgBattleSettingsSchema },
-        ].forEach(({ id, schema }) => {
-            let oldUI = document.getElementById(id);
-            if (!oldUI) return;
-            let newUI = document.createElement('div');
-            newUI.id = id;
-            oldUI.replaceWith(newUI);
-            renderSchema(newUI, schema, cfgBattle);
-        });
+        const oldUI = document.getElementById('cfgBattle-ui');
+        if (!oldUI) return;
+        const newUI = document.createElement('div');
+        newUI.id = 'cfgBattle-ui';
+        oldUI.replaceWith(newUI);
+        renderSchema(newUI, cfgBattleSettingsSchema, cfgBattle);
     }
 
     function exportBattleConfig() {
@@ -10454,39 +10030,14 @@ function renderSettings() {
     loadStatsSettingsConfig();
     statsSettingsView = { section: 'combatRows', fields: {} };
     battleRulesView = { section: 'rules', scroll: {} };
-    let tabs = [
+    const tabs = [
+        { id: 'battle', text: t('cB.basicSettings'), saveBtnText: t('cB.saveBattleConfig'), exportBtnText: t('cB.exportBattleConfig'),
+            importBtnText: t('cB.importBattleConfig'), render: renderBattleTab, onSave: saveBattleConfig, onExport: exportBattleConfig, onImport: importBattleConfig },
+        { id: 'keyBindings', text: t('cB.keyBindings'), saveBtnText: t('cB.saveKeyBindings'), render: renderKeybindingsTab, onSave: saveKeyBindings, showTransfer: false },
+        { id: 'configManager', text: t('cM.name'), ownActions: true, render: parent => renderJpxConfigManager(parent, { onApplied: container.jpxConfigApplied }) },
         {
-            id: 'battle',
-            text: t('cB.basicSettings'),
-            saveBtnText: t('cB.saveBattleConfig'),
-            exportBtnText: t('cB.exportBattleConfig'),
-            importBtnText: t('cB.importBattleConfig'),
-            render: renderBattleTab,
-            onSave: saveBattleConfig,
-            onExport: exportBattleConfig,
-            onImport: importBattleConfig,
-        },
-        {
-            id: 'keyBindings',
-            text: t('cB.keyBindings'),
-            saveBtnText: t('cB.saveKeyBindings'),
-            render: renderKeybindingsTab,
-            onSave: saveKeyBindings,
-            showTransfer: false,
-        },
-        {
-            id: 'configManager',
-            text: t('cM.name'),
-            ownActions: true,
-            render: parent => renderJpxConfigManager(parent, { onApplied: container.jpxConfigApplied }),
-        },
-        {
-            id: 'stats',
-            text: t('cS.statsSettings'),
-            saveBtnText: t('cS.saveStatsConfig'),
-            exportBtnText: t('cS.exportStatsConfig'),
-            importBtnText: t('cS.importStatsConfig'),
-            render: renderStatsTab,
+            id: 'stats', text: t('cS.statsSettings'), saveBtnText: t('cS.saveStatsConfig'), exportBtnText: t('cS.exportStatsConfig'),
+            importBtnText: t('cS.importStatsConfig'), render: renderStatsTab,
             onSave() {
                 console.log(cfgStats);
                 localStorage.setItem(prefix + 'cfgStats', JSON.stringify(cfgStats));
@@ -10520,22 +10071,14 @@ function renderSettings() {
             },
         });
         tab.btn.id = `tab_${tab.id}`;
-        const tabLabel = document.createElement('span');
-        tabLabel.className = 'jpx-tab-label';
-        tabLabel.textContent = tab.text;
-        tab.btn.replaceChildren(createSettingsIcon(tab.plugin ? 'plugin' : tab.id), tabLabel);
+        tab.btn.replaceChildren(createSettingsIcon(tab.plugin ? 'plugin' : tab.id), createJpxElement('span', 'jpx-tab-label', tab.text));
         tab.btn.title = tab.text;
-        tab.btn.setAttribute('aria-label', tab.text);
-        tab.btn.setAttribute('role', 'tab');
-        tab.btn.setAttribute('aria-controls', `panel_${tab.id}`);
-        tab.btn.setAttribute('aria-selected', 'false');
-
+        for (const [name, value] of [['aria-label', tab.text], ['role', 'tab'], ['aria-controls', `panel_${tab.id}`], ['aria-selected', 'false']]) tab.btn.setAttribute(name, value);
         tab.panel = document.createElement('div');
         tab.panel.id = `panel_${tab.id}`;
         tab.panel.setAttribute('role', 'tabpanel');
         tab.panel.setAttribute('aria-labelledby', tab.btn.id);
         tab.panel.style.display = 'none';
-
         tab.rendered = false;
         settingsPanels.appendChild(tab.panel);
     }
@@ -10654,8 +10197,7 @@ function renderSettings() {
     window.addEventListener('jpx:settings-plugin', mountPlugins);
     container.addEventListener('close', () => window.removeEventListener('jpx:settings-plugin', mountPlugins), { once: true });
 
-    let buttonsUI = document.createElement('div');
-    buttonsUI.className = 'jpx-settings-footer';
+    const buttonsUI = createJpxElement('div', 'jpx-settings-footer');
     const importFeedback = createJpxImportFeedback();
     container.jpxClearImportFeedback = importFeedback.clear;
     // A later edit must not leave a stale Saved confirmation on screen.
@@ -10663,24 +10205,17 @@ function renderSettings() {
         if (importFeedback.node.dataset.stage === 'saved' && event.target.id !== 'save-button' &&
             !importFeedback.node.contains(event.target)) importFeedback.clear();
     }, true);
+    const shownTab = () => tabs.find(tab => tab.panel.style.display === 'flex');
 
     jpxUtils.createButton(buttonsUI, {
         id: 'export-button',
         history: false,
         onClick: async () => {
-            let activeTab = tabs.find(t => t.panel.style.display === 'flex');
+            const activeTab = shownTab();
             if (!activeTab || !activeTab.onExport) return t('cGen.exportFailed!');
-
-            let info = await activeTab.onExport();
+            const info = await activeTab.onExport();
             if (!info) return;
-            let blob = new Blob([jpxUtils.stringifyLimited(info.data, info.depth)], { type: 'text/plain;charset=utf-8' });
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = info.fileName;
-            a.click();
-            URL.revokeObjectURL(url);
-
+            downloadSettingsFile(jpxUtils.stringifyLimited(info.data, info.depth), 'text/plain;charset=utf-8', info.fileName);
             return t('cGen.exported!');
         }
     });
@@ -10688,19 +10223,19 @@ function renderSettings() {
     jpxUtils.createButton(buttonsUI, {
         id: 'import-button',
         history: false,
-        onClick: (btn) => {
-            let activeTab = tabs.find(t => t.panel.style.display === 'flex');
+        onClick: btn => {
+            const activeTab = shownTab();
             if (!activeTab || !activeTab.onImport) return t('cGen.importFailed!');
             const generation = container.jpxImportGeneration = (container.jpxImportGeneration || 0) + 1;
             if (importFeedback.node.dataset.stage === 'reading') importFeedback.clear();
             const current = () => container.isConnected && container.open && container.jpxImportGeneration === generation &&
                 activeTab.btn.getAttribute('aria-selected') === 'true';
-            let input = document.createElement('input');
+            const input = document.createElement('input');
             input.type = 'file';
             input.accept = '.txt,.json';
 
             return new Promise((resolve, reject) => {
-                input.addEventListener('change', async (e) => {
+                input.addEventListener('change', async e => {
                     const file = e.target.files[0];
                     if (!file || !current()) return resolve();
                     importFeedback.show(t('cM.importReading', { name: jpxImportDisplayName(file.name) }), 'reading', file.name);
@@ -10712,26 +10247,15 @@ function renderSettings() {
                         reading = false;
                         if (!current()) return resolve();
                         editHistory.run(t('cGen.importConfig'), () => {
-                        let info = activeTab.onImport(content);
-
-                        if (info.transModeKey) {
-                            let modeKey = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue;
-                            if (modeKey) btn.dataset.battleMode = modeKey;
-                        }
-
-                        if (info.refreshBattleViews) {
-                            refreshBattleViews();
-                        } else if (info.refreshStats) {
-                            renderStatsSettingsUI(document.getElementById('cfgStats-ui'));
-                        } else {
-                            let oldUI = document.getElementById(info.uiId);
-                            let newUI = document.createElement('div');
-                            newUI.id = info.uiId;
-                            if (oldUI) oldUI.replaceWith(newUI);
-                            renderSchema(newUI, info.schema, info.cfg);
-                        }
+                            const info = activeTab.onImport(content);
+                            if (info.transModeKey) {
+                                const modeKey = document.querySelector('[data-role="battleMode"]')?.dataset.currentValue;
+                                if (modeKey) btn.dataset.battleMode = modeKey;
+                            }
+                            // Both importing tabs report which view they changed.
+                            if (info.refreshBattleViews) refreshBattleViews();
+                            else if (info.refreshStats) renderStatsSettingsUI(document.getElementById('cfgStats-ui'));
                         });
-
                         importFeedback.show(t('cM.importDraft', { name: jpxImportDisplayName(file.name) }) +
                             (activeTab.id === 'battle' && log ? ' ' + t('cM.importPaused') : ''), 'draft', file.name);
                         resolve(t('cGen.imported!'));
@@ -10743,7 +10267,6 @@ function renderSettings() {
                         reject(t('cGen.importFailed!'));
                     }
                 });
-
                 input.addEventListener('cancel', () => resolve(), { once: true });
                 input.click();
             });
@@ -10753,8 +10276,8 @@ function renderSettings() {
     jpxUtils.createButton(buttonsUI, {
         id: 'save-button',
         history: false,
-        onClick: (btn) => {
-            let activeTab = tabs.find(t => t.panel.style.display === 'flex');
+        onClick: () => {
+            const activeTab = shownTab();
             if (!activeTab || !activeTab.onSave) return t('cGen.error!');
             try {
                 if (activeTab.onSave() === false) throw new Error('Save failed');
@@ -10770,12 +10293,10 @@ function renderSettings() {
         }
     });
 
-    const fileActions = document.createElement('div');
-    fileActions.className = 'jpx-settings-file-actions';
+    const fileActions = createJpxElement('div', 'jpx-settings-file-actions');
     fileActions.append(...buttonsUI.children);
     buttonsUI.appendChild(fileActions);
-    windowPanel.appendChild(importFeedback.node);
-    windowPanel.appendChild(buttonsUI);
+    windowPanel.append(importFeedback.node, buttonsUI);
     container.appendChild(windowPanel);
     document.body.appendChild(container);
 
@@ -10798,10 +10319,7 @@ function renderSettings() {
     });
     settingsEditHistory = editHistory;
     updateSettingsViewport();
-    window.addEventListener('resize', updateSettingsViewport);
-    viewport?.addEventListener('resize', updateSettingsViewport);
-    viewport?.addEventListener('scroll', updateSettingsViewport);
-    touchMedia.addEventListener('change', updateSettingsViewport);
+    viewportListeners.forEach(([target, type]) => target?.addEventListener(type, updateSettingsViewport));
     container.showModal();
     container.focus({ preventScroll: true });
 }
@@ -10811,51 +10329,37 @@ function switchTab(targetId, tabs) {
         jpxConfigManagerView.leave(() => switchTab(targetId, tabs));
         return;
     }
+    const container = document.getElementById('settings-container');
     const previousId = tabs.find(tab => tab.btn.getAttribute('aria-selected') === 'true')?.id;
-    if (previousId !== targetId) {
-        const container = document.getElementById('settings-container');
-        if (container) {
-            container.jpxImportGeneration = (container.jpxImportGeneration || 0) + 1;
-            container.jpxClearImportFeedback?.();
-        }
+    if (previousId !== targetId && container) {
+        container.jpxImportGeneration = (container.jpxImportGeneration || 0) + 1;
+        container.jpxClearImportFeedback?.();
     }
     if (previousId === 'configManager' && targetId !== previousId) jpxConfigManagerView?.onHidden();
     if (targetId === 'configManager' && previousId !== targetId) jpxConfigManagerView?.onShown();
     if (targetId !== 'stats') captureStatsListScroll(document.getElementById('cfgStats-ui'));
     tabs.forEach(tab => {
-        let isActive = (tab.id === targetId);
+        const isActive = tab.id === targetId;
         if (isActive && !tab.rendered) {
             tab.render(tab.panel);
             tab.rendered = true;
         }
         if (!isActive) tab.panel.querySelectorAll('[popover]:popover-open').forEach(popup => popup.hidePopover());
-
         tab.btn.setAttribute('aria-selected', String(isActive));
         tab.panel.style.display = isActive ? 'flex' : 'none';
-
-        if (isActive) {
-            const footer = document.querySelector('#settings-container .jpx-settings-footer');
-            if (footer) footer.style.display = tab.plugin || tab.ownActions ? 'none' : '';
-            const mobile = document.getElementById('settings-container')?.classList.contains('jpx-settings-mobile');
-            if (mobile) document.querySelector('#settings-container .jpx-settings-title').textContent = tab.text;
-            let saveBtn = document.getElementById('save-button');
-            let exportBtn = document.getElementById('export-button');
-            let importBtn = document.getElementById('import-button');
-
-            if (saveBtn) {
-                saveBtn.textContent = mobile ? t('cGen.save') : tab.saveBtnText || 'Save Settings';
-                saveBtn.title = tab.saveBtnText || 'Save Settings';
-            }
-            if (exportBtn) {
-                exportBtn.textContent = mobile ? t('cGen.export') : tab.exportBtnText || 'Export Settings';
-                exportBtn.title = tab.exportBtnText || 'Export Settings';
-                exportBtn.style.display = tab.showTransfer === false ? 'none' : '';
-            }
-            if (importBtn) {
-                importBtn.textContent = mobile ? t('cGen.import') : tab.importBtnText || 'Import Settings';
-                importBtn.title = tab.importBtnText || 'Import Settings';
-                importBtn.style.display = tab.showTransfer === false ? 'none' : '';
-            }
+        if (!isActive) return;
+        const footer = container?.querySelector('.jpx-settings-footer');
+        if (footer) footer.style.display = tab.plugin || tab.ownActions ? 'none' : '';
+        const mobile = container?.classList.contains('jpx-settings-mobile');
+        if (mobile) container.querySelector('.jpx-settings-title').textContent = tab.text;
+        // Compact layouts show short captions; the full action stays in the title.
+        for (const [name, fallback] of [['save', 'Save Settings'], ['export', 'Export Settings'], ['import', 'Import Settings']]) {
+            const button = document.getElementById(`${name}-button`);
+            if (!button) continue;
+            const text = tab[`${name}BtnText`] || fallback;
+            button.textContent = mobile ? t(`cGen.${name}`) : text;
+            button.title = text;
+            if (name !== 'save') button.style.display = tab.showTransfer === false ? 'none' : '';
         }
     });
     if (targetId === 'stats') restoreStatsListScroll(document.getElementById('cfgStats-ui'));
@@ -10863,53 +10367,43 @@ function switchTab(targetId, tabs) {
 
 function renderBattleTab(parent) {
     loadBattleConfig();
-
-    let cfgBattleUI = document.createElement('div');
+    const cfgBattleUI = parent.appendChild(document.createElement('div'));
     cfgBattleUI.id = 'cfgBattle-ui';
-    parent.appendChild(cfgBattleUI);
     renderSchema(cfgBattleUI, cfgBattleSettingsSchema, cfgBattle);
 }
 
 function renderKeybindingsTab(parent) {
-    const intro = document.createElement('div');
-    intro.className = 'heading';
-    intro.textContent = t('cB.keyBindings');
-    parent.appendChild(intro);
-
-    let keybindsUI = document.createElement('div');
-    keybindsUI.className = 'jpx-keybindings-settings';
-    Object.keys(KEYBINDS).forEach(action => {
-        let row = document.createElement('div');
+    parent.appendChild(createJpxElement('div', 'heading', t('cB.keyBindings')));
+    const keybindsUI = createJpxElement('div', 'jpx-keybindings-settings');
+    for (const action of Object.keys(KEYBINDS)) {
+        const row = document.createElement('div');
         bindSettingsChange(row, userKeybinds, action);
-
-        let span = document.createElement('span');
-        span.textContent = t(`cB.${action}`) + ': ';
-        row.appendChild(span);
-
+        row.appendChild(document.createElement('span')).textContent = t(`cB.${action}`) + ': ';
         jpxUtils.createButton(row, {
             id: `btn_${action}`,
             text: jpxUtils.formatKeyCombo(userKeybinds[action], ' + '),
             onClick: (btn, e) => {
                 e.stopPropagation();
-                let originalText = btn.textContent;
+                const originalText = btn.textContent;
                 btn.textContent = '...';
-                jpxUtils.captureKeyCombo(
-                    (result) => {
-                        userKeybinds[action] = {
-                            key: result.key,
-                            ctrl: result.ctrl,
-                            alt: result.alt,
-                            shift: result.shift
-                        };
-                        btn.textContent = jpxUtils.formatKeyCombo(userKeybinds[action], ' + ');
-                    },
-                    () => { btn.textContent = originalText; }
-                );
+                jpxUtils.captureKeyCombo(result => {
+                    userKeybinds[action] = { key: result.key, ctrl: result.ctrl, alt: result.alt, shift: result.shift };
+                    btn.textContent = jpxUtils.formatKeyCombo(userKeybinds[action], ' + ');
+                }, () => { btn.textContent = originalText; });
             }
         });
         keybindsUI.appendChild(row);
-    });
+    }
     parent.appendChild(keybindsUI);
+}
+
+function downloadSettingsFile(text, type, fileName) {
+    const url = URL.createObjectURL(new Blob([text], { type }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(url);
 }
 
 // Legacy lists contain only displayed fields. Keep their order/styles and append missing fields disabled.
@@ -10966,20 +10460,12 @@ function validateStatsBackup(data) {
 
 function renderStatsImportPreview(parent, data, fileName) {
     parent.querySelector('.jpx-stats-transfer')?.remove();
-    const panel = document.createElement('div');
-    panel.className = 'jpx-stats-transfer';
-    const title = document.createElement('strong');
-    title.textContent = t('cS.importPreview');
-    const summary = document.createElement('p');
-    summary.className = 'jpx-stats-help';
-    summary.textContent = `${fileName} · ${t('cS.importSummary', { count: data.stores.battleRecords.length })}`;
-    const modeLabel = document.createElement('label');
-    modeLabel.textContent = t('cS.importMode');
-    const mode = document.createElement('select');
+    const panel = createJpxElement('div', 'jpx-stats-transfer');
+    const summary = createJpxElement('p', 'jpx-stats-help', `${fileName} · ${t('cS.importSummary', { count: data.stores.battleRecords.length })}`);
+    const modeLabel = createJpxElement('label', undefined, t('cS.importMode'));
+    const mode = modeLabel.appendChild(document.createElement('select'));
     mode.innerHTML = `<option value="merge">${t('cS.importMerge')}</option><option value="replace">${t('cS.importReplace')}</option>`;
-    modeLabel.appendChild(mode);
-    const actions = document.createElement('div');
-    actions.className = 'jpx-stats-toolbar';
+    const actions = createJpxElement('div', 'jpx-stats-toolbar');
     jpxUtils.createButton(actions, {
         text: t('cS.importConfirmAction'), history: false, onClick: async button => {
             button.disabled = true;
@@ -10995,7 +10481,7 @@ function renderStatsImportPreview(parent, data, fileName) {
         }
     });
     jpxUtils.createButton(actions, { text: t('cGen.cancel'), history: false, onClick: () => panel.remove() });
-    panel.append(title, summary, modeLabel, actions);
+    panel.append(createJpxElement('strong', undefined, t('cS.importPreview')), summary, modeLabel, actions);
     parent.appendChild(panel);
 }
 
@@ -11087,16 +10573,13 @@ function bindStatsListDrag(list, moveField, options = {}) {
         if (!drag.started && Math.hypot(drag.x - drag.startX, drag.y - drag.startY) >= 6 * scale) {
             drag.started = true;
             const rect = drag.row.getBoundingClientRect();
-            drag.layer = document.createElement('div');
-            drag.layer.className = 'jpx-stats-drag-layer';
+            drag.layer = createJpxElement('div', 'jpx-stats-drag-layer');
             drag.layer.setAttribute('aria-hidden', 'true');
             drag.layer.inert = true;
-            drag.preview = document.createElement('div');
-            drag.preview.className = 'jpx-stats-drag-preview' + (options.previewClass ? ' ' + options.previewClass : '');
+            drag.preview = createJpxElement('div', 'jpx-stats-drag-preview' + (options.previewClass ? ' ' + options.previewClass : ''));
             Object.assign(drag.preview.style, { width: `${rect.width / scale}px`, height: options.preview ? 'auto' : `${rect.height / scale}px`, fontWeight: getComputedStyle(drag.row).fontWeight });
             drag.preview.append(...(options.preview ? options.preview(drag.row) : [...drag.row.children].map(child => child.cloneNode(true))));
-            drag.marker = document.createElement('div');
-            drag.marker.className = 'jpx-stats-drop-marker';
+            drag.marker = createJpxElement('div', 'jpx-stats-drop-marker');
             drag.layer.append(drag.preview, drag.marker);
             list.append(drag.layer);
             drag.row.classList.add('is-dragging');
@@ -11137,16 +10620,11 @@ function renderStatsColorControls(container, input, updateStyle, defaultStyle = 
     const parsed = document.createElement('span').style;
     const defaults = document.createElement('span').style;
     defaults.cssText = defaultStyle;
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 1;
-    const context = canvas.getContext('2d', { willReadFrequently: true });
-    const palette = document.createElement('div');
-    palette.className = 'jpx-stats-palette';
-    container.append(palette);
+    const context = createSettingsColorContext();
+    const palette = container.appendChild(createJpxElement('div', 'jpx-stats-palette'));
     const colors = [['color', 'textColor', '#5c0d11'], ['background-color', 'backgroundColor', '#edebdf']];
     const controls = colors.map(([property, titleKey, fallback]) => {
-        const label = document.createElement('div');
-        label.className = 'jpx-stats-color';
+        const label = createJpxElement('div', 'jpx-stats-color');
         const picker = document.createElement('input');
         picker.type = 'color';
         picker.id = getUniqueId('statsColor');
@@ -11176,11 +10654,8 @@ function renderStatsColorControls(container, input, updateStyle, defaultStyle = 
         });
         return { picker, reset, property, fallback };
     });
-    const preview = document.createElement('div');
-    preview.className = 'jpx-stats-preview';
-    const sample = document.createElement('span');
-    sample.className = 'jpx-stats-preview-sample';
-    sample.textContent = '1,234';
+    const preview = createJpxElement('div', 'jpx-stats-preview');
+    const sample = createJpxElement('span', 'jpx-stats-preview-sample', '1,234');
     sample.setAttribute('aria-label', input.getAttribute('aria-label') + ': ' + t('cS.livePreview'));
     preview.append(sample);
     palette.append(preview);
@@ -11209,7 +10684,7 @@ function renderStatsColorControls(container, input, updateStyle, defaultStyle = 
                 context.fillRect(0, 0, 1, 1);
                 context.fillStyle = resolvedColor;
                 context.fillRect(0, 0, 1, 1);
-                const hex = '#' + [...context.getImageData(0, 0, 1, 1).data].slice(0, 3).map(value => value.toString(16).padStart(2, '0')).join('');
+                const hex = toSettingsHex(readSettingsPixel(context));
                 if (picker.value !== hex) picker.value = hex;
             }
         }
@@ -11222,11 +10697,13 @@ function renderStatsColorControls(container, input, updateStyle, defaultStyle = 
 // Keep original comma-separated tokens verbatim until that particular rule is edited.
 // The runtime parser remains unchanged, including ordering and legacy parseFloat behavior.
 function renderStatsThresholdControls(container, item, view) {
-    const element = (tag, className, text) => {
-        const el = document.createElement(tag);
-        el.className = className;
-        if (text) el.textContent = text;
-        return el;
+    const element = createJpxElement;
+    const labelled = (text, idPrefix, type) => {
+        const label = element('label', '', text), input = element('input', '');
+        input.type = type;
+        input.id = getUniqueId(idPrefix);
+        label.htmlFor = input.id;
+        return [label, input];
     };
     const section = element('div', 'jpx-stats-thresholds');
     const heading = element('div', 'jpx-stats-threshold-heading');
@@ -11241,14 +10718,10 @@ function renderStatsThresholdControls(container, item, view) {
     const preview = element('details', 'jpx-stats-threshold-preview');
     preview.append(element('summary', '', t('cS.thresholdTry')));
     const previewControls = element('div', 'jpx-stats-threshold-preview-controls');
-    const previewLabel = element('label', '', t('cS.previewValue'));
-    const previewInput = element('input', '');
-    previewInput.type = 'number';
+    const [previewLabel, previewInput] = labelled(t('cS.previewValue'), 'statsThresholdPreview', 'number');
     previewInput.step = 'any';
-    previewInput.id = getUniqueId('statsThresholdPreview');
     previewInput.dataset.thresholdPreview = '';
     previewInput.value = view.previewValue ?? '1234';
-    previewLabel.htmlFor = previewInput.id;
     const sample = element('span', 'jpx-stats-preview-sample');
     sample.setAttribute('aria-label', t('cS.livePreview'));
     const matchText = element('output', 'jpx-stats-threshold-match');
@@ -11261,9 +10734,7 @@ function renderStatsThresholdControls(container, item, view) {
         else delete item.colorThresholds;
         syncPreview();
     };
-    const canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 1;
-    const context = canvas.getContext('2d', { willReadFrequently: true });
+    const context = createSettingsColorContext();
     const pickerColor = color => {
         if (!color || /currentcolor|inherit|initial|unset|revert|var\(|env\(/i.test(color)) return null;
         // A native opaque picker cannot faithfully edit context-dependent or transparent legacy colors.
@@ -11275,19 +10746,14 @@ function renderStatsThresholdControls(container, item, view) {
         if (first !== context.fillStyle) return null;
         context.clearRect(0, 0, 1, 1);
         context.fillRect(0, 0, 1, 1);
-        const rgba = [...context.getImageData(0, 0, 1, 1).data];
-        return rgba[3] === 255 ? '#' + rgba.slice(0, 3).map(value => value.toString(16).padStart(2, '0')).join('') : null;
+        const rgba = readSettingsPixel(context);
+        return rgba[3] === 255 ? toSettingsHex(rgba) : null;
     };
     function syncPreview() {
         const style = document.createElement('span').style;
         style.cssText = item.styleText || '';
-        // Deliberately match renderDynamicTable, including invalid colors and duplicate minima.
-        const thresholds = readTokens().map(token => {
-            const [value, color] = token.split(':');
-            return { min: parseFloat(value.trim()), color: color?.trim() };
-        }).filter(threshold => !isNaN(threshold.min)).sort((a, b) => b.min - a.min);
         const number = previewInput.valueAsNumber;
-        const match = thresholds.find(threshold => number >= threshold.min);
+        const match = parseStatsColorThresholds(readTokens()).find(threshold => number >= threshold.min);
         if (match) style.color = match.color;
         sample.removeAttribute('style');
         for (const property of ['color', 'background-color', 'font-weight', 'font-style']) {
@@ -11312,22 +10778,14 @@ function renderStatsThresholdControls(container, item, view) {
             const editable = parts.length === 2 && /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(minText)
                 && Number.isFinite(Number(minText)) && hex;
             if (editable) {
-                const minLabel = element('label', '', t('cS.thresholdAtLeast'));
-                const min = element('input', '');
-                min.id = getUniqueId('statsThresholdMin');
-                min.type = 'number';
+                const [minLabel, min] = labelled(t('cS.thresholdAtLeast'), 'statsThresholdMin', 'number');
                 min.step = 'any';
                 min.value = String(Number(minText));
                 min.dataset.thresholdMin = '';
-                minLabel.htmlFor = min.id;
-                const colorLabel = element('label', '', t('cS.textColor'));
-                const color = element('input', '');
-                color.id = getUniqueId('statsThresholdColor');
-                color.type = 'color';
+                const [colorLabel, color] = labelled(t('cS.textColor'), 'statsThresholdColor', 'color');
                 color.value = hex;
                 color.title = colorText;
                 color.dataset.thresholdColor = '';
-                colorLabel.htmlFor = color.id;
                 min.addEventListener('input', () => {
                     const valid = min.validity.valid && Number.isFinite(min.valueAsNumber);
                     min.setAttribute('aria-invalid', String(!valid));
@@ -11399,12 +10857,8 @@ function renderStatsThresholdControls(container, item, view) {
 function renderStatsFieldPicker(container, field, data) {
     const view = statsSettingsView.fields[field.key] ||= { selected: data[field.key][0]?.id };
     const labelFor = item => t(field.allFields.find(base => base.id === item.id)?.label || item.id);
-    const element = (tag, className, text) => {
-        const el = document.createElement(tag);
-        el.className = className;
-        if (text) el.textContent = text;
-        return el;
-    };
+    const nameOf = item => item.customName || labelFor(item);
+    const element = createJpxElement;
     const picker = element('div', 'jpx-stats-picker');
     const selectedPane = element('div', 'jpx-stats-pane jpx-stats-selected-pane');
     const selectedHeading = element('div', 'jpx-stats-pane-heading');
@@ -11435,8 +10889,7 @@ function renderStatsFieldPicker(container, field, data) {
             refresh();
             selectedButton()?.scrollIntoView({ block: 'nearest' });
         };
-        if (settingsEditHistory) settingsEditHistory.run(t('cS.reorderFields'), move);
-        else move();
+        runSettingsEdit(t('cS.reorderFields'), move);
     };
     const cancelDrag = bindStatsListDrag(selectedList, moveField);
 
@@ -11448,7 +10901,7 @@ function renderStatsFieldPicker(container, field, data) {
         const defaults = defaultCfgStats[field.key]?.find(row => row.id === item.id) || {};
         const styleFields = field.editFields.filter(edit => edit.key.startsWith('s_') || edit.key === 'styleText');
         const title = element('div', 'jpx-stats-edit-title');
-        const titleText = element('strong', '', item.customName || labelFor(item));
+        const titleText = element('strong', '', nameOf(item));
         title.append(titleText);
         editor.append(title);
         if (field.key === 'statsColumns') {
@@ -11461,6 +10914,14 @@ function renderStatsFieldPicker(container, field, data) {
             nameInput.setAttribute('aria-label', t('cS.renameColumn'));
             nameInput.title = t('cS.renameHelp');
             let editing = false, initialValue = '';
+            const showNameInput = open => {
+                nameInput.hidden = !open;
+                titleText.hidden = open;
+                rename.replaceChildren(createSettingsIcon(open ? 'confirm' : 'edit'));
+                rename.title = t(open ? 'cS.confirmName' : 'cS.renameColumn');
+                rename.setAttribute('aria-label', rename.title);
+                rename.setAttribute('aria-expanded', String(open));
+            };
             const finishName = (commit, focus = false) => {
                 if (!editing) return;
                 editing = false;
@@ -11470,17 +10931,12 @@ function renderStatsFieldPicker(container, field, data) {
                         if (nameInput.value.trim()) item.customName = nameInput.value;
                         else delete item.customName;
                         const row = selectedButton();
-                        if (row) row.querySelector('.jpx-stats-row-label').textContent = `${data[field.key].indexOf(item) + 1}. ${item.customName || labelFor(item)}`;
-                        titleText.textContent = item.customName || labelFor(item);
+                        if (row) row.querySelector('.jpx-stats-row-label').textContent = `${data[field.key].indexOf(item) + 1}. ${nameOf(item)}`;
+                        titleText.textContent = nameOf(item);
                     }
-                    nameInput.hidden = true;
-                    titleText.hidden = false;
-                    rename.replaceChildren(createSettingsIcon('edit'));
-                    rename.title = t('cS.renameColumn');
-                    rename.setAttribute('aria-label', rename.title);
-                    rename.setAttribute('aria-expanded', 'false');
+                    showNameInput(false);
                 };
-                if (changed && settingsEditHistory) settingsEditHistory.run(t('cS.renameColumn'), apply);
+                if (changed) runSettingsEdit(t('cS.renameColumn'), apply);
                 else apply();
                 if (focus) rename.focus({ preventScroll: true });
             };
@@ -11489,15 +10945,10 @@ function renderStatsFieldPicker(container, field, data) {
                 className: 'jpx-stats-name-edit', text: t('cS.renameColumn'), icon: 'edit', history: false,
                 onClick: () => {
                     if (editing) { finishName(true, true); return; }
-                    initialValue = item.customName || labelFor(item);
+                    initialValue = nameOf(item);
                     nameInput.value = initialValue;
                     editing = true;
-                    titleText.hidden = true;
-                    nameInput.hidden = false;
-                    rename.replaceChildren(createSettingsIcon('confirm'));
-                    rename.title = t('cS.confirmName');
-                    rename.setAttribute('aria-label', rename.title);
-                    rename.setAttribute('aria-expanded', 'true');
+                    showNameInput(true);
                     nameInput.focus();
                     nameInput.select();
                 },
@@ -11509,11 +10960,10 @@ function renderStatsFieldPicker(container, field, data) {
             nameInput.addEventListener('blur', () => finishName(true));
             nameInput.addEventListener('keydown', event => {
                 if (event.isComposing) return;
-                if (event.key === 'Enter' || event.key === 'Escape') {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    finishName(event.key === 'Enter', true);
-                }
+                if (event.key !== 'Enter' && event.key !== 'Escape') return;
+                event.preventDefault();
+                event.stopPropagation();
+                finishName(event.key === 'Enter', true);
             });
             bindSettingsChange(title, item, 'customName');
         }
@@ -11557,7 +11007,8 @@ function renderStatsFieldPicker(container, field, data) {
                 styles.append(group);
             }
             const row = element('div', 'jpx-stats-edit-field');
-            const label = element('label', '', t(edit.key === 'styleText' ? 'cS.appearance' : edit.label));
+            const caption = t(edit.key === 'styleText' ? 'cS.appearance' : edit.label);
+            const label = element('label', '', caption);
             const control = element('div', 'jpx-stats-style-control');
             const input = element('input', '');
             input.type = 'text';
@@ -11569,7 +11020,7 @@ function renderStatsFieldPicker(container, field, data) {
             input.dataset.editKey = edit.key;
             input.dataset.styleField = '';
             input.title = t('cS.styleHelp');
-            input.setAttribute('aria-label', edit.group ? `${t(`cS.${edit.group}`)}: ${t(edit.label)}` : t(edit.key === 'styleText' ? 'cS.appearance' : edit.label));
+            input.setAttribute('aria-label', edit.group ? `${t(`cS.${edit.group}`)}: ${t(edit.label)}` : caption);
             let syncColors;
             const updateStyle = sourcePicker => {
                 if (input.value) item[edit.key] = input.value;
@@ -11623,11 +11074,9 @@ function renderStatsFieldPicker(container, field, data) {
                 className: 'jpx-stats-select', history: false,
                 onClick: () => { selectField(item.id); selectedButton()?.focus({ preventScroll: true }); }
             });
-            const grip = element('span', 'jpx-stats-grip jpx-drag-grip');
-            grip.append(createSettingsIcon('grip'));
+            const grip = createStatsGrip('jpx-stats-grip jpx-drag-grip');
             grip.title = t('cS.reorderHint');
-            grip.setAttribute('aria-hidden', 'true');
-            button.append(grip, element('span', 'jpx-stats-row-label', `${index + 1}. ${item.customName || labelFor(item)}`));
+            button.append(grip, element('span', 'jpx-stats-row-label', `${index + 1}. ${nameOf(item)}`));
             button.title = labelFor(item);
             bindSettingsChange(row, item, null, row, true);
             button.setAttribute('aria-pressed', String(item.id === view.selected));
@@ -11652,7 +11101,7 @@ function renderStatsFieldPicker(container, field, data) {
             });
             const enabled = item.disabled !== true;
             const toggle = jpxUtils.createButton(actions, {
-                text: `${t(enabled ? 'cS.disableField' : 'cS.enableField')}: ${item.customName || labelFor(item)}`,
+                text: `${t(enabled ? 'cS.disableField' : 'cS.enableField')}: ${nameOf(item)}`,
                 icon: enabled ? 'ruleEnabled' : 'ruleDisabled', className: 'jpx-rule-state-toggle', onClick: () => {
                     if (enabled) item.disabled = true;
                     else delete item.disabled;
@@ -11670,13 +11119,19 @@ function renderStatsFieldPicker(container, field, data) {
     refresh();
 }
 
+function createStatsGrip(className) {
+    const grip = createJpxElement('span', className);
+    grip.append(createSettingsIcon('grip'));
+    grip.setAttribute('aria-hidden', 'true');
+    return grip;
+}
+
 function renderStatsSettingsUI(container, restoringView = false) {
     settingsEditHistory?.flushColorEdit();
     if (!restoringView) captureStatsListScroll(container);
     normalizeStatsConfig(cfgStats);
     container.replaceChildren();
-    const nav = document.createElement('div');
-    nav.className = 'jpx-stats-nav';
+    const nav = createJpxElement('div', 'jpx-stats-nav');
     nav.setAttribute('role', 'group');
     nav.setAttribute('aria-label', t('cS.statsSettings'));
     container.append(nav);
@@ -11690,16 +11145,12 @@ function renderStatsSettingsUI(container, restoringView = false) {
         if (!selected.hasChildNodes()) {
             if (key === 'data') renderStatsDataActions(selected);
             else {
-                const field = fields.find(field => field.key === key);
-                const editor = document.createElement('div');
+                const editor = selected.appendChild(document.createElement('div'));
                 editor.dataset.fieldKey = key;
-                selected.append(editor);
-                renderStatsFieldPicker(editor, field, cfgStats);
+                renderStatsFieldPicker(editor, fields.find(field => field.key === key), cfgStats);
             }
         }
-        panels.forEach((panel, id) => {
-            panel.hidden = id !== key;
-        });
+        panels.forEach((panel, id) => { panel.hidden = id !== key; });
         buttons.forEach((button, id) => button.setAttribute('aria-pressed', String(id === key)));
         restoreStatsListScroll(container);
     };
@@ -11714,8 +11165,7 @@ function renderStatsSettingsUI(container, restoringView = false) {
         button.id = `jpx-stats-nav-${key}`;
         panel.setAttribute('aria-labelledby', button.id);
         button.addEventListener('keydown', event => {
-            const index = sections.indexOf(key);
-            const next = { ArrowLeft: (index + sections.length - 1) % sections.length, ArrowRight: (index + 1) % sections.length, Home: 0, End: sections.length - 1 }[event.key];
+            const next = getSettingsSectionStep(event.key, sections.indexOf(key), sections.length);
             if (next === undefined) return;
             event.preventDefault();
             selectSection(sections[next]);
@@ -11742,26 +11192,22 @@ function loadStatsSettingsConfig() {
 }
 
 function renderStatsTab(parent) {
-    let cfgStatsUI = document.createElement('div');
+    const cfgStatsUI = parent.appendChild(document.createElement('div'));
     cfgStatsUI.id = 'cfgStats-ui';
-    parent.appendChild(cfgStatsUI);
     renderStatsSettingsUI(cfgStatsUI);
 }
 
 function renderStatsDataActions(parent) {
-    const root = document.createElement('div'); root.className = 'jpx-stats-data';
-    const style = document.createElement('style'); style.textContent = jpxThemeCSS(JPX_STATS_DATA_CSS + jpxDisclosureCSS('.jpx-stats-data .jpx-shared-data'));
-    root.append(style); parent.append(root);
-    const records = document.createElement('section'); records.className = 'jpx-stats-data-section';
-    const recordsTitle = document.createElement('h3'); recordsTitle.textContent = t('cS.dataRecords'); records.append(recordsTitle); root.append(records);
-    const maintenance = document.createElement('section'); maintenance.className = 'jpx-stats-data-maintenance';
-    let buttonsUI = document.createElement('div');
-    buttonsUI.className = 'jpx-stats-toolbar';
+    const root = parent.appendChild(createJpxElement('div', 'jpx-stats-data'));
+    root.appendChild(document.createElement('style')).textContent = jpxThemeCSS(JPX_STATS_DATA_CSS + jpxDisclosureCSS('.jpx-stats-data .jpx-shared-data'));
+    const records = root.appendChild(createJpxElement('section', 'jpx-stats-data-section'));
+    records.append(createJpxElement('h3', undefined, t('cS.dataRecords')));
+    const maintenance = createJpxElement('section', 'jpx-stats-data-maintenance'), buttonsUI = createJpxElement('div', 'jpx-stats-toolbar');
 
     jpxUtils.createButton(maintenance, {
         id: 'reset-cfgStats-button',
         text: t('cS.resetStatsSettings'),
-        onClick: (btn) => {
+        onClick: () => {
             cfgStats = JSON.parse(JSON.stringify(defaultCfgStats));
             delete cfgStats.darkMode;
             renderStatsSettingsUI(document.getElementById('cfgStats-ui'));
@@ -11773,15 +11219,7 @@ function renderStatsDataActions(parent) {
         text: t('cS.exportDB'),
         history: false,
         onClick: async () => {
-            let exportData = await exportIndexedDB();
-            let blob = new Blob([jpxUtils.stringifyLimited(exportData, 3)], { type: 'application/json' });
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = `battleStats_${Date.now()}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-
+            downloadSettingsFile(jpxUtils.stringifyLimited(await exportIndexedDB(), 3), 'application/json', `battleStats_${Date.now()}.json`);
             return t('cGen.exported!');
         }
     });
@@ -11790,19 +11228,17 @@ function renderStatsDataActions(parent) {
         id: 'import-db-button',
         text: t('cS.importDB'),
         history: false,
-        onClick: (btn) => {
-            let input = document.createElement('input');
+        onClick: () => {
+            const input = document.createElement('input');
             input.type = 'file';
             input.accept = 'application/json';
 
             return new Promise((resolve, reject) => {
-                input.addEventListener('change', async (e) => {
+                input.addEventListener('change', async e => {
                     const file = e.target.files[0];
                     if (!file) return resolve();
                     try {
-                        let content = await file.text();
-                        let json = JSON.parse(content);
-
+                        const json = JSON.parse(await file.text());
                         validateStatsBackup(json);
                         if (parent.isConnected) renderStatsImportPreview(records, json, file.name);
                         resolve();
