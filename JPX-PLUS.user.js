@@ -12203,7 +12203,7 @@ function jpxUtils() {
 // BEGIN JPX CONFIG MANAGEMENT (tools/build-config-manager.cjs)
 I18N.cM = {"name":"Configs","mine":"My configs","store":"Store","new":"New","import":"Import","search":"Search configs","apply":"Apply","edit":"Edit","more":"More","inUse":"In use","updateApply":"Update & apply","settings":"Config settings","duplicate":"Duplicate","export":"Export","share":"Share","delete":"Delete","title":"Name","style":"Style","element":"Element","world":"World","scenario":"Battle","auto":"Auto","anyWorld":"Both worlds","create":"Create","cancel":"Cancel","back":"Back","save":"Save","undo":"Undo","redo":"Redo","saveChanges":"Save changes?","keepEditing":"Keep editing","discard":"Discard","deleteConfirm":"Delete this config?","empty":"No configs yet.","noMatches":"No matching configs.","copySuffix":"copy","chooseGroup":"Choose rules to edit","allBattle":"All battle settings","stats":"Stats","applyScope":"Apply this config?","applyAll":"Updates only the settings and rules included in this config.","applyWorld":"Apply in","applyPaused":"Applied. Auto-battle is paused.","applied":"Applied.","saved":"Saved.","reset":"Reset rules","resetConfirm":"Replace this group's rules with the defaults?","imported":"Added to My configs.","savedFromStore":"Saved to My configs.","sourceExists":"You already saved this config.","updateCopy":"Update saved copy","keepCopy":"Save another copy","invalidConfig":"This config cannot be read.","unsupportedVersion":"This config version is not supported.","storageCorrupt":"Could not read your saved configs. Your data is unchanged.","storageError":"Could not save. Check browser storage and try again.","tooLarge":"This config is too large.","notFound":"This config no longer exists.","appliedConfig":"Apply another config before deleting this one.","migrationConflict":"This config conflicts with saved data.","error":"Could not complete this action.","groupCount":"${count} rule groups","rename":"Rename","current":"Current settings","close":"Close","fire":"Fire","cold":"Cold","wind":"Wind","elec":"Lightning","holy":"Holy","dark":"Dark","restore":"Undo delete","deleted":"Config deleted.","refresh":"Refresh","worldMismatch":"This config is for another world.","description":"Description","editor":"Rule editor","customCode":"This config contains custom code. Apply it only if you trust its source.","recovery":"Import backup","importWorld":"Save config","statsEdit":"Edit stats","preserveModes":"Rules","applyCurrent":"Apply here","libraryChanged":"This config was changed in another tab. Reopen it before saving.","unsupportedRule":"Unsupported rule (kept unchanged)","currentStyle":"Current style","filters":"Filters","allWorlds":"All worlds","allStyles":"All styles","allBattles":"All battles","allTypes":"All types","type":"Type","singleMode":"Battle mode","clearFilters":"Clear filters","sort":"Sort","latest":"Updated","nameSort":"Name","typeSort":"By type","manualSort":"Manual","multiStyle":"Mixed styles","multiBattle":"Multiple battles","resultCount":"${count} found","exportCurrent":"In use","exportAll":"Full config","exportChoose":"Choose rules","exportUnknown":"No active rules detected yet.","bind":"Link loadout","unbind":"Unlink","persona":"Persona","equipSet":"Equipment set","personaNumber":"Persona ${id}","setNumber":"Set ${id}","replaceBinding":"Link this loadout here instead of “${name}”?","bound":"Loadout linked.","bindingUnknown":"Could not read your persona and equipment set. Reload outside battle and try again.","bindingUnavailable":"No saved persona or equipment set. Try again outside battle.","importReading":"Reading “${name}”…","importReady":"Ready to import. Check the name and world, then save to My configs. It will not apply automatically.","importDraft":"Loaded “${name}” for review. Save to keep these changes.","importPaused":"Auto-battle is paused.","importAdded":"“${name}” is in My configs. Choose Apply to use it.","importFailed":"Could not import “${name}”. ${reason}","importReadError":"Could not read the file. Select it again and retry.","importCancelled":"Import cancelled. Custom code was not approved.","fixedMode":"Fixed rules","automaticMode":"Auto by battle","restoreAutomatic":"Switch to auto","detach":"Remove links","detachDelete":"Unlink and delete","detached":"Links removed.","detachHint":"Removes this config from auto-selection, loadout links and past applications. Your current settings stay unchanged.","sceneAssignments":"Battle strategies","inheritGeneral":"Use General rules","unassigned":"None selected","noSceneRules":"Paused: no rules for this battle and no General rules.","assign":"Assign","assigned":"Assigned","executing":"Current strategy","assignmentOlder":"This strategy is still using the previous version.","grindfest":"Grindfest","fixedHint":"Uses these rules for every battle in this world, even after reloading."};
 I18N.cShared = {"title":"Shared site data","backupSection":"Settings before sharing","historySection":"Previous shared settings","quotaShort":"Stamina used before sharing","restoreAction":"Restore","scope":"The main and alt sites share settings, records and daily stamina within this userscript. Persistent and Isekai stay separate. Sharing starts with the first site's settings. Both sites' old settings are backed up below.","backup":"Download original settings","restore":"Restore this site's old settings","confirm":"Use this backup on both sites? You can restore the current settings later. Auto-battle will pause.","history":"Download earlier settings","restoreRevision":"Choose an earlier backup","quota":"Stamina used today before sharing (UTC)","quotaHelp":"To avoid counting battles twice, we keep the larger of the two old totals. Open both sites once, then adjust today's earlier usage here if needed. New battles count separately.","save":"Save","saved":"Saved","resetScope":"Also deletes shared settings and records on the main and alt sites, for both worlds.","fail":"Could not save shared data. Your original data is kept."};
-const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog [hidden]{display:none!important}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:12px;gap:12px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:32px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text, #392d25);font:13px/1.45 Arial,Helvetica,sans-serif}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container .jpx-config-manager [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;color:var(--jpx-theme-accent, #5c0d11);background:var(--jpx-theme-surface, #f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover, #f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected, #ead8b4);border-color:var(--jpx-theme-accent, #5c0d11);color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text, #392d25);background:var(--jpx-theme-field, #fffdf7);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent, #5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent, #5c0d11);background:transparent;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent, #5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent, #5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted, #71634f)}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected, #ead8b4);color:var(--jpx-theme-text, #392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:2px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store .jpx-store-title{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px;--jpx-config-tab-offset:9px}\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){align-self:flex-end;align-items:flex-end;margin-bottom:calc(-1 * var(--jpx-config-tab-offset))}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border, #c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:36px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted, #756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border, #c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface, #f9f6ec);color:var(--jpx-theme-text, #392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container .jpx-config-manager{position:relative}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap;--jpx-config-tab-offset:0px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:-1px}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button){height:36px;min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-rename input{min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm{padding:12px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm>:is(h3,p,label),#settings-container.jpx-settings-mobile .jpx-config-rename{margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-refresh{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-download{width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button:where(:not(.jpx-config-stats-editor *)){min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-update{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container .jpx-config-assigned{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:inherit}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:8px;margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:inherit;min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}\n#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}\n#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}\n#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}\n#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}\n#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-comment-row:last-child{border-bottom:0}\n#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}\n#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}\n#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}\n#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}\n#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}\n#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}\n#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}\n#settings-container .jpx-comment-more{margin-top:12px}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}\n#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0}\n#settings-container .jpx-store-rating-summary{display:flex;align-items:center;flex-wrap:wrap;gap:4px 16px}\n#settings-container .jpx-download-count{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-download-count svg{flex:none}\n#settings-container .jpx-rating-heading .jpx-download-count{margin-right:auto}\n#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}\n#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}\n#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}\n#settings-container .jpx-rating-stars{display:flex;gap:8px}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-rating-star svg{width:24px;height:24px}\n#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}\n@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}\n\n/* Keep every control in the store header on the same vertical center line. */\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation) {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar {\n    align-self: center;\n    align-items: center;\n    margin-bottom: 0;\n}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav, .jpx-store-navigation)>button {\n    margin-bottom: 0;\n}\n";
+const JPX_CONFIG_MANAGER_CSS = "#settings-container #panel_configManager{overflow:hidden;padding:0;min-width:0;min-height:0}\n#settings-container .jpx-export-dialog{box-sizing:border-box;width:min(520px,calc(100vw - 24px));max-height:min(640px,calc(100dvh - 32px));padding:20px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:4px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;text-align:left;box-shadow:0 12px 40px #0004;overflow:hidden}\n#settings-container .jpx-export-dialog[open]{display:flex;flex-direction:column;gap:16px}\n#settings-container .jpx-export-dialog::backdrop{background:#0006}\n#settings-container .jpx-export-dialog h3{margin:0;font-size:16px}\n#settings-container .jpx-export-dialog .jpx-rule-section-tabs{flex:none;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-export-summary{margin:0;padding:4px 0;overflow-wrap:anywhere}\n#settings-container .jpx-export-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}\n#settings-container .jpx-export-fields label{display:grid;min-width:0;gap:6px}\n#settings-container .jpx-export-fields select{width:100%;min-width:0;min-height:32px;margin:0;font:inherit}\n#settings-container .jpx-export-dialog .jpx-export-submit{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-export-footer{display:flex;flex:none;align-items:center;justify-content:flex-end;gap:8px}\n#settings-container .jpx-export-dialog button{font:inherit;white-space:nowrap}\n#settings-container.jpx-settings-mobile .jpx-export-dialog{padding:12px;gap:12px;margin:0;inset:auto;left:calc(var(--settings-left) + var(--settings-width)*var(--settings-scale)/2);top:calc(var(--settings-top) + var(--settings-height)*var(--settings-scale)/2);width:min(520px,calc(var(--settings-width) - 24px));max-height:min(640px,calc(var(--settings-height) - 32px));transform:translate(-50%,-50%) scale(var(--settings-scale));transform-origin:center;overflow:auto}\n#settings-container.jpx-settings-mobile .jpx-export-dialog :is(button,select){min-height:32px}\n#settings-container .jpx-config-manager{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;gap:0;text-align:left;color:var(--jpx-theme-text,#392d25);font:13px/1.45 Arial,Helvetica,sans-serif;position:relative}\n#settings-container .jpx-config-manager *{box-sizing:border-box}\n#settings-container :is(.jpx-export-dialog,.jpx-config-manager) [hidden]{display:none!important}\n#settings-container :where(.jpx-config-manager) button{font:inherit;font-weight:400;line-height:1.35;min-height:32px;margin:0;padding:5px 12px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:2px;color:var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-surface,#f9f6ec);cursor:pointer;white-space:nowrap}\n#settings-container :where(.jpx-config-manager) button:hover{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container :where(.jpx-config-manager) button:disabled{cursor:default;opacity:.5}\n#settings-container :where(.jpx-config-manager) button[aria-pressed=true],#settings-container .jpx-config-manager .jpx-config-primary{background:var(--jpx-theme-selected,#ead8b4);border-color:var(--jpx-theme-accent,#5c0d11);color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container :where(.jpx-config-manager) :is(input,select,textarea){font:inherit;min-width:0;max-width:100%;color:var(--jpx-theme-text,#392d25);background:var(--jpx-theme-field,#fffdf7);border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:2px;padding:6px 8px}\n#settings-container .jpx-config-manager :is(button,input,select,textarea,a):focus-visible{outline:1px solid var(--jpx-theme-accent,#5c0d11);outline-offset:-1px}\n#settings-container .jpx-config-toolbar,#settings-container .jpx-config-editor-header{display:flex;align-items:center;gap:10px;flex:none;padding:12px 16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-config-nav,#settings-container .jpx-config-actions{display:flex;align-items:center;gap:8px;flex:none}\n#settings-container .jpx-config-manager .jpx-config-toolbar input{margin:0;width:220px;flex:1;max-width:280px;min-height:32px}\n#settings-container .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation){gap:0}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding:6px 12px 7px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button:hover{background:transparent;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button[aria-pressed=true]{border-color:transparent;border-bottom-color:var(--jpx-theme-accent,#5c0d11);background:transparent;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-body{min-width:0;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;padding:4px 16px 16px}\n#settings-container .jpx-config-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 16px;padding:14px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-row[data-active=true]{border-left:3px solid var(--jpx-theme-accent,#5c0d11);padding-left:12px}\n#settings-container .jpx-config-info{min-width:0}\n#settings-container .jpx-config-title{display:flex;align-items:baseline;gap:10px;min-width:0}\n#settings-container .jpx-config-title strong{font-size:14px;font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-config-status{font-size:12px;white-space:nowrap;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-detected{font-size:12px;white-space:nowrap;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-config-tags{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-top:6px}\n#settings-container .jpx-config-manager .jpx-config-tags .jpx-config-tag{display:inline-flex;align-items:center;min-height:20px;margin:0;padding:1px 6px;border:0;border-radius:3px;font:500 11px/18px Arial,Helvetica,sans-serif;white-space:normal;text-align:left;color:var(--jpx-tag-fg,#584b3d);background:var(--jpx-tag-bg,#e3dbcb)}\n#settings-container .jpx-config-tag{--jpx-tag-hue:35;--jpx-tag-saturation:16%;--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 86%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 25%)}\n/* Stable rule identifiers keep colors identical across lists and languages. */\n#settings-container .jpx-config-tag[data-tag-kind=style]{--jpx-tag-saturation:48%}\n#settings-container .jpx-config-tag[data-tag-value=OneHanded]{--jpx-tag-hue:140}\n#settings-container .jpx-config-tag[data-tag-value=\"1H_Mage\"]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=TwoHanded]{--jpx-tag-hue:20}\n#settings-container .jpx-config-tag[data-tag-value=\"2H_Mage\"]{--jpx-tag-hue:350}\n#settings-container .jpx-config-tag[data-tag-value=DualWielding]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=DW_Mage]{--jpx-tag-hue:245}\n#settings-container .jpx-config-tag[data-tag-value=NitenIchiryu]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=NI_Mage]{--jpx-tag-hue:80}\n#settings-container .jpx-config-tag[data-tag-value=Staff]{--jpx-tag-hue:280}\n#settings-container .jpx-config-tag[data-tag-value=Unarmed]{--jpx-tag-hue:30;--jpx-tag-saturation:20%}\n#settings-container .jpx-config-tag[data-tag-value=mixed]{--jpx-tag-hue:215;--jpx-tag-saturation:16%}\n#settings-container .jpx-config-tag[data-tag-kind=world]{--jpx-tag-saturation:40%}\n#settings-container .jpx-config-tag[data-tag-value=Persistent]{--jpx-tag-hue:38}\n#settings-container .jpx-config-tag[data-tag-value=Isekai]{--jpx-tag-hue:265}\n#settings-container .jpx-config-tag[data-tag-value=Any]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=scenario]{--jpx-tag-saturation:32%}\n#settings-container .jpx-config-tag[data-tag-value=Arena]{--jpx-tag-hue:210}\n#settings-container .jpx-config-tag[data-tag-value=Encounter]{--jpx-tag-hue:145}\n#settings-container .jpx-config-tag[data-tag-value=Colosseum]{--jpx-tag-hue:355}\n#settings-container .jpx-config-tag[data-tag-value=Battle1000]{--jpx-tag-hue:28}\n#settings-container .jpx-config-tag[data-tag-value=Item]{--jpx-tag-hue:175}\n#settings-container .jpx-config-tag[data-tag-value=Tower]{--jpx-tag-hue:275}\n#settings-container .jpx-config-tag[data-tag-value=General]{--jpx-tag-hue:215;--jpx-tag-saturation:14%}\n#settings-container .jpx-config-tag[data-tag-kind=kind]{--jpx-tag-saturation:30%}\n#settings-container .jpx-config-tag[data-tag-value=stats]{--jpx-tag-hue:190}\n#settings-container .jpx-config-tag[data-tag-value=battle]{--jpx-tag-hue:30}\n#settings-container .jpx-config-tag[data-tag-kind=element]{--jpx-tag-saturation:55%}\n#settings-container .jpx-config-tag[data-tag-value=fire]{--jpx-tag-hue:8}\n#settings-container .jpx-config-tag[data-tag-value=cold]{--jpx-tag-hue:200}\n#settings-container .jpx-config-tag[data-tag-value=wind]{--jpx-tag-hue:150}\n#settings-container .jpx-config-tag[data-tag-value=elec]{--jpx-tag-hue:250}\n#settings-container .jpx-config-tag[data-tag-value=holy]{--jpx-tag-hue:45}\n#settings-container .jpx-config-tag[data-tag-value=dark]{--jpx-tag-hue:285}\n#settings-container .jpx-config-tags button.jpx-config-tag:hover{box-shadow:inset 0 0 0 1px currentColor;background:var(--jpx-tag-bg,#e3dbcb)}\nhtml[data-jpx-theme=dark] #settings-container .jpx-config-tag{--jpx-tag-bg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 21%);--jpx-tag-fg:hsl(var(--jpx-tag-hue) var(--jpx-tag-saturation) 82%)}\n#settings-container .jpx-config-title .jpx-config-grip{display:inline-flex;flex:none;align-items:center;justify-content:center;width:24px;min-height:28px;padding:2px;border:0;background:transparent;color:var(--jpx-theme-muted,#756753);cursor:grab;touch-action:none}\n#settings-container .jpx-config-grip svg{width:16px;height:18px}\n#settings-container .jpx-config-row.is-dragging{opacity:.35}\n#settings-container .jpx-config-drag-preview{display:flex;align-items:center;gap:8px;min-height:40px;padding:8px 12px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:inset 0 0 0 1px var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-drag-preview>svg{width:16px;height:18px;flex:none;color:var(--jpx-theme-muted,#756753)}\n#settings-container .jpx-config-drag-preview>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker{background:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-manager .jpx-stats-drop-marker.over-preview{background:transparent;border-color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-config-actions .jpx-config-more{width:32px;padding:4px}\n#settings-container .jpx-config-more svg{display:block;width:18px;height:18px;margin:auto}\n#settings-container .jpx-config-notice{position:absolute;z-index:10;bottom:12px;left:50%;transform:translateX(-50%);max-width:calc(100% - 32px);width:max-content;margin:0;padding:8px 14px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:2px;box-shadow:0 3px 12px #0002;background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-config-notice:empty{display:none}\n#settings-container .jpx-import-feedback{display:flex;flex:none;align-items:flex-start;gap:12px;margin:8px 16px;padding:10px 12px;max-height:30%;overflow:auto;border:1px solid var(--jpx-theme-border,#c8b49b);border-left:3px solid var(--jpx-theme-accent,#5c0d11);background:var(--jpx-theme-selected,#ead8b4);color:var(--jpx-theme-text,#392d25);font:13px/1.5 Arial,Helvetica,sans-serif;text-align:left;box-sizing:border-box}\n#settings-container .jpx-import-feedback[hidden]{display:none}\n#settings-container .jpx-import-feedback p{flex:1;min-width:0;margin:0;white-space:pre-line;overflow-wrap:anywhere}\n#settings-container .jpx-import-feedback button{flex:none;min-width:32px;min-height:32px;margin:0;padding:0 6px;border:1px solid var(--jpx-theme-border,#c8b49b);background:var(--jpx-theme-surface,#f9f6ec);color:inherit;font:20px/1 Arial,Helvetica,sans-serif;cursor:pointer}\n#settings-container .jpx-import-feedback button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback{margin:8px 12px;padding:8px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-import-feedback button{min-width:44px;min-height:44px}\n#settings-container .jpx-config-editor-header strong{flex:1;font-size:15px;min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-editor{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-content{display:flex;flex:1;flex-direction:column;min-width:0;min-height:0;padding:10px 16px 0}\n#settings-container .jpx-config-editor-content>.jpx-rule-sections{flex:1;min-height:0;overflow:hidden}\n#settings-container .jpx-config-editor-footer{display:flex;gap:8px;flex:none;padding:10px 16px;border-top:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-editor-footer>.jpx-config-primary{margin-left:auto}\n#settings-container .jpx-config-menu{position:fixed;inset:auto;margin:0;min-width:140px;max-width:calc(100vw - 24px);padding:5px;border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:2px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:0 5px 20px #0002;overflow-y:auto;overscroll-behavior:contain}\n#settings-container .jpx-config-menu button{display:block;width:100%;border:0;text-align:left;background:transparent}\n#settings-container .jpx-config-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:16px;max-width:600px;padding-top:16px}\n#settings-container .jpx-config-form label{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}\n#settings-container .jpx-config-form .jpx-config-wide{grid-column:1/-1}\n#settings-container .jpx-config-form .jpx-config-actions{justify-content:flex-end}\n#settings-container .jpx-config-group{display:flex;width:100%;justify-content:space-between;margin-top:8px!important;padding:12px!important;text-align:left}\n#settings-container .jpx-config-manager .jpx-store{padding:12px 16px;min-height:0;overflow:hidden}\n#settings-container .jpx-config-manager .jpx-store .jpx-store-title{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-manager .jpx-store :is(button,input,select,textarea,.jpx-store-link){border-radius:2px}\n#settings-container .jpx-config-toolbar{min-height:49px;padding-block:8px}\n#settings-container .jpx-config-manager select:not([multiple]){align-items:center;white-space:nowrap}\n#settings-container .jpx-config-store-header{flex-wrap:wrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{flex:none;align-self:stretch;flex-wrap:nowrap;gap:8px;margin-left:auto;padding:0;border:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex:1;min-width:140px;max-width:280px;margin:0;flex-wrap:nowrap}\n#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar input{min-width:0;max-width:none;margin:0}\n#settings-container .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:140px;overflow:hidden;text-overflow:ellipsis}\n#settings-container .jpx-config-manager .jpx-store-browse-header{display:flex;flex-wrap:wrap;align-items:center}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{flex:1;min-width:min(400px,100%)}\n#settings-container .jpx-config-manager .jpx-store-browse-header>.jpx-store-results select{max-width:none}\n#settings-container .jpx-config-manager .jpx-store-refresh{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:jpx-config-refresh 900ms linear infinite}\n@keyframes jpx-config-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-config-manager .jpx-store-refresh[aria-busy=true] svg{animation:none}}\n#settings-container .jpx-config-manager .jpx-store-view-header{gap:8px}\n#settings-container .jpx-config-manager .jpx-store.jpx-store-browsing{padding:0;gap:0}\n#settings-container .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:4px 16px 16px;scrollbar-gutter:stable}\n#settings-container .jpx-config-manager .jpx-store-browsing .jpx-store-list{border-top:0}\n#settings-container .jpx-config-list-header{flex:none;min-width:0;padding:8px 16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-manager .jpx-config-list-header :is(select,button){height:32px;min-height:32px;font:inherit;margin:0}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager>.jpx-config-list-header .jpx-store-results::after{content:\"\";flex:none;width:32px}\n#settings-container .jpx-config-manager .jpx-store-querybar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar input{flex:1;width:0}\n#settings-container .jpx-config-manager .jpx-store-querybar button{flex:none;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-filter-toggle{display:none}\n#settings-container .jpx-config-manager .jpx-store-filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-filter-grid select{width:100%;max-width:100%}\n#settings-container .jpx-config-manager .jpx-store-results{display:flex;align-items:center;gap:8px;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-result-count{min-width:5em;color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap}\n#settings-container .jpx-config-manager .jpx-store-results select{margin-left:auto;width:7em;max-width:50%;field-sizing:fixed}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results{flex:none}\n#settings-container .jpx-config-manager .jpx-store-querybar>.jpx-store-results select{margin:0;max-width:none}\n#settings-container:not(.jpx-settings-mobile) .jpx-config-manager .jpx-store-querybar input{min-width:140px}\n#settings-container .jpx-config-manager .jpx-store-clear{border-color:transparent;background:transparent;padding-inline:5px}\n#settings-container .jpx-config-manager .jpx-store-date{color:var(--jpx-theme-muted,#71634f);font-size:12px;white-space:nowrap;align-self:center}\n#settings-container .jpx-config-manager .jpx-store-row[data-store-id]>p{grid-column:1}\n#settings-container .jpx-store-row>.jpx-config-tags{grid-column:1/-1;margin-top:0}\n#settings-container .jpx-store-row[data-store-id]>.jpx-config-tags{grid-column:1}\n#settings-container .jpx-config-tag-author{color:var(--jpx-theme-muted,#71634f);font-size:12px;margin-right:4px;overflow-wrap:anywhere;min-width:0}\n#settings-container .jpx-config-manager .jpx-store-row-tools{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:4px;grid-column:2;grid-row:1/span 4;align-self:stretch}\n#settings-container .jpx-config-manager .jpx-store-download{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;padding:0}\n#settings-container .jpx-config-manager .jpx-store-show-more{justify-self:center;margin-top:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-toggle{display:inline-flex;align-items:center}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=false]{display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-filter-grid[data-open=true]{animation:jpx-settings-reveal var(--jpx-motion-fast,120ms) ease-out}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results{gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-results select{width:auto}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store .jpx-store-view-header :is(input,select){min-height:36px}\n#settings-container .jpx-config-empty{padding:24px 0;color:var(--jpx-theme-muted,#756753);text-align:center}\n#settings-container .jpx-config-overlay{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#0006;padding:16px}\n#settings-container .jpx-config-confirm{width:min(440px,100%);border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;padding:20px;background:var(--jpx-theme-surface,#f9f6ec);color:var(--jpx-theme-text,#392d25);box-shadow:0 12px 40px #0004}\n#settings-container .jpx-config-confirm h3{margin:0 0 16px;font-size:16px}\n#settings-container .jpx-config-confirm p{margin:0 0 16px}\n#settings-container .jpx-config-confirm .jpx-config-actions{justify-content:flex-end;flex-wrap:wrap}\n#settings-container .jpx-config-confirm label{display:flex;gap:12px;align-items:center;margin-bottom:16px}\n#settings-container .jpx-config-confirm:has(.jpx-config-bindings){max-height:100%;overflow:auto}\n#settings-container .jpx-config-binding-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}\n#settings-container .jpx-config-binding-fields label{display:grid;gap:6px;margin:0;min-width:0}\n#settings-container .jpx-config-binding-fields label:first-child{grid-column:1/-1}\n#settings-container .jpx-config-binding-fields select{width:100%;margin:0}\n#settings-container .jpx-config-binding-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-config-binding-item span{min-width:0;overflow-wrap:anywhere}\n#settings-container .jpx-config-binding-list:not(:empty){margin-bottom:16px}\n#settings-container .jpx-config-info .jpx-config-binding{display:block;max-width:100%;min-height:28px;padding:3px 0;margin-top:4px;border:0;background:transparent;color:var(--jpx-theme-muted,#71634f);font-size:12px;text-align:left;white-space:normal;overflow-wrap:anywhere}\n#settings-container .jpx-config-info .jpx-config-binding:hover{color:var(--jpx-theme-accent,#5c0d11);text-decoration:underline}\n#settings-container .jpx-config-rename{margin-bottom:16px}\n#settings-container .jpx-config-rename input{width:100%}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar{padding:10px 12px;gap:8px;flex-wrap:wrap}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation){border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>.jpx-config-actions{margin-left:auto}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar>input{order:3;max-width:none;width:100%;flex-basis:100%;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{flex-basis:100%;max-width:none;margin:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar:not(.jpx-config-store-header)>.jpx-store-querybar{order:3}\n#settings-container.jpx-settings-mobile .jpx-config-list-header{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-list-header :is(select,button){height:36px;min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-rename input{min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm{padding:12px}\n#settings-container.jpx-settings-mobile .jpx-config-confirm>:is(h3,p,label),#settings-container.jpx-settings-mobile .jpx-config-rename{margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browsing>.jpx-store-stage{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-querybar input{min-height:36px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-store-refresh,.jpx-store-download){width:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar{margin-left:auto;gap:6px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-config-toolbar .jpx-store-account button{max-width:100px}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header{display:grid}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store-browse-header>.jpx-store-filter-grid{min-width:0}\n#settings-container.jpx-settings-mobile .jpx-config-manager button:where(:not(.jpx-config-stats-editor *)){min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-nav,.jpx-rule-section-tabs,.jpx-store-navigation)>button{padding-inline:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row{padding:12px 0;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row[data-active=true]{padding-left:8px}\n#settings-container.jpx-settings-mobile .jpx-config-row .jpx-config-actions{gap:4px}\n#settings-container.jpx-settings-mobile .jpx-config-actions button{padding:5px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-actions .jpx-config-more{width:36px}\n#settings-container.jpx-settings-mobile .jpx-config-title .jpx-config-grip{width:32px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-config-tags .jpx-config-tag{min-height:26px;padding:3px 7px}\n#settings-container.jpx-settings-mobile .jpx-config-body{padding:0 12px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-title{flex-wrap:wrap;gap:2px 8px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-header,#settings-container.jpx-settings-mobile .jpx-config-editor-footer{padding:8px 12px}\n#settings-container.jpx-settings-mobile .jpx-config-editor-content{padding:8px 10px 0}\n#settings-container.jpx-settings-mobile .jpx-config-manager :is(.jpx-config-back,.jpx-store-back){display:none}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store:not(.jpx-store-browsing){padding:10px 12px}\n@media(max-width:380px){#settings-container .jpx-config-form{gap:12px}}\n#settings-container .jpx-config-selection{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex:none;padding:8px 16px;flex-wrap:wrap;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-selection-summary,#settings-container .jpx-selection-actions{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}\n#settings-container .jpx-selection-summary{flex:1}.jpx-selection-name{overflow-wrap:anywhere}\n#settings-container .jpx-selection-mode{font-weight:600;color:var(--jpx-theme-text,#392d25)}\n#settings-container .jpx-selection-world{color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-selection-mode[data-fixed=true]{border-inline-start:3px solid var(--jpx-theme-accent,#5c0d11);padding-inline-start:8px}\n#settings-container .jpx-scenes-body{padding:16px;scroll-padding-block:16px}\n#settings-container .jpx-scene-context{gap:12px;margin:0 0 20px;max-width:none}\n#settings-container .jpx-scene-context label{margin:0}\n#settings-container .jpx-scenes-table{border:1px solid var(--jpx-theme-border,#c8b49b);border-radius:0;overflow:hidden;background:var(--jpx-theme-surface,#f9f6ec)}\n#settings-container .jpx-scene-row{position:relative;display:grid;grid-template-columns:minmax(100px,.75fr) minmax(0,2fr);align-items:center;gap:16px;padding:16px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b)}\n#settings-container .jpx-scene-row:last-child{border-bottom:0}\n#settings-container .jpx-scene-row[data-general=true]{background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-scene-row[data-executing=true]{box-shadow:inset 3px 0 var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-scene-label{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;min-width:0;cursor:pointer;margin:0}\n#settings-container .jpx-scene-label strong{font-weight:600;overflow-wrap:anywhere}\n#settings-container .jpx-scene-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:1.5;color:var(--jpx-theme-accent,#5c0d11);white-space:nowrap}\n#settings-container .jpx-scene-badge:before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex:none}\n#settings-container .jpx-scene-controls{display:grid;gap:8px;min-width:0}\n#settings-container .jpx-scene-controls select{width:100%;max-width:100%;min-width:0;min-height:36px;margin:0;cursor:pointer;field-sizing:fixed;text-overflow:ellipsis}\n#settings-container .jpx-scene-controls select>button{display:contents}\n#settings-container .jpx-scene-controls selectedcontent{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\n#settings-container .jpx-scene-controls select::picker-icon{flex:none}\n#settings-container .jpx-scene-pending{display:flex;justify-content:flex-end;gap:8px}\n#settings-container .jpx-scene-executing{display:flex;gap:6px 12px;flex-wrap:wrap;align-items:center;margin:0 0 16px;color:var(--jpx-theme-muted,#71634f);overflow-wrap:anywhere}\n#settings-container .jpx-scene-executing strong{color:var(--jpx-theme-text,#392d25);font-weight:500}\n#settings-container :is(.jpx-scene-update,.jpx-config-assigned){font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-scene-row :is(button,select):focus-visible,#settings-container .jpx-selection-actions button:focus-visible{outline:2px solid var(--jpx-theme-accent,#5c0d11);outline-offset:2px}\n#settings-container .jpx-scene-row button:active,#settings-container .jpx-selection-actions button:active{background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container.jpx-settings-mobile .jpx-config-selection{padding:8px 12px;gap:8px}\n#settings-container.jpx-settings-mobile .jpx-scenes-body{padding:12px;font-size:inherit}\n#settings-container.jpx-settings-mobile .jpx-scene-context{gap:8px;margin-bottom:12px}\n#settings-container.jpx-settings-mobile .jpx-scene-context select,#settings-container.jpx-settings-mobile .jpx-scene-controls select{font-size:inherit;min-height:32px}\n#settings-container.jpx-settings-mobile .jpx-scene-row{grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 12px}\n#settings-container.jpx-settings-mobile .jpx-scene-label{justify-content:space-between}\n#settings-container.jpx-settings-mobile .jpx-scene-pending button{min-height:44px;min-width:72px}\n#settings-container.jpx-settings-mobile .jpx-scene-executing{font-size:13px}\n#settings-container .jpx-store-comments{margin-top:16px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);min-width:0;text-align:left}\n#settings-container :is(.jpx-comment-heading,.jpx-rating-heading){display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:0}\n#settings-container .jpx-comment-heading h4{margin:0;font-size:14px}\n#settings-container .jpx-comment-header{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}\n#settings-container .jpx-comment-byline{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;min-width:0}\n#settings-container .jpx-comment-header a{overflow-wrap:anywhere;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-comment-header time{font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-comment-row{padding:8px 0 12px;border-bottom:1px solid var(--jpx-theme-border,#c8b49b);min-width:0}\n#settings-container .jpx-comment-row:last-child{border-bottom:0}\n#settings-container .jpx-comment-body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;margin:4px 0 0}\n#settings-container .jpx-comment-actions{display:flex;flex:none;justify-content:flex-end;gap:8px}\n#settings-container .jpx-comment-row[data-editing=true]>.jpx-comment-actions{margin-top:8px}\n#settings-container .jpx-comment-composer{display:grid;gap:8px;margin:8px 0 12px}\n#settings-container .jpx-comment-compose-footer{display:flex;justify-content:flex-end}\n#settings-container .jpx-store-comments textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;min-height:68px;padding:8px;resize:vertical;line-height:1.5}\n#settings-container .jpx-comment-row textarea{margin-top:8px;min-height:100px}\n#settings-container .jpx-comment-more{margin-top:12px}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status){margin:0 0 8px;overflow-wrap:anywhere;font-size:12px;line-height:1.5}\n#settings-container :is(.jpx-comment-status,.jpx-rating-status)[role=alert]{color:var(--jpx-theme-danger,#a42b26)}\n#settings-container .jpx-store-rating-summary{font-size:12px;color:var(--jpx-theme-muted,#71634f);margin:4px 0 0;display:flex;align-items:center;flex-wrap:wrap;gap:4px 16px}\n#settings-container .jpx-download-count{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;font-size:12px;color:var(--jpx-theme-muted,#71634f)}\n#settings-container .jpx-download-count svg{flex:none}\n#settings-container .jpx-rating-heading .jpx-download-count{margin-right:auto}\n#settings-container .jpx-store-rating{display:grid;gap:4px;margin-top:12px;padding-top:12px;border-top:1px solid var(--jpx-theme-border,#c8b49b);text-align:left}\n#settings-container .jpx-rating-heading strong{font-size:14px;font-weight:600}\n#settings-container .jpx-rating-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}\n#settings-container .jpx-rating-stars{display:flex;gap:8px}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-store-comments,.jpx-store-rating) :is(button,textarea){border-radius:0}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;min-height:36px;padding:0;border:1px solid transparent;background:transparent;box-shadow:none;color:var(--jpx-theme-accent,#5c0d11)}\n#settings-container .jpx-rating-star svg{width:24px;height:24px}\n#settings-container .jpx-rating-star[data-filled=true] svg{fill:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-star[aria-pressed=true]{border-bottom-color:currentColor}\n#settings-container .jpx-config-manager .jpx-store .jpx-rating-remove{padding-inline:8px;border-color:transparent;background:transparent}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):hover:not(:disabled){background:var(--jpx-theme-hover,#f1e2c5)}\n#settings-container .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star,.jpx-rating-remove):active:not(:disabled){background:var(--jpx-theme-selected,#ead8b4)}\n#settings-container .jpx-community-icon[aria-busy=true] svg{animation:jpx-community-refresh 1s linear infinite}\n@keyframes jpx-community-refresh{to{transform:rotate(360deg)}}\n@media(prefers-reduced-motion:reduce){#settings-container .jpx-community-icon[aria-busy=true] svg{animation:none}}\n#settings-container.jpx-settings-mobile .jpx-config-manager .jpx-store :is(.jpx-community-icon,.jpx-rating-star){width:44px;min-height:44px}\n#settings-container.jpx-settings-mobile .jpx-store-comments textarea{font-size:16px}\n\n/* Keep every control in the store header on the same vertical center line. */\n#settings-container .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation),#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-toolbar>.jpx-store-account,#settings-container .jpx-config-manager .jpx-config-toolbar>.jpx-store-querybar{align-self:center;align-items:center;margin-bottom:0}\n#settings-container.jpx-settings-mobile .jpx-config-toolbar :is(.jpx-config-nav,.jpx-store-navigation)>button{margin-bottom:0}\n";
 // The local library is deliberately independent of the editor and battle runtime.
 // Keep PLUS metadata outside native JPX configuration objects.
 function normalizeJpxBattleMode(mode) {
@@ -14604,6 +14604,28 @@ function commitJpxConfigEntry(entry, world, onApplied = (patch, scope) => docume
     return paused;
 }
 
+const jpxConfigElements = ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'];
+const jpxModeStyle = mode => mode.slice(0, mode.lastIndexOf('_'));
+const jpxModeScene = mode => mode.slice(mode.lastIndexOf('_') + 1);
+const jpxConfigText = (key, args) => t('cM.' + key, args);
+const jpxConfigError = code => Object.assign(new Error(), { code });
+const announceJpxConfigLibrary = () => window.dispatchEvent(new Event('jpx:config-library'));
+const signalJpxConfigWorld = world => localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+
+function jpxConfigEl(tag, text, className) {
+    const node = document.createElement(tag); if (text !== undefined) node.textContent = text;
+    if (className) node.className = className; return node;
+}
+const jpxConfigDiv = className => jpxConfigEl('div', undefined, className);
+
+// Keeps Tab inside a modal; the control list is only collected when Tab is pressed.
+function trapJpxDialogFocus(event, collect) {
+    if (event.key !== 'Tab') return;
+    const controls = collect(), first = controls[0], last = controls.at(-1);
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+}
+
 function ensureJpxConfigManagerStyle() {
     if (!document.getElementById('jpx-config-manager-style')) {
         const style = document.createElement('style'); style.id = 'jpx-config-manager-style';
@@ -14614,22 +14636,21 @@ function ensureJpxConfigManagerStyle() {
 function chooseJpxBattleExport(parent, config) {
     if (parent.querySelector('#jpx-battle-export')) return Promise.resolve(null);
     ensureJpxConfigManagerStyle();
-    const tr = (key, args) => t('cM.' + key, args), data = jpxConfigClone(config);
+    const tr = jpxConfigText, el = jpxConfigEl, div = jpxConfigDiv, data = jpxConfigClone(config);
     const activeMode = getJpxSelectedBattleMode();
     const detected = activeMode ? '' : log ? battleStyle : getDetectedJpxBattleStyle();
     const mode = activeMode || (detected ? getBattleMode(detected) : '');
-    const assignedRules = !activeMode && detected ? resolveJpxScene(getManagedBattleStyle(detected), battleType) : null;
-    const hasSceneRoute = assignedRules && [getManagedBattleStyle(detected) + '_' + battleType, getManagedBattleStyle(detected) + '_General'].some(key => Object.hasOwn(jpxSceneRuntime.scenes, key));
+    const routed = !activeMode && detected && getManagedBattleStyle(detected);
+    const assignedRules = routed ? resolveJpxScene(routed, battleType) : null;
+    const hasSceneRoute = assignedRules && [routed + '_' + battleType, routed + '_General'].some(key => Object.hasOwn(jpxSceneRuntime.scenes, key));
     const currentRules = assignedRules?.assigned || hasSceneRoute && !assignedRules.rules ? assignedRules.rules : data[mode];
     const current = jpxConfigHasRules(currentRules) ? mode : '';
     const modes = BATTLE_MODES.filter(key => jpxConfigHasContent(data[key]) || key === current && jpxConfigHasRules(data[key]));
     let scope = current ? 'current' : 'all', update = () => {};
-    const el = (tag, cls, text) => { const node = document.createElement(tag); if (cls) node.className = cls; if (text) node.textContent = text; return node; };
-    const dialog = el('dialog', 'jpx-export-dialog'); dialog.id = 'jpx-battle-export';
-    const title = el('h3', '', t('cB.exportBattleConfig')); title.id = getUniqueId('export-title'); dialog.setAttribute('aria-labelledby', title.id);
-    const nav = el('div', 'jpx-rule-section-tabs'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', title.textContent);
-    const summary = el('p', 'jpx-export-summary'), fields = el('div', 'jpx-export-fields');
-    const footer = el('div', 'jpx-export-footer');
+    const dialog = el('dialog', undefined, 'jpx-export-dialog'); dialog.id = 'jpx-battle-export';
+    const title = el('h3', t('cB.exportBattleConfig')); title.id = getUniqueId('export-title'); dialog.setAttribute('aria-labelledby', title.id);
+    const nav = div('jpx-rule-section-tabs'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', title.textContent);
+    const summary = el('p', undefined, 'jpx-export-summary'), fields = div('jpx-export-fields'), footer = div('jpx-export-footer');
     const button = (host, text, action) => { const node = jpxUtils.createButton(host, { text, history: false, onClick: action }); node.type = 'button'; return node; };
     const switches = ['current', 'all', 'choose'].map(value => {
         const node = button(nav, tr({ current: 'exportCurrent', all: 'exportAll', choose: 'exportChoose' }[value]), () => { scope = value; update(); });
@@ -14637,19 +14658,19 @@ function chooseJpxBattleExport(parent, config) {
         if (value === 'current' && !current) node.title = tr('exportUnknown'); return node;
     });
     const style = el('select'), scene = el('select'); style.dataset.exportStyle = ''; scene.dataset.exportScene = '';
-    const addOption = (select, value) => { const option = el('option', '', t('cB.' + value)); option.value = value; select.append(option); };
-    [...new Set(modes.map(key => key.slice(0, key.lastIndexOf('_'))))].forEach(value => addOption(style, value));
-    if (current && [...style.options].some(option => option.value === current.slice(0, current.lastIndexOf('_')))) style.value = current.slice(0, current.lastIndexOf('_'));
+    const addOption = (select, value) => { const option = el('option', t('cB.' + value)); option.value = value; select.append(option); };
+    new Set(modes.map(jpxModeStyle)).forEach(value => addOption(style, value));
+    if (current && [...style.options].some(option => option.value === jpxModeStyle(current))) style.value = jpxModeStyle(current);
     function updateScenes() {
-        const previous = scene.value || current.slice(current.lastIndexOf('_') + 1);
+        const previous = scene.value || jpxModeScene(current);
         scene.replaceChildren();
-        modes.filter(key => key.slice(0, key.lastIndexOf('_')) === style.value).forEach(key => addOption(scene, key.slice(key.lastIndexOf('_') + 1)));
+        modes.filter(key => jpxModeStyle(key) === style.value).forEach(key => addOption(scene, jpxModeScene(key)));
         if ([...scene.options].some(option => option.value === previous)) scene.value = previous;
         update();
     }
     style.addEventListener('change', updateScenes); scene.addEventListener('change', () => update()); updateScenes();
     for (const [key, input] of [['style', style], ['scenario', scene]]) {
-        const label = el('label'); label.append(el('span', '', tr(key)), input); fields.append(label);
+        const label = el('label'); label.append(el('span', tr(key)), input); fields.append(label);
     }
     dialog.append(title, nav, summary, fields, footer);
     const focused = document.activeElement;
@@ -14677,12 +14698,8 @@ function chooseJpxBattleExport(parent, config) {
             submit.disabled = scope === 'choose' && !modes.includes(style.value + '_' + scene.value);
         };
         dialog.addEventListener('cancel', event => { event.preventDefault(); finish(null); });
-        dialog.addEventListener('keydown', event => {
-            if (event.key !== 'Tab') return;
-            const controls = [...dialog.querySelectorAll('button,select')].filter(node => !node.disabled && node.getClientRects().length);
-            if (event.shiftKey && document.activeElement === controls[0]) { event.preventDefault(); controls.at(-1).focus(); }
-            else if (!event.shiftKey && document.activeElement === controls.at(-1)) { event.preventDefault(); controls[0].focus(); }
-        });
+        dialog.addEventListener('keydown', event => trapJpxDialogFocus(event, () =>
+            [...dialog.querySelectorAll('button,select')].filter(node => !node.disabled && node.getClientRects().length)));
         dialog.addEventListener('close', () => finish(null)); parent.addEventListener('close', parentClosed);
         parent.append(dialog); update(); dialog.showModal(); switches.find(node => node.dataset.exportScope === scope).focus();
     });
@@ -14697,9 +14714,9 @@ function jpxImportDisplayName(name) {
 
 function createJpxImportFeedback() {
     ensureJpxConfigManagerStyle();
-    const node = document.createElement('div'); node.className = 'jpx-import-feedback'; node.hidden = true;
-    const message = document.createElement('p'); message.setAttribute('role', 'status'); message.setAttribute('aria-atomic', 'true');
-    const close = document.createElement('button'); close.type = 'button'; close.textContent = '×';
+    const node = jpxConfigDiv('jpx-import-feedback'); node.hidden = true;
+    const message = jpxConfigEl('p'); message.setAttribute('role', 'status'); message.setAttribute('aria-atomic', 'true');
+    const close = jpxConfigEl('button', '×'); close.type = 'button';
     close.setAttribute('aria-label', t('cM.close')); close.title = t('cM.close');
     const clear = () => { node.hidden = true; message.textContent = ''; delete node.dataset.stage; };
     close.addEventListener('click', clear); node.append(message, close);
@@ -14713,20 +14730,16 @@ function createJpxImportFeedback() {
 
 function renderJpxConfigManager(parent, hooks = {}) {
     ensureJpxConfigManagerStyle();
-    const el = (tag, text, className) => {
-        const node = document.createElement(tag); if (text !== undefined) node.textContent = text;
-        if (className) node.className = className; return node;
-    };
-    const tr = (key, args) => t('cM.' + key, args);
+    const el = jpxConfigEl, div = jpxConfigDiv, tr = jpxConfigText;
     const root = el('section', undefined, 'jpx-config-manager'); parent.append(root);
     const sortKey = 'jpx_configListSort_v1';
     let savedSort; try { savedSort = localStorage.getItem(sortKey); } catch {}
     const state = { query: '', world: '', style: '', scenario: '', kind: '', sort: ['type', 'updated', 'name', 'manual'].includes(savedSort) ? savedSort : 'type', filtersOpen: false,
-        scroll: 0, editor: null, page: 'mine', storeDispose: null, history: null, disposed: false, dialog: null };
+        scroll: 0, editor: null, page: 'mine', storeDispose: null, disposed: false, dialog: null };
     const library = getJpxConfigLibrary();
     const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
     const importFeedback = createJpxImportFeedback();
-    let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
+    let body, list, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
     let importGeneration = 0;
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
     const clearNotice = () => { clearTimeout(noticeTimer); noticeTimer = null; notice.textContent = ''; };
@@ -14735,7 +14748,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
         notice.textContent = message;
         if (!persistent) noticeTimer = setTimeout(clearNotice, 4000);
     };
-    const error = cause => notify(tr(cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'error'), true);
+    const messageKey = (cause, fallback) => cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : fallback;
+    const error = cause => notify(tr(messageKey(cause, 'error')), true);
     function button(label, action, cls = '') {
         const node = el('button', label, cls); node.type = 'button';
         node.addEventListener('click', async () => {
@@ -14747,28 +14761,29 @@ function renderJpxConfigManager(parent, hooks = {}) {
         state.back = action;
         return button(tr('back'), action, 'jpx-config-back');
     }
+    const addOptions = (node, values) => { for (const [value, label] of values) { const option = el('option', label); option.value = value; node.append(option); } };
     function select(values, selected) {
-        const node = el('select');
-        for (const [value, label] of values) { const option = el('option', label); option.value = value; node.append(option); }
+        const node = el('select'); addOptions(node, values);
         node.value = selected; return node;
     }
     function field(label, input, wide = false) {
         const node = el('label', undefined, wide ? 'jpx-config-wide' : ''); node.append(el('span', label), input); return node;
     }
     const worlds = [['Persistent', t('cB.Persistent')], ['Isekai', t('cB.Isekai')], ['Any', tr('anyWorld')]];
+    const worldIds = worlds.map(([world]) => world), worldLabel = value => worlds.find(([world]) => world === value)?.[1];
+    const nativeChoices = values => values.map(value => [value, t('cB.' + value)]);
     const modesOf = envelope => BATTLE_MODES.filter(mode => jpxConfigHasRules(envelope.config[mode]));
     function meta(envelope) {
         const detail = envelope.kind === 'stats' ? tr('stats') : envelope.mode ? jpxConfigModeLabel(envelope.mode) : tr('groupCount', { count: modesOf(envelope).length });
         const execution = envelope.mode && envelope.config[envelope.mode]?.jpxPlusExecution;
-        return [envelope.title === detail ? '' : detail, execution?.element && execution.element !== 'auto' ? tr(execution.element) : '', worlds.find(([world]) => world === envelope.world)?.[1]].filter(Boolean).join(' · ');
+        return [envelope.title === detail ? '' : detail, execution?.element && execution.element !== 'auto' ? tr(execution.element) : '', worldLabel(envelope.world)].filter(Boolean).join(' · ');
     }
     const classifications = new WeakMap(), scenarios = ['General', ...BATTLE_TYPES];
     function classify(envelope) {
         if (classifications.has(envelope)) return classifications.get(envelope);
         const modes = envelope.kind === 'battle-mode' ? [envelope.mode] : envelope.config ? modesOf(envelope).filter(mode => jpxConfigHasContent(envelope.config[mode])) : (envelope.modes || []);
-        const styles = [...new Set(modes.map(mode => mode.slice(0, mode.lastIndexOf('_'))))];
-        const battles = [...new Set(modes.map(mode => mode.slice(mode.lastIndexOf('_') + 1)))];
-        const elements = [...new Set(modes.map(mode => envelope.config?.[mode]?.jpxPlusExecution?.element).filter(value => ['fire', 'cold', 'wind', 'elec', 'holy', 'dark'].includes(value)))];
+        const styles = [...new Set(modes.map(jpxModeStyle))], battles = [...new Set(modes.map(jpxModeScene))];
+        const elements = [...new Set(modes.map(mode => envelope.config?.[mode]?.jpxPlusExecution?.element).filter(value => jpxConfigElements.includes(value)))];
         const result = { modes, styles, battles, elements };
         classifications.set(envelope, result); return result;
     }
@@ -14782,12 +14797,13 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const left = rank(a), right = rank(b);
         return left.reduce((order, value, index) => order || value - right[index], 0);
     }
-    function tags(envelope, choose = (key, value) => {
+    function setFilter(key, value) {
         state[key] = value;
         if (key === 'kind' && value === 'stats') state.style = state.scenario = '';
         refreshFilters();
-    }) {
-        const data = classify(envelope), group = el('div', undefined, 'jpx-config-tags');
+    }
+    function tags(envelope, choose = setFilter) {
+        const data = classify(envelope), group = div('jpx-config-tags');
         const add = (label, kind, key, value, title) => {
             const tag = key && choose ? button(label, () => choose(key, value, label)) : el('span', label);
             tag.className = 'jpx-config-tag'; tag.dataset.tagKind = kind;
@@ -14804,19 +14820,19 @@ function renderJpxConfigManager(parent, hooks = {}) {
             for (const value of data.elements) add(tr(value), 'element', null, value);
             if (envelope.kind === 'battle') add(data.modes.length ? tr('groupCount', { count: data.modes.length }) : tr('allBattle'), 'kind', null, 'battle');
         }
-        add(worlds.find(([world]) => world === envelope.world)?.[1], 'world', envelope.world === 'Any' ? null : 'world', envelope.world);
+        add(worldLabel(envelope.world), 'world', envelope.world === 'Any' ? null : 'world', envelope.world);
         return group;
     }
     const matchesApplied = (saved, current) => saved && current && (saved.mode ? [saved.mode] : saved.scopes).every(scope =>
         JSON.stringify(scope === 'stats' ? current : current[scope]) === JSON.stringify(scope === 'stats' ? saved.config : saved.config[scope]));
     function appliedContext() {
-        const version = [jpxConfigLibraryKey, prefix + 'cfgBattle', prefix + 'cfgBattle_isekai', prefix + 'cfgStats'].map(key => localStorage.getItem(key));
+        const storageKey = world => world === 'Any' ? prefix + 'cfgStats' : prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '');
+        const version = [jpxConfigLibraryKey, ...worldIds.map(storageKey)].map(key => localStorage.getItem(key));
         if (contextVersion?.every((raw, index) => raw === version[index])) return cachedContext;
         const state = library.readState(), native = {}, saved = {};
-        for (const world of ['Persistent', 'Isekai', 'Any']) {
-            const key = world === 'Any' ? prefix + 'cfgStats' : prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '');
+        for (const world of worldIds) {
             let current;
-            try { current = JSON.parse(localStorage.getItem(key) || 'null'); } catch { continue; }
+            try { current = JSON.parse(localStorage.getItem(storageKey(world)) || 'null'); } catch { continue; }
             saved[world] = current;
             current ||= world === jpxConfigWorld() ? cfgBattle : world === 'Any' ? cfgStats : {};
             if (world !== 'Any') {
@@ -14829,22 +14845,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
             native[world] = current;
         }
         const active = {};
-        for (const world of ['Persistent', 'Isekai', 'Any']) {
+        for (const world of worldIds) {
             const id = state.active?.[world];
             if (id && matchesApplied(state.applied[world]?.[id], native[world])) active[world] = id;
         }
         contextVersion = version;
         return cachedContext = { state, native, active, saved };
     }
-    function currentApplied(entry, context = appliedContext()) {
-        const result = [];
-        for (const world of ['Persistent', 'Isekai', 'Any']) {
-            const saved = context.state.applied[world]?.[entry.id], current = context.native[world];
-            if (!saved || !current) continue;
-            if (matchesApplied(saved, current)) result.push({ ...saved, world });
-        }
-        return result;
-    }
+    const currentApplied = (entry, context = appliedContext()) => worldIds.flatMap(world => {
+        const saved = context.state.applied[world]?.[entry.id];
+        return matchesApplied(saved, context.native[world]) ? [{ ...saved, world }] : [];
+    });
     function resetPage(page) {
         importGeneration++;
         cancelListDrag?.(); cancelListDrag = null;
@@ -14854,11 +14865,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     async function confirmAction(title, options, content, { validate, focus } = {}) {
         if (state.dialog) return null;
-        const focused = document.activeElement, overlay = el('div', undefined, 'jpx-config-overlay');
+        const focused = document.activeElement, overlay = div('jpx-config-overlay');
         const box = el('section', undefined, 'jpx-config-confirm'); box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true');
         const heading = el('h3', title); heading.id = getUniqueId('config-confirm'); box.setAttribute('aria-labelledby', heading.id); box.append(heading);
         if (content) box.append(content);
-        const actions = el('div', undefined, 'jpx-config-actions'); box.append(actions); overlay.append(box);
+        const actions = div('jpx-config-actions'); box.append(actions); overlay.append(box);
         const siblings = [...root.children]; siblings.forEach(node => node.inert = true); root.append(overlay);
         return new Promise(resolve => {
             const finish = value => {
@@ -14871,51 +14882,52 @@ function renderJpxConfigManager(parent, hooks = {}) {
             }, primary ? 'jpx-config-primary' : ''));
             overlay.addEventListener('keydown', event => {
                 if (event.key === 'Escape') { event.stopPropagation(); event.preventDefault(); finish(null); }
-                if (event.key === 'Tab') {
-                    const controls = [...box.querySelectorAll('button,select,input')].filter(node => !node.disabled);
-                    const first = controls[0], last = controls.at(-1);
-                    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-                    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-                }
+                trapJpxDialogFocus(event, () => [...box.querySelectorAll('button,select,input')].filter(node => !node.disabled));
             });
             (focus || actions.querySelector('button'))?.focus();
         });
+    }
+    // A cancel/confirm pair; resolves true only for the primary action.
+    const confirmed = async (title, label, content) => await confirmAction(title, [['cancel', tr('cancel')], ['confirm', label, true]], content) === 'confirm';
+    function pageTabs(mineActive, onMine, onStore) {
+        const nav = div('jpx-config-nav');
+        for (const [label, action, pressed] of [['mine', onMine, mineActive], ['store', onStore, !mineActive]]) {
+            const tab = button(tr(label), action); tab.setAttribute('aria-pressed', String(pressed)); nav.append(tab);
+        }
+        return nav;
+    }
+    function titleInput(value) {
+        const input = el('input'); input.type = 'text'; input.required = true; input.maxLength = 100; input.value = value; return input;
+    }
+    function pageHeader(back, title) {
+        const header = div('jpx-config-editor-header'); header.append(back, el('strong', title)); return header;
     }
     function captureList() { if (state.page === 'mine' && body) state.scroll = body.scrollTop; }
     function showMine() {
         resetPage('mine');
         listVersion = null;
-        toolbar = el('div', undefined, 'jpx-config-toolbar');
-        const nav = el('div', undefined, 'jpx-config-nav'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', tr('name'));
-        const mine = button(tr('mine'), () => {}); mine.setAttribute('aria-pressed', 'true');
-        const store = button(tr('store'), () => { captureList(); showStore(); }); store.setAttribute('aria-pressed', 'false');
-        nav.append(mine, store);
-        const selection = el('div', undefined, 'jpx-config-selection');
-        renderSelection(selection);
-        root.append(selection);
+        const toolbar = div('jpx-config-toolbar');
+        const nav = pageTabs(true, () => {}, () => { captureList(); showStore(); }); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', tr('name'));
+        root.append(renderSelection());
         const search = el('input'); search.type = 'search'; search.placeholder = tr('search'); search.setAttribute('aria-label', tr('search')); search.value = state.query;
         search.addEventListener('input', () => { state.query = search.value; refresh(); });
-        const queryBar = el('div', undefined, 'jpx-store-querybar');
-        const filters = el('div', undefined, 'jpx-store-filter-grid'); filters.id = getUniqueId('config-filters');
+        const queryBar = div('jpx-store-querybar');
+        const filters = div('jpx-store-filter-grid'); filters.id = getUniqueId('config-filters');
         const toggle = button(tr('filters'), () => { state.filtersOpen = !state.filtersOpen; updateFilters(); }, 'jpx-store-filter-toggle');
         toggle.setAttribute('aria-controls', filters.id); queryBar.append(search, toggle);
         const controls = {};
         for (const [key, label, choices] of [
             ['world', 'world', [['', tr('allWorlds')], ...worlds.filter(([value]) => value !== 'Any')]],
-            ['style', 'style', [['', tr('allStyles')], ...BATTLE_STYLES.map(value => [value, t('cB.' + value)])]],
-            ['scenario', 'scenario', [['', tr('allBattles')], ...['General', ...BATTLE_TYPES].map(value => [value, t('cB.' + value)])]],
+            ['style', 'style', [['', tr('allStyles')], ...nativeChoices(BATTLE_STYLES)]],
+            ['scenario', 'scenario', [['', tr('allBattles')], ...nativeChoices(scenarios)]],
             ['kind', 'type', [['', tr('allTypes')], ['battle-mode', tr('singleMode')], ['battle', tr('allBattle')], ['stats', tr('stats')]]]
         ]) {
             const control = select(choices, state[key]); controls[key] = control;
             control.setAttribute('aria-label', tr(label)); control.dataset.configFilter = key;
-            control.addEventListener('change', () => {
-                state[key] = control.value;
-                if (key === 'kind' && state.kind === 'stats') state.style = state.scenario = '';
-                refresh();
-            });
+            control.addEventListener('change', () => setFilter(key, control.value));
             filters.append(control);
         }
-        const results = el('div', undefined, 'jpx-store-results');
+        const results = div('jpx-store-results');
         resultCount = el('span', '', 'jpx-store-result-count'); resultCount.setAttribute('role', 'status');
         const clear = button(tr('clearFilters'), () => {
             state.query = state.world = state.style = state.scenario = state.kind = ''; search.value = ''; refresh();
@@ -14924,10 +14936,10 @@ function renderJpxConfigManager(parent, hooks = {}) {
         sort.setAttribute('aria-label', tr('sort')); sort.dataset.configSort = '';
         sort.addEventListener('change', () => {
             state.sort = sort.value; refresh();
-            try { localStorage.setItem(sortKey, state.sort); } catch (cause) { error({ code: 'storageError' }); }
+            try { localStorage.setItem(sortKey, state.sort); } catch { error({ code: 'storageError' }); }
         });
         results.append(resultCount, clear, sort);
-        const header = el('div', undefined, 'jpx-config-list-header jpx-store-browse-header jpx-store-view-header'); header.append(filters, results);
+        const header = div('jpx-config-list-header jpx-store-browse-header jpx-store-view-header'); header.append(filters, results);
         function updateFilters() {
             const active = Object.keys(controls).filter(key => state[key]).length;
             toggle.textContent = tr('filters') + (active ? ' (' + active + ')' : '');
@@ -14945,80 +14957,77 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 event.preventDefault(); event.stopPropagation(); state.filtersOpen = false; updateFilters(); toggle.focus();
             }
         });
-        const actions = el('div', undefined, 'jpx-config-actions');
+        const actions = div('jpx-config-actions');
         actions.append(button(tr('new'), () => { captureList(); showSettings(); }, 'jpx-config-primary'), button(tr('import'), () => importFile()));
         toolbar.append(nav, queryBar, actions);
-        body = el('div', undefined, 'jpx-config-body'); list = el('div', undefined, 'jpx-config-list'); body.append(list);
+        body = div('jpx-config-body'); list = div('jpx-config-list'); body.append(list);
         root.append(toolbar, header, importFeedback.node, notice, body); updateFilters(); renderList(); body.scrollTop = state.scroll;
         cancelListDrag = bindStatsListDrag(list, moveEntry, { row: '.jpx-config-row', handle: '.jpx-config-grip', idKey: 'configId', scroller: body, previewClass: 'jpx-config-drag-preview',
             preview: row => [createSettingsIcon('grip'), el('strong', row.querySelector('.jpx-config-title strong').textContent)], afterMove: () => {} });
     }
-    function renderSelection(selection) {
+    function renderSelection(selection = div('jpx-config-selection')) {
         selection.replaceChildren();
         const selected = getJpxSelectedBattleMode();
-        const summary = el('div', undefined, 'jpx-selection-summary');
+        const summary = div('jpx-selection-summary');
         const mode = el('span', tr(selected ? 'fixedMode' : 'automaticMode'), 'jpx-selection-mode');
         mode.dataset.fixed = String(!!selected); if (selected) mode.title = tr('fixedHint');
         summary.append(mode);
         if (selected) summary.append(el('span', jpxConfigModeLabel(selected), 'jpx-selection-name'));
         else summary.append(el('span', t('cB.' + jpxConfigWorld()), 'jpx-selection-world'));
-        const actions = el('div', undefined, 'jpx-selection-actions');
+        const actions = div('jpx-selection-actions');
         if (state.page !== 'scenes') actions.append(button(tr('sceneAssignments'), () => { captureList(); showScenes(); }, 'jpx-scene-open'));
         if (selected) actions.append(button(tr('restoreAutomatic'), () => { restoreJpxAutomaticSelection(); state.page === 'scenes' ? showScenes() : showMine(); }));
-        selection.append(summary, actions);
+        selection.append(summary, actions); return selection;
     }
     function showScenes() {
         resetPage('scenes'); state.back = showMine;
         state.sceneWorld ||= jpxConfigWorld();
         state.sceneStyle ||= getDetectedJpxBattleStyle() || BATTLE_STYLES[0];
-        const top = el('div', undefined, 'jpx-config-toolbar');
+        const top = div('jpx-config-toolbar');
         top.append(backButton(showMine), el('strong', tr('sceneAssignments')));
         const selectedMode = getJpxSelectedBattleMode();
-        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection);
-        const controls = el('div', undefined, 'jpx-config-form jpx-scene-context');
-        const world = select(worlds.slice(0, 2), state.sceneWorld), style = select(BATTLE_STYLES.map(value => [value, t('cB.' + value)]), state.sceneStyle);
+        const controls = div('jpx-config-form jpx-scene-context');
+        const world = select(worlds.slice(0, 2), state.sceneWorld), style = select(nativeChoices(BATTLE_STYLES), state.sceneStyle);
         world.dataset.sceneWorld = ''; style.dataset.sceneStyle = '';
         controls.append(field(tr('world'), world), field(tr('style'), style));
         world.addEventListener('change', () => { state.sceneWorld = world.value; showScenes(); });
         style.addEventListener('change', () => { state.sceneStyle = style.value; showScenes(); });
-        const content = el('div', undefined, 'jpx-config-body jpx-scenes-body');
-        root.append(top); if (selectedMode) root.append(selection);
+        const content = div('jpx-config-body jpx-scenes-body');
+        root.append(top); if (selectedMode) root.append(renderSelection());
         content.append(controls); root.append(notice, content);
         const application = appliedContext(), routes = application.state.scenes?.[state.sceneWorld] || {}, native = application.native[state.sceneWorld] || {};
         const detected = getManagedBattleStyle(battleStyle || getDetectedJpxBattleStyle());
         const execution = selectedMode ? { mode: selectedMode, id: application.state.active?.[jpxConfigWorld()] } : resolveJpxScene(detected, battleType);
-        const strategyName = (resolved, world, config) => application.state.entries.find(entry => entry.id === resolved.id)?.envelope.title ||
+        const entryById = id => application.state.entries.find(entry => entry.id === id);
+        const strategyName = (resolved, world, config) => entryById(resolved.id)?.envelope.title ||
             application.state.entries.find(entry => application.state.applied[world]?.[entry.id]?.scopes.includes(resolved.mode) &&
                 matchesApplied(application.state.applied[world][entry.id], config))?.envelope.title || tr('current');
         const viewingCurrent = state.sceneWorld === jpxConfigWorld() && state.sceneStyle === detected;
         if (selectedMode || !viewingCurrent) {
             const executingName = execution.rules || selectedMode ? strategyName(execution, jpxConfigWorld(), application.native[jpxConfigWorld()]) : tr('unassigned');
-            const current = el('div', undefined, 'jpx-scene-executing');
+            const current = div('jpx-scene-executing');
             current.append(el('span', tr('executing'), 'jpx-scene-badge'), el('span', detected ? jpxConfigModeLabel(detected + '_' + battleType) : '—'), el('strong', executingName));
             content.append(current);
         }
-        const table = el('div', undefined, 'jpx-scenes-table'); content.append(table);
+        const table = div('jpx-scenes-table'); content.append(table);
         const candidates = application.state.entries.filter(entry => entry.envelope.kind !== 'stats' && ['Any', state.sceneWorld].includes(entry.envelope.world) && visibleSavedEntry(entry, application));
-        const options = candidates.flatMap(entry => BATTLE_MODES.filter(mode => mode.slice(0, mode.lastIndexOf('_')) === state.sceneStyle && jpxConfigHasContent(entry.envelope.config[mode])).map(mode => ({ entry, mode })));
+        const options = candidates.flatMap(entry => BATTLE_MODES.filter(mode => jpxModeStyle(mode) === state.sceneStyle && jpxConfigHasContent(entry.envelope.config[mode])).map(mode => ({ entry, mode })));
+        const general = resolveJpxScene(state.sceneStyle, 'General', routes, native);
+        const inheritLabel = tr('inheritGeneral') + (general.rules ? ' · ' + strategyName(general, state.sceneWorld, native) : '');
         for (const scene of ['General', 'Arena', 'Item', state.sceneWorld === 'Isekai' ? 'Tower' : 'Encounter', 'Battle1000']) {
             const target = state.sceneStyle + '_' + scene, route = routes[target];
             const resolved = resolveJpxScene(state.sceneStyle, scene, routes, native);
             const row = el('article', undefined, 'jpx-scene-row'); row.dataset.scene = scene;
-            const info = el('label', undefined, 'jpx-scene-label'), heading = el('strong', jpxConfigSceneLabel(scene));
-            const name = strategyName(resolved, state.sceneWorld, native);
-            info.append(heading);
-            row.dataset.general = String(scene === 'General');
-            row.dataset.inherited = String(resolved.inherited);
+            const info = el('label', undefined, 'jpx-scene-label'), name = strategyName(resolved, state.sceneWorld, native);
+            info.append(el('strong', jpxConfigSceneLabel(scene)));
+            row.dataset.general = String(scene === 'General'); row.dataset.inherited = String(resolved.inherited);
             if (!selectedMode && viewingCurrent && scene === battleType && resolved.rules) {
                 row.dataset.executing = 'true'; info.append(el('span', tr('inUse'), 'jpx-scene-badge'));
             }
-            const general = resolveJpxScene(state.sceneStyle, 'General', routes, native);
-            const inheritLabel = tr('inheritGeneral') + (general.rules ? ' · ' + strategyName(general, state.sceneWorld, native) : '');
-            const choices = [['', tr(scene === 'General' ? 'unassigned' : 'inheritGeneral')]];
-            if (scene !== 'General') choices[0][1] = inheritLabel;
+            const choices = [['', scene === 'General' ? tr('unassigned') : inheritLabel]];
             if (!Object.hasOwn(routes, target) && jpxConfigHasContent(native[target])) choices.push(['native', name]);
             for (const {entry, mode} of options) choices.push([JSON.stringify([entry.id, mode]), entry.envelope.title +
-                (entry.envelope.kind === 'battle' ? ' · ' + jpxConfigSceneLabel(mode.slice(mode.lastIndexOf('_') + 1)) : '')]);
+                (entry.envelope.kind === 'battle' ? ' · ' + jpxConfigSceneLabel(jpxModeScene(mode)) : '')]);
             const selected = route ? JSON.stringify([route.id, route.mode]) : choices.some(([value]) => value === 'native') ? 'native' : '';
             if (route && !choices.some(([value]) => value === selected)) choices.push([selected, name]);
             const picker = select(choices, selected); picker.id = getUniqueId('scene-strategy'); info.htmlFor = picker.id;
@@ -15027,37 +15036,37 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 face.append(el('selectedcontent')); picker.prepend(face);
             }
             picker.setAttribute('aria-label', jpxConfigSceneLabel(scene));
-            const outdated = route && application.state.entries.find(entry => entry.id === route.id)?.revision !== route.revision;
-            if (outdated) { const badge = el('span', tr('assignmentOlder'), 'jpx-scene-update'); info.append(badge); }
+            const outdated = route && entryById(route.id)?.revision !== route.revision;
+            if (outdated) info.append(el('span', tr('assignmentOlder'), 'jpx-scene-update'));
             const save = button(tr('assign'), async () => {
                 if (picker.value === 'native') return;
                 const pair = picker.value ? JSON.parse(picker.value) : null;
                 const candidate = pair && candidates.find(entry => entry.id === pair[0]);
-                if (pair && !candidate) throw Object.assign(new Error(), { code: 'worldMismatch' });
-                if (candidate && jpxConfigContainsCode(candidate.envelope) && await confirmAction(tr('customCode'), [['cancel', tr('cancel')], ['confirm', tr('assign'), true]]) !== 'confirm') return;
+                if (pair && !candidate) throw jpxConfigError('worldMismatch');
+                if (candidate && jpxConfigContainsCode(candidate.envelope) && !await confirmed(tr('customCode'), tr('assign'))) return;
                 library.assignScene(state.sceneWorld, target, candidate?.id || null, pair?.[1], candidate?.revision, route || null);
                 if (state.sceneWorld === jpxConfigWorld()) syncJpxSceneRuntime();
-                localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world: state.sceneWorld, scopes: [], nonce: Date.now() + ':' + Math.random() }));
+                signalJpxConfigWorld(state.sceneWorld);
                 const scrollTop = content.scrollTop;
-                window.dispatchEvent(new Event('jpx:config-library')); showScenes(); notify(tr('assigned'));
-                const body = root.querySelector('.jpx-scenes-body'); body.scrollTop = scrollTop;
+                announceJpxConfigLibrary(); showScenes(); notify(tr('assigned'));
+                root.querySelector('.jpx-scenes-body').scrollTop = scrollTop;
                 root.querySelector('[data-scene="' + scene + '"] select')?.focus({ preventScroll: true });
             }, 'jpx-config-primary');
             const cancel = button(tr('cancel'), () => { picker.value = selected; updatePending(); picker.focus({ preventScroll: true }); });
-            const pending = el('div', undefined, 'jpx-scene-pending'); pending.append(cancel, save);
+            const pending = div('jpx-scene-pending'); pending.append(cancel, save);
             function updatePending() {
                 const changed = picker.value !== selected || !!outdated && picker.value !== 'native';
                 pending.hidden = !changed; row.dataset.pending = String(changed);
                 picker.title = picker.selectedOptions[0]?.textContent || '';
             }
             picker.addEventListener('change', updatePending); updatePending();
-            const actions = el('div', undefined, 'jpx-scene-controls'); actions.append(picker, pending); row.append(info, actions); table.append(row);
+            const actions = div('jpx-scene-controls'); actions.append(picker, pending); row.append(info, actions); table.append(row);
         }
     }
+    const sceneAssigned = (entry, application) => Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id));
     function visibleSavedEntry(entry, application = appliedContext()) {
         // Hide only untouched placeholders from older migrations, in every picker.
-        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id) &&
-            !Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) {
+        if (entry.source?.type === 'native' && entry.revision === 1 && !Object.values(application.state.active || {}).includes(entry.id) && !sceneAssigned(entry, application)) {
             const mode = entry.envelope.mode, saved = application.saved[entry.envelope.world];
             const rules = saved?.[mode] || (mode === '1H_Mage_General' ? saved?.Battlecaster_General : null);
             return !!(jpxConfigHasContent(entry.envelope.config[mode]) && jpxConfigHasContent(rules));
@@ -15094,15 +15103,14 @@ function renderJpxConfigManager(parent, hooks = {}) {
             const envelope = entry.envelope, data = classify(envelope);
             const matches = (!state.world || envelope.world === state.world || envelope.world === 'Any') &&
                 (!state.kind || envelope.kind === state.kind) &&
-                ((!state.style && !state.scenario) || data.modes.some(mode => (!state.style || mode.slice(0, mode.lastIndexOf('_')) === state.style) &&
-                    (!state.scenario || mode.slice(mode.lastIndexOf('_') + 1) === state.scenario)));
+                ((!state.style && !state.scenario) || data.modes.some(mode => (!state.style || jpxModeStyle(mode) === state.style) &&
+                    (!state.scenario || jpxModeScene(mode) === state.scenario)));
             if (!matches || !words.length) return matches;
-            const text = normalize([envelope.title, meta(envelope), ...data.modes, ...data.styles.map(value => t('cB.' + value)), ...data.battles.map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' '));
+            const text = normalize([envelope.title, meta(envelope), ...data.modes, ...[...data.styles, ...data.battles].map(value => t('cB.' + value)), ...data.elements.map(value => tr(value))].join(' '));
             return words.every(word => text.includes(word));
         });
-        const sceneSelection = resolveJpxScene(getManagedBattleStyle(battleStyle || detectedStyle), battleType);
+        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle), sceneSelection = resolveJpxScene(routedStyle, battleType);
         const fixedMode = getJpxSelectedBattleMode();
-        const routedStyle = getManagedBattleStyle(battleStyle || detectedStyle);
         const hasSceneRoute = [routedStyle + '_' + battleType, routedStyle + '_General'].some(mode => Object.hasOwn(jpxSceneRuntime.scenes, mode));
         for (const entry of entries) {
             const row = el('article', undefined, 'jpx-config-row'); row.dataset.configId = entry.id;
@@ -15113,21 +15121,21 @@ function renderJpxConfigManager(parent, hooks = {}) {
             }),
                 outdated = applied.some(item => item.revision !== entry.revision);
             row.dataset.active = String(current);
-            const info = el('div', undefined, 'jpx-config-info'), title = el('div', undefined, 'jpx-config-title');
+            const info = div('jpx-config-info'), title = div('jpx-config-title');
             if (state.sort === 'manual') {
-                const grip = button(t('cGen.dragRule'), () => {}, 'jpx-config-grip'); grip.replaceChildren(createSettingsIcon('grip'));
-                grip.title = t('cGen.dragRule'); grip.setAttribute('aria-label', t('cGen.dragRule') + ': ' + entry.envelope.title);
+                const dragLabel = t('cGen.dragRule'), grip = button(dragLabel, () => {}, 'jpx-config-grip'); grip.replaceChildren(createSettingsIcon('grip'));
+                grip.title = dragLabel; grip.setAttribute('aria-label', dragLabel + ': ' + entry.envelope.title);
                 grip.addEventListener('keydown', event => {
                     if (!['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
                     event.preventDefault(); event.stopPropagation();
-                    const rows = [...list.querySelectorAll('.jpx-config-row')], from = rows.findIndex(row => row.dataset.configId === entry.id);
+                    const rows = listRows(), from = rows.findIndex(row => row.dataset.configId === entry.id);
                     const to = event.key === 'Home' ? 0 : event.key === 'End' ? rows.length - 1 : from + (event.key === 'ArrowUp' ? -1 : 1);
                     moveEntry(entry.id, Math.max(0, Math.min(rows.length - 1, to)));
                 }); title.append(grip);
             }
             title.append(el('strong', entry.envelope.title));
             if (current) title.append(el('span', tr('inUse'), 'jpx-config-status'));
-            if (Object.values(application.state.scenes || {}).some(routes => Object.values(routes).some(route => route?.id === entry.id))) title.append(el('span', tr('assigned'), 'jpx-config-assigned'));
+            if (sceneAssigned(entry, application)) title.append(el('span', tr('assigned'), 'jpx-config-assigned'));
             if (detectedStyle && classify(entry.envelope).styles.includes(detectedStyle) &&
                 ['Any', jpxConfigWorld()].includes(entry.envelope.world)) title.append(el('span', tr('currentStyle'), 'jpx-config-detected'));
             info.append(title, tags(entry.envelope));
@@ -15137,9 +15145,9 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 const bound = button(label, () => showBindings(entry), 'jpx-config-binding');
                 bound.title = tr('bind') + ': ' + label; info.append(bound);
             }
-            const actions = el('div', undefined, 'jpx-config-actions');
+            const actions = div('jpx-config-actions');
             if (!current || outdated || entry.envelope.kind === 'battle-mode' && !fixedMode && sceneSelection.id === entry.id) {
-                const apply = button(tr(outdated ? 'updateApply' : 'apply'), async () => { await applyEntry(entry); }, 'jpx-config-primary');
+                const apply = button(tr(outdated ? 'updateApply' : 'apply'), () => applyEntry(entry), 'jpx-config-primary');
                 if (entry.envelope.kind === 'battle-mode') apply.title = tr('fixedHint');
                 actions.append(apply);
             }
@@ -15154,25 +15162,26 @@ function renderJpxConfigManager(parent, hooks = {}) {
         listVersion = version;
         ensureJpxModeDetection();
     }
+    const listRows = () => [...list.querySelectorAll('.jpx-config-row')], rowOf = id => listRows().find(row => row.dataset.configId === id);
     function moveEntry(id, destination) {
         if (state.sort !== 'manual') return;
-        const ids = [...list.querySelectorAll('.jpx-config-row')].map(row => row.dataset.configId), from = ids.indexOf(id);
+        const ids = listRows().map(row => row.dataset.configId), from = ids.indexOf(id);
         if (from < 0 || destination < 0 || destination >= ids.length || destination === from) return;
         const reordered = [...ids]; reordered.splice(from, 1); reordered.splice(destination, 0, id);
         try {
             captureList(); library.reorder(reordered, ids); renderList(); body.scrollTop = state.scroll;
-            [...list.children].find(row => row.dataset.configId === id)?.querySelector('.jpx-config-grip')?.focus({ preventScroll: true });
+            rowOf(id)?.querySelector('.jpx-config-grip')?.focus({ preventScroll: true });
         } catch (cause) { error(cause); }
     }
     function showMore(anchor, entry) {
         if (anchor.popoverTargetElement?.isConnected) return;
         root.querySelectorAll('.jpx-config-menu').forEach(node => node.remove());
-        const menu = el('div', undefined, 'jpx-config-menu'); menu.setAttribute('popover', 'auto'); menu.setAttribute('role', 'group');
+        const menu = div('jpx-config-menu'); menu.setAttribute('popover', 'auto'); menu.setAttribute('role', 'group');
         const add = (label, action, disabled = false) => {
             const item = button(label.startsWith('cGen.') ? t(label) : tr(label), async () => { menu.hidePopover(); await action(); }); item.disabled = disabled; menu.append(item);
         };
         if (state.sort === 'manual') {
-            const rows = [...list.querySelectorAll('.jpx-config-row')], index = rows.findIndex(row => row.dataset.configId === entry.id);
+            const rows = listRows(), index = rows.findIndex(row => row.dataset.configId === entry.id);
             for (const [label, destination] of [['moveTop', 0], ['moveUp', index - 1], ['moveDown', index + 1], ['moveBottom', rows.length - 1]])
                 add('cGen.' + label, () => moveEntry(entry.id, destination), destination < 0 || destination >= rows.length || destination === index);
         }
@@ -15182,18 +15191,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
         add('duplicate', () => { const envelope = jpxConfigClone(entry.envelope); envelope.title = (envelope.title + ' · ' + tr('copySuffix')).slice(0,100); library.save(envelope, { source: entry.source }); showMine(); });
         add('export', () => exportEntry(entry));
         if (entry.envelope.kind === 'battle-mode') add('reset', async () => {
-            if (await confirmAction(tr('resetConfirm'), [['cancel', tr('cancel')], ['reset', tr('reset'), true]]) !== 'reset') return;
+            if (!await confirmed(tr('resetConfirm'), tr('reset'))) return;
             captureList(); openEditor(entry, entry.envelope.mode);
             state.editor.history.run(tr('reset'), () => {
-                const mode = entry.envelope.mode, execution = state.editor.draft.envelope.config[mode].jpxPlusExecution;
-                state.editor.draft.envelope.config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { rules: [] });
-                if (execution) state.editor.draft.envelope.config[mode].jpxPlusExecution = execution;
+                const mode = entry.envelope.mode, config = state.editor.draft.envelope.config, execution = config[mode].jpxPlusExecution;
+                config[mode] = jpxConfigClone(defaultCfgBattle[mode] || { rules: [] });
+                if (execution) config[mode].jpxPlusExecution = execution;
                 state.editor.redraw();
             });
         });
         add('share', () => { captureList(); showStore(entry.envelope); });
-        const refs = library.references(entry.id);
-        if (refs.applied.length || refs.bindings.length || refs.scenes.length) add('detach', () => detachEntry(entry, false));
+        if (referenced(library.references(entry.id))) add('detach', () => detachEntry(entry, false));
         add('delete', () => detachEntry(entry, true));
         // Keep the opener linked so native light-dismiss and a second click agree.
         menu.style.visibility = 'hidden';
@@ -15207,9 +15215,10 @@ function renderJpxConfigManager(parent, hooks = {}) {
             }
         });
     }
+    const stale = entry => library.get(entry.id)?.revision !== entry.revision;
+    const referenced = refs => refs.applied.length || refs.bindings.length || refs.scenes.length;
     async function detachEntry(entry, removeEntry) {
         const refs = library.references(entry.id), content = el('div');
-        const used = refs.applied.length || refs.bindings.length || refs.scenes.length;
         content.append(el('p', tr('detachHint')));
         const locations = el('ul');
         for (const ref of refs.applied) locations.append(el('li', t('cB.' + ref.world) + ' · ' +
@@ -15217,19 +15226,18 @@ function renderJpxConfigManager(parent, hooks = {}) {
         for (const ref of refs.bindings) locations.append(el('li', bindingLabel(ref)));
         for (const ref of refs.scenes) locations.append(el('li', tr('sceneAssignments') + ' · ' + t('cB.' + ref.world) + ' · ' + jpxConfigModeLabel(ref.mode)));
         content.append(locations);
-        const label = removeEntry ? used ? 'detachDelete' : 'delete' : 'detach';
-        if (await confirmAction(tr(removeEntry ? 'deleteConfirm' : 'detach'), [['cancel', tr('cancel')], ['confirm', tr(label), true]], content) !== 'confirm') return;
+        const label = removeEntry ? referenced(refs) ? 'detachDelete' : 'delete' : 'detach';
+        if (!await confirmed(tr(removeEntry ? 'deleteConfirm' : 'detach'), tr(label), content)) return;
         library.detach(entry.id, entry.revision, removeEntry, refs);
         syncJpxSceneRuntime();
-        for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) localStorage.setItem(jpxConfigApplyKey, JSON.stringify({ world, scopes: [], nonce: Date.now() + ':' + Math.random() }));
-        window.dispatchEvent(new Event('jpx:config-library'));
+        for (const world of new Set([...refs.applied, ...refs.scenes].map(ref => ref.world))) signalJpxConfigWorld(world);
+        announceJpxConfigLibrary();
         showMine(); notify(tr(removeEntry ? 'deleted' : 'detached'));
     }
     async function renameEntry(entry, anchor) {
         captureList(); anchor.focus({ preventScroll: true });
-        const input = el('input'); input.type = 'text'; input.required = true; input.maxLength = 100;
-        input.pattern = '.*\\S.*'; input.value = entry.envelope.title; input.setAttribute('aria-label', tr('title'));
-        const content = el('div', undefined, 'jpx-config-rename'); content.append(input);
+        const input = titleInput(entry.envelope.title); input.pattern = '.*\\S.*'; input.setAttribute('aria-label', tr('title'));
+        const content = div('jpx-config-rename'); content.append(input);
         input.addEventListener('keydown', event => {
             if (event.key === 'Enter' && !event.isComposing) {
                 event.preventDefault(); input.closest('.jpx-config-confirm').querySelector('.jpx-config-primary').click();
@@ -15241,7 +15249,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if (await answer !== 'save' || state.disposed || state.page !== 'mine') return;
         library.rename(entry.id, input.value, entry.revision);
         renderList(); body.scrollTop = state.scroll;
-        [...list.children].find(row => row.dataset.configId === entry.id)?.querySelector('.jpx-config-more')?.focus({ preventScroll: true });
+        rowOf(entry.id)?.querySelector('.jpx-config-more')?.focus({ preventScroll: true });
         notify(tr('saved'));
     }
     function exportEntry(entry) {
@@ -15252,17 +15260,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     function showSettings(entry, imported) {
         resetPage('settings');
-        const header = el('div', undefined, 'jpx-config-editor-header'); header.append(backButton(showMine), el('strong', tr(entry ? 'settings' : imported ? 'importWorld' : 'new')));
-        body = el('div', undefined, 'jpx-config-body');
+        const header = pageHeader(backButton(showMine), tr(entry ? 'settings' : imported ? 'importWorld' : 'new'));
+        body = div('jpx-config-body');
         const form = el('form', undefined, 'jpx-config-form');
         const envelope = entry ? jpxConfigClone(entry.envelope) : imported;
-        const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope?.title || '';
-        const mode = envelope?.mode || getBattleMode('OneHanded'), split = mode.lastIndexOf('_');
+        const title = titleInput(envelope?.title || '');
+        const mode = envelope?.mode || getBattleMode('OneHanded');
         const existing = envelope?.mode ? envelope.config[envelope.mode]?.jpxPlusExecution : null;
-        const style = select([['auto', tr('auto')], ...BATTLE_STYLES.map(value => [value, t('cB.' + value)])], existing?.style || (entry ? 'auto' : mode.slice(0,split)));
-        const element = select([['auto', tr('auto')], ...['fire','cold','wind','elec','holy','dark'].map(value => [value,tr(value)])], existing?.element || 'auto');
+        const style = select([['auto', tr('auto')], ...nativeChoices(BATTLE_STYLES)], existing?.style || (entry ? 'auto' : jpxModeStyle(mode)));
+        const element = select([['auto', tr('auto')], ...jpxConfigElements.map(value => [value, tr(value)])], existing?.element || 'auto');
         const world = select(worlds, envelope?.world || jpxConfigWorld());
-        const scenario = select(['General', ...BATTLE_TYPES].map(value => [value, t('cB.' + value)]), mode.slice(split + 1));
+        const scenario = select(nativeChoices(scenarios), jpxModeScene(mode));
         const single = !envelope || envelope.kind === 'battle-mode';
         form.append(field(tr('title'), title, true));
         if (single) form.append(field(tr('style'), style), field(tr('element'), element));
@@ -15271,8 +15279,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if (envelope?.kind === 'stats') { world.value = 'Any'; world.disabled = true; }
         // An imported mode keeps its exact key. Changing a saved key is an explicit
         // config-setting action, never an automatic remapping during import.
-        if (imported && single) { style.value = 'auto'; style.disabled = true; scenario.disabled = true; element.disabled = true; }
-        const actions = el('div', undefined, 'jpx-config-actions jpx-config-wide');
+        if (imported && single) { style.value = 'auto'; style.disabled = scenario.disabled = element.disabled = true; }
+        const actions = div('jpx-config-actions jpx-config-wide');
         actions.append(button(tr('cancel'), showMine));
         const submit = el('button', tr(entry || imported ? 'save' : 'create'), 'jpx-config-primary'); submit.type = 'submit'; actions.append(submit); form.append(actions);
         form.addEventListener('submit', event => {
@@ -15281,7 +15289,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 let next = envelope ? jpxConfigClone(envelope) : { schemaVersion:1, kind:'battle-mode', title:'', description:'', world:world.value, scriptVersion:window.JPXPlus.version, config:{battleVersion:defaultCfgBattle.battleVersion} };
                 next.title = title.value.trim(); if (!next.title) { title.focus(); return; } next.world = world.value;
                 if (single && !imported) {
-                    const selectedStyle = style.value === 'auto' ? mode.slice(0,split) : style.value;
+                    const selectedStyle = style.value === 'auto' ? jpxModeStyle(mode) : style.value;
                     const nextMode = selectedStyle + '_' + scenario.value;
                     const rules = next.mode ? next.config[next.mode] : jpxConfigClone(defaultCfgBattle[nextMode] || defaultCfgBattle[selectedStyle + '_General'] || { rules:[] });
                     if (next.mode && next.mode !== nextMode) delete next.config[next.mode];
@@ -15296,7 +15304,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                     else notify(tr('saved'));
                 }
             } catch (cause) {
-                if (imported) importFeedback.show(tr(cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'storageError'), 'error');
+                if (imported) importFeedback.show(tr(messageKey(cause, 'storageError')), 'error');
                 else error(cause);
             }
         });
@@ -15314,7 +15322,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             clearNotice(); importFeedback.show(tr('importReading', { name: jpxImportDisplayName(file.name) }), 'reading', file.name);
             let reading = false;
             try {
-                if (file.size > 2 * 1024 * 1024) throw Object.assign(new Error(), { code:'tooLarge' });
+                if (file.size > 2 * 1024 * 1024) throw jpxConfigError('tooLarge');
                 reading = true;
                 const fileText = await file.text();
                 reading = false;
@@ -15337,7 +15345,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 envelope = validator.save(envelope).envelope;
                 captureList(); showSettings(null,envelope);
             } catch(cause) { if (current()) importFeedback.show(tr('importFailed', { name: jpxImportDisplayName(file.name),
-                reason: tr(reading ? 'importReadError' : cause?.code && Object.hasOwn(I18N.cM, cause.code) ? cause.code : 'invalidConfig') }), 'error', file.name); }
+                reason: tr(reading ? 'importReadError' : messageKey(cause, 'invalidConfig')) }), 'error', file.name); }
         }); input.click();
     }
     function bindingLabel(binding, catalog = getJpxLoadoutCatalog(binding.world)) {
@@ -15347,18 +15355,17 @@ function renderJpxConfigManager(parent, hooks = {}) {
             set?.name || tr('setNumber', { id: binding.setId })].join(' · ');
     }
     async function showBindings(entry) {
-        if (library.get(entry.id)?.revision !== entry.revision) throw Object.assign(new Error(), { code: 'libraryChanged' });
+        if (stale(entry)) throw jpxConfigError('libraryChanged');
         initJpxLoadoutBindings();
         if (state.disposed || !root.isConnected) return;
-        const content = el('div', undefined, 'jpx-config-bindings'), assignments = el('div', undefined, 'jpx-config-binding-list');
+        const content = div('jpx-config-bindings'), assignments = div('jpx-config-binding-list');
         const world = select(worlds.slice(0, 2), entry.envelope.world === 'Any' ? jpxConfigWorld() : entry.envelope.world);
         const persona = select([], ''), set = select([], ''), hint = el('p', undefined, 'jpx-config-binding-hint');
-        const form = el('div', undefined, 'jpx-config-binding-fields');
+        const form = div('jpx-config-binding-fields');
         world.dataset.bindingWorld = ''; persona.dataset.bindingPersona = ''; set.dataset.bindingSet = '';
         form.append(field(tr('world'), world), field(tr('persona'), persona), field(tr('equipSet'), set));
         const fill = (select, values, value) => {
-            select.replaceChildren();
-            for (const [id, name] of values) { const option = el('option', name); option.value = id; select.append(option); }
+            select.replaceChildren(); addOptions(select, values);
             if (values.some(([id]) => id === value)) select.value = value;
             select.disabled = !values.length;
         };
@@ -15380,11 +15387,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
         function drawAssignments() {
             assignments.replaceChildren();
             for (const binding of library.readState().bindings?.filter(item => item.id === entry.id) || []) {
-                const row = el('div', undefined, 'jpx-config-binding-item');
+                const row = div('jpx-config-binding-item');
                 row.append(el('span', bindingLabel(binding)), button(tr('unbind'), () => {
                     library.removeBinding(binding, entry.id); drawAssignments();
                     (assignments.querySelector('button') || (persona.disabled ? world : persona)).focus({ preventScroll: true });
-                    window.dispatchEvent(new Event('jpx:config-library'));
+                    announceJpxConfigLibrary();
                 })); assignments.append(row);
             }
         }
@@ -15404,16 +15411,16 @@ function renderJpxConfigManager(parent, hooks = {}) {
         const previous = library.readState().bindings?.find(item => jpxLoadoutSame(item, context));
         if (previous && previous.id !== entry.id) {
             const previousName = library.get(previous.id)?.envelope.title || '';
-            if (await confirmAction(tr('replaceBinding', { name: previousName }), [['cancel', tr('cancel')], ['bind', tr('bind'), true]]) !== 'bind') return;
+            if (!await confirmed(tr('replaceBinding', { name: previousName }), tr('bind'))) return;
         }
         library.setBinding(context, entry.id, entry.revision, previous?.id || null);
         if (jpxLoadoutSame(jpxLoadoutConfirmed, context)) applyJpxLoadoutBinding(context, true);
-        window.dispatchEvent(new Event('jpx:config-library')); notify(tr('bound'));
+        announceJpxConfigLibrary(); notify(tr('bound'));
     }
     async function applyEntry(entry) {
-        if (library.get(entry.id)?.revision !== entry.revision) { notify(tr('libraryChanged'), true); return; }
+        if (stale(entry)) { notify(tr('libraryChanged'), true); return; }
         const envelope = entry.envelope, stats = envelope.kind === 'stats';
-        if (envelope.kind === 'battle-mode' && !jpxConfigHasRules(envelope.config[envelope.mode])) throw Object.assign(new Error(), { code: 'invalidConfig' });
+        if (envelope.kind === 'battle-mode' && !jpxConfigHasRules(envelope.config[envelope.mode])) throw jpxConfigError('invalidConfig');
         let world = stats ? 'Any' : envelope.world === 'Any' ? jpxConfigWorld() : envelope.world;
         const content = el('div');
         if (envelope.kind === 'battle') content.append(el('p', tr('applyAll')));
@@ -15423,10 +15430,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
         }
         const custom = jpxConfigContainsCode(envelope);
         if(custom) content.append(el('p',tr('customCode')));
-        if (envelope.kind==='battle'||envelope.world==='Any'||world!==jpxConfigWorld()||custom) {
-            if(await confirmAction(tr('applyScope'),[['cancel',tr('cancel')],['apply',tr('apply'),true]],content)!=='apply')return;
-        }
-        if (library.get(entry.id)?.revision !== entry.revision) { notify(tr('libraryChanged'), true); return; }
+        if ((envelope.kind==='battle'||envelope.world==='Any'||world!==jpxConfigWorld()||custom) && !await confirmed(tr('applyScope'),tr('apply'),content)) return;
+        if (stale(entry)) { notify(tr('libraryChanged'), true); return; }
         const paused = commitJpxConfigEntry(entry, world, hooks.onApplied);
         captureList();showMine();notify(tr(paused?'applyPaused':'applied'));
     }
@@ -15435,17 +15440,16 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if(entry.envelope.kind==='stats'){openEditor(entry,null);return;}
         const modes=modesOf(entry.envelope);
         if(modes.length===1){openEditor(entry,modes[0]);return;}
-        resetPage('groups');const header=el('div',undefined,'jpx-config-editor-header');header.append(backButton(showMine),el('strong',entry.envelope.title));
-        body=el('div',undefined,'jpx-config-body');
+        resetPage('groups');const header=pageHeader(backButton(showMine),entry.envelope.title);
+        body=div('jpx-config-body');
         for(const mode of modes)body.append(button(jpxConfigModeLabel(mode),()=>openEditor(entry,mode),'jpx-config-group'));
         root.append(header,notice,body);
     }
     function openEditor(entry,mode){
         resetPage('editor');
-        const draft=jpxConfigClone(entry),editor=el('div',undefined,'jpx-config-editor');
-        const header=el('div',undefined,'jpx-config-editor-header');
-        const back=backButton(()=>leave(showMine));header.append(back,el('strong',entry.envelope.title));
-        const content=el('div',undefined,'jpx-config-editor-content'), footer=el('div',undefined,'jpx-config-editor-footer');
+        const draft=jpxConfigClone(entry),editor=div('jpx-config-editor');
+        const back=backButton(()=>leave(showMine)),header=pageHeader(back,entry.envelope.title);
+        const content=div('jpx-config-editor-content'), footer=div('jpx-config-editor-footer');
         const undoButton=button(tr('undo'),()=>history.undo()),redoButton=button(tr('redo'),()=>history.redo());
         const saveButton=button(tr('save'),()=>saveEditor(),'jpx-config-primary');
         footer.append(undoButton,redoButton,saveButton);editor.append(header,content,footer);
@@ -15525,17 +15529,16 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     function showStore(share){
         resetPage('store');
-        const selection = el('div', undefined, 'jpx-config-selection'); renderSelection(selection); root.append(selection);
-        const top=el('div',undefined,'jpx-config-toolbar jpx-config-store-header'),nav=el('div',undefined,'jpx-config-nav');
-        const mine=button(tr('mine'),showMine),store=button(tr('store'),()=>showStore());
-        mine.setAttribute('aria-pressed','false');store.setAttribute('aria-pressed','true');nav.append(mine,store);top.append(nav);root.append(top,notice);
+        root.append(renderSelection());
+        const top=div('jpx-config-toolbar jpx-config-store-header');
+        top.append(pageTabs(false,showMine,()=>showStore()));root.append(top,notice);
         const mount=el('div');mount.style.cssText='display:flex;flex:1;min-height:0;min-width:0;overflow:hidden';root.append(mount);
         jpxEmbeddedStore ||= createJpxIntegratedStore(window,t);
         state.storeDispose=jpxEmbeddedStore.render(mount,{
             notify,
             renderTags:(envelope,choose)=>tags(envelope,choose||null),
             compareTypes:(a,b)=>typeOrder({envelope:a},{envelope:b}),
-            confirm:(title,description,action)=>confirmAction(title,[['cancel',tr('cancel')],['confirm',action,true]],el('p',description)).then(value=>value==='confirm'),
+            confirm:(title,description,action)=>confirmed(title,action,el('p',description)),
             listShareConfigs(){
                 const application=appliedContext();
                 return application.state.entries.filter(entry=>visibleSavedEntry(entry,application))
@@ -15546,7 +15549,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 const source=origin?.source,previous=source&&library.list().find(entry=>entry.source?.repository===source.repository&&entry.source?.id===source.id);
                 let id;
                 if(previous){const choice=await confirmAction(tr('sourceExists'),[['cancel',tr('cancel')],['copy',tr('keepCopy')],['update',tr('updateCopy'),true]]);if(!choice||choice==='cancel')return false;if(choice==='update'){
-                    if(library.get(previous.id)?.revision!==previous.revision){notify(tr('libraryChanged'));return false;}
+                    if(stale(previous)){notify(tr('libraryChanged'));return false;}
                     id=previous.id;
                 }}
                 library.save(envelope,{...(id?{id}:{}),...(source?{source}:{})});notify(tr('savedFromStore'));return true;
@@ -15554,13 +15557,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
         },{...(share?{share:jpxConfigClone(share)}:{}),onBack:showMine,toolbarHost:top});
     }
     const beforeUnload=event=>{if(dirty()){event.preventDefault();event.returnValue='';}};
-    const changed=()=>{if(state.page==='mine'){try{const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}catch(cause){error(cause);}}else if(state.page==='scenes'&&!state.dialog){try{showScenes();}catch(cause){error(cause);}}};
+    const changed=()=>{try{if(state.page==='mine'){const scroll=body.scrollTop;renderList();body.scrollTop=scroll;}else if(state.page==='scenes'&&!state.dialog)showScenes();}catch(cause){error(cause);}};
     const onStorage=event=>{if(event.key===jpxConfigLibraryKey)changed();};
     const migrationError=()=>notify(tr('storageError'));
-    window.addEventListener('beforeunload',beforeUnload);window.addEventListener('storage',onStorage);
-    window.addEventListener('jpx:config-library',changed);window.addEventListener('jpx:legacy-config-error',migrationError);
-    window.addEventListener('jpx:mode-detected',changed);
-    window.addEventListener('jpx:loadout-detected',changed);
+    const listeners=[['beforeunload',beforeUnload],['storage',onStorage],['jpx:config-library',changed],['jpx:legacy-config-error',migrationError],['jpx:mode-detected',changed],['jpx:loadout-detected',changed]];
+    for(const [type,listener] of listeners)window.addEventListener(type,listener);
     const controller={
         isEditing:()=>!!state.editor,leave,
         back(){
@@ -15571,7 +15572,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         },
         onHidden(){importGeneration++;cancelListDrag?.();clearNotice();importFeedback.clear();state.dialog?.(null);state.storeDispose?.suspend?.();},
         onShown(){state.storeDispose?.resume?.();changed();},
-        dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();window.removeEventListener('beforeunload',beforeUnload);window.removeEventListener('storage',onStorage);window.removeEventListener('jpx:config-library',changed);window.removeEventListener('jpx:mode-detected',changed);window.removeEventListener('jpx:loadout-detected',changed);window.removeEventListener('jpx:legacy-config-error',migrationError);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
+        dispose(){if(state.disposed)return;state.disposed=true;cancelListDrag?.();clearNotice();state.dialog?.(null);disposeEditor();state.storeDispose?.();for(const [type,listener] of listeners)window.removeEventListener(type,listener);if(jpxConfigManagerView===controller)jpxConfigManagerView=null;}
     };
     jpxConfigManagerView=controller;
     try{seedJpxConfigLibrary();showMine();window.dispatchEvent(new Event('jpx:legacy-config-request'));}
