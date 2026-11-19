@@ -166,3 +166,42 @@ test('an interrupted compaction never duplicates records or stamina',async()=>{
  assert.deepEqual(sort(await a.shared.allRecords()),sort(before));
  a.shared.reset();assert.equal([...h.data.keys()].filter(k=>k.includes(':bundle:')).length,0);
 });
+test('deleted archive payloads are dropped while records, re-adds and stamina stay exact',async()=>{
+ const h=setup(),a=h.host(main),b=h.host(alt);const canon=v=>v&&typeof v==='object'?Array.isArray(v)?v.map(canon):Object.fromEntries(Object.keys(v).sort().map(k=>[k,canon(v[k])])):v;
+ const sort=rows=>rows.map(row=>JSON.stringify(canon(row))).sort();
+ await a.shared.ensureRecords(async()=>Array.from({length:40},(_,i)=>record('2026-10-01 00:'+String(i).padStart(2,'0')+':00')));
+ for(let i=0;i<30;i++){await a.shared.saveResult(record('2026-11-02 02:'+String(i).padStart(2,'0')+':00'),cost(4,'Persistent','2026-11-02'));h.advance(60000);}
+ await a.shared.importRecords([record('2026-09-01 00:00:00'),record('2026-09-02 00:00:00')],true);
+ h.advance(5*day);await a.shared.compact();
+ const today=new Date(Date.parse('2026-11-08T12:00:00Z')+5*day+30*60000).toISOString().slice(0,10);
+ for(let i=0;i<3;i++)await a.shared.saveResult(record(today+' 03:0'+i+':00'),cost(9,'Persistent',today));
+ const all=await a.shared.allRecords();
+ // Delete every legacy record, half of the bundled results, one import and one loose receipt.
+ const doomed=all.filter((r,i)=>r.timestamp.startsWith('2026-10')||r.timestamp.startsWith('2026-11-02')&&i%2||r.timestamp==='2026-09-01 00:00:00'||r.timestamp===today+' 03:01:00').map(a.shared.idOf);
+ a.shared.deleteRecords(doomed);h.flush();
+ await a.shared.importRecords([record('2026-10-01 00:05:00')],true);h.flush(); // re-added after its deletion
+ const before=await a.shared.allRecords(),usage=a.shared.stamina('Persistent',today),size=bytes(h);
+ await a.shared.compact();h.flush();
+ assert.ok(bytes(h)<size*0.7,'dead payloads are gone: '+bytes(h)+' < '+size);
+ assert.deepEqual(sort(await b.shared.allRecords()),sort(before));
+ assert.ok(before.some(r=>r.timestamp==='2026-10-01 00:05:00'),'a record imported after its deletion survives');
+ assert.equal(a.shared.stamina('Persistent',today),usage);
+ const storage=JSON.stringify([...h.data]);await a.shared.compact();assert.equal(JSON.stringify([...h.data]),storage,'a pruned archive is not rewritten');
+});
+test('clearing the archive drops every payload but keeps today\'s charges',async()=>{
+ const h=setup(),a=h.host(main);await a.shared.ensureRecords(async()=>Array.from({length:50},(_,i)=>record('2026-10-02 00:'+String(i).padStart(2,'0')+':00')));
+ for(let i=0;i<5;i++)await a.shared.saveResult(record('2026-11-08 05:0'+i+':00'),cost(6));
+ const usage=a.shared.usage('Persistent').staminaCost;
+ a.shared.deleteRecords((await a.shared.allRecords()).map(a.shared.idOf));h.flush();
+ const size=bytes(h);await a.shared.compact();h.flush();
+ assert.deepEqual(await a.shared.allRecords(),[]);
+ assert.equal(a.shared.usage('Persistent').staminaCost,usage);
+ assert.ok(bytes(h)<size/2);
+ await a.shared.saveResult(record('2026-11-08 06:00:00'),cost(1));assert.equal((await a.shared.allRecords()).length,1);
+});
+test('a host migrating after pruning still honors earlier deletions',async()=>{
+ const h=setup(),a=h.host(main);await a.shared.ensureRecords(async()=>[record('2026-10-03 00:00:00')]);
+ a.shared.deleteRecords([a.shared.idOf(record('2026-10-03 00:00:00')),a.shared.idOf(record('2026-10-04 00:00:00'))]);h.flush();await a.shared.compact();
+ const b=h.host(alt);await b.shared.ensureRecords(async()=>[record('2026-10-04 00:00:00'),record('2026-10-05 00:00:00')]);
+ assert.deepEqual((await b.shared.allRecords()).map(r=>r.timestamp),['2026-10-05 00:00:00']);
+});

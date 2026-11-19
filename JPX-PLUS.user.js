@@ -111,6 +111,8 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
     // Decide from key names alone: ordinary page loads must not read payloads.
     const packPending = root + 'packPending', packedMarker = root + 'recoveryPacked_v1', settledDays = 1, bundleMinimum = 20;
     const packDue = () => !!get(packPending) || !get(packedMarker);
+    const prunePending = root + 'prunePending', prunedMarker = root + 'archivePruned_v1';
+    const pruneDue = all => !!get(prunePending) || !get(prunedMarker) && all.some(key => key.startsWith(root + 'batch:'));
     const settledKeys = all => {
         const cutoff = day(now() - settledDays * 86400000);
         return all.filter(key => {
@@ -129,7 +131,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         if (compaction) return compaction;
         compaction = (async () => {
             const all = keys();
-            if (!packDue() && settledKeys(all).length < bundleMinimum) return;
+            if (!packDue() && !pruneDue(all) && settledKeys(all).length < bundleMinimum) return;
             const lock = get(root + 'compacting');
             if (lock && lock.until > now()) return;
             set(root + 'compacting', { until: now() + 60000 });
@@ -165,6 +167,12 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
                 set(packedMarker, true);
             } catch (error) { set(packPending, true); throw error; }
         }
+        if (pruneDue(all)) {
+            gm.remove(prunePending);
+            try { await prune(all, replace); set(prunedMarker, true); }
+            catch (error) { set(prunePending, true); throw error; }
+            recordCache = null; notify('records');
+        }
         const settled = [];
         for (const key of settledKeys(all)) { const event = get(key); if (event?.order) settled.push([key, event]); }
         if (settled.length >= bundleMinimum) {
@@ -183,6 +191,43 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
                 if (event.stamina) gm.remove(root + 'day:' + event.stamina.world + ':' + event.stamina.date + ':' + encode(event.id));
             }
             recordCache = null; notify('records');
+        }
+    }
+    // A payload is dead once a later delete names its ID or a later replacing
+    // import clears the archive: replay can never surface it again. Receipts
+    // keep their order and stamina, so daily charges are unchanged; delete
+    // events stay (packed) for legacy archives a host may still migrate.
+    async function prune(all, replace) {
+        const batches = all.filter(key => key.startsWith(root + 'batch:')).map(key => [key, get(key)]).filter(([, event]) => event);
+        let cleared = '';
+        const removed = new Map();
+        for (const [, event] of batches) {
+            if (event.type === 'import' && !event.merge) { if (event.order > cleared) cleared = event.order; }
+            else if (event.type === 'delete') for (const id of await unpack(event.ids)) if (!(removed.get(id) > event.order)) removed.set(id, event.order);
+        }
+        if (!cleared && !removed.size) return;
+        const dead = (id, order) => cleared > order || (removed.get(id) ?? '') > order;
+        const strip = ({ record, ...receipt }) => receipt;
+        for (const key of all.filter(key => key.startsWith(root + 'legacyRecords:'))) {
+            const archive = get(key); if (!archive) continue;
+            const records = await unpack(archive.records), kept = records.filter(record => !dead(idOf(record), ''));
+            if (kept.length < records.length) replace(key, archive, { ...archive, records: await pack(kept) });
+        }
+        for (const [key, event] of batches) {
+            if (event.type === 'import') {
+                const records = await unpack(event.records), kept = records.filter(record => !dead(idOf(record), event.order));
+                if (kept.length < records.length) replace(key, event, { ...event, records: await pack(kept) });
+            } else if (event.type === 'delete' && Array.isArray(event.ids)) replace(key, event, { ...event, ids: await pack(event.ids) });
+        }
+        for (const key of all.filter(key => key.startsWith(root + 'result:'))) {
+            const event = get(key);
+            if (event?.record && dead(event.id, event.order)) replace(key, event, strip(event));
+        }
+        for (const key of all.filter(key => key.startsWith(root + 'bundle:'))) {
+            const bundle = get(key); if (!bundle) continue;
+            const events = await unpack(bundle.events);
+            if (!events.some(event => event.record && dead(event.id, event.order))) continue;
+            replace(key, bundle, { ...bundle, events: await pack(events.map(event => event.record && dead(event.id, event.order) ? strip(event) : event)) });
         }
     }
     function baseline(world, date) {
@@ -340,7 +385,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
             else if (event.type === 'import') {
                 if (!event.merge) map.clear();
                 for (const record of await payload(event)) { const id = idOf(record); if (!event.merge || !map.has(id)) map.set(id, clone(record)); }
-            } else if (event.type === 'delete') for (const id of event.ids) map.delete(id);
+            } else if (event.type === 'delete') for (const id of await unpack(event.ids)) map.delete(id);
         }
         // Allocate daily free stamina once in deterministic completion order,
         // including concurrent results. Archive deletion never erases usage.
@@ -374,7 +419,12 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         if (event.stamina) set(root + 'day:' + event.stamina.world + ':' + event.stamina.date + ':' + encode(event.id), key);
         set(key, event); recordCache = null; notify('records');
     }
-    function batch(value) { const order = stamp(); set(root + 'batch:' + order, { ...value, order }); recordCache = null; notify('records'); }
+    function batch(value) {
+        const order = stamp();
+        // Deleted payloads are dropped later, in the idle compaction pass.
+        if (value.type === 'delete' || value.type === 'import' && !value.merge) set(prunePending, true);
+        set(root + 'batch:' + order, { ...value, order }); recordCache = null; notify('records');
+    }
     function reset() {
         // Retain migration markers so another host's old native database cannot
         // resurrect data after the user explicitly resets the shared store.
