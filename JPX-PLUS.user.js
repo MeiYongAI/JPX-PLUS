@@ -816,11 +816,12 @@ function ensureJpxStyle(doc = document) {
     if (style.textContent !== ensureJpxStyle.css) style.textContent = ensureJpxStyle.css;
     return style;
 }
+const JPX_SCROLLBAR_TARGETS = ':is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)';
 const JPX_SCROLLBAR_CSS = `
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body) { scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: #5c0d11 #e3e0d1; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar { width: 9px; height: 9px; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar-track { background: #e3e0d1; }
-    :is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)::-webkit-scrollbar-thumb { border: 2px solid #e3e0d1; background: #5c0d11; }
+    ${JPX_SCROLLBAR_TARGETS} { scrollbar-width: var(--jpx-scrollbar-width, thin); scrollbar-color: #5c0d11 #e3e0d1; }
+    ${JPX_SCROLLBAR_TARGETS}::-webkit-scrollbar { width: 9px; height: 9px; }
+    ${JPX_SCROLLBAR_TARGETS}::-webkit-scrollbar-track { background: #e3e0d1; }
+    ${JPX_SCROLLBAR_TARGETS}::-webkit-scrollbar-thumb { border: 2px solid #e3e0d1; background: #5c0d11; }
 `;
 const JPX_RECORD_IMAGE_CSS = `
         .jpx-record-image-actions { position: relative; z-index: 5; flex: none; color: #5c0d11; font: 13px/1.45 Arial, Helvetica, sans-serif; }
@@ -6508,6 +6509,12 @@ function createJpxElement(tag, className, text, doc = document) {
     return node;
 }
 
+// Icon-only controls carry the same visible tooltip and accessible name.
+function setJpxLabel(node, label) {
+    node.title = label;
+    node.setAttribute('aria-label', label);
+}
+
 // Shared head of the statistics page and its detail windows.
 function initJpxRecordDocument(doc, title) {
     doc.title = title;
@@ -6801,15 +6808,16 @@ function jpxDisclosureCSS(selector) {
 }
 
 function createStatsColumnControls(doc, onChange) {
-    const root = doc.createElement('section'); root.className = 'jpx-records-columns';
+    const el = (tag, className) => createJpxElement(tag, className, '', doc);
+    const root = el('section', 'jpx-records-columns');
     root.setAttribute('aria-label', t('sP.displayColumns'));
-    const editor = doc.createElement('div'); editor.className = 'jpx-records-column-groups';
-    const status = doc.createElement('p'); status.className = 'jpx-records-column-status'; status.setAttribute('role', 'status'); status.setAttribute('aria-atomic','true');
+    const editor = el('div', 'jpx-records-column-groups');
+    const status = el('p', 'jpx-records-column-status'); status.setAttribute('role', 'status'); status.setAttribute('aria-atomic','true');
     let saveToast, toastTimer;
     const dismissToast = () => { doc.defaultView.clearTimeout(toastTimer); saveToast?.remove(); saveToast = null; };
     const notifySaved = () => {
         dismissToast();
-        saveToast = doc.createElement('div'); saveToast.className = 'jpx-records-save-toast';
+        saveToast = el('div', 'jpx-records-save-toast');
         saveToast.setAttribute('role','status'); saveToast.setAttribute('aria-live','polite'); saveToast.setAttribute('aria-atomic','true');
         (root.closest('dialog') || doc.body).append(saveToast);
         saveToast.textContent = t('sP.displaySaved');
@@ -6852,21 +6860,21 @@ function createStatsColumnControls(doc, onChange) {
         }
     }
     for (const group of STATS_COLUMN_GROUPS) {
-        const section = doc.createElement('section'); section.className = 'jpx-records-column-group';
-        const header = doc.createElement('div'); header.className = 'jpx-records-column-heading';
+        const section = el('section', 'jpx-records-column-group');
+        const header = el('div', 'jpx-records-column-heading');
         const label = doc.createElement('label'), toggle = doc.createElement('input');
         toggle.type = 'checkbox'; toggle.dataset.columnGroup = group.id; groupInputs.set(group.id, toggle);
         const caption = doc.createElement('span'), name = doc.createElement('strong'), count = doc.createElement('small');
         name.textContent = t('sP.group_' + group.id); count.className = 'jpx-records-column-count'; counts.set(group.id,count);
         caption.append(name,count); label.append(toggle,caption); header.append(label);
         toggle.addEventListener('change', () => change(group.id, null, toggle.checked));
-        const fields = doc.createElement('div'); fields.className = 'jpx-records-column-fields'; fields.id = 'jpx-records-fields-' + group.id; fields.inert = true;
+        const fields = el('div', 'jpx-records-column-fields'); fields.id = 'jpx-records-fields-' + group.id; fields.inert = true;
         fields.setAttribute('role','group'); fields.setAttribute('aria-label',name.textContent);
         const expand = doc.createElement('button'); expand.type = 'button'; expand.className = 'jpx-records-icon jpx-records-column-expand';
         expand.dataset.expandGroup = group.id; expand.append(createSettingsIcon('chevronDown'));
-        expand.title = t('sP.displayColumns') + ' · ' + name.textContent; expand.setAttribute('aria-label',expand.title);
+        setJpxLabel(expand, t('sP.displayColumns') + ' · ' + name.textContent);
         expand.setAttribute('aria-controls',fields.id); expand.setAttribute('aria-expanded','false');
-        const disclosure = doc.createElement('details'); disclosure.className = 'jpx-records-column-disclosure';
+        const disclosure = el('details', 'jpx-records-column-disclosure');
         const summary = doc.createElement('summary'); summary.hidden = true; disclosure.append(summary,fields);
         expand.onclick = () => { disclosure.open = !disclosure.open; fields.inert = !disclosure.open; expand.setAttribute('aria-expanded',String(disclosure.open)); };
         header.append(expand);
@@ -7079,7 +7087,7 @@ function renderBattleRecordsPage(targetWindow = window) {
     }
     const clearRecords = el('button', 'jpx-records-icon jpx-records-clear'); clearRecords.type = 'button';
     clearRecords.append(createSettingsIcon('delete'));
-    clearRecords.title = t('cS.clearRecords'); clearRecords.setAttribute('aria-label',clearRecords.title);
+    setJpxLabel(clearRecords, t('cS.clearRecords'));
     clearRecords.setAttribute('aria-haspopup','dialog');
     clearRecords.onclick = () => {
         const current = getFilters(targetWindow);
@@ -7096,7 +7104,7 @@ function renderBattleRecordsPage(targetWindow = window) {
     sheet.setAttribute('aria-labelledby','jpx-records-sheet-title');
     const sheetHeader = el('header', 'jpx-records-sheet-header'), sheetTitle = el('h2'); sheetTitle.id = 'jpx-records-sheet-title';
     const close = doc.createElement('button'); close.type = 'button'; close.className = 'jpx-records-icon jpx-records-sheet-close';
-    close.title = t('cM.close'); close.setAttribute('aria-label',close.title); close.append(createSettingsIcon('close')); close.autofocus = true;
+    setJpxLabel(close, t('cM.close')); close.append(createSettingsIcon('close')); close.autofocus = true;
     sheetHeader.append(sheetTitle,close);
     const sheetBody = el('div', 'jpx-records-sheet-body');
     const imageActions = createRecordImageActions(doc, () => tableRegion.querySelector('#battleStatsTable'), true);
@@ -7115,7 +7123,7 @@ function renderBattleRecordsPage(targetWindow = window) {
     };
     for (const [name,icon,key] of [['filters','filter','sP.filters'],['columns','columns','sP.displayColumns'],['image','image','sP.image']]) {
         const button = doc.createElement('button'); button.type = 'button'; button.className = 'jpx-records-icon';
-        button.dataset.recordsPanel = name; button.title = t(key); button.setAttribute('aria-label',button.title);
+        button.dataset.recordsPanel = name; setJpxLabel(button, t(key));
         button.setAttribute('aria-controls',sheet.id); button.setAttribute('aria-haspopup','dialog'); button.setAttribute('aria-expanded','false');
         button.append(createSettingsIcon(icon)); button.onclick = () => openPanel(name); triggers.set(name,button); actions.append(button);
         panels[name].hidden = true; sheetBody.append(panels[name]);
@@ -7448,7 +7456,7 @@ function renderDynamicTable(battleRecords, displayedColumns, parent) {
     table.setAttribute('aria-label', t('sP.jpxStats'));
 
     const thead = doc.createElement('thead');
-    const groupRow = doc.createElement('tr'); groupRow.className = 'jpx-records-group-header';
+    const groupRow = createJpxElement('tr', 'jpx-records-group-header', '', doc);
     let lastGroup, groupHeader, groupColumns, groupCount = 0;
     for (const field of activeFields) {
         const group = STATS_COLUMN_GROUP_BY_ID.get(field.id);
@@ -7793,8 +7801,7 @@ function createSettingsEditHistory(container, toolbar, restoreView) {
             rules: JSON.parse(JSON.stringify(battleRulesView)),
         } };
     }
-    const buttons = document.createElement('div');
-    buttons.className = 'jpx-history-buttons';
+    const buttons = createJpxElement('div', 'jpx-history-buttons');
     toolbar.prepend(buttons);
     const [undoButton, redoButton] = ['undo', 'redo'].map(name => {
         const button = jpxUtils.createButton(buttons, { id: `${name}-settings-button`, history: false, onClick: () => name === 'undo' ? undo() : redo() });
@@ -8285,8 +8292,7 @@ function createSettingsIcon(name) {
 }
 
 function createSettingsMoveButtons(parent, index, count, move) {
-    const actions = document.createElement('div');
-    actions.className = 'jpx-rule-sort-actions';
+    const actions = createJpxElement('div', 'jpx-rule-sort-actions');
     parent.append(actions);
     for (const [step, icon, key] of [[-1, 'up', 'moveUp'], [1, 'down', 'moveDown']]) {
         jpxUtils.createButton(actions, { icon, text: t(`cGen.${key}`), className: `jpx-rule-${icon}`,
@@ -8596,8 +8602,7 @@ function renderControlPanelAppearance(container, data, state, element) {
         const stateLabel = t('cW.' + state.previewState);
         for (const [key, { input, labelKey }] of paletteInputs) {
             syncColor(input, palette[key], source);
-            input.title = stateLabel + ' · ' + t('cB.' + labelKey);
-            input.setAttribute('aria-label', input.title);
+            setJpxLabel(input, stateLabel + ' · ' + t('cB.' + labelKey));
         }
         const rawOpacity = parsed.opacity;
         const numericOpacity = rawOpacity ? Number(rawOpacity.replace(/%$/, '')) / (rawOpacity.endsWith('%') ? 100 : 1) : 1;
@@ -8616,8 +8621,7 @@ function renderControlPanelAppearance(container, data, state, element) {
         for (const { button, key, label, properties, all } of resets) {
             button.disabled = !properties().some(property => parsed.getPropertyValue(property)) && !((all || key === 'border') && hasLegacyBorder());
             if (!all) {
-                button.title = t('cGen.restoreDefault') + ': ' + (['header', 'surface', 'border'].includes(key) ? stateLabel + ' · ' : '') + label;
-                button.setAttribute('aria-label', button.title);
+                setJpxLabel(button, t('cGen.restoreDefault') + ': ' + (['header', 'surface', 'border'].includes(key) ? stateLabel + ' · ' : '') + label);
             }
         }
     }
@@ -8704,29 +8708,31 @@ function renderControlPanelRows(container, data, state, element, updatePreview) 
             const actions = element('div', 'jpx-array-item-actions');
             row.append(actions);
             createSettingsMoveButtons(actions, enabled ? index : 0, enabled ? ids.length : 0, destination => move(id, destination));
-            const toggle = jpxUtils.createButton(actions, {
-                text: `${t(enabled ? 'cS.disableField' : 'cS.enableField')}: ${t(base.label)}`,
-                icon: enabled ? 'ruleEnabled' : 'ruleDisabled', className: 'jpx-rule-state-toggle',
-                onClick: () => {
-                    if (enabled) data.ctrlWidgetRows = selected().filter(row => row?.id !== id);
-                    else {
-                        const restored = state.retained.get(id) || [{ row: { id }, index: selected().length }];
-                        const next = [...selected()];
-                        restored.forEach(({ row, index }) => next.splice(Math.min(index, next.length), 0, copy(row)));
-                        data.ctrlWidgetRows = next;
-                    }
-                    state.selected = id;
-                    refresh();
-                    focusRow(id, '.jpx-rule-state-toggle');
-                },
+            createSettingsFieldToggle(actions, enabled, t(base.label), () => {
+                if (enabled) data.ctrlWidgetRows = selected().filter(row => row?.id !== id);
+                else {
+                    const restored = state.retained.get(id) || [{ row: { id }, index: selected().length }];
+                    const next = [...selected()];
+                    restored.forEach(({ row, index }) => next.splice(Math.min(index, next.length), 0, copy(row)));
+                    data.ctrlWidgetRows = next;
+                }
+                state.selected = id;
+                refresh();
+                focusRow(id, '.jpx-rule-state-toggle');
             });
-            toggle.dataset.enabled = String(enabled);
-            toggle.setAttribute('aria-pressed', String(enabled));
             list.append(row);
         });
         updatePreview();
     }
     refresh();
+}
+
+function createSettingsFieldToggle(parent, enabled, name, onClick) {
+    const toggle = jpxUtils.createButton(parent, { text: `${t(enabled ? 'cS.disableField' : 'cS.enableField')}: ${name}`,
+        icon: enabled ? 'ruleEnabled' : 'ruleDisabled', className: 'jpx-rule-state-toggle', onClick });
+    toggle.dataset.enabled = String(enabled);
+    toggle.setAttribute('aria-pressed', String(enabled));
+    return toggle;
 }
 
 const settingsLabelHTML = (field, id) => field.skipLabel ? '' : `<label for="${id}">${t(field.label)}</label>`;
@@ -8917,8 +8923,7 @@ const fieldRenderers = {
                 if (allRulesToggle.getAttribute('aria-expanded') === String(allExpanded)) return;
                 const label = t(allExpanded ? 'cGen.collapseAllRules' : 'cGen.expandAllRules');
                 allRulesToggle.replaceChildren(createSettingsIcon(allExpanded ? 'collapseRules' : 'expandRules'), createJpxElement('span', undefined, label));
-                allRulesToggle.title = label;
-                allRulesToggle.setAttribute('aria-label', label);
+                setJpxLabel(allRulesToggle, label);
                 allRulesToggle.setAttribute('aria-expanded', String(allExpanded));
             };
             allRulesToggle = jpxUtils.createButton(toolbar, {
@@ -9181,8 +9186,7 @@ const fieldRenderers = {
                 if (change && options.history !== false) row.jpxRuleActions.push({ label: t(label), run, destructive: label === 'delete' });
                 if (options.menuOnly && field.collapsibleItems) return null;
                 const button = jpxUtils.createButton(parent, { ...options, history: false, onClick: run });
-                button.title = t(label);
-                button.setAttribute('aria-label', t(label));
+                setJpxLabel(button, t(label));
                 return button;
             };
 
@@ -9639,8 +9643,7 @@ const fieldRenderers = {
                     renderList();
                 }
             });
-            deleteButton.title = t('cGen.deleteCondition');
-            deleteButton.setAttribute('aria-label', t('cGen.deleteCondition'));
+            setJpxLabel(deleteButton, t('cGen.deleteCondition'));
             deleteButton.replaceChildren(createSettingsIcon('delete'));
             renderInput();
             bindSettingsChange(row, item, null, row, true);
@@ -10809,8 +10812,7 @@ function renderStatsThresholdControls(container, item, view) {
                     (list.children[Math.min(index, list.children.length - 1)]?.querySelector('input, button') || add).focus();
                 },
             });
-            remove.title = t('cS.thresholdDelete');
-            remove.setAttribute('aria-label', remove.title);
+            setJpxLabel(remove, t('cS.thresholdDelete'));
             list.append(row);
         });
         note.textContent = t(tokens.length ? 'cS.thresholdOrder' : 'cS.thresholdEmpty');
@@ -10890,21 +10892,16 @@ function renderStatsFieldPicker(container, field, data) {
         title.append(titleText);
         editor.append(title);
         if (field.key === 'statsColumns') {
-            const nameInput = element('input', 'jpx-stats-name-input');
-            nameInput.type = 'text';
-            nameInput.id = getUniqueId('statsColumnName');
+            const nameInput = Object.assign(element('input', 'jpx-stats-name-input'), { type: 'text', id: getUniqueId('statsColumnName'),
+                hidden: true, placeholder: labelFor(item), title: t('cS.renameHelp') });
             nameInput.dataset.editKey = 'customName';
-            nameInput.hidden = true;
-            nameInput.placeholder = labelFor(item);
             nameInput.setAttribute('aria-label', t('cS.renameColumn'));
-            nameInput.title = t('cS.renameHelp');
             let editing = false, initialValue = '';
             const showNameInput = open => {
                 nameInput.hidden = !open;
                 titleText.hidden = open;
                 rename.replaceChildren(createSettingsIcon(open ? 'confirm' : 'edit'));
-                rename.title = t(open ? 'cS.confirmName' : 'cS.renameColumn');
-                rename.setAttribute('aria-label', rename.title);
+                setJpxLabel(rename, t(open ? 'cS.confirmName' : 'cS.renameColumn'));
                 rename.setAttribute('aria-expanded', String(open));
             };
             const finishName = (commit, focus = false) => {
@@ -10995,16 +10992,11 @@ function renderStatsFieldPicker(container, field, data) {
             const caption = t(edit.key === 'styleText' ? 'cS.appearance' : edit.label);
             const label = element('label', '', caption);
             const control = element('div', 'jpx-stats-style-control');
-            const input = element('input', '');
-            input.type = 'text';
-            input.id = getUniqueId('statsField');
+            const input = Object.assign(element('input', ''), { type: 'text', id: getUniqueId('statsField'), value: item[edit.key] || '',
+                placeholder: edit.placeholder || '', spellcheck: false, title: t('cS.styleHelp') });
             label.htmlFor = input.id;
-            input.value = item[edit.key] || '';
-            input.placeholder = edit.placeholder || '';
-            input.spellcheck = false;
             input.dataset.editKey = edit.key;
             input.dataset.styleField = '';
-            input.title = t('cS.styleHelp');
             input.setAttribute('aria-label', edit.group ? `${t(`cS.${edit.group}`)}: ${t(edit.label)}` : caption);
             let syncColors;
             const updateStyle = sourcePicker => {
@@ -11085,18 +11077,13 @@ function renderStatsFieldPicker(container, field, data) {
                 moveField(item.id, destination); selectedButton()?.focus({ preventScroll: true });
             });
             const enabled = item.disabled !== true;
-            const toggle = jpxUtils.createButton(actions, {
-                text: `${t(enabled ? 'cS.disableField' : 'cS.enableField')}: ${nameOf(item)}`,
-                icon: enabled ? 'ruleEnabled' : 'ruleDisabled', className: 'jpx-rule-state-toggle', onClick: () => {
-                    if (enabled) item.disabled = true;
-                    else delete item.disabled;
-                    view.selected = item.id;
-                    refresh();
-                    selectedButton()?.closest('.jpx-stats-row').querySelector('.jpx-rule-state-toggle').focus({ preventScroll: true });
-                }
+            createSettingsFieldToggle(actions, enabled, nameOf(item), () => {
+                if (enabled) item.disabled = true;
+                else delete item.disabled;
+                view.selected = item.id;
+                refresh();
+                selectedButton()?.closest('.jpx-stats-row').querySelector('.jpx-rule-state-toggle').focus({ preventScroll: true });
             });
-            toggle.dataset.enabled = String(enabled);
-            toggle.setAttribute('aria-pressed', String(enabled));
         });
         if (selectedList.getClientRects().length) selectedList.scrollTop = scrollTop;
         renderEditor();
