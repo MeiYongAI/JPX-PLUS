@@ -451,13 +451,13 @@ function renderJpxConfigManager(parent, hooks = {}) {
     const matchesApplied = (saved, current) => saved && current && (saved.mode ? [saved.mode] : saved.scopes).every(scope =>
         JSON.stringify(scope === 'stats' ? current : current[scope]) === JSON.stringify(scope === 'stats' ? saved.config : saved.config[scope]));
     function appliedContext() {
-        const version = [jpxConfigLibraryKey, prefix + 'cfgBattle', prefix + 'cfgBattle_isekai', prefix + 'cfgStats'].map(key => localStorage.getItem(key));
+        const storageKey = world => world === 'Any' ? prefix + 'cfgStats' : prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '');
+        const version = [jpxConfigLibraryKey, ...worldIds.map(storageKey)].map(key => localStorage.getItem(key));
         if (contextVersion?.every((raw, index) => raw === version[index])) return cachedContext;
         const state = library.readState(), native = {}, saved = {};
         for (const world of worldIds) {
-            const key = world === 'Any' ? prefix + 'cfgStats' : prefix + 'cfgBattle' + (world === 'Isekai' ? '_isekai' : '');
             let current;
-            try { current = JSON.parse(localStorage.getItem(key) || 'null'); } catch { continue; }
+            try { current = JSON.parse(localStorage.getItem(storageKey(world)) || 'null'); } catch { continue; }
             saved[world] = current;
             current ||= world === jpxConfigWorld() ? cfgBattle : world === 'Any' ? cfgStats : {};
             if (world !== 'Any') {
@@ -561,7 +561,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         sort.setAttribute('aria-label', tr('sort')); sort.dataset.configSort = '';
         sort.addEventListener('change', () => {
             state.sort = sort.value; refresh();
-            try { localStorage.setItem(sortKey, state.sort); } catch (cause) { error({ code: 'storageError' }); }
+            try { localStorage.setItem(sortKey, state.sort); } catch { error({ code: 'storageError' }); }
         });
         results.append(resultCount, clear, sort);
         const header = div('jpx-config-list-header jpx-store-browse-header jpx-store-view-header'); header.append(filters, results);
@@ -753,7 +753,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
                 grip.addEventListener('keydown', event => {
                     if (!['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
                     event.preventDefault(); event.stopPropagation();
-                    const rows = [...list.querySelectorAll('.jpx-config-row')], from = rows.findIndex(row => row.dataset.configId === entry.id);
+                    const rows = listRows(), from = rows.findIndex(row => row.dataset.configId === entry.id);
                     const to = event.key === 'Home' ? 0 : event.key === 'End' ? rows.length - 1 : from + (event.key === 'ArrowUp' ? -1 : 1);
                     moveEntry(entry.id, Math.max(0, Math.min(rows.length - 1, to)));
                 }); title.append(grip);
@@ -787,14 +787,15 @@ function renderJpxConfigManager(parent, hooks = {}) {
         listVersion = version;
         ensureJpxModeDetection();
     }
+    const listRows = () => [...list.querySelectorAll('.jpx-config-row')], rowOf = id => listRows().find(row => row.dataset.configId === id);
     function moveEntry(id, destination) {
         if (state.sort !== 'manual') return;
-        const ids = [...list.querySelectorAll('.jpx-config-row')].map(row => row.dataset.configId), from = ids.indexOf(id);
+        const ids = listRows().map(row => row.dataset.configId), from = ids.indexOf(id);
         if (from < 0 || destination < 0 || destination >= ids.length || destination === from) return;
         const reordered = [...ids]; reordered.splice(from, 1); reordered.splice(destination, 0, id);
         try {
             captureList(); library.reorder(reordered, ids); renderList(); body.scrollTop = state.scroll;
-            [...list.children].find(row => row.dataset.configId === id)?.querySelector('.jpx-config-grip')?.focus({ preventScroll: true });
+            rowOf(id)?.querySelector('.jpx-config-grip')?.focus({ preventScroll: true });
         } catch (cause) { error(cause); }
     }
     function showMore(anchor, entry) {
@@ -805,7 +806,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
             const item = button(label.startsWith('cGen.') ? t(label) : tr(label), async () => { menu.hidePopover(); await action(); }); item.disabled = disabled; menu.append(item);
         };
         if (state.sort === 'manual') {
-            const rows = [...list.querySelectorAll('.jpx-config-row')], index = rows.findIndex(row => row.dataset.configId === entry.id);
+            const rows = listRows(), index = rows.findIndex(row => row.dataset.configId === entry.id);
             for (const [label, destination] of [['moveTop', 0], ['moveUp', index - 1], ['moveDown', index + 1], ['moveBottom', rows.length - 1]])
                 add('cGen.' + label, () => moveEntry(entry.id, destination), destination < 0 || destination >= rows.length || destination === index);
         }
@@ -873,7 +874,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if (await answer !== 'save' || state.disposed || state.page !== 'mine') return;
         library.rename(entry.id, input.value, entry.revision);
         renderList(); body.scrollTop = state.scroll;
-        [...list.children].find(row => row.dataset.configId === entry.id)?.querySelector('.jpx-config-more')?.focus({ preventScroll: true });
+        rowOf(entry.id)?.querySelector('.jpx-config-more')?.focus({ preventScroll: true });
         notify(tr('saved'));
     }
     function exportEntry(entry) {
