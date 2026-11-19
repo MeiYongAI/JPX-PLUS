@@ -65,7 +65,7 @@ function expose() {
         },
         ageEquipment() { const key=jpxDetectedFamilyKey(), saved=JSON.parse(localStorage.getItem(key)); saved.verifiedAt-=86400000; localStorage.setItem(key,JSON.stringify(saved)); },
         run(tier = 'T1', element = '') {
-            const rules = getJpxBattleRules(); if (rules) rules.rules.find(rule => rule.type === 'spellDamage').name = tier;
+            const rules = getJpxBattleRules(); const spell = rules?.rules.find(rule => rule.type === 'spellDamage'); if (spell) spell.name = tier;
             if (rules && element) rules.jpxPlusExecution = { element };
             isActiveBattle = true; smartBattle();
             return { active: isActiveBattle, ready: readyNext, clicks: [...window.__spellClicks], targets: window.__attacks };
@@ -231,7 +231,7 @@ for (const fixed of [false, true]) test('manual two-handed application after los
         assert.equal(result.active, true); assert.equal(result.targets, 1);
         assert.equal((await f.page.evaluate(() => __reload.snapshot())).mode, 'TwoHanded_General');
     } else {
-        assert.equal(result.active, false); assert.match(result.ready, /no scene or General strategy/);
+        assert.equal(result.active, false); assert.match(result.ready, /no rules for this battle and no General rules/);
     }
     assert.deepEqual(f.combatRequests, []); assert.deepEqual(f.errors, []);
 });
@@ -286,7 +286,7 @@ for (const quickbar of [[], ['Smite'], ['Corruption'], ['Smite', 'Corruption']])
     assert.equal(info.element, ''); assert.equal(info.family, ''); assert.equal(info.style, '');
     await f.page.evaluate(() => __spellBattle.ensure());
     const result = await f.page.evaluate(() => __spellBattle.run());
-    assert.equal(result.active, false); assert.match(result.ready, /no scene or General strategy/);
+    assert.equal(result.active, false); assert.match(result.ready, /no rules for this battle and no General rules/);
     assert.deepEqual(result.clicks, []); assert.equal(result.targets, 0); assert.deepEqual(f.errors, []);
     assert.ok(f.requests.every(url => !url.includes('s=Character')));
 });

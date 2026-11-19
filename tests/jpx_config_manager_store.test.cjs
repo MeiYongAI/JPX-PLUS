@@ -282,14 +282,14 @@ for (const mobile of [false, true]) test('ratings create, change and withdraw a 
     await comments.getByText('Helpful config', { exact: true }).waitFor();
     assert.equal(await comments.locator('.jpx-comment-row').count(), 1);
     assert.equal(await comments.getByText('JPX-PLUS-RATING', { exact: false }).count(), 0);
-    await ratings.getByRole('button', { name: 'Withdraw', exact: true }).click();
-    await ratings.getByText('Rating withdrawn.', { exact: true }).waitFor();
+    await ratings.getByRole('button', { name: 'Remove rating', exact: true }).click();
+    await ratings.getByText('Rating removed.', { exact: true }).waitFor();
     assert.equal(await ratings.locator('strong').textContent(), '★ 3.0 · 1 rating');
     assert.equal(await ratings.locator('[aria-pressed=true]').count(), 0);
     assert.equal(await page.evaluate(() => __transport.comments[1].filter(row => row.user.id === 42).length), 1, 'ordinary comment remains');
     await page.evaluate(() => { __transport.failComment = true; });
     await stars.getByRole('button', { name: '4 stars', exact: true }).click();
-    await ratings.getByText('The rating could not be confirmed. Refresh to check.', { exact: true }).waitFor();
+    await ratings.getByText('Could not confirm your rating was saved. Refresh to check.', { exact: true }).waitFor();
     assert.equal(await ratings.locator('[aria-pressed=true]').count(), 0, 'failed writes never display success');
     await page.evaluate(() => { __transport.failComment = false; });
     await ratings.getByRole('button', { name: 'Refresh', exact: true }).click();
@@ -365,7 +365,7 @@ test('comments keep drafts after failed writes and reject edits changed elsewher
     const section = page.locator('.jpx-store-comments'), own = section.locator('[data-comment-id="101"]'); await own.waitFor();
     const input = section.getByRole('textbox', { name: 'Write a comment…', exact: true }); await input.fill('Keep this draft');
     await section.getByRole('button', { name: 'Post', exact: true }).click();
-    await section.getByText('Sending was not confirmed. Refresh to check before posting again.', { exact: true }).waitFor();
+    await section.getByText('Could not confirm your comment was posted. Refresh before posting again.', { exact: true }).waitFor();
     assert.equal(await input.inputValue(), 'Keep this draft');
     assert.equal(await page.evaluate(() => __transport.calls.filter(call => call.method === 'POST' && call.url.endsWith('/comments')).length), 1);
     await own.getByRole('button', { name: 'Edit', exact: true }).click();
@@ -505,7 +505,7 @@ test('catalog save rejects a mismatched file and leaves the button available to 
     });
     const button = f.page.locator('[data-store-id="1"] .jpx-store-download'); await button.click();
     await f.page.locator('.jpx-store-status[data-error=true]').waitFor();
-    assert.match(await f.page.locator('.jpx-store-status').textContent(), /integrity check/);
+    assert.match(await f.page.locator('.jpx-store-status').textContent(), /does not match the published config/);
     assert.equal(downloads.length, 0);
     assert.equal(await button.isEnabled(), true); assert.equal(await button.getAttribute('aria-busy'), null);
     assert.deepEqual(await f.page.evaluate(() => __fullStore.native()), native);
@@ -944,7 +944,7 @@ for (const mobile of [false, true]) test(`withdrawn share removal preserves conf
     const scroll = await f.page.locator('.jpx-store-stage').evaluate(node => node.scrollTop); assert.ok(scroll > 0);
     await remove.click();
     const dialog = f.page.locator('.jpx-config-confirm'); await dialog.waitFor();
-    assert.ok((await dialog.textContent()).includes('GitHub record and local configs will stay'));
+    assert.ok((await dialog.textContent()).includes('GitHub record and your saved copies stay'));
     await f.page.keyboard.press('Escape'); await dialog.waitFor({ state: 'detached' });
     assert.equal(await f.page.evaluate(() => __transport.calls.filter(call => call.method === 'PATCH').length), 0);
     await remove.focus(); await f.page.keyboard.press('Enter'); await confirmRemove(f.page);

@@ -457,8 +457,11 @@ test('collapsed rules defer controls, preserve header geometry, and reuse forms 
     assert.equal(await editor(f).locator('.jpx-config-editor-footer').getByRole('button', { name: f.labels.save, exact: true }).isDisabled(), true,
         'disclosure creates neither changes nor history');
     await input.fill('Deferred edit'); await footerAction(f, 'undo');
+    if (!await input.isVisible()) await summary.click();
     assert.equal(await input.inputValue(), 'Rule 0');
-    await footerAction(f, 'redo'); assert.equal(await input.inputValue(), 'Deferred edit');
+    await footerAction(f, 'redo');
+    if (!await input.isVisible()) await summary.click();
+    assert.equal(await input.inputValue(), 'Deferred edit');
     assert.deepEqual(await nativeSnapshot(f), original);
     await noErrors(f);
 });

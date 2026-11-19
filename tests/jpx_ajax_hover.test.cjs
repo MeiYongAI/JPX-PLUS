@@ -222,7 +222,7 @@ for (const isekai of [false, true]) test('legacy config without re-entry option 
 });
 
 for (const [language, label, width, dark] of [
-    ['', 'Re-enter panel to switch to manual', 1024, false], ['ZhCN', '再次移入面板时切换为手动', 390, true],
+    ['', 'Hover again to pause auto battle', 1024, false], ['ZhCN', '再次移入面板时切换为手动', 390, true],
     ['ZhTW', '再次移入面板時切換為手動', 768, false], ['ZhHK', '再次移入面板時切換為手動', 1024, true],
     ['Ja', '再びパネルに入ると手動に切り替え', 390, false], ['Ko', '패널에 다시 들어오면 수동으로 전환', 390, true]
 ]) test('re-entry setting saves and exports with translated label: ' + (language || 'English'), async t => {

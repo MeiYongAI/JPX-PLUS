@@ -36,7 +36,7 @@ for (const isekai of [false, true]) test('direct battle import pauses before usi
     assert.equal(after.native, before.native, 'direct import remains an unsaved edit');
     assert.equal(after.library, before.library);
     const feedback = page.locator('.jpx-settings-window > .jpx-import-feedback');
-    assert.match(await feedback.textContent(), /Imported.*Direct.json.*Not saved yet/s);
+    assert.match(await feedback.textContent(), /Loaded “Direct.json” for review.*Save to keep these changes/s);
     assert.match(await feedback.textContent(), /Auto-battle is paused/);
     assert.equal(await feedback.locator('p').getAttribute('role'), 'status');
     await page.locator('#save-button').click();
@@ -55,7 +55,7 @@ for (const [name, data] of [
     await direct(page, data); await done(page);
     assert.deepEqual(await snapshot(page), before);
     assert.match(await page.locator('#import-button').textContent(), /fail/i);
-    assert.match(await page.locator('.jpx-settings-window > .jpx-import-feedback').textContent(), /Import not completed.*Direct.json/s);
+    assert.match(await page.locator('.jpx-settings-window > .jpx-import-feedback').textContent(), /Could not import.*Direct.json/s);
     assert.equal(await page.locator('.jpx-settings-window > .jpx-import-feedback p').getAttribute('role'), 'alert');
 });
 

@@ -162,7 +162,7 @@ test('fixed rules return to automatic selection and referenced configs can be de
     const entry=await addMode(page,'Pinned Item','OneHanded_Item');
     await apply(page,entry,labels);
     assert.match(await page.locator('.jpx-config-selection').textContent(),/Fixed rules/);
-    await page.getByRole('button',{name:'Restore automatic selection',exact:true}).click();
+    await page.getByRole('button',{name:'Switch to auto',exact:true}).click();
     assert.equal((await snapshot(page)).selected,'');
     assert.equal((await snapshot(page)).mode,'Staff_Arena');
     assert.ok((await library(page)).applied.Persistent[entry.id]);
@@ -171,7 +171,7 @@ test('fixed rules return to automatic selection and referenced configs can be de
     const native=(await snapshot(page)).native;
     await row(page,entry.id).locator('.jpx-config-more').click();
     await page.locator('.jpx-config-menu').getByRole('button',{name:'Delete',exact:true}).click();
-    await page.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
+    await page.locator('.jpx-config-confirm').getByRole('button',{name:'Unlink and delete',exact:true}).click();
     assert.equal(await row(page,entry.id).count(),0);
     assert.equal((await snapshot(page)).native,native);
     assert.equal((await library(page)).applied.Persistent?.[entry.id],undefined);
@@ -182,7 +182,7 @@ test('scene panel assigns snapshots, inherits General, isolates worlds and pause
     const f=await fixture(t),{page,labels}=f;
     const general=await addMode(page,'My Staff General','Staff_General');
     const arena=await addMode(page,'My Staff Arena','Staff_Arena');
-    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button',{name:'Battle strategies',exact:true}).click();
     assert.equal(await page.locator('[data-scene-style] option').count(),10);
     assert.deepEqual(await page.locator('[data-scene]').evaluateAll(rows=>rows.map(row=>row.dataset.scene)),['General','Arena','Item','Encounter','Battle1000']);
     const assign=async(scene,entry)=>{
@@ -202,19 +202,19 @@ test('scene panel assigns snapshots, inherits General, isolates worlds and pause
     assert.equal((await library(page)).scenes.Isekai,undefined);
     await page.locator('[data-scene-world]').selectOption('Persistent');
     await assign('Arena',null);
-    assert.match(await page.locator('[data-scene="Arena"] select').evaluate(node=>node.selectedOptions[0].textContent),/Inherit General.*My Staff General/);
+    assert.match(await page.locator('[data-scene="Arena"] select').evaluate(node=>node.selectedOptions[0].textContent),/Use General rules.*My Staff General/);
     assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff General');
     await page.reload();await initialize(page);
     assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff General');
     await apply(page,arena,labels);
     assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'My Staff Arena');
-    await page.getByRole('button',{name:'Restore automatic selection',exact:true}).click();
-    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button',{name:'Switch to auto',exact:true}).click();
+    await page.getByRole('button',{name:'Battle strategies',exact:true}).click();
     await page.evaluate(()=>__selection.beginBattle());
     await assign('General',null);
     await page.evaluate(()=>__selection.smart());
     const missing=await page.evaluate(()=>__selection.runtime());
-    assert.equal(missing.rules,null);assert.equal(missing.active,false);assert.match(missing.reason,/no scene or General/);
+    assert.equal(missing.rules,null);assert.equal(missing.active,false);assert.match(missing.reason,/no rules for this battle and no General rules/);
     assertClean(f);
 });
 
@@ -223,7 +223,7 @@ test('another tab assigns scene snapshots without switching on save, and detach 
     const settings=await context.newPage();await settings.goto('https://hentaiverse.org/?s=Character');await initialize(settings);
     const entry=await addMode(settings,'Assigned from another tab','Staff_Arena');
     await page.evaluate(()=>__selection.beginBattle());
-    await settings.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await settings.getByRole('button',{name:'Battle strategies',exact:true}).click();
     const area=settings.locator('[data-scene="Arena"]');
     await area.locator('select').selectOption(JSON.stringify([entry.id,entry.envelope.mode]));
     await area.getByRole('button',{name:'Assign',exact:true}).click();
@@ -235,8 +235,8 @@ test('another tab assigns scene snapshots without switching on save, and detach 
     await settings.evaluate(()=>{const cfg=document.querySelector('.jpx-config-back');cfg.click();});
     await row(settings,entry.id).locator('.jpx-config-more').click();
     await settings.locator('.jpx-config-menu').getByRole('button',{name:'Delete',exact:true}).click();
-    assert.match(await settings.locator('.jpx-config-confirm').textContent(),/Scene strategies/);
-    await settings.locator('.jpx-config-confirm').getByRole('button',{name:'Detach and delete',exact:true}).click();
+    assert.match(await settings.locator('.jpx-config-confirm').textContent(),/Battle strategies/);
+    await settings.locator('.jpx-config-confirm').getByRole('button',{name:'Unlink and delete',exact:true}).click();
     await page.waitForFunction(()=>!__selection.running()&&__selection.runtime().mode==='Staff_General');
     assert.equal((await page.evaluate(()=>__selection.runtime())).rules.rules[0].customMessage,'native staff');
     assertClean(f);
@@ -252,7 +252,7 @@ test('scene changes pause only affected battles once across local and remote tab
     const duplicate = await settings.evaluate(entry => __selection.add({...entry.envelope, title:'Same arena rules'}), arena);
     const other = await addMode(settings, 'Other style', 'OneHanded_General');
     for (const tab of [page, settings]) await tab.evaluate(() => __selection.beginBattle());
-    await settings.getByRole('button', {name:'Scene strategies', exact:true}).click();
+    await settings.getByRole('button', {name:'Battle strategies', exact:true}).click();
     await settings.locator('[data-scene-style]').selectOption('Staff');
     const assign = async (scene, entry, shouldPause) => {
         const before = await Promise.all([page, settings].map(tab => tab.evaluate(() => __selection.runtime())));
@@ -281,7 +281,7 @@ test('scene changes pause only affected battles once across local and remote tab
     await apply(settings, arena, labels);
     await page.waitForFunction(() => __selection.snapshot().selected === 'Staff_Arena' && !__selection.running());
     for (const tab of [page, settings]) await tab.evaluate(() => __selection.beginBattle());
-    await settings.getByRole('button', {name:'Scene strategies', exact:true}).click();
+    await settings.getByRole('button', {name:'Battle strategies', exact:true}).click();
     await settings.locator('[data-scene-style]').selectOption('Staff');
     await assign('General', general, false); // A fixed choice ignores scene edits.
     assertClean(f);
@@ -315,7 +315,7 @@ test('multiple General configs keep their explicit assignment across saves sorti
         await area.locator('select').selectOption(JSON.stringify([entry.id, entry.envelope.mode]));
         await area.getByRole('button', {name:'Assign',exact:true}).click();
     };
-    await page.getByRole('button', {name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button', {name:'Battle strategies',exact:true}).click();
     await assignGeneral(second);
     const arena = page.locator('[data-scene=Arena]');
     await arena.locator('select').selectOption('');
@@ -333,7 +333,7 @@ test('multiple General configs keep their explicit assignment across saves sorti
     assert.equal((await snapshot(page)).selected, '');
     assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].customMessage, 'General B');
     assert.equal((await library(page)).scenes.Persistent.Staff_General.id, second.id);
-    await page.getByRole('button', {name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button', {name:'Battle strategies',exact:true}).click();
     await assignGeneral(first);
     assert.equal((await page.evaluate(() => __selection.runtime())).rules.rules[0].customMessage, 'General A');
     assertClean(f);
@@ -342,7 +342,7 @@ test('multiple General configs keep their explicit assignment across saves sorti
 for(const width of [1440,390,320]) test('scene strategies fit viewport '+width, async t=>{
     const f=await fixture(t),{page}=f;
     await page.setViewportSize({width,height:900});
-    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button',{name:'Battle strategies',exact:true}).click();
     const geometry=await page.locator('#settings-container').evaluate(node=>{
         const rect=node.getBoundingClientRect();
         return {left:rect.left,right:rect.right,width:innerWidth,body:[...node.querySelectorAll('.jpx-config-body')].map(el=>({client:el.clientWidth,scroll:el.scrollWidth})),
@@ -358,7 +358,7 @@ for(const width of [1440,390,320]) test('scene strategies fit viewport '+width, 
 test('scene edits reveal only pending actions, cancel without writes and restore focus after assign',async t=>{
     const f=await fixture(t),{page}=f;
     const entry=await addMode(page,'Arena alternative','Staff_Arena');
-    await page.getByRole('button',{name:'Scene strategies',exact:true}).click();
+    await page.getByRole('button',{name:'Battle strategies',exact:true}).click();
     assert.equal(await page.locator('.jpx-scene-pending:visible').count(),0);
     assert.equal(await page.locator('.jpx-scene-resolved,.jpx-scene-executing').count(),0);
     const original=await library(page),area=page.locator('[data-scene=Arena]'),picker=area.locator('select');

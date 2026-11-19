@@ -24,7 +24,7 @@ for (const isekai of [false, true]) for (const status of ['lobby', 'running', 'p
         const value = envelope('Import case', world);
         await choose(page, value);
         await page.locator('.jpx-config-form').waitFor();
-        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /File validated.*Nothing has been saved or applied yet/s);
+        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /Ready to import.*will not apply automatically/s);
         assert.deepEqual(await snapshot(page), before, 'reading and validating file makes no persistent or running changes');
         await save(page);
         const after = await snapshot(page);
@@ -32,7 +32,7 @@ for (const isekai of [false, true]) for (const status of ['lobby', 'running', 'p
         const saved = await page.evaluate(() => __imports.library().entries.find(entry => entry.envelope.title === 'Import case'));
         assert.deepEqual(saved.envelope.config, normalized(value).config);
         assert.equal(saved.envelope.world, world);
-        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /Imported.*Import case.*My configs.*Not applied yet/s);
+        assert.match(await page.locator('.jpx-config-manager .jpx-import-feedback').textContent(), /“Import case” is in My configs.*Choose Apply to use it/s);
     });
 }
 

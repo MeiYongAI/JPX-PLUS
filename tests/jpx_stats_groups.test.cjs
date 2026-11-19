@@ -227,6 +227,21 @@ test('toolbar cleanup retains current filter scope and cancellation preserves re
  await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#jpx-records-cleanup-dialog'));assert.equal(await page.locator('#battleStatsTable tbody tr').count(),rows);
  await page.evaluate(()=>__groups.render());await ready(page);assert.equal(await page.locator('.jpx-records-clear').count(),1);await page.locator('.jpx-records-clear').click();assert.equal(await page.locator('#jpx-records-cleanup-dialog select[name=battleType]').inputValue(),'Arena');
 });
+test('cleanup dialog dropdown follows the active theme despite host option colors',async t=>{
+ const page=await fixture(t,{width:390,dark:true});
+ await page.addStyleTag({content:'option{color:#5c0d11;background:#edeada}'});
+ await page.locator('.jpx-records-toolbar .jpx-records-clear').click();
+ const dialog=page.locator('#jpx-records-cleanup-dialog'),select=dialog.locator('select[name=world]');
+ await select.click();
+ const appearance=()=>select.evaluate(node=>({scheme:getComputedStyle(node).colorScheme,field:getComputedStyle(node).backgroundColor,
+  picker:getComputedStyle(node,'::picker(select)').backgroundColor,options:[...node.options].map(option=>({color:getComputedStyle(option).color,background:getComputedStyle(option).backgroundColor}))}));
+ const dark=await appearance();assert.equal(dark.scheme,'dark');assert.equal(dark.field,'rgb(36, 39, 43)');assert.equal(dark.picker,'rgb(41, 44, 49)');
+ assert.ok(dark.options.every(option=>option.color==='rgb(229, 224, 216)'),JSON.stringify(dark.options));
+ await page.keyboard.press('Escape');await page.evaluate(()=>__groups.theme());await select.click();
+ const light=await appearance();assert.equal(light.scheme,'normal');assert.equal(light.picker,'rgb(249, 246, 236)');
+ assert.ok(light.options.every(option=>option.color==='rgb(57, 45, 37)'),JSON.stringify(light.options));
+ await page.keyboard.press('Escape');
+});
 for(const width of [390,1440])for(const dark of [false,true])test('scrollbar appearance never shifts category labels and arrows at '+width+' '+dark,async t=>{
  const page=await fixture(t,{width,dark,language:'ZhCN'});await openColumns(page);await page.emulateMedia({reducedMotion:'no-preference'});
  const result=await page.locator('.jpx-records-sheet-body').evaluate(async body=>{

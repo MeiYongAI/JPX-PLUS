@@ -70,14 +70,14 @@ test('file-read errors have a specific reason and the next successful selection 
     await choose(page,envelope()); await libraryNotice(page).locator('[role=alert]').waitFor();
     assert.match(await libraryNotice(page).textContent(),/Could not read the file/);
     await choose(page,envelope()); await page.locator('.jpx-config-form').waitFor();
-    assert.match(await libraryNotice(page).textContent(),/File validated/);
+    assert.match(await libraryNotice(page).textContent(),/Ready to import/);
     assert.equal(await libraryNotice(page).locator('p').getAttribute('role'),'status');
 });
 
 test('saved library import remains visibly unapplied and Apply replaces that status', async t => {
     const {page}=await fixture(browser,t,{status:'running'});
     await choose(page,envelope()); await save(page); await page.waitForTimeout(4200);
-    assert.match(await libraryNotice(page).textContent(),/Not applied yet/);
+    assert.match(await libraryNotice(page).textContent(),/Choose Apply to use it/);
     assert.equal(await page.evaluate(()=>__imports.snapshot().active),true);
     await row(page,'Import case').getByRole('button',{name:'Apply',exact:true}).click();
     assert.equal(await libraryNotice(page).isVisible(),false);
@@ -90,7 +90,7 @@ test('invalid input with HTML in its name is rendered as text and can be retried
     await libraryNotice(page).locator('[role=alert]').waitFor();
     assert.ok((await libraryNotice(page).textContent()).includes(name));
     assert.equal(await libraryNotice(page).locator('img').count(),0);
-    await choose(page,envelope()); await save(page); assert.match(await libraryNotice(page).textContent(),/Not applied yet/);
+    await choose(page,envelope()); await save(page); assert.match(await libraryNotice(page).textContent(),/Choose Apply to use it/);
 });
 
 for (const locale of ['ZhCN','ZhTW','ZhHK','Ja','Ko']) test('localized import feedback survives narrow dark layout: '+locale, async t => {
