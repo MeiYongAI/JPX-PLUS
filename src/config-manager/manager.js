@@ -360,11 +360,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
     const sortKey = 'jpx_configListSort_v1';
     let savedSort; try { savedSort = localStorage.getItem(sortKey); } catch {}
     const state = { query: '', world: '', style: '', scenario: '', kind: '', sort: ['type', 'updated', 'name', 'manual'].includes(savedSort) ? savedSort : 'type', filtersOpen: false,
-        scroll: 0, editor: null, page: 'mine', storeDispose: null, history: null, disposed: false, dialog: null };
+        scroll: 0, editor: null, page: 'mine', storeDispose: null, disposed: false, dialog: null };
     const library = getJpxConfigLibrary();
     const notice = el('p', '', 'jpx-config-notice'); notice.setAttribute('role', 'status');
     const importFeedback = createJpxImportFeedback();
-    let body, list, toolbar, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
+    let body, list, noticeTimer, listVersion, contextVersion, cachedContext, resultCount, orderedContext, orderedBy, orderedEntries, refreshFilters, cancelListDrag;
     let importGeneration = 0;
     const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
     const clearNotice = () => { clearTimeout(noticeTimer); noticeTimer = null; notice.textContent = ''; };
@@ -514,15 +514,25 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     // A cancel/confirm pair; resolves true only for the primary action.
     const confirmed = async (title, label, content) => await confirmAction(title, [['cancel', tr('cancel')], ['confirm', label, true]], content) === 'confirm';
+    function pageTabs(mineActive, onMine, onStore) {
+        const nav = div('jpx-config-nav');
+        for (const [label, action, pressed] of [['mine', onMine, mineActive], ['store', onStore, !mineActive]]) {
+            const tab = button(tr(label), action); tab.setAttribute('aria-pressed', String(pressed)); nav.append(tab);
+        }
+        return nav;
+    }
+    function titleInput(value) {
+        const input = el('input'); input.type = 'text'; input.required = true; input.maxLength = 100; input.value = value; return input;
+    }
+    function pageHeader(back, title) {
+        const header = div('jpx-config-editor-header'); header.append(back, el('strong', title)); return header;
+    }
     function captureList() { if (state.page === 'mine' && body) state.scroll = body.scrollTop; }
     function showMine() {
         resetPage('mine');
         listVersion = null;
-        toolbar = div('jpx-config-toolbar');
-        const nav = div('jpx-config-nav'); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', tr('name'));
-        const mine = button(tr('mine'), () => {}); mine.setAttribute('aria-pressed', 'true');
-        const store = button(tr('store'), () => { captureList(); showStore(); }); store.setAttribute('aria-pressed', 'false');
-        nav.append(mine, store);
+        const toolbar = div('jpx-config-toolbar');
+        const nav = pageTabs(true, () => {}, () => { captureList(); showStore(); }); nav.setAttribute('role', 'group'); nav.setAttribute('aria-label', tr('name'));
         root.append(renderSelection());
         const search = el('input'); search.type = 'search'; search.placeholder = tr('search'); search.setAttribute('aria-label', tr('search')); search.value = state.query;
         search.addEventListener('input', () => { state.query = search.value; refresh(); });
@@ -850,8 +860,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     async function renameEntry(entry, anchor) {
         captureList(); anchor.focus({ preventScroll: true });
-        const input = el('input'); input.type = 'text'; input.required = true; input.maxLength = 100;
-        input.pattern = '.*\\S.*'; input.value = entry.envelope.title; input.setAttribute('aria-label', tr('title'));
+        const input = titleInput(entry.envelope.title); input.pattern = '.*\\S.*'; input.setAttribute('aria-label', tr('title'));
         const content = div('jpx-config-rename'); content.append(input);
         input.addEventListener('keydown', event => {
             if (event.key === 'Enter' && !event.isComposing) {
@@ -875,11 +884,11 @@ function renderJpxConfigManager(parent, hooks = {}) {
     }
     function showSettings(entry, imported) {
         resetPage('settings');
-        const header = div('jpx-config-editor-header'); header.append(backButton(showMine), el('strong', tr(entry ? 'settings' : imported ? 'importWorld' : 'new')));
+        const header = pageHeader(backButton(showMine), tr(entry ? 'settings' : imported ? 'importWorld' : 'new'));
         body = div('jpx-config-body');
         const form = el('form', undefined, 'jpx-config-form');
         const envelope = entry ? jpxConfigClone(entry.envelope) : imported;
-        const title = el('input'); title.type = 'text'; title.required = true; title.maxLength = 100; title.value = envelope?.title || '';
+        const title = titleInput(envelope?.title || '');
         const mode = envelope?.mode || getBattleMode('OneHanded');
         const existing = envelope?.mode ? envelope.config[envelope.mode]?.jpxPlusExecution : null;
         const style = select([['auto', tr('auto')], ...nativeChoices(BATTLE_STYLES)], existing?.style || (entry ? 'auto' : jpxModeStyle(mode)));
@@ -1055,7 +1064,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
         if(entry.envelope.kind==='stats'){openEditor(entry,null);return;}
         const modes=modesOf(entry.envelope);
         if(modes.length===1){openEditor(entry,modes[0]);return;}
-        resetPage('groups');const header=div('jpx-config-editor-header');header.append(backButton(showMine),el('strong',entry.envelope.title));
+        resetPage('groups');const header=pageHeader(backButton(showMine),entry.envelope.title);
         body=div('jpx-config-body');
         for(const mode of modes)body.append(button(jpxConfigModeLabel(mode),()=>openEditor(entry,mode),'jpx-config-group'));
         root.append(header,notice,body);
@@ -1063,8 +1072,7 @@ function renderJpxConfigManager(parent, hooks = {}) {
     function openEditor(entry,mode){
         resetPage('editor');
         const draft=jpxConfigClone(entry),editor=div('jpx-config-editor');
-        const header=div('jpx-config-editor-header');
-        const back=backButton(()=>leave(showMine));header.append(back,el('strong',entry.envelope.title));
+        const back=backButton(()=>leave(showMine)),header=pageHeader(back,entry.envelope.title);
         const content=div('jpx-config-editor-content'), footer=div('jpx-config-editor-footer');
         const undoButton=button(tr('undo'),()=>history.undo()),redoButton=button(tr('redo'),()=>history.redo());
         const saveButton=button(tr('save'),()=>saveEditor(),'jpx-config-primary');
@@ -1146,9 +1154,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
     function showStore(share){
         resetPage('store');
         root.append(renderSelection());
-        const top=div('jpx-config-toolbar jpx-config-store-header'),nav=div('jpx-config-nav');
-        const mine=button(tr('mine'),showMine),store=button(tr('store'),()=>showStore());
-        mine.setAttribute('aria-pressed','false');store.setAttribute('aria-pressed','true');nav.append(mine,store);top.append(nav);root.append(top,notice);
+        const top=div('jpx-config-toolbar jpx-config-store-header');
+        top.append(pageTabs(false,showMine,()=>showStore()));root.append(top,notice);
         const mount=el('div');mount.style.cssText='display:flex;flex:1;min-height:0;min-width:0;overflow:hidden';root.append(mount);
         jpxEmbeddedStore ||= createJpxIntegratedStore(window,t);
         state.storeDispose=jpxEmbeddedStore.render(mount,{
