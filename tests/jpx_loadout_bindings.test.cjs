@@ -118,6 +118,22 @@ test('saved edits apply only on a later switch, and newly introduced code requir
     assert.equal((await state(page)).applied.Persistent[a.id].revision,2);assert.equal(await page.evaluate(()=>window.__mustNotRun),undefined);
 });
 
+test('a matching binding cannot apply a corrupt stored configuration',async t=>{
+    const f=await fixture(t),{page}=f,a=await add(page,'A');await bind(page,a.id,'2','2');
+    const before=await page.evaluate(()=>__binding.native());
+    await page.evaluate(()=>{
+        const data=JSON.parse(localStorage.getItem('jpx_configLibrary_v1'));
+        data.entries[0].envelope.config.OneHanded_General.rules='invalid';
+        localStorage.setItem('jpx_configLibrary_v1',JSON.stringify(data));
+    });
+    assert.equal(await page.evaluate(()=>{
+        try{__binding.remember('2','2');return null;}catch(error){return error.code;}
+    }),'storageCorrupt');
+    assert.deepEqual(await page.evaluate(()=>__binding.native()),before);
+    assert.equal(await page.evaluate(()=>__binding.confirmed()),null);
+    assert.deepEqual(f.errors,[]);
+});
+
 test('missing observations use deduplicated GETs; stale HVUT cache alone cannot select a rule',async t=>{
     const f=await fixture(t),{page}=f,a=await add(page,'A');await bind(page,a.id,'1','1');
     await page.evaluate(()=>{document.querySelector('#persona_form').remove();document.querySelector('#eqsl').remove();localStorage.setItem('hvut_persona',JSON.stringify({pset:2,eset:3,2:{name:'Stale',3:{name:'Old'}}}));});

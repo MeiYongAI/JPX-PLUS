@@ -73,7 +73,9 @@ function jpxConfigContainsCode(envelope) {
 function applyJpxLoadoutBinding(context, force = false, notify = true) {
     if (!context || context.world !== jpxConfigWorld() || jpxLoadoutPending || jpxLoadoutBusy ||
         log || document.querySelector('#textlog, #battle_main, #riddlemaster')) return false;
-    const library = getJpxConfigLibrary(), state = library.readState();
+    const library = getJpxConfigLibrary();
+    if (!library.hasBinding(context.world, context.personaId, context.setId)) return false;
+    const state = library.readState();
     const binding = state.bindings?.find(item => jpxLoadoutSame(item, context));
     if (!binding) return false;
     const entry = state.entries.find(item => item.id === binding.id);
@@ -246,6 +248,6 @@ function initJpxLoadoutBindings() {
     window.addEventListener('pagehide', () => clearTimeout(refreshTimer));
     try {
         rememberJpxLoadout();
-        if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().readState().bindings?.some(item => item.world === jpxConfigWorld())) ensureJpxModeDetection(true);
+        if (!hvutPending && !jpxLoadoutConfirmed && getJpxConfigLibrary().hasBinding(jpxConfigWorld())) ensureJpxModeDetection(true);
     } catch (error) { console.warn('JPX-PLUS loadout binding could not be read.', error); }
 }

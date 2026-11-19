@@ -13,7 +13,7 @@ function expose(){
  let recordReads=0;const originalRead=getBattleRecordsRender;getBattleRecordsRender=(...args)=>{recordReads++;return originalRead(...args);};
  window.__share={enabled:jpxShared.enabled,get:key=>localStorage.getItem(key),set:(key,value)=>localStorage.setItem(key,value),
  cfg:()=>JSON.parse(JSON.stringify(cfgBattle)),active:()=>isActiveBattle,activate:()=>{log=document.createElement('table');log.id='textlog';document.getElementById('csp').append(log);isActiveBattle=true;},migrate:ensureJpxSharedRecords,
- export:exportIndexedDB,import:importIndexedDB,store:storeBattleRecords,preview:previewJpxRecordsCleanup,remove:deleteJpxRecordsCleanup,
+ export:exportIndexedDB,import:importIndexedDB,store:storeBattleRecords,preview:previewJpxRecordsCleanup,remove:deleteJpxRecordsCleanup,query:getBattleRecordsRender,shared:jpxShared,
  usage:world=>jpxShared.usage(world),open:()=>renderStatsDataActions(document.body),backups:()=>jpxShared.backups(),render:()=>renderBattleRecordsPage(window),
  settings:()=>{loadStatsSettingsConfig();renderSettings();},theme:toggleJpxTheme,
  recordReads:()=>recordReads,
@@ -44,6 +44,33 @@ async function fixture(t){
  return {page,flush,store,errors};
 }
 const rec=(timestamp='2026-11-08 10:00:00',world='Persistent')=>({world,timestamp,date:timestamp.slice(0,10),battleType:'Item',roundInfo:{current:1,total:1},combatRecords:{},revenueRecords:{totalProfit:100,finalProfit:100,staminaCost:0}});
+test('shared record reads reject cancellation during archive decoding',async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org',{},[rec()]);
+ const errors=await page.evaluate(async()=>{
+  await __share.migrate();const read=__share.shared.allRecords,errors=[];
+  for(const method of ['preview','query']){
+   let release,entered;const gate=new Promise(resolve=>{release=resolve;}),started=new Promise(resolve=>{entered=resolve;});
+   __share.shared.allRecords=async()=>{entered();await gate;return read();};
+   const controller=new AbortController(),pending=__share[method]({world:'',battleType:'',from:'',to:''},controller.signal).then(()=>null,error=>error.name);
+   await started;controller.abort();release();errors.push(await pending);
+  }
+  __share.shared.allRecords=read;return errors;
+ });
+ assert.deepEqual(errors,['AbortError','AbortError']);assert.deepEqual(f.errors,[]);
+});
+for(const fail of [false,true])test('shared settlement waits for compressed save '+(fail?'failure':'commit'),async t=>{
+ const f=await fixture(t),page=await f.page('hentaiverse.org');
+ const result=await page.evaluate(async({record,fail})=>{
+  await __share.migrate();const save=__share.shared.saveResult;let release,entered,settled=false,changed=0,error=null;
+  const gate=new Promise(resolve=>{release=resolve;}),started=new Promise(resolve=>{entered=resolve;});
+  __share.shared.saveResult=async(...args)=>{entered();await gate;if(fail)throw new Error('fixture compression failure');return save(...args);};
+  window.addEventListener('jpx:records-changed',()=>{changed++;});
+  const pending=__share.store(record).then(()=>{settled=true;},e=>{settled=true;error=e.message;});
+  await started;const before={settled,changed};release();await pending;
+  return {before,settled,changed,error,records:(await __share.export()).stores.battleRecords.length};
+ },{record:rec(),fail});
+ assert.deepEqual(result,{before:{settled:false,changed:0},settled:true,changed:fail?0:1,error:fail?'fixture compression failure':null,records:fail?0:1});assert.deepEqual(f.errors,[]);
+});
 test('actual script shares configs, pauses active other-host battle and preserves native backups',async t=>{
  const f=await fixture(t),a=await f.page('hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:7})});await f.flush();
  const b=await f.page('alt.hentaiverse.org',{jpx_cfgBattle:JSON.stringify({battleVersion:20251216,dailyStaminaQuotaPlus:11})});await f.flush();assert.equal(await b.evaluate(()=>__share.cfg().dailyStaminaQuotaPlus),7);

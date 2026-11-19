@@ -101,6 +101,35 @@ test('binding trust survives rename but not rule edits; invalid and corrupt bind
     assert.throws(() => library.readState(), isCode('storageCorrupt'));
 });
 
+test('binding existence reads only metadata and observes external edits without trusting rule contents', () => {
+    let validations = 0;
+    const factory = new Function('validated', source.replace('const state = parse(raw);', 'validated(); const state = parse(raw);') + '\nreturn createJpxConfigLibrary;')(() => validations++);
+    const { library: writer, values, options } = setup(), entry = writer.save(envelope());
+    const library = factory(options), slot = { world: 'Persistent', personaId: '1', setId: '2' };
+    assert.equal(library.hasBinding('Persistent'), false);
+    writer.setBinding(slot, entry.id, entry.revision);
+    assert.equal(library.hasBinding('Persistent'), true);
+    assert.equal(library.hasBinding('Persistent', '1', '2'), true);
+    assert.equal(library.hasBinding('Persistent', '1', '1'), false);
+    assert.equal(library.hasBinding('Isekai'), false);
+    assert.equal(validations, 0, 'existence checks do not traverse or copy stored rules');
+    library.readState();
+    const corrupt = JSON.parse(values.get('library'));
+    corrupt.entries[0].envelope.config.OneHanded_General.rules = 'invalid';
+    values.set('library', JSON.stringify(corrupt));
+    assert.equal(library.hasBinding('Persistent', '1', '2'), true);
+    assert.throws(() => library.readState(), isCode('storageCorrupt'), 'a metadata match is never accepted as validated state');
+    corrupt.bindings = [];
+    values.set('library', JSON.stringify(corrupt));
+    assert.equal(library.hasBinding('Persistent'), false);
+    for (const raw of ['{broken', 'null', JSON.stringify({ ...corrupt, bindings: {} })]) {
+        values.set('library', raw);
+        assert.throws(() => library.hasBinding('Persistent'), isCode('storageCorrupt'));
+    }
+    values.delete('library');
+    assert.equal(library.hasBinding('Persistent'), false);
+});
+
 test('manual ordering moves only selected entries and preserves rules, timestamps and active snapshots', () => {
     const { library, values } = setup();
     const entries = ['A','Hidden','B','C'].map(title => library.save(envelope({ title })));

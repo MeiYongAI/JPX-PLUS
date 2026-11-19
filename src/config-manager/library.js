@@ -248,6 +248,19 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
         if (state !== validatedState) return copyValidated(state);
         return JSON.parse(validatedJSON ??= JSON.stringify(state));
     }
+    function hasBinding(world, personaId, setId) {
+        const raw = getRaw(key);
+        if (raw === null || raw === undefined) return false;
+        if (typeof raw !== 'string' || raw.length > MAX_JSON) fail('storageCorrupt');
+        // Existence only. Applying a match still requires readState's full validation.
+        let state;
+        try { state = raw === validatedRaw ? validatedState : JSON.parse(raw); }
+        catch { return fail('storageCorrupt'); }
+        if (!object(state) || state.schemaVersion !== 1 || Object.hasOwn(state, 'bindings') &&
+            (!Array.isArray(state.bindings) || state.bindings.length > 2000)) fail('storageCorrupt');
+        return !!state.bindings?.some(binding => binding?.world === world &&
+            (personaId === undefined || binding.personaId === personaId && binding.setId === setId));
+    }
     function readSelection(world) {
         if (!worlds.has(world)) fail('invalidConfig');
         const state = readValidatedState(), id = state.active?.[world];
@@ -504,6 +517,6 @@ function createJpxConfigLibrary({ storage, key, modes, battleVersion, statsVersi
     return Object.freeze({
         list: () => copyValidated(readValidatedState().entries),
         get: id => copyValidated(readValidatedState().entries.find(entry => entry.id === id) || null),
-        save, rename, reorder, remove, migrate, backup, readState, readSelection, setApplied, clearApplied, setBinding, removeBinding, clearSelection, references, detach, readRuntime, assignScene
+        save, rename, reorder, remove, migrate, backup, readState, hasBinding, readSelection, setApplied, clearApplied, setBinding, removeBinding, clearSelection, references, detach, readRuntime, assignScene
     });
 }

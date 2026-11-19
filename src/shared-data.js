@@ -24,8 +24,57 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
     const legacyKey = root + 'legacy:' + encode(origin);
     const markerKey = root + 'settingsMigrated:' + encode(origin);
     const recordMarker = root + 'recordsMigrated:' + encode(origin);
-    let migration = null, recordCache = null, recordsMigrated = false, archiveRevision = null;
+    const compressedMarker = root + 'recordsCompressed_v1';
+    let migration = null, compression = null, recordCache = null, recordsMigrated = false, archiveRevision = null;
     const cache = new Map();
+    const payloads = new WeakMap();
+    // Userscript managers preload GM storage before injection. Keep the large
+    // record payload compressed; stamina/ordering metadata stays directly readable.
+    async function pack(value) {
+        const stream = new Blob([JSON.stringify(value)]).stream().pipeThrough(new CompressionStream('gzip'));
+        const bytes = new Uint8Array(await new Response(stream).arrayBuffer());
+        let binary = '';
+        for (let offset = 0; offset < bytes.length; offset += 32768)
+            binary += String.fromCharCode(...bytes.subarray(offset, offset + 32768));
+        return 'gzip:' + btoa(binary);
+    }
+    async function unpack(value) {
+        if (typeof value !== 'string') return value; // Existing uncompressed archives.
+        if (!value.startsWith('gzip:')) throw new Error('Unknown JPX archive encoding');
+        const bytes = Uint8Array.from(atob(value.slice(5)), char => char.charCodeAt(0));
+        const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+        return JSON.parse(await new Response(stream).text());
+    }
+    function payload(event) {
+        if (!payloads.has(event)) payloads.set(event, unpack(event.record ?? event.records));
+        return payloads.get(event);
+    }
+    function checkReset(before) {
+        if (get(root + 'reset') !== before) throw new Error('JPX data was reset while saving records');
+    }
+    async function compressRecords() {
+        if (get(compressedMarker)) return;
+        if (compression) return compression;
+        compression = (async () => {
+            const reset = get(root + 'reset');
+            for (const key of keys()) {
+                const field = key.startsWith(root + 'result:') ? 'record'
+                    : key.startsWith(root + 'legacyRecords:') || key.startsWith(root + 'batch:') ? 'records' : null;
+                if (!field) continue;
+                const event = get(key);
+                if (!event?.[field] || typeof event[field] === 'string') continue;
+                const packed = await pack(event[field]);
+                checkReset(reset);
+                const current = get(key);
+                if (!current || typeof current[field] === 'string') continue;
+                if (JSON.stringify(current) !== JSON.stringify(event)) throw new Error('JPX archive changed during compression');
+                set(key, { ...event, [field]: packed });
+            }
+            set(compressedMarker, true);
+            recordCache = null; notify('records');
+        })();
+        try { await compression; } finally { compression = null; }
+    }
     function baseline(world, date) {
         const override = get(root + 'staminaBase:' + world + ':' + date);
         if (override !== null) return override;
@@ -120,18 +169,21 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         gm.listen(root + 'change', (_key, _old, change, remote) => { if (remote) refresh(change); });
     }
     async function ensureRecords(readLegacy) {
-        if (!enabled || recordsMigrated) return;
-        if (get(recordMarker)) { recordsMigrated = true; return; }
-        if (migration) return migration;
-        migration = (async () => {
-            const records = get(root + 'reset') ? [] : await readLegacy();
-            // A single committed value makes migration atomic and retryable.
-            set(root + 'legacyRecords:' + encode(origin), { origin, records });
-            set(recordMarker, true);
-            recordsMigrated = true;
-            recordCache = null; notify('records');
-        })();
-        try { await migration; } finally { migration = null; }
+        if (!enabled) return;
+        if (!recordsMigrated && !get(recordMarker)) {
+            if (!migration) migration = (async () => {
+                const reset = get(root + 'reset');
+                const records = await pack(reset ? [] : await readLegacy());
+                checkReset(reset);
+                // A single committed value makes migration atomic and retryable.
+                set(root + 'legacyRecords:' + encode(origin), { origin, records });
+                set(recordMarker, true);
+                recordCache = null; notify('records');
+            })();
+            try { await migration; } finally { migration = null; }
+        }
+        recordsMigrated = true;
+        await compressRecords();
     }
     function operations() {
         const currentRevision = get(root + 'recordsRevision');
@@ -159,15 +211,15 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         }
         return Math.round(used * 100) / 100;
     }
-    function allRecords() {
+    async function allRecords() {
         const ops = operations(), map = new Map();
-        for (const batch of ops.legacy) for (const record of batch.records) { const id = idOf(record); if (!map.has(id)) map.set(id, clone(record)); }
+        for (const batch of ops.legacy) for (const record of await payload(batch)) { const id = idOf(record); if (!map.has(id)) map.set(id, clone(record)); }
         const events = [...ops.results, ...ops.batches].sort((a, b) => a.order.localeCompare(b.order));
         for (const event of events) {
-            if (event.record) map.set(event.id, clone(event.record));
+            if (event.record) map.set(event.id, clone(await payload(event)));
             else if (event.type === 'import') {
                 if (!event.merge) map.clear();
-                for (const record of event.records) { const id = idOf(record); if (!event.merge || !map.has(id)) map.set(id, clone(record)); }
+                for (const record of await payload(event)) { const id = idOf(record); if (!event.merge || !map.has(id)) map.set(id, clone(record)); }
             } else if (event.type === 'delete') for (const id of event.ids) map.delete(id);
         }
         // Allocate daily free stamina once in deterministic completion order,
@@ -187,16 +239,19 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         }
         return [...map.values()];
     }
-    function saveResult(record, cost) {
+    async function saveResult(record, cost) {
         const key = resultKey(record);
         if (get(key)) return;
-        const order = stamp(), saved = clone(record); saved.sharedResult = order;
+        const reset = get(root + 'reset'), order = stamp(), saved = clone(record); saved.sharedResult = order;
         const event = { order, id: idOf(record), record: saved };
         if (cost) event.stamina = clone(cost);
+        event.record = await pack(saved);
+        checkReset(reset);
+        if (get(key)) return;
         // Write the small lookup before the atomic receipt. An interrupted write
         // leaves an inert pointer, never an unrecorded charge. Stable receipt IDs
         // also deduplicate two hosts settling the same battle around midnight.
-        if (cost) set(root + 'day:' + cost.world + ':' + cost.date + ':' + encode(event.id), key);
+        if (event.stamina) set(root + 'day:' + event.stamina.world + ':' + event.stamina.date + ':' + encode(event.id), key);
         set(key, event); recordCache = null; notify('records');
     }
     function batch(value) { const order = stamp(); set(root + 'batch:' + order, { ...value, order }); recordCache = null; notify('records'); }
@@ -209,7 +264,11 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
     }
     return { enabled, storage, idOf, ensureRecords, allRecords, saveResult, stamina,
         refresh() { if (enabled) refresh(get(root + 'change')); },
-        importRecords: (records, merge) => batch({ type: 'import', records: clone(records), merge }),
+        async importRecords(records, merge) {
+            const reset = get(root + 'reset'), packed = await pack(records);
+            checkReset(reset);
+            batch({ type: 'import', records: packed, merge });
+        },
         deleteRecords: ids => batch({ type: 'delete', ids }), reset,
         usage: world => ({ lastUpdate: now(), staminaCost: stamina(world, day(now())) }),
         backups: () => enabled ? keys().filter(key => key.startsWith(root + 'legacy:')).map(key => get(key)) : [],
