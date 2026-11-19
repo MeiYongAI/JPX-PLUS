@@ -105,28 +105,30 @@ function renderJpxSharedDataActions(parent) {
         loadStatsSettingsConfig();
         jpxUtils.createToast(sharedText('saved'));
     };
-    const backups = jpxShared.backups();
-    if (backups.length) {
-        const block = group(sharedText('backupSection'));
-        for (const snapshot of backups) {
-            const row = document.createElement('div'); row.className = 'jpx-shared-data-row';
-            const label = document.createElement('span'); label.className = 'jpx-shared-data-source'; label.textContent = new URL(snapshot.origin).hostname; row.append(label);
-            const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
-            jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) }).title = sharedText('backup');
-            jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => restore(snapshot) }).title = sharedText('restore'); block.append(row);
+    // Recovery copies are stored packed; list them once restored, above the quota.
+    const recovery = document.createComment('jpx-recovery'); body.append(recovery);
+    Promise.all([jpxShared.backups(), jpxShared.revisions()]).then(([backups, revisions]) => {
+        if (backups.length) {
+            const block = group(sharedText('backupSection')); recovery.before(block);
+            for (const snapshot of backups) {
+                const row = document.createElement('div'); row.className = 'jpx-shared-data-row';
+                const label = document.createElement('span'); label.className = 'jpx-shared-data-source'; label.textContent = new URL(snapshot.origin).hostname; row.append(label);
+                const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+                jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) }).title = sharedText('backup');
+                jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => restore(snapshot) }).title = sharedText('restore'); block.append(row);
+            }
         }
-    }
-    const revisions = jpxShared.revisions();
-    if (revisions.length) {
-        const block = group(sharedText('historySection'));
-        const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-revision';
-        const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
-        revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
-        row.append(select);
-        const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
-        jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-shared-settings-history.json', revisions) }).title = sharedText('history');
-        jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({values:{[revision.key]:revision.value}}); } }).title = sharedText('restoreRevision'); block.append(row);
-    }
+        if (revisions.length) {
+            const block = group(sharedText('historySection')); recovery.before(block);
+            const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-revision';
+            const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
+            revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
+            row.append(select);
+            const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+            jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-shared-settings-history.json', revisions) }).title = sharedText('history');
+            jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({values:{[revision.key]:revision.value}}); } }).title = sharedText('restoreRevision'); block.append(row);
+        }
+    }).catch(error => console.warn('JPX shared recovery copies could not be read.', error));
     const date = new Date().toISOString().slice(0, 10);
     const stamina = group(sharedText('quotaShort') + ' · ' + date + ' UTC', sharedText('quotaHelp'));
     for (const world of ['Persistent', 'Isekai']) {

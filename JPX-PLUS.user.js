@@ -105,6 +105,86 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         })();
         try { await compression; } finally { compression = null; }
     }
+    // Recovery copies and settled results are rarely read, yet the manager loads
+    // them before every page. Pack copies once their host has migrated, and fold
+    // results older than the stamina window into one bundle per pass.
+    // Decide from key names alone: ordinary page loads must not read payloads.
+    const packPending = root + 'packPending', packedMarker = root + 'recoveryPacked_v1', settledDays = 3, bundleMinimum = 20;
+    const packDue = () => !!get(packPending) || !get(packedMarker);
+    const settledKeys = all => {
+        const cutoff = day(now() - settledDays * 86400000);
+        return all.filter(key => {
+            if (!key.startsWith(root + 'result:')) return false;
+            // Receipt IDs carry the battle timestamp: "YYYY-MM-DD hh:mm:ss" or epoch ms.
+            try {
+                const stamp = JSON.parse(decodeURIComponent(key.slice((root + 'result:').length)))[1];
+                const date = Number.isFinite(Number(stamp)) && String(stamp).trim() ? day(Number(stamp)) : /^\d{4}-\d{2}-\d{2}/.test(stamp) ? stamp.slice(0, 10) : '';
+                return !!date && date < cutoff;
+            } catch { return false; }
+        });
+    };
+    let compaction = null;
+    async function compactStorage() {
+        if (!enabled) return;
+        if (compaction) return compaction;
+        compaction = (async () => {
+            const all = keys();
+            if (!packDue() && settledKeys(all).length < bundleMinimum) return;
+            const lock = get(root + 'compacting');
+            if (lock && lock.until > now()) return;
+            set(root + 'compacting', { until: now() + 60000 });
+            try { await compact(); } finally { gm.remove(root + 'compacting'); }
+        })();
+        try { await compaction; } finally { compaction = null; }
+    }
+    async function compact() {
+        const reset = get(root + 'reset'), all = keys();
+        // Write only if the value is unchanged since it was read.
+        const replace = (key, before, after) => {
+            checkReset(reset);
+            if (JSON.stringify(get(key)) !== JSON.stringify(before)) return;
+            set(key, after);
+        };
+        if (packDue()) {
+            // Clear first: a copy written during this pass raises the flag again.
+            gm.remove(packPending);
+            try {
+                for (const key of all.filter(key => key.startsWith(root + 'revision:'))) {
+                    const revision = get(key);
+                    if (typeof revision?.value !== 'string' || revision.value.length < 1024) continue;
+                    const { value, ...rest } = revision;
+                    replace(key, revision, { ...rest, packed: await pack(value) });
+                }
+                for (const key of all.filter(key => key.startsWith(root + 'legacy:'))) {
+                    const snapshot = get(key);
+                    // The snapshot is read again only until its own host has migrated.
+                    if (!snapshot?.values || !get(root + 'settingsMigrated:' + encode(snapshot.origin))) continue;
+                    const { values, ...rest } = snapshot;
+                    replace(key, snapshot, { ...rest, packed: await pack(values) });
+                }
+                set(packedMarker, true);
+            } catch (error) { set(packPending, true); throw error; }
+        }
+        const settled = [];
+        for (const key of settledKeys(all)) { const event = get(key); if (event?.order) settled.push([key, event]); }
+        if (settled.length >= bundleMinimum) {
+            const events = [];
+            for (const [, event] of settled) events.push({ ...event, record: await unpack(event.record) });
+            events.sort((a, b) => a.order.localeCompare(b.order));
+            const packed = await pack(events);
+            checkReset(reset);
+            // Bundle first: an interrupted pass leaves duplicates, which reads
+            // collapse by receipt order, never a missing result.
+            set(root + 'bundle:' + events.at(-1).order, { order: events.at(-1).order, count: events.length, events: packed });
+            for (const [key, event] of settled) {
+                if (JSON.stringify(get(key)) !== JSON.stringify(event)) continue;
+                gm.remove(key);
+                // Day pointers serve only today's stamina lookup.
+                if (event.stamina) gm.remove(root + 'day:' + event.stamina.world + ':' + event.stamina.date + ':' + encode(event.id));
+            }
+            recordCache = null; notify('records');
+        }
+    }
     function baseline(world, date) {
         const override = get(root + 'staminaBase:' + world + ':' + date);
         if (override !== null) return override;
@@ -130,7 +210,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
                     set(root + 'legacyStamina:' + (key.endsWith('_isekai') ? 'Isekai' : 'Persistent') + ':' + day(value.lastUpdate) + ':' + encode(origin), value.staminaCost);
             } else if (key !== 'jpx_cleanupRequest' && get(settingPrefix + key) === null) set(settingPrefix + key, { value: raw, source: origin });
         }
-        set(markerKey, true);
+        set(markerKey, true); set(packPending, true);
         notify('migration');
     }
     function readSetting(key) {
@@ -149,6 +229,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
             const revisionKey = root + 'revision:' + encode(key) + ':' + encode(origin);
             if (current !== null) set(revisionKey + ':previous', { key, value: current, at: now(), source: origin });
             set(revisionKey + ':proposed', { key, value, at: now(), source: origin });
+            set(packPending, true);
         }
         set(settingPrefix + key, { value, source: origin });
         cache.set(key, value);
@@ -214,15 +295,17 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         }
         recordsMigrated = true;
         await compressRecords();
+        await compactStorage();
     }
     function operations() {
         const currentRevision = get(root + 'recordsRevision');
         if (currentRevision !== archiveRevision) { archiveRevision = currentRevision; recordCache = null; }
         if (recordCache) return recordCache;
-        const result = { legacy: [], results: [], batches: [], baselines: new Map(), overrides: new Map() };
+        const result = { legacy: [], results: [], bundles: [], batches: [], baselines: new Map(), overrides: new Map() };
         for (const key of keys()) {
             if (key.startsWith(root + 'legacyRecords:')) result.legacy.push(get(key));
             else if (key.startsWith(root + 'result:')) result.results.push(get(key));
+            else if (key.startsWith(root + 'bundle:')) result.bundles.push(get(key));
             else if (key.startsWith(root + 'batch:')) result.batches.push(get(key));
             else if (key.startsWith(root + 'legacyStamina:')) {
                 const id = key.slice((root + 'legacyStamina:').length).split(':').slice(0, 2).join(':');
@@ -242,9 +325,16 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         return Math.round(used * 100) / 100;
     }
     async function allRecords() {
-        const ops = operations(), map = new Map();
+        const ops = operations(), map = new Map(), receipts = new Map();
         for (const batch of ops.legacy) for (const record of await payload(batch)) { const id = idOf(record); if (!map.has(id)) map.set(id, clone(record)); }
-        const events = [...ops.results, ...ops.batches].sort((a, b) => a.order.localeCompare(b.order));
+        // A receipt can briefly exist both loose and bundled; its order is unique.
+        for (const bundle of ops.bundles) {
+            if (!payloads.has(bundle)) payloads.set(bundle, unpack(bundle.events));
+            for (const event of await payloads.get(bundle)) receipts.set(event.order, event);
+        }
+        for (const event of ops.results) receipts.set(event.order, event);
+        const results = [...receipts.values()];
+        const events = [...results, ...ops.batches].sort((a, b) => a.order.localeCompare(b.order));
         for (const event of events) {
             if (event.record) map.set(event.id, clone(await payload(event)));
             else if (event.type === 'import') {
@@ -255,7 +345,7 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         // Allocate daily free stamina once in deterministic completion order,
         // including concurrent results. Archive deletion never erases usage.
         const totals = new Map();
-        for (const event of [...ops.results].sort((a, b) => a.order.localeCompare(b.order))) {
+        for (const event of results.sort((a, b) => a.order.localeCompare(b.order))) {
             const cost = event.stamina; if (!cost) continue;
             const key = cost.world + ':' + cost.date;
             const before = totals.has(key) ? totals.get(key) : ops.overrides.get(key) ?? ops.baselines.get(key) ?? 0;
@@ -301,8 +391,14 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         },
         deleteRecords: ids => batch({ type: 'delete', ids }), reset,
         usage: world => ({ lastUpdate: now(), staminaCost: stamina(world, day(now())) }),
-        backups: () => enabled ? keys().filter(key => key.startsWith(root + 'legacy:')).map(key => get(key)) : [],
-        revisions: () => enabled ? keys().filter(key => key.startsWith(root + 'revision:')).map(key => get(key)) : [],
+        // Recovery copies may be packed; callers receive them restored.
+        backups: () => enabled ? Promise.all(keys().filter(key => key.startsWith(root + 'legacy:')).map(async key => {
+            const { packed, ...snapshot } = get(key); return packed ? { ...snapshot, values: await unpack(packed) } : snapshot;
+        })) : Promise.resolve([]),
+        revisions: () => enabled ? Promise.all(keys().filter(key => key.startsWith(root + 'revision:')).map(async key => {
+            const { packed, ...revision } = get(key); return packed ? { ...revision, value: await unpack(packed) } : revision;
+        })) : Promise.resolve([]),
+        compact: compactStorage,
         baseline, setBaseline(world, date, value) {
             if (!Number.isFinite(value) || value < 0) throw new Error('Invalid stamina baseline');
             set(root + 'staminaBase:' + world + ':' + date, value); recordCache = null; notify('records');
@@ -16347,28 +16443,30 @@ function renderJpxSharedDataActions(parent) {
         loadStatsSettingsConfig();
         jpxUtils.createToast(sharedText('saved'));
     };
-    const backups = jpxShared.backups();
-    if (backups.length) {
-        const block = group(sharedText('backupSection'));
-        for (const snapshot of backups) {
-            const row = document.createElement('div'); row.className = 'jpx-shared-data-row';
-            const label = document.createElement('span'); label.className = 'jpx-shared-data-source'; label.textContent = new URL(snapshot.origin).hostname; row.append(label);
-            const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
-            jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) }).title = sharedText('backup');
-            jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => restore(snapshot) }).title = sharedText('restore'); block.append(row);
+    // Recovery copies are stored packed; list them once restored, above the quota.
+    const recovery = document.createComment('jpx-recovery'); body.append(recovery);
+    Promise.all([jpxShared.backups(), jpxShared.revisions()]).then(([backups, revisions]) => {
+        if (backups.length) {
+            const block = group(sharedText('backupSection')); recovery.before(block);
+            for (const snapshot of backups) {
+                const row = document.createElement('div'); row.className = 'jpx-shared-data-row';
+                const label = document.createElement('span'); label.className = 'jpx-shared-data-source'; label.textContent = new URL(snapshot.origin).hostname; row.append(label);
+                const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+                jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-before-sharing-' + new URL(snapshot.origin).hostname + '.json', snapshot) }).title = sharedText('backup');
+                jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => restore(snapshot) }).title = sharedText('restore'); block.append(row);
+            }
         }
-    }
-    const revisions = jpxShared.revisions();
-    if (revisions.length) {
-        const block = group(sharedText('historySection'));
-        const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-revision';
-        const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
-        revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
-        row.append(select);
-        const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
-        jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-shared-settings-history.json', revisions) }).title = sharedText('history');
-        jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({values:{[revision.key]:revision.value}}); } }).title = sharedText('restoreRevision'); block.append(row);
-    }
+        if (revisions.length) {
+            const block = group(sharedText('historySection')); recovery.before(block);
+            const row = document.createElement('div'); row.className = 'jpx-shared-data-row jpx-shared-data-revision';
+            const select = document.createElement('select'); select.setAttribute('aria-label', sharedText('restoreRevision'));
+            revisions.slice().reverse().forEach((revision, index) => { const option = document.createElement('option'); option.value = index; option.textContent = revision.key + ' · ' + revision.source + ' · ' + (revision.at ? new Date(revision.at).toLocaleString() : index + 1); select.append(option); });
+            row.append(select);
+            const actions = document.createElement('div'); actions.className = 'jpx-shared-data-actions'; row.append(actions);
+            jpxUtils.createButton(actions, { text:t('cM.export'), history:false, onClick:() => download('jpx-shared-settings-history.json', revisions) }).title = sharedText('history');
+            jpxUtils.createButton(actions, { text:sharedText('restoreAction'), history:false, onClick:() => { const revision = revisions.slice().reverse()[Number(select.value)]; restore({values:{[revision.key]:revision.value}}); } }).title = sharedText('restoreRevision'); block.append(row);
+        }
+    }).catch(error => console.warn('JPX shared recovery copies could not be read.', error));
     const date = new Date().toISOString().slice(0, 10);
     const stamina = group(sharedText('quotaShort') + ' · ' + date + ' UTC', sharedText('quotaHelp'));
     for (const world of ['Persistent', 'Isekai']) {

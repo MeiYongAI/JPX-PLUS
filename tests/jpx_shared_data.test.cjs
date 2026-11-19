@@ -13,7 +13,7 @@ function setup(){
 const main='https://hentaiverse.org',alt='https://alt.hentaiverse.org';
 const record=(timestamp='2026-11-08 12:00:00',world='Persistent')=>({timestamp,world,date:timestamp.slice(0,10),revenueRecords:{totalProfit:1000,staminaCost:0,finalProfit:1000}});
 const cost=(used=10,world='Persistent',date='2026-11-08')=>({used,world,date,quota:24,unitPrice:100});
-test('hosts share settings but retain both original conflicting copies',()=>{
+test('hosts share settings but retain both original conflicting copies',async()=>{
  const h=setup(),a=h.host(main,{jpx_cfgBattle:'one',jpx_cfgBattle_isekai:'isekai',hvut_persona:'mine'});
  const b=h.host(alt,{jpx_cfgBattle:'two'});h.flush();
  assert.equal(b.shared.storage.getItem('jpx_cfgBattle'),'one');
@@ -21,12 +21,12 @@ test('hosts share settings but retain both original conflicting copies',()=>{
  assert.equal(a.shared.storage.getItem('jpx_cfgBattle'),'three');
  assert.equal(a.shared.storage.getItem('jpx_cfgBattle_isekai'),'isekai');
  assert.equal(a.local.getItem('jpx_cfgBattle'),'one');assert.equal(b.local.getItem('jpx_cfgBattle'),'two');
- assert.equal(a.shared.backups().length,2);assert.equal(b.shared.storage.getItem('hvut_persona'),null);
+ assert.equal((await a.shared.backups()).length,2);assert.equal(b.shared.storage.getItem('hvut_persona'),null);
  assert.equal(a.events.filter(e=>e.key==='jpx_cfgBattle').length,1);
  const before=h.data.size;h.flush();assert.equal(h.data.size,before);
 });
 test('deleted shared settings never resurrect from old native values after reload',()=>{const h=setup(),a=h.host(main,{jpx_cfgStats:'{}'});a.shared.storage.removeItem('jpx_cfgStats');h.flush();const reload=h.host(main,{jpx_cfgStats:'{}'});assert.equal(reload.shared.storage.getItem('jpx_cfgStats'),null);});
-test('concurrent configuration edits preserve both proposed versions',()=>{const h=setup(),a=h.host(main),b=h.host(alt);a.shared.storage.getItem('jpx_cfgBattle');b.shared.storage.getItem('jpx_cfgBattle');a.shared.storage.setItem('jpx_cfgBattle','one');b.shared.storage.setItem('jpx_cfgBattle','two');h.flush();assert.equal(a.shared.storage.getItem('jpx_cfgBattle'),'two');assert.deepEqual([...new Set(a.shared.revisions().map(x=>x.value))],['one','two']);});
+test('concurrent configuration edits preserve both proposed versions',async()=>{const h=setup(),a=h.host(main),b=h.host(alt);a.shared.storage.getItem('jpx_cfgBattle');b.shared.storage.getItem('jpx_cfgBattle');a.shared.storage.setItem('jpx_cfgBattle','one');b.shared.storage.setItem('jpx_cfgBattle','two');h.flush();assert.equal(a.shared.storage.getItem('jpx_cfgBattle'),'two');assert.deepEqual([...new Set((await a.shared.revisions()).map(x=>x.value))],['one','two']);});
 test('repeated reads and no-op writes do not reread GM or create revisions',()=>{const h=setup(),a=h.host(main,{jpx_cfgBattle:'{}'});a.shared.storage.getItem('jpx_cfgBattle');h.gets.length=0;const count=h.data.size;for(let i=0;i<500;i++){a.shared.storage.getItem('jpx_cfgBattle');a.shared.storage.setItem('jpx_cfgBattle','{}');}assert.equal(h.gets.length,0);assert.equal(h.data.size,count);});
 test('legacy archives merge by world and timestamp and migrate once',async()=>{const h=setup(),a=h.host(main),b=h.host(alt);let reads=0;await a.shared.ensureRecords(async()=>{reads++;return [record()];});await b.shared.ensureRecords(async()=>[record(),record(undefined,'Isekai')]);h.flush();assert.equal((await a.shared.allRecords()).length,2);await a.shared.ensureRecords(async()=>{reads++;return [];});assert.equal(reads,1);});
 test('separate concurrent battles and repeated final saves count stamina exactly once',async()=>{const h=setup(),a=h.host(main),b=h.host(alt);await a.shared.ensureRecords(async()=>[]);await b.shared.ensureRecords(async()=>[]);await a.shared.saveResult(record(),cost(20));await b.shared.saveResult(record('2026-11-08 12:01:00'),cost(10));await b.shared.saveResult(record(),cost(20));h.flush();assert.equal(a.shared.stamina('Persistent','2026-11-08'),30);assert.equal(b.shared.stamina('Persistent','2026-11-08'),30);assert.equal((await a.shared.allRecords()).length,2);assert.equal((await a.shared.allRecords()).reduce((sum,r)=>sum+r.revenueRecords.staminaCost,0),6);assert.equal(a.shared.stamina('Isekai','2026-11-08'),0);h.advance(86400000);assert.equal(a.shared.usage('Persistent').staminaCost,0);await b.shared.saveResult(record(),cost(20,'Persistent','2026-11-09'));assert.equal(a.shared.stamina('Persistent','2026-11-09'),0);});
@@ -45,7 +45,7 @@ test('routine settings changes do not refresh the archive viewer',()=>{const h=s
 test('focus refresh recovers coalesced settings and archive invalidations',async()=>{const h=setup(),a=h.host(main),b=h.host(alt);h.flush();b.shared.storage.getItem('jpx_cfgBattle');assert.equal((await b.shared.allRecords()).length,0);await a.shared.saveResult(record(),cost());a.shared.storage.setItem('jpx_cfgBattle','new');b.shared.refresh();assert.equal(b.shared.storage.getItem('jpx_cfgBattle'),'new');assert.equal((await b.shared.allRecords()).length,1);assert.ok(b.events.some(e=>e.key==='jpx_recordsChanged'));});
 test('failed legacy stamina write keeps migration incomplete for retry',()=>{const h=setup(),seed={jpx_staminaRecords:JSON.stringify({lastUpdate:Date.parse('2026-11-08'),staminaCost:15})};h.deny(key=>key.includes('legacyStamina:'));assert.throws(()=>h.host(main,seed));assert.ok(![...h.data.keys()].some(key=>key.includes('settingsMigrated:')));h.deny(null);const a=h.host(main,seed);assert.equal(a.shared.usage('Persistent').staminaCost,15);});
 test('shared archive read applies corrected legacy baseline without repeated scans per day',async()=>{const h=setup(),a=h.host(main);a.shared.setBaseline('Persistent','2026-11-08',20);await a.shared.saveResult(record(),cost(10));assert.equal((await a.shared.allRecords())[0].revenueRecords.staminaCost,6);a.shared.setBaseline('Persistent','2026-11-08',0);assert.equal((await a.shared.allRecords())[0].revenueRecords.staminaCost,0);});
-test('configuration recovery slots remain bounded after repeated edits',()=>{const h=setup(),a=h.host(main),b=h.host(alt);for(let i=0;i<100;i++){a.shared.storage.setItem('jpx_cfgBattle','main-'+i);b.shared.storage.setItem('jpx_cfgBattle','alt-'+i);}h.flush();assert.equal(a.shared.revisions().length,4);assert.ok(a.shared.revisions().some(row=>row.value==='main-99'));assert.ok(a.shared.revisions().some(row=>row.value==='alt-99'));});
+test('configuration recovery slots remain bounded after repeated edits',async()=>{const h=setup(),a=h.host(main),b=h.host(alt);for(let i=0;i<100;i++){a.shared.storage.setItem('jpx_cfgBattle','main-'+i);b.shared.storage.setItem('jpx_cfgBattle','alt-'+i);}h.flush();const revisions=await a.shared.revisions();assert.equal(revisions.length,4);assert.ok(revisions.some(row=>row.value==='main-99'));assert.ok(revisions.some(row=>row.value==='alt-99'));});
 
 test('existing raw archives, receipts and import history compress without changing records or stamina', async () => {
  const h=setup(),a=h.host(main),b=h.host(alt),prefix='jpx_shared_v1:';
@@ -122,4 +122,47 @@ test('reset during asynchronous compression cannot resurrect a receipt, import o
   assert.deepEqual(await a.shared.allRecords(),[]);
   assert.equal(a.shared.usage('Persistent').staminaCost,0);
  }
+});
+
+const bytes=h=>[...h.data.values()].reduce((sum,value)=>sum+JSON.stringify(value).length,0);
+const day=86400000;
+test('compaction packs recovery copies after migration and restores them on read',async()=>{
+ const big=JSON.stringify({rules:Array.from({length:200},(_,i)=>({type:'item',name:'Health Potion',conditions:[{key:'pHP',value:[0,i/200]}]}))});
+ const h=setup(),a=h.host(main,{jpx_cfgBattle:big}),b=h.host(alt);h.flush();
+ a.shared.storage.setItem('jpx_cfgBattle',big+' ');b.shared.storage.setItem('jpx_cfgBattle',big+'  ');h.flush();
+ const revisions=await a.shared.revisions(),backups=await a.shared.backups(),before=bytes(h);
+ await a.shared.ensureRecords(async()=>[]);
+ assert.ok(bytes(h)<before/3,'packed copies are much smaller');
+ assert.ok([...h.data.entries()].filter(([k])=>k.includes(':revision:')||k.includes(':legacy:')).every(([,v])=>v.packed&&!('value' in v)&&!('values' in v)));
+ const canon=v=>v&&typeof v==='object'?Array.isArray(v)?v.map(canon):Object.fromEntries(Object.keys(v).sort().map(k=>[k,canon(v[k])])):v;
+ const sort=rows=>rows.map(row=>JSON.stringify(canon(row))).sort();
+ assert.deepEqual(sort(await a.shared.revisions()),sort(revisions));assert.deepEqual(sort(await b.shared.backups()),sort(backups));
+ assert.equal(b.shared.storage.getItem('jpx_cfgBattle'),big+'  ');
+});
+test('settled results fold into a bundle without changing records or stamina',async()=>{
+ const h=setup(),a=h.host(main),b=h.host(alt);await a.shared.ensureRecords(async()=>[record('2026-11-01 00:00:00')]);await b.shared.ensureRecords(async()=>[]);
+ for(let i=0;i<30;i++){await (i%2?a:b).shared.saveResult(record('2026-11-02 00:'+String(i).padStart(2,'0')+':00'),cost(5,'Persistent','2026-11-02'));h.advance(60000);}
+ h.advance(5*day);const today=new Date(Date.parse('2026-11-08T12:00:00Z')+5*day+30*60000).toISOString().slice(0,10);
+ await a.shared.saveResult(record(today+' 01:00:00'),cost(3,'Persistent',today));
+ const before=await a.shared.allRecords(),usage=a.shared.stamina('Persistent',today),size=bytes(h);
+ await a.shared.compact();h.flush();
+ const keys=[...h.data.keys()];
+ assert.equal(keys.filter(k=>k.includes(':result:')).length,1,'only the recent receipt stays loose');
+ assert.equal(keys.filter(k=>k.includes(':bundle:')).length,1);
+ assert.equal(keys.filter(k=>k.includes(':day:Persistent:2026-11-02:')).length,0);
+ assert.ok(bytes(h)<size);
+ const sort=rows=>rows.map(row=>JSON.stringify(row)).sort();
+ assert.deepEqual(sort(await b.shared.allRecords()),sort(before));
+ assert.equal(a.shared.stamina('Persistent',today),usage);
+ await a.shared.compact();assert.equal([...h.data.keys()].filter(k=>k.includes(':bundle:')).length,1,'fewer than 20 settled results are left alone');
+});
+test('an interrupted compaction never duplicates records or stamina',async()=>{
+ const h=setup(),a=h.host(main);await a.shared.ensureRecords(async()=>[]);
+ for(let i=0;i<25;i++){await a.shared.saveResult(record('2026-11-02 01:'+String(i).padStart(2,'0')+':00'),cost(2,'Persistent','2026-11-02'));h.advance(60000);}
+ h.advance(5*day);const loose=[...h.data.entries()].filter(([k])=>k.includes(':result:'));
+ const before=await a.shared.allRecords();await a.shared.compact();
+ for(const [k,v] of loose)h.data.set(k,v);h.data.set('jpx_shared_v1:recordsRevision','x');
+ const sort=rows=>rows.map(row=>JSON.stringify(row)).sort();
+ assert.deepEqual(sort(await a.shared.allRecords()),sort(before));
+ a.shared.reset();assert.equal([...h.data.keys()].filter(k=>k.includes(':bundle:')).length,0);
 });
