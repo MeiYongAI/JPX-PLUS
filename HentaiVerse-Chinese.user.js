@@ -7002,13 +7002,12 @@
         if (parent.matches('#stats_scrollable td:nth-child(2)')
             && parent.childNodes.length === 1) {
             const translated = getTranslatedString(node.nodeValue, parent);
-            if (translated !== node.nodeValue) {
-                if (!parent.hasAttribute('data-hv-direct-display')) {
-                    parent.style.setProperty('--hv-source-font-size', getComputedStyle(parent).fontSize);
-                }
-                parent.setAttribute('data-hv-direct-display', translated);
-            } else {
-                parent.removeAttribute('data-hv-direct-display');
+            // 属性区约 70 格：逐格「写属性、读字号」会让每格都强制重算整页样式。
+            // 与 flushSourceDisplays 一样，本次微任务内先统一读取，再统一写入。
+            pendingDirectDisplays.set(parent, { text: node.nodeValue, translated: translated !== node.nodeValue ? translated : null });
+            if (!directDisplayScheduled) {
+                directDisplayScheduled = true;
+                queueMicrotask(flushDirectDisplays);
             }
             return true;
         }
@@ -7087,6 +7086,24 @@
     const sourceDisplayTranslations = new Map();
     const pendingSourceDisplays = new Map();
     let sourceDisplayScheduled = false;
+    const pendingDirectDisplays = new Map();
+    let directDisplayScheduled = false;
+
+    function flushDirectDisplays() {
+        directDisplayScheduled = false;
+        const pending = [...pendingDirectDisplays].filter(([parent, { text }]) => parent.isConnected
+            && parent.childNodes.length === 1 && parent.firstChild.nodeType === 3 && parent.firstChild.nodeValue === text);
+        pendingDirectDisplays.clear();
+        const sizes = new Map();
+        for (const [parent, { translated }] of pending) {
+            if (translated !== null && !parent.hasAttribute('data-hv-direct-display')) sizes.set(parent, getComputedStyle(parent).fontSize);
+        }
+        for (const [parent, { translated }] of pending) {
+            if (translated === null) { parent.removeAttribute('data-hv-direct-display'); continue; }
+            if (sizes.has(parent)) parent.style.setProperty('--hv-source-font-size', sizes.get(parent));
+            parent.setAttribute('data-hv-direct-display', translated);
+        }
+    }
 
     function sourceDisplayGroups(scope) {
         // 同一个父元素也可能随整块面板移动；缓存须包含实际生效的规则组。
