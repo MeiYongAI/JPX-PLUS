@@ -1,12 +1,12 @@
-# HV Utils 4.2.4.3 浏览器扩展
+# HV Utils 4.2.4.4 浏览器扩展
 
 源自本工作区的 `HV Utils.user.js`（作者 sssss2），不是 `HVUT_CN_4.2.42.js`。这是可独立加载的 Chromium Manifest V3 本地移植，不需要 Tampermonkey，也不包含游戏汉化。
 
 ## 启用
 
 1. **先停用旧 HV Utils / HVUT_CN 脚本，不必卸载。** 两份 HVUT 同时运行会重复执行操作。游戏汉化扩展、JPX-PLUS 和 JPX 的语言包不属于 HVUT。
-2. 解压 [hv-utils-4.2.4.3.zip](../extensions/hv-utils-4.2.4.3.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
-3. 先刷新平时使用的 HV 大厅。顶部菜单的齿轮打开原版 **HV Utils Settings**；原版要求在游戏设置中启用自定义字体，这个要求不变。随机遭遇通知也会在 E-Hentai 图库运行；装备独立详情页仍排除。
+2. 解压 [hv-utils-4.2.4.4.zip](../extensions/hv-utils-4.2.4.4.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
+3. 先刷新平时使用的 HV 大厅。顶部菜单的齿轮打开原版 **HV Utils Settings**；原版要求在游戏设置中启用自定义字体，这个要求不变。随机遭遇通知也会在 E-Hentai 图库运行；独立装备详情页完全不注入 HVUT。
 
 ## 数据与切换
 
@@ -16,9 +16,13 @@
 
 ## 实现和验证
 
-扩展在页面解析期间预读设置，DOM 就绪后再构建界面。装备管理页切分类时，有导航栏的游戏面板等 HVUT 完成后才显示；初始化失败或等待超过 2 秒会放行原页面。配合汉化扩展 1.2.2 及以上版本，汉化直接处理重排后的装备列表。普通游戏请求直接同源发送；只有原脚本需要的两个跨站 GET（游戏首页和图库 `news.php`）由扩展后台发出。存储权限用于配置及较大的历史记录，无需剪贴板权限。扩展使用的装备筛选表达式不依赖 `eval`。
+HVUT 在页面解析期间预读设置。导航栏和角色读数齐备就挂载可操作的 HVUT 菜单，商店、物品栏、祭坛、训练和市场的布局样式同时生效，不等页面末尾脚本。从同源页面进入游戏时，在网页头部用原生 `link rel="expect" blocking="render"` 声明首绘所需的菜单；这不是 CSS 遮罩，没有整页透明、页面截图、过渡动画或两秒倒计时。不支持该声明的浏览器仍可正常使用，慢加载下可能有中间帧。战斗、谜题不需要菜单，图库和独立装备详情也不等待它。
 
-重新构建：在本仓库根目录运行 `python scripts/build-hv-utils-extension.py`；运行 `python scripts/package-extensions.py` 生成两个 ZIP。测试：使用本仓库已安装的 Playwright 和 Chromium，运行 `node --test tests/hv_utils_extension.test.cjs`。测试实际加载 HVUT 和游戏汉化两个扩展，游戏响应使用离线样本，跨站响应使用模拟数据，不操作真实账户。
+装备列表在表单解析完、游戏装备数据可用后重排，其他依赖完整 DOM 的模块仍按文档就绪时机初始化。装备数据按需跨环境读取；出售／拆解列表只在本次遍历内复用品质、属性、等级、词缀状态和名称完全等价的保护规则结果。汉化扩展 1.2.2 及以上版本使用完成事件处理重排后的装备列表，不靠隐藏页面同步。
+
+普通游戏请求直接同源发送；只有原脚本需要的两个跨站 GET（游戏首页和图库 `news.php`）由扩展后台发出。存储权限用于配置及较大的历史记录，无需剪贴板权限。扩展使用的装备筛选表达式不依赖 `eval`。
+
+重新构建：在本仓库根目录运行 `python scripts/build-hv-utils-extension.py`；运行 `python scripts/package-extensions.py` 生成两个 ZIP。测试：使用本仓库已安装的 Playwright 和 Chromium，运行 `node --test tests/hv_utils_extension.test.cjs tests/hv_utils_hotpaths.test.cjs`。测试实际加载 HVUT 和游戏汉化两个扩展，游戏响应使用离线样本，跨站响应使用模拟数据，不操作真实账户。
 
 ## 工具栏与更新
 

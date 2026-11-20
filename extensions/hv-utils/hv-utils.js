@@ -5,31 +5,71 @@
 (() => {
 const params = new URLSearchParams(location.search);
 const gameHost = location.hostname !== 'e-hentai.org';
-const pending = 'data-hvut-armory-pending';
-let timeout;
-function releaseArmory() {
-  if (!document.documentElement?.hasAttribute(pending)) return;
-  clearTimeout(timeout);
-  document.documentElement.removeAttribute(pending);
+const armory = gameHost && params.get('s') === 'Bazaar' && params.get('ss') === 'am';
+const armoryPending = 'data-hvut-armory-pending'; // translation ordering only; no visual rules
+if (armory) document.documentElement.setAttribute(armoryPending, '');
+function finishStartup() {
+  finishMenu();
+  if (!armory) return;
+  document.documentElement.removeAttribute(armoryPending);
   document.dispatchEvent(new Event('hvut:armory-ready'));
 }
-if (gameHost && params.get('s') === 'Bazaar' && params.get('ss') === 'am') {
-  // document_start: mark the route before the streaming parser creates the native list.
-  document.documentElement.setAttribute(pending, '');
-  timeout = setTimeout(releaseArmory, 2000); // slow/broken page: restore native UI
+// Resolve on the parser mutation that supplies the consumer's inputs. If the
+// document has a different layout, let the normal document-end path inspect it.
+function parsed(ready) {
+  if (document.readyState !== 'loading' || ready?.()) return;
+  return new Promise(resolve => {
+    const done = () => {
+      observer?.disconnect();
+      document.removeEventListener('DOMContentLoaded', done);
+      resolve();
+    };
+    const observer = ready && new MutationObserver(records => {
+      if (records.some(r => !document.head?.contains(r.target)) && ready()) done();
+    });
+    observer?.observe(document, {childList:true, subtree:true});
+    document.addEventListener('DOMContentLoaded', done, {once:true});
+  });
+}
+// Declare the actual first-render dependency in the head, before the browser
+// starts laying out the body. Battles and riddles do not use this menu.
+let menuLink;
+let menuResolved = false;
+function finishMenu() { menuResolved = true; menuLink?.remove(); }
+if (gameHost && document.referrer && new URL(document.referrer).origin === location.origin &&
+    !(params.get('s') === 'Battle' && params.get('ss') === 'ba')) {
+  parsed(() => {
+    if (menuResolved) return true;
+    if (!document.head) return false;
+    menuLink = document.createElement('link');
+    menuLink.rel = 'expect'; menuLink.setAttribute('blocking','render'); menuLink.href = '#hvut-top';
+    document.head.append(menuLink);
+    return true;
+  });
+  parsed(() => {
+    if (document.getElementById('navbar')) return true;
+    if (document.getElementById('battle_top') || document.getElementById('riddleform')) { finishMenu(); return true; }
+  });
 }
 (async () => {
 const storage = chrome.storage.local;
 const cache = Object.create(null);
 // Don't deserialize monster/shrine histories and the armory DB on every battle round.
 const prefix = location.pathname.includes('/isekai/') ? 'hvuti_' : 'hvut_';
-const heavy = ['ml_log', 'ss_log', 'equipdata'];
+const {s, ss, screen, filter, hvut} = Object.fromEntries(params);
 const keys = new Set(['hvut_re', 'hvut_lt_notif', 'hvut_tr_notif', ...[
-  'settings', 'prices', 'equipset', 'ch_style', 'persona', 'tr_level', 'se_settings', 'ml_plc', 'mm_userlist'
+  'settings', 'prices', 'equipset', 'ch_style', 'persona', 'tr_level'
 ].map(key => prefix + key)]);
-const ss = params.get('ss');
-const history = {ml:'ml_log', ss:'ss_log', am:'equipdata', mm:'equipdata'}[ss];
-if (history && heavy.includes(history)) keys.add(prefix + history);
+if (s === 'Character' && ss === 'se') keys.add(prefix + 'se_settings');
+if (s === 'Bazaar') {
+  if (ss === 'ml') { keys.add(prefix + 'ml_log'); keys.add(prefix + 'ml_plc'); }
+  if (ss === 'ss') keys.add(prefix + 'ss_log');
+  if (ss === 'am' && screen === 'organize') keys.add(prefix + 'equipdata');
+  if (ss === 'mm' && filter === 'new' && hvut !== 'disabled') {
+    keys.add(prefix + 'equipdata');
+    keys.add(prefix + 'mm_userlist');
+  }
+}
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local') return;
   for (const [key, change] of Object.entries(changes)) {
@@ -39,12 +79,17 @@ chrome.storage.onChanged.addListener((changes, area) => {
   }
 });
 Object.assign(cache, await storage.get([...keys]));
-// Only an older extension schema needs all records for the upstream migration.
-if (cache[prefix + 'settings']?.version && cache[prefix + 'settings'].version !== 4.24)
-  Object.assign(cache, await storage.get(heavy.map(key => prefix + key)));
-// Prefetch in parallel with the parser, but upstream code needs the complete DOM.
-if (document.readyState === 'loading')
-  await new Promise(done => document.addEventListener('DOMContentLoaded', done, {once:true}));
+// The legacy migration also reads both histories regardless of the active page.
+if (cache[prefix + 'settings']?.version && cache[prefix + 'settings'].version !== 4.24) {
+  const missing = ['ml_log', 'ss_log'].map(key => prefix + key).filter(key => !keys.has(key));
+  Object.assign(cache, await storage.get(missing));
+}
+// The menu needs the player's readouts, not the rest of the game panel.
+await parsed(gameHost ? () => document.getElementById('navbar')?.nextElementSibling &&
+  / Lv\.\d+/.test(document.getElementById('level_readout')?.textContent) &&
+  document.querySelector('#stamina_readout > div:nth-child(2)') &&
+  document.querySelector('#stamina_readout img[title^="Stamina"]') &&
+  /Stamina: \d+/.test(document.getElementById('stamina_readout').textContent) : null);
 const GM_getValue = (key, fallback) => Object.hasOwn(cache, key) ? structuredClone(cache[key]) : fallback;
 const GM_setValue = (key, value) => { cache[key] = structuredClone(value); return storage.set({[key]: value}); };
 const GM_deleteValue = key => { delete cache[key]; return storage.remove(key); };
@@ -921,8 +966,13 @@ const $ajax = {
     }, $ajax.interval);
   },
   send: function () {
-    GM_xmlhttpRequest($ajax.queue[$ajax.index]);
-    $ajax.index++;
+    const request = $ajax.queue[$ajax.index];
+    $ajax.queue[$ajax.index++] = null;
+    if ($ajax.index === $ajax.queue.length) {
+      $ajax.queue.length = 0;
+      $ajax.index = 0;
+    }
+    GM_xmlhttpRequest(request);
     $ajax.conn++;
   },
   onload: function (r) {
@@ -1244,10 +1294,11 @@ var _ch = {},
 /* eslint-enable */
 
 // EQUIP PARSER
-const pageEquipment = game('equipment');
+let pageEquipment;
+function equipment() { return pageEquipment ??= game('equipment'); }
 const $equip = {
-  dynjs_equip: pageEquipment.equip || {},
-  dynjs_eqstore: pageEquipment.store || {},
+  get dynjs_equip() { return equipment().equip; },
+  get dynjs_eqstore() { return equipment().store; },
 
   icon: {
     damaged: '\u{26A0}\u{FE0F}',
@@ -2940,110 +2991,6 @@ if ($config.settings.equipColor) {
   `);
 }
 
-if ($id('stats_scrollable')) {
-  GM_addStyle(/*css*/`
-    #stats_scrollable .spc { width: auto; font-weight: bold; }
-    #stats_scrollable table { font-size: 9pt; }
-    #stats_scrollable td:first-child { min-width: 45px; padding-left: 3px; color: var(--color-font-highlight); }
-    #stats_scrollable td:last-child { white-space: nowrap; }
-    .hvut-ch-expand #eqch_left { width: 660px; }
-    .hvut-ch-expand #eqch_stats { width: 560px; }
-    .hvut-ch-expand #stats_scrollable { column-count: 2; column-rule: 1px dotted; column-gap: 10px; height: 631px; padding: 5px 50px 5px 10px; line-height: 18px; overflow: visible; }
-    .hvut-ch-expand .hvut-ch-break { break-before: column; }
-    .hvut-ch-expand .hvut-ch-break ~ table { width: 300px; text-align: left; }
-    .hvut-ch-expand .hvut-ch-break ~ table tr { display: inline-block; width: 50%; }
-  `);
-  $xpath('.//div[contains(@class, "spc")][contains(., "Compromise")]')?.classList.add('hvut-ch-break');
-  $id('eqch_outer').classList.add('hvut-ch-expand');
-}
-
-{
-  game('display');
-}
-
-if ($config.settings.equipHoverFunctions) {
-  // EQUIPMENT KEY FUNCTIONS
-  document.addEventListener('keydown', (e) => {
-    if (e.target.nodeName === 'INPUT' && e.target.type === 'text' || e.target.nodeName === 'TEXTAREA') {
-      return;
-    }
-    const div = $qs('[data-eid]:hover');
-    if (div) {
-      if (e.key === 'C') {
-        div.dispatchEvent(new MouseEvent('mouseover'));
-        // ss=am, hveqc.js
-        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'c', which: 99, keyCode: 99 }));
-        // ss=eq, hvc.js
-        document.dispatchEvent(new KeyboardEvent('keypress', { key: 'c', which: 99, keyCode: 99 }));
-      }
-      const eq = $equip.parse.elem(div);
-      if (!eq) {
-        return;
-      }
-      const key = e.key.toUpperCase();
-      if (key === 'V') {
-        window.open(`equip/${eq.info.eid}/${eq.info.key}`, '_blank');
-      } else if (key === 'Z') {
-        if (_query.screen !== 'purchase') {
-          window.open(`?s=Bazaar&ss=am&screen=modify&eqids=${eq.info.eid}`);
-        }
-      } else if (key === 'L') {
-        prompt('Forum Link:', `[url=${location.origin}${location.pathname}equip/${eq.info.eid}/${eq.info.key}]${eq.info.name}[/url]`);
-      } else if (key === 'K') {
-        $equip.namecode(eq);
-        prompt('Forum Link:', `[url=${location.origin}${location.pathname}equip/${eq.info.eid}/${eq.info.key}]${eq.data.namecode}[/url]`);
-      }
-    }
-  });
-
-  // EQUIPMENT MOUSE FUNCTIONS
-  document.addEventListener('dblclick', () => {
-    const div = $qs('[data-eid]:hover');
-    if (div) {
-      window.open(`equip/${div.dataset.eid}/${div.dataset.key}`, '_blank');
-    }
-  });
-}
-
-if ($config.settings.equipTouchFunctions) {
-  // EQUIPMENT TOUCH FUNCTIONS
-  function handleAction(target) {
-    const div = target?.closest('[data-eid]');
-    if (!div) {
-      return;
-    }
-    window.open(`equip/${div.dataset.eid}/${div.dataset.key}`, '_blank');
-  }
-
-  let lastTap = 0;
-  document.addEventListener('touchend', (event) => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      const target = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
-      handleAction(target);
-    }
-    lastTap = now;
-  });
-
-  let touchTimer = null;
-  document.addEventListener('touchstart', (event) => {
-    const touch = event.touches[0];
-    touchTimer = setTimeout(() => {
-      const target = document.elementFromPoint(touch.clientX, touch.clientY);
-      handleAction(target);
-    }, 500);
-  });
-
-  document.addEventListener('touchend', () => {
-    clearTimeout(touchTimer);
-  });
-
-  document.addEventListener('touchmove', () => {
-    clearTimeout(touchTimer);
-  });
-}
-
-
 // TOP MENU
 _top.node = {};
 _top.menu = {
@@ -3291,7 +3238,67 @@ GM_addStyle(/*css*/`
   @keyframes ygm { from { opacity: 1; } to { opacity: 0.3; } }
 `);
 
+if (_query.s === 'Character' && _query.ss === 'it')   GM_addStyle(/*css*/`
+    #item_left { width: 400px; }
+    #item_left .cspp { overflow-y: scroll; }
+    #item_list .itemlist td:nth-child(1) { width: 285px !important; }
+    #item_list .itemlist td:nth-child(2) { width: 75px !important; }
+    #item_right { width: 605px; }
+    #item_slots { height: 572px; margin-top: 19px; }
+    #item_slots > div { width: 300px; }
+    .sa { height: 30px; margin: 8px auto; line-height: 20px; }
+    .sa > div { height: 20px !important; padding: 5px 10px !important; }
+    .sa > div:last-child > div { padding: 0; }
+  `);
+if (_query.s === 'Bazaar' && _query.ss === 'is')   GM_addStyle(/*css*/`
+    .itshop_pane .cspp { margin-top: 15px; overflow-y: scroll; }
+    #itshop_outer .itemlist td:nth-child(1) { width: 285px !important; }
+    #itshop_outer .itemlist td:nth-child(2) { width: 75px !important; }
+  `);
+if (_query.s === 'Bazaar' && _query.ss === 'ss')   GM_addStyle(/*css*/`
+    #shrine_outer { position: relative; width: 1066px; margin-left: 130px; }
+    #shrine_left { width: 562px; }
+    #shrine_left .cspp { overflow-y: scroll; }
+
+    #shrine_left .itemlist td:nth-child(1) { width: 230px !important; }
+    #shrine_left .itemlist td:nth-child(2) { width: 60px; }
+    #shrine_left .itemlist td:nth-child(3) { width: 30px; padding-left: 5px; text-align: left; font-size: 8pt; color: var(--color-font-light); }
+    #shrine_left .itemlist td:nth-child(4) { width: 50px; }
+    #shrine_left .itemlist td:nth-child(5) { width: 148px; padding-left: 5px; text-align: left; }
+    #shrine_left .itemlist input { margin: 0 1px; }
+    #shrine_left .itemlist input:nth-child(1) { width: 40px; text-align: right; }
+    #shrine_left .itemlist input:nth-child(2) { width: 50px; }
+    #shrine_left .itemlist input:nth-child(3) { width: 40px; }
+
+    .hvut-ss-side { top: 33px; left: -110px; }
+    .hvut-ss-log { position: absolute; top: 33px; left: 0; width: 540px; height: 550px; margin: 0; padding: 10px; border: 1px solid var(--color-border-default); text-align: left; overflow-y: scroll; background-color: var(--color-bg-default); }
+    .hvut-ss-results { position: absolute; top: 33px; left: 572px; width: 472px; height: 550px; margin: 0; padding: 10px; border: 1px solid var(--color-border-default); text-align: left; overflow-y: scroll; background-color: var(--color-bg-default); }
+
+    .hvut-ss-table { width: stretch; margin: 20px 10px; border: 1px solid var(--color-border-default); font-size: 10pt; }
+    .hvut-ss-table th { padding: 5px 10px; font-weight: bold; background-color: var(--color-bg-h2); }
+    .hvut-ss-table td { padding: 2px 10px; }
+    .hvut-ss-table td:nth-child(1) { width: 60px; text-align: right; color: var(--color-font-light); }
+    .hvut-ss-table td:nth-child(2) { width: 50px; text-align: right; }
+    .hvut-ss-table tr:first-child { border-bottom: 1px solid var(--color-border-default); }
+    .hvut-ss-table tr.hvut-ss-group { border-top: 1px solid var(--color-border-default); }
+    .hvut-ss-groupitem { color: var(--color-font-invalid); }
+    .hvut-ss-equip { color: var(--color-font-light); }
+
+    .hvut-ss-selected:not([disabled]) { color: var(--color-font-highlight) !important; border-color: var(--color-font-highlight) !important; outline: 1px solid; }
+  `);
+if (_query.s === 'Character' && _query.ss === 'tr')   GM_addStyle(/*css*/`
+    #train_table td:last-child { width: 100px; padding-right: 10px; }
+    #train_table tr:last-child > td { font-weight: bold; }
+  `);
+if (_query.s === 'Bazaar' && _query.ss === 'mk')   GM_addStyle(/*css*/`
+    #market_itemlist th { z-index: 1; }
+    #market_itemlist tr { position: relative; }
+    #market_itemlist td a { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .hvut-mk-side { bottom: 20px; left: 32px; }
+  `);
 _top.init();
+finishMenu();
 
 // DIFFICULTY CHANGER
 const $dfct = {
@@ -3605,6 +3612,117 @@ const $persona = {
     return stats;
   },
 };
+
+// A following sibling proves that the parser has closed the form. The armory's
+// inline data script must also have run before reading equipment or prices.
+await parsed(armory && ['sell','purchase','organize','salvage'].includes(screen) ? () => {
+  const data = document.querySelector('#equipform ~ script:not([src])');
+  return data && data !== document.scripts[document.scripts.length - 1] && game('armoryReady', screen);
+} : null);
+if ($id('stats_scrollable')) {
+  GM_addStyle(/*css*/`
+    #stats_scrollable .spc { width: auto; font-weight: bold; }
+    #stats_scrollable table { font-size: 9pt; }
+    #stats_scrollable td:first-child { min-width: 45px; padding-left: 3px; color: var(--color-font-highlight); }
+    #stats_scrollable td:last-child { white-space: nowrap; }
+    .hvut-ch-expand #eqch_left { width: 660px; }
+    .hvut-ch-expand #eqch_stats { width: 560px; }
+    .hvut-ch-expand #stats_scrollable { column-count: 2; column-rule: 1px dotted; column-gap: 10px; height: 631px; padding: 5px 50px 5px 10px; line-height: 18px; overflow: visible; }
+    .hvut-ch-expand .hvut-ch-break { break-before: column; }
+    .hvut-ch-expand .hvut-ch-break ~ table { width: 300px; text-align: left; }
+    .hvut-ch-expand .hvut-ch-break ~ table tr { display: inline-block; width: 50%; }
+  `);
+  $xpath('.//div[contains(@class, "spc")][contains(., "Compromise")]')?.classList.add('hvut-ch-break');
+  $id('eqch_outer').classList.add('hvut-ch-expand');
+}
+
+{
+  game('display');
+}
+
+if ($config.settings.equipHoverFunctions) {
+  // EQUIPMENT KEY FUNCTIONS
+  document.addEventListener('keydown', (e) => {
+    if (e.target.nodeName === 'INPUT' && e.target.type === 'text' || e.target.nodeName === 'TEXTAREA') {
+      return;
+    }
+    const div = $qs('[data-eid]:hover');
+    if (div) {
+      if (e.key === 'C') {
+        div.dispatchEvent(new MouseEvent('mouseover'));
+        // ss=am, hveqc.js
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: 'c', which: 99, keyCode: 99 }));
+        // ss=eq, hvc.js
+        document.dispatchEvent(new KeyboardEvent('keypress', { key: 'c', which: 99, keyCode: 99 }));
+      }
+      const eq = $equip.parse.elem(div);
+      if (!eq) {
+        return;
+      }
+      const key = e.key.toUpperCase();
+      if (key === 'V') {
+        window.open(`equip/${eq.info.eid}/${eq.info.key}`, '_blank');
+      } else if (key === 'Z') {
+        if (_query.screen !== 'purchase') {
+          window.open(`?s=Bazaar&ss=am&screen=modify&eqids=${eq.info.eid}`);
+        }
+      } else if (key === 'L') {
+        prompt('Forum Link:', `[url=${location.origin}${location.pathname}equip/${eq.info.eid}/${eq.info.key}]${eq.info.name}[/url]`);
+      } else if (key === 'K') {
+        $equip.namecode(eq);
+        prompt('Forum Link:', `[url=${location.origin}${location.pathname}equip/${eq.info.eid}/${eq.info.key}]${eq.data.namecode}[/url]`);
+      }
+    }
+  });
+
+  // EQUIPMENT MOUSE FUNCTIONS
+  document.addEventListener('dblclick', () => {
+    const div = $qs('[data-eid]:hover');
+    if (div) {
+      window.open(`equip/${div.dataset.eid}/${div.dataset.key}`, '_blank');
+    }
+  });
+}
+
+if ($config.settings.equipTouchFunctions) {
+  // EQUIPMENT TOUCH FUNCTIONS
+  function handleAction(target) {
+    const div = target?.closest('[data-eid]');
+    if (!div) {
+      return;
+    }
+    window.open(`equip/${div.dataset.eid}/${div.dataset.key}`, '_blank');
+  }
+
+  let lastTap = 0;
+  document.addEventListener('touchend', (event) => {
+    const now = Date.now();
+    if (now - lastTap < 300) {
+      const target = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+      handleAction(target);
+    }
+    lastTap = now;
+  });
+
+  let touchTimer = null;
+  document.addEventListener('touchstart', (event) => {
+    const touch = event.touches[0];
+    touchTimer = setTimeout(() => {
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      handleAction(target);
+    }, 500);
+  });
+
+  document.addEventListener('touchend', () => {
+    clearTimeout(touchTimer);
+  });
+
+  document.addEventListener('touchmove', () => {
+    clearTimeout(touchTimer);
+  });
+}
+
+
 
 $persona.init();
 
@@ -4685,10 +4803,7 @@ if (_query.s === 'Character' && _query.ss === 'tr') {
     $config.del('tr_notif', 'hvut_');
   };
 
-  GM_addStyle(/*css*/`
-    #train_table td:last-child { width: 100px; padding-right: 10px; }
-    #train_table tr:last-child > td { font-weight: bold; }
-  `);
+
 
   _tr.init();
 } else
@@ -4705,18 +4820,7 @@ if (_query.s === 'Character' && _query.ss === 'it') {
     });
   };
 
-  GM_addStyle(/*css*/`
-    #item_left { width: 400px; }
-    #item_left .cspp { overflow-y: scroll; }
-    #item_list .itemlist td:nth-child(1) { width: 285px !important; }
-    #item_list .itemlist td:nth-child(2) { width: 75px !important; }
-    #item_right { width: 605px; }
-    #item_slots { height: 572px; margin-top: 19px; }
-    #item_slots > div { width: 300px; }
-    .sa { height: 30px; margin: 8px auto; line-height: 20px; }
-    .sa > div { height: 20px !important; padding: 5px 10px !important; }
-    .sa > div:last-child > div { padding: 0; }
-  `);
+
 
   _it.init();
 } else
@@ -4841,11 +4945,7 @@ if (_query.s === 'Bazaar' && _query.ss === 'is') {
     });
   };
 
-  GM_addStyle(/*css*/`
-    .itshop_pane .cspp { margin-top: 15px; overflow-y: scroll; }
-    #itshop_outer .itemlist td:nth-child(1) { width: 285px !important; }
-    #itshop_outer .itemlist td:nth-child(2) { width: 75px !important; }
-  `);
+
 
   _is.init();
 } else
@@ -5352,37 +5452,7 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
     });
   };
 
-  GM_addStyle(/*css*/`
-    #shrine_outer { position: relative; width: 1066px; margin-left: 130px; }
-    #shrine_left { width: 562px; }
-    #shrine_left .cspp { overflow-y: scroll; }
 
-    #shrine_left .itemlist td:nth-child(1) { width: 230px !important; }
-    #shrine_left .itemlist td:nth-child(2) { width: 60px; }
-    #shrine_left .itemlist td:nth-child(3) { width: 30px; padding-left: 5px; text-align: left; font-size: 8pt; color: var(--color-font-light); }
-    #shrine_left .itemlist td:nth-child(4) { width: 50px; }
-    #shrine_left .itemlist td:nth-child(5) { width: 148px; padding-left: 5px; text-align: left; }
-    #shrine_left .itemlist input { margin: 0 1px; }
-    #shrine_left .itemlist input:nth-child(1) { width: 40px; text-align: right; }
-    #shrine_left .itemlist input:nth-child(2) { width: 50px; }
-    #shrine_left .itemlist input:nth-child(3) { width: 40px; }
-
-    .hvut-ss-side { top: 33px; left: -110px; }
-    .hvut-ss-log { position: absolute; top: 33px; left: 0; width: 540px; height: 550px; margin: 0; padding: 10px; border: 1px solid var(--color-border-default); text-align: left; overflow-y: scroll; background-color: var(--color-bg-default); }
-    .hvut-ss-results { position: absolute; top: 33px; left: 572px; width: 472px; height: 550px; margin: 0; padding: 10px; border: 1px solid var(--color-border-default); text-align: left; overflow-y: scroll; background-color: var(--color-bg-default); }
-
-    .hvut-ss-table { width: stretch; margin: 20px 10px; border: 1px solid var(--color-border-default); font-size: 10pt; }
-    .hvut-ss-table th { padding: 5px 10px; font-weight: bold; background-color: var(--color-bg-h2); }
-    .hvut-ss-table td { padding: 2px 10px; }
-    .hvut-ss-table td:nth-child(1) { width: 60px; text-align: right; color: var(--color-font-light); }
-    .hvut-ss-table td:nth-child(2) { width: 50px; text-align: right; }
-    .hvut-ss-table tr:first-child { border-bottom: 1px solid var(--color-border-default); }
-    .hvut-ss-table tr.hvut-ss-group { border-top: 1px solid var(--color-border-default); }
-    .hvut-ss-groupitem { color: var(--color-font-invalid); }
-    .hvut-ss-equip { color: var(--color-font-light); }
-
-    .hvut-ss-selected:not([disabled]) { color: var(--color-font-highlight) !important; border-color: var(--color-font-highlight) !important; outline: 1px solid; }
-  `);
 
   _ss.init();
   _ss.offer.init();
@@ -5492,13 +5562,7 @@ if (_query.s === 'Bazaar' && _query.ss === 'mk') {
     _mk.price_update();
   };
 
-  GM_addStyle(/*css*/`
-    #market_itemlist th { z-index: 1; }
-    #market_itemlist tr { position: relative; }
-    #market_itemlist td a { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    .hvut-mk-side { bottom: 20px; left: 32px; }
-  `);
 
   _mk.init();
 } else
@@ -9091,8 +9155,15 @@ if (_query.s === 'Bazaar' && _query.ss === 'am' && $id('equiplist')) {
         if (!$armory.node.protected) {
           $armory.node.protected = $element('tbody', [$armory.node.table, 1], ['/<tr class="hvut-eqp-category"><td colspan="10">Protected Equipment</td></tr>']);
         }
+        const decisions = new Map();
+        const matches = eq => {
+          const {name, quality, pab, level, prefix} = eq.info;
+          const key = JSON.stringify([name, quality, pab, level, !!prefix]);
+          if (!decisions.has(key)) decisions.set(key, $equip.filter.equip($config.settings.equipmentShopProtectFilters, eq));
+          return decisions.get(key);
+        };
         equiplist.forEach((eq) => {
-          eq.data.protected = eq.info.protected || eq.info.pinned || $equip.filter.equip($config.settings.equipmentShopProtectFilters, eq);
+          eq.data.protected = eq.info.protected || eq.info.pinned || matches(eq);
           if (eq.data.protected) {
             $armory.node.protected.appendChild(eq.node.wrapper);
           }
@@ -9719,5 +9790,5 @@ if (_query.s === 'Bazaar' && _query.ss === 'am' && _query.screen === 'modify') {
 
 /* END */
 
-})().catch(e => console.error("[HV Utils]", e)).finally(releaseArmory);
+})().catch(e => console.error("[HV Utils]", e)).finally(finishStartup);
 })();

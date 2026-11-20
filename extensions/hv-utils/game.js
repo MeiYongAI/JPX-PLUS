@@ -5,7 +5,10 @@
     const [op, arg] = JSON.parse(el.getAttribute('data-request'));
     let value;
     switch (op) {
-      case 'equipment': value = { equip: window.dynjs_equip, store: window.dynjs_eqstore }; break;
+      case 'equipment': value = { equip: window.dynjs_equip || {}, store: window.dynjs_eqstore || {} }; break;
+      case 'armoryReady':
+        value = !!window.common && (arg === 'purchase' ? typeof dynjs_eqstore !== 'undefined' : !!window.dynjs_equip) &&
+          (arg === 'organize' || typeof eqitems !== 'undefined') && (arg !== 'salvage' || typeof itemdata !== 'undefined'); break;
       case 'armory': value = { dynjs_eqstore: typeof dynjs_eqstore !== 'undefined' && dynjs_eqstore,
         eqitems: typeof eqitems !== 'undefined' && eqitems, itemdata: typeof itemdata !== 'undefined' && itemdata }; break;
       case 'assign':

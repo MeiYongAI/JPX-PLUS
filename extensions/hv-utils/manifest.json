@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HV Utils",
-  "version": "4.2.4.3",
+  "version": "4.2.4.4",
   "author": "sssss2",
   "description": "HV Utils for HentaiVerse \u2014 standalone Chromium extension.",
   "minimum_chrome_version": "111",
@@ -52,10 +52,7 @@
       "js": [
         "hv-utils.js"
       ],
-      "run_at": "document_start",
-      "css": [
-        "startup.css"
-      ]
+      "run_at": "document_start"
     }
   ],
   "update_url": "https://meiyongai.github.io/JPX-PLUS/extensions/updates.xml",
