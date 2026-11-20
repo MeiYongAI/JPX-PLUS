@@ -192,3 +192,33 @@ for (const mode of ['extension', 'userscript']) test(`${mode}: HVEA upgrade incr
     await check(label, 'Mana Cost Modifier', '魔力消耗率');
     assert.ok(await label.evaluate(el => el.childNodes.length === 1 && el.firstChild === originalLabel));
 });
+
+test('toolbar popup, automatic checks, new version badge and offline failure', async t => {
+    const context = await chromium.launchPersistentContext('', {channel:'chromium',headless:true,
+        args:[`--disable-extensions-except=${extension}`,`--load-extension=${extension}`,'--no-proxy-server','--host-resolver-rules=MAP raw.githubusercontent.com ~NOTFOUND']});
+    t.after(() => context.close());
+    const worker = context.serviceWorkers()[0] || await context.waitForEvent('serviceworker');
+    const page = await context.newPage();
+    await page.goto(new URL('popup.html', worker.url()).href);
+    await page.waitForFunction(async () => !!(await chrome.storage.local.get('result')).result);
+    assert.ok(await page.evaluate(() => chrome.alarms.get('hv-check-version')));
+    assert.ok(await page.locator('#automatic').isHidden());
+    await page.locator('summary').click();
+    await page.locator('#automatic').uncheck();
+    await page.waitForFunction(async () => !await chrome.alarms.get('hv-check-version'));
+    await worker.evaluate(() => {self.fetch = async () => Response.json({version:'1.10.0'});});
+    await page.locator('#check').click();
+    await page.getByText('发现新版 v1.10.0').waitFor();
+    assert.match(await page.locator('#download').getAttribute('href'), /hv-zh-cn-1\.10\.0\.zip$/);
+    assert.equal(await page.evaluate(() => chrome.action.getBadgeText({})), 'NEW');
+    await worker.evaluate(() => {self.fetch = async () => Response.json({version:chrome.runtime.getManifest().version});});
+    await page.locator('#check').click(); await page.getByText('已是最新版本').waitFor();
+    assert.ok(await page.locator('#download').isHidden());
+    await worker.evaluate(() => {self.fetch = async () => {throw Error('offline')};});
+    await page.locator('#check').click(); await page.getByText('检查失败，可稍后重试').waitFor();
+    await page.reload(); await page.getByText('检查失败，可稍后重试').waitFor();
+    assert.equal(await page.locator('#automatic').isChecked(), false);
+    await page.locator('summary').click();
+    await page.locator('#automatic').check();
+    await page.waitForFunction(async () => (await chrome.alarms.get('hv-check-version'))?.periodInMinutes === 720);
+});
