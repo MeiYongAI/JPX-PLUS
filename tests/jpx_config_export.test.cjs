@@ -46,6 +46,7 @@ async function fixture(t, { isekai = false, combat = true, language = '', dark =
     await page.goto('https://hentaiverse.org/' + (isekai ? 'isekai/' : ''));
     if (language) await page.addScriptTag({ content: fs.readFileSync(path.join(root, `JPX-PLUS-${language}.user.js`), 'utf8') });
     await page.addScriptTag({ content: source.replace('\ninitDo();', '\n(' + expose.toString() + ')();') });
+    await page.waitForFunction(() => !!window.JPXPlus);
     if (combat) await page.evaluate(() => __exportTest.combat());
     if (many) await page.evaluate(() => __exportTest.manyRules());
     if (dark) await page.evaluate(() => __exportTest.theme());

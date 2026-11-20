@@ -38,7 +38,7 @@ async function fixture(t){
  window.GM_setValue=(key,value)=>{window.__gmValues.set(key,structuredClone(value));void window.__gmSend({key,value});};window.GM_deleteValue=key=>{window.__gmValues.delete(key);void window.__gmSend({key,remove:true});};
  window.GM_listValues=()=>[...window.__gmValues.keys()];window.GM_addValueChangeListener=(key,callback)=>{const list=window.__gmListeners.get(key)||[];list.push(callback);window.__gmListeners.set(key,list);};
  await new Promise((resolve,reject)=>{const req=indexedDB.open('jpx',1);req.onupgradeneeded=()=>req.result.createObjectStore('battleRecords',{keyPath:'timestamp'}).createIndex('date','date');req.onsuccess=()=>{const db=req.result,tx=db.transaction('battleRecords','readwrite');for(const row of legacy)tx.objectStore('battleRecords').put(row);tx.oncomplete=()=>{db.close();resolve();};tx.onabort=()=>reject(tx.error);};req.onerror=()=>reject(req.error);});},{values:[...store],seed,legacy});
- const nl=String.fromCharCode(10);await p.addScriptTag({content:source.replace(nl+'initDo();',nl+'('+expose.toString()+')();'+(runStartup?'initDo();':''))});return p;
+ const nl=String.fromCharCode(10);await p.addScriptTag({content:source.replace(nl+'initDo();',nl+'('+expose.toString()+')();'+(runStartup?'initDo();':''))});await p.waitForFunction(()=>!!window.JPXPlus);return p;
  }
  async function flush(){for(let i=0;i<4;i++){await jobs;await new Promise(resolve=>setTimeout(resolve,20));}}
  return {page,flush,store,errors};

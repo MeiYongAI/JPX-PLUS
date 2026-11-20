@@ -10,8 +10,9 @@ const file = path.resolve(process.argv[2] || path.join(__dirname, '../JPX-PLUS.u
 const marker = "window.dispatchEvent(new Event('jpx:ready'));\ninitDo();";
 const source = fs.readFileSync(file, 'utf8');
 if (!source.includes(marker)) throw new Error('JPX startup marker not found');
-const exposed = ['defaultCfgBattle', 'defaultCfgStats', 'KEYBINDS', 'BATTLE_STYLES', 'BATTLE_TYPES', 'BATTLE_MODES', 'cfgBattleSchema', 'cfgBattle'];
-const probe = `window.__jpxSnapshot = () => ({ ${exposed.join(', ')}, battleRuleSchema: mkBattleRuleSchema(),
+const exposed = ['defaultCfgBattle', 'defaultCfgStats', 'KEYBINDS', 'BATTLE_STYLES', 'BATTLE_TYPES', 'BATTLE_MODES', 'cfgBattle'];
+const probe = `window.__jpxSnapshot = () => ({ ${exposed.join(', ')}, cfgBattleSchema: (typeof getSettingsSchemas === 'function' ? getSettingsSchemas().cfgBattleSchema : cfgBattleSchema),
+    battleRuleSchema: (typeof getSettingsSchemas === 'function' ? getSettingsSchemas().mkBattleRuleSchema : mkBattleRuleSchema)(),
     merged: (() => { const out = {}; mergeCfg(JSON.parse(localStorage.getItem(prefix + 'cfgBattle') || '{}'), defaultCfgBattle, out, 'battle'); return out; })() });\n`;
 const instrumented = source.replace(marker, probe + marker);
 const stored = configArchive({ count: 3, size: 64 * 1024, active: true, world: 'Persistent' }).native;
@@ -35,6 +36,7 @@ const canonical = value => typeof value === 'function' ? 'function:' + value.toS
         await page.route('**/*', route => route.request().isNavigationRequest() ? route.fulfill({ contentType: 'text/html', body: html }) : route.fulfill({ status: 204, body: '' }));
         await page.goto('https://hentaiverse.org/?s=Character&ss=snapshot');
         await page.addScriptTag({ content: instrumented });
+        await page.waitForFunction(() => !!window.__jpxSnapshot);
         const snapshot = await page.evaluate(() => {
             const seen = new WeakSet();
             const plain = value => typeof value === 'function' ? { __function: value.toString() }

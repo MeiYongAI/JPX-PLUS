@@ -82,6 +82,7 @@ async function initialize(page, { seed = false, equipment = true, language = '' 
     if(language) await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-'+language+'.user.js'),'utf8')});
     if (equipment) await page.evaluate(() => { window.dynjs_equip = { '123': { n: '', t: 'Legendary Willow Staff of Destruction' } }; });
     await page.addScriptTag({ content: harness });
+    await page.waitForFunction(() => !!window.JPXPlus);
     if (seed) await page.evaluate(config => __selection.seed(config), { battleVersion: 20251216,
         OneHanded_General: rules('native single-hand'), OneHanded_Item: rules('native Item'),
         TwoHanded_General: rules('native two-hand'), Staff_General: rules('native staff'), Staff_Arena: rules('native staff arena') });

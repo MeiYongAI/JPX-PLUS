@@ -116,7 +116,7 @@ async function fixture(t, { isekai = false, initialHtml = base, responseBattle =
     await page.goto(url);
     const config = { battleVersion: 20251216, Staff_General: rules('Saved Staff'), TwoHanded_General: rules('Saved Two-handed'), '2H_Mage_General': rules('Saved Battlemage') };
     await page.evaluate(({ config, isekai }) => localStorage.setItem('jpx_cfgBattle' + (isekai ? '_isekai' : ''), JSON.stringify(config)), { config, isekai });
-    const start = async () => page.addScriptTag({ content: harness });
+    const start = async () => { await page.addScriptTag({ content: harness }); await page.waitForFunction(() => !!window.JPXPlus); };
     await start();
     const original = await page.evaluate(() => __pages.native());
     const open = async () => { await page.evaluate(() => __pages.open()); await page.locator('#tab_configManager').click(); };

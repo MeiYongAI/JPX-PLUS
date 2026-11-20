@@ -10,7 +10,7 @@ HentaiVerse용 JPX 확장 유저스크립트입니다. 여러 설정을 저장�
 
 **[JPX-PLUS 설치](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[미리보기](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [변경 내역](CHANGELOG.md)
 
-**2026.11.20:** 페이지 로딩이 빨라졌습니다. JPX-PLUS가 더 이상 HVUT와 다른 스크립트를 늦추지 않습니다. 업데이트 후 처음 전투가 아닌 페이지를 열 때 공유 데이터를 백그라운드에서 정리하며, 통계를 지우면 데이터가 실제로 삭제됩니다. 이전 버전에서 업데이트하기 전에 설정을 백업하세요. 기존 설정은 불러올 때 변환되며, 저장 후에는 JPX-PLUS 2026.11.13 이전 버전에서 읽을 수 없습니다. [업데이트 안내](docs/upgrading.md).
+**2026.11.20.1:** 일반 페이지에서는 브라우저에 화면을 그릴 기회를 준 뒤 주요 초기화를 실행합니다. 설정 스타일과 폼은 필요할 때 만들고, 전투 페이지는 계속 즉시 시작합니다. 오프라인 측정에서는 개선됐지만 실제 페이지에서의 검증은 아직 필요합니다. [측정 결과](docs/lobby-startup-2026-11-20.md) · [업데이트 안내](docs/upgrading.md).
 
 ## 설치
 

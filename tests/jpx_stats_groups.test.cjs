@@ -33,6 +33,7 @@ async function fixture(t,{width=1440,dark=false,language=''}={}){
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));t.after(()=>assert.deepEqual(errors,[]));
  await page.goto('https://hentaiverse.org/');if(language)await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-'+language+'.user.js'),'utf8')});
  await page.addScriptTag({content:source.replace(String.fromCharCode(10)+'initDo();',String.fromCharCode(10)+'('+expose.toString()+')();')});
+    await page.waitForFunction(() => !!window.JPXPlus);
  await page.evaluate(async()=>{await __groups.seed();__groups.render();});await ready(page);if(dark)await page.evaluate(()=>__groups.theme());return page;
 }
 async function ready(page){await page.waitForFunction(()=>document.querySelector('.jpx-records-table-scroll')?.getAttribute('aria-busy')==='false');}

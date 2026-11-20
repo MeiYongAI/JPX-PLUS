@@ -83,6 +83,7 @@ async function fixture(t, { mobile = false, language = 'en', dark = false } = {}
     });
     if (language === 'zh') await page.addScriptTag({ content: zh });
     await page.addScriptTag({ content: harness });
+    await page.waitForFunction(() => !!window.JPXPlus);
     await page.evaluate(raw => { __manager.seed(raw); __manager.open(); }, {
         battleVersion: 20251216, recordBattleLog: false,
         OneHanded_General: makeRules('Original one-handed'), TwoHanded_General: makeRules('Original two-handed'),

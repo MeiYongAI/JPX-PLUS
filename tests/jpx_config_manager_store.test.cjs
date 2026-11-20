@@ -153,6 +153,7 @@ async function fixture(t, { mobile = false, count = 1, records, language = 'en',
     }, { files, catalog, signedIn, shareOverrides });
     if (language !== 'en') await page.addScriptTag({ content: fs.readFileSync(path.join(root, 'JPX-PLUS-' + language + '.user.js'), 'utf8') });
     await page.addScriptTag({ content: inSandbox(harness, 'main', signedIn ? [['jpx-config-store-auth-v1', auth || { token: 'fixture_only', expiresAt: Date.now() + 3600000 }]] : []) });
+    await page.waitForFunction(() => !!window.JPXPlus);
     await page.evaluate(config => { __fullStore.seed(config); __fullStore.open(); }, config);
     await tab(page, 'configManager');
     await page.locator('.jpx-config-row').first().waitFor();

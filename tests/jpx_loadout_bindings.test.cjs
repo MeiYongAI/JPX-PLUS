@@ -49,6 +49,7 @@ async function fixture(t,{world='Persistent',width=1360,zh=false}={}){
         await page.evaluate('window.__fixture = '+html.toString());
         if(zh)await page.addScriptTag({content:fs.readFileSync(path.join(root,'JPX-PLUS-ZhCN.user.js'),'utf8')});
         await page.addScriptTag({content:harness});
+    await page.waitForFunction(() => !!window.JPXPlus);
     };
     await page.goto('https://hentaiverse.org/'+(world==='Isekai'?'isekai/':''));await boot();
     return{page,context,requests,errors,boot,world,setGame:(persona,set)=>{current={persona,set};},block:()=>{blocked=true;},
@@ -228,6 +229,7 @@ test('a confirmed switch from another tab updates local state without reapplying
     await bind(page,a.id,'1','1');await bind(page,b.id,'2','2');await page.evaluate(()=>__binding.init());
     const other=await f.context.newPage();await other.goto(page.url());
     await other.evaluate('window.__fixture = '+html.toString());await other.addScriptTag({content:harness});
+    await other.waitForFunction(() => !!window.JPXPlus);
     await other.evaluate(()=>__binding.init());await remember(other,'2','2');
     await page.waitForFunction(()=>__binding.confirmed()?.personaId==='2');
     assert.equal(await page.evaluate(()=>__binding.detectionContext().personaId),'2');

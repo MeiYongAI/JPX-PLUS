@@ -1082,8 +1082,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
         state.editor={draft,mode,baseline:'',previousHistory,revision:entry.revision,history:null};
         const draw=()=>{
             content.replaceChildren();
-            if(mode){const section=el('div');content.append(section);renderBattleRuleSections(section,cfgBattleSchema.properties.find(field=>field.key==='modes').itemSchema,draft.envelope.config[mode],mode);}
-            else{content.classList.add('jpx-config-stats-editor');content.style.overflow='auto';renderSchema(content,cfgStatsSchema,draft.envelope.config);}
+            if(mode){const section=el('div');content.append(section);renderBattleRuleSections(section,getSettingsSchemas().cfgBattleSchema.properties.find(field=>field.key==='modes').itemSchema,draft.envelope.config[mode],mode);}
+            else{content.classList.add('jpx-config-stats-editor');content.style.overflow='auto';renderSchema(content,getSettingsSchemas().cfgStatsSchema,draft.envelope.config);}
         };
         state.editor.redraw=draw;
         draw();state.editor.baseline=JSON.stringify(draft.envelope);

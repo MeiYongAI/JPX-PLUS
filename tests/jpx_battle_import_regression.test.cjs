@@ -68,6 +68,7 @@ for (const fixture of fixtures) for (const isekai of [false, true]) for (const c
         });
         await page.goto('https://hentaiverse.org/' + (isekai ? 'isekai/' : ''));
         await page.addScriptTag({ content: source.replace('\ninitDo();', '\n(' + expose.toString() + ')();') });
+    await page.waitForFunction(() => !!window.JPXPlus);
         if (combat) await page.evaluate(() => __battleImport.beginBattle());
         await page.evaluate(() => __battleImport.open()); await page.locator('#tab_configManager').click();
         const before = await page.evaluate(() => __battleImport.snapshot());

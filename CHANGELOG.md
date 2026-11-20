@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026.11.20.1
+
+- Give ordinary pages a rendering opportunity before running JPX's main initialization. Battle, riddle, hidden and standalone records pages still initialize immediately; early input starts initialization before document handlers receive the same event.
+- Load settings styles and schemas on demand. Ordinary pages initially inject 1,664 bytes of entry CSS instead of the full 96,318 bytes of styles.
+- Offline Chromium measurements (4× CPU throttling, 10 runs per version) reduced median injection blocking from 245 ms to 55 ms and injection-to-first-contentful-paint from 279 ms to 91 ms. These are synthetic results, not verified live-page gains. HVUT was not modified.
+- Full regression plus the corrected fixture rerun: 885 passed, 3 skipped; battle configuration snapshots unchanged. See [measurement and validation details](docs/lobby-startup-2026-11-20.md).
+
+### 简体中文
+
+- 普通页面先给浏览器一次绘制机会，再执行 JPX 主初始化。战斗、谜题、隐藏页面及独立记录页仍立即初始化；等待期间的操作会在同一次事件到达 document 处理器前触发初始化。
+- 设置样式与表单按需构建，普通页面初始样式由完整的 96,318 字节减少到 1,664 字节。
+- 离线 Chromium 实验（CPU 限速 4 倍，各测 10 次）：注入阻塞中位数从 245 ms 降到 55 ms，从注入到首次内容绘制从 279 ms 降到 91 ms。合成测量不能代表真实页面已修复；本轮未修改 HVUT。
+- 全量回归加上测试夹具修正后的复测，综合 885 项通过、3 项跳过；战斗配置快照一致。详见[测量与验证说明](docs/lobby-startup-2026-11-20.md)。
+
 ## 2026.11.20
 
 - Stop delaying HVUT and other userscripts on page load (#15, #16). Tampermonkey loads a script's whole GM storage before injecting it and holds the page's other scripts until then, so JPX-PLUS's shared archive slowed every page.

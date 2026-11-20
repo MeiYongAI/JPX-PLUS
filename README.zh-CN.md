@@ -10,7 +10,7 @@
 
 **[安装 JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[交互预览](https://meiyongai.github.io/JPX-PLUS/?lang=zh-CN&page=configs)** · [本次改动](CHANGELOG.md#简体中文)
 
-**2026.11.20:** 页面加载更快：JPX-PLUS 不再拖慢 HVUT 和其它脚本。更新后第一次打开非战斗页面时，会在后台整理共享数据；清除统计后数据会真正删除。从旧版本更新前请备份配置。旧配置载入时自动转换，保存后使用统一规则格式；2026.11.13 之前的 JPX-PLUS 无法读取。[升级说明](docs/upgrading.md#简体中文)。
+**2026.11.20.1:** 普通页面先给浏览器绘制机会，再执行主初始化；设置样式和表单按需构建。战斗页仍立即启动。离线测量已有改善，实际页面效果仍需验证。[测量说明](docs/lobby-startup-2026-11-20.md) · [升级说明](docs/upgrading.md#简体中文)。
 
 ## 安装
 

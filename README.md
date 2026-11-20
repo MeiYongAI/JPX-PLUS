@@ -10,7 +10,7 @@ An enhanced JPX userscript for HentaiVerse: manage multiple configs, edit battle
 
 **[Install JPX-PLUS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/JPX-PLUS.user.js)** · **[Interactive preview](https://meiyongai.github.io/JPX-PLUS/?lang=en&page=configs)** · [What's changed](CHANGELOG.md)
 
-**2026.11.20:** Faster page loads: JPX-PLUS no longer delays HVUT and other scripts. Shared data is compacted in the background on the first non-battle page after updating, and cleared statistics are now really removed. Back up settings before updating from older versions. Legacy configs convert on load; saving uses the unified rule format, which versions before JPX-PLUS 2026.11.13 cannot read. [Upgrade guide](docs/upgrading.md).
+**2026.11.20.1:** Ordinary pages give the browser a rendering opportunity before main initialization; settings styles and schemas load on demand. Battle startup stays immediate. Offline measurements improved; live-page improvement still needs verification. [Measurement details](docs/lobby-startup-2026-11-20.md) · [Upgrade guide](docs/upgrading.md).
 
 ## Install
 

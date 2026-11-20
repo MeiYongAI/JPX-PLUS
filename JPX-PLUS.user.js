@@ -2,7 +2,7 @@
 // @name         JPX-PLUS
 // @namespace    ijpx
 // @author       MeiYongAI
-// @version      2026.11.20
+// @version      2026.11.20.1
 // @description  JPX-PLUS
 // @icon         data:image/png;base64,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
 // @run-at       document-start
@@ -461,6 +461,35 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
 
 // The records URL is a local app on the HV origin, not an HV homepage.
 (function jpxBoot(window) {
+    let started = false, frame, task;
+    const wakeEvents = ['keydown', 'pointerdown', 'click', 'change', 'submit', 'pagehide'];
+    function start() {
+        if (started) return;
+        started = true;
+        cancelAnimationFrame(frame);
+        clearTimeout(task);
+        for (const type of wakeEvents) window.removeEventListener(type, start, true);
+        document.removeEventListener('visibilitychange', onVisibility);
+        jpxMain();
+    }
+    function onVisibility() {
+        if (document.hidden) start();
+    }
+    function ready() {
+        // Combat and riddles need their handlers immediately. Hidden tabs cannot
+        // rely on animation frames; their configuration tracking must still run.
+        if (document.hidden || document.querySelector('#textlog, #battle_main, #riddlemaster')) {
+            start();
+            return;
+        }
+        // Release the userscript injection task before initializing ordinary pages.
+        // rAF alone runs before rendering: the following task gives the browser a
+        // chance to paint first. Input starts us on window capture, before the new
+        // document handlers receive that same event (no synthetic replay).
+        for (const type of wakeEvents) window.addEventListener(type, start, true);
+        document.addEventListener('visibilitychange', onVisibility);
+        frame = requestAnimationFrame(() => { task = setTimeout(start, 0); });
+    }
     if (location.hash === '#jpx-records') {
         window.stop();
         const root = document.createElement('html');
@@ -468,11 +497,11 @@ function createJpxSharedData({ native, gm, origin, emit = () => {}, now = Date.n
         if (document.documentElement) document.documentElement.replaceWith(root);
         else document.append(root);
         if (!document.doctype) document.insertBefore(document.implementation.createDocumentType('html', '', ''), root);
-        jpxMain();
+        start();
         return;
     }
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', jpxMain, { once: true });
-    else jpxMain();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready, { once: true });
+    else ready();
 
 // Keep the existing Battle API, confirmation handler and language pack in the page window.
 function jpxMain() {
@@ -492,7 +521,7 @@ const settingsPlugins = new Map();
 // Generic extension tabs remain supported. Store credentials stay in this sandbox.
 window.JPXPlus = Object.freeze({
     apiVersion: 1,
-    version: '2026.11.20',
+    version: '2026.11.20.1',
     features: Object.freeze({ configManagement: true, monsterDatabase: true }),
     getBattleTiming: () => Object.freeze({ ...jpxBattleTiming }),
     migrateLegacyConfigs: entries => migrateJpxLegacyConfigs(entries),
@@ -802,18 +831,16 @@ function jpxThemeCSS(css) {
     });
 }
 // Reuse the same converted styles in settings and temporary detail windows.
-function ensureJpxStyle(doc = document) {
-    if (ensureJpxStyle.source !== cfg.styleText) {
-        ensureJpxStyle.source = cfg.styleText;
-        ensureJpxStyle.css = jpxThemeCSS(cfg.styleText);
-    }
+function ensureJpxStyle(doc = document, entryOnly = false) {
     let style = doc.getElementById('jpx');
     if (!style) {
         style = doc.createElement('style');
         style.id = 'jpx';
         doc.head.appendChild(style);
     }
-    if (style.textContent !== ensureJpxStyle.css) style.textContent = ensureJpxStyle.css;
+    if (entryOnly && style.textContent === ensureJpxStyle.css) return style;
+    const css = entryOnly ? jpxThemeCSS(JPX_ENTRY_CSS) : (ensureJpxStyle.css ??= jpxThemeCSS(fullJpxStyle()));
+    if (style.textContent !== css) style.textContent = css;
     return style;
 }
 const JPX_SCROLLBAR_TARGETS = ':is(#settings-container .settings-tab-header, #settings-container [role=tabpanel], #settings-container .multiSelect-popup-panel, .jpx-records-table-scroll, .jpx-records-sheet-body)';
@@ -845,7 +872,23 @@ const JPX_RECORD_IMAGE_CSS = `
             .jpx-record-image-actions button { border-color: transparent; }
         }
 `;
-const JPX_RECORD_DETAIL_CSS = `
+const JPX_ENTRY_CSS = `
+        #jpx-mobile-entry { display: none; position: fixed; z-index: 110; margin: 0; color: #5c0d11; font: 14px/1.4 Verdana, Arial, sans-serif; transform-origin: top left; }
+        #jpx-mobile-entry > summary, #jpx-mobile-entry button { box-sizing: border-box; min-height: 44px; margin: 0; padding: 10px 12px; border: 1px solid #bda68e; border-radius: 3px; background: #edebdf; color: inherit; font: inherit; cursor: pointer; touch-action: manipulation; }
+        #jpx-mobile-entry > summary { min-width: 72px; list-style-position: inside; user-select: none; }
+        #jpx-mobile-entry > nav { position: absolute; bottom: calc(100% + 6px); left: 0; display: grid; gap: 4px; min-width: 116px; }
+        #jpx-mobile-entry button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; white-space: nowrap; }
+        #jpx-mobile-entry svg { flex: none; width: 17px; height: 17px; }
+        #jpx-mobile-entry :focus-visible { outline: 2px solid #9b4e03; outline-offset: 2px; }
+        @media (pointer: coarse) { #jpx-mobile-entry { display: block; } }
+        body:has(#hvut-top-config-icon, #textlog, #battle_main, #riddlemaster) #jpx-mobile-entry { display: none; }
+        #hvut-top .jpx-hvut-config > .hvut-top-config { visibility: hidden; }
+        #hvut-top .jpx-hvut-config[data-jpx-open=true] > .hvut-top-config { visibility: visible; }
+        body:has(#settings-container[open]) #jpx-mobile-entry { visibility: hidden; }
+        html[data-jpx-theme=dark] #jpx-mobile-entry { color-scheme: dark; color: var(--jpx-theme-text); }
+`;
+function fullJpxStyle() {
+    const JPX_RECORD_DETAIL_CSS = `
         ${JPX_RECORD_IMAGE_CSS}
         body.jpx-record-detail { margin: 0; background: #edebdf; }
         .jpx-record-detail { color: #392d25; font: 13px/1.45 Arial, Helvetica, sans-serif; }
@@ -904,24 +947,11 @@ const JPX_RECORD_DETAIL_CSS = `
         #btcp.jpx-final-result #jpx-final-revenue .jpx-record-detail-summary { margin: 0 0 6px; padding: 6px 8px; }
         #btcp.jpx-final-result #revenue-records-table { width: 100%; min-width: 480px; }
 `;
-let cfg = {
-    //CSS
-    styleText: `
+    return `
         ${JPX_SCROLLBAR_CSS}
         html.jpx-hide-round-popup #btcp:not(:has(img[src$="finishbattle.png"])) { display: none !important; }
         #ctrl-widget { position: fixed; inset: auto 12px 12px auto; opacity: 1; z-index: 100; }
-        #jpx-mobile-entry { display: none; position: fixed; z-index: 110; margin: 0; color: #5c0d11; font: 14px/1.4 Verdana, Arial, sans-serif; transform-origin: top left; }
-        #jpx-mobile-entry > summary, #jpx-mobile-entry button { box-sizing: border-box; min-height: 44px; margin: 0; padding: 10px 12px; border: 1px solid #bda68e; border-radius: 3px; background: #edebdf; color: inherit; font: inherit; cursor: pointer; touch-action: manipulation; }
-        #jpx-mobile-entry > summary { min-width: 72px; list-style-position: inside; user-select: none; }
-        #jpx-mobile-entry > nav { position: absolute; bottom: calc(100% + 6px); left: 0; display: grid; gap: 4px; min-width: 116px; }
-        #jpx-mobile-entry button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; white-space: nowrap; }
-        #jpx-mobile-entry svg { flex: none; width: 17px; height: 17px; }
-        #jpx-mobile-entry :focus-visible { outline: 2px solid #9b4e03; outline-offset: 2px; }
-        @media (pointer: coarse) { #jpx-mobile-entry { display: block; } }
-        body:has(#hvut-top-config-icon, #textlog, #battle_main, #riddlemaster) #jpx-mobile-entry { display: none; }
-        #hvut-top .jpx-hvut-config > .hvut-top-config { visibility: hidden; }
-        #hvut-top .jpx-hvut-config[data-jpx-open=true] > .hvut-top-config { visibility: visible; }
-        body:has(#settings-container[open]) #jpx-mobile-entry { visibility: hidden; }
+        ${JPX_ENTRY_CSS}
         .jpx-widget-card {
             --jpx-state-header: var(--jpx-manual-header, #b49c8e); --jpx-state-ink: var(--jpx-manual-ink, #3d2b22);
             --jpx-state-border: var(--jpx-manual-border, #896f60); --jpx-state-accent: var(--jpx-manual-border, #72513d);
@@ -1897,7 +1927,7 @@ let cfg = {
         #settings-container #jpx-theme-toggle { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: auto; min-width: 64px; height: 32px; margin-left: auto; margin-right: 8px; padding: 4px 8px; border: 1px solid #c8b49b; border-radius: 6px; background: #f9f6ec; font: 13px/1.4 Arial, sans-serif; }
         #settings-container #jpx-theme-toggle::before { content: ''; width: 12px; height: 12px; border: 1px solid currentColor; border-radius: 50%; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
         #settings-container.jpx-settings-mobile #jpx-theme-toggle { height: 40px; }
-        html[data-jpx-theme=dark] :is(#settings-container, .jpx-records-page, .jpx-record-detail, .jpx-record-final, #jpx-mobile-entry) { color-scheme: dark; color: var(--jpx-theme-text); }
+        html[data-jpx-theme=dark] :is(#settings-container, .jpx-records-page, .jpx-record-detail, .jpx-record-final) { color-scheme: dark; color: var(--jpx-theme-text); }
         html[data-jpx-theme=dark] #settings-container :is(input:not([type=color]):not([type=checkbox]):not([type=range]), select, textarea) { background-color: var(--jpx-theme-field); color: var(--jpx-theme-text); border-color: var(--jpx-theme-border); }
         html[data-jpx-theme=dark] #settings-container .jpx-rule-item { color: var(--jpx-theme-text); }
         html[data-jpx-theme=dark] #settings-container button.jpx-delete-button { color: #ff9295; }
@@ -1991,8 +2021,8 @@ let cfg = {
             #settings-container.jpx-settings-dialog { --jpx-motion: 0ms; --jpx-motion-fast: 0ms; }
         }
         ${JPX_RECORD_DETAIL_CSS}
-    `,
-};
+    `;
+}
 
 jpxPanelManager();
 jpxMarket();
@@ -2530,222 +2560,229 @@ const KEYBINDS = {
 };
 let userKeybinds = JSON.parse(localStorage.getItem(prefix + 'userKeybinds' + isekaiSuffix)) || { ...KEYBINDS };
 let idCounter = 0;
-const mkF = (key, type, extra = {}) => {
-    const { prefix = 'cB.', label, ...otherExtra } = extra;
-    const field = {
-        key,
-        type,
-        label: label || (type === 'constant' ? `${prefix}${extra.value || key}` : `${prefix}${key}`),
-        ...otherExtra
+let settingsSchemas;
+function getSettingsSchemas() {
+    return settingsSchemas ??= buildSettingsSchemas();
+}
+function buildSettingsSchemas() {
+    const mkF = (key, type, extra = {}) => {
+        const { prefix = 'cB.', label, ...otherExtra } = extra;
+        const field = {
+            key,
+            type,
+            label: label || (type === 'constant' ? `${prefix}${extra.value || key}` : `${prefix}${key}`),
+            ...otherExtra
+        };
+
+        ['options', 'multiSelectOptions'].forEach(opts => {
+            if (type !== 'conditionsArray' && Array.isArray(field[opts])) field[opts] = field[opts].map(opt => ({ value: opt, label: `${prefix}${opt}` }));
+        });
+
+        return field;
     };
+    const mkItem = (type, nameList = null, extra = [], useGeneral = true, useTarget = false) => {
+        const properties = [mkF('type', 'constant', { value: type, class: 'heading' })];
 
-    ['options', 'multiSelectOptions'].forEach(opts => {
-        if (type !== 'conditionsArray' && Array.isArray(field[opts])) field[opts] = field[opts].map(opt => ({ value: opt, label: `${prefix}${opt}` }));
-    });
+        if (nameList) properties.push(mkF('name', 'dropdown', { options: nameList }));
+        if (extra.length > 0) properties.push(...extra.map(item => mkF(item.key, item.type, { ...item })));
 
-    return field;
-};
-const mkItem = (type, nameList = null, extra = [], useGeneral = true, useTarget = false) => {
-    const properties = [mkF('type', 'constant', { value: type, class: 'heading' })];
+        let conds = [];
+        if (useGeneral) conds = conds.concat(conditionsGeneral);
+        if (useTarget) conds = conds.concat(conditionsTarget);
+        if (conds.length > 0) properties.push(mkF('conditions', 'conditionsArray', { options: conds }));
 
-    if (nameList) properties.push(mkF('name', 'dropdown', { options: nameList }));
-    if (extra.length > 0) properties.push(...extra.map(item => mkF(item.key, item.type, { ...item })));
-
-    let conds = [];
-    if (useGeneral) conds = conds.concat(conditionsGeneral);
-    if (useTarget) conds = conds.concat(conditionsTarget);
-    if (conds.length > 0) properties.push(mkF('conditions', 'conditionsArray', { options: conds }));
-
-    return { type: 'object', properties };
-};
-const conditionsGeneral = [
-    mkF('world', 'array', { multiSelectOptions: ['Persistent', 'Isekai'], itemSchema: { type: 'text' } }),
-    mkF('pLevel', 'rangeNumber'),
-    mkF('pMaxSpellType', 'array', { multiSelectOptions: Object.keys(spellsDamageObj), popup: true, itemSchema: { type: 'text' } }),
-    mkF('battleTypes', 'array', { multiSelectOptions: BATTLE_TYPES, popup: true, itemSchema: { type: 'text' } }),
-    mkF('difficulty', 'array', { multiSelectOptions: Object.keys(difficultyMap), popup: true, itemSchema: { type: 'text' } }),
-    mkF('roundCurrent', 'rangeNumber'),
-    mkF('roundLeft', 'rangeNumber'),
-    mkF('roundTotal', 'rangeNumber'),
-    mkF('floor', 'rangeNumber'),
-    mkF('pActionCooldown', 'array', { multiSelectOptions: [
-        ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
-    ], hasRange: 'cB.cooldownRange', popup: true, itemSchema: { type: 'text' } }),
-	mkF('pActionHistory', 'array', { multiSelectOptions: [
-        'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
-    ], hasRange: 'cB.actionIndexRange', popup: true, itemSchema: { type: 'text' }, defaultValue: [1, 1] }),
-    mkF('pActionCounts', 'array', { multiSelectOptions: [
-        'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
-    ], hasRange: 'cB.usesPerRoundRange', popup: true, itemSchema: { type: 'text' } }),
-	mkF('pTotalActionCounts', 'array', { multiSelectOptions: [
-        'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
-    ], hasRange: 'cB.usesRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('pHP', 'rangeNumber'),
-    mkF('pMP', 'rangeNumber'),
-    mkF('pSP', 'rangeNumber'),
-    mkF('pOC', 'rangeNumber'),
-    mkF('pSpiritStatus', 'boolean'),
-    mkF('pEffects', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('pIgnoredEffects', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('pEffectStacks', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.stacksRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('monsters', 'rangeNumber'),
-    mkF('activeMonsters', 'rangeNumber'),
-    mkF('defeatedMonsters', 'rangeNumber'),
-    mkF('bosses', 'rangeNumber'),
-    mkF('activeBosses', 'rangeNumber'),
-    mkF('defeatedBosses', 'rangeNumber'),
-    mkF('mLevel', 'rangeNumber'),
-    mkF('mWithoutEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.monsterCountRange', popup: true, itemSchema: { type: 'text' } }),
-];
-const conditionsTarget = [
-    mkF('tName', 'text'),
-    mkF('tTypes', 'array', { multiSelectOptions: MONSTER_TYPES, popup: true, itemSchema: { type: 'text' } }),
-    mkF('tClasses', 'array', { multiSelectOptions: MONSTER_CLASSES, popup: true, itemSchema: { type: 'text' } }),
-    mkF('tPowerLevel', 'rangeNumber'),
-    mkF('tIndex', 'rangeNumber'),
-    mkF('tHP', 'rangeNumber'),
-    mkF('tMP', 'rangeNumber'),
-    mkF('tSP', 'rangeNumber'),
-    mkF('tEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('tIgnoredEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('tEffectStacks', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.stacksRange', popup: true, itemSchema: { type: 'text' } }),
-    mkF('tDaysSinceUpdate', 'rangeNumber'),
-].map(f => ({
-    ...f,
-    extraFields: [
-        { key: 'offset', type: 'rangeNumber' },
-        { key: 'matched', type: 'rangeNumber', defaultValue: [1, 1] },
-    ].map(ef => ({ ...ef, label: `cB.${ef.key}` }))
-}));
-const mkBattleRuleSchema = () => ({
-    type: 'object',
-    discriminator: 'type',
-    oneOf: {
-        target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
-        spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
-        item: mkItem('item', ITEMS, [], true, true),
-        toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
-        stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
-        smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
-            { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
-            { key: 'bottomUp', type: 'boolean' },
-            { key: 'tailSkip', type: 'number' },
-            { key: 'maxAtFirst', type: 'number' },
-            { key: 'minMonstersLeft', type: 'number' }
-        ], true, true),
-        spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
-        spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
-        skill: mkItem('skill', SKILLS, [], true, true),
-        normalAttack: mkItem('normalAttack', null, [], true, true),
-        kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
-            { key: 'code', skipLabel: true, type: 'textarea' }
-        ], false, false),
-    }
-});
-const cfgBattleSchema = {
-    type: 'object',
-    properties: [
-        mkF('battleControls', 'group', { properties: [
-            mkF('advanceToNextRound', 'boolean'),
-            mkF('autoFinishBattle', 'boolean'),
-            mkF('ctrlWidgetMouseEnter', 'boolean', { label: 'cB.panelMouseEnter' }),
-            mkF('ctrlWidgetMouseEnterPause', 'boolean', { help: 'cB.ctrlWidgetMouseEnterPauseHelp' }),
-            mkF('ajaxRound', 'boolean', { label: 'cB.ajaxRoundShort', help: 'cB.ajaxRound' }),
-            mkF('hideRoundPopup', 'boolean'),
-            mkF('dailyStaminaQuotaPlus', 'number'),
-        ] }),
-        mkF('battleDisplay', 'group', { properties: [
-        mkF('showCooldowns', 'boolean'),
-        mkF('showDurations', 'boolean'),
-        mkF('showRealTimeProficiency', 'boolean'),
-        mkF('showMonsterIndex', 'boolean'),
-        mkF('showMonsterInfo', 'boolean'),
-        mkF('showMonsterHP', 'boolean'),
-        mkF('recordBattleLog', 'boolean'),
-        mkF('quickbarExtend', 'array', { itemSchema: { type: 'text' } }),
-        ] }),
-        mkF('controlPanel', 'group', { controlPanelEditor: true, properties: [
-        mkF('ctrlWidgetStyleText', 'text', { placeholder: 'opacity: 1;' }),
-        mkF('ctrlWidgetRows', 'fieldPicker', { prefix: 'cW.', size: 8, allFields: CTRLWIDGET_FIELDS }),
-        ] }),
-
-        mkF('battleModeSettings', 'heading', { class: 'heading' }),
-        {
-            key: 'modes', type: 'dropdown', label: 'cB.modes',
-            hasModeDropdown: 'battleMode',
-            options: { 
-                battleStyle: BATTLE_STYLES.map(key => ({ value: key, label: `cB.${key}` })),
-                battleType: ['General', ...BATTLE_TYPES].map(key => ({ value: key, label: `cB.${key}` })),
-            },
-            flatten: '_',
-            itemSchema: {
-                type: 'object',
-                properties: [
-                    mkF('keyBindings', 'keyBasedObjectArray', {
-                        class: 'heading',
-                        collapsibleItems: true,
-                        canDisable: true,
-                        flatten: true,
-                        itemSchema: mkBattleRuleSchema()
-                    }),
-                    mkF('rules', 'array', {
-                        class: 'heading',
-                        collapsibleItems: true,
-                        canDisable: true,
-                        itemSchema: mkBattleRuleSchema()
-                    })
-                ]
-            }
+        return { type: 'object', properties };
+    };
+    const conditionsGeneral = [
+        mkF('world', 'array', { multiSelectOptions: ['Persistent', 'Isekai'], itemSchema: { type: 'text' } }),
+        mkF('pLevel', 'rangeNumber'),
+        mkF('pMaxSpellType', 'array', { multiSelectOptions: Object.keys(spellsDamageObj), popup: true, itemSchema: { type: 'text' } }),
+        mkF('battleTypes', 'array', { multiSelectOptions: BATTLE_TYPES, popup: true, itemSchema: { type: 'text' } }),
+        mkF('difficulty', 'array', { multiSelectOptions: Object.keys(difficultyMap), popup: true, itemSchema: { type: 'text' } }),
+        mkF('roundCurrent', 'rangeNumber'),
+        mkF('roundLeft', 'rangeNumber'),
+        mkF('roundTotal', 'rangeNumber'),
+        mkF('floor', 'rangeNumber'),
+        mkF('pActionCooldown', 'array', { multiSelectOptions: [
+            ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
+        ], hasRange: 'cB.cooldownRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('pActionHistory', 'array', { multiSelectOptions: [
+            'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
+        ], hasRange: 'cB.actionIndexRange', popup: true, itemSchema: { type: 'text' }, defaultValue: [1, 1] }),
+        mkF('pActionCounts', 'array', { multiSelectOptions: [
+            'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
+        ], hasRange: 'cB.usesPerRoundRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('pTotalActionCounts', 'array', { multiSelectOptions: [
+            'Attack', ...TOGGLE, ...SKILLS, ...SPELLS_SUPPORT, ...ITEMS, ...SPELLS_DAMAGE, ...SPELLS_DEBUFF,
+        ], hasRange: 'cB.usesRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('pHP', 'rangeNumber'),
+        mkF('pMP', 'rangeNumber'),
+        mkF('pSP', 'rangeNumber'),
+        mkF('pOC', 'rangeNumber'),
+        mkF('pSpiritStatus', 'boolean'),
+        mkF('pEffects', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('pIgnoredEffects', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('pEffectStacks', 'array', { multiSelectOptions: PLAYER_EFFECTS, hasRange: 'cB.stacksRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('monsters', 'rangeNumber'),
+        mkF('activeMonsters', 'rangeNumber'),
+        mkF('defeatedMonsters', 'rangeNumber'),
+        mkF('bosses', 'rangeNumber'),
+        mkF('activeBosses', 'rangeNumber'),
+        mkF('defeatedBosses', 'rangeNumber'),
+        mkF('mLevel', 'rangeNumber'),
+        mkF('mWithoutEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.monsterCountRange', popup: true, itemSchema: { type: 'text' } }),
+    ];
+    const conditionsTarget = [
+        mkF('tName', 'text'),
+        mkF('tTypes', 'array', { multiSelectOptions: MONSTER_TYPES, popup: true, itemSchema: { type: 'text' } }),
+        mkF('tClasses', 'array', { multiSelectOptions: MONSTER_CLASSES, popup: true, itemSchema: { type: 'text' } }),
+        mkF('tPowerLevel', 'rangeNumber'),
+        mkF('tIndex', 'rangeNumber'),
+        mkF('tHP', 'rangeNumber'),
+        mkF('tMP', 'rangeNumber'),
+        mkF('tSP', 'rangeNumber'),
+        mkF('tEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('tIgnoredEffects', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.remainingTurnsRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('tEffectStacks', 'array', { multiSelectOptions: Object.keys(effectSrc), hasRange: 'cB.stacksRange', popup: true, itemSchema: { type: 'text' } }),
+        mkF('tDaysSinceUpdate', 'rangeNumber'),
+    ].map(f => ({
+        ...f,
+        extraFields: [
+            { key: 'offset', type: 'rangeNumber' },
+            { key: 'matched', type: 'rangeNumber', defaultValue: [1, 1] },
+        ].map(ef => ({ ...ef, label: `cB.${ef.key}` }))
+    }));
+    const mkBattleRuleSchema = () => ({
+        type: 'object',
+        discriminator: 'type',
+        oneOf: {
+            target: mkItem('target', null, [{ key: 'priorityRule', type: 'dropdown', options: PRIORITY_RULES }], true, true),
+            spellSupport: mkItem('spellSupport', SPELLS_SUPPORT, [], true, true),
+            item: mkItem('item', ITEMS, [], true, true),
+            toggle: mkItem('toggle', TOGGLE, [{ key: 'toggled', type: 'boolean' }], true, true),
+            stop: mkItem('stop', null, [{ key: 'customMessage', type: 'text' }], true, true),
+            smartDebuff: mkItem('smartDebuff', SPELLS_DEBUFF, [
+                { key: 'targetCount', type: 'dropdown', options: [3, 2, 1] },
+                { key: 'bottomUp', type: 'boolean' },
+                { key: 'tailSkip', type: 'number' },
+                { key: 'maxAtFirst', type: 'number' },
+                { key: 'minMonstersLeft', type: 'number' }
+            ], true, true),
+            spellDebuff: mkItem('spellDebuff', SPELLS_DEBUFF, [], true, true),
+            spellDamage: mkItem('spellDamage', SPELLS_DAMAGE, [], true, true),
+            skill: mkItem('skill', SKILLS, [], true, true),
+            normalAttack: mkItem('normalAttack', null, [], true, true),
+            kamisamaniNattaHi: mkItem('kamisamaniNattaHi', null, [
+                { key: 'code', skipLabel: true, type: 'textarea' }
+            ], false, false),
         }
-    ]
-};
-const BATTLE_RULE_SCHEMA_KEYS = new Set(['battleModeSettings', 'modes']);
-const cfgBattleSettingsSchema = {
-    type: 'object',
-    properties: cfgBattleSchema.properties.filter(field => !BATTLE_RULE_SCHEMA_KEYS.has(field.key))
-};
-const cfgStatsSchema = {
-    type: 'object',
-    properties: [
-        mkF('basic', 'heading', { class: 'heading', prefix: 'cS.' }),
-        mkF('combatRows', 'fieldPicker', {
-            prefix: 'cS.',
-            statsEditor: true,
-            size: 16,
-            allFields: COMBAT_FIELDS,
-            editFields: [
-                { key: 's_pd', group: 'outputDisplay' },
-                { key: 's_md', group: 'outputDisplay' },
-                { key: 's_td', group: 'outputDisplay' },
-                { key: 's_pt', group: 'takenDisplay' },
-                { key: 's_ps', group: 'takenDisplay' },
-                { key: 's_mt', group: 'takenDisplay' },
-                { key: 's_ms', group: 'takenDisplay' },
-                { key: 's_tt', group: 'takenDisplay' },
-            ].map(f => ({ ...f, label: `cS.${f.key}`, placeholder: 'background-color: red' })),
-        }),
-        mkF('revenueRows', 'fieldPicker', {
-            prefix: 'cS.',
-            statsEditor: true,
-            size: 16,
-            allFields: REVENUE_FIELDS,
-            editFields: [
-                { key: 'styleText', label: 'cS.styleText', placeholder: 'color: red;' },
-            ],
-        }),
-        mkF('statsColumns', 'fieldPicker', {
-            prefix: 'cS.',
-            statsEditor: true,
-            size: 16,
-            allFields: STATS_FIELDS,
-            editFields: [
-                { key: 'customName', label: 'cS.customName' },
-                { key: 'styleText', label: 'cS.styleText', placeholder: 'color: red;' },
-                { key: 'colorThresholds', label: 'cS.colorThresholds', placeholder: '500:#c31dcf, 1000:red' },
-            ],
-        }),
-    ]
-};
+    });
+    const cfgBattleSchema = {
+        type: 'object',
+        properties: [
+            mkF('battleControls', 'group', { properties: [
+                mkF('advanceToNextRound', 'boolean'),
+                mkF('autoFinishBattle', 'boolean'),
+                mkF('ctrlWidgetMouseEnter', 'boolean', { label: 'cB.panelMouseEnter' }),
+                mkF('ctrlWidgetMouseEnterPause', 'boolean', { help: 'cB.ctrlWidgetMouseEnterPauseHelp' }),
+                mkF('ajaxRound', 'boolean', { label: 'cB.ajaxRoundShort', help: 'cB.ajaxRound' }),
+                mkF('hideRoundPopup', 'boolean'),
+                mkF('dailyStaminaQuotaPlus', 'number'),
+            ] }),
+            mkF('battleDisplay', 'group', { properties: [
+            mkF('showCooldowns', 'boolean'),
+            mkF('showDurations', 'boolean'),
+            mkF('showRealTimeProficiency', 'boolean'),
+            mkF('showMonsterIndex', 'boolean'),
+            mkF('showMonsterInfo', 'boolean'),
+            mkF('showMonsterHP', 'boolean'),
+            mkF('recordBattleLog', 'boolean'),
+            mkF('quickbarExtend', 'array', { itemSchema: { type: 'text' } }),
+            ] }),
+            mkF('controlPanel', 'group', { controlPanelEditor: true, properties: [
+            mkF('ctrlWidgetStyleText', 'text', { placeholder: 'opacity: 1;' }),
+            mkF('ctrlWidgetRows', 'fieldPicker', { prefix: 'cW.', size: 8, allFields: CTRLWIDGET_FIELDS }),
+            ] }),
+
+            mkF('battleModeSettings', 'heading', { class: 'heading' }),
+            {
+                key: 'modes', type: 'dropdown', label: 'cB.modes',
+                hasModeDropdown: 'battleMode',
+                options: {
+                    battleStyle: BATTLE_STYLES.map(key => ({ value: key, label: `cB.${key}` })),
+                    battleType: ['General', ...BATTLE_TYPES].map(key => ({ value: key, label: `cB.${key}` })),
+                },
+                flatten: '_',
+                itemSchema: {
+                    type: 'object',
+                    properties: [
+                        mkF('keyBindings', 'keyBasedObjectArray', {
+                            class: 'heading',
+                            collapsibleItems: true,
+                            canDisable: true,
+                            flatten: true,
+                            itemSchema: mkBattleRuleSchema()
+                        }),
+                        mkF('rules', 'array', {
+                            class: 'heading',
+                            collapsibleItems: true,
+                            canDisable: true,
+                            itemSchema: mkBattleRuleSchema()
+                        })
+                    ]
+                }
+            }
+        ]
+    };
+    const BATTLE_RULE_SCHEMA_KEYS = new Set(['battleModeSettings', 'modes']);
+    const cfgBattleSettingsSchema = {
+        type: 'object',
+        properties: cfgBattleSchema.properties.filter(field => !BATTLE_RULE_SCHEMA_KEYS.has(field.key))
+    };
+    const cfgStatsSchema = {
+        type: 'object',
+        properties: [
+            mkF('basic', 'heading', { class: 'heading', prefix: 'cS.' }),
+            mkF('combatRows', 'fieldPicker', {
+                prefix: 'cS.',
+                statsEditor: true,
+                size: 16,
+                allFields: COMBAT_FIELDS,
+                editFields: [
+                    { key: 's_pd', group: 'outputDisplay' },
+                    { key: 's_md', group: 'outputDisplay' },
+                    { key: 's_td', group: 'outputDisplay' },
+                    { key: 's_pt', group: 'takenDisplay' },
+                    { key: 's_ps', group: 'takenDisplay' },
+                    { key: 's_mt', group: 'takenDisplay' },
+                    { key: 's_ms', group: 'takenDisplay' },
+                    { key: 's_tt', group: 'takenDisplay' },
+                ].map(f => ({ ...f, label: `cS.${f.key}`, placeholder: 'background-color: red' })),
+            }),
+            mkF('revenueRows', 'fieldPicker', {
+                prefix: 'cS.',
+                statsEditor: true,
+                size: 16,
+                allFields: REVENUE_FIELDS,
+                editFields: [
+                    { key: 'styleText', label: 'cS.styleText', placeholder: 'color: red;' },
+                ],
+            }),
+            mkF('statsColumns', 'fieldPicker', {
+                prefix: 'cS.',
+                statsEditor: true,
+                size: 16,
+                allFields: STATS_FIELDS,
+                editFields: [
+                    { key: 'customName', label: 'cS.customName' },
+                    { key: 'styleText', label: 'cS.styleText', placeholder: 'color: red;' },
+                    { key: 'colorThresholds', label: 'cS.colorThresholds', placeholder: '500:#c31dcf, 1000:red' },
+                ],
+            }),
+        ]
+    };
+    return { cfgBattleSchema, cfgBattleSettingsSchema, cfgStatsSchema, mkBattleRuleSchema, conditionsGeneral, conditionsTarget };
+}
 
 let spellCooldowns;
 let itemCooldowns;
@@ -3588,7 +3625,7 @@ function initDo() {
         renderBattleRecordsPage(window);
         return;
     }
-    ensureJpxStyle();
+    ensureJpxStyle(document, !document.querySelector('#textlog, #battle_main, #riddlemaster'));
 
     window.addEventListener('beforeunload', storeTmp);
     document.addEventListener('pointerdown', (e) => {
@@ -9992,7 +10029,7 @@ function renderSettings() {
         const newUI = document.createElement('div');
         newUI.id = 'cfgBattle-ui';
         oldUI.replaceWith(newUI);
-        renderSchema(newUI, cfgBattleSettingsSchema, cfgBattle);
+        renderSchema(newUI, getSettingsSchemas().cfgBattleSettingsSchema, cfgBattle);
     }
 
     function exportBattleConfig() {
@@ -10156,6 +10193,7 @@ function renderSettings() {
                         if ((config[versionKey] || config.version || 0) < requiredVersion) throw new Error('Unsupported configuration version');
                         if (copy.kind !== 'stats') {
                             // Use the editor's schema so a plugin cannot import rules it cannot render.
+                            const { cfgBattleSchema, conditionsGeneral, conditionsTarget } = getSettingsSchemas();
                             const groups = cfgBattleSchema.properties.find(field => field.key === 'modes').itemSchema.properties;
                             const conditions = new Map([...conditionsGeneral, ...conditionsTarget].map(field => [field.key, field]));
                             const object = value => value && typeof value === 'object' && !Array.isArray(value);
@@ -10370,7 +10408,7 @@ function renderBattleTab(parent) {
     loadBattleConfig();
     const cfgBattleUI = parent.appendChild(document.createElement('div'));
     cfgBattleUI.id = 'cfgBattle-ui';
-    renderSchema(cfgBattleUI, cfgBattleSettingsSchema, cfgBattle);
+    renderSchema(cfgBattleUI, getSettingsSchemas().cfgBattleSettingsSchema, cfgBattle);
 }
 
 function renderKeybindingsTab(parent) {
@@ -10409,7 +10447,7 @@ function downloadSettingsFile(text, type, fileName) {
 
 // Legacy lists contain only displayed fields. Keep their order/styles and append missing fields disabled.
 function normalizeStatsConfig(data) {
-    for (const field of cfgStatsSchema.properties.filter(field => field.statsEditor)) {
+    for (const field of getSettingsSchemas().cfgStatsSchema.properties.filter(field => field.statsEditor)) {
         const known = new Set(field.allFields.map(item => item.id)), seen = new Set();
         const items = (Array.isArray(data[field.key]) ? data[field.key] : []).filter(item => {
             if (!item || !known.has(item.id) || seen.has(item.id)) return false;
@@ -10437,7 +10475,7 @@ function validateStatsConfig(data) {
         !['statsVersion', 'combatRows', 'revenueRows', 'statsColumns'].some(key => key in data)) invalid();
     if ('columnGroups' in data && (!data.columnGroups || Array.isArray(data.columnGroups) || typeof data.columnGroups !== 'object' ||
         Object.values(data.columnGroups).some(value => typeof value !== 'boolean'))) invalid();
-    for (const field of cfgStatsSchema.properties.filter(field => field.statsEditor)) {
+    for (const field of getSettingsSchemas().cfgStatsSchema.properties.filter(field => field.statsEditor)) {
         if (!(field.key in data)) continue;
         const seen = new Set();
         if (!Array.isArray(data[field.key])) invalid();
@@ -11120,7 +11158,7 @@ function renderStatsSettingsUI(container, restoringView = false) {
     nav.setAttribute('role', 'group');
     nav.setAttribute('aria-label', t('cS.statsSettings'));
     container.append(nav);
-    const fields = cfgStatsSchema.properties.filter(field => field.statsEditor);
+    const fields = getSettingsSchemas().cfgStatsSchema.properties.filter(field => field.statsEditor);
     const sections = [...fields.map(field => field.key), 'data'];
     const panels = new Map(), buttons = new Map();
     const selectSection = (key, initial = false) => {
@@ -15470,8 +15508,8 @@ function renderJpxConfigManager(parent, hooks = {}) {
         state.editor={draft,mode,baseline:'',previousHistory,revision:entry.revision,history:null};
         const draw=()=>{
             content.replaceChildren();
-            if(mode){const section=el('div');content.append(section);renderBattleRuleSections(section,cfgBattleSchema.properties.find(field=>field.key==='modes').itemSchema,draft.envelope.config[mode],mode);}
-            else{content.classList.add('jpx-config-stats-editor');content.style.overflow='auto';renderSchema(content,cfgStatsSchema,draft.envelope.config);}
+            if(mode){const section=el('div');content.append(section);renderBattleRuleSections(section,getSettingsSchemas().cfgBattleSchema.properties.find(field=>field.key==='modes').itemSchema,draft.envelope.config[mode],mode);}
+            else{content.classList.add('jpx-config-stats-editor');content.style.overflow='auto';renderSchema(content,getSettingsSchemas().cfgStatsSchema,draft.envelope.config);}
         };
         state.editor.redraw=draw;
         draw();state.editor.baseline=JSON.stringify(draft.envelope);
