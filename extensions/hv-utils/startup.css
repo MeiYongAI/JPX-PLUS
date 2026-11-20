@@ -1,0 +1,2 @@
+/* Only a navigable game panel; keep geometry available to HVUT during setup. */
+html[data-hvut-armory-pending] #csp:has(#navbar) { visibility: hidden !important; }

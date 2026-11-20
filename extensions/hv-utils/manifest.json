@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "HV Utils",
+  "version": "4.2.4.2",
+  "author": "sssss2",
+  "description": "HV Utils for HentaiVerse \u2014 standalone Chromium extension.",
+  "minimum_chrome_version": "111",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://e-hentai.org/*",
+    "https://hentaiverse.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.hentaiverse.org/*",
+        "*://e-hentai.org/*"
+      ],
+      "exclude_matches": [
+        "*://hentaiverse.org/equip/*",
+        "*://alt.hentaiverse.org/equip/*",
+        "*://hentaiverse.org/isekai/equip/*",
+        "*://alt.hentaiverse.org/isekai/equip/*"
+      ],
+      "all_frames": true,
+      "world": "MAIN",
+      "js": [
+        "game.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.hentaiverse.org/*",
+        "*://e-hentai.org/*"
+      ],
+      "exclude_matches": [
+        "*://hentaiverse.org/equip/*",
+        "*://alt.hentaiverse.org/equip/*",
+        "*://hentaiverse.org/isekai/equip/*",
+        "*://alt.hentaiverse.org/isekai/equip/*"
+      ],
+      "all_frames": true,
+      "world": "ISOLATED",
+      "js": [
+        "hv-utils.js"
+      ],
+      "run_at": "document_start",
+      "css": [
+        "startup.css"
+      ]
+    }
+  ],
+  "update_url": "https://meiyongai.github.io/JPX-PLUS/extensions/updates.xml",
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    },
+    "default_title": "HV Utils \u00b7 \u5de5\u5177",
+    "default_popup": "popup.html"
+  }
+}

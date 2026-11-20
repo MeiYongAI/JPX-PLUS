@@ -1,0 +1,25 @@
+# HV Utils 4.2.4.2 浏览器扩展
+
+源自本工作区的 `HV Utils.user.js`（作者 sssss2），不是 `HVUT_CN_4.2.42.js`。这是可独立加载的 Chromium Manifest V3 本地移植，不需要 Tampermonkey，也不包含游戏汉化。
+
+## 启用
+
+1. **先停用旧 HV Utils / HVUT_CN 脚本，不必卸载。** 两份 HVUT 同时运行会重复执行操作。游戏汉化扩展、JPX-PLUS 和 JPX 的语言包不属于 HVUT。
+2. 解压 [hv-utils-4.2.4.2.zip](../extensions/hv-utils-4.2.4.2.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
+3. 先刷新平时使用的 HV 大厅。顶部菜单的齿轮打开原版 **HV Utils Settings**；原版要求在游戏设置中启用自定义字体，这个要求不变。随机遭遇通知也会在 E-Hentai 图库运行；装备独立详情页仍排除。
+
+## 数据与切换
+
+- 扩展不能直接读取油猴自己的 GM 存储。切换前建议用脚本管理器备份原数据，特别是设置、装备标记和历史。新扩展没有对应数据时使用默认值；不要把旧脚本卸载当作迁移步骤。
+- 首次初始化每个世界时，仅从当前站点读取原版已有的 `ch_style`、`persona`、`prices`、`equipset` 镜像，不清空旧站点数据。之后仍按原版维护这些站点镜像。邮件 IndexedDB 仍使用原站点和数据库名，不复制到扩展存储。
+- 原 GM 位置改用扩展本地存储，主站与 alt 共用；永久区和异世界按原键前缀区分。要回退，先禁用扩展、再启用旧脚本并刷新。扩展设置不会反写油猴 GM 存储。
+
+## 实现和验证
+
+扩展在页面解析期间预读设置，DOM 就绪后再构建界面。装备管理页切分类时，有导航栏的游戏面板等 HVUT 完成后才显示；初始化失败或等待超过 2 秒会放行原页面。配合汉化扩展 1.2.2 及以上版本，汉化直接处理重排后的装备列表。普通游戏请求直接同源发送；只有原脚本需要的两个跨站 GET（游戏首页和图库 `news.php`）由扩展后台发出。存储权限用于配置及较大的历史记录，无需剪贴板权限。扩展使用的装备筛选表达式不依赖 `eval`。
+
+重新构建：在本仓库根目录运行 `python scripts/build-hv-utils-extension.py`；运行 `python scripts/package-extensions.py` 生成两个 ZIP。测试：使用本仓库已安装的 Playwright 和 Chromium，运行 `node --test tests/hv_utils_extension.test.cjs`。测试实际加载 HVUT 和游戏汉化两个扩展，游戏响应使用离线样本，跨站响应使用模拟数据，不操作真实账户。
+
+## 工具栏与更新
+
+固定 HV Utils 图标。在大厅里可直接打开本页的 HVUT 设置。面板也可手动检查版本；默认每 12 小时检查。有新版可下载 ZIP；支持签名 CRX 的安装环境可使用[浏览器原生自动更新](extension-updates.md)。

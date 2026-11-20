@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HV Utils</title><link rel="stylesheet" href="popup.css">
+</head><body>
+<header><img src="mark.svg" width="32" height="32" alt=""><h1>HV Utils</h1><span id="version"></span></header>
+<main>
+  <section class="game" aria-label="游戏工具"><button type="button" id="gameSettings" disabled>打开 HVUT 设置 <span aria-hidden="true">→</span></button><p id="gameHint" role="status">正在识别当前页面…</p></section>
+  <section aria-label="更新状态">
+    <div class="status-row"><h2 id="status" role="status">读取中…</h2><button type="button" id="check">检查更新</button></div>
+    <p id="checked"></p>
+    <div id="release" hidden><a id="download" target="_blank" rel="noopener">下载新版 ZIP</a><p>覆盖原目录后，在扩展管理页点「重新加载」。</p></div>
+  </section>
+  <details><summary>设置</summary>
+    <label><span>每 12 小时自动检查</span><input id="automatic" type="checkbox" disabled></label>
+    
+    <a href="https://github.com/MeiYongAI/JPX-PLUS/blob/main/docs/extension-updates.md" target="_blank" rel="noopener">哪些安装方式支持自动更新？ ↗</a>
+  </details>
+</main><script src="popup.js"></script></body></html>

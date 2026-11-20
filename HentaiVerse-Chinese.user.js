@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.20.2
+// @version     2026.11.20.3
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -21,11 +21,18 @@
 // ==/UserScript==
 // The userscript normally starts with a body; MV3 starts before the parser creates it.
 (function boot(start) {
-    if (document.body) return start();
+    function bodyReady() {
+        // HVUT rebuilds the armory from the original labels. Translate the finished DOM
+        // once instead of rewriting a native table which HVUT immediately discards.
+        if (document.documentElement.hasAttribute('data-hvut-armory-pending')) {
+            document.addEventListener('hvut:armory-ready', start, { once: true });
+        } else start();
+    }
+    if (document.body) return bodyReady();
     const observer = new MutationObserver(() => {
         if (!document.body) return;
         observer.disconnect();
-        start();
+        bodyReady();
     });
     observer.observe(document, { childList: true, subtree: true });
 })(function () {
