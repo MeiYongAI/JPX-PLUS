@@ -8,7 +8,7 @@ out = root / 'extensions/hv-utils'
 meta, source = (root / 'src/hv-utils-extension/upstream/HV Utils.user.js').read_text('utf-8-sig').split('// ==/UserScript==\n')
 fields = lambda name: re.findall(r'^//\s+@' + name + r'\s+(.+)$', meta, re.M)
 version, = fields('version')
-extension_version = version + '.2'
+extension_version = version + '.3'
 manifest = dict(manifest_version=3, name='HV Utils', version=extension_version, author=fields('author')[0],
                 description='HV Utils for HentaiVerse — standalone Chromium extension.',
                 minimum_chrome_version='111', permissions=['storage', 'unlimitedStorage', 'alarms'],

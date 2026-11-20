@@ -2,7 +2,7 @@
 const installed = chrome.runtime.getManifest().version;
 const feed = 'https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/extensions/hv-zh-cn/manifest.json';
 const alarm = 'hv-check-version';
-const interval = 12 * 60;
+
 let checking;
 function compare(a, b) {
     const x = a.split('.').map(Number), y = b.split('.').map(Number);
@@ -27,15 +27,16 @@ async function check() {
 }
 function checkOnce() { return checking ||= check().finally(() => { checking = null; }); }
 async function schedule() {
-    const {automatic, result} = await chrome.storage.local.get(['automatic','result']);
+    const {automatic, intervalHours, result} = await chrome.storage.local.get(['automatic','intervalHours','result']);
+    const interval = ([1,6,12,24].includes(intervalHours) ? intervalHours : 12) * 60;
     if (automatic === false) { await chrome.alarms.clear(alarm); return; }
-    if (!await chrome.alarms.get(alarm)) await chrome.alarms.create(alarm, {periodInMinutes:interval});
+    if ((await chrome.alarms.get(alarm))?.periodInMinutes !== interval) await chrome.alarms.create(alarm, {periodInMinutes:interval});
     if (!result || Date.now() - result.checked >= interval * 60000) await checkOnce();
 }
 chrome.runtime.onInstalled.addListener(async () => { await chrome.storage.local.remove('result'); await chrome.action.setBadgeText({text:''}); await schedule(); });
 chrome.runtime.onStartup.addListener(schedule);
 chrome.alarms.onAlarm.addListener(async a => { if (a.name === alarm && (await chrome.storage.local.get('automatic')).automatic !== false) await checkOnce(); });
-chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && changes.automatic) schedule(); });
+chrome.storage.onChanged.addListener((changes, area) => { if (area === 'local' && (changes.automatic || changes.intervalHours)) schedule(); });
 chrome.runtime.onMessage.addListener((msg, sender, reply) => {
     if (sender.url !== chrome.runtime.getURL('popup.html') || msg !== 'check') return;
     checkOnce().then(() => reply(true), () => reply(false));

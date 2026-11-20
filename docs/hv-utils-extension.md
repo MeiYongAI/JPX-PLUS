@@ -1,11 +1,11 @@
-# HV Utils 4.2.4.2 浏览器扩展
+# HV Utils 4.2.4.3 浏览器扩展
 
 源自本工作区的 `HV Utils.user.js`（作者 sssss2），不是 `HVUT_CN_4.2.42.js`。这是可独立加载的 Chromium Manifest V3 本地移植，不需要 Tampermonkey，也不包含游戏汉化。
 
 ## 启用
 
 1. **先停用旧 HV Utils / HVUT_CN 脚本，不必卸载。** 两份 HVUT 同时运行会重复执行操作。游戏汉化扩展、JPX-PLUS 和 JPX 的语言包不属于 HVUT。
-2. 解压 [hv-utils-4.2.4.2.zip](../extensions/hv-utils-4.2.4.2.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
+2. 解压 [hv-utils-4.2.4.3.zip](../extensions/hv-utils-4.2.4.3.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
 3. 先刷新平时使用的 HV 大厅。顶部菜单的齿轮打开原版 **HV Utils Settings**；原版要求在游戏设置中启用自定义字体，这个要求不变。随机遭遇通知也会在 E-Hentai 图库运行；装备独立详情页仍排除。
 
 ## 数据与切换
@@ -22,4 +22,4 @@
 
 ## 工具栏与更新
 
-固定 HV Utils 图标。在大厅里可直接打开本页的 HVUT 设置。面板也可手动检查版本；默认每 12 小时检查。有新版可下载 ZIP；支持签名 CRX 的安装环境可使用[浏览器原生自动更新](extension-updates.md)。
+固定 HV Utils 图标。点击左上角的版本号打开仓库；右上角「设置」可选每 1、6、12 或 24 小时检查一次，也可关闭。默认 12 小时；主页的「检查更新」可立即检查。当前解压安装版只有新版提示，需要下载 ZIP 覆盖后重新加载，不能自动安装程序更新。支持签名 CRX 的安装环境可使用[浏览器原生自动更新](extension-updates.md)。

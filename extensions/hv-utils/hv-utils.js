@@ -19,12 +19,6 @@ if (gameHost && params.get('s') === 'Bazaar' && params.get('ss') === 'am') {
   timeout = setTimeout(releaseArmory, 2000); // slow/broken page: restore native UI
 }
 (async () => {
-chrome.runtime.onMessage.addListener((message, sender, reply) => {
-  if (sender.url !== chrome.runtime.getURL('popup.html') || !['can-open-settings','open-settings'].includes(message)) return;
-  const icon = document.getElementById('hvut-top-config-icon');
-  if (icon && message === 'open-settings' && !document.querySelector('.hvut-cfg-div')) icon.click();
-  reply(!!icon);
-});
 const storage = chrome.storage.local;
 const cache = Object.create(null);
 // Don't deserialize monster/shrine histories and the armory DB on every battle round.

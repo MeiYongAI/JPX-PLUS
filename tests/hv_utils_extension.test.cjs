@@ -141,26 +141,26 @@ for (const [name, extensions] of [['both', [folder, zh]], ['HVUT only', [folder]
     assert.deepEqual(errors, []);
   });
 }
-test('tool popup: unsupported page, real lobby settings and version checks', async t => {
+test('tool popup: repository, interval persistence, alarm rescheduling and manual checks', async t => {
   const ctx = await chromium.launchPersistentContext('', {channel:'chromium',headless:true,
     args:[`--disable-extensions-except=${folder}`,`--load-extension=${folder}`, '--no-proxy-server','--host-resolver-rules=MAP raw.githubusercontent.com ~NOTFOUND']});
   t.after(() => ctx.close());
   const worker = ctx.serviceWorkers()[0] || await ctx.waitForEvent('serviceworker');
   const pop = await ctx.newPage(); await pop.goto(new URL('popup.html', worker.url()).href);
-  await pop.getByText('请切到已加载 HVUT 的游戏大厅后再打开面板。').waitFor();
-  assert.ok(await pop.locator('#gameSettings').isDisabled());
-  await worker.evaluate(async () => {
-    await chrome.storage.local.set({hvut_re:{date:Date.now(),count:1,clear:true}});
-    const local = self.fetch; self.fetch = (u,...rest) => String(u).startsWith('https:') ? Promise.resolve(Response.json({version:'4.3.0'})) : local(u,...rest);
-  });
-  await pop.locator('#check').click(); await pop.getByText('发现新版 v4.3.0').waitFor();
+  await pop.waitForFunction(async () => !!(await chrome.storage.local.get('result')).result);
+  assert.equal(await pop.locator('#version').getAttribute('href'), 'https://github.com/MeiYongAI/JPX-PLUS');
+  await pop.getByRole('button', {name:'设置', exact:true}).click();
+  const interval = pop.getByLabel('自动检查更新间隔');
+  assert.equal(await interval.inputValue(),'12');
+  await interval.selectOption('6'); await pop.waitForFunction(async () => (await chrome.alarms.get('hv-check-version'))?.periodInMinutes === 360);
+  await pop.reload(); await pop.locator('#settings').click(); assert.equal(await interval.inputValue(),'6');
+  await interval.selectOption('0'); await pop.waitForFunction(async () => !await chrome.alarms.get('hv-check-version'));
+  await interval.selectOption('24'); await pop.waitForFunction(async () => (await chrome.alarms.get('hv-check-version'))?.periodInMinutes === 1440);
+  await pop.locator('#back').click(); assert.ok(await interval.isHidden());
+  await worker.evaluate(() => { self.fetch = async () => Response.json({version:chrome.runtime.getManifest().version}); });
+  await pop.locator('#check').click(); await pop.getByText('已是最新版本').waitFor();
+  if(process.env.HVUT_PREVIEW) await pop.locator('body').screenshot({path:process.env.HVUT_PREVIEW});
+  await worker.evaluate(() => { self.fetch = async () => Response.json({version:'4.3.0'}); });
+  await pop.locator('#check').click(); await pop.getByText('有新版本').waitFor();
   assert.match(await pop.locator('#download').getAttribute('href'), /hv-utils-4\.3\.0.zip$/);
-  const page = await ctx.newPage(); await page.route('**/*', r => r.fulfill({contentType:'text/html',body:lobby}));
-  await page.goto('https://hentaiverse.org/?s=Bazaar&ss=is'); await page.locator('#hvut-top-config-icon').waitFor();
-  // An extension popup isn't a tab. Keep our test harness tab in the background
-  // while exercising the actual tabs.query / sendMessage route against the active page.
-  await page.bringToFront(); await pop.evaluate(() => gameSettings());
-  assert.ok(await pop.locator('#gameSettings').isEnabled());
-  await pop.evaluate(() => document.getElementById('gameSettings').click()).catch(() => {});
-  await page.locator('.hvut-cfg-div header').waitFor();
 });
