@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "HentaiVerse 简体中文",
+  "description": "汉化 HentaiVerse 游戏界面、战斗日志，以及论坛和拍卖站中已适配的装备名称与词缀。",
+  "version": "1.1.2",
+  "minimum_chrome_version": "111",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://hentaiverse.org/*",
+        "*://*.hentaiverse.org/*",
+        "https://forums.e-hentai.org/index.php?showtopic=*",
+        "https://forums.e-hentai.org/index.php?act=*",
+        "https://reasoningtheory.net/*",
+        "*://lisieuxing.com/*",
+        "*://auction.ngnl.host/*"
+      ],
+      "js": [
+        "translate.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}

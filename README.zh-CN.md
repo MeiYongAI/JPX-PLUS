@@ -135,7 +135,7 @@ GitHub 登录支持自动续期，退出需再次确认。旧版更新后可能�
 | --- | --- | --- |
 | HentaiVerse 暗色 · Stylus | [UserCSS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HV-Dark.user.css) | [论坛帖](https://forums.e-hentai.org/index.php?showtopic=302930) |
 | E-Hentai 论坛暗色 · Stylus | [UserCSS](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/E-Hentai-Forums-Dark.user.css) | [论坛帖](https://forums.e-hentai.org/index.php?showtopic=302931) |
-| HentaiVerse 游戏汉化 | [用户脚本](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) | [中文帖](https://forums.e-hentai.org/index.php?showtopic=302932) |
+| HentaiVerse 游戏汉化 | [浏览器扩展（游戏、论坛及拍卖）](docs/hv-zh-extension.md) 或 [用户脚本](https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js) | [中文帖](https://forums.e-hentai.org/index.php?showtopic=302932) |
 
 这些项目独立安装。游戏汉化与 JPX-PLUS 语言包是不同的脚本。[附图、安装说明与作者致谢](docs/addons.zh-CN.md)。
 

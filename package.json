@@ -4,8 +4,9 @@
   "description": "Build and offline verification tools for the standalone JPX-PLUS userscript",
   "engines": { "node": ">=22" },
   "scripts": {
+    "build:hv-extension": "node scripts/build-hv-extension.cjs",
     "build": "node scripts/build-config-manager.cjs",
-    "check": "node --check JPX-PLUS.user.js && node scripts/build-config-manager.cjs --check && node scripts/check-language-packs.cjs",
+    "check": "node --check JPX-PLUS.user.js && node scripts/build-config-manager.cjs --check && node scripts/check-language-packs.cjs && node scripts/build-hv-extension.cjs --check",
     "test": "node --test --test-concurrency=2 tests/*.test.cjs",
     "profile:battle": "node scripts/profile-battle.cjs",
     "profile:battle-log": "node scripts/profile-battle-log.cjs",

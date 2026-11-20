@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       Hentaiverse 汉化
 // @namespace    http://tampermonkey.net/
-// @version     2026.11.20
+// @version     2026.11.20.2
 // @description   HentaiVerse 简体中文汉化与装备词缀染色，由 MeiYongAI 基于 mbbdzz 原版维护增强。
 // @author    mbbdzz (original author), MeiYongAI (maintenance and enhancements)
 // @icon      https://hentaiverse.org/y/favicon.png
@@ -19,8 +19,26 @@
 // @downloadURL https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js
 // @updateURL https://raw.githubusercontent.com/MeiYongAI/JPX-PLUS/main/HentaiVerse-Chinese.user.js
 // ==/UserScript==
-(function () {
+// The userscript normally starts with a body; MV3 starts before the parser creates it.
+(function boot(start) {
+    if (document.body) return start();
+    const observer = new MutationObserver(() => {
+        if (!document.body) return;
+        observer.disconnect();
+        start();
+    });
+    observer.observe(document, { childList: true, subtree: true });
+})(function () {
     'use strict';
+
+    // Both distributions share a DOM marker, including across execution worlds.
+    if (document.documentElement.hasAttribute('data-hv-zh-runtime')) return;
+    document.documentElement.setAttribute('data-hv-zh-runtime', '');
+
+    function afterParse(callback) {
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', callback, { once: true });
+        else callback();
+    }
 
     // 日志汉化禁用状态（保存在本地，默认 false 即开启汉化）
     let IS_LOG_TRANS_DISABLED = localStorage.getItem('LogTransDisabled') === 'true';
@@ -42,7 +60,7 @@
     btn.style.userSelect = 'none';
     btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.3)';
 
-    document.body.appendChild(btn);
+    afterParse(() => document.body.appendChild(btn));
 
     // 2. 读取保存的状态和位置
     let enabled = localStorage.getItem('myScriptEnabled') !== 'false';
@@ -6994,13 +7012,24 @@
         return translateSourceDisplay(node, parent, 'hv-jpx-text', 'data-hv-jpx-display');
     }
 
+    // HVEA appends (and replaces) an increment span after the original stat name.
+    // Neither HVEA's textContent nor HVUT's XPath should see a translated data key.
+    function directStatLabel(cell) {
+        const label = cell.firstChild;
+        if (label?.nodeType !== 3) return null;
+        for (let n = label.nextSibling; n; n = n.nextSibling) {
+            if (!n.classList?.contains('hv-panel-increment')) return null;
+        }
+        return label;
+    }
+
     function translateHVUTSource(node, parent) {
         if (!/(^|\.)hentaiverse\.org$/.test(mlUrl.hostname)
             || !parent.closest(HVUT_SOURCE_SELECTOR)) return false;
         // HVUT 的基础属性回填使用 XPath contains(text(), "Strength")。
         // 这里必须连直接文本节点的位置都保留，不能包入子元素。
         if (parent.matches('#stats_scrollable td:nth-child(2)')
-            && parent.childNodes.length === 1) {
+            && directStatLabel(parent) === node) {
             const translated = getTranslatedString(node.nodeValue, parent);
             // 属性区约 70 格：逐格「写属性、读字号」会让每格都强制重算整页样式。
             // 与 flushSourceDisplays 一样，本次微任务内先统一读取，再统一写入。
@@ -7092,7 +7121,7 @@
     function flushDirectDisplays() {
         directDisplayScheduled = false;
         const pending = [...pendingDirectDisplays].filter(([parent, { text }]) => parent.isConnected
-            && parent.childNodes.length === 1 && parent.firstChild.nodeType === 3 && parent.firstChild.nodeValue === text);
+            && directStatLabel(parent)?.nodeValue === text);
         pendingDirectDisplays.clear();
         const sizes = new Map();
         for (const [parent, { translated }] of pending) {
@@ -7319,7 +7348,8 @@
         [data-hv-direct-display] {
             font-size: 0 !important;
         }
-        [data-hv-direct-display]::after {
+        [data-hv-direct-display]:not(:has(> .hv-panel-increment))::after,
+        [data-hv-direct-display]:has(> .hv-panel-increment)::before {
             content: attr(data-hv-direct-display);
             font-size: var(--hv-source-font-size);
         }
@@ -7329,6 +7359,7 @@
         .hvut-ch-expand #stats_scrollable hv-source-text {
             line-height: 0 !important;
         }
+        .hvut-ch-expand #stats_scrollable [data-hv-direct-display]::before,
         .hvut-ch-expand #stats_scrollable [data-hv-direct-display]::after,
         .hvut-ch-expand #stats_scrollable hv-source-text::after {
             line-height: 18px;
@@ -7525,6 +7556,10 @@
     // 会让 innerText 丢失装备名。原链接、行内元素、注释和监听器均不重建。
     const IS_FORUM_EQUIPMENT = mlUrl.hostname === 'forums.e-hentai.org'
         && matchedRules.some(rule => rule.id === 'equipment-name');
+    // Percentage Ranges reads the original quality/type from the first child at document-end.
+    const GAME_PANEL_HEADING = '.showequip > :first-child, #popup_box > :first-child';
+    const IS_GAME_EQUIPMENT = /^(?:alt\.)?hentaiverse\.org$/.test(mlUrl.hostname)
+        && matchedRules.some(rule => rule.id === 'equipment-name');
     const EQUIPMENT_DISPLAY_TAG = 'hv-equipment-text';
     const EQUIPMENT_EMPTY_ATTRIBUTE = 'data-hv-equipment-empty';
     const EQUIPMENT_DISPLAY_SKIP = 'script, style, textarea, input, select, button, mark.trans-styled, .NAE_lot, .signature, [role="button"], [hidden], [aria-hidden="true"], [contenteditable]:not([contenteditable="false"])';
@@ -7541,7 +7576,7 @@
         expected.push({ added, removed });
     }
     function consumeEquipmentMutation(mutation) {
-        if (!IS_FORUM_EQUIPMENT || mutation.type !== 'childList') return false;
+        if (mutation.type !== 'childList') return false;
         const expected = equipmentOwnMutations.get(mutation.target);
         if (!expected) return false;
         const index = expected.findIndex(item =>
@@ -7556,13 +7591,20 @@
     }
 
     function getForumEquipmentRoot(node) {
+        if (IS_GAME_EQUIPMENT) {
+            const el = node.nodeType === 1 ? node : node.parentElement;
+            const heading = el?.closest(GAME_PANEL_HEADING);
+            if (!heading) return null;
+            const link = el.closest('a[href]');
+            return link && heading.contains(link) ? link : heading;
+        }
         if (!IS_FORUM_EQUIPMENT) return null;
         let element = node.nodeType === 1 ? node : node.parentElement;
         if (element?.localName === EQUIPMENT_DISPLAY_TAG) element = element.parentElement;
         if (!element || element.closest(EQUIPMENT_DISPLAY_SKIP) || isTranslationExcluded(element)) return null;
         const root = element.closest('a[href], .showequip, #showequip');
         if (!root || root.closest(EQUIPMENT_DISPLAY_SKIP)) return null;
-        if (root.matches('.showequip, #showequip')) return root;
+        if (root.matches('.showequip, #showequip') || root.closest('.showequip > :first-child')) return root;
         if (!root.closest('.postcolor')) return null;
         try {
             const url = new URL(root.href);
@@ -7633,7 +7675,7 @@
     }
 
     function renderForumEquipmentRoots(roots) {
-        if (!IS_FORUM_EQUIPMENT) return;
+        if (!IS_FORUM_EQUIPMENT && !IS_GAME_EQUIPMENT) return;
         const styles = new Map(), plans = [], emptiedViews = [];
         for (const root of roots) {
             if (root.tagName === 'A') equipmentLinks.add(root);
@@ -7710,11 +7752,11 @@
     }
 
     function translateForumEquipment(root) {
-        if (!IS_FORUM_EQUIPMENT) return;
+        if (!IS_FORUM_EQUIPMENT && !IS_GAME_EQUIPMENT) return;
         const roots = new Set();
         const enclosing = getForumEquipmentRoot(root);
         if (enclosing) roots.add(enclosing);
-        else root.querySelectorAll?.('a[href], .showequip, #showequip').forEach(element => {
+        root.querySelectorAll?.(IS_GAME_EQUIPMENT ? GAME_PANEL_HEADING + ', .showequip > :first-child a[href], #popup_box > :first-child a[href]' : 'a[href], .showequip, #showequip').forEach(element => {
             const target = getForumEquipmentRoot(element);
             if (target) roots.add(target);
         });
@@ -7902,6 +7944,12 @@
             if (translateMLSource(node, parent)) return;
             if (translateTrainingSource(node, parent)) return;
             if (translateHVUTSource(node, parent)) return;
+            // Keep quality, level/tier and stat keys readable before and after the parser runs.
+            if ((IS_GAME_EQUIPMENT || IS_FORUM_EQUIPMENT) && parent.closest('.showequip, #popup_box')
+                && parent.closest('.eq, .eqt, .eqcharm, .showequip > :first-child, #popup_box > :first-child')) {
+                translateSourceDisplay(node, parent, 'hv-source-text', 'data-hv-source-display');
+                return;
+            }
             preserveMMKOptionValue(parent);
         }
         const scope = displayContext || parent;
@@ -8016,7 +8064,8 @@
                 }
             }
         }
-        // 标记为已处理，避免 DOM 变动时重复翻译
+        // Cache the final value (including untranslated text) to distinguish our own writes.
+        translationCache.set(node, node.nodeValue);
         TRANSLATED_NODES.add(node);
     }
 
@@ -8048,7 +8097,8 @@
             // option.value 是程序数据（如 Percentage Ranges 的品质键），只汉化选项文字。
             if (attr === 'value' && el.tagName === 'OPTION') return;
             // HVUT 用原始 title 选择体力图标，并识别 Great / Exhausted 状态。
-            if (attr === 'title' && el.closest('#stamina_readout')) return;
+            if (attr === 'title' && (el.closest('#stamina_readout')
+                || (el.title.startsWith('Base:') && el.closest('.showequip, #popup_box')))) return;
             // 提交值/选项值属于程序数据；仅翻译显示标签、普通按钮与提示。
             if ((IS_MONSTER_LAB || IS_TRAINING || el.closest('#mmk-cfg-div'))
                 && attr === 'value' && !el.matches('input[type="button"]')) return;
@@ -8143,11 +8193,11 @@
             }
             if (m.type === 'childList') {
                 // 原 Text 从显示宿主移除后可能再次插回；空显示已清除，不能复用旧签名。
-                if (IS_FORUM_EQUIPMENT) m.removedNodes.forEach(node => {
+                if (IS_FORUM_EQUIPMENT || IS_GAME_EQUIPMENT) m.removedNodes.forEach(node => {
                     if (equipmentDisplays.get(node)?.host === m.target) equipmentDisplays.delete(node);
                 });
                 if (m.target.nodeType === 1 && m.target.hasAttribute('data-hv-direct-display')
-                    && (m.target.childNodes.length !== 1 || m.target.firstChild.nodeType !== 3)) {
+                    && !directStatLabel(m.target)) {
                     m.target.removeAttribute('data-hv-direct-display');
                 }
                 m.addedNodes.forEach(n => {
@@ -8155,9 +8205,8 @@
                     else if (n.nodeType === 3) nodesToProcess.add(n);
                 });
             } else if (m.type === 'characterData') {
-                // 切换种族、更新献祭累计值可复用原节点；仅新原文清除完成标记。
-                if (m.target.parentElement?.closest('#monstercreate_right, #shrine_trophy')
-                    && translationCache.get(m.target) !== m.target.nodeValue) {
+                // AJAX and the streaming parser can change an existing Text in place.
+                if (translationCache.get(m.target) !== m.target.nodeValue) {
                     TRANSLATED_NODES.delete(m.target);
                 }
                 nodesToProcess.add(m.target);
@@ -8203,7 +8252,7 @@
 
     function initLogToggleButton() {
         const logPane = document.getElementById('pane_log');
-        if (!logPane) return;
+        if (!logPane || document.getElementById('logTransToggleBtn')) return;
 
         const btn = document.createElement('button');
         btn.id = 'logTransToggleBtn';
@@ -8246,7 +8295,7 @@
     // 论坛帖子沿用原 DOM，交给文本遍历器逐节点汉化。不能剥离 span/b/mark
     // 或重写整帖 innerHTML：这会删除拍卖助手的 NAE_lot 控件及其点击监听。
     applyAll(document.body);
-    initLogToggleButton(); // <--- 添加这一行
+    afterParse(initLogToggleButton);
 
     // =========== 图片按钮汉化 ===========
     // 通过 CSS content 替换将图片按钮翻译为中文
@@ -8276,8 +8325,8 @@
             return word2img(value, { strokeStyle: '#EFD34F', fillStyle: '#5C0D11' });
         }
         // 添加 CSS 规则，加 !important 确保覆盖图片源文件
-        function imgRule(src, dataUrl) {
-            return 'img[src*="' + src + '"]{content:url("' + dataUrl + '")!important}';
+        function imgRule(src, dataUrl, scope = '') {
+            return scope + 'img[src*="' + src + '"]{content:url("' + dataUrl + '")!important}';
         }
 
         // 主菜单大字（角色/商店/战斗/强化/百科）
@@ -8434,8 +8483,10 @@
             }
         });
 
-        // 战斗 6 个行动按钮（仅在战斗页添加）
-        if (document.getElementById('pane_log')) {
+        // The pane may arrive after the body (streaming HTML or an AJAX round).
+        // Scope these image rules in CSS instead of deciding once from an incomplete DOM.
+        {
+            const battleImgRule = (src, image) => imgRule(src, image, ':where(body:has(#pane_log)) ');
             var battleActions = {
                 attack: { n: '攻击', s: '攻击', a: '攻击' },
                 skill: { n: '技能书', s: '技能书', a: '技能书' },
@@ -8446,9 +8497,9 @@
             };
             Object.entries(battleActions).forEach(function(_ref) {
                 var key = _ref[0], val = _ref[1];
-                styleText += imgRule(key + '_n.png', activeWord2img(val.n));
-                styleText += imgRule(key + '_s.png', word2img(val.s, { strokeStyle: '#F8DA34', fillStyle: '#0030CB' }));
-                styleText += imgRule(key + '_a.png', word2img(val.a, { strokeStyle: '#EE3632', fillStyle: '#000000' }));
+                styleText += battleImgRule(key + '_n.png', activeWord2img(val.n));
+                styleText += battleImgRule(key + '_s.png', word2img(val.s, { strokeStyle: '#F8DA34', fillStyle: '#0030CB' }));
+                styleText += battleImgRule(key + '_a.png', word2img(val.a, { strokeStyle: '#EE3632', fillStyle: '#000000' }));
             });
             var battleBtns = {
                 'arenacontinue.png': '继续下一轮竞技场挑战',
@@ -8458,7 +8509,7 @@
             };
             Object.entries(battleBtns).forEach(function(_ref2) {
                 var key = _ref2[0], txt = _ref2[1];
-                styleText += imgRule(key, activeWord2img(txt));
+                styleText += battleImgRule(key, activeWord2img(txt));
             });
             var battleSkillLabels = {
                 'sbsel_skills_n.png': '技巧',
@@ -8474,7 +8525,7 @@
             };
             Object.entries(battleSkillLabels).forEach(function(_ref3) {
                 var key = _ref3[0], txt = _ref3[1];
-                styleText += imgRule(key, activeWord2img(txt));
+                styleText += battleImgRule(key, activeWord2img(txt));
             });
         }
 
@@ -8487,7 +8538,8 @@
         }
 
         // 怪物实验室饥饿/情绪条汉化（这些是 div 背景图，不是 img）
-        (function initMLBars() {
+        if (!IS_MONSTER_LAB) return;
+        afterParse(function initMLBars() {
             function translateMLBars() {
                 var bars = document.querySelectorAll('.msl > div:nth-child(5) > div');
                 for (var i = 0; i < bars.length; i++) {
@@ -8530,6 +8582,6 @@
                 var mlObserver = new MutationObserver(function() { translateMLBars(); });
                 mlObserver.observe(slotPane, { childList: true, subtree: true });
             }
-        })();
+        });
     })();
-})();
+});
