@@ -253,3 +253,47 @@ test('tool popup: repository, interval persistence, alarm rescheduling and manua
   await pop.locator('#check').click(); await pop.getByText('有新版本').waitFor();
   assert.match(await pop.locator('#download').getAttribute('href'), /hv-utils-4\.3\.0.zip$/);
 });
+
+test('shrine: choosing a reward never confirms or offers; Offer sends the selected type and slot', async t => {
+  const list = [folder, zh].join(',');
+  const ctx = await chromium.launchPersistentContext('', {channel:'chromium', headless:true,
+    args:[`--disable-extensions-except=${list}`, `--load-extension=${list}`]});
+  t.after(() => ctx.close());
+  const worker = ctx.serviceWorkers().find(w => w.url().endsWith('/background.js')) || await ctx.waitForEvent('serviceworker', w => w.url().endsWith('/background.js'));
+  await worker.evaluate(() => chrome.storage.local.set({hvut_re:{date:Date.now(), count:1, clear:true}}));
+  const posts = [], dialogs = [];
+  const fixture = lobby + `<div id="shrine_outer"><div id="shrine_left"><table class="itemlist" id="inv_item"><tr><td><div
+    onmouseover="show_itemr_box(0,0,'x',this,'x','a','b','Trophy')" onclick="set_shrine_item(30021,29,8,'Broken Glasses')">Broken Glasses</div></td><td>29</td></tr></table></div>
+    <div id="shrine_trophy"></div><form id="shopform"><div id="accept_equip">
+    <input type="submit" value="Staff" onclick="shrine.submit_shrine_reward('staff','')">
+    <button type="button" onclick="shrine.submit_shrine_reward('cloth', 'head')"><span>Helmet</span></button></div></form></div>
+    <script>function show_itemr_box(){}; function set_shrine_item(){window.itemSelected=true};
+    const shrine={submit_shrine_reward(){if(confirm('Offer to Snowflake?')) document.querySelector('form').submit()}};</script>`;
+  await ctx.route('**/*', r => {
+    const req = r.request();
+    if (req.method()==='POST') posts.push([new URL(req.url()).pathname,req.postData()]);
+    return r.fulfill({contentType:'text/html',body:req.isNavigationRequest()?fixture:'<table><tr><td>Inventory Capacity:</td><td>1</td><td>/</td><td>100</td></tr></table>'});
+  });
+  const page = await ctx.newPage(); page.setDefaultTimeout(4000);
+  page.on('dialog', async d => {dialogs.push(d.message()); await d.dismiss();});
+  for (const path of ['/', '/isekai/']) {
+    posts.length = 0;
+    await page.goto(`https://alt.hentaiverse.org${path}?s=Bazaar&ss=ss`);
+    const offer = page.locator('[data-action=offer][data-count=input]'); await offer.waitFor();
+    await page.locator('#inv_item td div').first().click();
+    assert.equal(await page.evaluate(() => window.itemSelected), true);
+    await page.locator('#accept_equip input').click();
+    const helmet = page.locator('#accept_equip button');
+    await helmet.locator('span').click();
+    assert.deepEqual(dialogs, []);
+    assert.equal(await helmet.evaluate(b=>b.classList.contains('hvut-ss-selected')), true);
+    await helmet.press('Enter');
+    assert.equal(await page.locator('.hvut-ss-selected').count(),0);
+    await helmet.click();
+    assert.deepEqual(posts, []);
+    await page.locator('#inv_item input[type=text]').fill('1');
+    await Promise.all([page.waitForResponse(r=>r.request().method()==='POST'),offer.click()]);
+    assert.deepEqual(posts, [[path,'select_item=30021&select_reward_type=cloth&select_reward_slot=head']]);
+    assert.deepEqual(dialogs, []);
+  }
+});

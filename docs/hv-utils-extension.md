@@ -1,11 +1,11 @@
-# HV Utils 4.2.4.4 浏览器扩展
+# HV Utils 4.2.4.5 浏览器扩展
 
 源自本工作区的 `HV Utils.user.js`（作者 sssss2），不是 `HVUT_CN_4.2.42.js`。这是可独立加载的 Chromium Manifest V3 本地移植，不需要 Tampermonkey，也不包含游戏汉化。
 
 ## 启用
 
 1. **先停用旧 HV Utils / HVUT_CN 脚本，不必卸载。** 两份 HVUT 同时运行会重复执行操作。游戏汉化扩展、JPX-PLUS 和 JPX 的语言包不属于 HVUT。
-2. 解压 [hv-utils-4.2.4.4.zip](../extensions/hv-utils-4.2.4.4.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
+2. 解压 [hv-utils-4.2.4.5.zip](../extensions/hv-utils-4.2.4.5.zip)，或直接使用 [hv-utils](../extensions/hv-utils/) 目录。Chrome / Edge 打开 `chrome://extensions` / `edge://extensions`，开启开发者模式，加载含 `manifest.json` 的文件夹。
 3. 先刷新平时使用的 HV 大厅。顶部菜单的齿轮打开原版 **HV Utils Settings**；原版要求在游戏设置中启用自定义字体，这个要求不变。随机遭遇通知也会在 E-Hentai 图库运行；独立装备详情页完全不注入 HVUT。
 
 ## 数据与切换

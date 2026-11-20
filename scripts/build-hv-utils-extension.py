@@ -8,7 +8,7 @@ out = root / 'extensions/hv-utils'
 meta, source = (root / 'src/hv-utils-extension/upstream/HV Utils.user.js').read_text('utf-8-sig').split('// ==/UserScript==\n')
 fields = lambda name: re.findall(r'^//\s+@' + name + r'\s+(.+)$', meta, re.M)
 version, = fields('version')
-extension_version = version + '.4'
+extension_version = version + '.5'
 manifest = dict(manifest_version=3, name='HV Utils', version=extension_version, author=fields('author')[0],
                 description='HV Utils for HentaiVerse — standalone Chromium extension.',
                 minimum_chrome_version='111', permissions=['storage', 'unlimitedStorage', 'alarms'],
@@ -40,6 +40,31 @@ patch(r'assign: function \(json\) \{ // cannot access const/let.*?\n      \},', 
 patch(r'        // _window.curr_hover_eqid.*?        _window.update_selected_count\(\);',
       "        game('count', $armory.equiplist.filter((eq) => eq.node.check.name === 'eqids[]' && !eq.node.wrapper.dataset.eqprotect).length);")
 patch(r'return eval\(r\);', 'return filterValue(r);')
+# Reward controls belong to HVUT selection, not the native shrine transaction.
+# Capture on the panel so even a click on a button's nested label is selection only.
+patch(r"\$id\('accept_equip'\)\.addEventListener\('click', _ss\.click\);",
+      "$id('accept_equip').addEventListener('click', _ss.select.click, true);")
+patch(r" else if \(action === 'select'\) \{\n      e\.preventDefault\(\);\n      _ss\.select\.click\(type, slot\);\n    \}", '')
+patch(r'const \{ action, iid, count, type, slot \} = target\.dataset;', 'const { action, iid, count } = target.dataset;')
+patch(r'(  _ss\.select = \{.*?)    init: function \(\) \{.*?      if \(prev === button\)',
+      r"""  _ss.select = {
+    node: {},
+    reward_type: '',
+    reward_slot: '',
+
+    click: function (event) {
+      const button = event.target.closest('[onclick*="submit_shrine_reward"]');
+      if (!button || !event.currentTarget.contains(button)) return;
+      const args = /\bsubmit_shrine_reward\(\s*['"]([^'"]*)['"]\s*,\s*['"]([^'"]*)['"]\s*\)/.exec(button.getAttribute('onclick'));
+      if (!args) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (button.disabled) return;
+      const prev = _ss.select.node.selected;
+      if (prev === button)""")
+patch(r'_ss\.select\.reward_type = button\.dataset\.type;\n        _ss\.select\.reward_slot = button\.dataset\.slot;',
+      '_ss.select.reward_type = args[1];\n        _ss.select.reward_slot = args[2];')
+patch(r'  _ss\.select\.init\(\);\n', '')
 # Release dispatched bodies and callback contexts without shifting a large pending queue.
 patch(r'    GM_xmlhttpRequest\(\$ajax.queue\[\$ajax.index\]\);\n    \$ajax.index\+\+;', '''    const request = $ajax.queue[$ajax.index];
     $ajax.queue[$ajax.index++] = null;

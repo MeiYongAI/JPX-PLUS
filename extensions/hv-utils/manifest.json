@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HV Utils",
-  "version": "4.2.4.4",
+  "version": "4.2.4.5",
   "author": "sssss2",
   "description": "HV Utils for HentaiVerse \u2014 standalone Chromium extension.",
   "minimum_chrome_version": "111",

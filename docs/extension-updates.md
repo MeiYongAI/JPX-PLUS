@@ -10,7 +10,7 @@
 | Chrome / Edge「加载已解压的扩展程序」 | 不会变成签名安装。面板默认每 12 小时检查 GitHub，发现新版可下载 ZIP，覆盖**原目录**后点「重新加载」。 |
 | 普通个人 Windows 上的 Chrome / Edge | 不要把 GitHub 的 CRX 当成商店安装包。要获得面向普通用户的原生自动安装体验，需要对应商店分发；目前未上架。 |
 
-- **HV Utils**：[签名包 4.2.4.4](https://meiyongai.github.io/JPX-PLUS/extensions/hv-utils-4.2.4.4.crx) · ID `fakllkpacebljdkappedbefcooiimdop`
+- **HV Utils**：[签名包 4.2.4.5](https://meiyongai.github.io/JPX-PLUS/extensions/hv-utils-4.2.4.5.crx) · ID `fakllkpacebljdkappedbefcooiimdop`
 - **HV 简体中文**：[签名包 1.2.4](https://meiyongai.github.io/JPX-PLUS/extensions/hv-zh-cn-1.2.4.crx) · ID `peajhkaihfabnchjkhnppmhofachdjog`
 
 面板里的自动检查设置只控制 ZIP 提醒，不控制浏览器的原生更新周期。由解压版改为签名版时 ID 可能改变，先备份 HVUT 配置，避免同时启用两份。不要为安装扩展而关闭浏览器安全保护。

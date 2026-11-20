@@ -5000,7 +5000,7 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
 
   _ss.init = function () {
     $id('inv_item').addEventListener('click', _ss.click);
-    $id('accept_equip').addEventListener('click', _ss.click);
+    $id('accept_equip').addEventListener('click', _ss.select.click, true);
 
     _ss.node.side = $element('div', $id('shrine_outer'), ['.hvut-side hvut-ss-side']);
     toggle_button($input('button', _ss.node.side), 'Filter: On', 'Filter: Off', $id('inv_item'), 'hvut-none-cont', 'on');
@@ -5022,12 +5022,9 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
     if (!target) {
       return;
     }
-    const { action, iid, count, type, slot } = target.dataset;
+    const { action, iid, count } = target.dataset;
     if (action === 'offer') {
       _ss.offer.click(iid, count);
-    } else if (action === 'select') {
-      e.preventDefault();
-      _ss.select.click(type, slot);
     }
   };
 
@@ -5036,26 +5033,15 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
     reward_type: '',
     reward_slot: '',
 
-    init: function () {
-      $qsa('#accept_equip input[type="submit"]').forEach((s) => {
-        s.dataset.action = 'select';
-        const exec = /submit_shrine_reward\('(.*?)','(.*?)'\)/.exec(s.getAttribute('onclick'));
-        const type = exec[1];
-        const slot = exec[2];
-        const select = slot ? `${type}_${slot}` : type;
-        s.dataset.type = type;
-        s.dataset.slot = slot;
-        _ss.select.node[select] = s;
-        s.removeAttribute('onclick');
-      });
-    },
-    click: function (type, slot) {
-      const select = slot ? `${type}_${slot}` : type;
-      const button = _ss.select.node[select];
+    click: function (event) {
+      const button = event.target.closest('[onclick*="submit_shrine_reward"]');
+      if (!button || !event.currentTarget.contains(button)) return;
+      const args = /\bsubmit_shrine_reward\(\s*['"]([^'"]*)['"]\s*,\s*['"]([^'"]*)['"]\s*\)/.exec(button.getAttribute('onclick'));
+      if (!args) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (button.disabled) return;
       const prev = _ss.select.node.selected;
-      if (button.disabled) {
-        return;
-      }
       if (prev === button) {
         prev.classList.remove('hvut-ss-selected');
         _ss.select.node.selected = null;
@@ -5065,8 +5051,8 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
         prev?.classList.remove('hvut-ss-selected');
         button.classList.add('hvut-ss-selected');
         _ss.select.node.selected = button;
-        _ss.select.reward_type = button.dataset.type;
-        _ss.select.reward_slot = button.dataset.slot;
+        _ss.select.reward_type = args[1];
+        _ss.select.reward_slot = args[2];
       }
     },
   };
@@ -5456,7 +5442,6 @@ if (_query.s === 'Bazaar' && _query.ss === 'ss') {
 
   _ss.init();
   _ss.offer.init();
-  _ss.select.init();
   _ss.calc_trophies();
   _ss.load_inventory();
 } else
